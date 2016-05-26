@@ -579,8 +579,8 @@ jitterplot.rate.line <- function() {
     ylab('rate of change of mortality rate') +
     ggtitle(paste0(age.single,' : percentage change of mortality over months per state (colored by geographic region)')) +
     guides(fill=FALSE) +
-    scale_colour_manual(values=map.region.colour,guide = guide_legend(title = 'geographic region')) +	
-    facet_wrap(~sex) +	
+    scale_colour_manual(values=map.climate.colour,guide = guide_legend(title = 'climate region')) +
+    facet_wrap(~sex) +
     theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
     panel.background = element_blank(), axis.line = element_line(colour = "black"),
     rect = element_blank())
