@@ -1,5 +1,4 @@
 rm(list=ls())
-theme_bw()
 
 library(INLA)
 library(ggplot2)
