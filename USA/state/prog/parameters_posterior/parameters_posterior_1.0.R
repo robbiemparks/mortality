@@ -175,7 +175,7 @@ dev.off()
 fitted.1a <- dat.1a$summary.fitted.values$mean
 fitted.3a <- dat.3a$summary.fitted.values$mean
 compare.xy <- as.data.frame(cbind(fitted.1a,fitted.3a))
-pdf(paste0(age.selected,'_',sex.selected,'_model_scatterplot.pdf'),paper='a4r',height=0,width=0) +
+pdf(paste0(age.selected,'_',sex.selected,'_model_scatterplot.pdf'),paper='a4r',height=0,width=0)
 ggplot() +
 geom_point(data=compare.xy,aes(x=100000*fitted.1a,y=100000*fitted.3a)) +
 ggtitle('NRW against SRW x-y scatterplot') +
@@ -194,7 +194,7 @@ random.walk.1a <- dat.1a$summary.random$year.month3
 random.walk.3a <- data.frame(x=rep(1:(num.year*12), 51),rw1=dat.3a$summary.random$year.month4$mean,sd=dat.3a$summary.random$year.month4$sd, ID=rep(1:51,each=num.year*12))
 
 # plot each state's random walk on top of each other
-pdf(paste0(age.selected,'_',sex.selected,'_SRW_random_walks.pdf'),paper='a4r',height=0,width=0) +
+pdf(paste0(age.selected,'_',sex.selected,'_SRW_random_walks.pdf'),paper='a4r',height=0,width=0)
 ggplot() +
 geom_line(data=random.walk.3a,aes(x=x,y=rw1,color='red')) +
 geom_ribbon(data=random.walk.3a,alpha=0.2,fill='red',aes(x=x,ymax=rw1-1.6649*sd,ymin=rw1+1.6649*sd)) + 
@@ -208,7 +208,7 @@ panel.background = element_blank(), axis.line = element_line(colour = "black"),
 rect = element_blank())
 dev.off()
 
-pdf(paste0(age.selected,'_',sex.selected,'_NRW_random_walk.pdf'),paper='a4r',height=0,width=0) +
+pdf(paste0(age.selected,'_',sex.selected,'_NRW_random_walk.pdf'),paper='a4r',height=0,width=0)
 ggplot() +
 geom_line(data=random.walk.1a,aes(x=ID,y=mean,color='green')) + 
 geom_ribbon(data=random.walk.1a,alpha=0.2,fill='red',aes(x=ID,ymax=mean-1.6649*sd,ymin=mean+1.6649*sd)) + 
