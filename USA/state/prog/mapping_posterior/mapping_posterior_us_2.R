@@ -58,6 +58,16 @@ dat.var <- ddply(dat, .(fips,sex,age,year), summarize,sd=sd(rate.pred),mean=mean
 dat.var$sd <- ifelse(is.na(dat.var$sd)==FALSE,dat.var$sd,0)
 dat.var$coeff.var <- with(dat.var,sd/mean)
 
+# apply linear regression to each grouping by fips, sex, age to find gradient
+dat.var.grad <- ddply(dat.var, .(fips,sex,age), function(z)coef(lm(coeff.var ~ year, data=z)))
+dat.var.grad$grad <- with(dat.var.grad,100*(exp(year)-1))
+
+#total percentage change over period
+dat.var.grad$grad.total <- 100 * ((1 + dat.var.grad$grad / 100) ^ num.years - 1)
+
+# find max min and median of each age and sex for coefficient of variation change over time period USE FOR POSTER THEN DELETE THIS COMMENT
+dat.var.delta <- ddply(dat.var.grad, .(sex,age), summarize,max=max(grad.total),min=min(grad.total),median=median(grad.total))
+
 # for each age, sex, year analyse median co-efficient of variation of mortality 
 dat.var.median <- ddply(dat.var, .(age,sex,year), summarize,median=median(coeff.var))
 dat.var.median$age.print <- mapvalues(dat.var.median$age, from=unique(dat.var.median$age), to=age.print)
@@ -361,6 +371,10 @@ median.median.df <- ddply(median.df, .(sex, age), summarise, med.med = median(me
 median.median.df <- merge(median.df, median.median.df, by=c('sex','age'))
 median.median.df$diff.median <- with(median.median.df, med - med.med)
 
+# summary statistics about heatmap USE FOR POSTER THEN DELETE THIS COMMENT
+median.stats.df <- ddply(median.median.df, .(sex,age), summarise, min=min(diff.median),max=max(diff.median))
+median.stats.df$min.max.diff <- with(median.stats.df, max-min)
+
 # plot deviations from median
 pdf('diff_change_mort_across_all_months.pdf',height=0,width=0,paper='a4r')
 ggplot(lin.reg.grad, aes(x=age,fill=age,y=grad.total)) +
@@ -391,7 +405,7 @@ ylab('month') +
 scale_x_discrete(labels=age.print) +
 scale_y_discrete(breaks=c(seq(1,12,by=1)),labels=month.short)   +
 facet_wrap(~sex) +
-ggtitle("Heatmap : percentage change in mortality, centred by overall median of percentage changes") +
+ggtitle('Heatmap : percentage change in mortality, centred by overall median of percentage changes') +
 theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
 panel.background = element_blank(),strip.background = element_blank(), axis.line = element_line(colour = "black"))
 dev.off()
@@ -438,6 +452,84 @@ geom_smooth(method='lm',se=FALSE) +
 facet_wrap(~sex) +
 theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
 panel.background = element_blank(), axis.line = element_line(colour = "black"),rect = element_blank()))
+dev.off()
+
+# 6. change in coefficient of seasonality
+
+# variables for y-limits on variance graphs
+min.var.grad.plot <- min(dat.var.grad$grad.total)
+max.var.grad.plot <- max(dat.var.grad$grad.total)
+
+# prepare data
+shapefile.data$STATE_FIPS <- as.integer(as.character(shapefile.data$STATE_FIPS))
+dat.var.grad <- merge(dat.var.grad, shapefile.data, by.x='fips',by.y='STATE_FIPS')
+dat.var.grad$sex <- as.factor(dat.var.grad$sex)
+levels(dat.var.grad$sex) <- c('male','female')
+dat.var.grad$age.print <- mapvalues(dat.var.grad$age, from=unique(dat.var.grad$age), to=age.print)
+dat.var.grad$age.print <- reorder(dat.var.grad$age.print,dat.var.grad$age)
+
+# plot male facetted by region
+pdf('change_coeff_var_all_ages_male.pdf',paper='a4r',height=0,width=0)
+print(ggplot() +
+geom_jitter(data=subset(dat.var.grad,sex=='male'),width=0.2,aes(x=as.factor(age.print),y=grad.total,color=as.factor(SUB_REGION))) +
+geom_jitter(data=subset(transform(dat.var.grad,SUB_REGION='All'),sex=='male'),width=0.2,colour ='black', aes(x=as.factor(age.print),y=grad.total)) +
+#geom_jitter(data=subset(dat.var.grad,sex=='male'),aes(x=as.factor(age.print),y=grad.total,color=as.factor(SUB_REGION),width=0.02)) +
+ggtitle('Percentage change in coefficient of seasonality in the USA for males, 1982-2010, by region') +
+scale_x_discrete(labels=age.print) +
+xlab('age group') +
+ylab('percentage change in coefficient of seasonality') +
+ylim(min.var.grad.plot,max.var.grad.plot) +
+geom_hline(yintercept=0, linetype=2,alpha=0.5) +
+scale_colour_manual(values=map.region.colour,guide = guide_legend(title = 'geographic region')) +
+guides(colour=FALSE) +
+facet_wrap(~SUB_REGION) +
+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+panel.background = element_blank(), axis.line = element_line(colour = "black"),rect = element_blank(),
+axis.text.x = element_text(angle=90)))
+dev.off()
+
+# plot female facetted by region
+pdf('change_coeff_var_all_ages_female.pdf',paper='a4r',height=0,width=0)
+print(ggplot() +
+geom_jitter(data=subset(dat.var.grad,sex=='female'),width=0.2,aes(x=as.factor(age.print),y=grad.total,color=as.factor(SUB_REGION))) +
+geom_jitter(data=subset(transform(dat.var.grad,SUB_REGION='All'),sex=='female'),width=0.2,colour ='black', aes(x=as.factor(age.print),y=grad.total)) +
+ggtitle('Percentage change in coefficient of seasonality in the USA for females, 1982-2010, by region') +
+scale_x_discrete(labels=age.print) +
+xlab('age group') +
+ylab('percentage change in coefficient of seasonality') +
+ylim(min.var.grad.plot,max.var.grad.plot) +
+facet_wrap(~SUB_REGION) +
+geom_hline(yintercept=0, linetype=2,alpha=0.5) +
+scale_colour_manual(values=map.region.colour,guide = guide_legend(title = 'geographic region')) +
+guides(colour=FALSE) +
+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+panel.background = element_blank(), axis.line = element_line(colour = "black"),rect = element_blank(),
+axis.text.x = element_text(angle=90)))
+dev.off()
+
+# plot male and female on together
+
+# prepare median line
+var.median.df <- ddply(dat.var.grad, .(sex, age), summarise, med = median(grad.total))
+var.median.df$age.print <- mapvalues(var.median.df$age, from=unique(var.median.df$age), to=age.print)
+var.median.df$age.print <- reorder(var.median.df$age.print,var.median.df$age)
+
+pdf('change_coeff_var_all_ages.pdf',paper='a4r',height=0,width=0)
+print(ggplot() +
+geom_jitter(data=dat.var.grad,width=0.4,aes(x=as.factor(age.print),y=grad.total,color=as.factor(SUB_REGION))) +
+geom_line(data = var.median.df, alpha=0.7,aes(group=factor(sex),y = med,x=age.print),linetype=2, size=0.5,colour='black') +
+ggtitle('Percentage change in coefficient of seasonality in the USA, 1982-2010, by region') +
+scale_x_discrete(labels=age.print) +
+xlab('age group') +
+ylab('percentage change in coefficient of seasonality') +
+ylim(min.var.grad.plot,max.var.grad.plot) +
+facet_wrap(~sex) +
+geom_hline(yintercept=0, linetype=2,alpha=0.5) +
+scale_colour_manual(values=map.region.colour,guide = guide_legend(title = 'geographic region')) +
+guides(colour=FALSE) +
+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+panel.background = element_blank(), axis.line = element_line(colour = "black"),rect = element_blank(),
+axis.text.x = element_text(angle=90)))
 dev.off()
 
 # if choosing to print the entire all age group summary togeter, this finishes the pdf
