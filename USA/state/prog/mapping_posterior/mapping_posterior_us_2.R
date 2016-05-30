@@ -119,6 +119,10 @@ lin.reg.grad$month.short <- mapvalues(lin.reg.grad$month,from=unique(lin.reg.gra
 # make sure the months are in the correct order for plotting
 lin.reg.grad$month.short <- reorder(lin.reg.grad$month.short,lin.reg.grad$month)
 
+# add age groups
+lin.reg.grad$age.print <- mapvalues(lin.reg.grad$age, from=unique(lin.reg.grad$age), to=age.print)
+lin.reg.grad$age.print <- reorder(lin.reg.grad$age.print,lin.reg.grad$age)
+
 # work out the difference between max and min for each fips,sex,age
 lin.reg.grad.max.min<- ddply(lin.reg.grad, .(fips,sex,age), summarize,min=min(grad.total),max=max(grad.total))
 lin.reg.grad.max.min$difference <- with(lin.reg.grad.max.min, round(max-min,1))
@@ -357,17 +361,20 @@ median.df <- ddply(lin.reg.grad, .(month,sex,age), summarise, med = median(grad.
 
 # plot
 pdf('change_mort_across_all_months.pdf',height=0,width=0,paper='a4r')
-ggplot(lin.reg.grad, aes(x=age,fill=age,y=grad.total)) +
-geom_line(data = median.df, aes(y = med, colour = factor(month))) +
+ggplot(lin.reg.grad, aes(x=factor(age),fill=age,y=grad.total)) +
+geom_line(data = median.df, aes(x=factor(age),y = med, group = factor(month),color=as.factor(month))) +
+#geom_line(data = var.median.df, alpha=0.7,aes(group=factor(sex),y = med,x=age.print),linetype=2, size=0.5,colour='black') +
 geom_hline(yintercept=0, linetype=2,alpha=0.5) +
 xlab('age group') +
+scale_x_discrete(labels=age.print) +
 ylab('percentage change of death rate') +
 ggtitle("Median percentage change of mortality across age groups by month") +
 guides(fill=FALSE) +
 facet_wrap(~sex) +
 scale_colour_manual(values=colorRampPalette(rev(brewer.pal(12,"RdYlBu")[c(9:10,2:1,1:2,10:9)]))(12),guide = guide_legend(title = 'month'),labels=month.short) +
 theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-panel.background = element_blank(),strip.background = element_blank(), axis.line = element_line(colour = "black"))
+panel.background = element_blank(),strip.background = element_blank(), axis.line = element_line(colour = "black"),
+axis.text.x = element_text(angle=90))
 dev.off()
 
 # find median of medians for centring of following graph
@@ -403,13 +410,13 @@ dev.off()
 pdf('diff_change_mort_across_all_months_heatmap.pdf',height=0,width=0,paper='a4r')
 ggplot(data=median.median.df, aes(x=as.factor(age),y=as.factor(month))) +
 geom_tile(aes(fill=diff.median)) +
-scale_fill_gradient2(low='green',mid='white',high='red',guide = guide_legend(title = '% change\nin\nmortality')) +
+scale_fill_gradient2(low='green',mid='white',high='red',guide = guide_legend(title = '%\ndifference\nfrom\nmedian\nchange')) +
 xlab('age group') +
 ylab('month') + 
 scale_x_discrete(labels=age.print) +
 scale_y_discrete(breaks=c(seq(1,12,by=1)),labels=month.short)   +
 facet_wrap(~sex) +
-ggtitle('Heatmap : percentage change in mortality, centred by overall median of percentage changes') +
+#ggtitle('Heatmap : percentage change in mortality, centred by overall median of percentage changes') +
 theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
 panel.background = element_blank(),strip.background = element_blank(), axis.line = element_line(colour = "black"))
 dev.off()
@@ -522,7 +529,7 @@ pdf('change_coeff_var_all_ages.pdf',paper='a4r',height=0,width=0)
 print(ggplot() +
 geom_jitter(data=dat.var.grad,width=0.4,aes(x=as.factor(age.print),y=grad.total,color=as.factor(SUB_REGION))) +
 geom_line(data = var.median.df, alpha=0.7,aes(group=factor(sex),y = med,x=age.print),linetype=2, size=0.5,colour='black') +
-ggtitle('Percentage change in coefficient of seasonality in the USA, 1982-2010, by region') +
+#ggtitle('Percentage change in coefficient of seasonality in the USA, 1982-2010, by region') +
 scale_x_discrete(labels=age.print) +
 xlab('age group') +
 ylab('percentage change in coefficient of seasonality') +
