@@ -1040,9 +1040,10 @@ dev.off()
 pdf('usa_map_region.pdf',height=0,width=0,paper='a4r')
 ggplot(data=USA.df,aes(x=long,y=lat,group=group)) +
 geom_polygon(aes(fill=SUB_REGION),color='black',size=0.1) +
-scale_fill_manual(values=map.region.colour,guide = guide_legend(title = 'geographic region')) +		
+scale_fill_manual(values=map.region.colour,guide = guide_legend(title = '')) +		
 theme_map()+
-theme(text = element_text(size=20))
+theme(text = element_text(size=20),legend.background = element_rect(fill=alpha('blue', 0)),
+legend.position = c(1,0),legend.justification=c(1,0))
 dev.off()
 
 pdf('usa_map_climate.pdf',height=0,width=0,paper='a4r')
