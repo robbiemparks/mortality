@@ -368,13 +368,13 @@ geom_hline(yintercept=0, linetype=2,alpha=0.5) +
 xlab('age group') +
 scale_x_discrete(labels=age.print) +
 ylab('percentage change of death rate') +
-ggtitle("Median percentage change of mortality across age groups by month") +
+#ggtitle("Median percentage change of mortality across age groups by month") +
 guides(fill=FALSE) +
 facet_wrap(~sex) +
 scale_colour_manual(values=colorRampPalette(rev(brewer.pal(12,"RdYlBu")[c(9:10,2:1,1:2,10:9)]))(12),guide = guide_legend(title = 'month'),labels=month.short) +
 theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
 panel.background = element_blank(),strip.background = element_blank(), axis.line = element_line(colour = "black"),
-axis.text.x = element_text(angle=90))
+axis.text.x = element_text(angle=90),text = element_text(size=20))
 dev.off()
 
 # find median of medians for centring of following graph
@@ -418,7 +418,8 @@ scale_y_discrete(breaks=c(seq(1,12,by=1)),labels=month.short)   +
 facet_wrap(~sex) +
 #ggtitle('Heatmap : percentage change in mortality, centred by overall median of percentage changes') +
 theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-panel.background = element_blank(),strip.background = element_blank(), axis.line = element_line(colour = "black"))
+panel.background = element_blank(),strip.background = element_blank(), axis.line = element_line(colour = "black"),
+axis.text.x = element_text(angle=90),text = element_text(size=20))
 dev.off()
 
 # find median mortality rate across all states and all months
@@ -540,7 +541,7 @@ scale_colour_manual(values=map.region.colour,guide = guide_legend(title = 'geogr
 guides(colour=FALSE) +
 theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
 panel.background = element_blank(), axis.line = element_line(colour = "black"),rect = element_blank(),
-axis.text.x = element_text(angle=90)))
+axis.text.x = element_text(angle=90),text = element_text(size=20)))
 dev.off()
 
 # if choosing to print the entire all age group summary togeter, this finishes the pdf
