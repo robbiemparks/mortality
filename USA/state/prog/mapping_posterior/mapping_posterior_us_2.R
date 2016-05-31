@@ -266,9 +266,9 @@ plot.function.median.jan.jul <- function(sex.sel) {
     facet_wrap(~age.print) +
     xlab('') +
     ylab('') +
-    ggtitle(paste0(sex.lookup[sex.sel],' : posterior percentage difference between median January and July mortality ',year.start,'-',year.end)) +
+    #ggtitle(paste0(sex.lookup[sex.sel],' : posterior percentage difference between median January and July mortality ',year.start,'-',year.end)) +
     theme_map() +
-    theme(legend.position = c(1,0),legend.justification=c(1,0),strip.background = element_blank()))
+    theme(legend.position = c(1,0),legend.justification=c(1,0),strip.background = element_blank(),text = element_text(size=20)))
 }
 
 # male
