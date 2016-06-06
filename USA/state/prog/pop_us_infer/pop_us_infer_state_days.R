@@ -179,13 +179,27 @@ pop.state.long$pop.adj.lin.jun <- shift.down(pop.state.long$pop.adj.lin,shift.mo
 year.month.na <- c(1:shift.month.down)
 pop.state.long[pop.state.long$year.month %in% year.month.na, c('pop.adj.exp.jun','pop.adj.lin.jun')] <- NA
 
+# old plot to check
+#plot.limit <- 100
+#plot(pop.state.long$pop[1:plot.limit],t='l',col='red')
+#lines(pop.state.long$pop.adj.exp[1:plot.limit],t='l',col='green')
+#lines(pop.state.long$pop.adj.lin[1:plot.limit],t='l',col='blue')
+#lines(pop.state.long$pop.adj.exp.jun[1:plot.limit],t='l',col='yellow')
+#lines(pop.state.long$pop.adj.lin.jun[1:plot.limit],t='l',col='brown')
+
 # plot to check
+library(ggplot2)
 plot.limit <- 100
-plot(pop.state.long$pop[1:plot.limit],t='l',col='red')
-lines(pop.state.long$pop.adj.exp[1:plot.limit],t='l',col='green')
-lines(pop.state.long$pop.adj.lin[1:plot.limit],t='l',col='blue')
-lines(pop.state.long$pop.adj.exp.jun[1:plot.limit],t='l',col='yellow')
-lines(pop.state.long$pop.adj.lin.jun[1:plot.limit],t='l',col='brown')
+pop.state.long$id <- seq(1:nrow(pop.state.long))
+ggplot() +
+geom_line(data=pop.state.long[c(1:100),],color='red',aes(x=id,y=pop)) +
+geom_line(data=pop.state.long[c(1:100),],color='blue',aes(x=id,y=pop.adj.exp)) +
+xlab('time') +
+ylab('population') +
+scale_x_continuous(breaks=seq(0,plot.limit,12)) +
+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+panel.background = element_blank(),strip.background = element_blank(), axis.line = element_line(colour = "black"),
+axis.text.x = element_text(angle=0))
 
 # only retain june-adjusted exponential rates
 pop.state.long$pop.adj <- pop.state.long$pop.adj.exp.jun
