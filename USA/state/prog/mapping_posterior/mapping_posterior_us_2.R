@@ -20,6 +20,8 @@ library(plyr)
 dat <- readRDS('USA_rate_pred_type1a_1982_2010')
 model <- 'type1a'
 
+fips.lookup <- read.csv('name_fips_lookup.csv')
+
 # random walk per time (type II)
 #dat <- readRDS('USA_rate_pred_type2_55_male_1982_2010')
 #dat$rate.pred <- dat$rate.pred.mod2
@@ -34,6 +36,10 @@ model <- 'type1a'
 # add log(rate) and rates per 100,000
 dat$log.rate <- with(dat,log(rate.pred))
 dat$per.100000 <- 100000*dat$rate.pred
+
+# create national data
+dat.nat <- ddply(dat,.(age,sex,month,year),summarize,deaths=sum(deaths),pop.adj=sum(pop.adj))
+dat.nat$rate.adj <- with(dat.nat,deaths/pop.adj)
 
 age.filter <- unique(dat$age)
 colourCount <- length(age.filter)
@@ -582,6 +588,37 @@ pdf('jan_july_var_grad_f.pdf',height=0,width=0,paper='a4r')
 plot.function.var.grad('female')
 dev.off()
 
+# 7. national summary of timing of peak mortality
+
+# calculate national median of mortality for each age, sex over time period
+nat.median <- ddply(dat.nat,.(age,sex,month),summarize,med.rate=median(rate.adj))
+
+# median for male and female separately
+nat.median.m <-subset(nat.median, sex==1)
+nat.median.f <- subset(nat.median, sex==2)
+
+# rank values of mortality for each age,sex by month
+nat.median.m$rank <- unlist(with(nat.median.m,tapply(-med.rate,age,rank)))
+nat.median.f$rank <- unlist(with(nat.median.f,tapply(-med.rate,age,rank)))
+nat.median <- rbind(nat.median.m,nat.median.f)
+nat.median$sex <- as.factor(nat.median$sex)
+levels(nat.median$sex) <- sex.lookup
+
+# plot heatmap
+pdf('mortality_rank_heatmap.pdf',height=0,width=0,paper='a4r')
+ggplot(data=nat.median, aes(x=as.factor(age),y=as.factor(month))) +
+geom_tile(aes(fill=rank)) +
+scale_fill_gradient(low='red',high='green',guide = guide_legend(title = 'rank')) +
+xlab('age group') +
+ylab('month') +
+scale_x_discrete(labels=age.print) +
+scale_y_discrete(breaks=c(seq(1,12,by=1)),labels=month.short)   +
+facet_wrap(~sex) +
+#ggtitle('Heatmap : median mortality ranked by month') +
+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+panel.background = element_blank(),strip.background = element_blank(), axis.line = element_line(colour = "black"))
+dev.off()
+
 # if choosing to print the entire all age group summary togeter, this finishes the pdf
 #dev.off()
 
@@ -952,6 +989,39 @@ if(together==0){dev.off()}
 # female
 if(together==0){pdf(paste0(age.selected,'_coeff_var_points_climate_f.pdf'),height=0,width=0,paper='a4r')}
 plot.function.variation.region.4(2)
+if(together==0){dev.off()}
+
+# 6. summary of timing of peak mortality
+
+# calculate median of mortality for each age, sex over time period
+age.median <- ddply(dat,.(fips,sex,month),summarize,med.rate=median(rate.adj))
+
+# median for male and female separately
+age.median.m <-subset(age.median, sex==1)
+age.median.f <- subset(age.median, sex==2)
+
+# rank values of mortality for each age,sex by month
+age.median.m$rank <- unlist(with(age.median.m,tapply(-med.rate,fips,rank)))
+age.median.f$rank <- unlist(with(age.median.f,tapply(-med.rate,fips,rank)))
+age.median <- rbind(age.median.m,age.median.f)
+age.median$sex <- as.factor(age.median$sex)
+levels(age.median$sex) <- sex.lookup
+age.median <- merge(age.median,fips.lookup,by='fips')
+
+# plot heatmap
+if(together==0){pdf(paste0(age.selected,'_mortality_rank_heatmap.pdf'),height=0,width=0,paper='a4r')}
+ggplot(data=age.median, aes(x=code_name,y=as.factor(month))) +
+geom_tile(aes(fill=100000*med.rate)) +
+scale_fill_gradient(low='green',high='red',guide = guide_legend(title = 'rate\nper\n100,000')) +
+xlab('age group') +
+ylab('month') +
+#scale_x_discrete(labels=age.print) +
+scale_y_discrete(breaks=c(seq(1,12,by=1)),labels=month.short)   +
+facet_wrap(~sex) +
+ggtitle(paste0(age.single,' heatmap : median mortality ranked by month')) +
+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+panel.background = element_blank(),strip.background = element_blank(), axis.line = element_line(colour = "black"),
+axis.text.x = element_text(angle=90))
 if(together==0){dev.off()}
 
 if(together==1){dev.off()}
