@@ -20,6 +20,15 @@ library(plyr)
 dat <- readRDS('USA_rate_pred_type1a_1982_2010')
 model <- 'type1a'
 
+# nationalised data
+dat.copy <- dat
+dat.copy$deaths.pred <- with(dat.copy,pop.adj*rate.pred)
+dat.national <- ddply(dat.copy,.(year,month,sex,age),summarize,deaths=sum(deaths),deaths.pred=sum(deaths.pred),pop.adj=sum(pop.adj))
+dat.national$rate <- with(dat.national,deaths/pop.adj)
+dat.national$rate.pred <- with(dat.national,deaths.pred/pop.adj)
+dat.national <- dat.national[order(dat.national$sex,dat.national$age,dat.national$year,dat.national$month),]
+
+# add fips lookup
 fips.lookup <- read.csv('name_fips_lookup.csv')
 
 # random walk per time (type II)
@@ -58,7 +67,11 @@ year.start <- min(dat$year)
 year.end <- max(dat$year)
 num.years <- year.end - year.start + 1
 
-# for each fips, age, sex, year analyse co-efficient of variation of the mortality
+# for each age, sex, year analyse national co-efficient of seasonality of the mortality
+dat.var.national <- ddply(dat.national, .(sex,age,year), summarize,sd=sd(rate.pred),mean=mean(rate.pred))
+dat.var.national$coeff.var <- with(dat.var.national,sd/mean)
+
+# for each fips, age, sex, year analyse co-efficient of seasonality of the mortality
 dat.var <- ddply(dat, .(fips,sex,age,year), summarize,sd=sd(rate.pred),mean=mean(rate.pred))
 # correct for when there is only one instance in a particular year (sd formula uses n-1 as denominator)
 dat.var$sd <- ifelse(is.na(dat.var$sd)==FALSE,dat.var$sd,0)
@@ -255,15 +268,47 @@ names(map.climate.colour) <- levels(as.factor(USA.df$climate_region))
 # NATIONAL TRENDS
 ###############################################################
 
+# change path to write files to
+dir.create('output')
+setwd('output')
+dir.create('national_summary')
+setwd('national_summary')
+
 # 1. Coefficient of seasonality over time
+
+# male and female
+
+# variables for y-limits on variance graphs
+min.var.national.plot <- min(dat.var.national$coeff.var)
+max.var.national.plot <- max(dat.var.national$coeff.var)
+
+# prepare data
+dat.var.national$age.print <- mapvalues(dat.var.national$age, from=unique(dat.var.national$age), to=age.print)
+dat.var.national$age.print <- reorder(dat.var.national$age.print,dat.var.national$age)
+
+pdf('coeff_var_national_all_ages.pdf',paper='a4r',height=0,width=0)
+dat.var.national$sex <- as.factor(dat.var.national$sex)
+levels(dat.var.national$sex) <- c('male','female')
+print(ggplot(dat.var.national,aes(x=year,color=factor(age.print),y=coeff.var)) +
+geom_line(size=0.5) +
+#geom_vline(xintercept=c(1993) +
+ylim(0,max.var.national.plot) +
+ylab('coefficient of seasonality') +
+##ggtitle(paste0('Median coefficient of seasonality of mortality rates per year over time')) +
+scale_colour_manual(values=colorRampPalette(rev(brewer.pal(12,"RdYlGn")[c(1:5,7:9)]))(colourCount),guide = guide_legend(title = 'age group')) +
+#geom_smooth(method='lm',se=FALSE) +
+facet_wrap(~sex) +
+theme(text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+panel.background = element_blank(), axis.line = element_line(colour = "black"),rect = element_blank()))
+dev.off()
+
+setwd('..')
 
 ###############################################################
 # ENTIRE PERIOD SUMMARIES FOR ALL AGES 
 ###############################################################
 
 # change path to write files to
-dir.create('output')
-setwd('output')
 dir.create('all_age_summary')
 setwd('all_age_summary')
 
@@ -734,9 +779,9 @@ jitterplot.median.line <- function() {
     ##ggtitle(paste0(age.single,' : median of mortality over months per state (coloured by geographic region)'))+
     scale_colour_manual(values=map.region.colour,guide = guide_legend(title = 'geographic region')) +		
     facet_wrap(~sex) +
-    theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+    theme(text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
     panel.background = element_blank(), axis.line = element_line(colour = "black"),
-    rect = element_blank())
+    rect = element_blank(),legend.position='bottom')
 }
 
 # plot
@@ -754,9 +799,9 @@ jitterplot.median.line.2 <- function() {
     ##ggtitle(paste0(age.single,' : median of mortality over months per state (coloured by climate region)'))+
     facet_wrap(~sex) +
     scale_colour_manual(values=map.climate.colour,guide = guide_legend(title = 'climate region')) +	
-    theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+    theme(text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
     panel.background = element_blank(), axis.line = element_line(colour = "black"),
-    rect = element_blank())
+    rect = element_blank(),legend.position='bottom')
 }
 
 # plot
@@ -773,9 +818,9 @@ jitterplot.median <- function() {
     ##ggtitle(paste0(age.single,' : median of mortality over months for all states')) +
     guides(fill=FALSE) +
     scale_colour_discrete(name='gender',breaks=c(1,2),labels=c('male','female')) +
-    theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+    theme(text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
     panel.background = element_blank(), axis.line = element_line(colour = "black"),
-    rect = element_blank())
+    rect = element_blank(),legend.position='bottom')
 }
 
 # plot
@@ -825,9 +870,9 @@ jitterplot.rate <- function() {
     ##ggtitle(paste0(age.single,' : percentage change of mortality over months for all states')) +
     guides(fill=FALSE) +
     scale_colour_discrete(name='gender',breaks=c(1,2),labels=c('male','female')) +
-    theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+    theme(text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
     panel.background = element_blank(), axis.line = element_line(colour = "black"),
-    rect = element_blank())
+    rect = element_blank(),legend.position='bottom')
 }
 
 # plot
@@ -844,9 +889,9 @@ jitterplot.rate.line <- function() {
     guides(fill=FALSE) +
     scale_colour_manual(values=map.region.colour,guide = guide_legend(title = 'geographic region')) +
     facet_wrap(~sex) +
-    theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+    theme(text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
     panel.background = element_blank(), axis.line = element_line(colour = "black"),
-    rect = element_blank())
+    rect = element_blank(),legend.position='bottom')
 }
 
 # plot
@@ -865,9 +910,9 @@ jitterplot.rate.line.2 <- function() {
     guides(fill=FALSE) +
     scale_colour_manual(values=map.climate.colour,guide = guide_legend(title = 'climate region')) +	
     facet_wrap(~sex) +	
-    theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+    theme(text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
     panel.background = element_blank(), axis.line = element_line(colour = "black"),
-    rect = element_blank())
+    rect = element_blank(),legend.position='bottom')
 }
 
 # plot
@@ -895,7 +940,7 @@ plot.function.median <- function(sex.sel) {
     facet_wrap(~month.short) +
     #ggtitle(paste0(age.single,' ',sex.sel,' : median mortality by month ',year.start,'-',year.end)) +
     theme_map()+
-    theme(legend.position = 'bottom',legend.justification=c(1,0),strip.background = element_blank()))
+    theme(text = element_text(size = 15),legend.position = 'bottom',legend.justification=c(1,0),strip.background = element_blank(),legend.position='bottom'))
 }
 
 # plot
@@ -931,7 +976,7 @@ plot.function.grad <- function(sex.sel) {
     ylab('') +
     #ggtitle(paste0(age.single,' ',sex.sel,' : percentage change of mortality by month ',year.start,'-',year.end)) +
     theme_map()+
-    theme(legend.position = 'bottom',legend.justification=c(1,0),strip.background = element_blank()))
+    theme(text = element_text(size = 15),legend.position = 'bottom',legend.justification=c(1,0),strip.background = element_blank(),legend.position='bottom'))
 }
 
 # plot
@@ -964,7 +1009,7 @@ plot.function.variation.region.1 <- function(sex.sel) {
     ylab('coefficient of seasonality') +
     #ggtitle(paste0(age.single,' ',sex.lookup[sex.sel],' : coefficient of seasonality over time (coloured by geographic region)')) +
     scale_colour_manual(values=map.region.colour,guide = guide_legend(title = 'geographic region')) +	
-    theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+    theme(legend.position='bottom',text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
     panel.background = element_blank(), axis.line = element_line(colour = "black"),
     rect = element_blank()))
 }
@@ -995,7 +1040,7 @@ plot.function.variation.region.2 <- function(sex.sel) {
     ylab('coefficient of seasonality') +
     #ggtitle(paste0(age.single,' ',sex.lookup[sex.sel],' : coefficient of seasonality of mortality over time (coloured by climate region)')) +
     scale_colour_manual(values=map.region.colour,guide = guide_legend(title = 'geographic region')) +	
-    theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+    theme(legend.position='bottom',text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
     panel.background = element_blank(), axis.line = element_line(colour = "black"),
     rect = element_blank()))
 }
@@ -1023,7 +1068,7 @@ plot.function.variation.region.3 <- function(sex.sel) {
     ylab('coefficient of seasonality') +
     #ggtitle(paste0(age.single,' ',sex.lookup[sex.sel],' : coefficient of seasonality of mortality over time (coloured by geographic region)')) +
     scale_colour_manual(values=map.climate.colour,guide = guide_legend(title = 'geographic region')) +	
-    theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+    theme(legend.position='bottom',text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
     panel.background = element_blank(), axis.line = element_line(colour = "black"),
     rect = element_blank()))
 }
@@ -1054,7 +1099,7 @@ plot.function.variation.region.4 <- function(sex.sel) {
     ylab('coefficient of seasonality') +
     #ggtitle(paste0(age.single,' ',sex.lookup[sex.sel],' : coefficient of seasonality of mortality over time (coloured by region)')) +
     scale_colour_manual(values=map.climate.colour,guide = guide_legend(title = 'geographic region')) +	
-    theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+    theme(legend.position='bottom',text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
     panel.background = element_blank(), axis.line = element_line(colour = "black"),
     rect = element_blank()))
 }
@@ -1087,22 +1132,22 @@ levels(age.median$sex) <- sex.lookup
 age.median <- merge(age.median,fips.lookup,by='fips')
 
 # plot heatmap
-if(together==0){pdf(paste0(age.selected,'_mortality_rank_heatmap.pdf'),height=0,width=0,paper='a4r')}
-ggplot(data=age.median, aes(x=code_name,y=as.factor(month))) +
-geom_tile(aes(fill=100000*med.rate)) +
-scale_fill_gradient(low='green',high='red',guide = guide_legend(title = 'rate\nper\n100,000')) +
-xlab('age group') +
-ylab('month') +
+#if(together==0){pdf(paste0(age.selected,'_mortality_rank_heatmap.pdf'),height=0,width=0,paper='a4r')}
+#ggplot(data=age.median, aes(x=code_name,y=as.factor(month))) +
+#geom_tile(aes(fill=100000*med.rate)) +
+#scale_fill_gradient(low='green',high='red',guide = guide_legend(title = 'rate\nper\n100,000')) +
+#xlab('age group') +
+#ylab('month') +
 #scale_x_discrete(labels=age.print) +
-scale_y_discrete(breaks=c(seq(1,12,by=1)),labels=month.short)   +
-facet_wrap(~sex) +
-ggtitle(paste0(age.single,' heatmap : median mortality ranked by month')) +
-theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-panel.background = element_blank(),strip.background = element_blank(), axis.line = element_line(colour = "black"),
-axis.text.x = element_text(angle=90))
-if(together==0){dev.off()}
+#scale_y_discrete(breaks=c(seq(1,12,by=1)),labels=month.short)   +
+#facet_wrap(~sex) +
+#ggtitle(paste0(age.single,' heatmap : median mortality ranked by month')) +
+#theme(legend.position='bottom',text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+#panel.background = element_blank(),strip.background = element_blank(), axis.line = element_line(colour = "black"),
+#axis.text.x = element_text(angle=90))
+#if(together==0){dev.off()}
 
-if(together==1){dev.off()}
+#if(together==1){dev.off()}
 
 setwd('..')
 
@@ -1110,7 +1155,7 @@ setwd('..')
 }
 
 # use mapply to perform age specific function chosen ages (0 at end means pdfs separate)
-mapply(graph.function.age,age.filter,0)
+#mapply(graph.function.age,age.filter,0)
 
 ###############################################################
 # TIME SNAPSHOTS FOR A PARTICULAR AGE 
@@ -1220,15 +1265,15 @@ jitterplot.grad.by.month <- function(month.selected) {
         median.df <- ddply(lin.reg.grad, .(sex, age), summarise, med = median(grad.total))
           
         print(ggplot(subset(lin.reg.grad,month==month.selected), aes(x=age,fill=age,y=grad.total)) +
-        geom_point(aes(colour=lat,group=factor(sex)),position = position_dodge(width = 3)) +
+        geom_jitter(aes(colour=climate_region,group=factor(sex)),position = position_dodge(width = 3)) +
         geom_line(data = median.df, aes(y = med,group=factor(sex)),linetype=2, size=0.5,colour='forest green') +
         geom_hline(yintercept=0, linetype=2,alpha=0.5) +
         xlab('age group') +
         ylab('percentage change of death rate') +
         #ggtitle(paste0(month.short[month.selected]," : percentage change of mortality across age groups by state")) +
         guides(fill=FALSE) +
-        scale_colour_gradient(limits=c(25,50),low='red',high='blue') +
-        theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        scale_colour_manual(values=map.climate.colour,guide = guide_legend(title = 'geographic region')) +
+        theme(legend.position='bottom',panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
         panel.background = element_blank(), axis.line = element_line(colour = "black")))
 }
 
@@ -1237,6 +1282,10 @@ mapply(jitterplot.grad.by.month, c(1:12))
 dev.off()
 
 setwd('..')
+
+###############################################################
+# MAPS
+###############################################################
 
 dir.create('maps')
 setwd('maps')
