@@ -174,17 +174,30 @@ map <- fortify(us_aea)
 
 # extract data from shapefile
 shapefile.data <- us_aea@data
-shapefile.data$SUB_REGION <- c('Pacific','Frontier','Northeast','Midwest','Midwest',
-				'Frontier','Midwest','Frontier','Northeast','Midwest',
-				'Pacific','Northeast','Midwest','Northeast','Midwest',
-				'Northeast','Northeast','Northeast','Northeast','Northeast',
-				'Midwest','Pacific','Frontier','Pacific','Midwest',
-				'Midwest','Northeast','Northeast','South','Northeast',
-				'Frontier','South','Frontier','South','Midwest',
-				'Pacific','South','South','South','Frontier',
-				'Frontier','South','South','South','South',
-				'South','South','South','Midwest','Pacific',
-				'Pacific')
+
+shapefile.data$SUB_REGION <- c('Far West','Rocky Mountain','New England','Plains','Plains',
+				'Rocky Mountain','Great Lakes','Rocky Mountain','New England','Plains',
+				'Far West','New England','Plains','New England','Plains',
+				'Mideast','Mideast','New England','New England','Mideast',
+				'Great Lakes','Far West','Rocky Mountain','Far West','Great Lakes',
+				'Great Lakes','Mideast','Mideast','Southeast','Mideast',
+				'Rocky Mountain','Southeast','Plains','Southeast','Plains',
+				'Southwest','Southwest','Southeast','Southeast','Southwest',
+				'Southwest','Southeast','Southeast','Southeast','Southeast',
+				'Southeast','Southeast','Southeast','Great Lakes','Far West',
+				'Far West')
+
+#shapefile.data$SUB_REGION <- c('Pacific','Frontier','Northeast','Midwest','Midwest',
+#				'Frontier','Midwest','Frontier','Northeast','Midwest',
+#				'Pacific','Northeast','Midwest','Northeast','Midwest',
+#				'Northeast','Northeast','Northeast','Northeast','Northeast',
+#				'Midwest','Pacific','Frontier','Pacific','Midwest',
+#				'Midwest','Northeast','Northeast','South','Northeast',
+#				'Frontier','South','Frontier','South','Midwest',
+#				'Pacific','South','South','South','Frontier',
+#				'Frontier','South','South','South','South',
+#				'South','South','South','Midwest','Pacific',
+#				'Pacific')
 
 # alternative mapping
 #shapefile.data$SUB_REGION <- c('Far West','Rocky Mountain','New England','Plains','Plains',
@@ -206,7 +219,7 @@ shapefile.data$climate_region <- 	c('Northwest','Northern Rockies and Plains','N
 					'Northeast','Northeast','Northeast','Northeast','Northeast',
 					'Ohio Valley','West','Southwest','West','Ohio Valley',
 					'Ohio Valley','Northeast','Northeast','Ohio Valley','Northeast',
-					'Southwest','Ohio Valley','South','South','Ohio Valley',
+					'Southwest','Ohio Valley','South','Southeast','Ohio Valley',
 					'Southwest','South','Southeast','Ohio Valley','South',
 					'Southwest','Southeast','South','Southeast','Southeast',
 					'South','South','Southeast','Upper Midwest','Northwest',
@@ -235,14 +248,22 @@ map.region.colour <- colorRampPalette(rev(brewer.pal(12,"Accent")[c(1:3,5,6)]))(
 names(map.region.colour) <- levels(as.factor(USA.df$SUB_REGION))
 
 # set colour scheme for climate colour map
-map.climate.colour <- colorRampPalette(rev(brewer.pal(12,"Set1")[]))(length(unique(USA.df$climate_region)))
+map.climate.colour <- colorRampPalette(rev(brewer.pal(12,"Accent")[c(1:3,5,6)]))(length(unique(USA.df$climate_region)))
 names(map.climate.colour) <- levels(as.factor(USA.df$climate_region))
+
+###############################################################
+# NATIONAL TRENDS
+###############################################################
+
+# 1. Coefficient of seasonality over time
 
 ###############################################################
 # ENTIRE PERIOD SUMMARIES FOR ALL AGES 
 ###############################################################
 
 # change path to write files to
+dir.create('output')
+setwd('output')
 dir.create('all_age_summary')
 setwd('all_age_summary')
 
@@ -528,6 +549,45 @@ panel.background = element_blank(), axis.line = element_line(colour = "black"),r
 axis.text.x = element_text(angle=90)))
 dev.off()
 
+# plot male facetted by climate region
+pdf('change_coeff_var_all_ages_male_climate.pdf',paper='a4r',height=0,width=0)
+print(ggplot() +
+geom_jitter(data=subset(dat.var.grad,sex=='male'),width=0.2,aes(x=as.factor(age.print),y=grad.total,color=as.factor(climate_region))) +
+geom_jitter(data=subset(transform(dat.var.grad,climate_region='All'),sex=='male'),width=0.2,colour ='black', aes(x=as.factor(age.print),y=grad.total)) +
+#geom_jitter(data=subset(dat.var.grad,sex=='male'),aes(x=as.factor(age.print),y=grad.total,color=as.factor(SUB_REGION),width=0.02)) +
+##ggtitle('Percentage change in coefficient of seasonality in the USA for males, 1982-2010, by region') +
+scale_x_discrete(labels=age.print) +
+xlab('age group') +
+ylab('percentage change in coefficient of seasonality') +
+ylim(min.var.grad.plot,max.var.grad.plot) +
+geom_hline(yintercept=0, linetype=2,alpha=0.5) +
+scale_colour_manual(values=map.climate.colour,guide = guide_legend(title = 'geographic region')) +
+guides(colour=FALSE) +
+facet_wrap(~climate_region) +
+theme(text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+panel.background = element_blank(), axis.line = element_line(colour = "black"),rect = element_blank(),
+axis.text.x = element_text(angle=90)))
+dev.off()
+
+# plot female facetted by climate region
+pdf('change_coeff_var_all_ages_female_climate.pdf',paper='a4r',height=0,width=0)
+print(ggplot() +
+geom_jitter(data=subset(dat.var.grad,sex=='female'),width=0.2,aes(x=as.factor(age.print),y=grad.total,color=as.factor(climate_region))) +
+geom_jitter(data=subset(transform(dat.var.grad,climate_region='All'),sex=='female'),width=0.2,colour ='black', aes(x=as.factor(age.print),y=grad.total)) +
+##ggtitle('Percentage change in coefficient of seasonality in the USA for females, 1982-2010, by region') +
+scale_x_discrete(labels=age.print) +
+xlab('age group') +
+ylab('percentage change in coefficient of seasonality') +
+ylim(min.var.grad.plot,max.var.grad.plot) +
+facet_wrap(~climate_region) +
+geom_hline(yintercept=0, linetype=2,alpha=0.5) +
+scale_colour_manual(values=map.climate.colour,guide = guide_legend(title = 'geographic region')) +
+guides(colour=FALSE) +
+theme(text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+panel.background = element_blank(), axis.line = element_line(colour = "black"),rect = element_blank(),
+axis.text.x = element_text(angle=90)))
+dev.off()
+
 # plot male and female on together
 
 # prepare median line
@@ -547,6 +607,24 @@ ylim(min.var.grad.plot,max.var.grad.plot) +
 facet_wrap(~sex) +
 geom_hline(yintercept=0, linetype=2,alpha=0.5) +
 scale_colour_manual(values=map.region.colour,guide = guide_legend(title = 'geographic region')) +
+guides(colour=FALSE) +
+theme(text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+panel.background = element_blank(), axis.line = element_line(colour = "black"),rect = element_blank(),
+axis.text.x = element_text(angle=90)))
+dev.off()
+
+pdf('change_coeff_var_all_ages_climate.pdf',paper='a4r',height=0,width=0)
+print(ggplot() +
+geom_jitter(data=dat.var.grad,width=0.4,aes(x=as.factor(age.print),y=grad.total,color=as.factor(climate_region))) +
+geom_line(data = var.median.df, alpha=0.7,aes(group=factor(sex),y = med,x=age.print),linetype=2, size=0.5,colour='black') +
+###ggtitle('Percentage change in coefficient of seasonality in the USA, 1982-2010, by region') +
+scale_x_discrete(labels=age.print) +
+xlab('age group') +
+ylab('percentage change in coefficient of seasonality') +
+ylim(min.var.grad.plot,max.var.grad.plot) +
+facet_wrap(~sex) +
+geom_hline(yintercept=0, linetype=2,alpha=0.5) +
+scale_colour_manual(values=map.climate.colour,guide = guide_legend(title = 'climate region')) +
 guides(colour=FALSE) +
 theme(text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
 panel.background = element_blank(), axis.line = element_line(colour = "black"),rect = element_blank(),
@@ -1169,7 +1247,7 @@ ggplot(data=USA.df,aes(x=long,y=lat,group=group)) +
 geom_polygon(aes(fill=SUB_REGION),color='black',size=0.1) +
 scale_fill_manual(values=map.region.colour,guide = guide_legend(title = '')) +
 theme_map() +
-theme(text = element_text(size = 15),legend.justification=c(1,0), legend.position=c(1,0))
+theme(text = element_text(size = 15),legend.justification=c(1,0), legend.position='bottom')
 dev.off()
 
 pdf('usa_map_climate.pdf',height=0,width=0,paper='a4r')
@@ -1177,7 +1255,7 @@ ggplot(data=USA.df,aes(x=long,y=lat,group=group)) +
 geom_polygon(aes(fill=climate_region),color='black',size=0.1) +
 scale_fill_manual(values=map.climate.colour,guide = guide_legend(title = '')) +
 theme_map() +
-theme(text = element_text(size = 15),legend.justification=c(1,0), legend.position=c(1,0))
+theme(text = element_text(size = 15),legend.justification=c(1,0), legend.position='bottom')
 dev.off()
 
 setwd('..')
