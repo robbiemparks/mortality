@@ -8,13 +8,14 @@ age.code <- data.frame(age=c(0,5,15,25,35,45,55,65,75,85), age.print=age.print)
 sex.lookup <- c('male','female')
 month.short <- c('Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec')
 
-state.lookup <- read.csv('../../data/name_fips_lookup.csv')
+#state.lookup <- read.csv('../../data/name_fips_lookup.csv')
 
 # load data and filter results
-dat <- readRDS('../../data/USA_rate_pred_type1a_1982_2010')
+dat <- readRDS('../../data/datjpn_pref_rates_1980_2011')
 
 # perform for nationalised data
 library(plyr)
+dat <- na.omit(dat)
 dat.national <- ddply(dat,.(year,month,sex,age),summarize,deaths=sum(deaths),pop.adj=sum(pop.adj))
 dat.national <- dat.national[order(dat.national$sex,dat.national$age,dat.national$year,dat.national$month),]
 
@@ -68,8 +69,8 @@ thirtyfive.male <- circular.age.mean(35,1)
 fortyfive.male <- circular.age.mean(45,1)
 fiftyfive.male <- circular.age.mean(55,1)
 sixtyfive.male <- circular.age.mean(65,1)
-seventyfive.male <- circular.age.mean(75,1)
-eightyfive.male <- circular.age.mean(85,1)
+#seventyfive.male <- circular.age.mean(75,1)
+#eightyfive.male <- circular.age.mean(85,1)
 
 zero.female <- circular.age.mean(0,2)
 five.female <- circular.age.mean(5,2)
@@ -79,8 +80,8 @@ thirtyfive.female <- circular.age.mean(35,2)
 fortyfive.female <- circular.age.mean(45,2)
 fiftyfive.female <- circular.age.mean(55,2)
 sixtyfive.female <- circular.age.mean(65,2)
-seventyfive.female <- circular.age.mean(75,2)
-eightyfive.female <- circular.age.mean(85,2)
+#seventyfive.female <- circular.age.mean(75,2)
+#eightyfive.female <- circular.age.mean(85,2)
 
 
 # compile data frame of each age sex combination, with COM
@@ -92,8 +93,8 @@ dat.COM <- rbind(   zero.male,
                     fortyfive.male,
                     fiftyfive.male,
                     sixtyfive.male,
-                    seventyfive.male,
-                    eightyfive.male,
+                    #seventyfive.male,
+                    #eightyfive.male,
                     zero.female,
                     five.female,
                     fifteen.female,
@@ -101,9 +102,9 @@ dat.COM <- rbind(   zero.male,
                     thirtyfive.female,
                     fortyfive.female,
                     fiftyfive.female,
-                    sixtyfive.female,
-                    seventyfive.female,
-                    eightyfive.female)
+                    sixtyfive.female)#,
+                    #seventyfive.female,
+                    #eightyfive.female)
 
 dat.COM <- as.data.frame(dat.COM)
 names(dat.COM) <- c('age','sex','COM','lowerCI','upperCI')
@@ -112,9 +113,11 @@ names(dat.COM) <- c('age','sex','COM','lowerCI','upperCI')
 dat.COM$sex <- as.factor(dat.COM$sex)
 levels(dat.COM$sex) <- sex.lookup
 
-write.csv(dat.COM,'../../output/circular/USA_COM_1982_2010.csv')
+dir.create('../../output/circular')
 
-pdf('../../output/circular/USA_COM_1982_2010.pdf')
+write.csv(dat.COM,'../../output/circular/JPN_COM_1982_2010.csv')
+
+pdf('../../output/circular/JPN_COM_1982_2010.pdf')
 library(ggplot2)
 ggplot(data=dat.COM,aes(x=COM,y=factor(age))) +
 geom_point(fill='red',size=3,color='red') +
