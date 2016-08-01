@@ -17,7 +17,7 @@ library(plyr)
 #dat <- readRDS('USA_rate_pred_1982_2010_rw_all')
 
 # national random walk spatially correlated (type Ia)
-dat <- readRDS('USA_rate_pred_type1a_1982_2010')
+dat <- readRDS('../../data/USA_rate_pred_type1a_1982_2010')
 model <- 'type1a'
 
 # nationalised data
@@ -29,7 +29,7 @@ dat.national$rate.pred <- with(dat.national,deaths.pred/pop.adj)
 dat.national <- dat.national[order(dat.national$sex,dat.national$age,dat.national$year,dat.national$month),]
 
 # add fips lookup
-fips.lookup <- read.csv('name_fips_lookup.csv')
+fips.lookup <- read.csv('../../data/name_fips_lookup.csv')
 
 # random walk per time (type II)
 #dat <- readRDS('USA_rate_pred_type2_55_male_1982_2010')
@@ -159,7 +159,7 @@ levels(lin.reg.grad$sex) <- c('male','female')
 devtools::source_gist("33baa3a79c5cfef0f6df")
 
 # load shapefile
-us <- readOGR(dsn="shapefiles",layer="states")
+us <- readOGR(dsn="../../data/shapefiles",layer="states")
 
 # convert shapefile to Albers equal area
 us_aea <- spTransform(us, CRS("+proj=laea +lat_0=45 +lon_0=-100 +x_0=0 +y_0=0 +a=6370997 +b=6370997 +units=m +no_defs"))
@@ -309,8 +309,8 @@ names(map.climate.colour) <- levels(as.factor(USA.df$climate_region))
 ###############################################################
 
 # change path to write files to
-dir.create('output')
-setwd('output')
+#dir.create('../../output')
+setwd('../../output/mapping_posterior')
 dir.create('all_age_summary')
 setwd('all_age_summary')
 
