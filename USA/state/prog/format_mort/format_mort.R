@@ -1,10 +1,11 @@
 rm(list=ls())
 
-# define widths of fixed-width file
-widths <- c(19,)
-# define names of columns
-col.names <- c(	'rectype','resident','stateocc_fips','countyocc_fips','pop_countyocc',
-		
+# arguments from Rscript
+args <- commandArgs(trailingOnly=TRUE)
+
+# break down arguments from Rscript
+year <- as.numeric(args[1])
+file.type <- as.numeric(args[2])
 
 # load file
 dat <- readLines('~/data/mortality/US/state/raw/cdc/2012/MULT2012.PSPART2')
