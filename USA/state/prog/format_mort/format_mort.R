@@ -1,14 +1,16 @@
 rm(list=ls())
 
+library(foreign)
+
 # arguments from Rscript
 args <- commandArgs(trailingOnly=TRUE)
 
 # break down arguments from Rscript
 year <- as.numeric(args[1])
-file.type <- as.numeric(args[2])
+file.type <- as.character(args[2])
 
 # load file
-dat <- readLines('~/data/mortality/US/state/raw/cdc/2012/MULT2012.PSPART2')
+dat <- readLines(paste0('~/data/mortality/US/state/raw/cdc/',year,'/MULT',year,'.',file.type))
 
 # parse file
 dat.clean <- data.frame(rectype=NA,resident=NA,stateocc_fips=NA,countyocc_fips=NA,pop_countyocc=NA,
@@ -175,3 +177,6 @@ for(i in c(1:50)) {
 	dat.clean <- rbind(dat.clean,row)
 }
 dat.clean <- dat.clean[-1,]
+
+write.dta(dat.clean,paste0('~/data/mortality/US/state/raw/cdc/',year,'/MULT',year,'.',file.type,'.processed.dta'))
+write.csv(dat.clean,paste0('~/data/mortality/US/state/raw/cdc/',year,'/MULT',year,'.',file.type,'.processed.csv'))
