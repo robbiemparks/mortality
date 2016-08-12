@@ -9,6 +9,9 @@ args <- commandArgs(trailingOnly=TRUE)
 year <- as.numeric(args[1])
 file.type <- as.character(args[2])
 
+year <- 2011
+file.type <- 'USPART2'
+
 # load file
 dat <- readLines(paste0('~/data/mortality/US/state/raw/cdc/',year,'/MULT',year,'.',file.type))
 
@@ -35,8 +38,8 @@ dat.clean <- data.frame(rectype=NA,resident=NA,stateocc_fips=NA,countyocc_fips=N
 			cause_rec20=NA
 			)
 
-for(i in c(1:length(dat))) {
-#for(i in c(1:500)) {
+#for(i in c(1:length(dat))) {
+for(i in c(1:500)) {
 	rectype 	<- 	as.character(substr(dat[i],19,19))
 	resident 	<- 	as.character(substr(dat[i],20,20))
 	stateocc_fips 	<- 	as.character(substr(dat[i],21,22))
@@ -175,6 +178,7 @@ for(i in c(1:length(dat))) {
 		cause_rec20
 		)
 	dat.clean <- rbind(dat.clean,row)
+	print(paste0('row',i))
 }
 dat.clean <- dat.clean[-1,]
 
