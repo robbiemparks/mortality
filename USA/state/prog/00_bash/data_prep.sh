@@ -4,7 +4,7 @@
 # 1. RUN POPULATION INFER BY DAY 
 #################################################
 
-#Rscript ~/git/mortality/USA/state/prog/pop_us_infer/pop_us_infer_state_days.R
+Rscript ~/git/mortality/USA/state/prog/pop_us_infer/pop_us_infer_state_days.R
 
 #################################################
 # 2. PROCESS DATA

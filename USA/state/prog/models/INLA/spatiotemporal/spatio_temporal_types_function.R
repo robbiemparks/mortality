@@ -17,7 +17,9 @@ type.selected <- types[type.arg]
 
 require(mailR)
 
+# create files for output
 ifelse(!dir.exists(paste0('~/data/mortality/US/state/predicted/type_',type.selected,'/')), dir.create(paste0('~/data/mortality/US/state/predicted/type_',type.selected,'/')), FALSE)
+ifelse(!dir.exists(paste0('~/data/mortality/US/state/predicted/type_',type.selected,'/age_groups')), dir.create(paste0('~/data/mortality/US/state/predicted/type_',type.selected,'/age_groups')), FALSE)
 
 # load USA data
 dat.inla.load <- readRDS('../../output/prep_data/datus_state_rates_1982_2010')
@@ -28,7 +30,7 @@ age.filter <- unique(dat.inla.load$age)
 library(dplyr)
 
 # state lookup
-state.lookup <- read.csv('fips_lookup/name_fips_lookup.csv')
+state.lookup <- read.csv('../../data/fips_lookup/name_fips_lookup.csv')
 
 # gender code
 sex.lookup <- c('male','female')
@@ -36,40 +38,8 @@ sex.lookup <- c('male','female')
 # month lookup
 month.lookup <- c('January','February','March','April','May','June','July','August','September','October','November','December')
 
-# load maptools and USA map
-library(maptools)
-library(RColorBrewer)
-getinfo.shape("shapefiles/states")
-USA.gen <- readShapePoly("shapefiles/states")
-#plot(USA.gen)
-
-# extract data from shapefile
-shapefile.data <- attr(USA.gen, 'data')
-names(shapefile.data)[3] <- 'fips'
-shapefile.data$fips <- as.integer(as.character(shapefile.data$fips))
-
-# re-insert back into shapefile
-attr(USA.gen,'data') <- shapefile.data
-
-# create lookup for fips and DRAWSEQ
-drawseq.lookup <- as.data.frame(cbind(DRAWSEQ=shapefile.data$DRAWSEQ,fips=shapefile.data$fips))
-
-# load rgdal and spdep
-#library(rgdal)
-library(spdep)
-
-# create adjacency matrix
-USA.nb <- poly2nb(USA.gen, queen=1)
-#plot(USA.nb,coordinates(USA.gen),add=1)
-
-# make matrix compatible with INLA
-library(INLA)
-
-nb2INLA("USA.graph",USA.nb)
-USA.adj <- "USA.graph"
-
-# Add connections Hawaii -> California, Alaska -> Washington
-USA.adj <- "USA.graph.edit"
+# adjacency matrix with connections Hawaii -> California, Alaska -> Washington
+USA.adj <- "../../output/adj_matrix_create/USA.graph.edit"
 
 # plot matrix if desired
 #H <- inla.read.graph(filename=USA.adj)
@@ -210,17 +180,21 @@ system.time(mod1a <-
     verbose=TRUE
     ))
 
+# create directory for output
+file.loc <- paste0('~/data/mortality/US/state/predicted/type_',type.selected,'/age_groups/',age.sel)
+ifelse(!dir.exists(file.loc), dir.create(file.loc), FALSE)
+
 # save all parameters of INLA model
-parameters.name <- paste0('USA_rate_pred_type1a_',age,'_',sex.lookup[sex],'_',year.start,'_',year.end,'_parameters')
+parameters.name <- paste0(USA_rate_pred_type1a_',age,'_',sex.lookup[sex],'_',year.start,'_',year.end,'_parameters')
 mod1a$misc <- NULL
 mod1a$.args$.parent.frame <- NULL
-if(cluster==0){saveRDS(mod1a,parameters.name)}
+if(cluster==0){saveRDS(mod1a,paste0(file.loc,'/',parameters.name)}
 if(cluster==1){saveRDS(mod1a,paste0('../output/pred/',parameters.name))}
 
 # save summary of INLA model
 summary.name <- paste0('USA_rate_pred_type1a_',age,'_',sex.lookup[sex],'_',year.start,'_',year.end,'_summary.txt')
 inla.summary.mod1a <- summary(mod1a)
-if(cluster==0){capture.output(inla.summary.mod1a,file=summary.name)}
+if(cluster==0){capture.output(inla.summary.mod1a,file=paste0(file.loc,'/',summary.name))}
 if(cluster==1){capture.output(inla.summary.mod1a,file=paste0('../output/summary/',summary.name))}
 
 # save plot of INLA model
@@ -233,7 +207,7 @@ plot.dat <- as.data.frame(cbind(dat.inla,rate.pred=mod1a$summary.fitted.values$m
 
 # name of RDS output file then save
 RDS.name <- paste0('USA_rate_pred_type1a_',age,'_',sex.lookup[sex],'_',year.start,'_',year.end)
-if(cluster==0){saveRDS(plot.dat,RDS.name)}
+if(cluster==0){saveRDS(plot.dat,paste0(file.loc,'/',RDS.name))}
 if(cluster==1){saveRDS(plot.dat,paste0('../output/pred/',RDS.name))}
 
 }
