@@ -107,3 +107,4 @@ dat <- cbind(dat.1,dat.2)
 dat <- dat[,c(1:30,94:96,31:93)]
 
 write.dta(dat,paste0('~/data/mortality/US/state/raw/cdc/',year,'/MULT',year,'.',file.type,'.processed.dta'))
+#write.csv(dat,paste0('~/data/mortality/US/state/raw/cdc/',year,'/MULT',year,'.',file.type,'.processed.csv'))

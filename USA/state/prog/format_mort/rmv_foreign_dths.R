@@ -1,0 +1,20 @@
+rm(list=ls())
+
+library(foreign)
+library(readr)
+
+# arguments from Rscript
+args <- commandArgs(trailingOnly=TRUE)
+
+# break down arguments from Rscript
+year <- as.numeric(args[1])
+file.type <- as.character(args[2])
+
+# read file
+dat <- read.dta(paste0('~/data/mortality/US/state/raw/cdc/',year,'/MULT',year,'.',file.type,'.processed.dta'))
+
+# filter foreign deaths
+dat <- dat[dat$resident != 4,]
+
+# output file
+write.dta(dat,paste0('~/data/mortality/US/state/raw/cdc/',year,'/MULT',year,'.',file.type,'.processed.no_foreign.dta'))
