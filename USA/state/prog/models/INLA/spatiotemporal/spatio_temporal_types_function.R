@@ -541,8 +541,8 @@ sender <- "emailr349@gmail.com"
 recipients <- c("r.parks15@imperial.ac.uk")
 send.mail(from = sender,
           to = recipients,
-          subject = paste0('Another age done'),
-          body = "Well done for being you",
+          subject = paste0(sex.lookup[sex.sel],' ',age.sel,' done'),
+          body = "Well done",
           smtp = list(host.name = "smtp.gmail.com", port = 465, 
                       user.name = "emailr349@gmail.com",            
                       passwd = "inlaisthebest", ssl = TRUE),
