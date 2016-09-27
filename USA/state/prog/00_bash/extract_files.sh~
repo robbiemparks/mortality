@@ -48,6 +48,6 @@ Rscript ~/git/mortality/USA/state/prog/format_mort/reformat_data.R $year
 #################################################
 
 # check if the old data and new data match up
-Rscript ~/git/mortality/USA/state/prog/format_mort/old_against_new.R $year
+Rscript ~/git/mortality/USA/state/prog/format_mort/reformat_data.R $year
 
 done;
