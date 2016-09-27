@@ -179,18 +179,19 @@ pop.state.long$pop.adj.lin.jun <- shift.down(pop.state.long$pop.adj.lin,shift.mo
 year.month.na <- c(1:shift.month.down)
 pop.state.long[pop.state.long$year.month %in% year.month.na, c('pop.adj.exp.jun','pop.adj.lin.jun')] <- NA
 
-# old plot to check
-#plot.limit <- 100
-#plot(pop.state.long$pop[1:plot.limit],t='l',col='red')
-#lines(pop.state.long$pop.adj.exp[1:plot.limit],t='l',col='green')
-#lines(pop.state.long$pop.adj.lin[1:plot.limit],t='l',col='blue')
-#lines(pop.state.long$pop.adj.exp.jun[1:plot.limit],t='l',col='yellow')
-#lines(pop.state.long$pop.adj.lin.jun[1:plot.limit],t='l',col='brown')
+# only retain june-adjusted exponential rates
+pop.state.long$pop.adj <- pop.state.long$pop.adj.exp.jun
+pop.state.long <- pop.state.long[,c('year','month','sex','age','fips','pop','pop.adj')]
+
+# write to rds file
+ifelse(!dir.exists("../../output/pop_us_infer"), dir.create("../../output/pop_us_infer"), FALSE)
 
 # plot to check
+pdf('../../output/pop_us_infer/interpolated_pop_example.pdf')
 library(ggplot2)
 plot.limit <- 100
 pop.state.long$id <- seq(1:nrow(pop.state.long))
+print(
 ggplot() +
 geom_line(data=pop.state.long[c(1:100),],color='red',aes(x=id,y=pop)) +
 geom_line(data=pop.state.long[c(1:100),],color='blue',aes(x=id,y=pop.adj.exp.jun)) +
@@ -200,11 +201,7 @@ scale_x_continuous(breaks=seq(0,plot.limit,12)) +
 theme(text = element_text(size = 15), panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
 panel.background = element_blank(),strip.background = element_blank(), axis.line = element_line(colour = "black"),
 axis.text.x = element_text(angle=0))
+)
+dev.off()
 
-# only retain june-adjusted exponential rates
-pop.state.long$pop.adj <- pop.state.long$pop.adj.exp.jun
-pop.state.long <- pop.state.long[,c('year','month','sex','age','fips','pop','pop.adj')]
-
-# write to rds file
-ifelse(!dir.exists("../../output/pop_us_infer"), dir.create("../../output/pop_us_infer"), FALSE)
 saveRDS(pop.state.long, '../../output/pop_us_infer/statePopulations_infer_by_days')

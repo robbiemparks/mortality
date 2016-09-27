@@ -117,7 +117,9 @@ ifelse(!dir.exists("../../output/prep_data"), dir.create("../../output/prep_data
 
 # plot to check rates
 pdf(paste0('../../output/prep_data/rate_compared_',year.start.arg,'_',year.end.arg,'.pdf'),height=0,width=0,paper='a4r')
+print(
 plot(dat.merged$rate,dat.merged$rate.adj)
+)
 dev.off()
 
 # output file as RDS
