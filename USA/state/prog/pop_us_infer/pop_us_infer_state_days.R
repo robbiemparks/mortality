@@ -187,7 +187,7 @@ pop.state.long <- pop.state.long[,c('year','month','sex','age','fips','pop','pop
 ifelse(!dir.exists("../../output/pop_us_infer"), dir.create("../../output/pop_us_infer"), FALSE)
 
 # plot to check
-pdf('../../output/pop_us_infer/interpolated_pop_example.pdf')
+png('../../output/pop_us_infer/interpolated_pop_example.png')
 library(ggplot2)
 plot.limit <- 100
 pop.state.long$id <- seq(1:nrow(pop.state.long))

@@ -10,7 +10,7 @@
 # 1. EXTRACT FROM TAPES
 #################################################
 
-for year in $(seq 2010 2010);
+for year in $(seq 2006 2009);
 
 do
 

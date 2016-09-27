@@ -191,6 +191,7 @@ pdf('../../output/pop_us_infer/interpolated_pop_example.pdf')
 library(ggplot2)
 plot.limit <- 100
 pop.state.long$id <- seq(1:nrow(pop.state.long))
+print(
 ggplot() +
 geom_line(data=pop.state.long[c(1:100),],color='red',aes(x=id,y=pop)) +
 geom_line(data=pop.state.long[c(1:100),],color='blue',aes(x=id,y=pop.adj.exp.jun)) +
@@ -200,6 +201,7 @@ scale_x_continuous(breaks=seq(0,plot.limit,12)) +
 theme(text = element_text(size = 15), panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
 panel.background = element_blank(),strip.background = element_blank(), axis.line = element_line(colour = "black"),
 axis.text.x = element_text(angle=0))
+)
 dev.off()
 
 saveRDS(pop.state.long, '../../output/pop_us_infer/statePopulations_infer_by_days')
