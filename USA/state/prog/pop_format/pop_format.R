@@ -69,11 +69,15 @@ dat$sex <- as.numeric(as.character(dat$sex))
 dat$age <- as.numeric(as.character(dat$age))
 dat$pop <- as.numeric(as.character(dat$pop))
 
-# remove NAs
+# remove NAs because they came from 'Missing' in original file
 dat <- na.omit(dat)
+
+# summarise by fips, sex, age
+library(dplyr)
+dat.summarised <- dplyr::summarise(group_by(dat,fips,sex,age,year,stateFips,countyFips),pop=sum(pop))
 
 # create output directory
 ifelse(!dir.exists("../../output/pop_format"), dir.create("../../output/pop_format"), FALSE)
 
 # output file
-write.dta(dat,paste0("../../output/pop_format/popcounty",year,".dta"))
+write.dta(dat.summarised,paste0("../../output/pop_format/popcounty",year,".dta"))
