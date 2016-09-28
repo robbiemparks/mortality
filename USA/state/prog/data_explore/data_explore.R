@@ -15,7 +15,6 @@ gender.lookup <- c('male','female')
 state.lookup <- read.csv('../../data/fips_lookup/name_fips_lookup.csv')
 age.lookup <- unique(dat$age)
 
-####
 # extract unique table of year and months to generate year.month
 dat.year.month <- unique(dat[,c('year', 'month')])
 dat.year.month$month <- as.integer(dat.year.month$month)
