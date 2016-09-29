@@ -24,7 +24,6 @@ for(i in years) {
 
 # summarise population by year across states
 dat.state <- ddply(dat.new,.(sex, age, year, stateFips), summarise,pop=sum(pop)) 
-dat.state <- subset(dat.national,age!=99)
 
 # summarise population by year nationally
 dat.national <- ddply(dat.new,.(sex, age, year), summarise,pop=sum(pop)) 

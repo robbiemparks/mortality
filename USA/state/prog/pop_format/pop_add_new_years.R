@@ -63,4 +63,4 @@ dev.off()
 
 # write new population file
 write.dta(dat.state,paste0("../../output/pop_add_new_years/statePopulationsnewyears.dta"))
-write.dta(dat.new,paste0("../../output/pop_add_new_years/countyPopulationsnewyears.dta"))
+write.dta(dat.new,paste0("~/data/mortality/US/state/processed/county/countyPopulationsnewyears.dta"))
