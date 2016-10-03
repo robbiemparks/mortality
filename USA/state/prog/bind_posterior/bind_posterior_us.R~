@@ -34,4 +34,4 @@ file.loc <- paste0('~/data/mortality/US/state/predicted/type_',model,'/combined/
 ifelse(!dir.exists(file.loc), dir.create(file.loc), FALSE)
 
 save.name <- paste0(country,'_rate_pred_',model,'_',year.start,'_',year.end)
-saveRDS(dat,paste0(file.loc,save.name))
+saveRDS(dat,paste0(file.loc,save.name)
