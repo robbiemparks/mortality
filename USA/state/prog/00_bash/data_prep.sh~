@@ -50,7 +50,7 @@ Rscript ~/git/mortality/USA/state/prog/pop_format/pop_add_new_years.R $start $en
 # 4. RUN POPULATION INFER BY DAY
 #################################################
 
-echo "inferring monthly populations from yearly figures";
+echo "inferring monthly populations from yearly figures for years $start2 - $end2";
 
 Rscript ~/git/mortality/USA/state/prog/pop_us_infer/pop_us_infer_state_days.R
 

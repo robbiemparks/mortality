@@ -16,8 +16,6 @@ declare -a years=($(seq 2011 2013))
 
 for year in "${years[@]}"; do
 
-do
-
 echo "processing raw files from $year";
 
 echo "extacting files from tape format for $year";

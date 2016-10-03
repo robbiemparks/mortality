@@ -24,13 +24,9 @@ echo "formatting raw population files for $year";
 
 Rscript ~/git/mortality/USA/state/prog/pop_format/pop_format.R $year
 
-done;
-
 #################################################
 # 2. COMPARE OLD AND NEW POP FILES
 #################################################
-
-for year in "${years[@]}"; do
 
 echo "comparing old and new population files for $year";
 
