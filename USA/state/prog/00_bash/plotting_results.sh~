@@ -1,9 +1,7 @@
 #!/bin/bash
 
 # this script
-# runs the INLA age-separated model
-# binds the posterior results together
-# plots the parameters of the model run
+# plots results of posterior of model
 
 clear
 
@@ -37,14 +35,10 @@ done;
 # 2. COMBINE RESULTS
 #################################################
 
-echo "combining results into one file from INLA model $model years $start - $end";
-
 Rscript ~/git/mortality/USA/state/prog/bind_posterior/bind_posterior.R $start $end $country 2
 
 #################################################
 # 3. PLOTTING PARAMETERS FROM MODEL
 #################################################
-
-echo "plotting parameters from INLA model $model years $start - $end";
 
 # PLOT PARAMETERS CODE

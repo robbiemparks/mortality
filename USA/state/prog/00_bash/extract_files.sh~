@@ -18,7 +18,7 @@ for year in "${years[@]}"; do
 
 do
 
-echo "processing raw files from $year";
+echo "processing files from $year";
 
 # extracts file for year from tape format into something intelligible
 Rscript ~/git/mortality/USA/state/prog/format_mort/format_mort.R $year USPART2
