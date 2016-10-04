@@ -95,8 +95,7 @@ dat.inla$e <- 1:nrow(dat.inla)
 if(type==1){
 
 # 1. Type I space-time interaction
-
-fml1 <- deaths ~
+fml  <- deaths ~
 	# global terms
         1 +                                                                     		# global intercept
         year.month +                                                            		# global slope
@@ -110,54 +109,12 @@ fml1 <- deaths ~
         f(year.month3, model="rw1") +                                           		# rw1
         # overdispersion term
         f(e, model = "iid")                                                     		# overdispersion term
-
-# INLA model
-
-system.time(mod1 <-
-    inla(formula = fml1,
-    family = "poisson",
-    data = dat.inla,
-    E = pop.adj,
-    control.compute = list(dic=TRUE),
-    control.predictor = list(link = 1),
-    verbose=TRUE
-    ))
-
-# save all parameters of INLA model
-parameters.name <- paste0('USA_rate_pred_type1_',age,'_',sex.lookup[sex],'_',year.start,'_',year.end,'_parameters')
-mod1$misc <- NULL
-mod1$.args$.parent.frame <- NULL
-if(cluster==0){saveRDS(mod1,parameters.name)}
-if(cluster==1){saveRDS(mod1,paste0('../output/pred/',parameters.name))}
-
-# save summary of INLA model
-summary.name <- paste0('USA_rate_pred_type1_',age,'_',sex.lookup[sex],'_',year.start,'_',year.end,'_summary.txt')
-inla.summary.mod1 <- summary(mod1)
-if(cluster==0){capture.output(inla.summary.mod1,file=summary.name)}
-if(cluster==1){capture.output(inla.summary.mod1,file=paste0('../output/summary/',summary.name))}
-
-# save plot of INLA model
-#plot.name <- paste0('USA_rate_pred_type1_',age,'_',sex.lookup[sex],'_',year.start,'_',year.end,'_summary.pdf')
-#inla.plot.mod1 <- plot(mod1)
-#plot(mod1, single=TRUE, pdf=TRUE, paper='a4r')
-
-# save RDS of INLA results
-plot.dat <- as.data.frame(cbind(dat.inla,rate.pred=mod1$summary.fitted.values$mean,sd=mod1$summary.fitted.values$sd))
-
-# name of RDS output file then save
-RDS.name <- paste0('USA_rate_pred_type1_',age,'_',sex.lookup[sex],'_',year.start,'_',year.end)
-if(cluster==0){saveRDS(plot.dat,RDS.name)}
-if(cluster==1){saveRDS(plot.dat,paste0('../output/pred/',RDS.name))}
-
 }
 
 if(type==2){
 
 # 1. Type Ia space-time interaction
-# THIS SHOULD BE THE BASIS OF THE CODE FOR ALL THE OTHER VERSIONS.
-# I SHOULD STREAMLINE THIS GENERALLY.
-
-fml1a <- deaths ~
+fml<- deaths ~
 	# global terms
         1 +                                                                     		# global intercept
         year.month +                                                           			# global slope
@@ -174,59 +131,12 @@ fml1a <- deaths ~
         f(year.month3, model="rw1") +                                           		# rw1
         # overdispersion term
         f(e, model = "iid")                                                    		 	# overdispersion term
-
-# INLA model
-
-system.time(mod1a <-
-    inla(formula = fml1a,
-    family = "poisson",
-    data = dat.inla,
-    E = pop.adj,
-    control.compute = list(dic=TRUE),
-    control.predictor = list(link = 1),
-    verbose=TRUE
-    ))
-
-# create directory for output
-file.loc <- paste0('~/data/mortality/US/state/predicted/type_',type.selected,'/age_groups/',age.sel)
-ifelse(!dir.exists(file.loc), dir.create(file.loc), FALSE)
-
-# save all parameters of INLA model
-parameters.name <- paste0('USA_rate_pred_type1a_',age,'_',sex.lookup[sex],'_',year.start,'_',year.end,'_parameters')
-mod1a$misc <- NULL
-mod1a$.args$.parent.frame <- NULL
-if(cluster==0){saveRDS(mod1a,paste0(file.loc,'/',parameters.name))}
-if(cluster==1){saveRDS(mod1a,paste0('../output/pred/',parameters.name))}
-
-# save summary of INLA model
-summary.name <- paste0('USA_rate_pred_type1a_',age,'_',sex.lookup[sex],'_',year.start,'_',year.end,'_summary.txt')
-inla.summary.mod1a <- summary(mod1a)
-if(cluster==0){capture.output(inla.summary.mod1a,file=paste0(file.loc,'/',summary.name))}
-if(cluster==1){capture.output(inla.summary.mod1a,file=paste0('../output/summary/',summary.name))}
-
-# capture output for emailing purposes
-email.content <- capture.output(inla.summary.mod1a)
-
-# save plot of INLA model
-#plot.name <- paste0('USA_rate_pred_type1a_',age,'_',sex.lookup[sex],'_',year.start,'_',year.end,'_summary.pdf')
-#inla.plot.mod1a <- plot(mod1a)
-#plot(mod1a, single=TRUE, pdf=TRUE, paper='a4r')
-
-# save RDS of INLA results
-plot.dat <- as.data.frame(cbind(dat.inla,rate.pred=mod1a$summary.fitted.values$mean,sd=mod1a$summary.fitted.values$sd))
-
-# name of RDS output file then save
-RDS.name <- paste0('USA_rate_pred_type1a_',age,'_',sex.lookup[sex],'_',year.start,'_',year.end)
-if(cluster==0){saveRDS(plot.dat,paste0(file.loc,'/',RDS.name))}
-if(cluster==1){saveRDS(plot.dat,paste0('../output/pred/',RDS.name))}
-
 }
 
 if(type==3) {
 
 # 2. Type II space-time interaction
-
-fml2 <- deaths ~
+fml <- deaths ~
 	# global terms
         1 +                                                                     		# global intercept
         year.month +                                                            		# global slope
@@ -245,52 +155,12 @@ fml2 <- deaths ~
         #control.group=list(model="exchangeable")) + 
         # overdispersion term
         f(e, model = "iid")                                                     		# overdispersion term
-
-# INLA model
-
-system.time(mod2 <-
-    inla(formula = fml2,
-    family = "poisson",
-    data = dat.inla,
-    E = pop.adj,
-    control.compute = list(dic=TRUE),
-    control.predictor = list(link = 1),
-    verbose=TRUE
-    ))
-
-# save all parameters of INLA model
-parameters.name <- paste0('USA_rate_pred_type2_',age,'_',sex.lookup[sex],'_',year.start,'_',year.end,'_parameters')
-mod2$misc <- NULL
-mod2$.args$.parent.frame <- NULL
-if(cluster==0){saveRDS(mod2,parameters.name)}
-if(cluster==1){saveRDS(mod2,paste0('../output/pred/',parameters.name))}
-
-# save summary of INLA model
-summary.name <- paste0('USA_rate_pred_type2_',age,'_',sex.lookup[sex],'_',year.start,'_',year.end,'_summary.txt')
-inla.summary.mod2 <- summary(mod2)
-if(cluster==0){capture.output(inla.summary.mod2,file=summary.name)}
-if(cluster==1){capture.output(inla.summary.mod2,file=paste0('../output/summary/',summary.name))}
-
-# save plot of INLA model
-#plot.name <- paste0('USA_rate_pred_type2_',age,'_',sex.lookup[sex],'_',year.start,'_',year.end,'_summary.pdf')
-#inla.plot.mod2 <- plot(mod2)
-#plot(mod2, single=TRUE, pdf=TRUE, paper='a4r')
-
-# save RDS of INLA results
-plot.dat <- as.data.frame(cbind(dat.inla,rate.pred=mod2$summary.fitted.values$mean,sd=mod2$summary.fitted.values$sd))
-
-# name of RDS output file then save
-RDS.name <- paste0('USA_rate_pred_type2_',age,'_',sex.lookup[sex],'_',year.start,'_',year.end)
-if(cluster==0){saveRDS(plot.dat,RDS.name)}
-if(cluster==1){saveRDS(plot.dat,paste0('../output/pred/',RDS.name))}
-
 }
 
 if(type==4) {
 
 # 2. Type IIa space-time interaction
-
-fml2a <- deaths ~
+fml <- deaths ~
 	# global terms
         1 +                                                                                     # global intercept
         year.month +                                                                            # global slope
@@ -312,52 +182,12 @@ fml2a <- deaths ~
         #control.group=list(model="exchangeable")) + 
         # overdispersion term
         f(e, model = "iid")                                                                     # overdispersion term
-
-# INLA model
-
-system.time(mod2a <-
-    inla(formula = fml2a,
-    family = "poisson",
-    data = dat.inla,
-    E = pop.adj,
-    control.compute = list(dic=TRUE),
-    control.predictor = list(link = 1),
-    verbose=TRUE
-    ))
-
-# save all parameters of INLA model
-parameters.name <- paste0('USA_rate_pred_type2a_',age,'_',sex.lookup[sex],'_',year.start,'_',year.end,'_parameters')
-mod2a$misc <- NULL
-mod2a$.args$.parent.frame <- NULL
-if(cluster==0){saveRDS(mod2a,parameters.name)}
-if(cluster==1){saveRDS(mod2a,paste0('../output/pred/',parameters.name))}
-
-# save summary of INLA model
-summary.name <- paste0('USA_rate_pred_type2a_',age,'_',sex.lookup[sex],'_',year.start,'_',year.end,'_summary.txt')
-inla.summary.mod2a <- summary(mod2a)
-if(cluster==0){capture.output(inla.summary.mod2a,file=summary.name)}
-if(cluster==1){capture.output(inla.summary.mod2a,file=paste0('../output/summary/',summary.name))}
-
-# save plot of INLA model
-#plot.name <- paste0('USA_rate_pred_type2a_',age,'_',sex.lookup[sex],'_',year.start,'_',year.end,'_summary.pdf')
-#inla.plot.mod2a <- plot(mod2a)
-#plot(mod2a, single=TRUE, pdf=TRUE, paper='a4r')
-
-# save RDS of INLA results
-plot.dat <- as.data.frame(cbind(dat.inla,rate.pred=mod2a$summary.fitted.values$mean,sd=mod2a$summary.fitted.values$sd))
-
-# name of RDS output file then save
-RDS.name <- paste0('USA_rate_pred_type2a_',age,'_',sex.lookup[sex],'_',year.start,'_',year.end)
-if(cluster==0){saveRDS(plot.dat,RDS.name)}
-if(cluster==1){saveRDS(plot.dat,paste0('../output/pred/',RDS.name))}
-
 }
 
 if(type==5) {
 
 # 3. Type III space-time interaction
-
-fml3 <- deaths ~
+fml <- deaths ~
 	# global terms
         1 +                                                                     		# global intercept
         year.month +                                                           		 	# global slope
@@ -376,51 +206,12 @@ fml3 <- deaths ~
 	#graph=USA.adj)) +									# variation on model 
         # overdispersion term
         f(e, model = "iid")                                                     		# overdispersion term
-
-system.time(mod3 <-
-    inla(formula = fml3,
-    family = "poisson",
-    data = dat.inla,
-    E = pop.adj,
-    control.compute = list(dic=TRUE),
-    control.predictor = list(link = 1),
-    control.inla = list(strategy = "gaussian"),
-    verbose=TRUE
-    ))
-
-# save all parameters of INLA model
-parameters.name <- paste0('USA_rate_pred_type3_',age,'_',sex.lookup[sex],'_',year.start,'_',year.end,'_parameters')
-mod3$misc <- NULL
-mod3$.args$.parent.frame <- NULL
-if(cluster==0){saveRDS(mod3,parameters.name)}
-if(cluster==1){saveRDS(mod3,paste0('../output/pred/',parameters.name))}
-
-# save summary of INLA model
-summary.name <- paste0('USA_rate_pred_type3_',age,'_',sex.lookup[sex],'_',year.start,'_',year.end,'_summary.txt')
-inla.summary.mod3 <- summary(mod3)
-if(cluster==0){capture.output(inla.summary.mod3,file=summary.name)}
-if(cluster==1){capture.output(inla.summary.mod3,file=paste0('../output/summary/',summary.name))}
-
-# save plot of INLA model
-#plot.name <- paste0('USA_rate_pred_type3_',age,'_',sex.lookup[sex],'_',year.start,'_',year.end,'_summary.pdf')
-#inla.plot.mod3 <- plot(mod3)
-#plot(mod3, single=TRUE, pdf=TRUE, paper='a4r')
-
-# save RDS of INLA results
-plot.dat <- as.data.frame(cbind(dat.inla,rate.pred=mod3$summary.fitted.values$mean,sd=mod3$summary.fitted.values$sd))
-
-# name of RDS output file then save
-RDS.name <- paste0('USA_rate_pred_type3_',age,'_',sex.lookup[sex],'_',year.start,'_',year.end)
-if(cluster==0){saveRDS(plot.dat,RDS.name)}
-if(cluster==1){saveRDS(plot.dat,paste0('../output/pred/',RDS.name))}
-
 }
 
 if(type==6) {
 
 # 3. Type IIIa space-time interaction
-
-fml3 <- deaths ~
+fml <- deaths ~
 	# global terms
         1 +                                                                     		# global intercept
         year.month +                                                           		 	# global slope
@@ -442,51 +233,13 @@ fml3 <- deaths ~
 	#graph=USA.adj)) +									# variation on model 
 	# overdispersion term
         f(e, model = "iid")                                                     		# overdispersion term
-
-system.time(mod3 <-
-    inla(formula = fml3,
-    family = "poisson",
-    data = dat.inla,
-    E = pop.adj,
-    control.compute = list(dic=TRUE),
-    control.predictor = list(link = 1),
-    control.inla = list(strategy = "gaussian"),
-    verbose=TRUE
-    ))
-
-# save all parameters of INLA model
-parameters.name <- paste0('USA_rate_pred_type3a_',age,'_',sex.lookup[sex],'_',year.start,'_',year.end,'_parameters')
-mod3$misc <- NULL
-mod3$.args$.parent.frame <- NULL
-if(cluster==0){saveRDS(mod3,parameters.name)}
-if(cluster==1){saveRDS(mod3,paste0('../output/pred/',parameters.name))}
-
-# save summary of INLA model
-summary.name <- paste0('USA_rate_pred_type3a_',age,'_',sex.lookup[sex],'_',year.start,'_',year.end,'_summary.txt')
-inla.summary.mod3 <- summary(mod3)
-if(cluster==0){capture.output(inla.summary.mod3,file=summary.name)}
-if(cluster==1){capture.output(inla.summary.mod3,file=paste0('../output/summary/',summary.name))}
-
-# save plot of INLA model
-#plot.name <- paste0('USA_rate_pred_type3_',age,'_',sex.lookup[sex],'_',year.start,'_',year.end,'_summary.pdf')
-#inla.plot.mod3 <- plot(mod3)
-#plot(mod3, single=TRUE, pdf=TRUE, paper='a4r')
-
-# save RDS of INLA results
-plot.dat <- as.data.frame(cbind(dat.inla,rate.pred=mod3$summary.fitted.values$mean,sd=mod3$summary.fitted.values$sd))
-
-# name of RDS output file then save
-RDS.name <- paste0('USA_rate_pred_type3a_',age,'_',sex.lookup[sex],'_',year.start,'_',year.end)
-if(cluster==0){saveRDS(plot.dat,RDS.name)}
-if(cluster==1){saveRDS(plot.dat,paste0('../output/pred/',RDS.name))}
-
 }
 
 if(type==7) {
 
 # 4. Type IV space-time interaction
 
-fml4 <- deaths ~
+fml <- deaths ~
 	# global terms
         1 +                                                                     		# global intercept
         year.month +                                                            		# global slope
@@ -502,53 +255,54 @@ fml4 <- deaths ~
         group=year.month4,
         control.group=list(model="rw1")) +
         f(e, model = "iid")                                                     		# overdispersion term
+}
 
-system.time(mod4 <-
-    inla(formula = fml4,
+# INLA model
+system.time(mod <-
+    inla(formula = fml,
     family = "poisson",
     data = dat.inla,
     E = pop.adj,
     control.compute = list(dic=TRUE),
     control.predictor = list(link = 1),
-    control.inla = list(strategy = "gaussian"),
     verbose=TRUE
     ))
 
+# create directory for output
+file.loc <- paste0('~/data/mortality/US/state/predicted/type_',type.selected,'/age_groups/',age.sel)
+ifelse(!dir.exists(file.loc), dir.create(file.loc), FALSE)
+
 # save all parameters of INLA model
-parameters.name <- paste0('USA_rate_pred_type4_',age,'_',sex.lookup[sex],'_',year.start,'_',year.end,'_parameters')
-mod4$misc <- NULL
-mod4$.args$.parent.frame <- NULL
-if(cluster==0){saveRDS(mod4,parameters.name)}
-if(cluster==1){saveRDS(mod4,paste0('../output/pred/',parameters.name))}
+parameters.name <- paste0('USA_rate_pred_type',type.selected,'_',age,'_',sex.lookup[sex],'_',year.start,'_',year.end,'_parameters')
+mod$misc <- NULL
+mod$.args$.parent.frame <- NULL
+if(cluster==0){saveRDS(mod,paste0(file.loc,'/',parameters.name))}
+if(cluster==1){saveRDS(mod,paste0('../output/pred/',parameters.name))}
 
 # save summary of INLA model
-summary.name <- paste0('USA_rate_pred_type4_',age,'_',sex.lookup[sex],'_',year.start,'_',year.end,'_summary.txt')
-inla.summary.mod4 <- summary(mod4)
-if(cluster==0){capture.output(inla.summary.mod4,file=summary.name)}
-if(cluster==1){capture.output(inla.summary.mod4,file=paste0('../output/summary/',summary.name))}
-# save plot of INLA model
+summary.name <- paste0('USA_rate_pred_type',type.selected,'_',age,'_',sex.lookup[sex],'_',year.start,'_',year.end,'_summary.txt')
+inla.summary.mod <- summary(mod)
+if(cluster==0){capture.output(inla.summary.mod,file=paste0(file.loc,'/',summary.name))}
+if(cluster==1){capture.output(inla.summary.mod,file=paste0('../output/summary/',summary.name))}
 
-#plot.name <- paste0('USA_rate_pred_type4_',age,'_',sex.lookup[sex],'_',year.start,'_',year.end,'_summary.pdf')
-#inla.plot.mod4 <- plot(mod4)
-#plot(mod4, single=TRUE, pdf=TRUE, paper='a4r')
+# capture output for emailing purposes
+email.content <- capture.output(inla.summary.mod)
 
 # save RDS of INLA results
-plot.dat <- as.data.frame(cbind(dat.inla,rate.pred=mod4$summary.fitted.values$mean,sd=mod4$summary.fitted.values$sd))
+plot.dat <- as.data.frame(cbind(dat.inla,rate.pred=mod$summary.fitted.values$mean,sd=mod$summary.fitted.values$sd))
 
 # name of RDS output file then save
-RDS.name <- paste0('USA_rate_pred_type4_',age,'_',sex.lookup[sex],'_',year.start,'_',year.end)
-if(cluster==0){saveRDS(plot.dat,RDS.name)}
+RDS.name <- paste0('USA_rate_pred_type',type.selected,'_',age,'_',sex.lookup[sex],'_',year.start,'_',year.end)
+if(cluster==0){saveRDS(plot.dat,paste0(file.loc,'/',RDS.name))}
 if(cluster==1){saveRDS(plot.dat,paste0('../output/pred/',RDS.name))}
-
-}
 
 sender <- "emailr349@gmail.com"
 recipients <- c("r.parks15@imperial.ac.uk")
 send.mail(from = sender,
           to = recipients,
-          subject = paste0(sex.lookup[sex.sel],' ',age.sel,' done'),
-          #body = "Well done",
-	  body= as.character(email.content[8]),
+          subject = paste0(sex.lookup[sex.sel],' ',age.sel,' model ',type.selected,' done'),
+          body = "Well done",
+	  #body= as.character(email.content[8]),
           smtp = list(host.name = "smtp.gmail.com", port = 465, 
                       user.name = "emailr349@gmail.com",            
                       passwd = "inlaisthebest", ssl = TRUE),
@@ -562,7 +316,3 @@ send.mail(from = sender,
 
 # input arguments into function to perform inference
 mapply(inla.function,age.sel=age.arg,sex.sel=sex.arg,year.start=year.start.arg,year.end=year.end.arg,type=type.arg,cluster=cluster.arg)
-
-#mapply(inla.function,age.sel=c(75,85,0,5,15,25,35,45),sex.sel=1,year.start=1982,year.end=2010,type=2,cluster=0)
-#mapply(inla.function,age.sel=c(55,65,75,85,0,5,15,25,35,45),sex.sel=2,year.start=1982,year.end=2010,type=2,cluster=0)
-

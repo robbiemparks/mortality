@@ -23,10 +23,10 @@ for sex in "${sexes[@]}"; do
 
 for age in "${ages[@]}"; do
 
-echo "starting ${sexstrings[$sex-1]} $age INLA model $model years $start - $end";
+echo "starting ${sexstrings[$sex-1]} $age INLA model $model with climate years $start - $end";
 
 # runs model
-Rscript ~/git/mortality/USA/state/prog/models/INLA/spatiotemporal/inla_spatiotemporal.R $age $sex $start $end $model 0
+Rscript ~/git/mortality/USA/state/prog/models/INLA/spatiotemporal/inla_spatiotemporal_climate.R $age $sex $start $end $model 0
 
 done; done;
 
