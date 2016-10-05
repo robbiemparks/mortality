@@ -21,8 +21,10 @@ require(mailR)
 
 # create files for output
 ifelse(!dir.exists('~/data/mortality/US/state/climate_effects/'), dir.create('~/data/mortality/US/state/climate_effects/'), FALSE)
-ifelse(!dir.exists(paste0('~/data/mortality/US/state/climate_effects/type_',type.selected,'/')), dir.create(paste0('~/data/mortality/US/state/climate_effects/type_',type.selected,'/')), FALSE)
-ifelse(!dir.exists(paste0('~/data/mortality/US/state/climate_effects/type_',type.selected,'/age_groups')), dir.create(paste0('~/data/mortality/US/state/climate_effects/type_',type.selected,'/age_groups')), FALSE)
+ifelse(!dir.exists(paste0('~/data/mortality/US/state/climate_effects/',dname.arg)), dir.create(paste0('~/data/mortality/US/state/climate_effects/',dname.arg)), FALSE)
+ifelse(!dir.exists(paste0('~/data/mortality/US/state/climate_effects/',dname.arg,'/',metric.arg)), dir.create(paste0('~/data/mortality/US/state/climate_effects/',dname.arg,'/',metric.arg)), FALSE)
+ifelse(!dir.exists(paste0('~/data/mortality/US/state/climate_effects/',dname.arg,'/',metric.arg,'/type_',type.selected,'/')), dir.create(paste0('~/data/mortality/US/state/climate_effects/',dname.arg,'/',metric.arg,'/type_',type.selected,'/')), FALSE)
+ifelse(!dir.exists(paste0('~/data/mortality/US/state/climate_effects/',dname.arg,'/',metric.arg,'/type_',type.selected,'/age_groups')), dir.create(paste0('~/data/mortality/US/state/climate_effects/',dname.arg,'/',metric.arg,'/type_',type.selected,'/age_groups')), FALSE)
 
 # load USA data
 dat.inla.load <- readRDS(paste0('../../output/prep_data/datus_state_rates_',year.start.arg,'_2013'))
@@ -308,18 +310,18 @@ system.time(mod <-
     ))
 
 # create directory for output
-file.loc <- paste0('~/data/mortality/US/state/predicted/type_',type.selected,'/age_groups/',age.sel)
+file.loc <- paste0('~/data/mortality/US/state/climate_effects/',dname.arg,'/',metric.arg,'/type_',type.selected,'/age_groups/',age.sel)
 ifelse(!dir.exists(file.loc), dir.create(file.loc), FALSE)
 
 # save all parameters of INLA model
-parameters.name <- paste0('USA_rate_pred_type',type.selected,'_',age,'_',sex.lookup[sex],'_',year.start,'_',year.end,'_parameters')
-mod$misc <- NULL
-mod$.args$.parent.frame <- NULL
+parameters.name <- paste0('USA_rate_pred_type',type.selected,'_',age,'_',sex.lookup[sex],'_',year.start,'_',year.end,'_',dname.arg,'_',metric.arg,'_parameters')
+#mod$misc <- NULL
+#mod$.args$.parent.frame <- NULL
 if(cluster==0){saveRDS(mod,paste0(file.loc,'/',parameters.name))}
 if(cluster==1){saveRDS(mod,paste0('../output/pred/',parameters.name))}
 
 # save summary of INLA model
-summary.name <- paste0('USA_rate_pred_type',type.selected,'_',age,'_',sex.lookup[sex],'_',year.start,'_',year.end,'_summary.txt')
+summary.name <- paste0('USA_rate_pred_type',type.selected,'_',age,'_',sex.lookup[sex],'_',year.start,'_',year.end,'_',dname.arg,'_',metric.arg,'_summary.txt')
 inla.summary.mod <- summary(mod)
 if(cluster==0){capture.output(inla.summary.mod,file=paste0(file.loc,'/',summary.name))}
 if(cluster==1){capture.output(inla.summary.mod,file=paste0('../output/summary/',summary.name))}
@@ -331,7 +333,7 @@ email.content <- capture.output(inla.summary.mod)
 plot.dat <- as.data.frame(cbind(dat.inla,rate.pred=mod$summary.fitted.values$mean,sd=mod$summary.fitted.values$sd))
 
 # name of RDS output file then save
-RDS.name <- paste0('USA_rate_pred_type',type.selected,'_',age,'_',sex.lookup[sex],'_',year.start,'_',year.end)
+RDS.name <- paste0('USA_rate_pred_type',type.selected,'_',age,'_',sex.lookup[sex],'_',year.start,'_',year.end,'_',dname.arg,'_',metric.arg)
 if(cluster==0){saveRDS(plot.dat,paste0(file.loc,'/',RDS.name))}
 if(cluster==1){saveRDS(plot.dat,paste0('../output/pred/',RDS.name))}
 
@@ -339,7 +341,7 @@ sender <- "emailr349@gmail.com"
 recipients <- c("r.parks15@imperial.ac.uk")
 send.mail(from = sender,
           to = recipients,
-          subject = paste0(sex.lookup[sex.sel],' ',age.sel,' model ',type.selected,' done'),
+          subject = paste0(sex.lookup[sex.sel],' ',age.sel,' model ',type.selected,' ',dname.arg,' ',metric.arg,' done'),
           body = "Well done",
 	  #body= as.character(email.content[8]),
           smtp = list(host.name = "smtp.gmail.com", port = 465, 
