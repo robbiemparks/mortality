@@ -136,15 +136,18 @@ fml<- deaths ~
 	# global terms
         1 +                                                                     		# global intercept
         year.month +                                                           			# global slope
-    	# month specific terms
-	f(month, model='rw1',cyclic = TRUE) +							# month specific intercept
-	f(month2, year.month2, model='rw1', cyclic= TRUE) + 					# month specific slope
+    # month specific terms
+        f(month, model='rw1',cyclic = TRUE) +                                           # month specific intercept
+        f(month2, year.month2, model='rw1', cyclic= TRUE) +                             # month specific slope
 	# state-month specific terms
-        f(month3, model="rw1",cyclic = TRUE,group=ID,control.group=list(model='besag',graph=USA.adj))+        		# state-month specific intercept (spatially-correlated)
+        f(month3, model="rw1",cyclic = TRUE,group=ID,control.group=list(model='besag',graph=USA.adj))+                  # state-month specific intercept (spatially-correlated)
         f(month4, year.month2, model="rw1",cyclic = TRUE,group=ID, control.group=list(model='besag',graph=USA.adj))+    # state-month specific slope (spatially-correlated)
-        # state specific terms
+    # state specific terms
         f(ID, model="bym",graph=USA.adj) +                                      		# state specific intercept (BYM)
         f(ID2, year.month2, model="bym",graph=USA.adj) +                        		# state specific slope (BYM)
+    # climate specific terms
+        variable.low +                                                                  # climate variable slope pre-knot
+        variable.high +                                                                 # climate variable slope post-knot
 	# random walk across time
         f(year.month3, model="rw1") +                                           		# rw1
         # overdispersion term
