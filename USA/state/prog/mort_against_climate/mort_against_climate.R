@@ -1,5 +1,7 @@
 rm(list=ls())
 
+library(RColorBrewer)
+
 # arguments from Rscript
 args <- commandArgs(trailingOnly=TRUE)
 
@@ -76,11 +78,13 @@ dat.merged$state.name <- reorder(dat.merged$state.name,dat.merged$fips)
 
 pdf(paste0(file.loc,'/','deaths_rates_together_',year.start.arg,'_',year.end.arg,'_',dname.arg,'_',metric.arg,'_',sex.lookup[sex.arg],'_',age.arg,'.pdf'),paper='a4r',height=0,width=0)
 ggplot(data=dat.merged) + 
-geom_point(aes(x=variable,y=rate.adj*100000)) +
+geom_point(aes(x=variable,y=rate.adj*100000,color=factor(month))) +
 stat_smooth(aes(x=variable,y=rate.adj*100000)) +
 ggtitle(paste0('Death rates ',year.start.arg,'-',year.end.arg,' against ',dname.arg,' ',metric.arg,' : ',sex.lookup[sex.arg],' ',age.arg)) +
 xlab(paste0(dname.arg,' ',metric.arg)) +
 ylab('death rate (per 100,000)') +
+ggtitle(paste0('Death rates by state fitted by month ',year.start.arg,'-',year.end.arg,' against ',dname.arg,' ',metric.arg,' : ',sex.lookup[sex.arg],' ',age.arg)) +
+scale_colour_manual(values=colorRampPalette(rev(brewer.pal(12,"RdYlBu")[c(9:10,2:1,1:2,10:9)]))(12),guide = guide_legend(title = 'month'),labels=month.short) +
 theme_bw()
 dev.off()
 
@@ -90,12 +94,13 @@ dev.off()
 
 pdf(paste0(file.loc,'/','deaths_rates_month_',year.start.arg,'_',year.end.arg,'_',dname.arg,'_',metric.arg,'_',sex.lookup[sex.arg],'_',age.arg,'.pdf'),paper='a4r',height=0,width=0)
 ggplot(data=dat.merged) + 
-geom_point(aes(x=variable,y=rate.adj*100000)) +
+geom_point(aes(x=variable,y=rate.adj*100000,color=factor(month))) +
 stat_smooth(aes(x=variable,y=rate.adj*100000)) +
 ggtitle(paste0('Death rates by month ',year.start.arg,'-',year.end.arg,' against ',dname.arg,' ',metric.arg,' : ',sex.lookup[sex.arg],' ',age.arg)) +
 xlab(paste0(dname.arg,' ',metric.arg)) +
 ylab('death rate (per 100,000)') +
 facet_wrap(~month.short) +
+scale_colour_manual(values=colorRampPalette(rev(brewer.pal(12,"RdYlBu")[c(9:10,2:1,1:2,10:9)]))(12),guide = guide_legend(title = 'month'),labels=month.short) +
 theme_bw()
 dev.off()
 
@@ -105,11 +110,99 @@ dev.off()
 
 pdf(paste0(file.loc,'/','deaths_rates_state_',year.start.arg,'_',year.end.arg,'_',dname.arg,'_',metric.arg,'_',sex.lookup[sex.arg],'_',age.arg,'.pdf'),paper='a4r',height=0,width=0)
 ggplot(data=dat.merged) + 
-geom_point(aes(x=variable,y=rate.adj*100000)) +
+geom_point(aes(x=variable,y=rate.adj*100000,color=factor(month))) +
 stat_smooth(aes(x=variable,y=rate.adj*100000)) +
 ggtitle(paste0('Death rates by state ',year.start.arg,'-',year.end.arg,' against ',dname.arg,' ',metric.arg,' : ',sex.lookup[sex.arg],' ',age.arg)) +
 xlab(paste0(dname.arg,' ',metric.arg)) +
 ylab('death rate (per 100,000)') +
 facet_wrap(~state.name) +
+scale_colour_manual(values=colorRampPalette(rev(brewer.pal(12,"RdYlBu")[c(9:10,2:1,1:2,10:9)]))(12),guide = guide_legend(title = 'month'),labels=month.short) +
 theme_bw()
 dev.off()
+
+#############################################
+# 4. PLOT ALL TOGETHER WITH MONTHS FIT
+#############################################
+
+#pdf(paste0(file.loc,'/','deaths_rates_together_month_fit_',year.start.arg,'_',year.end.arg,'_',dname.arg,'_',metric.arg,'_',sex.lookup[sex.arg],'_',age.arg,'.pdf'),paper='a4r',height=0,width=0)
+#ggplot(data=dat.merged) + 
+#geom_point(aes(x=variable,y=rate.adj*100000,alpha=0.2)) +
+#stat_smooth(span=0.8, aes(x=variable,y=rate.adj*100000,color=factor(month.short))) +
+#ggtitle(paste0('Death rates by state fitted by month ',year.start.arg,'-',year.end.arg,' against ',dname.arg,' ',metric.arg,' : ',sex.lookup[sex.arg],' ',age.arg)) +
+#xlab(paste0(dname.arg,' ',metric.arg)) +
+#ylab('death rate (per 100,000)') +
+#theme_bw()
+#dev.off()
+
+#############################################
+# 5a. PLOT BY STATE WITH MONTHS FIT (LM)
+#############################################
+
+pdf(paste0(file.loc,'/','deaths_rates_states_month_fit_lm_',year.start.arg,'_',year.end.arg,'_',dname.arg,'_',metric.arg,'_',sex.lookup[sex.arg],'_',age.arg,'.pdf'),paper='a4r',height=0,width=0)
+for(i in unique(dat.merged$fips)) {
+print(
+ggplot(data=subset(dat.merged,fips==i)) + 
+geom_point(aes(x=variable,y=rate.adj*100000,alpha=0.2,color=factor(month))) +
+stat_smooth(se=FALSE,method='lm',span=0.8, aes(x=variable,y=rate.adj*100000,color=factor(month))) +
+ggtitle(paste0('Death rates by state fitted by month ',year.start.arg,'-',year.end.arg,' against ',dname.arg,' ',metric.arg,' : ',sex.lookup[sex.arg],' ',age.arg)) +
+xlab(paste0(dname.arg,' ',metric.arg)) +
+ylab('death rate (per 100,000)') +
+scale_colour_manual(values=colorRampPalette(rev(brewer.pal(12,"RdYlBu")[c(9:10,2:1,1:2,10:9)]))(12),guide = guide_legend(title = 'month'),labels=month.short) +
+facet_wrap(~state.name) +
+theme_bw()
+)
+}
+dev.off()
+
+#############################################
+# 5b. PLOT BY STATE WITH MONTHS FIT (LOESS)
+#############################################
+
+pdf(paste0(file.loc,'/','deaths_rates_states_month_fit_loess_',year.start.arg,'_',year.end.arg,'_',dname.arg,'_',metric.arg,'_',sex.lookup[sex.arg],'_',age.arg,'.pdf'),paper='a4r',height=0,width=0)
+for(i in unique(dat.merged$fips)) {
+print(
+ggplot(data=subset(dat.merged,fips==i)) + 
+geom_point(aes(x=variable,y=rate.adj*100000,alpha=0.2,color=factor(month))) +
+stat_smooth(se=FALSE,span=0.8, aes(x=variable,y=rate.adj*100000,color=factor(month))) +
+ggtitle(paste0('Death rates by state fitted by month ',year.start.arg,'-',year.end.arg,' against ',dname.arg,' ',metric.arg,' : ',sex.lookup[sex.arg],' ',age.arg)) +
+xlab(paste0(dname.arg,' ',metric.arg)) +
+ylab('death rate (per 100,000)') +
+scale_colour_manual(values=colorRampPalette(rev(brewer.pal(12,"RdYlBu")[c(9:10,2:1,1:2,10:9)]))(12),guide = guide_legend(title = 'month'),labels=month.short) +
+facet_wrap(~state.name) +
+theme_bw()
+)
+}
+dev.off()
+
+#############################################
+# 5. PLOT BY MONTH WITH STATES SEPARATE FIT
+#############################################
+
+#pdf(paste0(file.loc,'/','deaths_rates_month_states_fit_',year.start.arg,'_',year.end.arg,'_',dname.arg,'_',metric.arg,'_',sex.lookup[sex.arg],'_',age.arg,'.pdf'),paper='a4r',height=0,width=0)
+#ggplot(data=dat.merged) + 
+#geom_point(aes(x=variable,y=rate.adj*100000,alpha=0.2)) +
+#stat_smooth(se=FALSE,span=0.8,method='lm', aes(x=variable,y=rate.adj*100000,color=factor#(state.name))) +
+#ggtitle(paste0('Death rates by month fitted by state ',year.start.arg,'-',year.end.arg,' against ',dname.arg,' ',metric.arg,' : ',sex.lookup[sex.arg],' ',age.arg)) +
+#xlab(paste0(dname.arg,' ',metric.arg)) +
+#ylab('death rate (per 100,000)') +
+#facet_wrap(~month.short) +
+#theme_bw()
+#dev.off()
+
+#############################################
+# 5. PLOT ALL TOGETHER BY MONTH 
+#############################################
+
+#pdf(paste0(file.loc,'/','deaths_rates_month_fit_separate_',year.start.arg,'_',year.end.arg,'_',dname.arg,'_',metric.arg,'_',sex.lookup[sex.arg],'_',age.arg,'.pdf'),paper='a4r',height=0,width=0)
+#for(i in c(1:12)) {
+#print(ggplot(data=subset(dat.merged,month==i)) + 
+#geom_point(aes(x=variable,y=rate.adj*100000,alpha=0.2)) +
+#stat_smooth(span=0.9, aes(x=variable,y=rate.adj*100000,color=factor(month))) +
+#ggtitle(paste0('Death rates nationally ',month.short[i],' ',year.start.arg,'-',year.end.arg,' against ',dname.arg,' ',metric.arg,' : ',sex.lookup[sex.arg],' ',age.arg)) +
+#xlab(paste0(dname.arg,' ',metric.arg)) +
+#ylab('death rate (per 100,000)') +
+#theme_bw())
+#}
+#dev.off()
+
+
