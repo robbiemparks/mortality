@@ -1,5 +1,10 @@
 rm(list=ls())
 
+# break down the arguments from Rscript
+args <- commandArgs(trailingOnly=TRUE)
+year.start.arg <- as.numeric(args[1])
+year.end.arg <- as.numeric(args[2])
+
 require(CircStats)
 
 # coding for graph-friendly information
@@ -8,10 +13,10 @@ age.code <- data.frame(age=c(0,5,15,25,35,45,55,65,75,85), age.print=age.print)
 sex.lookup <- c('male','female')
 month.short <- c('Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec')
 
-state.lookup <- read.csv('../../data/name_fips_lookup.csv')
+state.lookup <- read.csv('../../data/fips_lookup/name_fips_lookup.csv')
 
 # load data and filter results
-dat <- readRDS('../../data/USA_rate_pred_type1a_1982_2010')
+dat <- readRDS(paste0('../../output/prep_data/datus_state_rates_',year.start.arg,'_',year.end.arg))
 
 # perform for nationalised data
 library(plyr)
@@ -112,9 +117,12 @@ names(dat.COM) <- c('age','sex','COM','lowerCI','upperCI')
 dat.COM$sex <- as.factor(dat.COM$sex)
 levels(dat.COM$sex) <- sex.lookup
 
-write.csv(dat.COM,'../../output/circular/USA_COM_1982_2010.csv')
+# create output directories
+ifelse(!dir.exists("../../output/circular"), dir.create("../../output/circular",recursive=TRUE), FALSE
 
-pdf('../../output/circular/USA_COM_1982_2010.pdf')
+write.csv(dat.COM,paste0('../../output/circular/USA_COM_',year.start.arg,'_',year.end.arg,'.csv'))
+
+pdf(paste0('../../output/circular/USA_COM_',year.start.arg,'_',year.end.arg,'.pdf'))
 library(ggplot2)
 ggplot(data=dat.COM,aes(x=COM,y=factor(age))) +
 geom_point(fill='red',size=3,color='red') +

@@ -26,10 +26,11 @@ age.single <- as.matrix(age.code[age.code==age.selected,])[2]
 state.single <- state.lookup[state.lookup$fips==fips.selected,][[1]]
 
 # prepare data frame for anaylsis
-my.data <- data.frame(date=as.Date(as.character(dat$year),format='%Y'),log.rate=log(dat$rate.adj),log.deaths=log(dat$deaths))
+#my.data <- data.frame(date=as.Date(as.character(dat$year),format='%Y'),log.rate=log(dat$rate.adj),log.deaths=log(dat$deaths))
+my.data <- data.frame(date=as.Date(as.character(dat$year),format='%Y'),rate=dat$rate.adj,log.deaths=log(dat$deaths))
 
 # perform wavelet analysis
-my.w <- analyze.wavelet(my.data, "rate.adj",
+my.w <- analyze.wavelet(my.data, "rate",
 			lowerPeriod=2, upperPeriod=16,
 			loess.span = 3/26,
 			dt= 1, dj = 1/1000,
@@ -52,10 +53,6 @@ title(main=plot.title)
 #reconstruct(my.w, plot.waves=F,lwd = c(1,2), legend.coords = "bottomleft")
 
 }
-
-#tpdf('../../output/wavelet/wavelet_15_females.pdf',paper='a4r')
-#mapply(plot.wavelet,fips.selected=unique(state.lookup$fips),sex.selected=2,age=15)
-#dev.off()
 
 # perform for nationalised data
 dat$deaths.pred <- with(dat,pop.adj*rate.adj)
@@ -100,14 +97,29 @@ plot.wavelet.national <- function(sex.selected,age.selected) {
     
 }
 
-# create output directory
-ifelse(!dir.exists("../../output/wavelet"), dir.create("../../output/wavelet"), FALSE)
+# create output directories
+ifelse(!dir.exists("../../output/wavelet/state"), dir.create("../../output/wavelet/state",recursive=TRUE), FALSE)
+ifelse(!dir.exists("../../output/wavelet/national"), dir.create("../../output/wavelet/national",recursive=TRUE), FALSE)
 
-pdf(paste0('../../output/wavelet/wavelet_national_males_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r')
+# output state wavelet files
+for(i in 1:nrow(age.code)){
+pdf(paste0('../../output/wavelet/state/wavelet_state_',age.code[i,1],'_males_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r')
+mapply(plot.wavelet.state,fips.selected=unique(state.lookup$fips),sex.selected=1,age=age.code[i,1])
+dev.off()
+}
+
+for(i in 1:nrow(age.code)){
+    pdf(paste0('../../output/wavelet/state/wavelet_state_',age.code[i,1],'_females_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r')
+    mapply(plot.wavelet.state,fips.selected=unique(state.lookup$fips),sex.selected=2,age=age.code[i,1])
+    dev.off()
+}
+
+# output national wavelet files
+pdf(paste0('../../output/wavelet/national/wavelet_national_males_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r')
 mapply(plot.wavelet.national,sex.selected=1,age=c(0,5,15,25,35,45,55,65,75,85))
 dev.off()
 
-pdf(paste0('../../output/wavelet/wavelet_national_females_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r')
+pdf(paste0('../../output/wavelet/nataional/wavelet_national_females_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r')
 mapply(plot.wavelet.national,sex.selected=2,age=c(0,5,15,25,35,45,55,65,75,85))
 dev.off()
 
