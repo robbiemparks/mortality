@@ -352,7 +352,7 @@ plot.function.median.jan.jul <- function(sex.sel) {
 
     print(ggplot(data=subset(plot.median.jan.jul,sex==sex.sel),aes(x=long,y=lat,group=group)) +
     geom_polygon(aes(fill=percent.change),color='black',size=0.01) +
-    scale_fill_gradient2(limits=c(min.plot,max.plot),low="#990000", high="#000033",guide = guide_legend(title = '% difference\nbetween\nJan and Jul')) +
+    scale_fill_gradient2(limits=c(min.plot,max.plot),low="#990000", high="#000033",guide = guide_legend(title = '% difference\nbetween\nJanuary\nand\nJuly')) +
     facet_wrap(~age.print) +
     xlab('') +
     ylab('') +
@@ -390,7 +390,7 @@ plot.function.grad.max.min <- function(sex.sel) {
 
     print(ggplot(data=subset(plot.grad.max.min,sex==sex.sel),aes(x=long,y=lat,group=group)) +
     geom_polygon(aes(fill=difference),color='black',size=0.01) +
-    scale_fill_gradient2(limits=c(min.plot,max.plot),low="#000033", high="#003300",guide = guide_legend(title = 'difference\nbetween\nmaximum and\nminimum\nrates of change\nfor\nindiviual\nmonths')) +
+    scale_fill_gradient2(limits=c(min.plot,max.plot),low="#000033", high="#003300",guide = guide_legend(title = 'difference\nbetween\nmaximum and\nminimum\nrates of change\nfor individual\nmonths')) +
     facet_wrap(~age.print) +
     xlab('') +
     ylab('') +
@@ -435,12 +435,12 @@ plot.function.var.state <- function(sex.sel) {
 }
 
 # male
-pdf(paste0(file.loc.nat.sum,'jan_july_var_grad_m.pdf'),height=0,width=0,paper='a4r')
+pdf(paste0(file.loc.nat.sum,'jan_july_var_state_m.pdf'),height=0,width=0,paper='a4r')
 plot.function.var.state(1)
 dev.off()
 
 # female
-pdf(paste0(file.loc.nat.sum,'jan_july_var_grad_f.pdf'),height=0,width=0,paper='a4r')
+pdf(paste0(file.loc.nat.sum,'jan_july_var_state_f.pdf'),height=0,width=0,paper='a4r')
 plot.function.var.state(2)
 dev.off()
 
@@ -706,7 +706,7 @@ plot.function.var.grad <- function(sex.sel) {
     
     print(ggplot(data=subset(plot.var.grad,sex==sex.sel),aes(x=long,y=lat,group=group)) +
     geom_polygon(aes(fill=grad.total),color='black',size=0.01) +
-    scale_fill_gradient2(limits=c(min.plot,max.plot),low="#000033", high="#003300",guide = guide_legend(title = 'percentage\nchange\nof\ncoefficient\nof\nseasonality')) +
+    scale_fill_gradient2(limits=c(min.plot,max.plot),low="#000033", high="#003300",guide = guide_legend(title = '%\nchange\nof\ncoefficient\nof\nseasonality')) +
     facet_wrap(~age.print) +
     xlab('') +
     ylab('') +
@@ -728,35 +728,35 @@ dev.off()
 # 7. national summary of timing of peak mortality
 
 # calculate national median of mortality for each age, sex over time period
-nat.median <- ddply(dat.nat,.(age,sex,month),summarize,med.rate=median(rate.adj))
+#nat.median <- ddply(dat.nat,.(age,sex,month),summarize,med.rate=median(rate.adj))
 
 # median for male and female separately
-nat.median.m <-subset(nat.median, sex==1)
-nat.median.f <- subset(nat.median, sex==2)
+#nat.median.m <-subset(nat.median, sex==1)
+#nat.median.f <- subset(nat.median, sex==2)
 
 # rank values of mortality for each age,sex by month
-nat.median.m$rank <- unlist(with(nat.median.m,tapply(-med.rate,age,rank)))
-nat.median.f$rank <- unlist(with(nat.median.f,tapply(-med.rate,age,rank)))
-nat.median <- rbind(nat.median.m,nat.median.f)
-nat.median$sex <- as.factor(nat.median$sex)
-levels(nat.median$sex) <- sex.lookup
+#nat.median.m$rank <- unlist(with(nat.median.m,tapply(-med.rate,age,rank)))
+#nat.median.f$rank <- unlist(with(nat.median.f,tapply(-med.rate,age,rank)))
+#nat.median <- rbind(nat.median.m,nat.median.f)
+#nat.median$sex <- as.factor(nat.median$sex)
+#levels(nat.median$sex) <- sex.lookup
 
 # plot heatmap
-pdf(paste0(file.loc.nat.sum,'mortality_rank_heatmap.pdf'),height=0,width=0,paper='a4r')
-ggplot(data=nat.median, aes(x=as.factor(age),y=as.factor(month))) +
-geom_tile(aes(fill=rank)) +
-scale_fill_gradient(low='red',high='green',guide = guide_legend(title = 'rank')) +
-xlab('age group') +
-ylab('month') +
-scale_x_discrete(labels=age.print) +
-scale_y_discrete(breaks=c(seq(1,12,by=1)),labels=month.short)   +
-facet_wrap(~sex) +
+#pdf(paste0(file.loc.nat.sum,'mortality_rank_heatmap.pdf'),height=0,width=0,paper='a4r')
+#ggplot(data=nat.median, aes(x=as.factor(age),y=as.factor(month))) +
+#geom_tile(aes(fill=rank)) +
+#scale_fill_gradient(low='red',high='green',guide = guide_legend(title = 'rank')) +
+#xlab('age group') +
+#ylab('month') +
+#scale_x_discrete(labels=age.print) +
+#scale_y_discrete(breaks=c(seq(1,12,by=1)),labels=month.short)   +
+#facet_wrap(~sex) +
 #ggtitle('Heatmap : median mortality ranked by month') +
-theme(text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.text.x = element_text(angle=90), 
-panel.background = element_blank(),strip.background = element_blank(), axis.line = element_line(colour = "black"))
-dev.off()
+#theme(text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.text.x = element_text(angle=90),
+#panel.background = element_blank(),strip.background = element_blank(), axis.line = element_line(colour = "black"))
+#dev.off()
 
-# if choosing to print the entire all age group summary togeter, this finishes the pdf
+# if choosing to print the entire all age group summary together, this finishes the pdf
 #dev.off()
 
 ###############################################################
@@ -764,7 +764,7 @@ dev.off()
 ###############################################################
 
 # function to choose summary of particular age
-graph.function.age <- function(age.selected=0,together=1) {
+graph.function.age <- function(age.selected=0,together=0) {
 
 # create directory for age specific summaries
 file.loc.age.sum <- paste0(file.loc.age.sum,age.selected,'/')
@@ -1075,11 +1075,11 @@ plot.function.variation.region.3 <- function(sex.sel) {
     max.plot <- max(dat.var$coeff.var[dat.var$age==age.selected])
 
     print(ggplot(subset(dat.var,age==age.selected & sex==sex.sel),aes(x=year,color=climate_region,group=factor(fips),y=coeff.var)) +
-    geom_line() +
+    geom_line(data=subset(dat.var.median,age==age.selected & sex==sex.lookup[sex.sel]),alpha=0.7,color='blue',size=1,linetype=1,aes(x=year,y=median)) +
     ylim(0,max.plot) +
     ylab('coefficient of seasonality') +
     #ggtitle(paste0(age.single,' ',sex.lookup[sex.sel],' : coefficient of seasonality of mortality over time (coloured by geographic region)')) +
-    scale_colour_manual(values=map.climate.colour,guide = guide_legend(title = 'geographic region')) +	
+    scale_colour_manual(values=map.climate.colour,guide = guide_legend(title = 'climate region')) +
     theme(legend.position='bottom',text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
     panel.background = element_blank(), axis.line = element_line(colour = "black"),
     rect = element_blank()))
@@ -1088,14 +1088,14 @@ plot.function.variation.region.3 <- function(sex.sel) {
 # plot
 
 # male
-if(together==0){pdf(paste0(file.loc.age.sum,age.selected,'_coeff_var_line_climate_m.pdf'),height=0,width=0,paper='a4r')}
-plot.function.variation.region.3(1)
-if(together==0){dev.off()}
+#if(together==0){pdf(paste0(file.loc.age.sum,age.selected,'_coeff_var_line_climate_m.pdf'),height=0,width=0,paper='a4r')}
+#plot.function.variation.region.3(1)
+#if(together==0){dev.off()}
 
 # female
-if(together==0){pdf(paste0(file.loc.age.sum,age.selected,'_coeff_var_line_climate_f.pdf'),height=0,width=0,paper='a4r')}
-plot.function.variation.region.3(2)
-if(together==0){dev.off()}
+#if(together==0){pdf(paste0(file.loc.age.sum,age.selected,'_coeff_var_line_climate_f.pdf'),height=0,width=0,paper='a4r')}
+#plot.function.variation.region.3(2)
+#if(together==0){dev.off()}
 
 # function to plot
 plot.function.variation.region.4 <- function(sex.sel) {
@@ -1106,11 +1106,11 @@ plot.function.variation.region.4 <- function(sex.sel) {
 
     print(ggplot(subset(dat.var,age==age.selected & sex==sex.sel)) +
     geom_jitter(aes(x=year,color=climate_region,y=coeff.var),width=0.3) +
-    geom_line(data=subset(dat.var.median,age==age.selected & sex==sex.lookup[sex.sel]),alpha=0.7,color='blue',size=1,linetype=1,aes(x=year,y=median)) +
+    geom_line(data=subset(dat.var.median,age==age.selected & sex==sex.sel),alpha=0.7,color='blue',size=1,linetype=1,aes(x=year,y=median)) +
     ylim(0,max.plot) +
     ylab('coefficient of seasonality') +
     #ggtitle(paste0(age.single,' ',sex.lookup[sex.sel],' : coefficient of seasonality of mortality over time (coloured by region)')) +
-    scale_colour_manual(values=map.climate.colour,guide = guide_legend(title = 'geographic region')) +	
+    scale_colour_manual(values=map.climate.colour,guide = guide_legend(title = 'climate region')) +
     theme(legend.position='bottom',text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
     panel.background = element_blank(), axis.line = element_line(colour = "black"),
     rect = element_blank()))
