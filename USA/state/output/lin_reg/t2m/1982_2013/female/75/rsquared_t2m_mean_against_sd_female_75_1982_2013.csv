@@ -1,0 +1,9 @@
+"","type","r.squared"
+"1","mean.state",0.11224325142275
+"2","sd.state",0.0783994810041892
+"3","mean.state+sd.state",0.118657743221196
+"4","mean.state.month",0.131119884820083
+"5","sd.state.month",0.102302416862895
+"6","mean.state.month+sd.state",0.137390635569974
+"7","mean.state+sd.state.month",0.133503552723554
+"8","mean.state.month+sd.state.month",0.137863992435168

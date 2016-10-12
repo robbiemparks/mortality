@@ -36,3 +36,15 @@ echo "starting ${sexstrings[$sex-1]} $age deaths rates with climate variable $me
 Rscript ~/git/mortality/USA/state/prog/mort_against_climate/mort_against_climate.R $age $sex $start_mort $end_mort $start_clim $end_clim $dname $metric
 
 done; done; done;
+
+#################################################
+# 2. DEATH RATES REGRESSION AGAINST CLIMATE
+#################################################
+
+declare metric1='mean'
+declare metric2='sd'
+
+echo "starting ${sexstrings[$sex-1]} $age deaths rates regression against climate variables $dname, $metric1 and $metric2, years $start_mort - $end_mort";
+
+# runs model
+Rscript ~/git/mortality/USA/state/prog/mort_against_climate/line_reg.R $age $sex $start_mort $end_mort $start_clim $end_clim $dname $metric1 $metric2
