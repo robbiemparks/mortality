@@ -12,7 +12,6 @@ age.print <- as.vector(levels(factor(levels=c('0-4','5-14','15-24','25-34','35-4
 age.code <- data.frame(age=c(0,5,15,25,35,45,55,65,75,85), age.print=age.print)
 sex.lookup <- c('male','female')
 month.short <- c('Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec')
-
 state.lookup <- read.csv('../../data/fips_lookup/name_fips_lookup.csv')
 
 # load data and filter results
@@ -22,6 +21,9 @@ dat <- readRDS(paste0('../../output/prep_data/datus_state_rates_',year.start.arg
 library(plyr)
 dat.national <- ddply(dat,.(year,month,sex,age),summarize,deaths=sum(deaths),pop.adj=sum(pop.adj))
 dat.national <- dat.national[order(dat.national$sex,dat.national$age,dat.national$year,dat.national$month),]
+
+saveRDS(dat.national,paste0('../../output/prep_data/datus_national_rates_',year.start.arg,'_',year.end.arg))
+dat.national <- readRDS(paste0('../../output/prep_data/datus_national_rates_',year.start.arg,'_',year.end.arg))
 
 # function to find centre of mass of seasonality
 circular.age.mean <- function(age.selected,sex.selected) {
