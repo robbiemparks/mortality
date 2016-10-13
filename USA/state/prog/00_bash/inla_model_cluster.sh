@@ -26,8 +26,8 @@ for age in "${ages[@]}"; do
 echo "starting ${sexstrings[$sex-1]} $age INLA model $model years $start - $end";
 
 # runs model
-Rscript ~/git/mortality/USA/state/prog/models/INLA/spatiotemporal/inla_spatiotemporal.R $age $sex $start $end $model 0
-#Rscript ~/projects/git/mortality/USA/state/prog/models/INLA/spatiotemporal/inla_spatiotemporal.R $age $sex $start $end $model 0
+#Rscript ~/git/mortality/USA/state/prog/models/INLA/spatiotemporal/inla_spatiotemporal.R $age $sex $start $end $model 0
+Rscript ~/projects/git/mortality/USA/state/prog/models/INLA/spatiotemporal/inla_spatiotemporal_cluster.R $age $sex $start $end $model 0
 
 
 done; done;
