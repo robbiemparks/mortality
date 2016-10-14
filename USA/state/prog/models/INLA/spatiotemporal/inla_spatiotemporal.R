@@ -307,4 +307,5 @@ send.mail(from = sender,
 ################
 
 # input arguments into function to perform inference
-mapply(inla.function,age.sel=age.arg,sex.sel=sex.arg,year.start=year.start.arg,year.end=year.end.arg,type=type.arg,cluster=cluster.arg)
+#mapply(inla.function,age.sel=age.arg,sex.sel=sex.arg,year.start=year.start.arg,year.end=year.end.arg,type=type.arg,cluster=cluster.arg)
+mapply(inla.function,age.sel=age.arg,sex.sel=sex.arg,year.start=year.start.arg,year.end=1982,type=type.arg,cluster=cluster.arg)
