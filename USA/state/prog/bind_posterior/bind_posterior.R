@@ -23,7 +23,8 @@ dat <- data.frame()
 
 for (i in seq(length(sex.filter))) {
     for (j in seq(length(age.filter))) {
-        file.name <- paste0('~/data/mortality/US/state/predicted/type_',model,'/age_groups/',age.filter,'/',country,'_rate_pred_',model,'_',age.filter[j],'_',sex.filter[i],'_',year.start,'_',year.end)
+        file.name <- paste0('~/data/mortality/US/state/predicted/type_',model,'/age_groups/',age.filter[j],'/',country,'_rate_pred_type',model,'_',age.filter[j],'_',sex.filter[i],'_',year.start,'_',year.end)
+        print(file.name)
         current.file <- readRDS(file.name)
         dat <- rbind(dat,current.file)
     }
@@ -31,9 +32,9 @@ for (i in seq(length(sex.filter))) {
 
 # create directories for output
 file.loc.local <- paste0('~/data/mortality/US/state/predicted/type_',model,'/combined/')
-ifelse(!dir.exists(file.loc), dir.create(file.loc), FALSE)
+ifelse(!dir.exists(file.loc.local), dir.create(file.loc.local), FALSE)
 file.loc.git <- paste0('../../data/predicted/')
-ifelse(!dir.exists(file.loc), dir.create(file.loc), FALSE)
+ifelse(!dir.exists(file.loc.git), dir.create(file.loc.git), FALSE)
 
 # save bound posterior
 save.name <- paste0(country,'_rate_pred_type',model,'_',year.start,'_',year.end)

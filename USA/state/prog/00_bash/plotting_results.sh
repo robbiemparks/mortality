@@ -8,7 +8,7 @@ clear
 declare -a ages=(0 5 15 25 35 45 55 65 75 85)
 declare -i model=2
 declare -i start=1982
-declare -i end=2010
+declare -i end=2013
 declare country="USA"
 
 # this will disappear once sorted out
