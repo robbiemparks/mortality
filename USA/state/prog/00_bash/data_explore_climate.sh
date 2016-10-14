@@ -1,9 +1,8 @@
 #!/bin/bash
 
 # this script
-# runs the INLA age-separated model
-# binds the posterior results together
-# plots the parameters of the model run
+# plots death rates against chosen climate variable
+# performs linear regression analysis for chosen climate variable
 
 clear
 
