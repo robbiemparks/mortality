@@ -264,8 +264,8 @@ ifelse(!dir.exists(file.loc), dir.create(file.loc), FALSE)
 
 # save all parameters of INLA model
 parameters.name <- paste0('USA_rate_pred_type',type.selected,'_',age,'_',sex.lookup[sex],'_',year.start,'_',year.end,'_parameters')
-mod$misc <- NULL
-mod$.args$.parent.frame <- NULL
+#mod$misc <- NULL
+#mod$.args$.parent.frame <- NULL
 if(cluster==0){saveRDS(mod,paste0(file.loc,'/',parameters.name))}
 if(cluster==1){saveRDS(mod,paste0('../output/pred/',parameters.name))}
 
