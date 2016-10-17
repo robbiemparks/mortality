@@ -15,6 +15,9 @@ declare country="USA"
 
 echo "starting nationalised COM analysis for $country, years $start - $end";
 
-# runs wavelet analysis
-Rscript ~/git/mortality/USA/state/prog/circular/circular.R $start $end
+# runs COM analysis
+Rscript ~/git/mortality/USA/state/prog/com/com_analysis.R $start $end
+
+# runs anti-COM analysis
+Rscript ~/git/mortality/USA/state/prog/com/anti_com_analysis.R $start $end
 
