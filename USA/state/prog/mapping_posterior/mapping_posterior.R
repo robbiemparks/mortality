@@ -6,6 +6,7 @@ library(rgdal)
 library(RColorBrewer)
 library(ggplot2)
 library(plyr)
+library(scales)
 
 # break down the arguments from Rscript
 args <- commandArgs(trailingOnly=TRUE)
@@ -100,8 +101,13 @@ lin.reg.median$month.short <- mapvalues(lin.reg.median$month,from=unique(lin.reg
 lin.reg.median$month.short <- reorder(lin.reg.median$month.short,lin.reg.median$month)
 
 # figure out the ratio of max/min deaths over time by fips,sex,age,year
-state.max.min <-  ddply(dat, .(fips,sex,age,year), summarize, max=max(rate.pred),min=min(rate.pred))
+state.max.min <-  ddply(dat, .(fips,sex,age,year), summarize, max=max(rate.pred),month.max=month[rate.pred==max(rate.pred)],min=min(rate.pred),month.min=month[rate.pred==min(rate.pred)])
 state.max.min$ratio <- with(state.max.min,max/min)
+
+#state.max.min$percent.change <- round(100*exp((state.max.min$max - state.max.min$min)),1)-100
+state.max.min$percent.change <- round(100*(state.max.min$ratio),1)-100
+
+#lin.reg.median.max.min.state$percent.change <- round(100*exp((lin.reg.median.max.min.state$max - lin.reg.median.max.min.state$min)),1)-100
 
 # work out the percentage difference between largest and smallest mortality month from COM analysis
 dat.COM <- read.csv(paste0('../../output/com/USA_COM_',year.start,'_',year.end,'.csv'))
@@ -396,14 +402,14 @@ plot.function.median.jan.jul <- function(sex.sel) {
 }
 
 # male
-pdf(paste0(file.loc.nat.sum,'jan_july_median_m.pdf'),height=0,width=0,paper='a4r')
-plot.function.median.jan.jul(1)
-dev.off()
+#pdf(paste0(file.loc.nat.sum,'jan_july_median_m.pdf'),height=0,width=0,paper='a4r')
+#plot.function.median.jan.jul(1)
+#dev.off()
 
 # female
-pdf(paste0(file.loc.nat.sum,'jan_july_median_f.pdf'),height=0,width=0,paper='a4r')
-plot.function.median.jan.jul(2)
-dev.off()
+#pdf(paste0(file.loc.nat.sum,'jan_july_median_f.pdf'),height=0,width=0,paper='a4r')
+#plot.function.median.jan.jul(2)
+#dev.off()
 
 # 2b. percentage difference between max and min mortality map per state
 
@@ -423,12 +429,13 @@ plot.median.max.min.state$age.print <- with(plot.median.max.min.state,reorder(ag
 plot.function.median.max.min.state <- function(sex.sel) {
     
     # find limits for plot
-    min.plot <- min(plot.median.max.min.state$percent.change)
-    max.plot <- max(plot.median.max.min.state$percent.change)
+    min.plot <- min(plot.median.max.min.state$percent.change)/100
+    max.plot <- max(plot.median.max.min.state$percent.change)/100
     
     print(ggplot(data=subset(plot.median.max.min.state,sex==sex.sel),aes(x=long,y=lat,group=group)) +
-    geom_polygon(aes(fill=percent.change),color='black',size=0.01) +
-    scale_fill_gradient2(limits=c(min.plot,max.plot),low="#990000", high="#000033",guide = guide_legend(title = 'Percentage\ndifference\nbetween\nmaximum\nand\nminimum')) +
+    geom_polygon(aes(fill=percent.change/100),color='black',size=0.01) +
+    scale_fill_gradient2(limits=c(-1,1),low="#990000", high="#000033",labels=percent,guide = guide_legend(title = 'Percentage\ndifference\nbetween\nmaximum\nand\nminimum')) +
+    #scale_fill_gradient2(limits=c(min.plot,max.plot),low="#990000", high="#000033",labels=percent,guide = guide_legend(title = 'Percentage\ndifference\nbetween\nmaximum\nand\nminimum')) +
     facet_wrap(~age.print) +
     xlab('') +
     ylab('') +
@@ -439,12 +446,12 @@ plot.function.median.max.min.state <- function(sex.sel) {
 }
 
 # male
-pdf(paste0(file.loc.nat.sum,'jan_july_maxmin_m.pdf'),height=0,width=0,paper='a4r')
+pdf(paste0(file.loc.nat.sum,'median_maxmin_ratio_m.pdf'),height=0,width=0,paper='a4r')
 plot.function.median.max.min.state(1)
 dev.off()
 
 # female
-pdf(paste0(file.loc.nat.sum,'jan_july_maxmin_f.pdf'),height=0,width=0,paper='a4r')
+pdf(paste0(file.loc.nat.sum,'median_maxmin_ratio_f.pdf'),height=0,width=0,paper='a4r')
 plot.function.median.max.min.state(2)
 dev.off()
 
@@ -482,14 +489,14 @@ plot.function.median.max.min <- function(sex.sel) {
 }
 
 # male
-pdf(paste0(file.loc.nat.sum,'jan_july_maxmin_com_m.pdf'),height=0,width=0,paper='a4r')
-plot.function.median.max.min(1)
-dev.off()
+#pdf(paste0(file.loc.nat.sum,'jan_july_maxmin_com_m.pdf'),height=0,width=0,paper='a4r')
+#plot.function.median.max.min(1)
+#dev.off()
 
 # female
-pdf(paste0(file.loc.nat.sum,'jan_july_maxmin_com_f.pdf'),height=0,width=0,paper='a4r')
-plot.function.median.max.min(2)
-dev.off()
+#pdf(paste0(file.loc.nat.sum,'jan_july_maxmin_com_f.pdf'),height=0,width=0,paper='a4r')
+#plot.function.median.max.min(2)
+#dev.off()
 
 
 # 3. difference in rate of change of maximum and minimum mortality change map
@@ -522,14 +529,14 @@ plot.function.grad.max.min <- function(sex.sel) {
 }
 
 # male
-pdf(paste0(file.loc.nat.sum,'jan_july_grad_m.pdf'),height=0,width=0,paper='a4r')
-plot.function.grad.max.min(1)
-dev.off()
+#pdf(paste0(file.loc.nat.sum,'jan_july_grad_m.pdf'),height=0,width=0,paper='a4r')
+#plot.function.grad.max.min(1)
+#dev.off()
 
 # female
-pdf(paste0(file.loc.nat.sum,'jan_july_grad_f.pdf'),height=0,width=0,paper='a4r')
-plot.function.grad.max.min(2)
-dev.off()
+#pdf(paste0(file.loc.nat.sum,'jan_july_grad_f.pdf'),height=0,width=0,paper='a4r')
+#plot.function.grad.max.min(2)
+#dev.off()
 
 # 4. average co-efficient of variation map
 plot.var.state <- merge(USA.df,dat.var.state,by.x='STATE_FIPS',by.y='fips')
@@ -575,12 +582,13 @@ median.df <- ddply(lin.reg.grad, .(month,sex,age), summarise, med = median(grad.
 # plot
 pdf(paste0(file.loc.nat.sum,'change_mort_across_all_months.pdf'),height=0,width=0,paper='a4r')
 ggplot(lin.reg.grad, aes(x=factor(age),fill=age,y=grad.total)) +
-geom_line(data = median.df, aes(x=factor(age),y = med, group = factor(month),color=as.factor(month))) +
+geom_line(data = median.df, aes(x=factor(age),y = med/100, group = factor(month),color=as.factor(month))) +
 #geom_line(data = var.median.df, alpha=0.7,aes(group=factor(sex),y = med,x=age.print),linetype=2, size=0.5,colour='black') +
 geom_hline(yintercept=0, linetype=2,alpha=0.5) +
 xlab('Age group') +
 scale_x_discrete(labels=age.print) +
 ylab('Percentage change of death rate') +
+scale_y_continuous(labels=percent) +
 ##ggtitle("Median percentage change of mortality across age groups by month") +
 guides(fill=FALSE) +
 facet_wrap(~sex) +
@@ -600,20 +608,20 @@ median.stats.df <- ddply(median.median.df, .(sex,age), summarise, min=min(med),m
 median.stats.df$min.max.diff <- with(median.stats.df, max-min)
 
 # plot deviations from median
-pdf(paste0(file.loc.nat.sum,'diff_change_mort_across_all_months.pdf'),height=0,width=0,paper='a4r')
-ggplot(lin.reg.grad, aes(x=age,fill=age,y=grad.total)) +
-geom_line(alpha=0.1,linetype=2,data = median.median.df,aes(y = diff.median, colour = factor(month))) +
-geom_point(data = median.median.df, aes(y = diff.median, colour = factor(month))) +
-geom_hline(yintercept=0, linetype=2,alpha=0.5) +
-xlab('Age group') +
-ylab('Absolute percentage difference between median mortality change and month mortality change') +
+#pdf(paste0(file.loc.nat.sum,'diff_change_mort_across_all_months.pdf'),height=0,width=0,paper='a4r')
+#ggplot(lin.reg.grad, aes(x=age,fill=age,y=grad.total)) +
+#geom_line(alpha=0.1,linetype=2,data = median.median.df,aes(y = diff.median, colour = factor(month))) +
+#geom_point(data = median.median.df, aes(y = diff.median, colour = factor(month))) +
+#geom_hline(yintercept=0, linetype=2,alpha=0.5) +
+#xlab('Age group') +
+#ylab('Absolute percentage difference between median mortality change and month mortality change') +
 ##ggtitle("Median of states’ % change in mortality, centred by overall median of % changes") +
-guides(fill=FALSE) +
-facet_wrap(~sex) +
-scale_colour_manual(values=colorRampPalette(rev(brewer.pal(12,"RdYlBu")[c(9:10,2:1,1:2,10:9)]))(12),guide = guide_legend(title = 'Month'),labels=month.short) +
-theme(text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.text.x = element_text(angle=90), 
-panel.background = element_blank(),strip.background = element_blank(), axis.line = element_line(colour = "black"))
-dev.off()
+#guides(fill=FALSE) +
+#facet_wrap(~sex) +
+#scale_colour_manual(values=colorRampPalette(rev(brewer.pal(12,"RdYlBu")[c(9:10,2:1,1:2,10:9)]))(12),guide = guide_legend(title = 'Month'),labels=month.short) +
+#theme(text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.text.x = element_text(angle=90),
+#panel.background = element_blank(),strip.background = element_blank(), axis.line = element_line(colour = "black"))
+#dev.off()
 
 # change order of months for heatmap
 #median.median.df$month <- as.factor(median.median.df$month)
@@ -623,7 +631,7 @@ dev.off()
 pdf(paste0(file.loc.nat.sum,'diff_change_mort_across_all_months_heatmap.pdf'),height=0,width=0,paper='a4r')
 ggplot(data=median.median.df, aes(x=as.factor(age),y=as.factor(month))) +
 geom_tile(aes(fill=diff.median)) +
-scale_fill_gradient2(low='green',mid='white',high='red',guide = guide_legend(title = 'Percentage\ndifference\nfrom\nmedian\nchange')) +
+scale_fill_gradient2(low='green',mid='white',high='red',guide = guide_legend(title = 'Percentage\npoint\ndifference\nfrom\nmedian\nchange')) +
 xlab('Age group') +
 ylab('Month') +
 scale_x_discrete(labels=age.print) +
@@ -1297,7 +1305,6 @@ if(together==0){dev.off()}
 
 # 7. ratio of max/min mortality rate over time by state
 
-
 # merge with coords file to colour
 state.max.min <- merge(state.max.min, USA.coords, by.x='fips', by.y='STATE_FIPS')
 
@@ -1306,15 +1313,17 @@ plot.function.state.max.min <- function(sex.sel) {
     
     # variables for y-limits on variance graphs
     #min.plot <- min(state.max.min$ratio[state.max.min$age==age.selected])
-    min.plot <- 1
-    max.plot <- max(state.max.min$ratio[state.max.min$age==age.selected])
+    min.plot <- 0
+    max.plot <- max(state.max.min$percent.change[state.max.min$age==age.selected])
     
     print(ggplot(subset(state.max.min,age==age.selected & sex==sex.sel)) +
-    geom_jitter(aes(x=year,color=climate_region,y=ratio),width=0.3) +
+    geom_jitter(aes(x=year,color=climate_region,y=percent.change/100),width=0.3) +
     #geom_line(data=subset(dat.var.median,age==age.selected & sex==sex.lookup[sex.sel]),alpha=0.7,color='blue',size=1,linetype=1,aes(x=year,y=median)) +
-    ylim(1,max.plot) +
+    geom_hline(yintercept=0, linetype=2,alpha=0.5) +
+    ylim(min.plot,max.plot) +
     xlab('Year') +
-    ylab('Ratio between maximum and minimum death rates') +
+    ylab('Percentage difference between max and min death rates in year') +
+    scale_y_continuous(labels=percent) +
     ggtitle(sex.lookup[sex.sel]) +
     #ggtitle(paste0(age.single,' ',sex.lookup[sex.sel],' : Seasonality Index of mortality over time (coloured by geographic region)')) +
     scale_colour_manual(values=map.climate.colour,guide = guide_legend(title = 'Climate region')) +
@@ -1331,6 +1340,79 @@ if(together==0){dev.off()}
 # female
 if(together==0){pdf(paste0(file.loc.age.sum,age.selected,'_ratio_maxmin_points_climate_f.pdf'),height=0,width=0,paper='a4r')}
 plot.function.state.max.min(2)
+if(together==0){dev.off()}
+
+# 8. ratio of max/min mortality rate over time by state coloured by max mort month
+
+# function to plot
+state.max.min$test <- ifelse((state.max.min$month.max %in% c(1:3,10:12))==TRUE,1,0)
+plot.function.state.max.min.2 <- function(sex.sel) {
+    
+    # variables for y-limits on variance graphs
+    #min.plot <- min(state.max.min$ratio[state.max.min$age==age.selected])
+    min.plot <- 0
+    max.plot <- max(state.max.min$percent.change[state.max.min$age==age.selected])
+    
+    print(ggplot() +
+    geom_jitter(data=subset(state.max.min,age==age.selected & sex==sex.sel & test==1),color='blue',aes(x=year,y=percent.change/100),width=0.3) +
+    geom_jitter(data=subset(state.max.min,age==age.selected & sex==sex.sel & test==0),color='red',aes(x=year,y=percent.change/100),width=0.3) +
+    #geom_line(data=subset(dat.var.median,age==age.selected & sex==sex.lookup[sex.sel]),alpha=0.7,color='blue',size=1,linetype=1,aes(x=year,y=median)) +
+    geom_hline(yintercept=0, linetype=2,alpha=0.5) +
+    ylim(min.plot,max.plot) +
+    xlab('Year') +
+    ylab('Percentage difference between max and min death rates in year') +
+    scale_y_continuous(labels=percent) +
+    ggtitle(sex.lookup[sex.sel]) +
+    #ggtitle(paste0(age.single,' ',sex.lookup[sex.sel],' : Seasonality Index of mortality over time (coloured by geographic region)')) +
+    #scale_colour_manual(values=map.climate.colour,guide = guide_legend(title = 'Climate region')) +
+    theme(legend.position='bottom',text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+    panel.background = element_blank(), axis.line = element_line(colour = "black"),
+    rect = element_blank()))
+}
+
+# male
+if(together==0){pdf(paste0(file.loc.age.sum,age.selected,'_ratio_maxmin_points_maxmonth_m.pdf'),height=0,width=0,paper='a4r')}
+plot.function.state.max.min.2(1)
+if(together==0){dev.off()}
+
+# female
+if(together==0){pdf(paste0(file.loc.age.sum,age.selected,'_ratio_maxmin_points_maxmonth_f.pdf'),height=0,width=0,paper='a4r')}
+plot.function.state.max.min.2(2)
+if(together==0){dev.off()}
+
+plot.function.state.max.min.3 <- function(sex.sel) {
+    
+    # variables for y-limits on variance graphs
+    #min.plot <- min(state.max.min$ratio[state.max.min$age==age.selected])
+    min.plot <- 0
+    max.plot <- max(state.max.min$percent.change[state.max.min$age==age.selected])
+    
+    print(ggplot() +
+    geom_jitter(data=subset(state.max.min,age==age.selected & sex==sex.sel & test==1),color='blue',aes(x=year,y=percent.change/100),width=0.3) +
+    geom_jitter(data=subset(state.max.min,age==age.selected & sex==sex.sel & test==0),color='red',aes(x=year,y=percent.change/100),width=0.3) +
+    #geom_line(data=subset(dat.var.median,age==age.selected & sex==sex.lookup[sex.sel]),alpha=0.7,color='blue',size=1,linetype=1,aes(x=year,y=median)) +
+    geom_hline(yintercept=0, linetype=2,alpha=0.5) +
+    ylim(min.plot,max.plot) +
+    xlab('Year') +
+    ylab('Percentage difference between max and min death rates in year') +
+    scale_y_continuous(labels=percent) +
+    ggtitle(sex.lookup[sex.sel]) +
+    facet_wrap(~climate_region) +
+    #ggtitle(paste0(age.single,' ',sex.lookup[sex.sel],' : Seasonality Index of mortality over time (coloured by geographic region)')) +
+    #scale_colour_manual(values=map.climate.colour,guide = guide_legend(title = 'Climate region')) +
+    theme(legend.position='bottom',text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+    panel.background = element_blank(), axis.line = element_line(colour = "black"),
+    rect = element_blank()))
+}
+
+# male
+if(together==0){pdf(paste0(file.loc.age.sum,age.selected,'_ratio_maxmin_points_maxmonth_climate_m.pdf'),height=0,width=0,paper='a4r')}
+plot.function.state.max.min.3(1)
+if(together==0){dev.off()}
+
+# female
+if(together==0){pdf(paste0(file.loc.age.sum,age.selected,'_ratio_maxmin_points_maxmonth_climate_f.pdf'),height=0,width=0,paper='a4r')}
+plot.function.state.max.min.3(2)
 if(together==0){dev.off()}
 
 
