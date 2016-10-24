@@ -139,7 +139,7 @@ test$percent.change <- ifelse(test$month.max %in% c(4:9),(-1*test$percent.change
 lin.reg.median.jan.jul <- ddply(lin.reg.median, .(fips,sex,age), summarize,jan=median[month==1],jul=median[month==7])
 lin.reg.median.jan.jul$percent.change <- round(100*exp((lin.reg.median.jan.jul$jan - lin.reg.median.jan.jul$jul)),1)-100
 
-# work out the percentage increase of max from min death rates in year and min mortality for each fips,sex,age
+# work out the Seasonality index and min mortality for each fips,sex,age
 lin.reg.median.max.min.state <- ddply(lin.reg.median, .(fips,sex,age), summarize,max=max(median),month.max=month[median==max(median)],min=min(median),month.min=month[median==min(median)])
 lin.reg.median.max.min.state$percent.change <- round(100*exp((lin.reg.median.max.min.state$max - lin.reg.median.max.min.state$min)),1)-100
 lin.reg.median.max.min.state$percent.change <- ifelse(lin.reg.median.max.min.state$month.max %in% c(4:9),(-1*lin.reg.median.max.min.state$percent.change),lin.reg.median.max.min.state$percent.change)
@@ -413,7 +413,7 @@ plot.function.median.jan.jul <- function(sex.sel) {
 #plot.function.median.jan.jul(2)
 #dev.off()
 
-# 2b. Percentage increase of max from min death rates in year and min mortality map per state
+# 2b. Seasonality Index and min mortality map per state
 
 # merge selected data to map dataframe for colouring of ggplot
 plot.median.max.min.state <- merge(USA.df,lin.reg.median.max.min.state, by.x='STATE_FIPS',by.y='fips')
@@ -457,7 +457,7 @@ pdf(paste0(file.loc.nat.sum,'median_maxmin_ratio_f.pdf'),height=0,width=0,paper=
 plot.function.median.max.min.state(2)
 dev.off()
 
-# 2c. percentage increase of max from min death rates in year and min mortality map as defined by COM analysis
+# 2c. Seasonality Index and min mortality map as defined by COM analysis
 
 # merge selected data to map dataframe for colouring of ggplot
 plot.median.max.min <- merge(USA.df,test, by.x='STATE_FIPS',by.y='fips')
@@ -589,7 +589,7 @@ geom_line(data = median.df, aes(x=factor(age),y = med/100, group = factor(month)
 geom_hline(yintercept=0, linetype=2,alpha=0.5) +
 xlab('Age group') +
 scale_x_discrete(labels=age.print) +
-ylab('Percentage change of death rate') +
+ylab(paste0('Percentage change of death rate ',year.start,'-',year.end)) +
 scale_y_continuous(labels=percent) +
 ##ggtitle("Median percentage change of mortality across age groups by month") +
 guides(fill=FALSE) +
@@ -918,7 +918,7 @@ geom_line(data = state.max.min.median.df, alpha=0.9,aes(group=factor(sex),y = me
 ###ggtitle('Percentage change in Seasonality Index in the USA, 1982-2010, by region') +
 scale_x_discrete(labels=age.print) +
 xlab('Age group') +
-ylab('Percentage change in ratio between max and min mortality') +
+ylab(paste0('Percentage change in Seasonality Index ',year.start,'-',year.end)) +
 scale_y_continuous(labels=percent) +
 #ylim(min.var.grad.plot,max.var.grad.plot) +
 facet_wrap(~sex) +
@@ -944,7 +944,7 @@ geom_line(data =subset(state.max.min.median.facet.df,sex=='Men'), alpha=0.9,aes(
 ggtitle('Men') +
 scale_x_discrete(labels=age.print) +
 xlab('Age group') +
-ylab('Percentage change in ratio between max and min mortality') +
+ylab(paste0('Percentage change in Seasonality Index ',year.start,'-',year.end)) +
 scale_y_continuous(labels=percent) +
 #ylim(min.var.grad.plot,max.var.grad.plot) +
 facet_wrap(~sex) +
@@ -964,7 +964,7 @@ geom_line(data =subset(state.max.min.median.facet.df,sex=='Women'), alpha=0.9,ae
 ggtitle('Women') +
 scale_x_discrete(labels=age.print) +
 xlab('Age group') +
-ylab('Percentage change in ratio between max and min mortality') +
+ylab(paste0('Percentage change in Seasonality Index ',year.start,'-',year.end)) +
 scale_y_continuous(labels=percent) +
 #ylim(min.var.grad.plot,max.var.grad.plot) +
 facet_wrap(~sex) +
@@ -1410,7 +1410,7 @@ plot.function.state.max.min <- function(sex.sel) {
     geom_hline(yintercept=0, linetype=2,alpha=0.5) +
     ylim(min.plot,max.plot) +
     xlab('Year') +
-    ylab('Percentage increase of max from min death rates in year') +
+    ylab('Seasonality Index') +
     scale_y_continuous(labels=percent) +
     ggtitle(sex.lookup[sex.sel]) +
     #ggtitle(paste0(age.single,' ',sex.lookup[sex.sel],' : Seasonality Index of mortality over time (coloured by geographic region)')) +
@@ -1433,24 +1433,30 @@ plot.function.state.max.min <- function(sex.sel) {
 # 8. ratio of max/min mortality rate over time by state coloured by max mort month
 
 # function to plot
-state.max.min$test <- ifelse((state.max.min$month.max %in% c(1:3,10:12))==TRUE,1,0)
+
+# remove Alaska and Hawaii
+#state.max.min <- state.max.min[!state.max.min$fips %in% c(2, 15),]
+
 plot.function.state.max.min.2 <- function(sex.sel) {
     
     # variables for y-limits on variance graphs
     #min.plot <- min(state.max.min$ratio[state.max.min$age==age.selected])
     min.plot <- 0
     max.plot <- max(state.max.min$percent.change[state.max.min$age==age.selected])
+    #max.plot <- 75
     
     print(ggplot() +
-    geom_jitter(data=subset(state.max.min,age==age.selected & sex==sex.sel & test==1),aes(color=as.factor(month.max),x=year,y=percent.change/100),width=0.3) +
-    geom_jitter(data=subset(state.max.min,age==age.selected & sex==sex.sel & test==0),aes(color=as.factor(month.min),x=year,y=percent.change/100),width=0.3) +
+    geom_jitter(data=subset(state.max.min,age==age.selected & sex==sex.sel),aes(color=as.factor(month.max),x=year,y=percent.change),width=0.3) +
+    stat_smooth(data=subset(state.max.min,age==age.selected & sex==sex.sel),method='lm',span=0.8, aes(x=year,y=percent.change)) +
+    #geom_jitter(data=subset(state.max.min,age==age.selected & sex==sex.sel & test==1),aes(color=as.factor(month.max),x=year,y=percent.change/100),width=0.3) +
+    #geom_jitter(data=subset(state.max.min,age==age.selected & sex==sex.sel & test==0),aes(color=as.factor(month.min),x=year,y=percent.change/100),width=0.3) +
     scale_colour_manual(values=colorRampPalette(rev(brewer.pal(12,"RdYlBu")[c(9:10,2:1,1:2,10:9)]))(12),guide = guide_legend(title = 'Month'),drop=FALSE,labels=month.short) +
     #geom_line(data=subset(dat.var.median,age==age.selected & sex==sex.lookup[sex.sel]),alpha=0.7,color='blue',size=1,linetype=1,aes(x=year,y=median)) +
     geom_hline(yintercept=0, linetype=2,alpha=0.5) +
     ylim(min.plot,max.plot) +
     xlab('Year') +
-    ylab('Percentage increase of max from min death rates in year') +
-    scale_y_continuous(labels=percent) +
+    ylab('Seasonality Index') +
+    #scale_y_continuous(labels=percent) +
     ggtitle(sex.lookup[sex.sel]) +
     #ggtitle(paste0(age.single,' ',sex.lookup[sex.sel],' : Seasonality Index of mortality over time (coloured by geographic region)')) +
     #scale_colour_manual(values=map.climate.colour,guide = guide_legend(title = 'Climate region')) +
@@ -1475,17 +1481,20 @@ plot.function.state.max.min.3 <- function(sex.sel) {
     #min.plot <- min(state.max.min$ratio[state.max.min$age==age.selected])
     min.plot <- 0
     max.plot <- max(state.max.min$percent.change[state.max.min$age==age.selected])
+    #max.plot <- 100
     
     print(ggplot() +
-    geom_jitter(data=subset(state.max.min,age==age.selected & sex==sex.sel & test==1),aes(color=as.factor(month.max),x=year,y=percent.change/100),width=0.3) +
-    geom_jitter(data=subset(state.max.min,age==age.selected & sex==sex.sel & test==0),aes(color=as.factor(month.min),x=year,y=percent.change/100),width=0.3) +
+    geom_jitter(data=subset(state.max.min,age==age.selected & sex==sex.sel),aes(color=as.factor(month.max),x=year,y=percent.change),width=0.3) +
+    stat_smooth(data=subset(state.max.min,age==age.selected & sex==sex.sel),method='lm',span=0.8, aes(x=year,y=percent.change)) +
+    #geom_jitter(data=subset(state.max.min,age==age.selected & sex==sex.sel & test==1),aes(color=as.factor(month.max),x=year,y=percent.change/100),width=0.3) +
+    #geom_jitter(data=subset(state.max.min,age==age.selected & sex==sex.sel & test==0),aes(color=as.factor(month.min),x=year,y=percent.change/100),width=0.3) +
     scale_colour_manual(values=colorRampPalette(rev(brewer.pal(12,"RdYlBu")[c(9:10,2:1,1:2,10:9)]))(12),guide = guide_legend(title = 'Month'),drop=FALSE,labels=month.short) +
     #geom_line(data=subset(dat.var.median,age==age.selected & sex==sex.lookup[sex.sel]),alpha=0.7,color='blue',size=1,linetype=1,aes(x=year,y=median)) +
     geom_hline(yintercept=0, linetype=2,alpha=0.5) +
     ylim(min.plot,max.plot) +
     xlab('Year') +
-    ylab('Percentage increase of max from min death rates in year') +
-    scale_y_continuous(labels=percent) +
+    ylab('Seasonality Index') +
+    #scale_y_continuous(labels=percent) +
     ggtitle(sex.lookup[sex.sel]) +
     facet_wrap(~climate_region) +
     #ggtitle(paste0(age.single,' ',sex.lookup[sex.sel],' : Seasonality Index of mortality over time (coloured by geographic region)')) +
@@ -1527,7 +1536,7 @@ jitterplot.grad.by.month <- function(month.selected) {
         geom_line(data = median.df, aes(y = med,group=factor(sex)),linetype=2, size=0.5,colour='forest green') +
         geom_hline(yintercept=0, linetype=2,alpha=0.5) +
         xlab('Age group') +
-        ylab('Percentage change of death rate') +
+        ylab(paste0('Percentage change of death rate ',year.start,'-',year.end)) +
         #ggtitle(paste0(month.short[month.selected]," : percentage change of mortality across age groups by state")) +
         guides(fill=FALSE) +
         scale_colour_manual(values=map.climate.colour,guide = guide_legend(title = 'Climate region')) +
