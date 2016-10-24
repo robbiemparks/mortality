@@ -431,12 +431,12 @@ plot.median.max.min.state$age.print <- with(plot.median.max.min.state,reorder(ag
 plot.function.median.max.min.state <- function(sex.sel) {
     
     # find limits for plot
-    min.plot <- min(plot.median.max.min.state$percent.change)/100
-    max.plot <- max(plot.median.max.min.state$percent.change)/100
+    min.plot <- min(plot.median.max.min.state$percent.change)
+    max.plot <- max(plot.median.max.min.state$percent.change)
     
     print(ggplot(data=subset(plot.median.max.min.state,sex==sex.sel),aes(x=long,y=lat,group=group)) +
-    geom_polygon(aes(fill=percent.change/100),color='black',size=0.01) +
-    scale_fill_gradient2(limits=c(-1,1),low="#990000", high="#000033",labels=percent,guide = guide_legend(title = 'Percentage\ndifference\nbetween\nmaximum\nand\nminimum')) +
+    geom_polygon(aes(fill=percent.change),color='black',size=0.01) +
+    scale_fill_gradient2(limits=c(-100,100),low="#990000", high="#000033",guide = guide_legend(title = 'Median\nSeasonality\nIndex')) +
     #scale_fill_gradient2(limits=c(min.plot,max.plot),low="#990000", high="#000033",labels=percent,guide = guide_legend(title = 'Percentage\ndifference\nbetween\nmaximum\nand\nminimum')) +
     facet_wrap(~age.print) +
     xlab('') +
