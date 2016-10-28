@@ -93,7 +93,7 @@ dat.inla$e <- 1:nrow(dat.inla)
 if(type==1){
 
 # 1. Type I space-time interaction
-fml  <- deaths ~
+fml  <- deaths.adj ~
 	# global terms
         1 +                                                                     		# global intercept
         year.month +                                                            		# global slope
@@ -112,7 +112,7 @@ fml  <- deaths ~
 if(type==2){
 
 # 1. Type Ia space-time interaction
-fml<- deaths ~
+fml<- deaths.adj ~
 	# global terms
         1 +                                                                     		# global intercept
         year.month +                                                           			# global slope
@@ -134,7 +134,7 @@ fml<- deaths ~
 if(type==3) {
 
 # 2. Type II space-time interaction
-fml <- deaths ~
+fml <- deaths.adj ~
 	# global terms
         1 +                                                                     		# global intercept
         year.month +                                                            		# global slope
@@ -158,7 +158,7 @@ fml <- deaths ~
 if(type==4) {
 
 # 2. Type IIa space-time interaction
-fml <- deaths ~
+fml <- deaths.adj ~
 	# global terms
         1 +                                                                                     # global intercept
         year.month +                                                                            # global slope
@@ -185,7 +185,7 @@ fml <- deaths ~
 if(type==5) {
 
 # 3. Type III space-time interaction
-fml <- deaths ~
+fml <- deaths.adj ~
 	# global terms
         1 +                                                                     		# global intercept
         year.month +                                                           		 	# global slope
@@ -209,7 +209,7 @@ fml <- deaths ~
 if(type==6) {
 
 # 3. Type IIIa space-time interaction
-fml <- deaths ~
+fml <- deaths.adj ~
 	# global terms
         1 +                                                                     		# global intercept
         year.month +                                                           		 	# global slope
@@ -237,7 +237,7 @@ if(type==7) {
 
 # 4. Type IV space-time interaction
 
-fml <- deaths ~
+fml <- deaths.adj ~
 	# global terms
         1 +                                                                     		# global intercept
         year.month +                                                            		# global slope
