@@ -9,6 +9,15 @@ num.sim <- as.numeric(args[3])
 library(rgeos)
 require(ggplot2)
 library(rgdal)
+library(RColorBrewer)
+library(maptools)
+library(mapproj)
+library(rgeos)
+library(rgdal)
+library(RColorBrewer)
+library(ggplot2)
+library(plyr)
+library(scales)
 
 # add fips lookup
 fips.lookup <- read.csv('../../data/fips_lookup/name_fips_lookup.csv')
@@ -40,22 +49,27 @@ ifelse(!dir.exists(paste0(file.loc.nat,'plots/')), dir.create(paste0(file.loc.na
 dat.nat <- readRDS(paste0(file.loc.nat,'12_month_values/combined_results/power_12_months_national_',year.start.arg,'_',year.end.arg))
 
 # output plot of wavelet 12 month value from first period against second
-pdf(paste0(file.loc.nat,'12_month_power_national_comparison_xy_',num.sim,'_sim_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
+pdf(paste0(file.loc.nat,'plots/12_month_power_national_comparison_xy_',num.sim,'_sim_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
 ggplot(data=dat.nat) +
 geom_jitter(aes(x=twelve.month.value.1,y=twelve.month.value.2,color=as.factor(sex)),width = 10) +
+geom_abline(linetype=2,intercept=0,slope=1) +
 xlab(paste0('12-month power from ',min(year.group.1),'-',max(year.group.1))) +
 ylab(paste0('12-month power from ',min(year.group.2),'-',max(year.group.2))) +
-ggtitle(paste0('National change in power at 12 months between ',min(year.group.1),'-',max(year.group.1),' and ',min(year.group.2),'-',max(year.group.2))) +
+scale_colour_manual(values=colorRampPalette(rev(brewer.pal(2,"RdYlBu")[c(1,12)]))(2),guide = guide_legend(title = 'Gender'),labels=sex.lookup) +
+ggtitle(paste0('Wavelet power at 12 months comparison between ',min(year.group.1),'-',max(year.group.1),' and ',min(year.group.2),'-',max(year.group.2))) +
 theme_bw()
 dev.off()
 
 # output plot of wavelet 12 month value difference between first period and second
-pdf(paste0(file.loc.nat,'12_month_power_national_comparison_change_',num.sim,'_sim_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
+pdf(paste0(file.loc.nat,'plots/12_month_power_national_comparison_change_',num.sim,'_sim_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
 ggplot(data=dat.nat) +
-geom_jitter(aes(x=age,y=abs(twelve.month.value.1-twelve.month.value.2),color=as.factor(sex))) +
+geom_jitter(aes(x=as.factor(age),y=(twelve.month.value.1-twelve.month.value.2),color=as.factor(sex))) +
+geom_hline(yintercept=0, linetype=2,alpha=0.5) +
 xlab('Age group') +
+scale_x_discrete(labels=age.print) +
 ylab('Change in power at 12 months') +
-ggtitle(paste0('National change in power at 12 months between ',min(year.group.1),'-',max(year.group.1),' and ',min(year.group.2),'-',max(year.group.2))) +
+scale_colour_manual(values=colorRampPalette(rev(brewer.pal(2,"RdYlBu")[c(1,12)]))(2),guide = guide_legend(title = 'Gender'),labels=sex.lookup) +
+ggtitle(paste0('National change in wavelet power at 12 months between ',min(year.group.1),'-',max(year.group.1),' and ',min(year.group.2),'-',max(year.group.2))) +
 theme_bw()
 dev.off()
 
@@ -65,6 +79,32 @@ dev.off()
 file.loc.state <- paste0("../../output/wavelet/",year.start.arg,'_',year.end.arg,"/state/")
 file.loc.state <- paste0(file.loc.state,num.sim,'_sim/')
 dat.state <- readRDS(paste0(file.loc,'12_month_values/combined_results/power_12_months_state_',year.start.arg,'_',year.end.arg))
+
+# output plot of wavelet 12 month value from first period against second
+pdf(paste0(file.loc.state,'plots/12_month_power_state_comparison_xy_',num.sim,'_sim_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
+ggplot(data=dat.state) +
+geom_jitter(aes(x=twelve.month.value.1,y=twelve.month.value.2,color=factor(sex)),width = 10) +
+geom_abline(linetype=2,intercept=0,slope=1) +
+xlab(paste0('12-month power from ',min(year.group.1),'-',max(year.group.1))) +
+ylab(paste0('12-month power from ',min(year.group.2),'-',max(year.group.2))) +
+#scale_colour_manual(values=colorRampPalette(rev(brewer.pal(2,"RdYlBu")[c(1,11,12)]))(3),guide = guide_legend(title = 'Gender'),labels=sex.lookup) +
+ggtitle(paste0('Wavelet power at 12 months comparison between ',min(year.group.1),'-',max(year.group.1),' and ',min(year.group.2),'-',max(year.group.2))) +
+theme_bw()
+dev.off()
+
+# output plot of wavelet 12 month value difference between first period and second
+pdf(paste0(file.loc.state,'plots/12_month_power_state_comparison_change_',num.sim,'_sim_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
+ggplot(data=dat.state) +
+geom_jitter(aes(x=as.factor(age),y=-1*(twelve.month.value.1-twelve.month.value.2))) +
+geom_hline(yintercept=0, linetype=2,alpha=0.5) +
+xlab('Age group') +
+scale_x_discrete(labels=age.print) +
+ylab('Change in power at 12 months') +
+#scale_colour_manual(values=colorRampPalette(rev(brewer.pal(2,"RdYlBu")[c(1,12)]))(2),guide = guide_legend(title = 'Gender'),labels=sex.lookup) +
+ggtitle(paste0('National change in wavelet power at 12 months between ',min(year.group.1),'-',max(year.group.1),' and ',min(year.group.2),'-',max(year.group.2))) +
+facet_wrap(~sex)+
+theme_bw()
+dev.off()
 
 ###############################################################
 # PREPARING MAP
@@ -119,3 +159,76 @@ shapefile.data$climate_region <- c('Northwest','Northern Rockies and Plains','No
 # merge selected data to map dataframe for colouring of ggplot
 USA.df <- merge(map, shapefile.data, by='id')
 USA.df$STATE_FIPS <- as.integer(as.character(USA.df$STATE_FIPS))
+
+# 1. map of average wavelet power at 12 months for entire period
+
+# merge selected data to map dataframe for colouring of ggplot
+dat.state.map <- merge(USA.df,dat.state,by.x='STATE_FIPS',by.y='fips')
+dat.state.map <- merge(dat.state.map, age.code, by ='age')
+dat.state.map <- with(dat.state.map, dat.state.map[order(sex,age,DRAWSEQ,order),])
+
+# make sure the age groups are in the correct order for plotting
+dat.state.map$age.print <- with(dat.state.map,reorder(age.print,age))
+
+# function to plot
+plot.function.state.entire <- function(sex.sel) {
+    
+    # find limits for plot
+    min.plot <- 0
+    max.plot <- 100
+    
+    print(ggplot(data=subset(dat.state.map,sex==sex.sel),aes(x=long,y=lat,group=group)) +
+    geom_polygon(aes(fill=twelve.month.value),color='black',size=0.01) +
+    scale_fill_gradient2(limits=c(min.plot,max.plot),low="#000033", high="#990000",guide = guide_legend(title = 'Normalised\nwavelet\npower\nat\n12\nmonths')) +
+    facet_wrap(~age.print) +
+    xlab('') +
+    ylab('') +
+    ggtitle(sex.lookup[sex.sel]) +
+    ##ggtitle(paste0(sex.lookup[sex.sel],' : posterior percentage difference between median January and July mortality ',year.start,'-',year.end)) +
+    theme_map() +
+    theme(text = element_text(size = 15),legend.position = c(1,0),legend.justification=c(1,0),strip.background = element_blank()))
+}
+
+pdf(paste0(file.loc.state,'plots/12_month_power_state_map_men_',num.sim,'_sim_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
+plot.function.state.entire(1)
+dev.off()
+
+pdf(paste0(file.loc.state,'plots/12_month_power_state_map_women_',num.sim,'_sim_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
+plot.function.state.entire(2)
+dev.off()
+
+pdf(paste0(file.loc.state,'plots/12_month_power_state_map_men_split_',num.sim,'_sim_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
+plot.function.state.entire(1)
+dev.off()
+
+pdf(paste0(file.loc.state,'plots/12_month_power_state_map_women_split_',num.sim,'_sim_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
+plot.function.state.entire(2)
+dev.off()
+
+# function to plot
+plot.function.state.delta <- function(sex.sel) {
+    
+    # find limits for plot
+    min.plot <- -100
+    max.plot <- 100
+    
+    print(ggplot(data=subset(dat.state.map,sex==sex.sel),aes(x=long,y=lat,group=group)) +
+    geom_polygon(aes(fill=-1*(twelve.month.value.1-twelve.month.value.2)),color='black',size=0.01) +
+    scale_fill_gradient2(limits=c(min.plot,max.plot),low="green", high="red",guide = guide_legend(title = 'Change\nin\nnormalised\nwavelet\npower\nat\n12\nmonths')) +
+    facet_wrap(~age.print) +
+    xlab('') +
+    ylab('') +
+    ggtitle(sex.lookup[sex.sel]) +
+    ##ggtitle(paste0(sex.lookup[sex.sel],' : posterior percentage difference between median January and July mortality ',year.start,'-',year.end)) +
+    theme_map() +
+    theme(text = element_text(size = 15),legend.position = c(1,0),legend.justification=c(1,0),strip.background = element_blank()))
+}
+
+
+pdf(paste0(file.loc.state,'plots/12_month_power_state_map_delta_men_',num.sim,'_sim_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
+plot.function.state.delta(1)
+dev.off()
+
+pdf(paste0(file.loc.state,'plots/12_month_power_state_map_delta_women_',num.sim,'_sim_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
+plot.function.state.delta(2)
+dev.off()
