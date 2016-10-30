@@ -99,7 +99,6 @@ plot.wavelet.national <- function(sex.selected,age.selected) {
 }
 
 # function to plot national wavelet analysis for single sex split into two time periods
-
 plot.wavelet.national.split <- function(sex.selected,age.selected) {
     
     dat<- subset(dat.national, sex==sex.selected & age==age.selected)
@@ -298,46 +297,3 @@ dev.off()
 
 # output national wavelet files sex separately all on one page
 # FINISH
-
-# combine all separate max power files into one single file (both for entire and split period)
-dat.entire <- data.frame()
-dat.split <- data.frame()
-file.loc.entire <- paste0(file.loc,'12_month_values/entire_period/')
-file.loc.split <- paste0(file.loc,'12_month_values/split_period/')
-for(i in c(0,5,15,25,35,45,55,65,75,85)){
-
-    dat.temp.entire.m <- readRDS(paste0(file.loc.entire,i,'_Men'))
-    dat.temp.entire.f <- readRDS(paste0(file.loc.entire,i,'_Women'))
-    dat.entire <- rbind(dat.entire,dat.temp.entire.m,dat.temp.entire.f)
-    
-    dat.temp.split.m.1 <- readRDS(paste0(file.loc.split,i,'_Men_part1'))
-    dat.temp.split.m.2 <- readRDS(paste0(file.loc.split,i,'_Men_part2'))
-    dat.temp.split.m <- merge(dat.temp.split.m.1,dat.temp.split.m.2)
-    dat.temp.split.f.1 <- readRDS(paste0(file.loc.split,i,'_Women_part1'))
-    dat.temp.split.f.2 <- readRDS(paste0(file.loc.split,i,'_Women_part2'))
-    dat.temp.split.f <- merge(dat.temp.split.f.1,dat.temp.split.f.2)
-    dat.split <- rbind(dat.split,dat.temp.split.m,dat.temp.split.f)
-}
-
-
-require(ggplot2)
-
-# output plot of wavelet 12 month value from first period against second
-pdf(paste0(file.loc,'12_month_power_national_comparison_xy_',num.sim,'_sim_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
-ggplot(data=dat.split) +
-geom_jitter(aes(x=twelve.month.value.1,y=twelve.month.value.2,color=as.factor(sex))) +
-xlab(paste0('12-month power from ',min(year.group.1),'-',max(year.group.1))) +
-ylab(paste0('12-month power from ',min(year.group.2),'-',max(year.group.2))) +
-ggtitle(paste0('National change in power at 12 months between ',min(year.group.1),'-',max(year.group.1),' and ',min(year.group.2),'-',max(year.group.2))) +
-theme_bw()
-dev.off()
-
-# output plot of wavelet 12 month value difference between first period and second
-pdf(paste0(file.loc,'12_month_power_national_comparison_change_',num.sim,'_sim_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
-ggplot(data=dat.split) +
-geom_jitter(aes(x=age,y=abs(twelve.month.value.1-twelve.month.value.2),color=as.factor(sex))) +
-xlab('Age group') +
-ylab('Change in power at 12 months') +
-ggtitle(paste0('National change in power at 12 months between ',min(year.group.1),'-',max(year.group.1),' and ',min(year.group.2),'-',max(year.group.2))) +
-theme_bw()
-dev.off()

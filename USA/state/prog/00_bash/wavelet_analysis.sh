@@ -3,6 +3,8 @@
 # this script
 # runs a nationalised wavelet analysis
 # runs a state wavelet analysis
+# processes results
+# plots results on maps etc.
 
 clear
 
@@ -21,11 +23,28 @@ echo "starting nationalised wavelet analysis for $country, years $start - $end";
 Rscript ~/git/mortality/USA/state/prog/wavelet/wavelet_national.R $start $end $numsim
 
 #################################################
-# 1. STATE WAVELET ANALYSIS
+# 2. STATE WAVELET ANALYSIS
 #################################################
 
 echo "starting state wavelet analysis for $country, years $start - $end";
 
 # runs wavelet analysis
-#Rscript ~/git/mortality/USA/state/prog/wavelet/wavelet_state.R $start $end $numsim
+Rscript ~/git/mortality/USA/state/prog/wavelet/wavelet_state.R $start $end $numsim
 
+#################################################
+# 3. WAVELET DATA PROCESSING
+#################################################
+
+echo "starting wavelet analysis data processing for $country, years $start - $end";
+
+# runs wavelet analysis
+Rscript ~/git/mortality/USA/state/prog/wavelet/wavelet_data_process.R $start $end $numsim
+
+#################################################
+# 4. WAVELET DATA PLOTTING
+#################################################
+
+echo "starting state wavelet analysis plotting for $country, years $start - $end";
+
+# runs wavelet analysis
+Rscript ~/git/mortality/USA/state/prog/wavelet/wavelet_plot.R $start $end $numsim
