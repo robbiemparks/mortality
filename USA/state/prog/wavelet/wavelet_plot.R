@@ -183,12 +183,11 @@ plot.function.state.entire <- function(sex.sel) {
     
     print(ggplot(data=subset(dat.state.map,sex==sex.sel),aes(x=long,y=lat,group=group)) +
     geom_polygon(aes(fill=twelve.month.value),color='black',size=0.01) +
-    scale_fill_gradient2(limits=c(min.plot,max.plot),low="#000033", high="#990000",guide = guide_legend(title = 'Normalised\nwavelet\npower\nat\n12\nmonths')) +
+    scale_fill_gradient2(limits=c(min.plot,max.plot),low="#000033", high="#0000FF",guide = guide_legend(title = 'Normalised\nwavelet\npower\nat\n12\nmonths')) +
     facet_wrap(~age.print) +
     xlab('') +
     ylab('') +
-    ggtitle(sex.lookup[sex.sel]) +
-    ##ggtitle(paste0(sex.lookup[sex.sel],' : posterior percentage difference between median January and July mortality ',year.start,'-',year.end)) +
+    ggtitle(paste0(sex.lookup[sex.sel],' : ',year.start.arg,'-',year.end.arg)) +
     theme_map() +
     theme(text = element_text(size = 15),legend.position = c(1,0),legend.justification=c(1,0),strip.background = element_blank()))
 }
@@ -201,7 +200,64 @@ pdf(paste0(file.loc.state,'plots/12_month_power_state_map_women_',num.sim,'_sim_
 plot.function.state.entire(2)
 dev.off()
 
-# 2. map of average wavelet power change at 12 months for split period
+# 2. map of average wavelet power at 12 months for first period
+
+# function to plot
+plot.function.state.split.1 <- function(sex.sel) {
+    
+    # find limits for plot
+    min.plot <- 0
+    max.plot <- 100
+    
+    print(ggplot(data=subset(dat.state.map,sex==sex.sel),aes(x=long,y=lat,group=group)) +
+    geom_polygon(aes(fill=twelve.month.value.1),color='black',size=0.01) +
+    scale_fill_gradient2(limits=c(min.plot,max.plot),low="#000033", high="#0000FF",guide = guide_legend(title = 'Normalised\nwavelet\npower\nat\n12\nmonths')) +
+    facet_wrap(~age.print) +
+    xlab('') +
+    ylab('') +
+    ggtitle(paste0(sex.lookup[sex.sel],' : ',min(year.group.1),'-',max(year.group.1))) +
+    theme_map() +
+    theme(text = element_text(size = 15),legend.position = c(1,0),legend.justification=c(1,0),strip.background = element_blank()))
+}
+
+pdf(paste0(file.loc.state,'plots/12_month_power_state_map_men_',num.sim,'_sim_',min(year.group.1),'-',max(year.group.1),'.pdf'),paper='a4r',height=0,width=0)
+plot.function.state.split.1(1)
+dev.off()
+
+pdf(paste0(file.loc.state,'plots/12_month_power_state_map_women_',num.sim,'_sim_',min(year.group.1),'-',max(year.group.1),'.pdf'),paper='a4r',height=0,width=0)
+plot.function.state.split.1(2)
+dev.off()
+
+# 2. map of average wavelet power at 12 months for second period
+
+# function to plot
+plot.function.state.split.2 <- function(sex.sel) {
+    
+    # find limits for plot
+    min.plot <- 0
+    max.plot <- 100
+    
+    print(ggplot(data=subset(dat.state.map,sex==sex.sel),aes(x=long,y=lat,group=group)) +
+    geom_polygon(aes(fill=twelve.month.value.2),color='black',size=0.01) +
+    scale_fill_gradient2(limits=c(min.plot,max.plot),low="#000033", high="#0000FF",guide = guide_legend(title = 'Normalised\nwavelet\npower\nat\n12\nmonths')) +
+    facet_wrap(~age.print) +
+    xlab('') +
+    ylab('') +
+    ggtitle(paste0(sex.lookup[sex.sel],' : ',min(year.group.2),'-',max(year.group.2))) +
+    theme_map() +
+    theme(text = element_text(size = 15),legend.position = c(1,0),legend.justification=c(1,0),strip.background = element_blank()))
+}
+
+pdf(paste0(file.loc.state,'plots/12_month_power_state_map_men_',num.sim,'_sim_',min(year.group.2),'-',max(year.group.2),'.pdf'),paper='a4r',height=0,width=0)
+plot.function.state.split.2(1)
+dev.off()
+
+pdf(paste0(file.loc.state,'plots/12_month_power_state_map_women_',num.sim,'_sim_',min(year.group.2),'-',max(year.group.2),'.pdf'),paper='a4r',height=0,width=0)
+plot.function.state.split.2(2)
+dev.off()
+
+
+# 3. map of average wavelet power absolute change at 12 months for split period
 
 # function to plot
 plot.function.state.delta <- function(sex.sel) {
@@ -212,16 +268,14 @@ plot.function.state.delta <- function(sex.sel) {
     
     print(ggplot(data=subset(dat.state.map,sex==sex.sel),aes(x=long,y=lat,group=group)) +
     geom_polygon(aes(fill=-1*(twelve.month.value.1-twelve.month.value.2)),color='black',size=0.01) +
-    scale_fill_gradient2(limits=c(min.plot,max.plot),low="green", high="red",guide = guide_legend(title = 'Change\nin\nnormalised\nwavelet\npower\nat\n12\nmonths')) +
+    scale_fill_gradient2(limits=c(min.plot,max.plot),low="#00FF00", high="#2E0854",guide = guide_legend(title = 'Change in\nnormalised\nwavelet\npower\nat 12\nmonths')) +
     facet_wrap(~age.print) +
     xlab('') +
     ylab('') +
-    ggtitle(sex.lookup[sex.sel]) +
-    ##ggtitle(paste0(sex.lookup[sex.sel],' : posterior percentage difference between median January and July mortality ',year.start,'-',year.end)) +
+    ggtitle(paste0(sex.lookup[sex.sel],' : ',min(year.group.1),'-',max(year.group.1),' to ',min(year.group.2),'-',max(year.group.2))) +
     theme_map() +
     theme(text = element_text(size = 15),legend.position = c(1,0),legend.justification=c(1,0),strip.background = element_blank()))
 }
-
 
 pdf(paste0(file.loc.state,'plots/12_month_power_state_map_delta_men_',num.sim,'_sim_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
 plot.function.state.delta(1)
