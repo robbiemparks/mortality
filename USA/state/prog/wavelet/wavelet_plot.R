@@ -84,6 +84,73 @@ dat.state <- readRDS(paste0(file.loc.state,'12_month_values/combined_results/pow
 dat.state$sex <- as.factor(as.character((dat.state$sex)))
 levels(dat.state$sex) <- c('Men','Women')
 
+# load population data for midpoints of two time periods
+pop.state <- readRDS('../../output/pop_us_infer/statePopulations_infer_by_days_new_years')
+pop.state$fips <- as.integer(pop.state$fips)
+pop.state.1 <- subset(pop.state,year==floor(median(year.group.1)) & month==6)
+pop.state.1 <- pop.state.1[,c('sex','age','fips','pop.adj')]
+pop.state.2 <- subset(pop.state,year==floor(median(year.group.2)) & month==6)
+pop.state.2 <- pop.state.2[,c('sex','age','fips','pop.adj')]
+
+###############################################################
+# PLOT OF POPULATION AGAINST STATE POWER VALUE
+###############################################################
+
+dat.scat <- merge(dat.state,pop.state.1)
+dat.scat$pop.adj.1 <- dat.scat$pop.adj
+dat.scat$pop.adj <- NULL
+dat.scat <- merge(dat.scat,pop.state.2)
+dat.scat$pop.adj.2 <- dat.scat$pop.adj
+dat.scat$pop.adj <- NULL
+dat.scat$sex <- as.factor(as.character(dat.scat$sex))
+levels(dat.scat$sex) <- sex.lookup
+dat.scat <- merge(dat.scat,age.code)
+
+pdf(paste0(file.loc.state,'plots/population_against_wavelet_power_45_55_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
+ggplot(dat=subset(dat.scat,age %in% c(45,55))) +
+geom_point(aes(x=pop.adj.1,y=twelve.month.value.1)) +
+ggtitle(paste0('Popualation against wavelet power at 12 months: ',min(year.group.1),'-',max(year.group.1)))+
+xlab('Population') +
+ylab('Power at 12 months') +
+facet_wrap(~age.print+sex) +
+theme(text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.text.x = element_text(angle=90),
+panel.background = element_blank(),strip.background = element_blank(), axis.line = element_line(colour = "black")) +
+theme(text = element_text(size = 15),legend.justification=c(1,0), legend.position='bottom')
+
+ggplot(dat=subset(dat.scat,age %in% c(45,55))) +
+geom_point(aes(x=pop.adj.1,y=twelve.month.value.2)) +
+ggtitle(paste0('Popualation against wavelet power at 12 months: ',min(year.group.2),'-',max(year.group.2)))+
+xlab('Population') +
+ylab('Power at 12 months') +
+facet_wrap(~age.print+sex) +
+theme(text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.text.x = element_text(angle=90),
+panel.background = element_blank(),strip.background = element_blank(), axis.line = element_line(colour = "black")) +
+theme(text = element_text(size = 15),legend.justification=c(1,0), legend.position='bottom')
+dev.off()
+
+pdf(paste0(file.loc.state,'plots/population_against_wavelet_power_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
+ggplot(dat=dat.scat) +
+geom_point(aes(x=pop.adj.1,y=twelve.month.value.1)) +
+ggtitle(paste0('Popualation against wavelet power at 12 months: ',min(year.group.1),'-',max(year.group.1)))+
+xlab('Population') +
+ylab('Power at 12 months') +
+facet_wrap(~age.print+sex) +
+theme(text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.text.x = element_text(angle=90),
+panel.background = element_blank(),strip.background = element_blank(), axis.line = element_line(colour = "black")) +
+theme(text = element_text(size = 15),legend.justification=c(1,0), legend.position='bottom')
+
+ggplot(dat=dat.scat) +
+geom_point(aes(x=pop.adj.1,y=twelve.month.value.2)) +
+ggtitle(paste0('Popualation against wavelet power at 12 months: ',min(year.group.2),'-',max(year.group.2)))+
+xlab('Population') +
+ylab('Power at 12 months') +
+facet_wrap(~age.print+sex) +
+theme(text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.text.x = element_text(angle=90),
+panel.background = element_blank(),strip.background = element_blank(), axis.line = element_line(colour = "black")) +
+theme(text = element_text(size = 15),legend.justification=c(1,0), legend.position='bottom')
+dev.off()
+
+
 ###############################################################
 # PREPARING MAP
 ###############################################################
