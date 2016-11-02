@@ -36,7 +36,6 @@ year.group.2 <- years[(halfway+1):(num.years)]
 dat$deaths.pred <- with(dat,pop.adj*rate.adj)
 library(plyr)
 dat.national <- ddply(dat,.(year,month,sex,age),summarize,deaths=sum(deaths),deaths.pred=sum(deaths.pred),pop.adj=sum(pop.adj))
-dat.national$rate.adj <- with(dat.national,deaths/pop.adj)
 dat.national$rate.adj <- with(dat.national,deaths.pred/pop.adj)
 dat.national <- dat.national[order(dat.national$sex,dat.national$age,dat.national$year,dat.national$month),]
 
