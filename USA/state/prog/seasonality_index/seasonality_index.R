@@ -46,6 +46,8 @@ dat.max.min$percent.change <- round(100*(dat.max.min$ratio),1)-100
 
 # figure out the absolute difference between max/min over time by sex, age, year
 dat.max.min$abs.diff <- with(dat.max.min,100000*(max-min))
+dat.max.min$sex.long <- as.factor(as.character(dat.max.min$sex))
+levels(dat.max.min$sex.long) <- sex.lookup
 
 ###############################################################
 # DIRECTORY CREATION
@@ -61,15 +63,15 @@ ifelse(!dir.exists(file.loc), dir.create(file.loc, recursive=TRUE), FALSE)
 
 # 1. ratio of difference sexes
 
-# sexes together
+# sexes separately
 plot.function.nat.rel <- function(sex.sel) {
     
     min.plot <- 0
     max.plot <- max(dat.max.min$percent.change)
     
     print(ggplot() +
-    geom_point(data=subset(dat.max.min, sex==sex.sel),aes(color=as.factor(age),x=year,y=percent.change)) +
-    geom_line(data=subset(dat.max.min, sex==sex.sel),aes(lintype=2,alpha=0.5,color=as.factor(age),x=year,y=percent.change)) +
+    geom_point(data=subset(dat.max.min, sex==sex.sel),alpha=0.2,aes(color=as.factor(age),x=year,y=percent.change)) +
+    geom_line(data=subset(dat.max.min, sex==sex.sel),alpha=0.2,aes(lintype=2,alpha=0.5,color=as.factor(age),x=year,y=percent.change)) +
     stat_smooth(data=subset(dat.max.min, sex==sex.sel),method='lm',span=0.8, se=FALSE, aes(color=as.factor(age),x=year,y=percent.change)) +
     geom_hline(yintercept=0, linetype=2,alpha=0.5) +
     ylim(min.plot,max.plot) +
@@ -88,21 +90,21 @@ plot.function.nat.rel(1)
 # female
 plot.function.nat.rel(2)
 
-# sexes separately
+# sexes together
 plot.function.nat.rel.both <- function() {
     
     min.plot <- 0
     max.plot <- max(dat.max.min$percent.change)
     
     print(ggplot() +
-    geom_point(data=dat.max.min,aes(color=as.factor(age),x=year,y=percent.change)) +
-    geom_line(data=dat.max.min,aes(lintype=2,alpha=0.5,color=as.factor(age),x=year,y=percent.change)) +
+    geom_point(data=dat.max.min,alpha=0.2,aes(color=as.factor(age),x=year,y=percent.change)) +
+    geom_line(data=dat.max.min,alpha=0.2,aes(lintype=2,alpha=0.5,color=as.factor(age),x=year,y=percent.change)) +
     stat_smooth(data=dat.max.min,method='lm',span=0.8, se=FALSE, aes(color=as.factor(age),x=year,y=percent.change)) +
     geom_hline(yintercept=0, linetype=2,alpha=0.5) +
     ylim(min.plot,max.plot) +
     xlab('Year') +
     ylab('Seasonality Index') +
-    facet_wrap(~sex) +
+    facet_wrap(~sex.long) +
     scale_colour_manual(values=colorRampPalette(rev(brewer.pal(12,"RdYlGn")[c(1:5,7:9)]))(length(unique(dat.max.min$age))),guide = guide_legend(title = 'Age group')) +
     theme(legend.position='bottom',text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
     panel.background = element_blank(), axis.line = element_line(colour = "black"),
@@ -110,7 +112,9 @@ plot.function.nat.rel.both <- function() {
 }
 
 # plot
+pdf(paste0(file.loc,'seasonality_index_mf_',year.start,'_',year.start,'.pdf'),height=0,width=0,paper='a4r')
 plot.function.nat.rel.both()
+dev.off()
 
 ###############################################################
 # DIFFERENCE BETWEEN MAX/MIN MORTALITY RATE OVER TIME BY STATE
@@ -125,7 +129,7 @@ plot.function.nat.abs <- function(sex.sel) {
     max.plot <- max(dat.max.min$abs.diff)
     
     print(ggplot() +
-    geom_point(data=subset(dat.max.min, sex==sex.sel),aes(color=as.factor(age),x=year,y=abs.diff)) +
+    #geom_point(data=subset(dat.max.min, sex==sex.sel),aes(color=as.factor(age),x=year,y=log(abs.diff))) +
     geom_line(data=subset(dat.max.min, sex==sex.sel),aes(lintype=2,alpha=0.5,color=as.factor(age),x=year,y=abs.diff)) +
     stat_smooth(data=subset(dat.max.min, sex==sex.sel),method='lm',span=0.8, se=FALSE, aes(color=as.factor(age),x=year,y=abs.diff)) +
     geom_hline(yintercept=0, linetype=2,alpha=0.5) +
@@ -148,18 +152,18 @@ plot.function.nat.abs(2)
 # sexes together
 plot.function.nat.abs.both <- function() {
     
-    min.plot <- 0
-    max.plot <- max(dat.max.min$abs.diff)
+    min.plot <- log(min(dat.max.min$abs.diff))
+    max.plot <- log(max(dat.max.min$abs.diff))
     
     print(ggplot() +
-    geom_point(data=dat.max.min,aes(color=as.factor(age),x=year,y=abs.diff)) +
-    geom_line(data=dat.max.min,aes(lintype=2,alpha=0.5,color=as.factor(age),x=year,y=abs.diff)) +
-    stat_smooth(data=dat.max.min,method='lm',span=0.8, se=FALSE, aes(color=as.factor(age),x=year,y=abs.diff)) +
+    geom_point(data=dat.max.min,alpha=0.5,aes(color=as.factor(age),x=year,y=log(abs.diff))) +
+    geom_line(data=dat.max.min,alpha=0.5,aes(lintype=2,alpha=0.5,color=as.factor(age),x=year,y=log(abs.diff))) +
+    stat_smooth(data=dat.max.min,method='lm',span=0.8, se=FALSE, aes(color=as.factor(age),x=year,y=log(abs.diff))) +
     geom_hline(yintercept=0, linetype=2,alpha=0.5) +
     ylim(min.plot,max.plot) +
     xlab('Year') +
-    ylab('Difference in max/min death rate (per 100,000)') +
-    facet_wrap(~sex) +
+    ylab('log(Difference in max/min death rate (per 100,000))') +
+    facet_wrap(~sex.long) +
     scale_colour_manual(values=colorRampPalette(rev(brewer.pal(12,"RdYlGn")[c(1:5,7:9)]))(length(unique(dat.max.min$age))),guide = guide_legend(title = 'Age group')) +
     theme(legend.position='bottom',text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
     panel.background = element_blank(), axis.line = element_line(colour = "black"),
@@ -167,4 +171,6 @@ plot.function.nat.abs.both <- function() {
 }
 
 # plot
+pdf(paste0(file.loc,'log_abs_maxmin_mf_',year.start,'_',year.start,'.pdf'),height=0,width=0,paper='a4r')
 plot.function.nat.abs.both()
+dev.off()
