@@ -7,6 +7,9 @@
 
 clear
 
+declare -a ages=(65 75 85)
+declare -a sexes=(1 2)
+declare -a sexstrings=('male' 'female')
 declare -i start=1982
 declare -i end=2013
 declare country="USA"
@@ -15,13 +18,20 @@ declare country="USA"
 # 1. NATIONALISED COM ANALYSIS
 #################################################
 
-echo "starting nationalised COM analysis for $country, years $start - $end";
+for sex in "${sexes[@]}"; do
+
+for age in "${ages[@]}"; do
+
+#echo "starting nationalised COM analysis for $country, years $start - $end";
+echo "starting nationalised COM analysis for ${sexstrings[$sex-1]} $age, years $start - $end";
 
 # runs COM analysis
-Rscript ~/git/mortality/USA/state/prog/com/com_analysis_national.R $start $end
+Rscript ~/git/mortality/USA/state/prog/com/com_analysis_national.R $start $end $age $sex
 
 # runs anti-COM analysis
-Rscript ~/git/mortality/USA/state/prog/com/anti_com_analysis_national.R $start $end
+#Rscript ~/git/mortality/USA/state/prog/com/anti_com_analysis_national.R $start $end $age $sex
+
+done; done;
 
 #################################################
 # 2. STATE COM ANALYSIS

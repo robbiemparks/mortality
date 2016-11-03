@@ -4,6 +4,8 @@ rm(list=ls())
 args <- commandArgs(trailingOnly=TRUE)
 year.start.arg <- as.numeric(args[1])
 year.end.arg <- as.numeric(args[2])
+age.arg <- as.numeric(args[3])
+sex.arg <- as.numeric(args[4])
 
 library(plyr)
 require(CircStats)
@@ -37,6 +39,8 @@ year.group.2 <- years[(halfway+1):(num.years)]
 
 # function to find centre of mass of seasonality
 circular.age.mean <- function(age.selected,sex.selected) {
+
+print(paste0('Working on national COM method 1 for ',sex.lookup[sex.selected],' ',age.selected))
 
 # take dates as subset
 dat <- subset(dat,age==age.selected & sex==sex.selected)
@@ -84,6 +88,8 @@ return(dat.frame)
 
 # function to find centre of mass of seasonality
 circular.age.mean.2 <- function(age.selected,sex.selected) {
+
+print(paste0('Working on national COM method 2 for ',sex.lookup[sex.selected],' ',age.selected))
 
 # take dates as subset
 dat.temp <- subset(dat,age==age.selected & sex==sex.selected)
@@ -135,6 +141,8 @@ return(dat.frame)
 
 # function to find centre of mass of seasonality for first period of split years
 circular.age.mean.split.1 <- function(age.selected,sex.selected) {
+
+print(paste0('Working on national COM first period method 2 for ',sex.lookup[sex.selected],' ',age.selected))
 
 # take dates as subset
 dat.temp <- subset(dat,age==age.selected & sex==sex.selected)
@@ -190,6 +198,8 @@ return(dat.frame)
 # function to find centre of mass of seasonality for first period of split years
 circular.age.mean.split.2 <- function(age.selected,sex.selected) {
 
+print(paste0('Working on national COM second period method 2 for ',sex.lookup[sex.selected],' ',age.selected))
+
 # take dates as subset
 dat.temp <- subset(dat,age==age.selected & sex==sex.selected)
 
@@ -242,10 +252,15 @@ return(dat.frame)
 }
 
 # perform function for each age, gender combination
-mapply(circular.age.mean.2, age.selected=c(0,5,15,25,35,45,55,65,75,85),sex.selected=c(1,2))
-mapply(circular.age.mean, age.selected=c(0,5,15,25,35,45,55,65,75,85),sex.selected=c(1,2))
-mapply(circular.age.means.split.1, age.selected=c(0,5,15,25,35,45,55,65,75,85),sex.selected=c(1,2))
-mapply(circular.age.means.split.2, age.selected=c(0,5,15,25,35,45,55,65,75,85),sex.selected=c(1,2))
+mapply(circular.age.mean.2, age.selected=age.arg,sex.selected=sex.arg)
+mapply(circular.age.mean, age.selected=age.arg,sex.selected=sex.arg)
+mapply(circular.age.means.split.1, age.selected=age.arg,sex.selected=sex.arg)
+mapply(circular.age.means.split.2, age.selected=age.arg,sex.selected=sex.arg)
+
+#mapply(circular.age.mean.2, age.selected=c(0,5,15,25,35,45,55,65,75,85),sex.selected=c(2,1))
+#mapply(circular.age.mean, age.selected=c(0,5,15,25,35,45,55,65,75,85),sex.selected=c(1,2))
+#mapply(circular.age.means.split.1, age.selected=c(0,5,15,25,35,45,55,65,75,85),sex.selected=c(1,2))
+#mapply(circular.age.means.split.2, age.selected=c(0,5,15,25,35,45,55,65,75,85),sex.selected=c(1,2))
 
 # function to find centre of mass of seasonality subnationally LEGACY
 #circular.split <- function(age.selected,sex.selected) {

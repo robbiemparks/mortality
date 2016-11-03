@@ -4,6 +4,8 @@ rm(list=ls())
 args <- commandArgs(trailingOnly=TRUE)
 year.start.arg <- as.numeric(args[1])
 year.end.arg <- as.numeric(args[2])
+age.arg <- as.numeric(args[3])
+sex.arg <- as.numeric(args[4])
 
 require(CircStats)
 library(plyr)
@@ -245,8 +247,14 @@ return(dat.frame)
 }
 
 # perform function for each age, gender combination
-mapply(circular.age.mean.2, age.selected=c(0,5,15,25,35,45,55,65,75,85),sex.selected=c(1,2))
-mapply(circular.age.mean, age.selected=c(0,5,15,25,35,45,55,65,75,85),sex.selected=c(1,2))
-mapply(circular.age.means.split.1, age.selected=c(0,5,15,25,35,45,55,65,75,85),sex.selected=c(1,2))
-mapply(circular.age.means.split.2, age.selected=c(0,5,15,25,35,45,55,65,75,85),sex.selected=c(1,2))
 
+# perform function for each age, gender combination
+mapply(circular.age.mean.2, age.selected=age.arg,sex.selected=sex.arg)
+mapply(circular.age.mean, age.selected=age.arg,sex.selected=sex.arg)
+mapply(circular.age.means.split.1, age.selected=age.arg,sex.selected=sex.arg)
+mapply(circular.age.means.split.2, age.selected=age.arg,sex.selected=sex.arg)
+
+#mapply(circular.age.mean.2, age.selected=c(0,5,15,25,35,45,55,65,75,85),sex.selected=c(1,2))
+#mapply(circular.age.mean, age.selected=c(0,5,15,25,35,45,55,65,75,85),sex.selected=c(1,2))
+#mapply(circular.age.means.split.1, age.selected=c(0,5,15,25,35,45,55,65,75,85),sex.selected=c(1,2))
+#mapply(circular.age.means.split.2, age.selected=c(0,5,15,25,35,45,55,65,75,85),sex.selected=c(1,2))
