@@ -190,7 +190,7 @@ dat.frame <- data.frame(age=age.selected,sex=sex.selected,COM.mean=dat.mean,COM.
 # output value for data processing
 file.loc.temp <- paste0(file.loc.split,'method_2/')
 ifelse(!dir.exists(file.loc.temp), dir.create(file.loc.temp,recursive=TRUE), FALSE)
-saveRDS(dat.frame,paste0(file.loc.temp,'com_',sex.lookup[sex.selected],'_',age.selected,'_part_1'))
+saveRDS(dat.frame,paste0(file.loc.temp,'com_',sex.lookup[sex.selected],'_',age.selected,'_part1'))
 
 return(dat.frame)
 }
@@ -246,7 +246,7 @@ dat.frame <- data.frame(age=age.selected,sex=sex.selected,COM.mean=dat.mean,COM.
 # output value for data processing
 file.loc.temp <- paste0(file.loc.split,'method_2/')
 ifelse(!dir.exists(file.loc.temp), dir.create(file.loc.temp,recursive=TRUE), FALSE)
-saveRDS(dat.frame,paste0(file.loc.temp,'com_',sex.lookup[sex.selected],'_',age.selected,'_part_2'))
+saveRDS(dat.frame,paste0(file.loc.temp,'com_',sex.lookup[sex.selected],'_',age.selected,'_part2'))
 
 return(dat.frame)
 }

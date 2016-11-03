@@ -42,23 +42,28 @@ year.group.2 <- years[(halfway+1):(num.years)]
 # 1. NATIONAL
 
 # load entire national data
-file.loc.nat <- paste0("../../output/com/",year.start.arg,'_',year.end.arg,"/national/")
-dat.COM <- read.csv(paste0(file.loc.nat,'USA_COM_',year.start.arg,'_',year.end.arg,'.csv'))
-levels(dat.COM$sex) <- c('Women','Men')
+file.loc.nat <- paste0("../../output/com/",year.start.arg,'_',year.end.arg,"/national/values/combined_results/")
+dat.COM <- readRDS(paste0(file.loc.nat,'com_national_values_method_2_',year.start.arg,'_',year.end.arg))
+dat.COM$sex <- as.factor(as.character(dat.COM$sex))
+levels(dat.COM$sex) <- c('Men','Women')
 dat.COM$type <- 'max'
 dat.inv.COM <- read.csv(paste0(file.loc.nat,'USA_INV_COM_',year.start.arg,'_',year.end.arg,'.csv'))
-levels(dat.inv.COM$sex) <- c('Women','Men')
+dat.inv.COM$sex <- as.factor(as.character(dat.inv.COM$sex))
+levels(dat.inv.COM$sex) <- c('Men','Women')
 dat.inv.COM$type <- 'min'
-dat.nat <- rbind(dat.COM,dat.inv.COM)
-levels(dat.nat$sex) <- c(2,1)
-dat.nat$sex <- as.integer(as.character(dat.nat$sex))
-dat.nat$sex <- as.factor(dat.nat$sex)
-levels(dat.nat$sex) <- c('Men','Women')
+#dat.nat <- rbind(dat.COM,dat.inv.COM)
+#levels(dat.nat$sex) <- c(2,1)
+#dat.nat$sex <- as.integer(as.character(dat.nat$sex))
+#dat.nat$sex <- as.factor(dat.nat$sex)
+#levels(dat.nat$sex) <- c('Men','Women')
+### DELETE NEXT LINE
+dat.nat <- dat.COM
+dat.nat$size <- with(dat.nat,1/(COM.95-COM.5))
 
 pdf(paste0(file.loc.nat,'USA_COM_total_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
 ggplot() +
-geom_point(data=subset(dat.nat,type=='max'),aes(x=COM,y=factor(age)),fill='red',shape=24,size=3) +
-geom_point(data=subset(dat.nat,type=='min'),aes(x=COM,y=factor(age)),fill='green',shape=25,size=3) +
+geom_point(data=subset(dat.nat,type=='max'),aes(x=COM.mean,y=factor(age),size=size),fill='red',shape=24) +
+#geom_point(data=subset(dat.nat,type=='min'),aes(x=COM.mean,y=factor(age)),fill='green',shape=25,size=3) +
 geom_vline(aes(linetype=2),linetype=2, xintercept = 0:12, alpha=0.5) +
 geom_hline(aes(linetype=2),linetype=2, yintercept = 1:10) +
 #geom_errorbarh(aes(xmin=lowerCI,xmax=upperCI,color=as.factor(sex)),height=0) +
