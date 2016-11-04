@@ -53,23 +53,23 @@ levels(dat.max.min$sex.long) <- sex.lookup
 # STATIC MAX MIN DEFINED BY COM
 
 # load com data to establish max min locations
-dat.COM <- readRDS(paste0('../../output/com/',year.start,'_',year.end,'/national/values/combined_results/com_national_values_method_2_entire_',year.start,'_',year.end))
-dat.COM$sex <- as.character(dat.COM$sex)
-dat.COM$type <- 'max'
-dat.inv.COM <- readRDS(paste0('../../output/com/',year.start,'_',year.end,'/national/values/combined_results/inv_com_national_values_method_2_entire_',year.start,'_',year.end))
-dat.inv.COM$type <- 'min'
-dat.COM.total <- rbind(dat.COM,dat.inv.COM)
+file.loc.nat.input <- paste0("../../output/com/",year.start,'_',year.end,"/national/values/combined_results/")
+dat.COM <- readRDS(paste0(file.loc.nat.input,'com_inv_com_national_values_method_2_entire_',year.start,'_',year.end))
 
 # round to get month required for merging
-dat.COM.total$COM.mean <- round(dat.COM.total$COM.mean)
-dat.COM.total$COM.mean <- ifelse(dat.COM.total$COM.mean==0,12,dat.COM.total$COM.mean)
-dat.COM.total <- dat.COM.total[,c(1:3,6)]
-dat.COM.total$month <- dat.COM.total$COM.mean
+dat.COM$COM.mean <- round(dat.COM$COM.mean)
+dat.COM$COM.mean <- ifelse(dat.COM$COM.mean==0,12,dat.COM$COM.mean)
+dat.COM$month <- dat.COM$COM.mean
+levels(dat.COM$sex) <- c(1,2)
 
 # figure out the ratio of max/min deaths over time with fixed max/min by sex, age, year
-dat.max.min.fixed <- merge(dat.national,dat.COM.total,by=c('age','sex','month'))
-dat.max.min.fixed <- ddply(dat.max.min.fixed,.(sex,age,year), summarize,max=rate.adj[type=='max'],month.max=month[type=='max']),min=median[type=='min'],month.min=month[type=='min'])
-dat.max.min.fixed$percent.change <- with(dat.max.min.fixed,round(100*exp((max - min)),1)-100)
+dat.max.min.fixed <- merge(dat.national,dat.COM,by=c('age','sex','month'))
+dat.max.min.fixed <- ddply(dat.max.min.fixed,.(sex,age,year), summarize,max=rate.adj[type=='max'],month.max=month[type=='max'],min=rate.adj[type=='min'],month.min=month[type=='min'])
+dat.max.min.fixed$percent.change <- with(dat.max.min.fixed,round(100*(max / min),1)-100)
+
+# establish correct sex names for plotting
+dat.max.min.fixed$sex.long <- as.factor(as.character(dat.max.min.fixed$sex))
+levels(dat.max.min.fixed$sex.long) <- sex.lookup
 
 ###############################################################
 # DIRECTORY CREATION
@@ -195,4 +195,63 @@ plot.function.nat.abs.both <- function() {
 # plot
 pdf(paste0(file.loc,'log_abs_maxmin_mf_',year.start,'_',year.start,'.pdf'),height=0,width=0,paper='a4r')
 plot.function.nat.abs.both()
+dev.off()
+
+######################################################################
+# RATIO OF MAX/MIN MORTALITY RATE OVER TIME BY STATE FIXED OVER PERIOD
+######################################################################
+
+# 1. ratio of difference sexes
+
+# sexes separately
+plot.function.nat.rel.fixed <- function(sex.sel) {
+    
+    min.plot <- min(dat.max.min.fixed$percent.change)
+    max.plot <- max(dat.max.min.fixed$percent.change)
+    
+    print(ggplot() +
+    geom_point(data=subset(dat.max.min.fixed, sex==sex.sel),alpha=0.2,aes(color=as.factor(age),x=year,y=percent.change)) +
+    geom_line(data=subset(dat.max.min.fixed, sex==sex.sel),alpha=0.2,aes(lintype=2,alpha=0.5,color=as.factor(age),x=year,y=percent.change)) +
+    stat_smooth(data=subset(dat.max.min.fixed, sex==sex.sel),method='lm',span=0.8, se=FALSE, aes(color=as.factor(age),x=year,y=percent.change)) +
+    geom_hline(yintercept=0, linetype=2,alpha=0.5) +
+    ylim(min.plot,max.plot) +
+    xlab('Year') +
+    ylab('Seasonality Index') +
+    ggtitle(sex.lookup[sex.sel]) +
+    scale_colour_manual(values=colorRampPalette(rev(brewer.pal(12,"RdYlGn")[c(1:5,7:9)]))(length(unique(dat.max.min$age))),guide = guide_legend(title = 'Age group')) +
+    theme(legend.position='bottom',text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+    panel.background = element_blank(), axis.line = element_line(colour = "black"),
+    rect = element_blank()))
+}
+
+# male
+plot.function.nat.rel.fixed(1)
+
+# female
+plot.function.nat.rel.fixed(2)
+
+# sexes together
+plot.function.nat.rel.both.fixed <- function() {
+    
+    min.plot <- min(dat.max.min.fixed$percent.change)
+    max.plot <- max(dat.max.min.fixed$percent.change)
+    
+    print(ggplot() +
+    geom_point(data=dat.max.min.fixed,alpha=0.2,aes(color=as.factor(age),x=year,y=percent.change)) +
+    geom_line(data=dat.max.min.fixed,alpha=0.2,aes(lintype=2,alpha=0.5,color=as.factor(age),x=year,y=percent.change)) +
+    stat_smooth(data=dat.max.min.fixed,method='lm',span=0.8, se=FALSE, aes(color=as.factor(age),x=year,y=percent.change)) +
+    geom_hline(yintercept=0, linetype=2,alpha=0.5) +
+    ylim(min.plot,max.plot) +
+    xlab('Year') +
+    ylab('Seasonality Index') +
+    facet_wrap(~sex.long) +
+    scale_colour_manual(values=colorRampPalette(rev(brewer.pal(12,"RdYlGn")[c(1:5,7:9)]))(length(unique(dat.max.min$age))),guide = guide_legend(title = 'Age group')) +
+    theme(legend.position='bottom',text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+    panel.background = element_blank(), axis.line = element_line(colour = "black"),
+    rect = element_blank()))
+}
+
+# plot
+pdf(paste0(file.loc,'seasonality_index_fixed_months_mf_',year.start,'_',year.start,'.pdf'),height=0,width=0,paper='a4r')
+plot.function.nat.rel.both.fixed()
 dev.off()
