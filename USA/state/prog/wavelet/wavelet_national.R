@@ -318,6 +318,7 @@ plot.wavelet.national.all <- function(sex.selected) {
         periodlab = "periods (months)", show.date = T,timelab = "",
         label.period.axis = tf,
         graphics.reset = F,
+        plot.ridge = F,
         plot.legend=F)
         #abline(h = log(12)/log(2))
         #mtext(text = "12", side = 2, at = log(12)/log(2), las = 1, line = 0.5)
