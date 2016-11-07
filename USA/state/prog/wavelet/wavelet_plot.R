@@ -223,13 +223,18 @@ map.climate.colour <- colorRampPalette(rev(brewer.pal(12,"Accent")[c(1:3,5,6)]))
 # output plot of wavelet 12 month value from first period against second
 pdf(paste0(file.loc.state,'plots/12_month_power_state_comparison_xy_',num.sim,'_sim_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
 ggplot(data=dat.state) +
-geom_jitter(aes(x=twelve.month.value.1,y=twelve.month.value.2,color=factor(sex)),width = 10) +
+geom_jitter(aes(x=twelve.month.value.1,y=twelve.month.value.2,color=sex),width = 2) +
+#geom_point(aes(x=twelve.month.value.1,y=twelve.month.value.2,color=sex)) +
+stat_density2d(aes(x=twelve.month.value.1,y=twelve.month.value.2))+
 geom_abline(linetype=2,intercept=0,slope=1) +
 xlab(paste0('12-month power from ',min(year.group.1),'-',max(year.group.1))) +
 ylab(paste0('12-month power from ',min(year.group.2),'-',max(year.group.2))) +
 #scale_colour_manual(values=colorRampPalette(rev(brewer.pal(2,"RdYlBu")[c(1,11,12)]))(3),guide = guide_legend(title = 'Gender'),labels=sex.lookup) +
 ggtitle(paste0('Wavelet power at 12 months comparison between ',min(year.group.1),'-',max(year.group.1),' and ',min(year.group.2),'-',max(year.group.2))) +
-theme_bw()
+facet_wrap(~age+sex) + 
+theme(text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.text.x = element_text(angle=0),
+panel.background = element_blank(),strip.background = element_blank(), axis.line = element_line(colour = "black")) +
+theme(text = element_text(size = 15),legend.justification=c(1,0), legend.position='bottom')
 dev.off()
 
 # output plot of wavelet 12 month value difference between first period and second

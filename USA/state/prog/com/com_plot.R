@@ -108,16 +108,51 @@ theme(text = element_text(size = 15),panel.grid.major = element_blank(), panel.g
 panel.background = element_blank(),strip.background = element_blank(), axis.line = element_line(colour = "black"))
 dev.off()
 
+# entire period plus two split periods plot
+pdf(paste0(file.loc.nat.output,'USA_COM_total_axis_swapped_entire_and_split_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
+ggplot() +
+
+geom_point(data=subset(dat.nat,type=='max'),aes(x=factor(age),y=COM.mean,size=size),fill='red',shape=24) +
+geom_point(data=subset(dat.nat,type=='min'),aes(y=COM.mean,x=factor(age),size=size),fill='green',shape=25) +
+
+geom_point(data=subset(dat.nat.split,type=='max' & period==1),aes(x=factor(age),y=COM.mean,size=size),fill='red',shape=24) +
+geom_point(data=subset(dat.nat.split,type=='min' & period==1),aes(y=COM.mean,x=factor(age),size=size),fill='green',shape=25) +
+
+geom_point(data=subset(dat.nat.split,type=='max' & period==2),aes(x=factor(age),y=COM.mean,size=size),fill='red',shape=24) +
+geom_point(data=subset(dat.nat.split,type=='min' & period==2),aes(y=COM.mean,x=factor(age),size=size),fill='green',shape=25) +
+
+geom_hline(aes(linetype=2),linetype=2, yintercept = 0:12, alpha=0.5) +
+geom_vline(aes(linetype=2),linetype=2, xintercept = 1:10) +
+#geom_errorbarh(aes(xmin=lowerCI,xmax=upperCI,color=as.factor(sex)),height=0) +
+ylab('Month') +
+xlab('Age group') +
+scale_y_continuous(breaks=c(seq(0,12)),labels=c(month.short[12],month.short),expand = c(0.01, 0)) +
+scale_x_discrete(labels=age.print) +
+#xlim(1,12) +
+facet_wrap(~sex, ncol=1) +
+scale_size(guide='none') +
+theme(text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.text.x = element_text(angle=90),
+panel.background = element_blank(),strip.background = element_blank(), axis.line = element_line(colour = "black"))
+dev.off()
+
 # 2. STATE
 
 # load state data
 file.loc.state <- paste0("../../output/com/",year.start.arg,'_',year.end.arg,"/state/")
 dat.state <- readRDS(paste0(file.loc.state,'com_state_values_',year.start.arg,'-',year.end.arg))
 
+# round com data for each state
+dat.state$COM.entire.round <- round(dat.state$COM.entire)
+dat.state$COM.entire.round <- ifelse(dat.state$COM.entire.round==0,12,dat.state$COM.entire.round)
+dat.state$COM.entire.period.1.round <- round(dat.state$COM.period.1)
+dat.state$COM.entire.period.1.round <- ifelse(dat.state$COM.entire.period.1.round==0,12,dat.state$COM.entire.period.1.round)
+dat.state$COM.entire.period.2.round <- round(dat.state$COM.period.2)
+dat.state$COM.entire.period.2.round <- ifelse(dat.state$COM.entire.period.2.round==0,12,dat.state$COM.entire.period.2.round)
+
 # plot first period COM against second period COM
 pdf(paste0(file.loc.state,'com_state_comparison_xy_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
 ggplot(data=dat.state) +
-geom_jitter(aes(x=COM.period.1,y=COM.period.2,color=factor(sex)),width = 10) +
+geom_jitter(aes(x=COM.period.1,y=COM.period.2,color=as.factor(sex)),width = 10) +
 geom_abline(linetype=2,intercept=0,slope=1) +
 xlab(paste0('COM during ',min(year.group.1),'-',max(year.group.1))) +
 ylab(paste0('COM during ',min(year.group.2),'-',max(year.group.2))) +
@@ -184,8 +219,6 @@ USA.df$STATE_FIPS <- as.integer(as.character(USA.df$STATE_FIPS))
 # COM MAPS
 ###############################################################
 
-# 1. map of average wavelet power at 12 months for entire period
-
 # merge selected data to map dataframe for colouring of ggplot
 dat.state.map <- merge(USA.df,dat.state,by.x='STATE_FIPS',by.y='fips')
 dat.state.map <- merge(dat.state.map, age.code, by ='age')
@@ -193,6 +226,10 @@ dat.state.map <- with(dat.state.map, dat.state.map[order(sex,age,DRAWSEQ,order),
 
 # make sure the age groups are in the correct order for plotting
 dat.state.map$age.print <- with(dat.state.map,reorder(age.print,age))
+
+# UNROUNDED
+
+# 1. map of average wavelet power at 12 months for entire period
 
 # function to plot
 plot.function.state.entire <- function(sex.sel) {
@@ -275,3 +312,182 @@ dev.off()
 pdf(paste0(file.loc.state,'com_state_map_women_',min(year.group.2),'_',max(year.group.2),'.pdf'),paper='a4r',height=0,width=0)
 plot.function.state.split.2(2)
 dev.off()
+
+# ROUNDED
+# set colour scheme for months map
+map.climate.colour <- colorRampPalette(rev(brewer.pal(12,"Accent")[c(1:3,5,6)]))(12)
+#map.climate.colour <- colorRampPalette(rev(brewer.pal(12,"Accent")[c(1:3,4:6,6:4,3:1)]))(12)
+
+# 1. map of average wavelet power at 12 months for entire period
+
+# function to plot
+plot.function.state.entire.round <- function(sex.sel) {
+    
+    print(ggplot(data=subset(dat.state.map,sex==sex.sel),aes(x=long,y=lat,group=group)) +
+    geom_polygon(aes(fill=as.factor(COM.entire.round)),color='black',size=0.01) +
+    scale_fill_manual(values=map.climate.colour,labels=month.short,guide = guide_legend(title = 'Month')) +
+    #scale_fill_brewer(palette='Spectral', 'month') +
+    facet_wrap(~age.print) +
+    xlab('') +
+    ylab('') +
+    ggtitle(paste0(sex.lookup[sex.sel],' : ',year.start.arg,'-',year.end.arg)) +
+    theme_map() +
+    theme(text = element_text(size = 15),legend.position = 'bottom',legend.justification=c(1,0),strip.background = element_blank()))
+}
+
+pdf(paste0(file.loc.state,'com_state_map_men_rounded_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
+plot.function.state.entire.round(1)
+dev.off()
+
+pdf(paste0(file.loc.state,'com_state_map_women_rounded_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
+plot.function.state.entire.round(2)
+dev.off()
+
+# 2. map of average wavelet power at 12 months for first period
+
+# function to plot
+plot.function.state.split.1.round <- function(sex.sel) {
+    
+    print(ggplot(data=subset(dat.state.map,sex==sex.sel),aes(x=long,y=lat,group=group)) +
+    geom_polygon(aes(fill=as.factor(COM.entire.period.1.round)),color='black',size=0.01) +
+    scale_fill_manual(values=map.climate.colour,labels=month.short,guide = guide_legend(title = 'Month')) +
+    facet_wrap(~age.print) +
+    xlab('') +
+    ylab('') +
+    ggtitle(paste0(sex.lookup[sex.sel],' : ',min(year.group.1),'-',max(year.group.1))) +
+    theme_map() +
+    theme(text = element_text(size = 15),legend.position = 'bottom',legend.justification=c(1,0),strip.background = element_blank()))
+}
+
+pdf(paste0(file.loc.state,'com_state_map_men_rounded_',min(year.group.1),'_',max(year.group.1),'.pdf'),paper='a4r',height=0,width=0)
+plot.function.state.split.1.round(1)
+dev.off()
+
+pdf(paste0(file.loc.state,'com_state_map_women_rounded_',min(year.group.1),'_',max(year.group.1),'.pdf'),paper='a4r',height=0,width=0)
+plot.function.state.split.1.round(2)
+dev.off()
+
+# 3. map of average wavelet power at 12 months for second period
+
+# function to plot
+plot.function.state.split.2.round <- function(sex.sel) {
+    
+    # find limits for plot
+    min.plot <- 0
+    max.plot <- 12
+    
+    print(ggplot(data=subset(dat.state.map,sex==sex.sel),aes(x=long,y=lat,group=group)) +
+    geom_polygon(aes(fill=as.factor(COM.entire.period.2.round)),color='black',size=0.01) +
+    scale_fill_manual(values=map.climate.colour,labels=month.short,guide = guide_legend(title = 'Month')) +
+    facet_wrap(~age.print) +
+    xlab('') +
+    ylab('') +
+    ggtitle(paste0(sex.lookup[sex.sel],' : ',min(year.group.2),'-',max(year.group.2))) +
+    theme_map() +
+    theme(text = element_text(size = 15),legend.position = 'bottom',legend.justification=c(1,0),strip.background = element_blank()))
+}
+
+pdf(paste0(file.loc.state,'com_state_map_men_rounded_',min(year.group.2),'_',max(year.group.2),'.pdf'),paper='a4r',height=0,width=0)
+plot.function.state.split.2.round(1)
+dev.off()
+
+pdf(paste0(file.loc.state,'com_state_map_women_rounded_',min(year.group.2),'_',max(year.group.2),'.pdf'),paper='a4r',height=0,width=0)
+plot.function.state.split.2.round(2)
+dev.off()
+
+# ROUNDED AND BY SEASON
+
+# season lookup
+dat.seas <- data.frame(month=c(12,1:11),seas=c(rep('DJF',3),rep('MAM',3),rep('JJA',3),rep('SON',3)))
+
+# attach season details to map data
+dat.state.map.entire <- merge(dat.state.map,dat.seas,by.x='COM.entire.round',by.y='month')
+dat.state.map.entire <- with(dat.state.map.entire, dat.state.map.entire[order(sex,age,DRAWSEQ,order),])
+
+# set colour scheme for months map
+map.seas.colour <- colorRampPalette(rev(brewer.pal(12,"Accent")[c(3,1,6,5)]))(4)
+
+# 1. map of average wavelet power at 12 months for entire period
+
+# function to plot
+plot.function.state.entire.seas <- function(sex.sel) {
+    
+    print(ggplot(data=subset(dat.state.map.entire,sex==sex.sel),aes(x=long,y=lat,group=group)) +
+    geom_polygon(aes(fill=as.factor(seas)),color='black',size=0.01) +
+    scale_fill_manual(values=map.seas.colour,guide = guide_legend(title = 'Season')) +
+    facet_wrap(~age.print) +
+    xlab('') +
+    ylab('') +
+    ggtitle(paste0(sex.lookup[sex.sel],' : ',year.start.arg,'-',year.end.arg)) +
+    theme_map() +
+    theme(text = element_text(size = 15),legend.position = 'bottom',legend.justification=c(1,0),strip.background = element_blank()))
+}
+
+pdf(paste0(file.loc.state,'com_state_map_men_seas_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
+plot.function.state.entire.seas(1)
+dev.off()
+
+pdf(paste0(file.loc.state,'com_state_map_women_seas_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
+plot.function.state.entire.seas(2)
+dev.off()
+
+# 2. map of average wavelet power at 12 months for first period
+
+# attach season details to map data
+dat.state.map.entire <- merge(dat.state.map,dat.seas,by.x='COM.entire.period.1.round',by.y='month')
+dat.state.map.entire <- with(dat.state.map.entire, dat.state.map.entire[order(sex,age,DRAWSEQ,order),])
+
+# function to plot
+plot.function.state.split.1.seas <- function(sex.sel) {
+    
+    print(ggplot(data=subset(dat.state.map.entire,sex==sex.sel),aes(x=long,y=lat,group=group)) +
+    geom_polygon(aes(fill=as.factor(seas)),color='black',size=0.01) +
+    scale_fill_manual(values=map.seas.colour,guide = guide_legend(title = 'Season')) +
+    facet_wrap(~age.print) +
+    xlab('') +
+    ylab('') +
+    ggtitle(paste0(sex.lookup[sex.sel],' : ',min(year.group.1),'-',max(year.group.1))) +
+    theme_map() +
+    theme(text = element_text(size = 15),legend.position = 'bottom',legend.justification=c(1,0),strip.background = element_blank()))
+}
+
+pdf(paste0(file.loc.state,'com_state_map_men_seas_',min(year.group.1),'_',max(year.group.1),'.pdf'),paper='a4r',height=0,width=0)
+plot.function.state.split.1.seas(1)
+dev.off()
+
+pdf(paste0(file.loc.state,'com_state_map_women_seas_',min(year.group.1),'_',max(year.group.1),'.pdf'),paper='a4r',height=0,width=0)
+plot.function.state.split.1.seas(2)
+dev.off()
+
+# 3. map of average wavelet power at 12 months for second period
+
+# attach season details to map data
+dat.state.map.entire <- merge(dat.state.map,dat.seas,by.x='COM.entire.period.2.round',by.y='month')
+dat.state.map.entire <- with(dat.state.map.entire, dat.state.map.entire[order(sex,age,DRAWSEQ,order),])
+
+# function to plot
+plot.function.state.split.2.seas <- function(sex.sel) {
+
+    print(ggplot(data=subset(dat.state.map.entire,sex==sex.sel),aes(x=long,y=lat,group=group)) +
+    geom_polygon(aes(fill=as.factor(seas)),color='black',size=0.01) +
+    scale_fill_manual(values=map.seas.colour,guide = guide_legend(title = 'Season')) +
+    facet_wrap(~age.print) +
+    xlab('') +
+    ylab('') +
+    ggtitle(paste0(sex.lookup[sex.sel],' : ',min(year.group.2),'-',max(year.group.2))) +
+    theme_map() +
+    theme(text = element_text(size = 15),legend.position = 'bottom',legend.justification=c(1,0),strip.background = element_blank()))
+}
+
+pdf(paste0(file.loc.state,'com_state_map_men_seas_',min(year.group.2),'_',max(year.group.2),'.pdf'),paper='a4r',height=0,width=0)
+plot.function.state.split.2.seas(1)
+dev.off()
+
+pdf(paste0(file.loc.state,'com_state_map_women_seas_',min(year.group.2),'_',max(year.group.2),'.pdf'),paper='a4r',height=0,width=0)
+plot.function.state.split.2.seas(2)
+dev.off()
+
+
+
+
+
