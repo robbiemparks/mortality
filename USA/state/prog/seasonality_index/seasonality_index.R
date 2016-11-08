@@ -13,6 +13,9 @@ args <- commandArgs(trailingOnly=TRUE)
 year.start <- as.numeric(args[1])
 year.end <- as.numeric(args[2])
 
+# length of analysis period
+num.years <- year.end - year.start + 1
+
 # load the data
 dat <- readRDS(paste0('../../output/prep_data/datus_state_rates_',year.start,'_',year.end))
 
@@ -71,6 +74,16 @@ dat.max.min.fixed$percent.change <- with(dat.max.min.fixed,round(100*(max / min)
 dat.max.min.fixed$sex.long <- as.factor(as.character(dat.max.min.fixed$sex))
 levels(dat.max.min.fixed$sex.long) <- sex.lookup
 
+# add time value that starts at 0
+dat.max.min.fixed$year.centre <- with(dat.max.min.fixed,year-year.start)
+
+# apply linear regression to each group by sex, age, month to find gradient
+lin.reg.grad <- ddply(dat.max.min.fixed, .(sex,age), function(z)coef(lm(percent.change ~ year.centre, data=z)))
+lin.reg.grad$end.value <- with(lin.reg.grad,`(Intercept)`+year.centre*(num.years-1))
+lin.reg.grad$start.value <- lin.reg.grad$`(Intercept)`
+lin.reg.grad$sex.long <- with(lin.reg.grad,as.factor(as.character(sex)))
+levels(lin.reg.grad$sex.long) <- sex.lookup
+
 ###############################################################
 # DIRECTORY CREATION
 ###############################################################
@@ -98,7 +111,7 @@ plot.function.nat.rel <- function(sex.sel) {
     geom_hline(yintercept=0, linetype=2,alpha=0.5) +
     ylim(min.plot,max.plot) +
     xlab('Year') +
-    ylab('Seasonality Index') +
+    ylab('Percentage excess between max/min death rates') +
     ggtitle(sex.lookup[sex.sel]) +
     scale_colour_manual(values=colorRampPalette(rev(brewer.pal(12,"RdYlGn")[c(1:5,7:9)]))(length(unique(dat.max.min$age))),guide = guide_legend(title = 'Age group')) +
     theme(legend.position='bottom',text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
@@ -125,7 +138,7 @@ plot.function.nat.rel.both <- function() {
     geom_hline(yintercept=0, linetype=2,alpha=0.5) +
     ylim(min.plot,max.plot) +
     xlab('Year') +
-    ylab('Seasonality Index') +
+    ylab('Percentage excess between max/min death rates') +
     facet_wrap(~sex.long) +
     scale_colour_manual(values=colorRampPalette(rev(brewer.pal(12,"RdYlGn")[c(1:5,7:9)]))(length(unique(dat.max.min$age))),guide = guide_legend(title = 'Age group')) +
     theme(legend.position='bottom',text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
@@ -134,7 +147,7 @@ plot.function.nat.rel.both <- function() {
 }
 
 # plot
-pdf(paste0(file.loc,'seasonality_index_mf_',year.start,'_',year.start,'.pdf'),height=0,width=0,paper='a4r')
+pdf(paste0(file.loc,'seasonality_index_mf_',year.start,'_',year.end,'.pdf'),height=0,width=0,paper='a4r')
 plot.function.nat.rel.both()
 dev.off()
 
@@ -193,13 +206,38 @@ plot.function.nat.abs.both <- function() {
 }
 
 # plot
-pdf(paste0(file.loc,'log_abs_maxmin_mf_',year.start,'_',year.start,'.pdf'),height=0,width=0,paper='a4r')
+pdf(paste0(file.loc,'log_abs_maxmin_mf_',year.start,'_',year.end,'.pdf'),height=0,width=0,paper='a4r')
 plot.function.nat.abs.both()
 dev.off()
 
 ######################################################################
 # RATIO OF MAX/MIN MORTALITY RATE OVER TIME BY STATE FIXED OVER PERIOD
 ######################################################################
+
+# 0. comparison of start and end values by 
+
+# plot coefficient of seasonality for each age nationally at start and end of period
+plot.function.diff.seas <- function() {
+
+	lin.reg.grad$shape.code <- ifelse(lin.reg.grad$sex==1,77,87)	
+
+    	print(ggplot() +
+	geom_point(data=subset(lin.reg.grad,sex==1),aes(color=as.factor(age),x=start.value,y=end.value),shape=77,size=6) +  
+	geom_point(data=subset(lin.reg.grad,sex==2),aes(color=as.factor(age),x=start.value,y=end.value),shape=87,size=6) + 
+	geom_abline(slope=1,intercept=0, linetype=2,alpha=0.5) +
+    	xlab('Percentage excess between max/min death rates at start of period') +
+   	ylab('Percentage excess between max/min death rates at end of period') +
+    	scale_colour_manual(values=colorRampPalette(rev(brewer.pal(12,"RdYlGn")[c(1:5,7:9)]))(length  (unique(dat.max.min$age))),guide = guide_legend(title = 'Age group')) +
+    	theme(legend.position='bottom',text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+    panel.background = element_blank(), axis.line = element_line(colour = "black"),
+    rect = element_blank())
+	)
+}
+
+# plot
+pdf(paste0(file.loc,'seasonality_index_change_',year.start,'_',year.end,'.pdf'),height=0,width=0,paper='a4r')
+plot.function.diff.seas()
+dev.off()
 
 # 1. ratio of difference sexes
 
@@ -216,7 +254,7 @@ plot.function.nat.rel.fixed <- function(sex.sel) {
     geom_hline(yintercept=0, linetype=2,alpha=0.5) +
     ylim(min.plot,max.plot) +
     xlab('Year') +
-    ylab('Seasonality Index') +
+    ylab('Percentage excess between max/min death rates') +
     ggtitle(sex.lookup[sex.sel]) +
     scale_colour_manual(values=colorRampPalette(rev(brewer.pal(12,"RdYlGn")[c(1:5,7:9)]))(length(unique(dat.max.min$age))),guide = guide_legend(title = 'Age group')) +
     theme(legend.position='bottom',text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
@@ -243,7 +281,7 @@ plot.function.nat.rel.both.fixed <- function() {
     geom_hline(yintercept=0, linetype=2,alpha=0.5) +
     ylim(min.plot,max.plot) +
     xlab('Year') +
-    ylab('Seasonality Index') +
+    ylab('Percentage excess between max/min death rates') +
     facet_wrap(~sex.long) +
     scale_colour_manual(values=colorRampPalette(rev(brewer.pal(12,"RdYlGn")[c(1:5,7:9)]))(length(unique(dat.max.min$age))),guide = guide_legend(title = 'Age group')) +
     theme(legend.position='bottom',text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
@@ -252,6 +290,6 @@ plot.function.nat.rel.both.fixed <- function() {
 }
 
 # plot
-pdf(paste0(file.loc,'seasonality_index_fixed_months_mf_',year.start,'_',year.start,'.pdf'),height=0,width=0,paper='a4r')
+pdf(paste0(file.loc,'seasonality_index_fixed_months_mf_',year.start,'_',year.end,'.pdf'),height=0,width=0,paper='a4r')
 plot.function.nat.rel.both.fixed()
 dev.off()

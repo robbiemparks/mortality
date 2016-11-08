@@ -54,8 +54,8 @@ dat.nat.split <- readRDS(paste0(file.loc.nat.input,'com_inv_com_national_values_
 # entire period com plot
 pdf(paste0(file.loc.nat.output,'USA_COM_total_axis_swapped_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
 ggplot() +
-geom_point(data=subset(dat.nat,type=='max'),aes(x=factor(age),y=COM.mean,size=size),fill='red',shape=24) +
-geom_point(data=subset(dat.nat,type=='min'),aes(y=COM.mean,x=factor(age),size=size),fill='green',shape=25) +
+geom_point(data=subset(dat.nat,type=='max'),aes(x=factor(age),y=COM.mean,size=size),fill='red',shape=21) +
+geom_point(data=subset(dat.nat,type=='min'),aes(y=COM.mean,x=factor(age),size=size),fill='green',shape=21) +
 geom_hline(aes(linetype=2),linetype=2, yintercept = 0:12, alpha=0.5) +
 geom_vline(aes(linetype=2),linetype=2, xintercept = 1:10) +
 #geom_errorbarh(aes(xmin=lowerCI,xmax=upperCI,color=as.factor(sex)),height=0) +
@@ -73,8 +73,8 @@ dev.off()
 # period 1 com plot
 pdf(paste0(file.loc.nat.output,'USA_COM_total_axis_swapped_',min(year.group.1),'_',max(year.group.1),'.pdf'),paper='a4r',height=0,width=0)
 ggplot() +
-geom_point(data=subset(dat.nat.split,type=='max' & period==1),aes(x=factor(age),y=COM.mean,size=size),fill='red',shape=24) +
-geom_point(data=subset(dat.nat.split,type=='min' & period==1),aes(y=COM.mean,x=factor(age),size=size),fill='green',shape=25) +
+geom_point(data=subset(dat.nat.split,type=='max' & period==1),aes(x=factor(age),y=COM.mean,size=size),fill='red',shape=21) +
+geom_point(data=subset(dat.nat.split,type=='min' & period==1),aes(y=COM.mean,x=factor(age),size=size),fill='green',shape=21) +
 geom_hline(aes(linetype=2),linetype=2, yintercept = 0:12, alpha=0.5) +
 geom_vline(aes(linetype=2),linetype=2, xintercept = 1:10) +
 #geom_errorbarh(aes(xmin=lowerCI,xmax=upperCI,color=as.factor(sex)),height=0) +
@@ -92,8 +92,8 @@ dev.off()
 # period 2 com plot
 pdf(paste0(file.loc.nat.output,'USA_COM_total_axis_swapped_',min(year.group.2),'_',max(year.group.2),'.pdf'),paper='a4r',height=0,width=0)
 ggplot() +
-geom_point(data=subset(dat.nat.split,type=='max' & period==2),aes(x=factor(age),y=COM.mean,size=size),fill='red',shape=24) +
-geom_point(data=subset(dat.nat.split,type=='min' & period==2),aes(y=COM.mean,x=factor(age),size=size),fill='green',shape=25) +
+geom_point(data=subset(dat.nat.split,type=='max' & period==2),aes(x=factor(age),y=COM.mean,size=size),fill='red',shape=21) +
+geom_point(data=subset(dat.nat.split,type=='min' & period==2),aes(y=COM.mean,x=factor(age),size=size),fill='green',shape=21) +
 geom_hline(aes(linetype=2),linetype=2, yintercept = 0:12, alpha=0.5) +
 geom_vline(aes(linetype=2),linetype=2, xintercept = 1:10) +
 #geom_errorbarh(aes(xmin=lowerCI,xmax=upperCI,color=as.factor(sex)),height=0) +
@@ -112,14 +112,14 @@ dev.off()
 pdf(paste0(file.loc.nat.output,'USA_COM_total_axis_swapped_entire_and_split_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
 ggplot() +
 
-geom_point(data=subset(dat.nat,type=='max'),aes(x=factor(age),y=COM.mean,size=size),fill='red',shape=24) +
-geom_point(data=subset(dat.nat,type=='min'),aes(y=COM.mean,x=factor(age),size=size),fill='green',shape=25) +
+geom_point(data=subset(dat.nat,type=='max'),aes(x=factor(age),y=COM.mean,size=size),fill='red',shape=21) +
+geom_point(data=subset(dat.nat,type=='min'),aes(y=COM.mean,x=factor(age),size=size),fill='green',shape=21) +
 
-geom_point(data=subset(dat.nat.split,type=='max' & period==1),aes(x=factor(age),y=COM.mean,size=size),fill='red',shape=24) +
-geom_point(data=subset(dat.nat.split,type=='min' & period==1),aes(y=COM.mean,x=factor(age),size=size),fill='green',shape=25) +
+geom_point(data=subset(dat.nat.split,type=='max' & period==1),aes(x=factor(age),y=COM.mean,size=size),fill='red',shape=21) +
+geom_point(data=subset(dat.nat.split,type=='min' & period==1),aes(y=COM.mean,x=factor(age),size=size),fill='green',shape=21) +
 
-geom_point(data=subset(dat.nat.split,type=='max' & period==2),aes(x=factor(age),y=COM.mean,size=size),fill='red',shape=24) +
-geom_point(data=subset(dat.nat.split,type=='min' & period==2),aes(y=COM.mean,x=factor(age),size=size),fill='green',shape=25) +
+geom_point(data=subset(dat.nat.split,type=='max' & period==2),aes(x=factor(age),y=COM.mean,size=size),fill='red',shape=21) +
+geom_point(data=subset(dat.nat.split,type=='min' & period==2),aes(y=COM.mean,x=factor(age),size=size),fill='green',shape=21) +
 
 geom_hline(aes(linetype=2),linetype=2, yintercept = 0:12, alpha=0.5) +
 geom_vline(aes(linetype=2),linetype=2, xintercept = 1:10) +
