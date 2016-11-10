@@ -160,8 +160,8 @@ dev.off()
 # sexes separately
 plot.function.nat.abs <- function(sex.sel) {
     
-    min.plot <- 0
-    max.plot <- max(dat.max.min$abs.diff)
+    min.plot <- log(min(dat.max.min$abs.diff))
+    max.plot <- log(max(dat.max.min$abs.diff))
     
     print(ggplot() +
     #geom_point(data=subset(dat.max.min, sex==sex.sel),aes(color=as.factor(age),x=year,y=log(abs.diff))) +
@@ -219,15 +219,16 @@ dev.off()
 # plot coefficient of seasonality for each age nationally at start and end of period
 plot.function.diff.seas <- function() {
 
-	lin.reg.grad$shape.code <- ifelse(lin.reg.grad$sex==1,77,87)	
+	lin.reg.grad$shape.code <- ifelse(lin.reg.grad$sex==1,77,87)
+	lin.reg.grad$shape.code <- lin.reg.grad$shape.code
 
     	print(ggplot() +
-	geom_point(data=subset(lin.reg.grad,sex==1),aes(color=as.factor(age),x=start.value,y=end.value),shape=77,size=6) +  
-	geom_point(data=subset(lin.reg.grad,sex==2),aes(color=as.factor(age),x=start.value,y=end.value),shape=87,size=6) + 
+	scale_shape_identity() + 
+	geom_point(data=subset(lin.reg.grad,sex==1|2),aes(shape=shape.code, color=as.factor(age),x=start.value,y=end.value),size=6) +
 	geom_abline(slope=1,intercept=0, linetype=2,alpha=0.5) +
     	xlab('Percentage excess between max/min death rates at start of period') +
    	ylab('Percentage excess between max/min death rates at end of period') +
-    	scale_colour_manual(values=colorRampPalette(rev(brewer.pal(12,"RdYlGn")[c(1:5,7:9)]))(length  (unique(dat.max.min$age))),guide = guide_legend(title = 'Age group')) +
+    	scale_colour_manual(values=colorRampPalette(rev(brewer.pal(12,"Dark2")[c(1:8)]))(length  (unique(dat.max.min$age))),guide = guide_legend(title = 'Age group')) +
     	theme(legend.position='bottom',text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
     panel.background = element_blank(), axis.line = element_line(colour = "black"),
     rect = element_blank())

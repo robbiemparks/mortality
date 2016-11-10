@@ -218,6 +218,26 @@ dat.state$COM.entire.round <- ifelse(dat.state$COM.entire.round==0,12,dat.state$
 # fix climate region names
 dat.state$climate_region <- gsub('_',' ',dat.state$region)
 
+# region lookup
+region.lookup <- unique(dat.state$climate_region)
+
+# TEMP add marker for leaving region white on map due to lack of 12-month significance
+dat.mark <- expand.grid(sex=c(1:2),age=c(0,5,15,25,35,45,55,65,75,85),region=region.lookup)
+dat.mark <- with(dat.mark, dat.mark[order(sex,age,region),])
+
+# save as csv TEMP
+write.csv(dat.mark,paste(file.loc.region,'dat_mark_unproc.csv'))
+
+# load csv TEMP
+dat.mark <- read.csv(paste(file.loc.region,'dat_mark_proc.csv'))
+dat.mark$region <- gsub(' ','_',dat.mark$region)
+
+# merge colour marker with state region COM data
+dat.state <- merge(dat.state,dat.mark)
+
+# mark rounded COM with a 0 if missing
+dat.state$test <- ifelse(dat.state$color.test==0,0,dat.state$COM.entire.round)
+
 ###############################################################
 # COM MAPS
 ###############################################################
@@ -232,8 +252,9 @@ dat.state.map <- with(dat.state.map, dat.state.map[order(sex,age,DRAWSEQ,order),
 dat.state.map$age.print <- with(dat.state.map,reorder(age.print,age))
 
 # ROUNDED
+
 # set colour scheme for months map
-map.climate.colour <- colorRampPalette(rev(brewer.pal(12,"Accent")[c(1:3,5,6)]))(12)
+map.climate.colour <- colorRampPalette(rev(brewer.pal(12,"Paired")[c(1:12)]),rev(brewer.pal(12,"Paired")[c(1:12)]))(12)
 
 # 1. map of average wavelet power at 12 months for entire period
 
@@ -241,9 +262,9 @@ map.climate.colour <- colorRampPalette(rev(brewer.pal(12,"Accent")[c(1:3,5,6)]))
 plot.function.state.entire.round <- function(sex.sel) {
     
     print(ggplot(data=subset(dat.state.map,sex==sex.sel),aes(x=long,y=lat,group=group)) +
-    geom_polygon(aes(fill=as.factor(COM.entire.round)),color='black',size=0.01) +
-    scale_fill_manual(values=map.climate.colour,labels=month.short,guide = guide_legend(title = 'Month')) +
-    #scale_fill_brewer(palette='Spectral', 'month') +
+    geom_polygon(aes(fill=as.factor(COM.entire.round)),color=NA,size=0) +
+    scale_fill_manual(values=map.climate.colour,labels=month.short,drop=FALSE,guide = guide_legend(title = 'Month')) +
+    #discrete_scale(drop=FALSE) + 
     facet_wrap(~age.print) +
     xlab('') +
     ylab('') +
@@ -386,7 +407,7 @@ dev.off()
 
 # ROUNDED
 # set colour scheme for months map
-map.climate.colour <- colorRampPalette(rev(brewer.pal(12,"Accent")[c(1:3,5,6)]))(12)
+map.climate.colour <- colorRampPalette(rev(brewer.pal(12,"Spectral")[c(1:2,10:11)]))(12)
 #map.climate.colour <- colorRampPalette(rev(brewer.pal(12,"Accent")[c(1:3,4:6,6:4,3:1)]))(12)
 
 # 1. map of average wavelet power at 12 months for entire period

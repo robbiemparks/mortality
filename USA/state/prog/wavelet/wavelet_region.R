@@ -105,10 +105,10 @@ plot.wavelet.state <- function(region.selected,sex.selected,age.selected) {
     graphics.reset = F,
     plot.ridge = F,
     plot.legend=F)
-    #abline(h = log(12)/log(2))
-    #mtext(text = "12", side = 2, at = log(12)/log(2), las = 1, line = 0.5)
-    abline(h=log(as.numeric(max.spectrum.period))/log(2))
-    mtext(text = as.character(round(max.spectrum.period,2)), side = 4, at = log(max.spectrum.period)/log(2), las = 1, line = 0.5)
+    abline(h = log(12)/log(2))
+    mtext(text = "12", side = 2, at = log(12)/log(2), las = 1, line = 0.5)
+    #abline(h=log(as.numeric(max.spectrum.period))/log(2))
+    #mtext(text = as.character(round(max.spectrum.period,2)), side = 4, at = log(max.spectrum.period)/log(2), las = 1, line = 0.5)
 }
 
 # function to plot state wavelet analysis for single sex split into two time periods

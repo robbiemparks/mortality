@@ -33,7 +33,7 @@ clear
 echo "starting region wavelet analysis for $country, years $start - $end";
 
 # runs wavelet analysis
-Rscript ~/git/mortality/USA/state/prog/wavelet/wavelet_state.R $start $end $numsim
+Rscript ~/git/mortality/USA/state/prog/wavelet/wavelet_region.R $start $end $numsim
 
 #################################################
 # 3. STATE WAVELET ANALYSIS
@@ -44,7 +44,7 @@ clear
 echo "starting state wavelet analysis for $country, years $start - $end";
 
 # runs wavelet analysis
-Rscript ~/git/mortality/USA/state/prog/wavelet/wavelet_state.R $start $end $numsim
+#Rscript ~/git/mortality/USA/state/prog/wavelet/wavelet_state.R $start $end $numsim
 
 #################################################
 # 4. WAVELET DATA PROCESSING

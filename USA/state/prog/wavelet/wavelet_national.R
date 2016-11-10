@@ -321,10 +321,10 @@ plot.wavelet.national.all <- function(sex.selected) {
         graphics.reset = F,
         plot.ridge = F,
         plot.legend=F)
-        #abline(h = log(12)/log(2))
-        #mtext(text = "12", side = 2, at = log(12)/log(2), las = 1, line = 0.5)
-        abline(h=log(as.numeric(max.spectrum.period))/log(2))
-        mtext(text = as.character(round(max.spectrum.period)), side = 4, at = log(max.spectrum.period)/log(2), las = 1, line = 0.5)
+        abline(h = log(12)/log(2))
+        mtext(text = "12", side = 2, at = log(12)/log(2), las = 1, line = 0.5)
+        #abline(h=log(as.numeric(max.spectrum.period))/log(2))
+        #mtext(text = as.character(round(max.spectrum.period)), side = 4, at = log(max.spectrum.period)/log(2), las = 1, line = 0.5)
         title(main=plot.title)
 
         # plot density graph
@@ -439,22 +439,22 @@ plot.wavelet.national.all.split <- function(sex.selected) {
 ifelse(!dir.exists(paste0(file.loc,'plots/')), dir.create(paste0(file.loc,'plots/'),recursive=TRUE), FALSE)
 
 # output national wavelet files sex separately
-pdf(paste0(file.loc,'plots/wavelet_national_males_',num.sim,'_sim_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
-mapply(plot.wavelet.national,sex.selected=1,age=c(0,5,15,25,35,45,55,65,75,85))
-dev.off()
+#pdf(paste0(file.loc,'plots/wavelet_national_males_',num.sim,'_sim_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
+#mapply(plot.wavelet.national,sex.selected=1,age=c(0,5,15,25,35,45,55,65,75,85))
+#dev.off()
 
-pdf(paste0(file.loc,'plots/wavelet_national_females_',num.sim,'_sim_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
-mapply(plot.wavelet.national,sex.selected=2,age=c(0,5,15,25,35,45,55,65,75,85))
-dev.off()
+#pdf(paste0(file.loc,'plots/wavelet_national_females_',num.sim,'_sim_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
+#mapply(plot.wavelet.national,sex.selected=2,age=c(0,5,15,25,35,45,55,65,75,85))
+#dev.off()
 
 # output national wavelet files split time period
-pdf(paste0(file.loc,'plots/wavelet_national_split_time_males_',num.sim,'_sim_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
-mapply(plot.wavelet.national.split,sex.selected=1,age=c(0,5,15,25,35,45,55,65,75,85))
-dev.off()
+#pdf(paste0(file.loc,'plots/wavelet_national_split_time_males_',num.sim,'_sim_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
+#mapply(plot.wavelet.national.split,sex.selected=1,age=c(0,5,15,25,35,45,55,65,75,85))
+#dev.off()
 
-pdf(paste0(file.loc,'plots/wavelet_national_split_time_females_',num.sim,'_sim_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
-mapply(plot.wavelet.national.split,sex.selected=2,age=c(0,5,15,25,35,45,55,65,75,85))
-dev.off()
+#pdf(paste0(file.loc,'plots/wavelet_national_split_time_females_',num.sim,'_sim_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
+#mapply(plot.wavelet.national.split,sex.selected=2,age=c(0,5,15,25,35,45,55,65,75,85))
+#dev.off()
 
 # output national wavelet files sex together
 #pdf(paste0(file.loc,'wavelet_national_mf_',num.sim,'_sim_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
@@ -471,11 +471,11 @@ plot.wavelet.national.all(2)
 dev.off()
 
 # output national wavelet files sex separately split time period all on one page
-pdf(paste0(file.loc,'plots/wavelet_national_all_split_men_',num.sim,'_sim_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
-plot.wavelet.national.all.split(1)
-dev.off()
+#pdf(paste0(file.loc,'plots/wavelet_national_all_split_men_',num.sim,'_sim_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
+#plot.wavelet.national.all.split(1)
+#dev.off()
 
-pdf(paste0(file.loc,'plots/wavelet_national_all_split_women_',num.sim,'_sim_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
-plot.wavelet.national.all.split(2)
-dev.off()
+#pdf(paste0(file.loc,'plots/wavelet_national_all_split_women_',num.sim,'_sim_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
+#plot.wavelet.national.all.split(2)
+#dev.off()
 
