@@ -214,6 +214,11 @@ dev.off()
 # RATIO OF MAX/MIN MORTALITY RATE OVER TIME BY STATE FIXED OVER PERIOD
 ######################################################################
 
+# remove com data that doesn't meet wavelet criteria (automate?)
+lin.reg.grad <- subset(lin.reg.grad,!(age==35 & sex==1))
+lin.reg.grad <- subset(lin.reg.grad,!(age==5 & sex==2))
+lin.reg.grad <- subset(lin.reg.grad,!(age==25 & sex==2))
+
 # 0. comparison of start and end values
 
 age.colours <- c('#00ff00','#00cc00','#009900','#006600','#003300','#ff0000','#cc0000','#990000','#660000','#330000')
@@ -228,8 +233,10 @@ plot.function.diff.seas <- function() {
     scale_shape_identity() +
 	geom_point(data=subset(lin.reg.grad,sex==1|2),aes(shape=shape.code, color=as.factor(age),x=start.value,y=end.value),size=6) +
 	geom_abline(slope=1,intercept=0, linetype=2,alpha=0.5) +
-    	xlab('Percentage excess between max/min death rates at start of period') +
-   	ylab('Percentage excess between max/min death rates at end of period') +
+    xlim(c(0,50)) +
+    ylim(c(0,50)) +
+    xlab(paste0('Seasonal excess in ',year.start)) +
+    ylab(paste0('Seasonal excess in ',year.end)) +
     scale_colour_manual(labels=c('0-4','5-14','15-24','25-34','35-44','45-54','55-64','65-74','75-84','85+'),values=age.colours,guide = guide_legend(title = 'Age group')) +
     #scale_shape_manual(values=c(3,4)) +
     theme(legend.position='bottom',text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(),

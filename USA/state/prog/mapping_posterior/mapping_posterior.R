@@ -194,7 +194,24 @@ levels(lin.reg.grad$sex) <- c('Men','Women')
 ###############################################################
 
 # for theme_map
-devtools::source_gist("33baa3a79c5cfef0f6df")
+#devtools::source_gist("33baa3a79c5cfef0f6df")
+theme_map <- function(base_size=9, base_family=""){
+    require(grid)
+    theme_bw(base_size=base_size,base_family=base_family) %+replace%
+    theme(axis.line=element_blank(),
+    axis.text=element_blank(),
+    axis.ticks=element_blank(),
+    axis.title=element_blank(),
+    panel.background=element_blank(),
+    panel.border=element_blank(),
+    panel.grid=element_blank(),
+    panel.margin=unit(0,"lines"),
+    plot.background=element_blank(),
+    legend.justification = c(0,0),
+    legend.position = c(0,0)
+    )
+}
+
 
 # load shapefile
 us <- readOGR(dsn="../../data/shapefiles",layer="states")
@@ -264,17 +281,30 @@ shapefile.data$SUB_REGION <- c('Far West','Rocky Mountain','New England','Plains
 #				'Far West')
 
 
-shapefile.data$climate_region <- 	c('Northwest','Northern Rockies and Plains','Northeast','Northern Rockies and Plains','Northern Rockies and Plains',
-					'Northern Rockies and Plains','Upper Midwest','Northwest','Northeast','Upper Midwest',
-					'Northwest','Northeast','Upper Midwest','Northeast','Northern Rockies and Plains',
+shapefile.data$climate_region <- 	c('Northwest','West North Central','Northeast','West North Central','West North Central',
+					'West North Central','Upper Midwest','Northwest','Northeast','Upper Midwest',
+					'Northwest','Northeast','Upper Midwest','Northeast','West North Central',
 					'Northeast','Northeast','Northeast','Northeast','Northeast',
-					'Ohio Valley','West','Southwest','West','Ohio Valley',
-					'Ohio Valley','Northeast','Northeast','Ohio Valley','Northeast',
-					'Southwest','Ohio Valley','South','Southeast','Ohio Valley',
-					'Southwest','South','Southeast','Ohio Valley','South',
+					'East North Central','West','Southwest','West','East North Central',
+					'East North Central','Northeast','Northeast','East North Central','Northeast',
+					'Southwest','East North Central','South','Southeast','East North Central',
+					'Southwest','South','Southeast','East North Central','South',
 					'Southwest','Southeast','South','Southeast','Southeast',
 					'South','South','Southeast','Upper Midwest','Northwest',
-					'West')				
+					'West')
+
+#shapefile.data$climate_region <- 	c('Northwest','Northern Rockies and Plains','Northeast','Northern Rockies and Plains','Northern Rockies and Plains',
+#'Northern Rockies and Plains','Upper Midwest','Northwest','Northeast','Upper Midwest',
+#'Northwest','Northeast','Upper Midwest','Northeast','Northern Rockies and Plains',
+#'Northeast','Northeast','Northeast','Northeast','Northeast',
+#'Ohio Valley','West','Southwest','West','Ohio Valley',
+#'Ohio Valley','Northeast','Northeast','Ohio Valley','Northeast',
+#'Southwest','Ohio Valley','South','Southeast','Ohio Valley',
+#'Southwest','South','Southeast','Ohio Valley','South',
+#'Southwest','Southeast','South','Southeast','Southeast',
+#'South','South','Southeast','Upper Midwest','Northwest',
+#'West')
+
 
 
 # merge selected data to map dataframe for colouring of ggplot

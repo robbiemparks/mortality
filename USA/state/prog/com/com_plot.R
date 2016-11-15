@@ -194,17 +194,46 @@ map <- fortify(us_aea)
 shapefile.data <- us_aea@data
 
 # add climate regions from Karl and Koss
-shapefile.data$climate_region <- c('Northwest','Northern Rockies and Plains','Northeast','Northern Rockies and Plains','Northern Rockies and Plains',
-'Northern Rockies and Plains','Upper Midwest','Northwest','Northeast','Upper Midwest',
-'Northwest','Northeast','Upper Midwest','Northeast','Northern Rockies and Plains',
+shapefile.data$climate_region <- 	c('Northwest','West North Central','Northeast','West North Central','West North Central',
+'West North Central','Upper Midwest','Northwest','Northeast','Upper Midwest',
+'Northwest','Northeast','Upper Midwest','Northeast','West North Central',
 'Northeast','Northeast','Northeast','Northeast','Northeast',
-'Ohio Valley','West','Southwest','West','Ohio Valley',
-'Ohio Valley','Northeast','Northeast','Ohio Valley','Northeast',
-'Southwest','Ohio Valley','South','Southeast','Ohio Valley',
-'Southwest','South','Southeast','Ohio Valley','South',
+'East North Central','West','Southwest','West','East North Central',
+'East North Central','Northeast','Northeast','East North Central','Northeast',
+'Southwest','East North Central','South','Southeast','East North Central',
+'Southwest','South','Southeast','East North Central','South',
 'Southwest','Southeast','South','Southeast','Southeast',
 'South','South','Southeast','Upper Midwest','Northwest',
 'West')
+
+# reinsert shapefile.data with climate regions back into shapefile
+us_aea@data <- shapefile.data
+
+# extract superregions
+for(i in unique(shapefile.data$climate_region)){
+    temp <- us_aea[us_aea$climate_region==i,]
+    assign(gsub(' ','_',i),temp)
+}
+
+# function to create borders around superregions
+borders <- function(superregion) {
+    lps <- getSpPPolygonsLabptSlots(superregion)
+    IDOneBin <- cut(lps[,1], range(lps[,1]), include.lowest=TRUE)
+    dissolve   <- unionSpatialPolygons(superregion ,IDOneBin)
+}
+
+# combine all superregions
+superregions <- rbind(  borders(Northwest),borders(West_North_Central),borders(Northeast),borders(Upper_Midwest),
+                        borders(East_North_Central),borders(West),borders(Southwest),borders(South),borders(Southeast))
+
+# fortify to prepare for ggplot
+map.superregions <- fortify(superregions)
+
+# plot superregions
+# NEED TO IDENTIFY HOW TO UNIQUELY IDENTIFY SUPERREGIONS
+ggplot() +
+#geom_polygon(data=map,aes(x=long,y=lat,group=group),fill='white',color='Black',size=1) +
+geom_polygon(data=subset(map.superregions,id2=1),aes(x=long,y=lat,group=group),alpha=0,fill='Red',color='Red',size=1.2)
 
 # merge selected data to map dataframe for colouring of ggplot
 USA.df <- merge(map, shapefile.data, by='id')

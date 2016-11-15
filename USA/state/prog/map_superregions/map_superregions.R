@@ -88,25 +88,10 @@ for(i in unique(shapefile.data$climate_region)){
     assign(gsub(' ','_',i),temp)
 }
 
-# create borders around superregions
-test <- getSpPPolygonsLabptSlots(South)
-
-
-# fortify to prepare for ggplot
-map <- fortify(us_aea)
-
-# merge selected data to map dataframe for colouring of ggplot
-USA.df <- merge(map, shapefile.data, by='id')
-USA.df$STATE_FIPS <- as.integer(as.character(USA.df$STATE_FIPS))
-
-# 2. REGION
-
-# load region data
-file.loc.region <- paste0("../../output/com/",year.start.arg,'_',year.end.arg,"/region/")
-
-# round com data for each region
-dat.state$COM.entire.round <- round(dat.state$COM.mean)
-dat.state$COM.entire.round <- ifelse(dat.state$COM.entire.round==0,12,dat.state$COM.entire.round)
-
-# region lookup
-region.lookup <- unique(dat.state$climate_region)
+# function to create borders around superregions
+borders <- function(superregion) {
+    lps <- getSpPPolygonsLabptSlots(superregion)
+    IDOneBin <- cut(lps[,1], range(lps[,1]), include.lowest=TRUE)
+    dissolve   <- unionSpatialPolygons(superregion ,IDOneBin)
+    #plot(dissolve)
+}
