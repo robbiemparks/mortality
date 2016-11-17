@@ -264,7 +264,6 @@ dat.state.inv$COM.entire.round <- ifelse(dat.state.inv$COM.entire.round==0,12,da
 dat.state$climate_region <- gsub('_',' ',dat.state$region)
 dat.state.inv$climate_region <- gsub('_',' ',dat.state.inv$region)
 
-
 # region lookup
 region.lookup <- unique(dat.state$climate_region)
 

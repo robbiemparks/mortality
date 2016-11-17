@@ -1,4 +1,5 @@
 rm(list=ls())
+
 library(maptools)
 library(mapproj)
 library(rgeos)
@@ -226,22 +227,20 @@ age.colours <- c('#00ff00','#00cc00','#009900','#006600','#003300','#ff0000','#c
 # plot coefficient of seasonality for each age nationally at start and end of period
 plot.function.diff.seas <- function() {
 
-	lin.reg.grad$shape.code <- ifelse(lin.reg.grad$sex==1,3,4)
-	lin.reg.grad$shape.code <- lin.reg.grad$shape.code
+#lin.reg.grad$shape.code <- ifelse(lin.reg.grad$sex==1,16,1)
+#lin.reg.grad$shape.code <- as.factor(lin.reg.grad$shape.code)
 
     print(ggplot() +
-    scale_shape_identity() +
-	geom_point(data=subset(lin.reg.grad,sex==1|2),aes(shape=shape.code, color=as.factor(age),x=start.value,y=end.value),size=6) +
+	geom_point(data=subset(lin.reg.grad,sex==1|2),aes(shape=as.factor(sex), color=as.factor(age),x=start.value,y=end.value),size=6) +
 	geom_abline(slope=1,intercept=0, linetype=2,alpha=0.5) +
     xlim(c(0,50)) +
     ylim(c(0,50)) +
+    scale_shape_manual(values=c(16,1),labels=c('Men','Women'),guide = guide_legend(title = 'Sex:')) +
     xlab(paste0('Seasonal excess in ',year.start)) +
     ylab(paste0('Seasonal excess in ',year.end)) +
-    scale_colour_manual(labels=c('0-4','5-14','15-24','25-34','35-44','45-54','55-64','65-74','75-84','85+'),values=age.colours,guide = guide_legend(title = 'Age group')) +
-    #scale_shape_manual(values=c(3,4)) +
-    theme(legend.position='bottom',text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-    panel.background = element_blank(), axis.line = element_line(colour = "black"),
-    rect = element_blank())
+    #guides(color = guide_legend(order=2),size = guide_legend(order=1)) +
+    scale_colour_manual(labels=c('0-4','5-14','15-24','25-34','35-44','45-54','55-64','65-74','75-84','85+'),values=age.colours,guide = guide_legend(title = 'Age group:')) +
+    theme(legend.box = "horizontal",legend.position='bottom',text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"),rect = element_blank())
 	)
 }
 

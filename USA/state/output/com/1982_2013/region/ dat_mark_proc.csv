@@ -44,7 +44,7 @@ sex,age,region,color.test
 1,35,Southwest,0
 1,35,South,0
 1,35,Southeast,0
-1,45,Northwest,0
+1,45,Northwest,1
 1,45,West_North_Central,1
 1,45,Northeast,1
 1,45,Upper Midwest,1
@@ -115,10 +115,10 @@ sex,age,region,color.test
 2,15,West,1
 2,15,Southwest,1
 2,15,South,1
-2,15,Southeast,0
+2,15,Southeast,1
 2,25,Northwest,0
 2,25,West_North_Central,0
-2,25,Northeast,1
+2,25,Northeast,0
 2,25,Upper Midwest,0
 2,25,East_North_Central,0
 2,25,West,0
@@ -135,7 +135,7 @@ sex,age,region,color.test
 2,35,South,1
 2,35,Southeast,1
 2,45,Northwest,1
-2,45,West_North_Central,0
+2,45,West_North_Central,1
 2,45,Northeast,1
 2,45,Upper Midwest,1
 2,45,East_North_Central,1
