@@ -93,5 +93,12 @@ borders <- function(superregion) {
     lps <- getSpPPolygonsLabptSlots(superregion)
     IDOneBin <- cut(lps[,1], range(lps[,1]), include.lowest=TRUE)
     dissolve   <- unionSpatialPolygons(superregion ,IDOneBin)
-    #plot(dissolve)
 }
+
+# combine all superregions
+superregions <- rbind(  borders(Northwest),borders(West_North_Central),borders(Northeast),borders(Upper_Midwest),
+borders(East_North_Central),borders(West),borders(Southwest),borders(South),borders(Southeast))
+
+# fortify to prepare for ggplot
+map.superregions <- fortify(superregions)
+

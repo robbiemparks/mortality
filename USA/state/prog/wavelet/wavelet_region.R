@@ -56,7 +56,7 @@ dat.national$climate_region <- gsub(' ','_',dat.national$climate_region)
 region.lookup <- unique(dat.national$climate_region)
 
 # function to plot state wavelet analysis for single sex
-plot.wavelet.state <- function(region.selected,sex.selected,age.selected) {
+plot.wavelet.region <- function(region.selected,sex.selected,age.selected) {
     
     dat <- subset(dat.national, climate_region==region.selected & sex==sex.selected & age==age.selected)
     
@@ -112,17 +112,16 @@ plot.wavelet.state <- function(region.selected,sex.selected,age.selected) {
 }
 
 # function to plot state wavelet analysis for single sex split into two time periods
-plot.wavelet.state.split <- function(fips.selected,sex.selected,age.selected) {
+plot.wavelet.region.split <- function(region.selected,sex.selected,age.selected) {
     
-    dat <- subset(dat, fips==fips.selected & sex==sex.selected & age==age.selected)
+    dat <- subset(dat.national, climate_region==region.selected & sex==sex.selected & age==age.selected)
     
     age.single <- as.matrix(age.code[age.code==age.selected,])[2]
-    state.single <- state.lookup[state.lookup$fips==fips.selected,][[1]]
     
-    plot.title <- paste0(sex.lookup[sex.selected],' USA ',state.single,' ',age.single)
+    plot.title <- paste0(sex.lookup[sex.selected],' USA ',region.selected,' ',age.single)
     
     # prepare data frame for anaylsis
-    my.data <- data.frame(year=dat$year,date=as.Date(as.character(dat$year),format='%Y'),log.rate=log(dat$rate.adj),log.deaths=log(dat$deaths.adj+1))
+    my.data <- data.frame(year=dat$year,date=as.Date(as.character(dat$year),format='%Y'),log.rate=log(dat$rate.adj),log.deaths=log(dat$deaths.pred+1))
     
     # perform wavelet analysis for first time period
     my.w.1 <- analyze.wavelet(subset(my.data,year %in% year.group.1), "log.rate",
@@ -139,10 +138,10 @@ plot.wavelet.state.split <- function(fips.selected,sex.selected,age.selected) {
     
     # find value of normalised power spectrum at 12 months and save
     value.12.months.1 <- dat.spectrum.1[abs(12-dat.spectrum.1$period)==min(abs(12-dat.spectrum.1$period)),][2]
-    dat.export <- data.frame(age=age.selected,fips=fips.selected,sex=sex.selected, twelve.month.value.1=as.numeric(value.12.months.1))
+    dat.export <- data.frame(age=age.selected,region=region.selected,sex=sex.selected, twelve.month.value.1=as.numeric(value.12.months.1))
     file.loc.12 <- paste0(file.loc,'12_month_values/split_period/',age.selected,'/')
     ifelse(!dir.exists(file.loc.12), dir.create(file.loc.12,recursive=TRUE), FALSE)
-    saveRDS(dat.export,paste0(file.loc.12,age.selected,'_',sex.lookup[sex.selected],'_',fips.selected,'_part1'))
+    saveRDS(dat.export,paste0(file.loc.12,age.selected,'_',sex.lookup[sex.selected],'_',region.selected,'_part1'))
     
     # perform wavelet analysis for second time period
     my.w.2 <- analyze.wavelet(subset(my.data,year %in% year.group.2), "log.rate",
@@ -159,38 +158,38 @@ plot.wavelet.state.split <- function(fips.selected,sex.selected,age.selected) {
     
     # find value of normalised power spectrum at 12 months
     value.12.months.2 <- dat.spectrum.2[abs(12-dat.spectrum.2$period)==min(abs(12-dat.spectrum.2$period)),][2]
-    dat.export <- data.frame(age=age.selected,sex=sex.selected,fips=fips.selected,twelve.month.value.2=as.numeric(value.12.months.2))
-    saveRDS(dat.export,paste0(file.loc.12,age.selected,'_',sex.lookup[sex.selected],'_',fips.selected,'_part2'))
+    dat.export <- data.frame(age=age.selected,sex=sex.selected,region=region.selected,twelve.month.value.2=as.numeric(value.12.months.2))
+    saveRDS(dat.export,paste0(file.loc.12,age.selected,'_',sex.lookup[sex.selected],'_',region.selected,'_part2'))
     # set up grid plot
     layout(rbind(c(1,2,3,4)),widths=c(2,1,2,1))
     
     # plot wavelet analysis for first time period
-    plot.title.1 <- paste0(sex.lookup[sex.selected],' ',age.single,' ',state.single,' : ',min(year.group.1),'-',max(year.group.1))
+    plot.title.1 <- paste0(sex.lookup[sex.selected],' ',age.single,' ',region.selected,' : ',min(year.group.1),'-',max(year.group.1))
     wt.image(my.w.1, n.levels = 250,
     legend.params = list(lab = "wavelet power levels"),
     periodlab = "periods (months)", show.date = T,timelab = "",
     graphics.reset = F,
     plot.legend=F)
-    #abline(h = log(12)/log(2))
-    #mtext(text = "12", side = 2, at = log(12)/log(2), las = 1, line = 0.5)
-    abline(h=log(as.numeric(max.spectrum.period.1))/log(2))
-    mtext(text = as.character(round(max.spectrum.period.1,2)), side = 4, at = log(max.spectrum.period.1)/log(2), las = 1, line = 0.5)
+    abline(h = log(12)/log(2))
+    mtext(text = "12", side = 2, at = log(12)/log(2), las = 1, line = 0.5)
+    #abline(h=log(as.numeric(max.spectrum.period.1))/log(2))
+    #mtext(text = as.character(round(max.spectrum.period.1,2)), side = 4, at = log(max.spectrum.period.1)/log(2), las = 1, line = 0.5)
     title(main=plot.title.1)
     
     # plot density graphs for first time period
     wt.avg(my.w.1)
     
     # plot wavelet analysis for second time period
-    plot.title.2 <- paste0(sex.lookup[sex.selected],' ',age.single,' ',state.single,' : ',min(year.group.2),'-',max(year.group.2))
+    plot.title.2 <- paste0(sex.lookup[sex.selected],' ',age.single,' ',region.selected,' : ',min(year.group.2),'-',max(year.group.2))
     wt.image(my.w.2, n.levels = 250,
     legend.params = list(lab = "wavelet power levels"),
     periodlab = "periods (months)", show.date = T,timelab = "",
     graphics.reset = F,
     plot.legend=F)
-    #abline(h = log(12)/log(2))
-    #mtext(text = "12", side = 2, at = log(12)/log(2), las = 1, line = 0.5)
-    abline(h=log(as.numeric(max.spectrum.period.2))/log(2))
-    mtext(text = as.character(round(max.spectrum.period.2,2)), side = 4, at = log(max.spectrum.period.2)/log(2), las = 1, line = 0.5)
+    abline(h = log(12)/log(2))
+    mtext(text = "12", side = 2, at = log(12)/log(2), las = 1, line = 0.5)
+    #abline(h=log(as.numeric(max.spectrum.period.2))/log(2))
+    #mtext(text = as.character(round(max.spectrum.period.2,2)), side = 4, at = log(max.spectrum.period.2)/log(2), las = 1, line = 0.5)
     title(main=plot.title.2)
     
     
@@ -265,15 +264,41 @@ plot.wavelet.state.all <- function(age.selected,sex.selected) {
 
 ifelse(!dir.exists(paste0(file.loc,'plots/')), dir.create(paste0(file.loc,'plots/'),recursive=TRUE), FALSE)
 
+# output state wavelet files sex separately split time period
+#for(i in 1:nrow(age.code)){
+#   pdf(paste0(file.loc,'plots/wavelet_region_split_time_',age.code[i,1],'_males_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
+#mapply(plot.wavelet.region.split,region.selected=region.lookup,sex.selected=1,age=age.code[i,1])
+#   dev.off()
+#}
+
+for(i in 1:nrow(age.code)){
+    pdf(paste0(file.loc,'plots/wavelet_region_split_time_',age.code[i,1],'_females_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
+mapply(plot.wavelet.region.split,region.selected=region.lookup,sex.selected=2,age=age.code[i,1])
+    dev.off()
+} 
+
 # output state wavelet files sex separately entire time period
 for(i in 1:nrow(age.code)){
     pdf(paste0(file.loc,'plots/wavelet_region_',age.code[i,1],'_males_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
-    mapply(plot.wavelet.state,region.selected=region.lookup,sex.selected=1,age=age.code[i,1])
+    mapply(plot.wavelet.region,region.selected=region.lookup,sex.selected=1,age=age.code[i,1])
     dev.off()
 }
 
 for(i in 1:nrow(age.code)){
     pdf(paste0(file.loc,'plots/wavelet_region_',age.code[i,1],'_females_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
-    mapply(plot.wavelet.state,region.selected=region.lookup,sex.selected=2,age=age.code[i,1])
+    mapply(plot.wavelet.region,region.selected=region.lookup,sex.selected=2,age=age.code[i,1])
+    dev.off()
+}
+
+# output state wavelet files sex separately split time period
+for(i in 1:nrow(age.code)){
+    pdf(paste0(file.loc,'plots/wavelet_region_split_time_',age.code[i,1],'_males_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
+    mapply(plot.wavelet.region.split,region.selected=region.lookup,sex.selected=1,age=age.code[i,1])
+    dev.off()
+}
+
+for(i in 1:nrow(age.code)){
+    pdf(paste0(file.loc,'plots/wavelet_region_split_time_',age.code[i,1],'_females_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
+    mapply(plot.wavelet.region.split,region.selected=region.lookup,sex.selected=2,age=age.code[i,1])
     dev.off()
 }

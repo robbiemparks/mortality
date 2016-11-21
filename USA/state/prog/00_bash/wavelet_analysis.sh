@@ -22,7 +22,7 @@ clear
 echo "starting nationalised wavelet analysis for $country, years $start - $end";
 
 # runs wavelet analysis
-Rscript ~/git/mortality/USA/state/prog/wavelet/wavelet_national.R $start $end $numsim
+#Rscript ~/git/mortality/USA/state/prog/wavelet/wavelet_national.R $start $end $numsim
 
 #################################################
 # 2. REGION WAVELET ANALYSIS
