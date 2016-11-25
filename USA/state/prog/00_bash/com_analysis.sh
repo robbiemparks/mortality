@@ -76,7 +76,7 @@ echo "starting state COM analysis for $country, years $start - $end";
 echo "starting state COM analysis for $country, years $start - $end";
 
 # process COM data
-#Rscript ~/git/mortality/USA/state/prog/com/com_data_process.R $start $end
+Rscript ~/git/mortality/USA/state/prog/com/com_data_process.R $start $end
 
 #################################################
 # 5. PLOTTING COM ANALYSIS
@@ -85,4 +85,4 @@ echo "starting state COM analysis for $country, years $start - $end";
 echo "plotting COM analysis for $country, years $start - $end";
 
 # plots
-Rscript ~/git/mortality/USA/state/prog/com/com_plot.R $start $end
+#Rscript ~/git/mortality/USA/state/prog/com/com_plot.R $start $end

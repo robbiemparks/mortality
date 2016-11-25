@@ -6,7 +6,7 @@ year.start.arg <- as.numeric(args[1])
 year.end.arg <- as.numeric(args[2])
 
 library(plyr)
-require(CircStats)
+#require(CircStats)
 
 # coding for graph-friendly information
 age.print <- as.vector(levels(factor(levels=c('0-4','5-14','15-24','25-34','35-44','45-54','55-64','65-74','75-84','85+'))))
@@ -28,7 +28,7 @@ file.loc.reg.split <- paste0(file.loc.reg,"split_period/")
 file.loc.reg.output <- paste0(file.loc.reg,"combined_results/")
 ifelse(!dir.exists(file.loc.reg.output), dir.create(file.loc.reg.output,recursive=TRUE), FALSE)
 
-# NATIONAL
+# NATIONAL DEATH COUNTS
 # COM
 
 # construct dataset for entire period national analysis method 1
@@ -71,7 +71,7 @@ for(k in c(1,2)){
 }}
 saveRDS(dat.entire,paste0(file.loc.nat.output,'com_national_values_method_2_split_2_',year.start.arg,'_',year.end.arg))
 
-# NATIONAL
+# NATIONAL DEATH COUNTS
 # INV COM
 
 # construct dataset for entire period national analysis method 1
@@ -170,7 +170,7 @@ saveRDS(dat.nat,paste0(file.loc.nat.input,'com_inv_com_national_values_method_2_
 
 saveRDS(dat.nat.split,paste0(file.loc.nat.input,'com_inv_com_national_values_method_2_split_',year.start.arg,'_',year.end.arg))
 
-# REGIONAL
+# REGIONAL DEATH COUNTS
 # COM
 
 # load region data
@@ -219,7 +219,7 @@ saveRDS(dat.entire,paste0(file.loc.reg.output,'com_regional_values_method_2_enti
 #    }}
 #saveRDS(dat.entire,paste0(file.loc.nat.output,'com_regional_values_method_2_split_2_',year.start.arg,'_',year.end.arg))
 
-# REGIONAL
+# REGIONAL DEATH COUNTS
 # COM
 
 # construct dataset for entire period national analysis method 2
@@ -236,4 +236,28 @@ names(dat.entire)[6] <- 'region'
 dat.entire <- dat.entire[,c('age','sex','region','COM.mean','COM.5','COM.95')]
 saveRDS(dat.entire,paste0(file.loc.reg.output,'anti_com_regional_values_method_2_entire_',year.start.arg,'_',year.end.arg))
 
+# NATIONAL DEATH RATES
+# COM
 
+# construct dataset for entire period national analysis method 2
+dat.entire <- data.frame()
+for(k in c(1,2)){
+    for(i in c(0,5,15,25,35,45,55,65,75,85)){
+        dat.temp <- readRDS(paste0(file.loc.nat.entire,'method_2/com_rate_',tolower(sex.lookup[k]),'_',i))
+        dat.entire <- rbind(dat.entire,dat.temp)
+        print(dat.entire)
+    }}
+saveRDS(dat.entire,paste0(file.loc.nat.output,'com_rates_national_values_method_2_entire_',year.start.arg,'_',year.end.arg))
+
+# NATIONAL DEATH RATES
+# INV COM
+
+# construct dataset for entire period national analysis method 2
+dat.entire <- data.frame()
+for(k in c(1,2)){
+    for(i in c(0,5,15,25,35,45,55,65,75,85)){
+        dat.temp <- readRDS(paste0(file.loc.nat.entire,'method_2/anti_com_rate_',sex.lookup[k],'_',i))
+        dat.entire <- rbind(dat.entire,dat.temp)
+        #print(dat.entire)
+    }}
+saveRDS(dat.entire,paste0(file.loc.nat.output,'inv_com_rates_national_values_method_2_entire_',year.start.arg,'_',year.end.arg))

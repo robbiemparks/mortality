@@ -41,6 +41,8 @@ year.group.2 <- years[(halfway+1):(num.years)]
 
 # 1. NATIONAL
 
+# DEATH COUNTS
+
 # load entire national data
 file.loc.nat.input <- paste0("../../output/com/",year.start.arg,'_',year.end.arg,"/national/values/combined_results/")
 file.loc.nat.output <- paste0("../../output/com/",year.start.arg,'_',year.end.arg,"/national/plots/")
@@ -53,7 +55,6 @@ dat.nat <- subset(dat.nat,!(age==35 & sex=='Men'))
 dat.nat <- subset(dat.nat,!(age==5 & sex=='Women'))
 dat.nat <- subset(dat.nat,!(age==15 & sex=='Women'))
 dat.nat <- subset(dat.nat,!(age==25 & sex=='Women'))
-
 
 # load split national data
 dat.nat.split <- readRDS(paste0(file.loc.nat.input,'com_inv_com_national_values_method_2_split_',year.start.arg,'_',year.end.arg))
@@ -141,6 +142,9 @@ scale_size(guide='none') +
 theme(text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.text.x = element_text(angle=90),
 panel.background = element_blank(),strip.background = element_blank(), axis.line = element_line(colour = "black"))
 dev.off()
+
+# DEATH RATES
+
 
 ###############################################################
 # PREPARING MAP
