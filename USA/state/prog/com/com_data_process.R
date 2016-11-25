@@ -261,3 +261,26 @@ for(k in c(1,2)){
         #print(dat.entire)
     }}
 saveRDS(dat.entire,paste0(file.loc.nat.output,'inv_com_rates_national_values_method_2_entire_',year.start.arg,'_',year.end.arg))
+
+# produce dataset for national data
+file.loc.nat.input <- paste0("../../output/com/",year.start.arg,'_',year.end.arg,"/national/values/combined_results/")
+dat.COM <- readRDS(paste0(file.loc.nat.input,'com_rates_national_values_method_2_entire_',year.start.arg,'_',year.end.arg))
+dat.COM$sex <- as.factor(as.character(dat.COM$sex))
+levels(dat.COM$sex) <- c('Men','Women')
+dat.COM$type <- 'max'
+dat.COM$size <- with(dat.COM,1/(COM.95-COM.5))
+dat.COM$size <- 3*(dat.COM$size/max(dat.COM$size))
+
+dat.inv.COM <- readRDS(paste0(file.loc.nat.input,'inv_com_rates_national_values_method_2_entire_',year.start.arg,'_',year.end.arg))
+dat.inv.COM$sex <- as.factor(as.character(dat.inv.COM$sex))
+levels(dat.inv.COM$sex) <- c('Men','Women')
+dat.inv.COM$type <- 'min'
+dat.inv.COM$size <- with(dat.inv.COM,1/(COM.95-COM.5))
+dat.inv.COM$size <- 3*(dat.inv.COM$size/max(dat.inv.COM$size))
+
+dat.nat <- rbind(dat.COM,dat.inv.COM)
+
+# output
+saveRDS(dat.nat,paste0(file.loc.nat.input,'com_inv_com_rates_national_values_method_2_entire_',year.start.arg,'_',year.end.arg))
+
+

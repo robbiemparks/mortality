@@ -66,7 +66,8 @@ geom_point(data=subset(dat.nat,type=='max'),aes(x=factor(age),y=COM.mean,size=si
 geom_point(data=subset(dat.nat,type=='min'),aes(y=COM.mean,x=factor(age),size=size),fill='green',shape=21) +
 geom_hline(linetype=2, yintercept = 0:12, alpha=0.2) +
 geom_vline(linetype=2, xintercept = 1:10,alpha=0.2) +
-#geom_errorbarh(aes(xmin=lowerCI,xmax=upperCI,color=as.factor(sex)),height=0) +
+#geom_errorbar(data=subset(dat.nat,type=='max'),aes(x=factor(age),ymin=COM.5,ymax=COM.95,color='red')) +
+#geom_errorbar(data=subset(dat.nat,type=='min'),aes(x=factor(age),ymin=COM.5,ymax=COM.95,color='green')) +
 ylab('Month') +
 xlab('Age group') +
 scale_y_continuous(breaks=c(seq(0,12)),labels=c(month.short[12],month.short),expand = c(0.01, 0)) +
@@ -78,7 +79,27 @@ theme(text = element_text(size = 15),panel.grid.major = element_blank(), panel.g
 panel.background = element_blank(),strip.background = element_blank(), axis.line = element_line(colour = "black"))
 dev.off()
 
-# period 1 com plot v2
+# entire period com plot v2
+pdf(paste0(file.loc.nat.output,'USA_COM_total_axis_swapped_v2_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
+ggplot() +
+geom_point(data=subset(dat.nat,type=='max'),aes(x=factor(age),y=COM.mean,size=size),fill='red',shape=21) +
+geom_point(data=subset(dat.nat,type=='min'),aes(y=COM.mean,x=factor(age),size=size),fill='green',shape=21) +
+geom_hline(linetype=2, yintercept = 0:12, alpha=0.2) +
+geom_vline(linetype=2, xintercept = 1:10,alpha=0.2) +
+geom_errorbar(data=subset(dat.nat,type=='max'),aes(x=factor(age),ymin=COM.5,ymax=COM.95),color='red',width=0.2) +
+geom_errorbar(data=subset(dat.nat,type=='min'),aes(x=factor(age),ymin=COM.5,ymax=COM.95),color='green',width=0.2) +
+ylab('Month') +
+xlab('Age group') +
+scale_y_continuous(breaks=c(seq(0,12)),labels=c(month.short[12],month.short),expand = c(0.01, 0)) +
+scale_x_discrete(labels=age.print) +
+#xlim(1,12) +
+facet_wrap(~sex, ncol=1) +
+scale_size(guide='none') +
+theme(text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.text.x = element_text(angle=90),
+panel.background = element_blank(),strip.background = element_blank(), axis.line = element_line(colour = "black"))
+dev.off()
+
+# period 1 com plot
 pdf(paste0(file.loc.nat.output,'USA_COM_total_axis_swapped_v2_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
 ggplot() +
 geom_point(data=subset(dat.nat,type=='max'),aes(x=factor(age),y=COM.mean,size=size),fill='red',shape=21) +
@@ -145,6 +166,73 @@ dev.off()
 
 # DEATH RATES
 
+# produce dataset for national
+dat.nat <- readRDS(paste0(file.loc.nat.input,'com_inv_com_rates_national_values_method_2_entire_',year.start.arg,'_',year.end.arg))
+
+# remove com data that doesn't meet wavelet criteria (automate?)
+dat.nat <- subset(dat.nat,!(age==35 & sex=='Men'))
+dat.nat <- subset(dat.nat,!(age==5 & sex=='Women'))
+dat.nat <- subset(dat.nat,!(age==15 & sex=='Women'))
+dat.nat <- subset(dat.nat,!(age==25 & sex=='Women'))
+
+# entire period com plot v1
+pdf(paste0(file.loc.nat.output,'USA_COM_rates_total_axis_swapped_v1_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
+ggplot() +
+geom_point(data=subset(dat.nat,type=='max'),aes(x=factor(age),y=COM.mean,size=size),fill='red',shape=21) +
+geom_point(data=subset(dat.nat,type=='min'),aes(y=COM.mean,x=factor(age),size=size),fill='green',shape=21) +
+geom_hline(linetype=2, yintercept = 0:12, alpha=0.2) +
+geom_vline(linetype=2, xintercept = 1:10,alpha=0.2) +
+#geom_errorbarh(aes(xmin=lowerCI,xmax=upperCI,color=as.factor(sex)),height=0) +
+ylab('Month') +
+xlab('Age group') +
+scale_y_continuous(breaks=c(seq(0,12)),labels=c(month.short[12],month.short),expand = c(0.01, 0)) +
+scale_x_discrete(labels=age.print) +
+#xlim(1,12) +
+facet_wrap(~sex, ncol=1) +
+scale_size(guide='none') +
+theme(text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.text.x = element_text(angle=90),
+panel.background = element_blank(),strip.background = element_blank(), axis.line = element_line(colour = "black"))
+dev.off()
+
+# entire period com plot v2
+pdf(paste0(file.loc.nat.output,'USA_COM_rates_total_axis_swapped_v2_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
+ggplot() +
+geom_point(data=subset(dat.nat,type=='max'),aes(x=factor(age),y=COM.mean,size=size),fill='red',shape=21) +
+geom_point(data=subset(dat.nat,type=='min'),aes(y=COM.mean,x=factor(age),size=size),fill='green',shape=21) +
+geom_hline(linetype=2, yintercept = 0:12, alpha=0.2) +
+geom_vline(linetype=2, xintercept = 1:10,alpha=0.2) +
+geom_errorbar(data=subset(dat.nat,type=='max'),aes(x=factor(age),ymin=COM.5,ymax=COM.95),color='red',width=0.2) +
+geom_errorbar(data=subset(dat.nat,type=='min'),aes(x=factor(age),ymin=COM.5,ymax=COM.95),color='green',width=0.2) +
+ylab('Month') +
+xlab('Age group') +
+scale_y_continuous(breaks=c(seq(0,12)),labels=c(month.short[12],month.short),expand = c(0.01, 0)) +
+scale_x_discrete(labels=age.print) +
+#xlim(1,12) +
+facet_wrap(~sex, ncol=1) +
+scale_size(guide='none') +
+theme(text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.text.x = element_text(angle=90),
+panel.background = element_blank(),strip.background = element_blank(), axis.line = element_line(colour = "black"))
+dev.off()
+
+# entire period com plot v3
+pdf(paste0(file.loc.nat.output,'USA_COM_rates_total_axis_swapped_v3_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
+ggplot() +
+geom_point(data=subset(dat.nat,type=='max'),aes(x=factor(age),y=COM.mean),fill='red',shape=21) +
+geom_point(data=subset(dat.nat,type=='min'),aes(y=COM.mean,x=factor(age)),fill='green',shape=21) +
+geom_hline(linetype=2, yintercept = 0:12, alpha=0.2) +
+geom_vline(linetype=2, xintercept = 1:10,alpha=0.2) +
+geom_errorbar(data=subset(dat.nat,type=='max'),aes(x=factor(age),ymin=COM.5,ymax=COM.95),color='red',width=0.2) +
+geom_errorbar(data=subset(dat.nat,type=='min'),aes(x=factor(age),ymin=COM.5,ymax=COM.95),color='green',width=0.2) +
+ylab('Month') +
+xlab('Age group') +
+scale_y_continuous(breaks=c(seq(0,12)),labels=c(month.short[12],month.short),expand = c(0.01, 0)) +
+scale_x_discrete(labels=age.print) +
+#xlim(1,12) +
+facet_wrap(~sex, ncol=1) +
+scale_size(guide='none') +
+theme(text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.text.x = element_text(angle=90),
+panel.background = element_blank(),strip.background = element_blank(), axis.line = element_line(colour = "black"))
+dev.off()
 
 ###############################################################
 # PREPARING MAP
@@ -256,10 +344,10 @@ for(i in c(0,5,15,25,35,45,55,65,75,85)) {
 dat.super.temp.inv <- dat.super.temp
 
 # plot superregions
-ggplot() +
+#ggplot() +
 #geom_polygon(data=map,aes(x=long,y=lat,group=group),fill='white',color='Black',size=1) +
-geom_polygon(data=subset(map.superregions),aes(x=long,y=lat,group=group),alpha=0,fill='Red',color='Red',size=1.2) +
-geom_text(data=superregion.coords,aes(x=long.txt,y=lat.txt,label=region))
+#geom_polygon(data=subset(map.superregions),aes(x=long,y=lat,group=group),alpha=0,fill='Red',color='Red',size=1.2) +
+#geom_text(data=superregion.coords,aes(x=long.txt,y=lat.txt,label=region))
 
 # merge selected data to map dataframe for colouring of ggplot
 USA.df <- merge(map, shapefile.data, by='id')
@@ -360,7 +448,7 @@ dat.super.temp.inv$age.print <- with(dat.super.temp.inv,reorder(age.print,age))
 # set colour scheme for months map
 map.climate.colour.1 <- '#FFFFFF'
 map.climate.colour.2 <- c('#0000CC','#0000FF','#B2B2FF','#ff7f7f','#ff0000','#990000')
-map.climate.colour.3 <- c('#330f53','#551A8b','#9975B9','#F4A460','#AA7243','#7A5230')
+map.climate.colour.3 <- c('#330F53','#551A8B','#9975B9','#FF6207','#A94F43','#B52A27')
 map.climate.colour.2 <- c(map.climate.colour.2,rev(map.climate.colour.3))
 map.climate.colour <- c(map.climate.colour.1,map.climate.colour.2)
 
