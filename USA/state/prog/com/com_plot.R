@@ -51,7 +51,9 @@ dat.nat <- readRDS(paste0(file.loc.nat.input,'com_inv_com_national_values_method
 # remove com data that doesn't meet wavelet criteria (automate?)
 dat.nat <- subset(dat.nat,!(age==35 & sex=='Men'))
 dat.nat <- subset(dat.nat,!(age==5 & sex=='Women'))
+dat.nat <- subset(dat.nat,!(age==15 & sex=='Women'))
 dat.nat <- subset(dat.nat,!(age==25 & sex=='Women'))
+
 
 # load split national data
 dat.nat.split <- readRDS(paste0(file.loc.nat.input,'com_inv_com_national_values_method_2_split_',year.start.arg,'_',year.end.arg))
@@ -61,8 +63,8 @@ pdf(paste0(file.loc.nat.output,'USA_COM_total_axis_swapped_v1_',year.start.arg,'
 ggplot() +
 geom_point(data=subset(dat.nat,type=='max'),aes(x=factor(age),y=COM.mean,size=size),fill='red',shape=21) +
 geom_point(data=subset(dat.nat,type=='min'),aes(y=COM.mean,x=factor(age),size=size),fill='green',shape=21) +
-geom_hline(aes(linetype=2),linetype=2, yintercept = 0:12, alpha=0.5) +
-geom_vline(aes(linetype=2),linetype=2, xintercept = 1:10) +
+geom_hline(linetype=2, yintercept = 0:12, alpha=0.2) +
+geom_vline(linetype=2, xintercept = 1:10,alpha=0.2) +
 #geom_errorbarh(aes(xmin=lowerCI,xmax=upperCI,color=as.factor(sex)),height=0) +
 ylab('Month') +
 xlab('Age group') +
@@ -223,8 +225,8 @@ borders <- function(superregion) {
 }
 
 # combine all superregions
-superregions <- rbind(  borders(Northwest),borders(West_North_Central),borders(Upper_Midwest),borders(Northeast),
-                        borders(West),borders(Southwest),borders(South),borders(East_North_Central),borders(Southeast))
+superregions <- rbind(  borders(Northwest),borders(West_North_Central),borders(East_North_Central),borders(Northeast),
+                        borders(West),borders(Southwest),borders(South),borders(Central),borders(Southeast))
 
 # fortify to prepare for ggplot
 map.superregions <- fortify(superregions)
@@ -270,9 +272,9 @@ dat.state.inv <- readRDS(paste0(file.loc.region,'values/combined_results/anti_co
 dat.state$region <- gsub('Northern_Rockies_and_Plains', 'West_North_Central', dat.state$region)
 dat.state$region <- gsub('Ohio_Valley', 'Central', dat.state$region)
 dat.state$region <- gsub('Upper_Midwest', 'East_North_Central', dat.state$region)
-dat.state.inv$region <- gsub('Northern_Rockies_and_Plains', 'West_North_Central', dat.state$region)
-dat.state.inv$region <- gsub('Ohio_Valley', 'Central', dat.state$region)
-dat.state.inv$region <- gsub('Upper_Midwest', 'East_North_Central', dat.state$region)
+dat.state.inv$region <- gsub('Northern_Rockies_and_Plains', 'West_North_Central', dat.state.inv$region)
+dat.state.inv$region <- gsub('Ohio_Valley', 'Central', dat.state.inv$region)
+dat.state.inv$region <- gsub('Upper_Midwest', 'East_North_Central', dat.state.inv$region)
 
 # round com data for each region
 dat.state$COM.entire.round <- round(dat.state$COM.mean)
@@ -366,9 +368,9 @@ plot.function.state.entire.round <- function(sex.sel) {
     print(ggplot(data=subset(dat.state.map,sex==sex.sel),aes(x=long,y=lat)) +
     geom_polygon(aes(fill=test,group=group),linetype=2,size=0) +
     #geom_text(data=superregion.coords,color='black',aes(x=long.txt,y=lat.txt,label=id)) +
-    geom_text(data=subset(dat.super.temp,sex==sex.sel),color='white',size=3,aes(x=long.txt,y=lat.txt,label=temp_c)) +
+    geom_text(data=subset(dat.super.temp,sex==sex.sel),color='white',size=2.5,aes(x=long.txt,y=lat.txt,label=temp_c)) +
     geom_polygon(data=map.superregions,aes(x=long,y=lat,group=group),alpha=0,fill='Black',color='Black',size=0.5) +
-    scale_fill_manual(values=map.climate.colour,labels=c('None', month.short),drop=FALSE,guide = guide_legend(title = 'Month')) +
+    scale_fill_manual(values=map.climate.colour,labels=c('None', month.short),drop=FALSE,guide = guide_legend(nrow=1,title = 'Month')) +
     facet_wrap(~age.print) +
     xlab('') +
     ylab('') +
@@ -391,9 +393,9 @@ plot.function.state.entire.round.inv <- function(sex.sel) {
     geom_polygon(aes(fill=test,group=group),linetype=2,size=0) +
     geom_polygon(data=map.superregions,aes(x=long,y=lat,group=group),alpha=0,fill='Black',color='Black',size=0.5) +
     #geom_text(data=superregion.coords,aes(x=long,y=lat,label=id)) +
-    geom_text(data=subset(dat.super.temp.inv,sex==sex.sel),color='white',size=3,aes(x=long.txt,y=lat.txt,label=temp_c)) +
+    geom_text(data=subset(dat.super.temp.inv,sex==sex.sel),color='white',size=2.5,aes(x=long.txt,y=lat.txt,label=temp_c)) +
     geom_polygon(data=map.superregions,aes(x=long,y=lat,group=group),alpha=0,fill='Black',color='Black',size=0.5) +
-    scale_fill_manual(values=map.climate.colour,labels=c('None', month.short),drop=FALSE,guide = guide_legend(title = 'Month')) +
+    scale_fill_manual(values=map.climate.colour,labels=c('None', month.short),drop=FALSE,guide = guide_legend(nrow=1,title = 'Month')) +
     facet_wrap(~age.print) +
     xlab('') +
     ylab('') +

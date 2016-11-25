@@ -219,13 +219,15 @@ dev.off()
 lin.reg.grad <- subset(lin.reg.grad,!(age==35 & sex==1))
 lin.reg.grad <- subset(lin.reg.grad,!(age==5 & sex==2))
 lin.reg.grad <- subset(lin.reg.grad,!(age==25 & sex==2))
+lin.reg.grad <- subset(lin.reg.grad,!(age==15 & sex==2))
+
 
 # 0. comparison of start and end values
 
 age.colours <- c('#00ff00','#00cc00','#009900','#006600','#003300','#ff0000','#cc0000','#990000','#660000','#330000')
 
 # plot coefficient of seasonality for each age nationally at start and end of period
-plot.function.diff.seas <- function() {
+plot.function.diff.seas <- function(shape.selected) {
 
 #lin.reg.grad$shape.code <- ifelse(lin.reg.grad$sex==1,16,1)
 #lin.reg.grad$shape.code <- as.factor(lin.reg.grad$shape.code)
@@ -235,7 +237,7 @@ plot.function.diff.seas <- function() {
 	geom_abline(slope=1,intercept=0, linetype=2,alpha=0.5) +
     xlim(c(0,50)) +
     ylim(c(0,50)) +
-    scale_shape_manual(values=c(16,1),labels=c('Men','Women'),guide = guide_legend(title = 'Sex:')) +
+    scale_shape_manual(values=c(16,shape.selected),labels=c('Men','Women'),guide = guide_legend(title = 'Sex:')) +
     xlab(paste0('Seasonal excess in ',year.start)) +
     ylab(paste0('Seasonal excess in ',year.end)) +
     #guides(color = guide_legend(order=2),size = guide_legend(order=1)) +
@@ -245,8 +247,13 @@ plot.function.diff.seas <- function() {
 }
 
 # plot
+# plot
 pdf(paste0(file.loc,'seasonality_index_change_',year.start,'_',year.end,'.pdf'),height=0,width=0,paper='a4r')
-plot.function.diff.seas()
+plot.function.diff.seas(1)
+dev.off()
+
+pdf(paste0(file.loc,'seasonality_index_change_v2_',year.start,'_',year.end,'.pdf'),height=0,width=0,paper='a4r')
+plot.function.diff.seas(17)
 dev.off()
 
 # 1. ratio of difference sexes

@@ -325,6 +325,12 @@ plot.wavelet.national.all <- function(sex.selected) {
         mtext(text = "12", side = 2, at = log(12)/log(2), las = 1, line = 0.5)
         #abline(h=log(as.numeric(max.spectrum.period))/log(2))
         #mtext(text = as.character(round(max.spectrum.period)), side = 4, at = log(max.spectrum.period)/log(2), las = 1, line = 0.5)
+        # manually fix significant ages
+        if(sex.selected==1){age.sig <- c(0,5,15,25,45,55,65,75,85)}
+        if(sex.selected==2){age.sig <- c(0,35,45,55,65,75,85)}
+        if(i %in% age.sig){
+        box(lty = 1, lwd=5, col = 'black')
+        }
         title(main=plot.title)
 
         # plot density graph
