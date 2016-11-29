@@ -85,6 +85,15 @@ lin.reg.grad$start.value <- lin.reg.grad$`(Intercept)`
 lin.reg.grad$sex.long <- with(lin.reg.grad,as.factor(as.character(sex)))
 levels(lin.reg.grad$sex.long) <- sex.lookup
 
+# obtain significance of slopes
+lin.reg.sig <- ddply(dat.max.min.fixed, .(sex,age), function(z)coef(summary(lm(percent.change ~ year.centre, data=z))))
+lin.reg.sig <- lin.reg.sig[!c(TRUE,FALSE),]
+lin.reg.sig$sig.test.10 <- ifelse(lin.reg.sig[,6]<0.10,1,0)
+lin.reg.sig$sig.test.5 <- ifelse(lin.reg.sig[,6]<0.05,1,0)
+
+# merge with data about gradients
+lin.reg.grad <- merge(lin.reg.grad,lin.reg.sig,by=c('sex','age'))
+
 ###############################################################
 # DIRECTORY CREATION
 ###############################################################
@@ -221,7 +230,6 @@ lin.reg.grad <- subset(lin.reg.grad,!(age==5 & sex==2))
 lin.reg.grad <- subset(lin.reg.grad,!(age==25 & sex==2))
 lin.reg.grad <- subset(lin.reg.grad,!(age==15 & sex==2))
 
-
 # 0. comparison of start and end values
 
 age.colours <- c('#00ff00','#00cc00','#009900','#006600','#003300','#ff0000','#cc0000','#990000','#660000','#330000')
@@ -233,20 +241,18 @@ plot.function.diff.seas <- function(shape.selected) {
 #lin.reg.grad$shape.code <- as.factor(lin.reg.grad$shape.code)
 
     print(ggplot() +
-	geom_point(data=subset(lin.reg.grad,sex==1|2),aes(shape=as.factor(sex), color=as.factor(age),x=start.value,y=end.value),size=6) +
+	geom_point(data=subset(lin.reg.grad,sex==1|2),aes(shape=as.factor(sex), color=as.factor(age),x=(start.value/100),y=(end.value/100)),size=6) +
 	geom_abline(slope=1,intercept=0, linetype=2,alpha=0.5) +
-    xlim(c(0,50)) +
-    ylim(c(0,50)) +
+    scale_x_continuous(name=paste0('Seasonal excess mortality in ',year.start),labels=percent,limits=c(0,(50/100))) +
+    scale_y_continuous(name=paste0('Seasonal excess mortality in ',year.start),labels=percent,limits=c(0,(50/100))) +
     scale_shape_manual(values=c(16,shape.selected),labels=c('Men','Women'),guide = guide_legend(title = 'Sex:')) +
-    xlab(paste0('Seasonal excess mortality in ',year.start)) +
-    ylab(paste0('Seasonal excess mortality in ',year.end)) +
-    #guides(color = guide_legend(order=2),size = guide_legend(order=1)) +
     scale_colour_manual(labels=c('0-4','5-14','15-24','25-34','35-44','45-54','55-64','65-74','75-84','85+'),values=age.colours,guide = guide_legend(title = 'Age group:')) +
-    theme(legend.box = "horizontal",legend.position='bottom',text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black"),rect = element_blank())
+    #guides(col = guide_legend(nrow = 1, byrow = TRUE)) +
+    theme(legend.box = "horizontal",legend.position='bottom',text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line.x = element_line(colour = "black"),
+    axis.line.y = element_line(colour = "black"),rect = element_blank())
 	)
 }
 
-# plot
 # plot
 pdf(paste0(file.loc,'seasonality_index_change_',year.start,'_',year.end,'.pdf'),height=0,width=0,paper='a4r')
 plot.function.diff.seas(1)
@@ -255,6 +261,65 @@ dev.off()
 pdf(paste0(file.loc,'seasonality_index_change_v2_',year.start,'_',year.end,'.pdf'),height=0,width=0,paper='a4r')
 plot.function.diff.seas(17)
 dev.off()
+
+# plot coefficient of seasonality for each age nationally at start and end of period with significance
+plot.function.diff.seas.sig.10 <- function(shape.selected) {
+    
+    #lin.reg.grad$shape.code <- ifelse(lin.reg.grad$sex==1,16,1)
+    #lin.reg.grad$shape.code <- as.factor(lin.reg.grad$shape.code)
+    
+    print(ggplot() +
+    geom_point(data=subset(lin.reg.grad,sig.test.10==1),fill='blue',aes(shape=as.factor(sex),x=(start.value/100),y=(end.value/100)),size=8) +
+    geom_point(data=subset(lin.reg.grad,sex==1|2),aes(shape=as.factor(sex), color=as.factor(age),x=(start.value/100),y=(end.value/100)),size=6) +
+    geom_abline(slope=1,intercept=0, linetype=2,alpha=0.5) +
+    scale_x_continuous(name=paste0('Seasonal excess mortality in ',year.start),labels=percent,limits=c(0,(50/100))) +
+    scale_y_continuous(name=paste0('Seasonal excess mortality in ',year.start),labels=percent,limits=c(0,(50/100))) +
+    scale_shape_manual(values=c(16,shape.selected),labels=c('Men','Women'),guide = guide_legend(title = 'Sex:')) +
+    scale_colour_manual(labels=c('0-4','5-14','15-24','25-34','35-44','45-54','55-64','65-74','75-84','85+'),values=age.colours,guide = guide_legend(title = 'Age group:')) +
+    #guides(col = guide_legend(nrow = 1, byrow = TRUE)) +
+    theme(legend.box = "horizontal",legend.position='bottom',text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line.x = element_line(colour = "black"),
+    axis.line.y = element_line(colour = "black"),rect = element_blank())
+    )
+}
+
+# plot
+pdf(paste0(file.loc,'seasonality_index_change_sig10_',year.start,'_',year.end,'.pdf'),height=0,width=0,paper='a4r')
+plot.function.diff.seas.sig.10(1)
+dev.off()
+
+pdf(paste0(file.loc,'seasonality_index_change_sig10_',year.start,'_',year.end,'.pdf'),height=0,width=0,paper='a4r')
+plot.function.diff.seas.sig.10(17)
+dev.off()
+
+# plot coefficient of seasonality for each age nationally at start and end of period with significance
+plot.function.diff.seas.sig.5 <- function(shape.selected) {
+    
+    #lin.reg.grad$shape.code <- ifelse(lin.reg.grad$sex==1,16,1)
+    #lin.reg.grad$shape.code <- as.factor(lin.reg.grad$shape.code)
+    
+    print(ggplot() +
+    geom_point(data=subset(lin.reg.grad,sig.test.5==1),fill='blue',aes(shape=as.factor(sex),x=(start.value/100),y=(end.value/100)),size=8) +
+    geom_point(data=subset(lin.reg.grad,sex==1|2),aes(shape=as.factor(sex), color=as.factor(age),x=(start.value/100),y=(end.value/100)),size=6) +
+    geom_abline(slope=1,intercept=0, linetype=2,alpha=0.5) +
+    scale_x_continuous(name=paste0('Seasonal excess mortality in ',year.start),labels=percent,limits=c(0,(50/100))) +
+    scale_y_continuous(name=paste0('Seasonal excess mortality in ',year.start),labels=percent,limits=c(0,(50/100))) +
+    scale_shape_manual(values=c(16,shape.selected),labels=c('Men','Women'),guide = guide_legend(title = 'Sex:')) +
+    scale_colour_manual(labels=c('0-4','5-14','15-24','25-34','35-44','45-54','55-64','65-74','75-84','85+'),values=age.colours,guide = guide_legend(title = 'Age group:')) +
+    #guides(col = guide_legend(nrow = 1, byrow = TRUE)) +
+    theme(legend.box = "horizontal",legend.position='bottom',text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line.x = element_line(colour = "black"),
+    axis.line.y = element_line(colour = "black"),rect = element_blank())
+    )
+}
+
+# plot
+pdf(paste0(file.loc,'seasonality_index_change_sig5_',year.start,'_',year.end,'.pdf'),height=0,width=0,paper='a4r')
+plot.function.diff.seas.sig.5(1)
+dev.off()
+
+pdf(paste0(file.loc,'seasonality_index_change_sig5_',year.start,'_',year.end,'.pdf'),height=0,width=0,paper='a4r')
+plot.function.diff.seas.sig.5(17)
+dev.off()
+
 
 # 1. ratio of difference sexes
 
