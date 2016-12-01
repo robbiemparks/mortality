@@ -244,7 +244,7 @@ plot.function.diff.seas <- function(shape.selected) {
 	geom_point(data=subset(lin.reg.grad,sex==1|2),aes(shape=as.factor(sex), color=as.factor(age),x=(start.value/100),y=(end.value/100)),size=6) +
 	geom_abline(slope=1,intercept=0, linetype=2,alpha=0.5) +
     scale_x_continuous(name=paste0('Seasonal excess mortality in ',year.start),labels=percent,limits=c(0,(50/100))) +
-    scale_y_continuous(name=paste0('Seasonal excess mortality in ',year.start),labels=percent,limits=c(0,(50/100))) +
+    scale_y_continuous(name=paste0('Seasonal excess mortality in ',year.end),labels=percent,limits=c(0,(50/100))) +
     scale_shape_manual(values=c(16,shape.selected),labels=c('Men','Women'),guide = guide_legend(title = 'Sex:')) +
     scale_colour_manual(labels=c('0-4','5-14','15-24','25-34','35-44','45-54','55-64','65-74','75-84','85+'),values=age.colours,guide = guide_legend(title = 'Age group:')) +
     #guides(col = guide_legend(nrow = 1, byrow = TRUE)) +
@@ -273,7 +273,7 @@ plot.function.diff.seas.sig.10 <- function(shape.selected) {
     geom_point(data=subset(lin.reg.grad,sex==1|2),aes(shape=as.factor(sex), color=as.factor(age),x=(start.value/100),y=(end.value/100)),size=6) +
     geom_abline(slope=1,intercept=0, linetype=2,alpha=0.5) +
     scale_x_continuous(name=paste0('Seasonal excess mortality in ',year.start),labels=percent,limits=c(0,(50/100))) +
-    scale_y_continuous(name=paste0('Seasonal excess mortality in ',year.start),labels=percent,limits=c(0,(50/100))) +
+    scale_y_continuous(name=paste0('Seasonal excess mortality in ',year.end),labels=percent,limits=c(0,(50/100))) +
     scale_shape_manual(values=c(16,shape.selected),labels=c('Men','Women'),guide = guide_legend(title = 'Sex:')) +
     scale_colour_manual(labels=c('0-4','5-14','15-24','25-34','35-44','45-54','55-64','65-74','75-84','85+'),values=age.colours,guide = guide_legend(title = 'Age group:')) +
     #guides(col = guide_legend(nrow = 1, byrow = TRUE)) +
@@ -302,7 +302,7 @@ plot.function.diff.seas.sig.5 <- function(shape.selected) {
     geom_point(data=subset(lin.reg.grad,sex==1|2),aes(shape=as.factor(sex), color=as.factor(age),x=(start.value/100),y=(end.value/100)),size=6) +
     geom_abline(slope=1,intercept=0, linetype=2,alpha=0.5) +
     scale_x_continuous(name=paste0('Seasonal excess mortality in ',year.start),labels=percent,limits=c(0,(50/100))) +
-    scale_y_continuous(name=paste0('Seasonal excess mortality in ',year.start),labels=percent,limits=c(0,(50/100))) +
+    scale_y_continuous(name=paste0('Seasonal excess mortality in ',year.end),labels=percent,limits=c(0,(50/100))) +
     scale_shape_manual(values=c(16,shape.selected),labels=c('Men','Women'),guide = guide_legend(title = 'Sex:')) +
     scale_colour_manual(labels=c('0-4','5-14','15-24','25-34','35-44','45-54','55-64','65-74','75-84','85+'),values=age.colours,guide = guide_legend(title = 'Age group:')) +
     #guides(col = guide_legend(nrow = 1, byrow = TRUE)) +
