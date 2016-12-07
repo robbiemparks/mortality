@@ -8,22 +8,21 @@ age.arg <- as.numeric(args[1])
 sex.arg <- as.numeric(args[2])
 year.start.arg <- as.numeric(args[3])
 year.end.arg <- as.numeric(args[4])
-type.arg <- as.numeric(args[5])
-model.arg <- as.numeric(args[6])
-cluster.arg <- as.numeric(args[7])
-forecast.length.arg <- as.numeric(args[8])
-knot.year.arg <- as.numeric(args[9])
+pwl.arg <- as.numeric(args[5])
+type.arg <- as.numeric(args[6])
+forecast.length.arg <- as.numeric(args[7])
+knot.year.arg <- as.numeric(args[8])
 
 # types character for file strings
 types <- c('1','1a','2','2a','3','3a','4','4a')
 type.selected <- types[type.arg]
+pwl.lookup <- c('nopwl','pwl')
 
 require(mailR)
 
 # create files for output
-file.loc <- paste0('data/mortality/US/state/predicted/type_',type.selected,'/age_groups/')
-if(cluster.arg==0){file.loc <- paste0('~/',file.loc)}
-if(cluster.arg==1){file.loc <- paste0('~/projects/',file.loc)}
+file.loc <- paste0('data/mortality/US/state/forecast/type_',type.selected,'/age_groups/')
+file.loc <- paste0('~/',file.loc)
 
 ifelse(!dir.exists(file.loc), dir.create(file.loc,recursive=TRUE), FALSE)
 
@@ -46,7 +45,7 @@ USA.adj <- "../../output/adj_matrix_create/USA.graph.edit"
 library(INLA)
 
 # function to enable age group and sex to be selected
-inla.function <- function(age.sel,sex.sel,year.start,year.end,forecast.length,type,model,cluster) {
+inla.function <- function(age.sel,sex.sel,year.start,year.end,pwl,type,forecast.length,knot.year) {
 
 dat.inla <- dat.inla.load
 
@@ -55,6 +54,9 @@ years.fit <- year.start:(year.end-forecast.length)
 years.forecast <- (year.end-forecast.length+1):(year.end)
 years.total <- year.start:year.end
 
+# copy real rate for testing against
+dat.inla$rate.real <- dat.inla$rate.adj
+
 # filter all data by sex age and month and prepare for INLA forecasting
 sex <- sex.sel
 age <- age.sel
@@ -62,12 +64,7 @@ dat.inla <- dat.inla[dat.inla$sex==sex & dat.inla$age==age & dat.inla$year %in% 
 dat.inla[dat.inla$year %in% years.forecast, c("rate.adj","deaths.adj")] <- NA
 
 # load drawseq lookup
-if(cluster.arg==0){
 drawseq.lookup <-readRDS('~/git/mortality/USA/state/output/adj_matrix_create/drawseq.lookup.rds')
-}
-if(cluster.arg==1){
-drawseq.lookup <-readRDS('~/projects/git/mortality/USA/state/output/adj_matrix_create/drawseq.lookup.rds')
-}
 
 dat.inla <- merge(dat.inla,drawseq.lookup, by='fips')
 
@@ -81,7 +78,27 @@ dat.inla <- merge(dat.inla,dat.year.month, by=c('year','month'))
 
 # create PWL information
 knot.month <- knot.year.arg*12
-knot.point <- max(dat.inla$yearmonthc) - length(forecast.years)*12 - knot.month
+knot.point <- max(dat.inla$year.month) - length(years.forecast)*12 - knot.month
+
+# create table of unique 'yearmonthc' id
+dat.knot <- unique(dat.inla[,c('year', 'year.month')])
+
+# condition to find value of year.month when year.month=knot.point to create year.month.2a
+dat.knot$year.month1a <- ifelse(dat.knot$year.month<=knot.point, dat.knot$year.month, knot.point)
+
+# condition to create year.month.2b, going 1,2,3,.... after knot point
+dat.knot$year.month1b <- seq(nrow(dat.knot))
+dat.knot$year.month1b <- ifelse(dat.knot$year.month>knot.point, seq(nrow(dat.knot))-(max(nrow(dat.knot))-length(years.forecast)*12 - knot.month), 0)
+dat.knot <- dat.knot[c(2,3,4)]
+rownames(dat.knot) <- 1:nrow(dat.knot)
+
+# replicate knot variables
+dat.knot$year.month4a <- dat.knot$year.month3a <- dat.knot$year.month2a <- dat.knot$year.month1a
+dat.knot$year.month4b <- dat.knot$year.month3b <- dat.knot$year.month2b <- dat.knot$year.month1b
+dat.knot <- dat.knot[order(dat.knot$year.month),]
+
+# Rejoin knots back to main table
+dat.inla <- merge(dat.inla,dat.knot, by=c('year.month'))
 
 # make sure that the order of the main data file matches that of the shapefile,
 # otherwise the model will not be valid
@@ -123,24 +140,42 @@ fml  <- deaths.adj ~
 
 if(type==2){
 
+	if(pwl==1){
+	# no PWL
+	fml <- 	deaths.adj ~
+			year.month +                                                           			# global slope
+			f(month2, year.month2, model='rw1', cyclic= TRUE) + 					# month specific slope
+			f(month4, year.month2, model="rw1",cyclic = TRUE,group=ID, control.group=list(model='besag',graph=USA.adj))+    # state-month specific slope (spatially-correlated)
+	       		f(ID2, year.month2, model="bym",graph=USA.adj)                         			# state specific slope (BYM)
+	}
+
+	if(pwl==2){
+
+	dat.inla$month4a <- dat.inla$month2a <- dat.inla$month
+	dat.inla$month4b <- dat.inla$month2b <- dat.inla$month
+	dat.inla$ID2a <- dat.inla$ID2b <- dat.inla$ID
+
+	# PWL
+	fml <- 	deaths.adj ~
+			year.month1a +                                                           			# global slope	pre-knot
+			year.month1b +                                                           			# global slope	post-knot
+			f(month2a, year.month2a, model='rw1', cyclic= TRUE) + 					# month specific slope pre-knot
+			f(month2b, year.month2b, model='rw1', cyclic= TRUE) + 					# month specific slope post-knot
+			f(month4a, year.month2a, model="rw1",cyclic = TRUE,group=ID, control.group=list(model='besag',graph=USA.adj))+    # state-month specific slope pre-knot (spatially-correlated)
+			f(month4b, year.month2b, model="rw1",cyclic = TRUE,group=ID, control.group=list(model='besag',graph=USA.adj))+    # state-month specific slope post-knot(spatially-correlated)
+	        	f(ID2a, year.month2a, model="bym",graph=USA.adj) +                        		# state specific slope pre-knot (BYM)
+	        	f(ID2b, year.month2b, model="bym",graph=USA.adj)                         		# state specific slope pre-knot (BYM)
+	}
+
 # 1. Type Ia space-time interaction
-fml<- deaths.adj ~
-	# global terms
+update(fml, ~ . + 
         1 +                                                                     		# global intercept
-        year.month +                                                           			# global slope
-    	# month specific terms
 	f(month, model='rw1',cyclic = TRUE) +							# month specific intercept
-	f(month2, year.month2, model='rw1', cyclic= TRUE) + 					# month specific slope
-	# state-month specific terms
         f(month3, model="rw1",cyclic = TRUE,group=ID,control.group=list(model='besag',graph=USA.adj))+        		# state-month specific intercept (spatially-correlated)
-        f(month4, year.month2, model="rw1",cyclic = TRUE,group=ID, control.group=list(model='besag',graph=USA.adj))+    # state-month specific slope (spatially-correlated)
-        # state specific terms
         f(ID, model="bym",graph=USA.adj) +                                      		# state specific intercept (BYM)
-        f(ID2, year.month2, model="bym",graph=USA.adj) +                        		# state specific slope (BYM)
-	# random walk across time
         f(year.month3, model="rw1") +                                           		# rw1
-        # overdispersion term
-        f(e, model = "iid")                                                    		 	# overdispersion term
+        f(e, model = "iid")									# overdispersion term        
+	)                                 		 	
 }
 
 if(type==3) {
@@ -283,13 +318,13 @@ file.loc <- paste0(file.loc,age.sel,'/')
 ifelse(!dir.exists(file.loc), dir.create(file.loc), FALSE)
 
 # save all parameters of INLA model
-parameters.name <- paste0('USA_rate_pred_type',type.selected,'_',age,'_',sex.lookup[sex],'_',year.start,'_',year.end,'_parameters')
+parameters.name <- paste0('USA_rate_pred_type',type.selected,'_',pwl.lookup[pwl],'_',knot.year,'_knot_',age,'_',sex.lookup[sex],'_',year.start,'_',year.end,'_parameters')
 #mod$misc <- NULL
 #mod$.args$.parent.frame <- NULL
 saveRDS(mod,paste0(file.loc,parameters.name))
 
 # save summary of INLA model
-summary.name <- paste0('USA_rate_pred_type',type.selected,'_',age,'_',sex.lookup[sex],'_',year.start,'_',year.end,'_summary.txt')
+summary.name <- paste0('USA_rate_pred_type',type.selected,'_',pwl.lookup[pwl],'_',knot.year,'_knot_',age,'_',sex.lookup[sex],'_',year.start,'_',year.end,'_summary.txt')
 inla.summary.mod <- summary(mod)
 capture.output(inla.summary.mod,file=paste0(file.loc,summary.name))
 
@@ -297,7 +332,7 @@ capture.output(inla.summary.mod,file=paste0(file.loc,summary.name))
 plot.dat <- as.data.frame(cbind(dat.inla,rate.pred=mod$summary.fitted.values$mean,sd=mod$summary.fitted.values$sd))
 
 # name of RDS output file then save
-RDS.name <- paste0('USA_rate_pred_type',type.selected,'_',age,'_',sex.lookup[sex],'_',year.start,'_',year.end)
+RDS.name <- paste0('USA_rate_pred_type',type.selected,'_',pwl.lookup[pwl],'_',knot.year,'_knot_',age,'_',sex.lookup[sex],'_',year.start,'_',year.end)
 saveRDS(plot.dat,paste0(file.loc,RDS.name))
 
 sender <- "emailr349@gmail.com"
@@ -319,4 +354,4 @@ send.mail(from = sender,
 ################
 
 # input arguments into function to perform inference
-mapply(inla.function,age.sel=age.arg,sex.sel=sex.arg,year.start=year.start.arg,year.end=year.end.arg,type=type.arg,cluster=cluster.arg)
+mapply(inla.function,age.sel=age.arg,sex.sel=sex.arg,year.start=year.start.arg,year.end=year.end.arg,pwl=pwl.arg,type=type.arg,forecast.length=forecast.length.arg,knot.year=knot.year.arg)
