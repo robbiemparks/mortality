@@ -40,7 +40,7 @@ for sex in "${sexes[@]}"; do
 for age in "${ages[@]}"; do
 for knot in "${knots[@]}"; do
 
-echo "starting ${sexstrings[$sex-1]} $age INLA model $model, pwl with knot $pwl years before forecast, forecast length $forecast_length, years $start - $end";
+echo "starting ${sexstrings[$sex-1]} $age INLA model $model, pwl with knot $knot years before forecast, forecast length $forecast_length, years $start - $end";
 
 # runs model
 Rscript ~/git/mortality/USA/state/prog/models/INLA/spatiotemporal/inla_spatiotemporal_nat.R $age $sex $start $end 2 $type $forecast_length $knot &
@@ -70,7 +70,7 @@ for age in "${ages[@]}"; do
 for knot in "${knots[@]}"; do
 
 
-echo "starting ${sexstrings[$sex-1]} $age INLA model $model, pwl with knot $pwl years before forecast, forecast length $forecast_length, years $start - $end";
+echo "starting ${sexstrings[$sex-1]} $age INLA model $model, pwl with knot $knot years before forecast, forecast length $forecast_length, years $start - $end";
 
 # runs model
 #Rscript ~/git/mortality/USA/state/prog/models/INLA/spatiotemporal/inla_spatiotemporal_forecast_state.R $age $sex $start $end 2 $type $forecast_length $knot &
