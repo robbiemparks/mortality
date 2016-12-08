@@ -143,10 +143,11 @@ if(type==2){
 	if(pwl==1){
 	# no PWL
 	fml <- 	deaths.adj ~
+            1 +                                                                                 # global intercept
 			year.month +                                                                        # global slope
 			f(month2, year.month2, model='rw1', cyclic= TRUE) +                                 # month specific slope
 			f(month4, year.month2, model="rw1",cyclic = TRUE,group=ID, control.group=list(model='besag',graph=USA.adj)) +    # state-month specific slope (spatially-correlated)
-            f(ID2, year.month2, model="bym",graph=USA.adj)                         			# state specific slope (BYM)
+            f(ID2, year.month2, model="bym",graph=USA.adj)                                      # state specific slope (BYM)
 	}
 
 	if(pwl==2){
@@ -157,6 +158,7 @@ if(type==2){
 
 	# PWL
 	fml <- 	deaths.adj ~
+            1 +                                                                                 # global intercept
 			year.month1a +                                                           			# global slope	pre-knot
 			year.month1b +                                                           			# global slope	post-knot
 			f(month2a, year.month2a, model='rw1', cyclic= TRUE) +                               # month specific slope pre-knot
@@ -168,14 +170,13 @@ if(type==2){
 	}
 
 # 1. Type Ia space-time interaction
-update(fml, ~ . + 
-        1 +                                                                                     # global intercept
+fml <- update(fml, ~ . +
         f(month, model='rw1',cyclic = TRUE) +                                                   # month specific intercept
         f(month3, model="rw1",cyclic = TRUE,group=ID,control.group=list(model='besag',graph=USA.adj))+        		# state-month specific intercept (spatially-correlated)
         f(ID, model="bym",graph=USA.adj) +                                                      # state specific intercept (BYM)
         f(year.month3, model="rw1") +                                                           # rw1
         f(e, model = "iid")                                                                     # overdispersion term
-	)                                 		 	
+	)
 }
 
 if(type==3) {

@@ -15,23 +15,36 @@ declare -i end=2013
 declare -a pwls=(1 2)
 declare -i type=2
 declare -i forecast_length=5
-declare -i knot=2
+declare -a knots=(1 2 3 4 5 6 7 8 9 10)
 declare country="USA"
 
 #################################################
 # 1. RUN AGE-SEPARATED MODEL
 #################################################
 
+# run no pwl
+
 for sex in "${sexes[@]}"; do
-
 for age in "${ages[@]}"; do
-
-for pwl in "${pwls[@]}"; do
 
 echo "starting ${sexstrings[$sex-1]} $age INLA model $model, pwl $pwl, forecast length $forecast_length, years $start - $end";
 
 # runs model
-Rscript ~/git/mortality/USA/state/prog/models/INLA/spatiotemporal/inla_spatiotemporal_forecast.R $age $sex $start $end $pwl $type $forecast_length $knot
+Rscript ~/git/mortality/USA/state/prog/models/INLA/spatiotemporal/inla_spatiotemporal_forecast.R $age $sex $start $end 1 $type $forecast_length 0
+
+done; done;
+
+# run pwl
+
+for sex in "${sexes[@]}"; do
+for age in "${ages[@]}"; do
+for knot in "${knots[@]}"; do
+
+
+echo "starting ${sexstrings[$sex-1]} $age INLA model $model, pwl $pwl, forecast length $forecast_length, years $start - $end";
+
+# runs model
+Rscript ~/git/mortality/USA/state/prog/models/INLA/spatiotemporal/inla_spatiotemporal_forecast.R $age $sex $start $end 2 $type $forecast_length $knot
 
 done; done; done;
 
