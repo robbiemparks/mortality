@@ -19,6 +19,33 @@ declare -a knots=(1 2 3 4 5 6 7 8 9 10)
 declare country="USA"
 
 #################################################
+# 0. RUN AGE-SEPARATED NATIONAL MODEL
+#################################################
+
+# run no pwl
+
+for sex in "${sexes[@]}"; do
+
+echo "starting ${sexstrings[$sex-1]} $age INLA model $model, forecast length $forecast_length, years $start - $end";
+
+# runs model
+Rscript ~/git/mortality/USA/state/prog/models/INLA/spatiotemporal/inla_spatiotemporal_forecast_nat_allages.R $sex $start $end 1 $type $forecast_length 0 &
+
+done;
+
+# run pwl
+
+for sex in "${sexes[@]}"; do
+for knot in "${knots[@]}"; do
+
+echo "starting ${sexstrings[$sex-1]} $age INLA model $model, pwl with knot $knot years before forecast, forecast length $forecast_length, years $start - $end";
+
+# runs model
+Rscript ~/git/mortality/USA/state/prog/models/INLA/spatiotemporal/inla_spatiotemporal_forecast_nat_allages.R $sex $start $end 2 $type $forecast_length $knot &
+
+done; done;
+
+#################################################
 # 1. RUN AGE-SEPARATED NATIONAL MODEL
 #################################################
 
@@ -30,7 +57,7 @@ for age in "${ages[@]}"; do
 echo "starting ${sexstrings[$sex-1]} $age INLA model $model, forecast length $forecast_length, years $start - $end";
 
 # runs model
-Rscript ~/git/mortality/USA/state/prog/models/INLA/spatiotemporal/inla_spatiotemporal_forecast_nat.R $age $sex $start $end 1 $type $forecast_length 0 &
+#Rscript ~/git/mortality/USA/state/prog/models/INLA/spatiotemporal/inla_spatiotemporal_forecast_nat.R $age $sex $start $end 1 $type $forecast_length 0 &
 
 done; done;
 
@@ -43,7 +70,7 @@ for knot in "${knots[@]}"; do
 echo "starting ${sexstrings[$sex-1]} $age INLA model $model, pwl with knot $knot years before forecast, forecast length $forecast_length, years $start - $end";
 
 # runs model
-Rscript ~/git/mortality/USA/state/prog/models/INLA/spatiotemporal/inla_spatiotemporal_nat.R $age $sex $start $end 2 $type $forecast_length $knot &
+#Rscript ~/git/mortality/USA/state/prog/models/INLA/spatiotemporal/inla_spatiotemporal_forecast_nat.R $age $sex $start $end 2 $type $forecast_length $knot &
 
 done; done; done;
 

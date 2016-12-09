@@ -4,14 +4,13 @@ rm(list=ls())
 args <- commandArgs(trailingOnly=TRUE)
 
 # break down the arguments from Rscript
-age.arg <- as.numeric(args[1])
-sex.arg <- as.numeric(args[2])
-year.start.arg <- as.numeric(args[3])
-year.end.arg <- as.numeric(args[4])
-pwl.arg <- as.numeric(args[5])
-type.arg <- as.numeric(args[6])
-forecast.length.arg <- as.numeric(args[7])
-knot.year.arg <- as.numeric(args[8])
+sex.arg <- as.numeric(args[1])
+year.start.arg <- as.numeric(args[2])
+year.end.arg <- as.numeric(args[3])
+pwl.arg <- as.numeric(args[4])
+type.arg <- as.numeric(args[5])
+forecast.length.arg <- as.numeric(args[6])
+knot.year.arg <- as.numeric(args[7])
 
 # types character for file strings
 types <- c('1','1a','2','2a','3','3a','4','4a')
@@ -31,9 +30,9 @@ dat.inla.load <- readRDS(paste0('../../output/prep_data/datus_state_rates_',year
 
 # generate nationalised data
 library(plyr)
-dat.national <- ddply(dat.inla.load,.(year,month,sex,age),summarize,deaths.adj=sum(deaths.adj),pop.adj=sum(pop.adj))
+dat.national <- ddply(dat.inla.load,.(year,month,sex),summarize,deaths.adj=sum(deaths.adj),pop.adj=sum(pop.adj))
 dat.national$rate.adj <- with(dat.national,deaths.adj/pop.adj)
-dat.national <- dat.national[order(dat.national$sex,dat.national$age,dat.national$year,dat.national$month),]
+dat.national <- dat.national[order(dat.national$sex,dat.national$year,dat.national$month),]
 
 # rename for consistency in subsequent code of naming conventions
 dat.inla.load <- dat.national
@@ -41,7 +40,6 @@ dat.inla.load <- dat.national
 #library(dplyr)
 
 # lookups
-age.filter <- unique(dat.inla.load$age)
 state.lookup <- read.csv('../../data/fips_lookup/name_fips_lookup.csv')
 sex.lookup <- c('male','female')
 month.lookup <- c('January','February','March','April','May','June','July','August','September','October','November','December')
@@ -53,8 +51,8 @@ USA.adj <- "../../output/adj_matrix_create/USA.graph.edit"
 
 library(INLA)
 
-# function to enable age group and sex to be selected
-inla.function <- function(age.sel,sex.sel,year.start,year.end,pwl,type,forecast.length,knot.year) {
+# function to enable sex to be selected
+inla.function <- function(sex.sel,year.start,year.end,pwl,type,forecast.length,knot.year) {
 
 dat.inla <- dat.inla.load
 
@@ -66,10 +64,10 @@ years.total <- year.start:year.end
 # copy real rate for testing against
 dat.inla$rate.real <- dat.inla$rate.adj
 
-# filter all data by sex age and month and prepare for INLA forecasting
+# filter all data by sex and month and prepare for INLA forecasting
 sex <- sex.sel
-age <- age.sel
-dat.inla <- dat.inla[dat.inla$sex==sex & dat.inla$age==age & dat.inla$year %in% years.total,]
+
+dat.inla <- dat.inla[dat.inla$sex==sex & dat.inla$year %in% years.total,]
 dat.inla[dat.inla$year %in% years.forecast, c("rate.adj","deaths.adj")] <- NA
 
 # extract unique table of year and months to generate year.month
@@ -106,7 +104,7 @@ dat.inla <- merge(dat.inla,dat.knot, by=c('year.month'))
 
 # make sure that the order of the main data file matches that of the shapefile,
 # otherwise the model will not be valid
-dat.inla <- dat.inla[order(dat.inla$sex,dat.inla$age,dat.inla$year.month),]
+dat.inla <- dat.inla[order(dat.inla$sex,dat.inla$year.month),]
 
 # fix rownames
 rownames(dat.inla) <- 1:nrow(dat.inla)
@@ -144,7 +142,7 @@ if(type==2){
 	if(pwl==1){
 	# no PWL
 	fml <- 	deaths.adj ~
-            1 +                                                                                 # global intercept
+           		1 +                                                                                 # global intercept
 			year.month +                                                                        # global slope
 			f(month2, year.month2, model='rw1', cyclic= TRUE)                                   # month specific slope
 	}
@@ -308,17 +306,17 @@ system.time(mod <-
     ))
 
 # create directory for output
-file.loc <- paste0(file.loc,age.sel,'/')
+file.loc <- paste0(file.loc,'all_ages/')
 ifelse(!dir.exists(file.loc), dir.create(file.loc,recursive=TRUE), FALSE)
 
 # save all parameters of INLA model
-parameters.name <- paste0('USA_nat_rate_pred_type',type.selected,'_',pwl.lookup[pwl],'_',knot.year,'_knot_',age,'_',sex.lookup[sex],'_',year.start,'_',year.end,'_parameters')
+parameters.name <- paste0('USA_nat_rate_pred_type',type.selected,'_',pwl.lookup[pwl],'_',knot.year,'_knot_allages_',sex.lookup[sex],'_',year.start,'_',year.end,'_parameters')
 #mod$misc <- NULL
 #mod$.args$.parent.frame <- NULL
 saveRDS(mod,paste0(file.loc,parameters.name))
 
 # save summary of INLA model
-summary.name <- paste0('USA_nat_rate_pred_type',type.selected,'_',pwl.lookup[pwl],'_',knot.year,'_knot_',age,'_',sex.lookup[sex],'_',year.start,'_',year.end,'_summary.txt')
+summary.name <- paste0('USA_nat_rate_pred_type',type.selected,'_',pwl.lookup[pwl],'_',knot.year,'_knot_allages_',sex.lookup[sex],'_',year.start,'_',year.end,'_summary.txt')
 inla.summary.mod <- summary(mod)
 capture.output(inla.summary.mod,file=paste0(file.loc,summary.name))
 
@@ -326,14 +324,14 @@ capture.output(inla.summary.mod,file=paste0(file.loc,summary.name))
 plot.dat <- as.data.frame(cbind(dat.inla,rate.pred=mod$summary.fitted.values$mean,sd=mod$summary.fitted.values$sd))
 
 # name of RDS output file then save
-RDS.name <- paste0('USA_nat_rate_pred_type',type.selected,'_',pwl.lookup[pwl],'_',knot.year,'_knot_',age,'_',sex.lookup[sex],'_',year.start,'_',year.end)
+RDS.name <- paste0('USA_nat_rate_pred_type',type.selected,'_',pwl.lookup[pwl],'_',knot.year,'_knot_allages_',sex.lookup[sex],'_',year.start,'_',year.end)
 saveRDS(plot.dat,paste0(file.loc,RDS.name))
 
 sender <- "emailr349@gmail.com"
 recipients <- c("r.parks15@imperial.ac.uk")
 send.mail(from = sender,
           to = recipients,
-          subject = paste0(sex.lookup[sex.sel],' ',age.sel,' model ',type.selected,' done'),
+          subject = paste0(sex.lookup[sex.sel],' model ',type.selected,' done'),
           body = "Well done",
 	  #body= as.character(email.content[8]),
           smtp = list(host.name = "smtp.gmail.com", port = 465, 
@@ -348,4 +346,5 @@ send.mail(from = sender,
 ################
 
 # input arguments into function to perform inference
-mapply(inla.function,age.sel=age.arg,sex.sel=sex.arg,year.start=year.start.arg,year.end=year.end.arg,pwl=pwl.arg,type=type.arg,forecast.length=forecast.length.arg,knot.year=knot.year.arg)
+mapply(inla.function,sex.sel=sex.arg,year.start=year.start.arg,year.end=year.end.arg,pwl=pwl.arg,type=type.arg,forecast.length=forecast.length.arg,knot.year=knot.year.arg)
+
