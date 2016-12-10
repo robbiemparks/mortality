@@ -40,12 +40,8 @@ dat.inla.load <- dat.national
 #library(dplyr)
 
 # lookups
-state.lookup <- read.csv('../../data/fips_lookup/name_fips_lookup.csv')
 sex.lookup <- c('male','female')
 month.lookup <- c('January','February','March','April','May','June','July','August','September','October','November','December')
-
-# adjacency matrix with connections Hawaii -> California, Alaska -> Washington
-USA.adj <- "../../output/adj_matrix_create/USA.graph.edit"
 
 ##############
 
@@ -54,8 +50,8 @@ library(INLA)
 # function to enable sex to be selected
 inla.function <- function(sex.sel,year.start,year.end,pwl,type,forecast.length,knot.year) {
 
-#sex.sel = sex.arg ; year.start = year.start.arg ; year.end = year.end.arg ; pwl = pwl.arg ; type = type.arg
-#forecast.length = forecast.length.arg ; knot.year = knot.year.arg
+sex.sel = sex.arg ; year.start = year.start.arg ; year.end = year.end.arg ; pwl = pwl.arg ; type = type.arg
+forecast.length = forecast.length.arg ; knot.year = knot.year.arg
 
 dat.inla <- dat.inla.load
 
@@ -85,13 +81,14 @@ dat.inla <- merge(dat.inla,dat.year.month, by=c('year','month'))
 knot.month <- knot.year.arg*12
 knot.point <- max(dat.inla$year.month) - length(years.forecast)*12 - knot.month
 
-# create table of unique 'yearmonthc' id
+# create table of unique 'yearmonth' id
 dat.knot <- unique(dat.inla[,c('year', 'year.month')])
 dat.knot$year.month <- as.numeric(dat.knot$year.month)
 dat.knot <- dat.knot[order(dat.knot$year.month),]
 
 # condition to find value of year.month when year.month=knot.point to create year.month.2a
 dat.knot$year.month1a <- ifelse(dat.knot$year.month<=knot.point, dat.knot$year.month, knot.point)
+#dat.knot$year.month1a <- ifelse(dat.knot$year.month<=knot.point, dat.knot$year.month, 0)
 
 # condition to create year.month.2b, going 1,2,3,.... after knot point
 dat.knot$year.month1b <- dat.knot$year.month
@@ -159,10 +156,10 @@ if(type==2){
 	# PWL
 	fml <- 	deaths.adj ~
             1 +                                                                                 # global intercept
-			year.month1a +                                                           			# global slope	pre-knot
-			year.month1b +                                                           			# global slope	post-knot
-			f(month2a, year.month2a, model='rw1', cyclic= TRUE) +                               # month specific slope pre-knot
-			f(month2b, year.month2b, model='rw1', cyclic= TRUE)                                 # month specific slope post-knot
+            year.month1a +                                                           			# global slope	pre-knot
+            year.month1b +                                                           			# global slope	post-knot
+            f(month2a, year.month2a, model='rw1', cyclic= TRUE) +                               # month specific slope pre-knot
+            f(month2b, year.month2b, model='rw1', cyclic= TRUE)                                 # month specific slope post-knot
 	}
 
 # 1. Type Ia space-time interaction
