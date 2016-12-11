@@ -15,7 +15,7 @@ declare -i end=2013
 declare -a pwls=(1 2)
 declare -i type=2
 declare -i forecast_length=5
-declare -a knots=(0)
+declare -a knots=(25)
 #declare -a knots=(0 1 2 3 4 5 6 7 8 9 10)
 declare country="USA"
 
