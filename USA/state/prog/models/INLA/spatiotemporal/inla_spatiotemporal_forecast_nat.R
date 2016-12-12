@@ -132,9 +132,6 @@ fml  <- deaths.adj ~
     	# month specific terms
         f(month, model="rw1",cyclic = TRUE) +                                   		# month specific intercept
         f(month2, year.month2, model="rw1",cyclic = TRUE) +                     		# month specific slope
-        # state specific terms
-        f(ID, model="bym",graph=USA.adj) +                                      		# state specific intercept (BYM)
-        f(ID2, year.month2, model="bym",graph=USA.adj) +                        		# state specific slope (BYM)
 	# random walk across time
         f(year.month3, model="rw1") +                                           		# rw1
         # overdispersion term
@@ -186,71 +183,39 @@ if(type==2){
 	if(month.dist==1){
 		if(month.cyclic==0) 	{
 				fml <- update(fml, ~ . +
-				f(month2a, year.month2a, model='rw1', cyclic= FALSE))           # month specific slope pre-knot v1
-					}
-		if(month.cyclic==1) 	{
-				fml <- update(fml, ~ . +
-				f(month2a, year.month2a, model='rw1', cyclic= TRUE))            # month specific slope pre-knot v2
-					}
-	}
-	if(month.dist==2){
-		if(month.cyclic==0) 	{
-				fml <- update(fml, ~ . +
-				f(month2a, year.month2a, model='iid', cyclic= FALSE))           # month specific slope pre-knot v3
-					}
-		if(month.cyclic==1) 	{
-				fml <- update(fml, ~ . +
-				f(month2a, year.month2a, model='iid', cyclic= TRUE))            # month specific slope pre-knot v4
-					}
-	}
-	if(month.dist==1){
-		if(month.cyclic==0) 	{
-				fml <- update(fml, ~ . +
-				f(month2b, year.month2b, model='rw1', cyclic= FALSE))           # month specific slope post-knot v1
-					}
-		if(month.cyclic==1) 	{
-				fml <- update(fml, ~ . +
-				f(month2b, year.month2b, model='rw1', cyclic= TRUE))            # month specific slope post-knot v2
-					}
-	}
-	if(month.dist==2){
-		if(month.cyclic==0) 	{
-				fml <- update(fml, ~ . +
-				f(month2b, year.month2b, model='iid', cyclic= FALSE))           # month specific slope post-knot v3
-					}
-		if(month.cyclic==1) 	{
-				fml <- update(fml, ~ . +
-				f(month2b, year.month2b, model='iid', cyclic= TRUE))            # month specific slope post-knot v4
-					}
-	}
-
-
-	if(month.dist==1){
-		if(month.cyclic==0) 	{
-				fml <- update(fml, ~ . +
+				f(month2a, year.month2a, model='rw1', cyclic= FALSE) +          # month specific slope pre-knot v1
+				f(month2b, year.month2b, model='rw1', cyclic= FALSE) +          # month specific slope post-knot v2
 				f(month, model='rw1',cyclic =FALSE))           			# month specific intercept v1
-					}
+		}
 		if(month.cyclic==1) 	{
 				fml <- update(fml, ~ . +
+				f(month2a, year.month2a, model='rw1', cyclic= TRUE) +           # month specific slope pre-knot v2
+				f(month2b, year.month2b, model='rw1', cyclic= TRUE) +           # month specific slope post-knot v2
 				f(month, model='rw1',cyclic = TRUE))           			# month specific intercept v2
-					}
+		}
 	}
 	if(month.dist==2){
 		if(month.cyclic==0) 	{
 				fml <- update(fml, ~ . +
+				f(month2a, year.month2a, model='iid', cyclic= FALSE) +          # month specific slope pre-knot v3
+				f(month2b, year.month2b, model='iid', cyclic= FALSE) +          # month specific slope post-knot v3
 				f(month, model='iid',cyclic =FALSE))           			# month specific intercept v3
-					}
+		}
 		if(month.cyclic==1) 	{
 				fml <- update(fml, ~ . +
+				f(month2a, year.month2a, model='iid', cyclic= TRUE) +           # month specific slope pre-knot v4
+				f(month2b, year.month2b, model='iid', cyclic= TRUE) +           # month specific slope post-knot v4
 				f(month, model='iid',cyclic = TRUE))            		# month specific intercept v4
-					}
+		}
+	}
+
 	}
 
 	fml <- update(fml, ~ . +
         f(year.month3, model="rw1") +                                                           # rw1
         f(e, model = "iid")                                                                     # overdispersion term
 	)
-}}
+}
 
 if(type==3) {
 
