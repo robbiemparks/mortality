@@ -10,10 +10,11 @@ year.start.arg <- as.numeric(args[3])
 year.end.arg <- as.numeric(args[4])
 pwl.arg <- as.numeric(args[5])
 type.arg <- as.numeric(args[6])
-forecast.length.arg <- as.numeric(args[7])
-knot.year.arg <- as.numeric(args[8])
-month.dist.arg <- as.numeric(args[9])
-month.cyclic.arg <- as.numeric(args[10])
+fit.length.arg <- as.numeric(args[7])
+forecast.length.arg <- as.numeric(args[8])
+knot.year.arg <- as.numeric(args[9])
+month.dist.arg <- as.numeric(args[10])
+month.cyclic.arg <- as.numeric(args[11])
 
 # types character for file strings
 types <- c('1','1a','2','2a','3','3a','4','4a')
@@ -53,18 +54,18 @@ month.lookup <- c('January','February','March','April','May','June','July','Augu
 library(INLA)
 
 # function to enable age group and sex to be selected
-inla.function <- function(age.sel,sex.sel,year.start,year.end,pwl,type,forecast.length,knot.year,month.dist,month.cyclic) {
+inla.function <- function(age.sel,sex.sel,year.start,year.end,pwl,type,fit.length,forecast.length,knot.year,month.dist,month.cyclic) {
 
-#sex.sel = sex.arg ; year.start = year.start.arg ; year.end = year.end.arg ; pwl = pwl.arg ; type = type.arg
-#forecast.length = forecast.length.arg ; knot.year = knot.year.arg; age.sel <- age.arg ; month.dist = month.dist.arg
-#month.cyclic = month.cyclic.arg
+sex.sel = sex.arg ; year.start = year.start.arg ; year.end = year.end.arg ; pwl = pwl.arg
+type = type.arg ; fit.length = fit.length.arg ; forecast.length = forecast.length.arg
+knot.year = knot.year.arg; age.sel <- age.arg ; month.dist = month.dist.arg ; month.cyclic = month.cyclic.arg
 
 dat.inla <- dat.inla.load
 
 # choose test forecast years
-years.fit <- year.start:(year.end-forecast.length)
-years.forecast <- (year.end-forecast.length+1):(year.end)
-years.total <- year.start:year.end
+years.fit <- year.start:(year.start+fit.length-1)
+years.forecast <- (year.start+fit.length):((year.start+fit.length+forecast.length-1))
+years.total <- min(years.fit):max(years.forecast)
 
 # copy real rate for testing against
 dat.inla$rate.real <- dat.inla$rate.adj
