@@ -55,9 +55,9 @@ library(INLA)
 # function to enable age group and sex to be selected
 inla.function <- function(age.sel,sex.sel,year.start,year.end,pwl,type,forecast.length,knot.year,month.dist,month.cyclic) {
     
-    #sex.sel = sex.arg ; year.start = year.start.arg ; year.end = year.end.arg ; pwl = pwl.arg ; type = type.arg
-    #forecast.length = forecast.length.arg ; knot.year = knot.year.arg; age.sel <- age.arg ; month.dist = month.dist.arg
-    #month.cyclic = month.cyclic.arg
+    sex.sel = sex.arg ; year.start = year.start.arg ; year.end = year.end.arg ; pwl = pwl.arg ; type = type.arg
+    forecast.length = forecast.length.arg ; knot.year = knot.year.arg; age.sel <- age.arg ; month.dist = month.dist.arg
+    month.cyclic = month.cyclic.arg
     
     dat.inla <- dat.inla.load
     
@@ -87,7 +87,7 @@ inla.function <- function(age.sel,sex.sel,year.start,year.end,pwl,type,forecast.
     knot.month <- knot.year.arg*12
     knot.point <- max(dat.inla$year.month) - length(years.forecast)*12 - knot.month
     
-    # create table of unique 'yearmonth' id
+    # create table of unique 'yearmonth' id TRY CENTRING?
     dat.knot <- unique(dat.inla[,c('year', 'year.month')])
     dat.knot$year.month <- as.numeric(dat.knot$year.month)
     dat.knot <- dat.knot[order(dat.knot$year.month),]
@@ -99,12 +99,12 @@ inla.function <- function(age.sel,sex.sel,year.start,year.end,pwl,type,forecast.
     dat.knot$year.month1b <- seq(nrow(dat.knot))
     dat.knot$year.month1b <- ifelse(dat.knot$year.month>knot.point, seq(nrow(dat.knot))-(max(nrow(dat.knot))-length(years.forecast)*12 - knot.month), 0)
     dat.knot <- dat.knot[c(2,3,4)]
-    #rownames(dat.knot) <- 1:nrow(dat.knot)
     
     # replicate knot variables
     dat.knot$year.month4a <- dat.knot$year.month3a <- dat.knot$year.month2a <- dat.knot$year.month1a
     dat.knot$year.month4b <- dat.knot$year.month3b <- dat.knot$year.month2b <- dat.knot$year.month1b
     dat.knot <- dat.knot[order(dat.knot$year.month),]
+    #dat.knot$year.month <- dat.knot$year.month - mean(dat.knot$year.month)
     
     # Rejoin knots back to main table
     dat.inla <- merge(dat.inla,dat.knot, by=c('year.month'))
