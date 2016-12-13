@@ -81,7 +81,7 @@ echo "starting ${sexstrings[$sex-1]} $age INLA model $model, pwl with knot $knot
 # runs model
 Rscript ~/git/mortality/USA/state/prog/models/INLA/spatiotemporal/inla_spatiotemporal_forecast_nat.R $age $sex $start $end 2 $type $forecast_length $knot $month_dist $month_cyclic &
 
-done; done; done; done; done;
+done; done; done; done; done; done;
 
 #################################################
 # 2. RUN AGE-SEPARATED STATE MODEL
