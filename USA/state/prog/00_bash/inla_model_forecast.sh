@@ -62,7 +62,8 @@ for month_cyclic in "${month_cyclics[@]}"; do
 echo "starting ${sexstrings[$sex-1]} $age INLA model $model, forecast length $forecast_length, years $start - $end";
 
 # runs model
-Rscript ~/git/mortality/USA/state/prog/models/INLA/spatiotemporal/inla_spatiotemporal_forecast_nat_optimal.R $age $sex $start $end 1 $type $forecast_length 0 $month_dist $month_cyclic &
+Rscript ~/git/mortality/USA/state/prog/models/INLA/spatiotemporal/inla_spatiotemporal_forecast_nat_optimal.R $age $sex $start $end 1 $type $forecast_length 0 $month_dist $month_cyclic
+Rscript ~/git/mortality/USA/state/prog/models/INLA/spatiotemporal/inla_spatiotemporal_forecast_analysis.R $age $sex $start $end 1 $type $forecast_length 0 $month_dist $month_cyclic
 
 done; done; done; done; done;
 
@@ -78,7 +79,8 @@ for month_cyclic in "${month_cyclics[@]}"; do
 echo "starting ${sexstrings[$sex-1]} $age INLA model $model, pwl with knot $knot years before forecast, forecast length $forecast_length, years $start - $end";
 
 # runs model
-Rscript ~/git/mortality/USA/state/prog/models/INLA/spatiotemporal/inla_spatiotemporal_forecast_nat_optimal.R $age $sex $start $end 2 $type $forecast_length $knot $month_dist $month_cyclic &
+Rscript ~/git/mortality/USA/state/prog/models/INLA/spatiotemporal/inla_spatiotemporal_forecast_nat_optimal.R $age $sex $start $end 2 $type $forecast_length $knot $month_dist $month_cyclic
+Rscript ~/git/mortality/USA/state/prog/models/INLA/spatiotemporal/inla_spatiotemporal_forecast_analysis.R $age $sex $start $end 1 $type $forecast_length 0 $month_dist $month_cyclic
 
 done; done; done; done; done; done;
 

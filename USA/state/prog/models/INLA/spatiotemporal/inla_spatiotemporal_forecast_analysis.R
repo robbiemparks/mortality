@@ -25,10 +25,9 @@ types <- c('1','1a','2','2a','3','3a','4','4a')
 type.selected <- types[type.arg]
 pwl.lookup <- c('nopwl','pwl')
 dist.lookup <- c('rw1','iid')
-cyclic.lookup <- c('cyclic','ncyclic')
+cyclic.lookup <- c('ncyclic','cyclic')
 
 # lookups
-age.filter <- unique(dat.inla.load$age)
 state.lookup <- read.csv('../../data/fips_lookup/name_fips_lookup.csv')
 sex.lookup <- c('male','female')
 month.lookup <- c('January','February','March','April','May','June','July','August','September','October','November','December')
@@ -46,6 +45,7 @@ file.loc <- paste0(file.loc,age.sel,'/')
 # load file to score
 RDS.name <- paste0('USAnat_',age,sex.lookup[sex],'_pred_type',type.selected,'_',pwl.lookup[pwl],'knot',knot.year,
     '_forecast',forecast.length,'_monthterms',dist.lookup[month.dist],cyclic.lookup[month.cyclic+1],'_',year.start,'_',year.end)
+print(RDS.name)
 
 # load file
 dat <- readRDS(paste0(file.loc,RDS.name))
@@ -55,9 +55,11 @@ dat <- subset(dat, year %in% years.forecast)
 
 # create summary information about model and model performance
 dat.model.info <- data.frame(type=type.selected,pwl=pwl.lookup[pwl.arg],month.dist=dist.lookup[month.dist.arg],
-				month.cyclic=cyclic.lookup[month.cyclic.arg],age=age.arg,sex=sex.arg,year.start.fit=year.start.arg,year.end.fit=max(years.fit),
-				knot.year=max(years.fit)-knot.year.arg,forecast.length=forecast.length.arg)#,
+				month.cyclic=cyclic.lookup[month.cyclic.arg+1],age=age.arg,sex=sex.arg,year.start.fit=year.start.arg,year.end.fit=max(years.fit),
+				knot.year=max(years.fit)-knot.year.arg,forecast.length=forecast.length.arg)
+print(dat.model.info)
 dat.perf <- data.frame(bias.abs=mean(dat$bias.abs),deviation.abs=mean(dat$deviation.abs),bias.rel=mean(dat$bias.rel),deviation.rel=mean(dat$deviation.rel))
+print(dat.perf)
 
 # output file location
 file.loc.output <- '../../output/forecast_perf/'
@@ -66,7 +68,8 @@ file.loc.output <- paste0(file.loc.output,age.arg,'/')
 ifelse(!dir.exists(file.loc.output), dir.create(file.loc.output,recursive=TRUE), FALSE)
 
 # output file
-saveRDS(dat.model.info,paste0(file.loc.output,RDS.name,'_performance'))
+dat.merged <- cbind(dat.model.info,dat.perf)
+saveRDS(dat.merged,paste0(file.loc.output,RDS.name,'_performance'))
 
 
 

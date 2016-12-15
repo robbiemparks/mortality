@@ -20,7 +20,7 @@ types <- c('1','1a','2','2a','3','3a','4','4a')
 type.selected <- types[type.arg]
 pwl.lookup <- c('nopwl','pwl')
 dist.lookup <- c('rw1','iid')
-cyclic.lookup <- c('cyclic','ncyclic')
+cyclic.lookup <- c('ncyclic','cyclic')
 
 require(mailR)
 
