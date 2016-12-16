@@ -168,9 +168,10 @@ inla.function <- function(age.sel,sex.sel,year.start,year.end,pwl,type,forecast.
                     f(month, model='iid',cyclic =FALSE))                                    # month specific intercept v3
                 }
                 if(month.cyclic==1) 	{
-                    fml <- update(fml, ~ . +
-                    f(month2, year.month2, model='iid', cyclic= TRUE) +                     # month specific slope v4
-                    f(month, model='iid',cyclic = TRUE))                                    # month specific intercept v4
+                    stop('Cannot be iid and cyclic')
+                    #fml <- update(fml, ~ . +
+                    #f(month2, year.month2, model='iid', cyclic= TRUE) +                     # month specific slope v4
+                    #f(month, model='iid',cyclic = TRUE))                                    # month specific intercept v4
                 }
             }
         }
@@ -211,11 +212,12 @@ inla.function <- function(age.sel,sex.sel,year.start,year.end,pwl,type,forecast.
                     f(month, model='iid',cyclic =FALSE))                                    # month specific intercept v3
                 }
                 if(month.cyclic==1) 	{
-                    fml <- update(fml, ~ . +
-                    f(month2a, year.month2a, model='iid', cyclic= TRUE) +                   # month specific slope pre-knot v4
-                    f(month2b, year.month2b, model='iid', cyclic= TRUE,                     # month specific slope post-knot v4
-                    hyper = list(prec = list(prior = "loggamma", param = c(1, 1e-4), initial = 0.1))) +
-                    f(month, model='iid',cyclic = TRUE))                                    # month specific intercept v4
+                    stop('Cannot be iid and cyclic')
+                    #fml <- update(fml, ~ . +
+                    #f(month2a, year.month2a, model='iid', cyclic= TRUE) +                   # month specific slope pre-knot v4
+                    #f(month2b, year.month2b, model='iid', cyclic= TRUE,                     # month specific slope post-knot v4
+                    #hyper = list(prec = list(prior = "loggamma", param = c(1, 1e-4), initial = 0.1))) +
+                    #f(month, model='iid',cyclic = TRUE))                                    # month specific intercept v4
                 }
             }
             
@@ -270,17 +272,17 @@ t
     
     sender <- "emailr349@gmail.com"
     recipients <- c("r.parks15@imperial.ac.uk")
-    send.mail(from = sender,
-    to = recipients,
-    subject = paste0('USAnat_',age,sex.lookup[sex],'_pred_type',type.selected,'_',pwl.lookup[pwl],'knot',knot.year,
-    '_forecast',forecast.length,'_',dist.lookup[month.dist],cyclic.lookup[month.cyclic+1],'_',year.start,'_',year.end,' done'),
-    body = "Well done",
+    #send.mail(from = sender,
+    #to = recipients,
+    #subject = paste0('USAnat_',age,sex.lookup[sex],'_pred_type',type.selected,'_',pwl.lookup[pwl],'knot',knot.year,
+    #'_forecast',forecast.length,'_',dist.lookup[month.dist],cyclic.lookup[month.cyclic+1],'_',year.start,'_',year.end,' done'),
+    #body = "Well done",
     #body= as.character(email.content[8]),
-    smtp = list(host.name = "smtp.gmail.com", port = 465, 
-    user.name = "emailr349@gmail.com",            
-    passwd = "inlaisthebest", ssl = TRUE),
-    authenticate = TRUE,
-    send = TRUE)
+    #smtp = list(host.name = "smtp.gmail.com", port = 465,
+    #user.name = "emailr349@gmail.com",
+    #passwd = "inlaisthebest", ssl = TRUE),
+    #authenticate = TRUE,
+    #send = TRUE)
     
     # this bracket ends the function at the top of the script
 }
