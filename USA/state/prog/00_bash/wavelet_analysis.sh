@@ -10,19 +10,27 @@ clear
 
 declare -i start=1982
 declare -i end=2013
-declare -i numsim=100
+declare -a numsims=(10 100 1000)
+declare -i sig=5
+declare -a noises=(2 1)
 declare country="USA"
 
 #################################################
 # 1. NATIONALISED WAVELET ANALYSIS
 #################################################
 
+for noise in "${noises[@]}"; do
+for numsim in "${numsims[@]}"; do
+
+
 clear
 
 echo "starting nationalised wavelet analysis for $country, years $start - $end";
 
 # runs wavelet analysis
-Rscript ~/git/mortality/USA/state/prog/wavelet/wavelet_national.R $start $end $numsim
+Rscript ~/git/mortality/USA/state/prog/wavelet/wavelet_national.R $start $end $numsim $sig $noise
+
+done; done;
 
 #################################################
 # 2. REGION WAVELET ANALYSIS
