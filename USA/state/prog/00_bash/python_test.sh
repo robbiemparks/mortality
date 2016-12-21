@@ -6,11 +6,15 @@
 clear
 
 #################################################
-# 1. CREATE ADJACENCY MATRIX AND ADJUST
+# 1. PYTHON TESTS
 #################################################
 
-echo "making python test";
+echo "python test";
 
-python ~/git/mortality/USA/state/prog/python_test/hello_world.py
-python ~/git/mortality/USA/state/prog/python_test/read_csv.py
+#python ~/git/mortality/USA/state/prog/python_test/hello_world.py
+
+#python ~/git/mortality/USA/state/prog/python_test/read_csv.py
+
+python ~/git/mortality/USA/state/prog/python_test/arguments.py 75 1 
+
 
