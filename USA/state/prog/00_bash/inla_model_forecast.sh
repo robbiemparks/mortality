@@ -35,7 +35,7 @@ declare country="USA"
 #echo "starting ${sexstrings[$sex-1]} $age INLA model $type, forecast length $forecast_length, years $start - $end";
 
 # runs model
-#Rscript ~/git/mortality/USA/state/prog/models/INLA/spatiotemporal/inla_spatiotemporal_forecast_nat_allages.R $sex $start $end 1 $type $forecast_length 0 &
+#Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_forecast_nat_allages.R $sex $start $end 1 $type $forecast_length 0 &
 
 #done;
 
@@ -48,7 +48,7 @@ declare country="USA"
 #echo "starting ${sexstrings[$sex-1]} $age INLA model $type, pwl with knot $knot years before forecast, forecast length $forecast_length, years $start - $end";
 
 # runs model
-#Rscript ~/git/mortality/USA/state/prog/models/INLA/spatiotemporal/inla_spatiotemporal_forecast_nat_allages.R $sex $start $end 2 $type $forecast_length $knot &
+#Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_forecast_nat_allages.R $sex $start $end 2 $type $forecast_length $knot &
 
 #done; done;
 
@@ -68,7 +68,7 @@ clear
 echo "starting ${sexstrings[$sex-1]} $age INLA model $type, month ${diststrings[$month_dist-1]}, ${cyclicstrings[$month_cyclic]}, forecast length $forecast_length, years $start - $end";
 
 # runs model
-#Rscript ~/git/mortality/USA/state/prog/models/INLA/spatiotemporal/inla_spatiotemporal_forecast_nat_optimal.R $age $sex $start $end 1 $type $forecast_length 0 $month_dist $month_cyclic
+#Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_forecast_nat_optimal.R $age $sex $start $end 1 $type $forecast_length 0 $month_dist $month_cyclic
 #Rscript ~/git/mortality/USA/state/prog/forecast_perf/inla_spatiotemporal_forecast_analysis.R $age $sex $start $end 1 $type $forecast_length 0 $month_dist $month_cyclic
 
 done; done; done; done; done;
@@ -86,7 +86,7 @@ clear
 echo "starting ${sexstrings[$sex-1]} $age INLA model $type, month ${diststrings[$month_dist-1]}, ${cyclicstrings[$month_cyclic]}, pwl with knot $knot years before forecast, forecast length $forecast_length, years $start - $end";
 
 # runs model
-#Rscript ~/git/mortality/USA/state/prog/models/INLA/spatiotemporal/inla_spatiotemporal_forecast_nat_optimal.R $age $sex $start $end 2 $type $forecast_length $knot $month_dist $month_cyclic
+#Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_forecast_nat_optimal.R $age $sex $start $end 2 $type $forecast_length $knot $month_dist $month_cyclic
 #Rscript ~/git/mortality/USA/state/prog/forecast_perf/inla_spatiotemporal_forecast_analysis.R $age $sex $start $end 2 $type $forecast_length $knot $month_dist $month_cyclic
 
 done; done; done; done; done; done;
@@ -96,7 +96,7 @@ done; done; done; done; done; done;
 for sex in "${sexes[@]}"; do
 for age in "${ages[@]}"; do
 
-Rscript ~/git/mortality/USA/state/prog/forecast_perf/inla_spatiotemporal_forecast_analysis_merge.R $age $sex $start $end $type
+#Rscript ~/git/mortality/USA/state/prog/forecast_perf/inla_spatiotemporal_forecast_analysis_merge.R $age $sex $start $end $type
 
 
 done; done;
@@ -113,7 +113,7 @@ done; done;
 #echo "starting ${sexstrings[$sex-1]} $age INLA model $type, forecast length $forecast_length, years $start - $end";
 
 # runs model
-#Rscript ~/git/mortality/USA/state/prog/models/INLA/spatiotemporal/inla_spatiotemporal_forecast_state.R $age $sex $start $end 1 $type $forecast_length 0 &
+#Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_forecast_state.R $age $sex $start $end 1 $type $forecast_length 0 &
 
 #done; done;
 
@@ -126,7 +126,7 @@ done; done;
 #echo "starting ${sexstrings[$sex-1]} $age INLA model $type, pwl with knot $knot years before forecast, forecast length $forecast_length, years $start - $end";
 
 # runs model
-#Rscript ~/git/mortality/USA/state/prog/models/INLA/spatiotemporal/inla_spatiotemporal_forecast_state.R $age $sex $start $end 2 $type $forecast_length $knot &
+#Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_forecast_state.R $age $sex $start $end 2 $type $forecast_length $knot &
 
 #done; done; done;
 
