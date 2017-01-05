@@ -39,13 +39,13 @@ sex.lookup <- c('Men','Women')
 
 # 1. NATIONAL
 
-# DYNAMIC MAX MIN
-
 # generate nationalised data
 dat$deaths.pred <- with(dat,pop.adj*rate.adj)
 dat.national <- ddply(dat,.(year,month,sex,age),summarize,deaths.pred=sum(deaths.pred),pop.adj=sum(pop.adj))
 dat.national$rate.adj <- with(dat.national,deaths.pred/pop.adj)
 dat.national <- dat.national[order(dat.national$sex,dat.national$age,dat.national$year,dat.national$month),]
+
+# DYNAMIC MAX MIN
 
 # figure out the ratio of max/min deaths over time by sex, age, year
 dat.max.min <-  ddply(dat.national, .(sex,age,year), summarize, max=max(rate.adj),month.max=month[rate.adj==max(rate.adj)],min=min(rate.adj),month.min=month[rate.adj==min(rate.adj)])
@@ -137,6 +137,16 @@ lin.reg.sig.weight$sig.test.5 <- ifelse(lin.reg.sig.weight[,6]<0.05,1,0)
 
 # merge with data about gradients
 lin.reg.grad.weight <- merge(lin.reg.grad.weight,lin.reg.sig.weight,by=c('sex','age'))
+
+# add ci info about differences between start and end year
+lin.reg.grad.weight$grad.uci <- with(lin.reg.grad.weight,year.centre+1.96*`Std. Error`)
+lin.reg.grad.weight$grad.lci <- with(lin.reg.grad.weight,year.centre-1.96*`Std. Error`)
+lin.reg.grad.weight$diff <- with(lin.reg.grad.weight,100*year.centre*(num.years-1))
+lin.reg.grad.weight$diff.uci <- with(lin.reg.grad.weight,100*grad.uci*(num.years-1))
+lin.reg.grad.weight$diff.lci <- with(lin.reg.grad.weight,100*grad.lci*(num.years-1))
+
+# sort out the ordering by age
+lin.reg.grad.weight <- with(lin.reg.grad.weight,lin.reg.grad.weight[order(sex,age),])
 
 # fix start and end values
 lin.reg.grad.weight$start.value.2 <- with(lin.reg.grad.weight,round(100*(start.value),1)-100)
