@@ -305,8 +305,6 @@ shapefile.data$climate_region <- 	c('Northwest','West North Central','Northeast'
 #'South','South','Southeast','Upper Midwest','Northwest',
 #'West')
 
-
-
 # merge selected data to map dataframe for colouring of ggplot
 USA.df <- merge(map, shapefile.data, by='id')
 USA.df$STATE_FIPS <- as.integer(as.character(USA.df$STATE_FIPS))
