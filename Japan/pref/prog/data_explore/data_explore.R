@@ -10,9 +10,6 @@ args <- commandArgs(trailingOnly=TRUE)
 # gender state and age lookup
 gender.lookup <- c('Men','Women')
 
-#age.new.lookup <- data.frame(age5=c(0,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100),
-#                            age.new=c(0,5,5,15,15,25,25,35,35,45,45,55,55,65,65,75,80,85,85,95,95))
-
 # NATIONAL
 
 ############################
@@ -29,11 +26,12 @@ dat.pop.nat <- subset(dat.pop,pref=='0')
 # rename columns
 dat.pop.nat <- rename(dat.pop.nat,c('deathyear'='year'))
 
+# rename sexes
+dat.pop.nat$sex <- as.numeric(as.character(revalue(dat.pop.nat$sex, c("Male"="1", "Female"="2"))))
 
 # create grid to attach population values to and interpolate missing values
-#months <- 	c(1:12)
 years  <-    c(min(dat.pop.nat$year):max(dat.pop.nat$year))
-sexes  <- 	 c('Male','Female')
+sexes <- c(1:2)
 ages   <-    c(0,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100)
 
 #complete.grid <- expand.grid(year=years,month=months,sex=sexes,age=ages)
@@ -44,9 +42,13 @@ dat.pop.nat.complete <- merge(complete.grid,dat.pop.nat,by=c('year','sex','age')
 
 # reorder complete file
 dat.pop.nat.complete <- dat.pop.nat.complete[order(dat.pop.nat.complete$age,dat.pop.nat.complete$sex,dat.pop.nat.complete$year),]
+rownames(dat.pop.nat.complete) <- 1:nrow(dat.pop.nat.complete)
 
-# interpolate using zoo and ddply package LIKE BELOW BUT NEEDS TO BE CHANGED
-dat.pop.nat.complete <- ddply(dat.pop.nat.complete,.(sex,age),function(z)coef(summary(lm(percent.change ~ year.centre, data=z))))
+# remove IHME and pref column
+dat.pop.nat.complete$pref_IHME <- dat.pop.nat.complete$pref <- NULL
+
+# interpolate missing populations using zoo and ddply package
+dat.pop.nat.complete <- ddply(dat.pop.nat.complete,.(sex,age),function(z) (na.approx(zoo(z))))
 
 ############################
 # organise mortality data
@@ -67,14 +69,20 @@ ifelse(!dir.exists(file.loc), dir.create(file.loc, recursive=TRUE), FALSE)
 
 # plot national deaths by age group over time
 pdf(paste0(file.loc,'japan_nat_deaths_1969_2011','.pdf'),height=0,width=0,paper='a4r')
-ggplot(data=dat.mort.nat,aes(x=deathyear,y=deaths)) +
+ggplot(data=dat.mort.nat,aes(x=year,y=deaths)) +
 geom_line(aes(color=as.factor(age5))) +
 facet_wrap(~sex)
 dev.off()
 
 # plot national population by age group over time
 pdf(paste0(file.loc,'japan_nat_pop_1975_2013','.pdf'),height=0,width=0,paper='a4r')
-ggplot(data=dat.pop.nat,aes(x=deathyear,y=population)) +
+ggplot(data=dat.pop.nat,aes(x=year,y=population)) +
 geom_line(aes(color=as.factor(age))) +
+facet_wrap(~sex)
+dev.off()
+
+pdf(paste0(file.loc,'japan_nat_pop_1975_2013_interpolated','.pdf'),height=0,width=0,paper='a4r')
+ggplot() +
+geom_line(dat=na.omit(dat.pop.nat.complete),aes(x=year,y=population,color=as.factor(age))) +
 facet_wrap(~sex)
 dev.off()
