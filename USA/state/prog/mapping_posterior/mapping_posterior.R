@@ -328,8 +328,9 @@ map.region.colour <- colorRampPalette(rev(brewer.pal(12,"Accent")[c(1:3,5,6)]))(
 names(map.region.colour) <- levels(as.factor(USA.df$SUB_REGION))
 
 # set colour scheme for climate colour map
-map.climate.colour <- colorRampPalette(rev(brewer.pal(12,"Accent")[c(1:3,5,6)]))(length(unique(USA.df$climate_region)))
-names(map.climate.colour) <- levels(as.factor(USA.df$climate_region))
+#map.climate.colour <- colorRampPalette(rev(brewer.pal(12,"Accent")[c(1:3,5,6)]))(length(unique(USA.df$climate_region)))
+#names(map.climate.colour) <- levels(as.factor(USA.df$climate_region))
+map.climate.colour <- colorRampPalette(c("red","hotpink","brown","navy","cyan","green","orange"))(20)[c(10,12,13,15,18,19,20,1,5)]
 
 ###############################################################
 # DIRECTORY CREATION
@@ -1593,7 +1594,7 @@ jitterplot.grad.by.month <- function(month.selected) {
 ###############################################################
 
 # map of the use by state in case needed
-pdf(paste0(file.loc.maps,'usa_map_region.pdf'),height=0,width=0,paper='a4r')
+pdf(paste0(file.loc.maps,'usa_map_region.pdf'))#,height=0,width=0,paper='a4r')
 ggplot(data=USA.df,aes(x=long,y=lat,group=group)) +
 geom_polygon(aes(fill=SUB_REGION),color='black',size=0.1) +
 scale_fill_manual(values=map.region.colour,guide = guide_legend(title = '')) +
@@ -1601,7 +1602,7 @@ theme_map() +
 theme(text = element_text(size = 15),legend.justification=c(1,0), legend.position='bottom')
 dev.off()
 
-pdf(paste0(file.loc.maps,'usa_map_climate.pdf'),height=0,width=0,paper='a4r')
+pdf(paste0(file.loc.maps,'usa_map_climate.pdf'))#,height=0,width=0,paper='a4r')
 ggplot(data=USA.df,aes(x=long,y=lat,group=group)) +
 geom_polygon(aes(fill=climate_region),color='black',size=0.1) +
 scale_fill_manual(values=map.climate.colour,guide = guide_legend(title = '')) +
