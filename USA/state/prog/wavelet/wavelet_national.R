@@ -9,6 +9,7 @@ sig.arg <- as.numeric(args[4])
 noise.arg <- as.numeric(args[5])
 
 require(WaveletComp)
+require(RColorBrewer)
 
 # create output directories
 file.loc <- paste0("../../output/wavelet/",year.start.arg,'_',year.end.arg,"/national/")
@@ -95,6 +96,7 @@ plot.wavelet.national <- function(sex.selected,age.selected) {
     legend.params = list(lab = "wavelet power levels"),
     periodlab = "periods (months)", show.date = T,timelab = "",
     graphics.reset = F,
+    #color.palette = "rainbow(n.levels, start=0, end=.7)",
     plot.legend=F)
     abline(h = log(12)/log(2))
     mtext(text = "12", side = 2, at = log(12)/log(2), las = 1, line = 0.5)
