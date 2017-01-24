@@ -559,15 +559,15 @@ plot.function.diff.seas.sig.5 <- function(shape.selected) {
     geom_point(data=subset(lin.reg.grad.weight,sig.test.5==1),colour='black',aes(shape=as.factor(sex),x=(start.value.2/100),y=(end.value.2/100)),size=8) +
     geom_point(data=subset(lin.reg.grad.weight,sex==1|2),aes(shape=as.factor(sex), color=as.factor(age),x=(start.value.2/100),y=(end.value.2/100)),size=6) +
     geom_abline(slope=1,intercept=0, linetype=2,alpha=0.5) +
-    scale_x_continuous(name=paste0('Seasonal excess mortality in ',year.start),labels=percent,limits=c(0,(50/100))) +
-    scale_y_continuous(name=paste0('Seasonal excess mortality in ',year.end),labels=percent,limits=c(0,(50/100))) +
+    scale_x_continuous(name=paste0('Seasonal percent excess mortality in ',year.start),labels=percent,limits=c(0,(50/100))) +
+    scale_y_continuous(name=paste0('Seasonal percent excess mortality in ',year.end),labels=percent,limits=c(0,(50/100))) +
     geom_hline(linetype=2, yintercept = seq(0,0.5,0.1), alpha=0.2) +
     geom_vline(linetype=2, xintercept = seq(0,0.5,0.1), alpha=0.2) +
     scale_shape_manual(values=c(16,shape.selected),labels=c('Men','Women'),guide = guide_legend(title = 'Sex:')) +
     scale_colour_manual(labels=c('0-4','5-14','15-24','25-34','35-44','45-54','55-64','65-74','75-84','85+'),values=age.colours,guide = guide_legend(title = 'Age group:')) +
     #guides(col = guide_legend(nrow = 1, byrow = TRUE)) +
     theme(legend.box.just = "centre",legend.box = "horizontal",legend.position='bottom',text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line.x = element_line(colour = "black"),
-    axis.line.y = element_line(colour = "black"),rect = element_blank(),legend.background = element_rect(fill = "grey95"))
+    axis.line.y = element_line(colour = "black"),rect = element_blank())#,legend.background = element_rect(fill = "grey95"))
     )
 }
 
