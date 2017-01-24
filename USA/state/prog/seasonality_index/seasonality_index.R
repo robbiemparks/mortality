@@ -247,6 +247,11 @@ dat.mort.climate.fixed$diff.climate <- with(dat.mort.climate.fixed,end.value.cli
 dat.mort.climate.fixed <- merge(dat.mort.climate.fixed,age.code,by='age')
 dat.mort.climate.fixed$age.print <- reorder(dat.mort.climate.fixed$age.print,dat.mort.climate.fixed$age)
 
+# linear regression for each age-sex and obtain significance of slopes
+lin.reg.mort.climate.fixed <- ddply(dat.mort.climate.fixed,.(age,sex),function(z)coef(summary(lm(end.value.mort ~ end.value.climate, data=z))))
+lin.reg.mort.climate.fixed <- lin.reg.mort.climate.fixed[!c(TRUE,FALSE),]
+lin.reg.mort.climate.fixed$sig.test.5 <- ifelse(lin.reg.mort.climate.fixed[,6]<0.05,1,0)
+
 # DYNAMIC MAX/MIN
 
 # load climate data
@@ -284,6 +289,17 @@ file.loc <- paste0('../../output/seasonality_index/national/')
 ifelse(!dir.exists(file.loc), dir.create(file.loc, recursive=TRUE), FALSE)
 file.loc.regional <- paste0('../../output/seasonality_index/regional/')
 ifelse(!dir.exists(file.loc.regional), dir.create(file.loc.regional, recursive=TRUE), FALSE)
+
+## DATA ##
+
+# export national seasonality index changes file
+saveRDS(lin.reg.grad.weight,paste0(file.loc,'seasonality_index_nat_changes_',year.start,'_',year.end))
+
+# export
+saveRDS(lin.reg.mort.climate.fixed,paste0(file.loc.regional,'seasonality_index_climate_region_against_temp_grads_',year.start,'_',year.end))
+
+
+## GRAPHS ##
 
 ###############################################################
 # RATIO OF MAX/MIN MORTALITY RATE OVER TIME BY STATE EACH YEAR
@@ -509,10 +525,6 @@ plot.function.diff.seas.sig.5(17)
 dev.off()
 
 # METHOD TAKING ACCCOUNT OF POPULATION
-
-# export file
-saveRDS(lin.reg.grad.weight,paste0(file.loc,'seasonality_index_nat_changes_',year.start,'_',year.end))
-write.csv(lin.reg.grad.weight,paste0(file.loc,'seasonality_index_nat_changes_',year.start,'_',year.end,'.csv'))
 
 # remove com data that doesn't meet wavelet criteria (automate?)
 lin.reg.grad.weight <- subset(lin.reg.grad.weight,!(age==35 & sex==1))
