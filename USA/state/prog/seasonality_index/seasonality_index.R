@@ -37,6 +37,7 @@ month.names <- c('January','February','March','April','May','June',
 month.short <- c('Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec')
 sex.lookup <- c('Men','Women')
 
+
 ###############################################################
 # DATA PROCESSING
 ###############################################################
@@ -433,8 +434,11 @@ lin.reg.grad <- subset(lin.reg.grad,!(age==25 & sex==2))
 
 # METHOD NOT TAKING ACCCOUNT OF POPULATION
 
-age.colours <- c('#FF1493','#B8860B','#808080','#00BFFF','#00CED1')
-age.colours <- c(age.colours,'#66CDAA','#9ACD32','#ADFF2F','#9932CC','#FF8C00')
+#age.colours <- c('#FF1493','#B8860B','#808080','#00BFFF','#00CED1')
+#age.colours <- c(age.colours,'#66CDAA','#9ACD32','#ADFF2F','#9932CC','#FF8C00')
+age.colours=c("blue",brewer.pal(9,"BrBG")[c(9:6,4:1)],"grey")
+
+# old colours
 #age.colours <- rev(c('#00ff00','#00dd00','#00aa00','#009900','#007700'))
 #age.colours <- c(age.colours,'#ff0000','#cc0000','#990000','#660000','#330000')
 
