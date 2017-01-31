@@ -72,6 +72,9 @@ dat.merged$month.short <- reorder(dat.merged$month.short,dat.merged$month)
 dat.merged$state.name <- mapvalues(dat.merged$fips,from=unique(dat.merged$fips),to=state.names)
 dat.merged$state.name <- reorder(dat.merged$state.name,dat.merged$fips)
 
+# output file
+saveRDS(dat.merged,paste0(file.loc,'/mort_against_climate_',age.arg,'_',sex.arg,'_',year.start.mort.arg,'_',year.end.mort.arg,'_',dname.arg,'_',metric.arg))
+
 #############################################
 # 1. PLOT ALL TOGETHER
 #############################################
