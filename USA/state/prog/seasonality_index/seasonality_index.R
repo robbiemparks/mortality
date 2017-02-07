@@ -577,8 +577,8 @@ plot.function.diff.seas.sig.5 <- function(shape.selected) {
     geom_point(data=subset(lin.reg.grad.weight,sig.test.5==1),colour='black',aes(shape=as.factor(sex),x=(start.value.2/100),y=(end.value.2/100)),size=8) +
     geom_point(data=subset(lin.reg.grad.weight,sex==1|2),aes(shape=as.factor(sex), color=as.factor(age),x=(start.value.2/100),y=(end.value.2/100)),size=6) +
     geom_abline(slope=1,intercept=0, linetype=2,alpha=0.5) +
-    scale_x_continuous(name=paste0('Seasonal percent excess mortality in ',year.start),labels=percent,limits=c(0,(50/100))) +
-    scale_y_continuous(name=paste0('Seasonal percent excess mortality in ',year.end),labels=percent,limits=c(0,(50/100))) +
+    scale_x_continuous(name=paste0('Percent difference in death rates in ',year.start),labels=percent,limits=c(0,(50/100))) +
+    scale_y_continuous(name=paste0('Percent difference in death rates in ',year.end),labels=percent,limits=c(0,(50/100))) +
     geom_hline(linetype=2, yintercept = seq(0,0.5,0.1), alpha=0.2) +
     geom_vline(linetype=2, xintercept = seq(0,0.5,0.1), alpha=0.2) +
     scale_shape_manual(values=c(16,shape.selected),labels=c('Men','Women'),guide = guide_legend(title = 'Sex:')) +
@@ -714,8 +714,8 @@ pdf(paste0(file.loc.regional,'seasonality_index_regional_against_climate_fixed_c
 ggplot() +
 geom_point(data=subset(dat.mort.climate.fixed, sex==1|2),aes(shape=as.factor(sex),x=end.value.climate,y=end.value.mort/100,color=as.factor(climate_region)),size=2) +
 scale_shape_manual(values=c(16,17),labels=c('Men','Women'),guide = guide_legend(title = 'Sex:')) +
-scale_x_continuous(name=expression(paste("Temperature difference (",degree,"C) between maximum and minimum months"))) +
-scale_y_continuous(name=paste0('Seasonal percent excess mortality in ',year.end.2),labels=percent) +
+scale_x_continuous(name=expression(paste("Temperature difference (",degree,"C)"))) +
+scale_y_continuous(name=paste0('Percent difference in death rates'),labels=percent) +
 #geom_hline(linetype=2, yintercept = seq(-1,1,0.1), alpha=0.2) +
 #geom_vline(linetype=2, xintercept = seq(-100,100,10), alpha=0.2) +
 geom_vline(xintercept=0,linetype=2,alpha=0.4) +
