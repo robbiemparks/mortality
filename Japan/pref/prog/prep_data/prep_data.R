@@ -13,8 +13,6 @@ year.end <- as.numeric(args[2])
 # gender state and age lookup
 gender.lookup <- c('Men','Women')
 
-# NATIONAL MONTHLY
-
 # load population data
 filename <- paste0('../../data/population/original/datpopjapan20160307')
 dat.pop <- readRDS(filename)
@@ -22,6 +20,8 @@ dat.pop <- readRDS(filename)
 # load mortality data
 filename <- paste0('../../data/mortality/original/datmortjapan20160307')
 dat.mort <- readRDS(filename)
+
+# NATIONAL MONTHLY
 
 ############################
 # organise popualaton data
