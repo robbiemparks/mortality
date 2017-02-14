@@ -163,3 +163,42 @@ saveRDS(dat.merged,paste0(file.loc,'datjp_nat_rate_',year.start,'_',year.end))
 #geom_line(aes(color=as.factor(age))) +
 #facet_wrap(~sex)
 #dev.off()
+
+# SUBNATIONAL MONTHLY
+
+############################
+# organise popualaton data
+############################
+
+# delete national summary data
+dat.pop <- subset(dat.pop,pref!='0')
+
+# rename columns
+dat.pop <- rename(dat.pop,c('deathyear'='year'))
+
+# rename sexes
+dat.pop$sex <- as.numeric(as.character(revalue(dat.pop$sex, c("Male"="1", "Female"="2"))))
+
+# centre yearly populations on June
+dat.pop.nat$month <- 6
+
+# create grid to attach population values to and interpolate missing values
+years  <-    c(min(min(na.omit(dat.mort$deathyear)),min(dat.pop.nat$year)):max(max(na.omit(dat.mort$deathyear)),max(dat.pop.nat$year)))
+months <-    c(1:12)
+sexes  <-    c(1:2)
+ages   <-    c(0,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100)
+
+complete.grid <- expand.grid(year=years, month=months,sex=sexes,age=ages)
+
+# merge population with complete grid to highlight missing years
+dat.pop.nat.complete <- merge(complete.grid,dat.pop.nat,by=c('year','month','sex','age'),all.x='TRUE')
+
+# reorder complete file
+dat.pop.nat.complete <- dat.pop.nat.complete[order(dat.pop.nat.complete$age,dat.pop.nat.complete$sex,dat.pop.nat.complete$year,dat.pop.nat.complete$month),]
+rownames(dat.pop.nat.complete) <- 1:nrow(dat.pop.nat.complete)
+
+# remove IHME and pref column
+dat.pop.nat.complete$pref_IHME <- dat.pop.nat.complete$pref <- NULL
+
+# interpolate missing populations using zoo and ddply package
+dat.pop.nat.complete <- ddply(dat.pop.nat.complete,.(sex,age),function(z) (na.approx(zoo(z))))
