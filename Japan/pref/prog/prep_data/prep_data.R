@@ -180,25 +180,29 @@ dat.pop <- rename(dat.pop,c('deathyear'='year'))
 dat.pop$sex <- as.numeric(as.character(revalue(dat.pop$sex, c("Male"="1", "Female"="2"))))
 
 # centre yearly populations on June
-dat.pop.nat$month <- 6
+dat.pop$month <- 6
 
 # create grid to attach population values to and interpolate missing values
-years  <-    c(min(min(na.omit(dat.mort$deathyear)),min(dat.pop.nat$year)):max(max(na.omit(dat.mort$deathyear)),max(dat.pop.nat$year)))
+years  <-    c(min(min(na.omit(dat.mort$deathyear)),min(dat.pop$year)):max(max(na.omit(dat.mort$deathyear)),max(dat.pop$year)))
 months <-    c(1:12)
 sexes  <-    c(1:2)
+prefs  <-   c(sort(unique(as.character(dat.pop$pref))))
 ages   <-    c(0,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100)
 
-complete.grid <- expand.grid(year=years, month=months,sex=sexes,age=ages)
+complete.grid <- expand.grid(year=years, month=months,sex=sexes,age=ages, pref=prefs)
 
 # merge population with complete grid to highlight missing years
-dat.pop.nat.complete <- merge(complete.grid,dat.pop.nat,by=c('year','month','sex','age'),all.x='TRUE')
+dat.pop.complete <- merge(complete.grid,dat.pop,by=c('year','month','sex','age','pref'),all.x='TRUE')
 
 # reorder complete file
-dat.pop.nat.complete <- dat.pop.nat.complete[order(dat.pop.nat.complete$age,dat.pop.nat.complete$sex,dat.pop.nat.complete$year,dat.pop.nat.complete$month),]
-rownames(dat.pop.nat.complete) <- 1:nrow(dat.pop.nat.complete)
+dat.pop.complete <- dat.pop.complete[order(dat.pop.complete$pref,dat.pop.complete$age,dat.pop.complete$sex,dat.pop.complete$year,dat.pop.complete$month),]
+rownames(dat.pop.complete) <- 1:nrow(dat.pop.complete)
 
 # remove IHME and pref column
-dat.pop.nat.complete$pref_IHME <- dat.pop.nat.complete$pref <- NULL
+dat.pop.complete$pref_IHME <- NULL
 
 # interpolate missing populations using zoo and ddply package
-dat.pop.nat.complete <- ddply(dat.pop.nat.complete,.(sex,age),function(z) (na.approx(zoo(z))))
+dat.pop.complete2 <- ddply(dat.pop.complete,.(sex,age,pref),function(z) (na.approx(zoo(z))))
+
+# test
+dat.pop.complete <- test[order(dat.pop.complete$pref,dat.pop.complete$age,dat.pop.complete$sex,dat.pop.complete$year,test$month),]
