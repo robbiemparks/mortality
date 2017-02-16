@@ -24,7 +24,7 @@ dat.mort <- readRDS(filename)
 # NATIONAL MONTHLY
 
 ############################
-# organise popualaton data
+# organise population data
 ############################
 
 # only keep national data
@@ -167,7 +167,7 @@ saveRDS(dat.merged,paste0(file.loc,'datjp_nat_rate_',year.start,'_',year.end))
 # SUBNATIONAL MONTHLY
 
 ############################
-# organise popualaton data
+# organise population data
 ############################
 
 # delete national summary data
@@ -183,7 +183,7 @@ dat.pop$sex <- as.numeric(as.character(revalue(dat.pop$sex, c("Male"="1", "Femal
 dat.pop$month <- 6
 
 # create grid to attach population values to and interpolate missing values
-years  <-    c(min(min(na.omit(dat.mort$deathyear)),min(dat.pop$year)):max(max(na.omit(dat.mort$deathyear)),max(dat.pop$year)))
+years  <-    c(1980:max(max(na.omit(dat.mort$deathyear)),max(dat.pop$year)))
 months <-    c(1:12)
 sexes  <-    c(1:2)
 prefs  <-   c(sort(unique(as.character(dat.pop$pref))))
@@ -194,6 +194,9 @@ complete.grid <- expand.grid(year=years, month=months,sex=sexes,age=ages, pref=p
 # merge population with complete grid to highlight missing years
 dat.pop.complete <- merge(complete.grid,dat.pop,by=c('year','month','sex','age','pref'),all.x='TRUE')
 
+# convert pref from factor to character
+dat.pop.complete$pref <- as.character(dat.pop.complete$pref)
+
 # reorder complete file
 dat.pop.complete <- dat.pop.complete[order(dat.pop.complete$pref,dat.pop.complete$age,dat.pop.complete$sex,dat.pop.complete$year,dat.pop.complete$month),]
 rownames(dat.pop.complete) <- 1:nrow(dat.pop.complete)
@@ -201,8 +204,16 @@ rownames(dat.pop.complete) <- 1:nrow(dat.pop.complete)
 # remove IHME and pref column
 dat.pop.complete$pref_IHME <- NULL
 
-# interpolate missing populations using zoo and ddply package
-dat.pop.complete2 <- ddply(dat.pop.complete,.(sex,age,pref),function(z) (na.approx(zoo(z))))
+# create a lookup table of prefectures and create unique numerical lookup
+dat.pref <- data.frame(pref=unique(dat.pop.complete$pref),pref_id=1:nrow(dat.pref))
 
-# test
-dat.pop.complete <- test[order(dat.pop.complete$pref,dat.pop.complete$age,dat.pop.complete$sex,dat.pop.complete$year,test$month),]
+# merge with population complete table
+dat.pop.complete <- merge(dat.pop.complete,dat.pref,by='pref')
+
+# interpolate missing populations using zoo and ddply package
+dat.pop.complete2 <- ddply(dat.pop.complete,.(sex,age,pref_id),function(z) (na.approx(zoo(z))))
+
+# plot by age by prefecture
+ggplot(data=subset(dat.pop.complete, sex == 2 & age==60)) +
+geom_point(aes(x=year,y=population,color=as.factor(pref))) +
+theme_bw()
