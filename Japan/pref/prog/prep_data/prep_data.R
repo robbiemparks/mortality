@@ -13,8 +13,6 @@ year.end <- as.numeric(args[2])
 # gender state and age lookup
 gender.lookup <- c('Men','Women')
 
-# NATIONAL MONTHLY
-
 # load population data
 filename <- paste0('../../data/population/original/datpopjapan20160307')
 dat.pop <- readRDS(filename)
@@ -23,8 +21,10 @@ dat.pop <- readRDS(filename)
 filename <- paste0('../../data/mortality/original/datmortjapan20160307')
 dat.mort <- readRDS(filename)
 
+# NATIONAL MONTHLY
+
 ############################
-# organise popualaton data
+# organise population data
 ############################
 
 # only keep national data
@@ -163,3 +163,61 @@ saveRDS(dat.merged,paste0(file.loc,'datjp_nat_rate_',year.start,'_',year.end))
 #geom_line(aes(color=as.factor(age))) +
 #facet_wrap(~sex)
 #dev.off()
+
+# SUBNATIONAL MONTHLY
+
+############################
+# organise population data
+############################
+
+# delete national summary data
+dat.pop <- subset(dat.pop,pref!='0')
+
+# rename columns
+dat.pop <- rename(dat.pop,c('deathyear'='year'))
+
+# rename sexes
+dat.pop$sex <- as.numeric(as.character(revalue(dat.pop$sex, c("Male"="1", "Female"="2"))))
+
+# centre yearly populations on June
+dat.pop$month <- 6
+
+# create grid to attach population values to and interpolate missing values
+years  <-    c(1980:max(max(na.omit(dat.mort$deathyear)),max(dat.pop$year)))
+months <-    c(1:12)
+sexes  <-    c(1:2)
+prefs  <-   c(sort(unique(as.character(dat.pop$pref))))
+ages   <-    c(0,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100)
+
+complete.grid <- expand.grid(year=years, month=months,sex=sexes,age=ages, pref=prefs)
+
+# merge population with complete grid to highlight missing years
+dat.pop.complete <- merge(complete.grid,dat.pop,by=c('year','month','sex','age','pref'),all.x='TRUE')
+
+# convert pref from factor to character
+dat.pop.complete$pref <- as.character(dat.pop.complete$pref)
+
+# reorder complete file
+dat.pop.complete <- dat.pop.complete[order(dat.pop.complete$pref,dat.pop.complete$age,dat.pop.complete$sex,dat.pop.complete$year,dat.pop.complete$month),]
+rownames(dat.pop.complete) <- 1:nrow(dat.pop.complete)
+
+# remove IHME and pref column
+dat.pop.complete$pref_IHME <- NULL
+
+# create a lookup table of prefectures and create unique numerical lookup
+dat.pref <- data.frame(pref=unique(dat.pop.complete$pref),pref_id=1:nrow(dat.pref))
+
+# merge with population complete table
+dat.pop.complete <- merge(dat.pop.complete,dat.pref,by='pref')
+
+# interpolate missing populations using zoo and ddply package
+dat.pop.complete2 <- ddply(dat.pop.complete$population,.(sex,age,pref_id),function(z) (na.approx((z))))
+test <- ddply(dat.pop.complete,.(sex,age,pref),function(z) (sum(is.na(z))))
+test2 <- ddply(dat.pop.complete,.(sex,age,pref),function(z) (nrow(z)))
+test3 <- merge(
+
+
+# plot by age by prefecture
+ggplot(data=subset(dat.pop.complete, sex == 2 & age==60)) +
+geom_point(aes(x=year,y=population,color=as.factor(pref))) +
+theme_bw()
