@@ -23,11 +23,11 @@ yearsummary  <- function(x=2000,y=-1) {
 	fips.lookup <- read.csv('~/data/mortality/US/state/lookup/fipsMap.csv')
 	dat$fips <- as.numeric(dat$fips)
 
-    if(year>=1982){
+    if(x>=1982){
         # merge files by fips code and keep stateFips info
         dat.merged <- merge(dat,fips.lookup,by='fips',all.x='TRUE')
     }
-    if(year<1982){
+    if(x<1982){
         # fil already has correct form of fips
         dat.merged <- dat
     }
@@ -46,10 +46,10 @@ yearsummary  <- function(x=2000,y=-1) {
                    	85)))))))))
 
 	# summarise by state,year,month,sex,agegroup
-    if(year>=1982){
+    if(x>=1982){
         dat.summarised <- summarise(group_by(dat.merged,stateFips,year,monthdth,sex,agegroup),sum(deaths))
     }
-    if(year<1982){
+    if(x<1982){
         dat.summarised <- summarise(group_by(dat.merged,fips,year,monthdth,sex,agegroup),sum(deaths))
     }
     
