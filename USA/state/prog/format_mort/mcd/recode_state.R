@@ -19,8 +19,8 @@ dat$stateres <- as.numeric(dat$stateres)
 # add old state code to new state fips lookup
 state.lookup <- read.csv('~/git/mortality/USA/state/data/fips_lookup/stateresfips_lookup.csv')
 
-# merge old
-
+# merge old state codes with new
+dat <- merge(dat,state.lookup)
 
 # output file
 saveRDS(dat,paste0('~/data/mortality/US/state/raw/mcd/mcd',year,'_state_recode.rds'))

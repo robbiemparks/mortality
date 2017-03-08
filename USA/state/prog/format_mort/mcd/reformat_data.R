@@ -11,15 +11,13 @@ args <- commandArgs(trailingOnly=TRUE)
 year <- as.numeric(args[1])
 
 # read file
-dat <- readRDS(paste0('~/data/mortality/US/state/raw/mcd/mcd',year,'_age_recode.rds'))
+dat <- readRDS(paste0('~/data/mortality/US/state/raw/mcd/mcd',year,'_state_recode.rds'))
 
 # filter only relevant values of interest
-dat <- dat[, c('monthdth','age','stateres_fips','countyres_fips','sex','year')]
+dat <- dat[, c('monthdth','age','stateres_fips','sex','year')]
 
-# match state names to fips codes
-state.lookup <- read.csv('~/git/mortality/USA/state/data/fips_lookup/name_fips_lookup.csv')
-dat <- merge(dat,state.lookup[,c('code_name','fips')],by.x='stateres_fips',by.y='code_name',all.x=TRUE)
-dat <- dat[,c('monthdth','age','sex','year','countyres_fips','fips')]
+# rename state code column
+names(dat)[names(dat)=='stateres_fips'] <- 'fips'
 
 # add '0' to fips codes
 dat$fips<- paste0('0',as.character(dat$fips))
@@ -31,12 +29,6 @@ substrRight <- function(x,n){
 
 # take last two values of string to create two-digit state fips codes
 dat$fips<- substrRight(dat$fips,2)
-
-# concatenate state and fips codes
-dat$fips <- paste0(dat$fips,dat$countyres_fips)
-
-# fix gender code
-dat$sex <- ifelse(dat$sex=='M',1,2)
 
 # summarise by 5-year age group
 dat$age <-  
@@ -67,6 +59,7 @@ dat.summarised <- plyr::rename(dat.summarised,c('sum(dummy)'='deaths'))
 dat.summarised$monthdth <- as.numeric(dat.summarised$monthdth)
 
 # output file for next stage of processing
-write.dta(dat.summarised,paste0("/home/rmp15/data/mortality/US/state/processed/county/deaths",year,'.dta'))
+
+write.dta(dat.summarised,paste0("~/data/mortality/US/state/processed/county/deaths",year,'.dta'))
 
 

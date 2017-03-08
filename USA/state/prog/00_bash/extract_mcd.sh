@@ -12,8 +12,10 @@ clear
 # work for later years
 declare -a years=($(seq 1979 1981))
 
+for year in "${years[@]}"; do
+
 #################################################
-# 2. REMOVE FOREIGN DEATHS
+# 1. REMOVE FOREIGN DEATHS
 #################################################
 
 echo "removing foreign deaths for $year";
@@ -22,7 +24,7 @@ echo "removing foreign deaths for $year";
 Rscript ~/git/mortality/USA/state/prog/format_mort/mcd/rmv_foreign_dths.R $year
 
 #################################################
-# 3. RECODE AGE
+# 2. RECODE AGE
 #################################################
 
 echo "recoding age for $year";
@@ -31,7 +33,7 @@ echo "recoding age for $year";
 Rscript ~/git/mortality/USA/state/prog/format_mort/mcd/recode_age.R $year
 
 #################################################
-# 4. FIX STATE CODES
+# 3. FIX STATE CODES
 #################################################
 
 echo "fixing state code for $year";
@@ -40,7 +42,7 @@ echo "fixing state code for $year";
 Rscript ~/git/mortality/USA/state/prog/format_mort/mcd/recode_state.R $year
 
 #################################################
-# 5. FORMAT DATA FOR NEXT STAGE OF PROCESSING
+# 4. FORMAT DATA FOR NEXT STAGE OF PROCESSING
 #################################################
 
 echo "emulating inherited data format for $year";
