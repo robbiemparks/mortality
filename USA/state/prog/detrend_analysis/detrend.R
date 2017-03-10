@@ -34,7 +34,6 @@ for(i in age.lookup) {
 
             # subset data for particular sex, age and state
             dat.sub <- subset(dat,age==i & sex==j & fips==k)
-            #dat.sub <- subset(dat,sex==sex & age==age & fips==7)
 
             # isolate the time series of death rates
             rates <- dat.sub$rate.adj
