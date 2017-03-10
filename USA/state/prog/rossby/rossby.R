@@ -1,5 +1,7 @@
 rm(list=ls())
 
+library(forecast)
+
 # break down the arguments from Rscript
 args <- commandArgs(trailingOnly=TRUE)
 year.start <- as.numeric(args[1])
@@ -46,7 +48,18 @@ residuals  <- function(dat,age.sel,sex.sel,fips.sel){
 resid.ca <- residuals(dat,75,1,6)
 resid.ny <- residuals(dat,75,1,36)
 
+# isolate a northern and a southern state
+resid.tx <- residuals(dat,75,1,48)
+resid.ny <- residuals(dat,75,1,36)
+
 # export pdf
 pdf(paste0(file.loc,'resid_ny_ca_test.pdf'),paper='a4r',height=0,width=0)
 plot(resid.ca,resid.ny)
 dev.off()
+
+# export pdf
+pdf(paste0(file.loc,'resid_ny_tx_test.pdf'),paper='a4r',height=0,width=0)
+plot(resid.tx,resid.ny)
+dev.off()
+
+
