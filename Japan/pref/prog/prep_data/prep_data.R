@@ -40,7 +40,8 @@ dat.pop.nat$sex <- as.numeric(as.character(revalue(dat.pop.nat$sex, c("Male"="1"
 dat.pop.nat$month <- 6
 
 # create grid to attach population values to and interpolate missing values
-years  <-    c(min(min(na.omit(dat.mort$deathyear)),min(dat.pop.nat$year)):max(max(na.omit(dat.mort$deathyear)),max(dat.pop.nat$year)))
+#years  <-    c(min(min(na.omit(dat.mort$deathyear)),min(dat.pop.nat$year)):max(max(na.omit(dat.mort$deathyear)),max(dat.pop.nat$year)))
+years <- 1980:2010
 months <-    c(1:12)
 sexes  <-    c(1:2)
 ages   <-    c(0,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100)
@@ -48,7 +49,7 @@ ages   <-    c(0,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100)
 complete.grid <- expand.grid(year=years, month=months,sex=sexes,age=ages)
 
 # merge population with complete grid to highlight missing years
-dat.pop.nat.complete <- merge(complete.grid,dat.pop.nat,by=c('year','month','sex','age'),all.x='TRUE')
+dat.pop.nat.complete <- merge(complete.grid,dat.pop.nat[,c('year','month','sex','age','population')],by=c('year','month','sex','age'),all.x='TRUE')
 
 # reorder complete file
 dat.pop.nat.complete <- dat.pop.nat.complete[order(dat.pop.nat.complete$age,dat.pop.nat.complete$sex,dat.pop.nat.complete$year,dat.pop.nat.complete$month),]
@@ -128,10 +129,10 @@ dat.merged$rate.adj <- with(dat.merged,deaths.adj/population)
 # OUTPUT
 
 # create directory for output
-file.loc <- paste0('../../output/prep_data/national/')
+file.loc <- paste0('../../output/prep_data/')
 ifelse(!dir.exists(file.loc), dir.create(file.loc, recursive=TRUE), FALSE)
 
-saveRDS(dat.merged,paste0(file.loc,'datjp_nat_rate_',year.start,'_',year.end))
+saveRDS(dat.merged,paste0(file.loc,'datjp_nat_rate_1981_2009'))
 
 # OUTPUT PLOTS
 
@@ -159,7 +160,7 @@ saveRDS(dat.merged,paste0(file.loc,'datjp_nat_rate_',year.start,'_',year.end))
 
 # plot national death rates by age group over time
 #pdf(paste0(file.loc,'japan_nat_log_deathrates_1980_2010','.pdf'),height=0,width=0,paper='a4r')
-#ggplot(data=dat.merged,aes(x=year,y=log(rate))) +
+#ggplot(data=dat.merged,aes(x=year,y=log(rate.adj))) +
 #geom_line(aes(color=as.factor(age))) +
 #facet_wrap(~sex)
 #dev.off()
@@ -265,17 +266,24 @@ dat.mort.complete$deaths.adj <- as.numeric(dat.mort.complete$deaths.adj)
 # merge population and mortality data
 ############################
 
-#FIX FROM HERE
+dat.merged <- merge(subset(dat.pop.complete,year %in% c(1981:2011)),dat.mort.complete,by=c('year','month','age','sex','pref_id'),all.x=1)
 
-dat.merged <- merge(dat.mort.complete,dat.pop.complete,by=c('year','month','age','sex','pref_id'),all.x=1)
+# replace NA deaths with 0
+dat.merged$deaths<- ifelse(is.na(dat.merged$deaths)==TRUE,0,dat.merged$deaths)
+dat.merged$deaths.adj <- ifelse(is.na(dat.merged$deaths.adj)==TRUE,0,dat.merged$deaths.adj)
 
 # add agegroup groupings
 dat.age <- data.frame(  age=c(0,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100),
                         age.new=c(0,5,5,15,15,25,25,35,35,45,45,55,55,65,65,75,75,85,85,85,85))
 dat.merged <- merge(dat.merged,dat.age,by='age',all.x=1)
 
+# only keep 1981-2009
+dat.merged <- subset(dat.merged,year %in% c(1981:2009))
+
 # summarise by age group
 dat.merged <- ddply(dat.merged,.(age.new,sex,year,month,pref_id),summarize,deaths.adj=sum(deaths.adj),population=sum(population))
+
+#FIX FROM HERE
 
 # rename columns
 dat.merged <- rename(dat.merged,c('age.new'='age'))
@@ -284,16 +292,16 @@ dat.merged <- rename(dat.merged,c('age.new'='age'))
 dat.merged <- dat.merged[order(dat.merged$age,dat.merged$sex,dat.merged$sex,dat.merged$year,dat.merged$month),]
 rownames(dat.merged) <- 1:nrow(dat.merged)
 
-# only keep 1981-2009
-dat.merged <- subset(dat.merged,year %in% c(1981:2009))
-
 # calculate death rates
 dat.merged$rate.adj <- with(dat.merged,deaths.adj/population)
 
 # OUTPUT
 
 # create directory for output
-file.loc <- paste0('../../output/prep_data/national/')
+file.loc <- paste0('../../output/prep_data/')
 ifelse(!dir.exists(file.loc), dir.create(file.loc, recursive=TRUE), FALSE)
 
-saveRDS(dat.merged,paste0(file.loc,'datjp_nat_rate_',year.start,'_',year.end))
+saveRDS(dat.merged,paste0(file.loc,'datjp_pref_rate_1981_2009'))
+
+saveRDS(dat.pref,paste0('../../data/pref/pref_lookup'))
+

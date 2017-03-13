@@ -1,117 +1,90 @@
 rm(list=ls())
 
-library(plyr)
-library(ggplot2)
-library(zoo)
-
 # break down the arguments from Rscript
 args <- commandArgs(trailingOnly=TRUE)
+year.start.arg <- as.numeric(args[1])
+year.end.arg <- as.numeric(args[2])
 
-# gender state and age lookup
-gender.lookup <- c('Men','Women')
+# load data
+filename <- paste0('../../output/prep_data/datjp_pref_rate_',year.start.arg,'_',year.end.arg)
+dat <- readRDS(filename)
 
-# NATIONAL YEARLY
+# load prefecture lookup
+dat.pref <- readRDS('../../data/pref/pref_lookup')
 
-############################
-# organise popualaton data
-############################
+# add sourced data
+source('../../data/objects/objects.R')
 
-# load population data
-filename <- paste0('../../data/population/original/datpopjapan20160307')
-dat.pop <- readRDS(filename)
+# extract unique table of year and months to generate year.month
+dat.year.month <- unique(dat[,c('year', 'month')])
+dat.year.month$month <- as.integer(dat.year.month$month)
+dat.year.month$year.month <- seq(nrow(dat.year.month))
 
-# only keep national data
-dat.pop.nat <- subset(dat.pop,pref=='0')
+# merge year.month table with population table to create year.month id
+dat <- merge(dat,dat.year.month, by=c('year','month'))
 
-# rename columns
-dat.pop.nat <- rename(dat.pop.nat,c('deathyear'='year'))
+# merge pref name to main file for plotting
+dat <- merge(dat,dat.pref,by='pref_id',all.x=TRUE)
 
-# rename sexes
-dat.pop.nat$sex <- as.numeric(as.character(revalue(dat.pop.nat$sex, c("Male"="1", "Female"="2"))))
+####
 
-# create grid to attach population values to and interpolate missing values
-years  <-    c(min(dat.pop.nat$year):max(dat.pop.nat$year))
-sexes <- c(1:2)
-ages   <-    c(0,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100)
+library(ggplot2)
 
-complete.grid <- expand.grid(year=years,sex=sexes,age=ages)
+# graph data by age for a particular state and sex
+plot.state <- function(state=1,sex=1) {
+   	ggplot(dat[dat$pref_id==state & dat$sex==sex,],aes(x=year.month)) +
+    	geom_line(aes(y=100000*rate.adj),color='forestgreen') +
+    	xlab(label='time') +
+    	ylab(label='mortality rate (per 100,000)') +
+        ggtitle(paste0(dat.pref[dat.pref$pref_id==state,][[1]],', ',sex.lookup[sex],': mortality rates by age-group')) +
+    	facet_wrap(~age, scale='free') +
+    	scale_colour_brewer(palette = "Set3") +
+    	theme_bw()
+}
 
-# merge population with complete grid to highlight missing years
-dat.pop.nat.complete <- merge(complete.grid,dat.pop.nat,by=c('year','sex','age'),all.x='TRUE')
+# create output directory
+ifelse(!dir.exists("../../output/data_explore"), dir.create("../../output/data_explore"), FALSE)
 
-# reorder complete file
-dat.pop.nat.complete <- dat.pop.nat.complete[order(dat.pop.nat.complete$age,dat.pop.nat.complete$sex,dat.pop.nat.complete$year),]
-rownames(dat.pop.nat.complete) <- 1:nrow(dat.pop.nat.complete)
-
-# remove IHME and pref column
-dat.pop.nat.complete$pref_IHME <- dat.pop.nat.complete$pref <- NULL
-
-# interpolate missing populations using zoo and ddply package
-dat.pop.nat.complete <- ddply(dat.pop.nat.complete,.(sex,age),function(z) (na.approx(zoo(z))))
-
-############################
-# organise mortality data
-############################
-
-# load mortality data
-filename <- paste0('../../data/mortality/original/datmortjapan20160307')
-dat.mort <- readRDS(filename)
-
-# rename columns
-dat.mort <- rename(dat.mort,c('deathyear'='year','age5'='age'))
-
-# rename sexes
-dat.mort$sex <- as.numeric(as.character(revalue(dat.mort$sex, c("Male"="1", "Female"="2"))))
-
-# summarise mortality data nationally
-dat.mort.nat <- ddply(dat.mort,.(age,sex,year),summarize,deaths=sum(deaths))
-
-# remove unknown records
-dat.mort.nat <- na.omit(dat.mort.nat)
-
-############################
-# merge population and mortality data
-############################
-
-dat.merged <- merge(dat.mort.nat,dat.pop.nat.complete,by=c('year','age','sex'),all.x=1)
-
-# only keep 1980-2010
-dat.merged <- subset(dat.merged,year %in% c(1980:2010))
-
-# calculate death rates
-dat.merged$rate <- 100000*with(dat.merged,deaths/population)
-
-# OUTPUT PLOTS
-
-# YEARLY
-
-# create directory for output
-file.loc <- paste0('../../output/data_explore/national/')
-ifelse(!dir.exists(file.loc), dir.create(file.loc, recursive=TRUE), FALSE)
-
-# plot national deaths by age group over time
-pdf(paste0(file.loc,'japan_nat_deaths_1969_2011','.pdf'),height=0,width=0,paper='a4r')
-ggplot(data=dat.mort.nat,aes(x=year,y=deaths)) +
-geom_line(aes(color=as.factor(age))) +
-facet_wrap(~sex)
+# plot all states for males
+pdf(paste0('../../output/data_explore/states_by_age_male_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',width=0,height=0)
+for (i in dat.pref$pref_id) {
+	print(plot.state(i,1))
+}
 dev.off()
 
-# plot national population by age group over time
-pdf(paste0(file.loc,'japan_nat_pop_1975_2013','.pdf'),height=0,width=0,paper='a4r')
-ggplot(data=dat.pop.nat,aes(x=year,y=population)) +
-geom_line(aes(color=as.factor(age))) +
-facet_wrap(~sex)
+# plot all states for females
+pdf(paste0('../../output/data_explore/states_by_age_female_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',width=0,height=0)
+for (i in dat.pref$pref_id) {
+	print(plot.state(i,2))
+}
 dev.off()
 
-pdf(paste0(file.loc,'japan_nat_pop_1975_2013_interpolated','.pdf'),height=0,width=0,paper='a4r')
-ggplot() +
-geom_line(dat=na.omit(dat.pop.nat.complete),aes(x=year,y=population,color=as.factor(age))) +
-facet_wrap(~sex)
+# graph data by state for a particular age and sex
+plot.age <- function(age=0,sex=1) {
+	dat$pref <- as.factor(dat$pref)
+   	ggplot(dat[dat$age==age & dat$sex==sex,],aes(x=year.month)) +
+    	geom_line(aes(y=rate.adj),color='forestgreen') +
+    	xlab(label='time') +
+    	ylab(label='mortality rate (per 100,000)') +
+    	ggtitle(paste0(age.code[age.code$age==age,][[2]],', ',sex.lookup[sex],': mortality rates by agegroup')) +
+    	facet_wrap(~pref) +
+    	scale_colour_brewer(palette = "Set3") +
+    	theme_bw()
+}
+
+# plot all ages for males
+pdf(paste0('../../output/data_explore/age_by_state_male_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',width=0,height=0)
+for (i in c(0,5,15,25,35,45,55,65,75,85)) {
+	print(plot.age(i,1))
+}
 dev.off()
 
-# plot national death rates by age group over time
-pdf(paste0(file.loc,'japan_nat_log_deathrates_1980_2010','.pdf'),height=0,width=0,paper='a4r')
-ggplot(data=dat.merged,aes(x=year,y=log(rate))) +
-geom_line(aes(color=as.factor(age))) +
-facet_wrap(~sex)
+# plot all ages for females
+pdf(paste0('../../output/data_explore/age_by_state_female_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',width=0,height=0)
+for (i in c(0,5,15,25,35,45,55,65,75,85)) {
+	print(plot.age(i,2))
+}
 dev.off()
+
+
+
