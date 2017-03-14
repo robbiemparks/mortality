@@ -215,6 +215,9 @@ dat.pop.complete <- merge(dat.pop.complete,dat.pref,by='pref')
 # interpolate missing populations using zoo and ddply package
 dat.pop.complete <- ddply(dat.pop.complete[,c('year','month','sex','age','pref_id','population')],.(sex,age,pref_id), function(z) (na.approx((zoo(z)))))
 
+# only export population from complete values
+saveRDS(dat.pop.complete[dat.pop.complete$year %in% c(1981:2009),],'~/git/mortality/Japan/pref/data/population/processed/prefPopulations_infer_by_days')
+
 ############################
 # organise mortality data
 ############################
