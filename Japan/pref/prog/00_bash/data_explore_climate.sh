@@ -58,9 +58,9 @@ for metric in "${metrics[@]}"; do
 echo "starting deaths rates delta with climate variable $metric $dname delta, years $start_mort - $end_mort";
 
 # combines data
-Rscript ~/git/mortality/Japan/pref/prog/mort_against_climate/mort_against_climate_bind.R $start_mort $end_mort $start_clim $end_clim $dname $metric
+Rscript ~/git/mortality/Japan/pref/prog/mort_against_climate/mort_against_climate_bind.R $start_mort $end_mort $start_clim $end_clim $dname $metric &
 
 # runs model
-Rscript ~/git/mortality/Japan/pref/prog/mort_against_climate/mort_climate_year_delta.R $start_mort $end_mort $start_clim $end_clim $dname $metric
+Rscript ~/git/mortality/Japan/pref/prog/mort_against_climate/mort_climate_year_delta.R $start_mort $end_mort $start_clim $end_clim $dname $metric &
 
 done;
