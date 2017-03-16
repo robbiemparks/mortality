@@ -33,7 +33,7 @@ for age in "${ages[@]}"; do
 echo "starting ${sexstrings[$sex-1]} $age deaths rates with climate variable $metric $dname, years $start_mort - $end_mort";
 
 # runs model
-# ~/git/mortality/Japan/pref/prog/mort_against_climate/mort_against_climate.R $age $sex $start_mort $end_mort $start_clim $end_clim $dname $metric
+Rscript ~/git/mortality/Japan/pref/prog/mort_against_climate/mort_against_climate.R $age $sex $start_mort $end_mort $start_clim $end_clim $dname $metric
 
 done; done; done;
 
