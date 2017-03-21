@@ -7,7 +7,7 @@
 
 clear
 
-declare -a ages=(75 65 55 45 35 25 15 5 0 85)
+declare -a ages=(75)
 declare -a sexes=(1)
 declare -a sexstrings=('male')
 declare -a models=(2)
@@ -34,7 +34,7 @@ for model in "${models[@]}"; do
 echo "starting ${sexstrings[$sex-1]} $age INLA model $model, with climate variable $metric $dname, years $start - $end";
 
 # runs model
-Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate.R $age $sex $start $end $model 0 $dname $metric
+Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate.R $age $sex $start $end $model 0 $dname $metric &
 
 done; done; done;
 
