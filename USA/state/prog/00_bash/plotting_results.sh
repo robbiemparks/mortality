@@ -5,7 +5,7 @@
 
 clear
 
-declare -a ages=(0 5 15 25 35 45 55 65 75 85)
+declare -a ages=(85)
 declare -a sexes=('male' 'female')
 declare -i start=1982
 declare -i end=2013
@@ -52,7 +52,7 @@ for age in "${ages[@]}"; do
 #for sex in "${sexes[@]}"; do
 
 #Rscript ~/git/mortality/USA/state/prog/parameters_posterior/parameters_posterior_climate.R $age 1 $start 1991 10 't2m' 'mean'
-Rscript ~/git/mortality/USA/state/prog/parameters_posterior/parameters_posterior_climate.R $age 1 $start 1991 11 't2m' 'mean'
+Rscript ~/git/mortality/USA/state/prog/parameters_posterior/parameters_posterior_climate.R $age 1 $start 1991 10 't2m' 'number_of_min_3_day_above_99_upwaves'
 
 done; #done;
 
