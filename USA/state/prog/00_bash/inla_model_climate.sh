@@ -7,16 +7,16 @@
 
 clear
 
-declare -a ages=(75)
+declare -a ages=(85)
 declare -a sexes=(1)
 declare -a sexstrings=('male')
-declare -a models=(2)
+declare -a models=(8 9 10 11 12)
 declare -i start=1982
 declare -i end=2013
 declare country="USA"
 declare dname="t2m"
 declare metric="mean"
-#declare metric="number_of_min_3_day_above_99_upwaves"
+declare metric="number_of_min_3_day_above_99_upwaves"
 #declare metric="sd"
 #declare -a knotl=(5 10 15)
 #declare -a knoth=(20 25 30)
@@ -34,7 +34,7 @@ for model in "${models[@]}"; do
 echo "starting ${sexstrings[$sex-1]} $age INLA model $model, with climate variable $metric $dname, years $start - $end";
 
 # runs model
-Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate.R $age $sex $start $end $model 0 $dname $metric &
+Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate.R $age $sex $start $end $model 0 $dname $metric
 
 done; done; done;
 
