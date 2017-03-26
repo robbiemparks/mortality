@@ -35,7 +35,7 @@ for age in "${ages[@]}"; do
 
 for model in "${models[@]}"; do
 
-echo "starting ${sexstrings[$sex-1]} $age INLA model $model, with climate variable $metric $dname, years $start - $end";
+#echo "starting ${sexstrings[$sex-1]} $age INLA model $model, with climate variable $metric $dname, years $start - $end";
 :
 # runs model
 #Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate.R $age $sex $start $end $model 0 $dname $metric
@@ -47,9 +47,9 @@ done; done; done; done;
 # 2. COMBINE RESULTS
 #################################################
 
-echo "combining results into one file from INLA model $model years $start - $end";
-
 for model in "${models[@]}"; do
+
+echo "combining results into one file from INLA model $model years $start - $end";
 
 Rscript ~/git/mortality/USA/state/prog/bind_posterior/bind_posterior_climate.R $start $end $country $model $dname $metric
 
