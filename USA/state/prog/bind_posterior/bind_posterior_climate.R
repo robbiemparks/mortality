@@ -24,7 +24,8 @@ if(model=='1d'){
     # create dataframe with each of the national terms for entire group of age and sexes
     dat <- data.frame()
 
-    for (i in seq(length(sex.filter))) {
+#   for (i in seq(length(sex.filter))) {
+    for (i in c(2)) {
         for (j in seq(length(age.filter))) {
             file.name <- paste0('~/data/mortality/US/state/climate_effects/',dname,'/',metric,'/non_pw/type_',model,'/age_groups/',age.filter[j],'/',country,'_rate_pred_type',model,'_',age.filter[j],'_',sex.filter[i],'_',year.start,'_',year.end,'_',dname,'_',metric,'_parameters')
             print(file.name)
@@ -57,7 +58,8 @@ if(model=='1e'){
     # create dataframe with each of the national terms for entire group of age and sexes
     dat <- data.frame()
     
-    for (i in seq(length(sex.filter))) {
+    #   for (i in seq(length(sex.filter))) {
+    for (i in c(2)) {
     for (j in seq(length(age.filter))) {
         file.name <- paste0('~/data/mortality/US/state/climate_effects/',dname,'/',metric,'/non_pw/type_',model,'/age_groups/',age.filter[j],'/',country,'_rate_pred_type',model,'_',age.filter[j],'_',sex.filter[i],'_',year.start,'_',year.end,'_',dname,'_',metric,'_parameters')
         print(file.name)

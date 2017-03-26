@@ -12,7 +12,7 @@ declare -a sexes=(1 2)
 declare -a sexstrings=('male')
 declare -a models=(10 11)
 declare -i start=1982
-declare -i end=2013
+declare -i end=1991
 declare country="USA"
 declare dname="t2m"
 #declare metric="mean"
@@ -36,9 +36,9 @@ for age in "${ages[@]}"; do
 for model in "${models[@]}"; do
 
 echo "starting ${sexstrings[$sex-1]} $age INLA model $model, with climate variable $metric $dname, years $start - $end";
-
+:
 # runs model
-Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate.R $age $sex $start $end $model 0 $dname $metric
+#Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate.R $age $sex $start $end $model 0 $dname $metric
 
 done; done; done; done;
 
@@ -47,9 +47,13 @@ done; done; done; done;
 # 2. COMBINE RESULTS
 #################################################
 
-#echo "combining results into one file from INLA model $model years $start - $end";
+echo "combining results into one file from INLA model $model years $start - $end";
 
-#Rscript ~/git/mortality/USA/state/prog/bind_posterior/bind_posterior.R $start $end $country 2
+for model in "${models[@]}"; do
+
+Rscript ~/git/mortality/USA/state/prog/bind_posterior/bind_posterior_climate.R $start $end $country $model $dname $metric
+
+done;
 
 #################################################
 # 3. PLOTTING PARAMETERS FROM MODEL

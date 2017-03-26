@@ -25,7 +25,7 @@ for sex in "${sexes[@]}"; do
 
 :
 
-#Rscript ~/git/mortality/USA/state/prog/parameters_posterior/parameters_posterior_nat.R $age $sex $start $end $model
+Rscript ~/git/mortality/USA/state/prog/parameters_posterior/parameters_posterior_nat.R $age $sex $start $end $model
 
 done; done;
 
@@ -39,26 +39,7 @@ for sex in "${sexes[@]}"; do
 
 :
 
-#Rscript ~/git/mortality/USA/state/prog/parameters_posterior/parameters_posterior_state.R $age $sex $start $end $model
+Rscript ~/git/mortality/USA/state/prog/parameters_posterior/parameters_posterior_state.R $age $sex $start $end $model
 
 done; done;
 
-#################################################
-# 3. PLOT PARAMETERS OF STATE CLIMATE POSTERIORS
-#################################################
-
-for age in "${ages[@]}"; do
-
-#for sex in "${sexes[@]}"; do
-
-#Rscript ~/git/mortality/USA/state/prog/parameters_posterior/parameters_posterior_climate.R $age 1 $start 1991 10 't2m' 'mean'
-Rscript ~/git/mortality/USA/state/prog/parameters_posterior/parameters_posterior_climate.R $age 1 $start 1991 10 't2m' 'number_of_min_3_day_above_99_upwaves'
-Rscript ~/git/mortality/USA/state/prog/parameters_posterior/parameters_posterior_climate.R $age 1 $start 2013 10 't2m' 'meanc'
-
-done; #done;
-
-#################################################
-# 4. PLOT 3
-#################################################
-
-# PLOT SOMETHING ELSE AGAIN
