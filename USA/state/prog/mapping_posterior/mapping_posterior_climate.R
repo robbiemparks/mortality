@@ -32,9 +32,9 @@ ifelse(!dir.exists(file.loc), dir.create(file.loc,recursive=TRUE), FALSE)
 dat <- readRDS(paste0('../../data/climate_effects/',dname,'/',metric,'/non_pw/type_',model,'/parameters/',country,'_rate_pred_type',model,'_',year.start,'_',year.end,'_',dname,'_',metric))
 
 # add odds parameters
-dat$odds.mean <- (with(dat,exp(mean))-1)
-dat$odds.ul <- (with(dat,exp(`0.025quant`))-1)
-dat$odds.ll <- (with(dat,exp(`0.975quant`))-1)
+#dat$odds.mean <- (with(dat,exp(mean))-1)
+#dat$odds.ul <- (with(dat,exp(`0.025quant`))-1)
+#dat$odds.ll <- (with(dat,exp(`0.975quant`))-1)
 
 # for national model, plot climate parameters (with CIs) all on one page, one for men and one for women
 # for state model, plot climate parameters on map all on one page, one for men and one for women
