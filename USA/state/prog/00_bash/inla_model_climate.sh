@@ -10,13 +10,13 @@ clear
 declare -a ages=(85 75 65 55 45 0 5 15 25 35)
 declare -a sexes=(1 2)
 declare -a sexstrings=('male')
-declare -a models=(10 11)
+declare -a models=(12)
 declare -i start=1982
 declare -i end=1991
 declare country="USA"
 declare dname="t2m"
-#declare metric="mean"
-declare -a metrics=("sd")
+declare metric="mean"
+#declare -a metrics=("sd")
 #declare metric="number_of_min_3_day_above_99_upwaves"
 #declare metric="sd"
 #declare metric="meanc"

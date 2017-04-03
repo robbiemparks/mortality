@@ -95,7 +95,7 @@ dev.off()
 }
 
 # for state model, plot climate parameters on map all on one page, one for men and one for women
-if(model=='1e'){
+if(model %in% c('1e','1f')){
     
     # source map
     source('../../prog/01_functions/map_generate.R')
@@ -176,8 +176,6 @@ if(model=='1e'){
         for(i in sort(unique(dat$age))){plot.function.age.odds(2,i)}
         dev.off()
         
-}
-
     # function to plot age for all months subnationally
     plot.function.month <- function(sex.sel,month.sel) {
                     
@@ -274,23 +272,23 @@ if(model=='1e'){
         theme_bw()
         dev.off()
 
-pdf(paste0(file.loc,'additional_deaths_nat_female_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'.pdf'),paper='a4r',height=0,width=0)
-ggplot(data=subset(dat.deaths.nat,sex==2)) +
-geom_line(aes(x=month,y=deaths)) +
-scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
-geom_hline(yintercept=0)+
-facet_wrap(~age) +
-xlab('Month') +
-ylab('Change in deaths from unit change') +
-theme_bw()
-dev.off()
+    pdf(paste0(file.loc,'additional_deaths_nat_female_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'.pdf'),paper='a4r',height=0,width=0)
+        ggplot(data=subset(dat.deaths.nat,sex==2)) +
+        geom_line(aes(x=month,y=deaths)) +
+        scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
+        geom_hline(yintercept=0)+
+        facet_wrap(~age) +
+        xlab('Month') +
+        ylab('Change in deaths from unit change') +
+        theme_bw()
+        dev.off()
 
         # merge selected data to map dataframe for colouring of ggplot
         plot <- merge(USA.df,dat.merged.sub,by.x=c('STATE_FIPS'),by.y=c('fips'))
         plot <- with(plot, plot[order(sex,age,DRAWSEQ,order),])
 
-    # function to plot posterior probability of increased odds for all months subnationally
-    plot.function.age.deaths <- function(sex.sel,age.sel) {
+        # function to plot posterior probability of increased odds for all months subnationally
+        plot.function.age.deaths <- function(sex.sel,age.sel) {
     
         # find limits for plot
         min.plot <- floor(min(plot$deaths.added))
