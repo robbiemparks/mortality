@@ -50,7 +50,7 @@ xlab('month') +
 ylab('Percentage increase in odds') +
 scale_y_continuous(labels=percent) +
 coord_cartesian(ylim = c(-0.025,0.025)) +
-ggtitle(paste0(sex.lookup2[sex.sel],' national percentage change in odds by month ',metric,' ',dname)) +
+ggtitle(paste0(sex.lookup2[sex.sel],' national percentage change in risk by month ',metric,' ',dname)) +
 guides(col = guide_legend(ncol = 10, byrow=TRUE)) +
 facet_wrap(~age.long) +
 theme(legend.position="bottom"))
@@ -74,24 +74,74 @@ plot.posterior <- function(sex.sel){
     geom_hline(yintercept=0,alpha=0.5,linetype=2) +
     scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
     xlab('month') +
-    ylab('Posterior probability of increase in odds') +
+    ylab('Posterior probability of increase in risk') +
     scale_y_continuous(labels=percent) +
-    ggtitle(paste0(sex.lookup2[sex.sel],' national posterior probabilites of increased odds ',metric,' ',dname)) +
+    ggtitle(paste0(sex.lookup2[sex.sel],' national posterior probabilites of increased risk ',metric,' ',dname)) +
     guides(col = guide_legend(ncol = 10, byrow=TRUE)) +
     facet_wrap(~age.long) +
     theme(legend.position="bottom"))
-}
+    
+    }
 
-# national posterior probability male
-pdf(paste0(file.loc,'climate_month_posterior_male_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'.pdf'),paper='a4r',height=0,width=0)
-plot.posterior(1)
-dev.off()
+    # national posterior probability male
+    pdf(paste0(file.loc,'climate_month_posterior_male_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'.pdf'),paper='a4r',height=0,width=0)
+    plot.posterior(1)
+    dev.off()
+    
+    # national posterior probability female
+    pdf(paste0(file.loc,'climate_month_posterior_female_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'.pdf'),paper='a4r',height=0,width=0)
+    plot.posterior(2)
+    dev.off()
 
-# national posterior probability female
-pdf(paste0(file.loc,'climate_month_posterior_female_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'.pdf'),paper='a4r',height=0,width=0)
-plot.posterior(2)
-dev.off()
+    
+    # ADDITIONAL DEATHS NATIONALLY
+    # establish change in number of deaths for a slice in time (at the moment it's 2013)
+    # load death rate data and create national death rates
+    dat.mort <- readRDS(paste0('../../output/prep_data/datus_state_rates_',year.start,'_2013'))
+    dat.mort$deaths.pred <- with(dat.mort,pop.adj*rate.adj)
+    dat.national <- ddply(dat.mort,.(year,month,sex,age),summarize,deaths=sum(deaths),deaths.pred=sum(deaths.pred),pop.adj=sum(pop.adj))
+    dat.national$rate.adj <- with(dat.national,deaths.pred/pop.adj)
+    dat.national <- dat.national[order(dat.national$sex,dat.national$age,dat.national$year,dat.national$month),]
+    
+    # load the data again
+    dat <- readRDS(paste0('../../data/climate_effects/',dname,'/',metric,'/non_pw/type_',model,'/parameters/',country,'_rate_pred_type',model,'_',year.start,'_',year.end,'_',dname,'_',metric))
+    
+    # merge odds and deaths files and reorder
+    dat.merged <- merge(dat.national,dat,by.x=c('sex','age','month'),by.y=c('sex','age','ID'),all.x=TRUE)
+    dat.merged <- dat.merged[order(dat.merged$sex,dat.merged$age,dat.merged$year,dat.merged$month),]
+    
+    # calculate additional deaths
+    dat.merged$deaths.added <- with(dat.merged,odds.mean*rate.adj*pop.adj)
+    dat.merged$deaths.ll <- with(dat.merged,odds.ll*rate.adj*pop.adj)
+    dat.merged$deaths.ul <- with(dat.merged,odds.ul*rate.adj*pop.adj)
 
+    # take one year
+    dat.merged.sub <- subset(dat.merged,year==2013)
+    
+    # plot for male and female
+    # function to plot
+    plot.deaths.nat <- function(){
+    
+        # attach long month names
+        dat.merged.sub$age.long <- mapvalues(dat.merged.sub$age,from=sort(unique(dat.merged.sub$age)),to=as.character(age.code[,2]))
+        dat.merged.sub$age.long <- reorder(dat.merged.sub$age.long,dat.merged.sub$age)
+        
+        # plot
+        print(ggplot(data=dat.merged.sub) +
+        geom_line(aes(x=month,y=deaths.added,color=as.factor(sex))) +
+        geom_ribbon(aes(x=month,ymin=deaths.ll,ymax=deaths.ul,fill=as.factor(sex)),alpha=0.2) +
+        scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
+        ylim(c(min(dat.merged$deaths.ll),max(dat.merged$deaths.ul))) +
+        geom_hline(yintercept=0) +
+        facet_wrap(~age.long) +
+        xlab('Month') +
+        ylab('Change in deaths from unit change') +
+        guides(fill=FALSE,color=FALSE) +
+        theme_bw())
+    }
+    pdf(paste0(file.loc,'additional_deaths_nat_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'.pdf'),paper='a4r',height=0,width=0)
+        plot.deaths.nat()
+        dev.off()
 }
 
 # for state model, plot climate parameters on map all on one page, one for men and one for women
@@ -124,7 +174,7 @@ if(model %in% c('1e','1f')){
         scale_fill_gradient2(limits=c(min.plot,max.plot),low="green", mid="white",high="red",midpoint=0,guide = guide_legend(title = ''),labels=percent) +
         facet_wrap(~month.short) +
         ggtitle(sex.sel) +
-        ggtitle(paste0(age.long,' ',sex.lookup2[sex.sel],' : ',metric,' ',dname,' percentage change in odds by month ',year.start,'-',year.end)) +
+        ggtitle(paste0(age.long,' ',sex.lookup2[sex.sel],' : ',metric,' ',dname,' percentage change in risk by month ',year.start,'-',year.end)) +
         theme_map() +
         theme(text = element_text(size = 15),legend.position = 'bottom',legend.justification=c(1,0),strip.background = element_blank()))
         }
@@ -139,7 +189,7 @@ if(model %in% c('1e','1f')){
         for(i in sort(unique(dat$age))){plot.function.age(2,i)}
         dev.off()
         
-        # function to plot posterior probability of increased odds for all months subnationally
+        # function to plot posterior probability of increased risk for all months subnationally
         plot.function.age.odds <- function(sex.sel,age.sel) {
             
             # find limits for plot
@@ -160,7 +210,7 @@ if(model %in% c('1e','1f')){
             scale_fill_gradient(limits=c(0,1),low="green",high="purple",guide = guide_legend(title = ''),labels=percent) +
             facet_wrap(~month.short) +
             ggtitle(sex.sel) +
-            ggtitle(paste0(age.long,' ',sex.lookup2[sex.sel],' : ',metric,' ',dname,' posterior probabilites of increased odds by month for ',' ',year.start,'-',year.end)) +
+            ggtitle(paste0(age.long,' ',sex.lookup2[sex.sel],' : ',metric,' ',dname,' posterior probabilites of increased risk by month for ',' ',year.start,'-',year.end)) +
             theme_map() +
             theme(text = element_text(size = 15),legend.position = 'bottom',legend.justification=c(1,0),strip.background = element_blank()))
             
@@ -192,7 +242,7 @@ if(model %in% c('1e','1f')){
         scale_fill_gradient2(limits=c(min.plot,max.plot),low="green", mid="white",high="red",midpoint=0,guide = guide_legend(title = ''),labels=percent) +
         facet_wrap(~age.long) +
         ggtitle(sex.sel) +
-        ggtitle(paste0(month.short[month.sel],' ',sex.lookup2[sex.sel],' : ',metric,' ',dname,' percentage change in odds by age for ',' ',year.start,'-',year.end)) +
+        ggtitle(paste0(month.short[month.sel],' ',sex.lookup2[sex.sel],' : ',metric,' ',dname,' percentage change in risk by age for ',' ',year.start,'-',year.end)) +
         theme_map() +
         theme(text = element_text(size = 15),legend.position = 'bottom',legend.justification=c(1,0),strip.background = element_blank()))
                     
@@ -208,7 +258,7 @@ if(model %in% c('1e','1f')){
         for(i in c(1:12)){plot.function.month(2,i)}
         dev.off()
         
-        # function to plot posterior probability of increased odds for all months subnationally
+        # function to plot posterior probability of increased risk for all months subnationally
         plot.function.month.odds <- function(sex.sel,month.sel) {
             
             # find limits for plot
@@ -224,7 +274,7 @@ if(model %in% c('1e','1f')){
             scale_fill_gradient(limits=c(0,1),low="green",high="purple",guide = guide_legend(title = ''),labels=percent) +
             facet_wrap(~age.long) +
             ggtitle(sex.sel) +
-            ggtitle(paste0(month.short[month.sel],' ',sex.lookup2[sex.sel],' : ',metric,' ',dname,' posterior probabilites of increased odds by age for ',' ',year.start,'-',year.end)) +
+            ggtitle(paste0(month.short[month.sel],' ',sex.lookup2[sex.sel],' : ',metric,' ',dname,' posterior probabilites of increased risk by age for ',' ',year.start,'-',year.end)) +
             theme_map() +
             theme(text = element_text(size = 15),legend.position = 'bottom',legend.justification=c(1,0),strip.background = element_blank()))
             
@@ -256,32 +306,6 @@ if(model %in% c('1e','1f')){
 
         # take one year
         dat.merged.sub <- subset(dat.merged,year==2013)
-
-        # output a summary file with sum of additional deaths nationally by age and month
-        dat.deaths.nat <- ddply(dat.merged.sub,.(sex,age,month),summarize,deaths=as.numeric(sum(deaths.added)))
-
-        # plot for male and female
-    pdf(paste0(file.loc,'additional_deaths_nat_male_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'.pdf'),paper='a4r',height=0,width=0)
-        ggplot(data=subset(dat.deaths.nat,sex==1)) +
-        geom_line(aes(x=month,y=deaths)) +
-        scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
-        geom_hline(yintercept=0)+
-        facet_wrap(~age) +
-        xlab('Month') +
-        ylab('Change in deaths from unit change') +
-        theme_bw()
-        dev.off()
-
-    pdf(paste0(file.loc,'additional_deaths_nat_female_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'.pdf'),paper='a4r',height=0,width=0)
-        ggplot(data=subset(dat.deaths.nat,sex==2)) +
-        geom_line(aes(x=month,y=deaths)) +
-        scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
-        geom_hline(yintercept=0)+
-        facet_wrap(~age) +
-        xlab('Month') +
-        ylab('Change in deaths from unit change') +
-        theme_bw()
-        dev.off()
 
         # merge selected data to map dataframe for colouring of ggplot
         plot <- merge(USA.df,dat.merged.sub,by.x=c('STATE_FIPS'),by.y=c('fips'))

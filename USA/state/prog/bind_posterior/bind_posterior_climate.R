@@ -75,7 +75,7 @@ drawseq.lookup <-readRDS('~/git/mortality/USA/state/output/adj_matrix_create/dra
 state.lookup <- read.csv('../../data/fips_lookup/name_fips_lookup.csv')
 
 # MODEL 1E
-if(model=='1e'){
+if(model %in% c('1e','1f')){
     
     # create dataframe with each of the national terms for entire group of age and sexes
     dat <- data.frame()
