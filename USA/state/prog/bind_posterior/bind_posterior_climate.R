@@ -75,7 +75,11 @@ drawseq.lookup <-readRDS('~/git/mortality/USA/state/output/adj_matrix_create/dra
 state.lookup <- read.csv('../../data/fips_lookup/name_fips_lookup.csv')
 
 # MODEL 1E
+<<<<<<< HEAD
 if(model=='1e'){
+=======
+if(model %in% c('1e','1f')){
+>>>>>>> da0b06655dd903c86f11572baee89b78287da78b
     
     # create dataframe with each of the national terms for entire group of age and sexes
     dat <- data.frame()
@@ -83,4 +87,53 @@ if(model=='1e'){
     for (i in seq(length(sex.filter))) {
         #for (i in c(1)) {
     for (j in seq(length(age.filter))) {
+<<<<<<< HEAD
         file.name <- paste0('~/data/mortality/US/state/climate_effects/',dname,'/',metric,'/non_pw/type_',model,'/age_groups/',age.filter[j],'/',country,'_rate_pred_type',model,'_',age.filter[j],'_',sex.filter[i],'_',year.start,'_',year.end,'_',dname,'_',metric,'_parameters'
+=======
+        file.name <- paste0('~/data/mortality/US/state/climate_effects/',dname,'/',metric,'/non_pw/type_',model,'/age_groups/',age.filter[j],'/',country,'_rate_pred_type',model,'_',age.filter[j],'_',sex.filter[i],'_',year.start,'_',year.end,'_',dname,'_',metric,'_parameters')
+        print(file.name)
+        model.current <- readRDS(file.name)
+        current.file <- model.current$summary.random$month5
+        current.file$age <- age.filter[j] ; current.file$sex <- i
+        current.file$state <- rep(1:51,each=12)
+        
+        # find mean and CIs of transformed distributions and probability of increased odds from posterior marginal
+        dat.mean.exp <- data.frame(nrow=numeric(0),odds.mean=numeric(0),odds.ll=numeric(0),odds.ul=numeric(0),odds.prob=numeric(0))
+        for(k in c(1:(12*51))) {
+            # find the exponentiated means and CIs
+            marginal.exp <- inla.tmarginal(function(x) exp(x), model.current$marginals.random$month5[[k]])
+            odds.mean <- inla.emarginal(function(x) x,marginal.exp) - 1
+            odds.ll <- inla.qmarginal(0.025,marginal.exp) - 1
+            odds.ul <- inla.qmarginal(0.975,marginal.exp) - 1
+            
+            # find the probability of increased odds from posterior marginal
+            odds.prob <- 1 - inla.pmarginal(1,marginal.exp)
+            dat.temp <- data.frame(odds.mean=odds.mean,odds.ll=odds.ll,odds.ul=odds.ul,odds.prob=odds.prob)
+            dat.mean.exp <- rbind(dat.mean.exp,dat.temp)
+        }
+        
+        # attach state parameter file
+        current.file <- cbind(current.file,dat.mean.exp)
+        
+        # attach fips and then state name information
+        current.file <- merge(current.file,drawseq.lookup,by.x='state',by.y='DRAWSEQ')
+        current.file <- merge(current.file, state.lookup[,c('full_name','fips')],by='fips')
+        
+        dat <- rbind(dat,current.file)
+
+    }
+}
+
+# create directories for output
+file.loc.local <- paste0('~/data/mortality/US/state/climate_effects/',dname,'/',metric,'/non_pw/type_',model,'/parameters/')
+ifelse(!dir.exists(file.loc.local), dir.create(file.loc.local, recursive=TRUE), FALSE)
+file.loc.git <- paste0('../../data/climate_effects/',dname,'/',metric,'/non_pw/type_',model,'/parameters/')
+ifelse(!dir.exists(file.loc.git), dir.create(file.loc.git, recursive=TRUE), FALSE)
+
+# save bound posterior
+save.name <- paste0(country,'_rate_pred_type',model,'_',year.start,'_',year.end,'_',dname,'_',metric)
+saveRDS(dat,paste0(file.loc.local,save.name))
+saveRDS(dat,paste0(file.loc.git,save.name))
+
+}
+>>>>>>> da0b06655dd903c86f11572baee89b78287da78b
