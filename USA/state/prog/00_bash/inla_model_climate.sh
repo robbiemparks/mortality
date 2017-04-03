@@ -7,15 +7,15 @@
 
 clear
 
-declare -a ages=(85 75 65 55 45 35 25 15 0)
-declare -a sexes=(1 2)
+declare -a ages=(85)
+declare -a sexes=(1)
 declare -a sexstrings=('male' 'female')
-declare -a models=(10 11 12 13)
+declare -a models=(10)
 declare -i start=1982
 declare -i end=2013
 declare country="USA"
 declare dname="t2m"
-declare -a metrics=("meanc" "sd")
+declare -a metrics=("meanc")
 #declare metric="number_of_min_3_day_above_99_upwaves"
 #declare -a knotl=(5 10 15)
 #declare -a knoth=(20 25 30)
