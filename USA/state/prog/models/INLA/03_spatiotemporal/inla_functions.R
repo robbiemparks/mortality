@@ -854,6 +854,10 @@ inla.function.climate.fast <- function(age.sel,sex.sel,year.start,year.end,type,
         f(e, model = "iid")                                                    		 	# overdispersion term
     }
     
+    # ADD NEW MODELS TO TEST VIABILITY OF RW1 FOR EACH STATE
+    #f(year5,model="ar1",hyper=list( rho=list(initial=log((1+0.99)/(1-0.99)), fixed=TRUE)),
+    #group=ID3,control.group=list(model="besag",graph=adj))  +
+    
     # INLA model rough
     system.time(mod.rough <-
     inla(formula = fml,
