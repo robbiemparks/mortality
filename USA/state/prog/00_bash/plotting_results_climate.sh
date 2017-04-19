@@ -7,10 +7,10 @@ clear
 
 declare -i start=1982
 declare -i end=2013
-declare -a models=(10 11 12)
+declare -a models=(10)
 declare country="USA"
 declare -a dnames=("t2m")
-declare -a metrics=("sd")
+declare -a metrics=("number_of_min_3_day_above_99_upwaves")
 
 #################################################
 # 1. PLOT PARAMETERS OF STATE CLIMATE POSTERIORS

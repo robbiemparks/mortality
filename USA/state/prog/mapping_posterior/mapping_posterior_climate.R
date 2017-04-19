@@ -47,7 +47,7 @@ geom_ribbon(aes(x=ID,ymax=odds.ul,ymin=odds.ll),alpha=0.1,fill='red') +
 geom_hline(yintercept=0,alpha=0.5,linetype=2) +
 scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
 xlab('month') +
-ylab('Percentage increase in odds') +
+ylab('Percentage increase in risk') +
 scale_y_continuous(labels=percent) +
 coord_cartesian(ylim = c(-0.025,0.025)) +
 ggtitle(paste0(sex.lookup2[sex.sel],' national percentage change in risk by month ',metric,' ',dname)) +
@@ -92,6 +92,35 @@ plot.posterior <- function(sex.sel){
     pdf(paste0(file.loc,'climate_month_posterior_female_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'.pdf'),paper='a4r',height=0,width=0)
     plot.posterior(2)
     dev.off()
+    
+# PROBABILITY OVER ODDS DECREASING FROM POSTERIOR
+
+    # function to plot
+    plot.posterior <- function(sex.sel){
+        print(ggplot(data=subset(dat,sex==sex.sel)) +
+        geom_line(aes(x=ID,y=1-odds.prob)) +
+        geom_hline(yintercept=0,alpha=0.5,linetype=2) +
+        scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
+        xlab('month') +
+        ylab('Posterior probability of decrease in risk') +
+        scale_y_continuous(labels=percent) +
+        ggtitle(paste0(sex.lookup2[sex.sel],' national posterior probabilites of decreased risk ',metric,' ',dname)) +
+        guides(col = guide_legend(ncol = 10, byrow=TRUE)) +
+        facet_wrap(~age.long) +
+        theme(legend.position="bottom"))
+        
+    }
+    
+    # national posterior probability male
+    pdf(paste0(file.loc,'climate_month_posterior__decrease_male_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'.pdf'),paper='a4r',height=0,width=0)
+    plot.posterior(1)
+    dev.off()
+    
+    # national posterior probability female
+    pdf(paste0(file.loc,'climate_month_posterior_decrease_female_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'.pdf'),paper='a4r',height=0,width=0)
+    plot.posterior(2)
+    dev.off()
+
 
     
     # ADDITIONAL DEATHS NATIONALLY
@@ -261,10 +290,6 @@ if(model %in% c('1e','1f')){
         # function to plot posterior probability of increased risk for all months subnationally
         plot.function.month.odds <- function(sex.sel,month.sel) {
             
-            # find limits for plot
-            min.plot <- min(plot$mean)
-            max.plot <- max(plot$mean)
-            
             # attach long month names
             plot$age.long <- mapvalues(plot$age,from=sort(unique(plot$age)),to=as.character(age.code[,2]))
             plot$age.long <- reorder(plot$age.long,plot$age)
@@ -288,6 +313,34 @@ if(model %in% c('1e','1f')){
         # female output to pdf
         pdf(paste0(file.loc,'climate_age_posterior_map_female_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'.pdf'),paper='a4r',height=0,width=0)
         for(i in c(1:12)){plot.function.month.odds(2,i)}
+        dev.off()
+        
+        # function to plot posterior probability of decreased risk for all months subnationally
+        plot.function.month.odds.decreased <- function(sex.sel,month.sel) {
+            
+            # attach long month names
+            plot$age.long <- mapvalues(plot$age,from=sort(unique(plot$age)),to=as.character(age.code[,2]))
+            plot$age.long <- reorder(plot$age.long,plot$age)
+            
+            print(ggplot(data=subset(plot,sex==sex.sel & ID==month.sel),aes(x=long.x,y=lat.x,group=group)) +
+            geom_polygon(aes(fill=1-odds.prob),color='black',size=0.01) +
+            scale_fill_gradient(limits=c(0,1),low="green",high="purple",guide = guide_legend(title = ''),labels=percent) +
+            facet_wrap(~age.long) +
+            ggtitle(sex.sel) +
+            ggtitle(paste0(month.short[month.sel],' ',sex.lookup2[sex.sel],' : ',metric,' ',dname,' posterior probabilites of decreased risk by age for ',' ',year.start,'-',year.end)) +
+            theme_map() +
+            theme(text = element_text(size = 15),legend.position = 'bottom',legend.justification=c(1,0),strip.background = element_blank()))
+            
+        }
+        
+        # male output to pdf
+        pdf(paste0(file.loc,'climate_age_posterior_map_male_decreased_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'.pdf'),paper='a4r',height=0,width=0)
+        for(i in c(1:12)){plot.function.month.odds.decreased(1,i)}
+        dev.off()
+        
+        # female output to pdf
+        pdf(paste0(file.loc,'climate_age_posterior_map_female_decreased',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'.pdf'),paper='a4r',height=0,width=0)
+        for(i in c(1:12)){plot.function.month.odds.decreased(2,i)}
         dev.off()
 
         # establish change in number of deaths for a slice in time (at the moment it's 2013)

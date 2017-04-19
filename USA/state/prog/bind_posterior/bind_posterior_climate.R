@@ -75,11 +75,7 @@ drawseq.lookup <-readRDS('~/git/mortality/USA/state/output/adj_matrix_create/dra
 state.lookup <- read.csv('../../data/fips_lookup/name_fips_lookup.csv')
 
 # MODEL 1E
-<<<<<<< HEAD
-if(model=='1e'){
-=======
 if(model %in% c('1e','1f')){
->>>>>>> da0b06655dd903c86f11572baee89b78287da78b
     
     # create dataframe with each of the national terms for entire group of age and sexes
     dat <- data.frame()
@@ -87,9 +83,7 @@ if(model %in% c('1e','1f')){
     for (i in seq(length(sex.filter))) {
         #for (i in c(1)) {
     for (j in seq(length(age.filter))) {
-<<<<<<< HEAD
-        file.name <- paste0('~/data/mortality/US/state/climate_effects/',dname,'/',metric,'/non_pw/type_',model,'/age_groups/',age.filter[j],'/',country,'_rate_pred_type',model,'_',age.filter[j],'_',sex.filter[i],'_',year.start,'_',year.end,'_',dname,'_',metric,'_parameters'
-=======
+        file.name <- paste0('~/data/mortality/US/state/climate_effects/',dname,'/',metric,'/non_pw/type_',model,'/age_groups/',age.filter[j],'/',country,'_rate_pred_type',model,'_',age.filter[j],'_',sex.filter[i],'_',year.start,'_',year.end,'_',dname,'_',metric,'_parameters')
         file.name <- paste0('~/data/mortality/US/state/climate_effects/',dname,'/',metric,'/non_pw/type_',model,'/age_groups/',age.filter[j],'/',country,'_rate_pred_type',model,'_',age.filter[j],'_',sex.filter[i],'_',year.start,'_',year.end,'_',dname,'_',metric,'_parameters')
         print(file.name)
         model.current <- readRDS(file.name)
@@ -136,4 +130,3 @@ saveRDS(dat,paste0(file.loc.local,save.name))
 saveRDS(dat,paste0(file.loc.git,save.name))
 
 }
->>>>>>> da0b06655dd903c86f11572baee89b78287da78b
