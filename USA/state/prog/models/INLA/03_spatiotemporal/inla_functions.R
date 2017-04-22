@@ -41,7 +41,7 @@ inla.function.climate <- function(age.sel,sex.sel,year.start,year.end,type,clust
     
     # INLA
     
-    if(type==0){
+    if(type==16){
         
         # 1. Type Id space-time interaction with besag state interaction terms and state-month specific variable slope (iid)
         # NO MONTH TERMS
@@ -545,7 +545,7 @@ inla.function.climate.fast <- function(age.sel,sex.sel,year.start,year.end,type,
     
     # INLA
     
-    if(type==0){
+    if(type==16){
         
         # 1. Type Id space-time interaction with besag state interaction terms and state-month specific variable slope (iid)
         # NO MONTH TERMS
@@ -1063,7 +1063,7 @@ inla.function.climate.faster <- function(age.sel,sex.sel,year.start,year.end,typ
     
     # INLA
     
-    if(type==0){
+    if(type==16){
         
         # 1. Type Id space-time interaction with besag state interaction terms and state-month specific variable slope (iid)
         # NO MONTH TERMS
