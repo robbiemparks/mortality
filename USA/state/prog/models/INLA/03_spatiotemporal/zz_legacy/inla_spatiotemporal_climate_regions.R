@@ -1,5 +1,7 @@
 rm(list=ls())
 
+library(plyr)
+
 # arguments from Rscript
 args <- commandArgs(trailingOnly=TRUE)
 
@@ -14,7 +16,7 @@ dname.arg <- as.character(args[7])
 metric.arg <- as.character(args[8])
 
 # types character for file strings
-types <- c('1','1a','2','2a','3','3a','4','1b','1c','1d','1e','1f', '1de')
+types <- c('1','1a','2','2a','3','3a','4','1b','1c','1d','1e','1f')
 type.selected <- types[type.arg]
 
 # range of years
@@ -23,7 +25,7 @@ years <- year.start.arg:year.end.arg
 require(mailR)
 
 # create files for output
-ifelse(!dir.exists(paste0('~/data/mortality/US/state/climate_effects/',dname.arg,'/',metric.arg,'/non_pw/type_',type.selected,'/age_groups')), dir.create(paste0('~/data/mortality/US/state/climate_effects/',dname.arg,'/',metric.arg,'/non_pw/type_',type.selected,'/age_groups'),recursive=TRUE), FALSE)
+ifelse(!dir.exists(paste0('~/data/mortality/US/climate_regions/climate_effects/',dname.arg,'/',metric.arg,'/non_pw/type_',type.selected,'/age_groups')), dir.create(paste0('~/data/mortality/US/climate_regions/climate_effects/',dname.arg,'/',metric.arg,'/non_pw/type_',type.selected,'/age_groups'),recursive=TRUE), FALSE)
 
 # load USA data
 dat.inla.load <- readRDS(paste0('../../output/prep_data/datus_state_rates_',year.start.arg,'_',year.end.arg))
@@ -51,6 +53,10 @@ dat.region$id <- NULL
 
 # merge mortality data with climate region data and get new deaths rates
 dat.inla.load <- merge(dat.inla.load,dat.region,by.x=('fips'),by.y=('STATE_FIPS'),all.x=TRUE)
+
+# summarise death data by climate region and then create new death rate
+#dat.new <- ddply(dat.inla.load,.(sex,age,year,month,climate_region),summarize,pop.adj=sum(pop.adj),deaths.adj=sum(deaths.adj))
+#dat.new$rate.adj <- with(dat.new,deaths.adj/pop.adj)
 
 # load climate data NEED TO GENERALISE
 # create population-weighted climate regions temperatures
@@ -92,5 +98,4 @@ source('../models/INLA/03_spatiotemporal/inla_functions.R')
 
 # input arguments into function to perform inference
 mapply(inla.function.climate,age.sel=age.arg,sex.sel=sex.arg,year.start=year.start.arg,
-	#year.end=year.end.arg,type=type.arg,cluster=cluster.arg)
 	year.end=year.end.arg,type=type.arg,cluster=cluster.arg)

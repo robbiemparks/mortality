@@ -25,23 +25,53 @@ require(mailR)
 # create files for output
 ifelse(!dir.exists(paste0('~/data/mortality/US/state/climate_effects/',dname.arg,'/',metric.arg,'/non_pw/type_',type.selected,'/age_groups')), dir.create(paste0('~/data/mortality/US/state/climate_effects/',dname.arg,'/',metric.arg,'/non_pw/type_',type.selected,'/age_groups'),recursive=TRUE), FALSE)
 
-# load USA data NEED TO GENERALISE
+# load USA data
 dat.inla.load <- readRDS(paste0('../../output/prep_data/datus_state_rates_',year.start.arg,'_',year.end.arg))
 
+# load climate region data
+dat.region <- readRDS(paste0('~/git/mortality/USA/state/output/mapping_posterior/INLA/type1a/1982_2013/maps/USA_state_data'))
+
+# fix climate region names
+dat.region$climate_region <- 	c('Northwest','West North Central','Northeast','West North Central','West North Central',
+'West North Central','Upper Midwest','Northwest','Northeast','Upper Midwest',
+'Northwest','Northeast','Upper Midwest','Northeast','West North Central',
+'Northeast','Northeast','Northeast','Northeast','Northeast',
+'East North Central','West','Southwest','West','East North Central',
+'East North Central','Northeast','Northeast','East North Central','Northeast',
+'Southwest','East North Central','South','Southeast','East North Central',
+'Southwest','South','Southeast','East North Central','South',
+'Southwest','Southeast','South','Southeast','Southeast',
+'South','South','Southeast','Upper Midwest','Northwest',
+'West')
+
+# fix climate region fips type
+dat.region$STATE_FIPS <- as.numeric(as.character(dat.region$STATE_FIPS))
+
+dat.region$id <- NULL
+
+# merge mortality data with climate region data and get new deaths rates
+dat.inla.load <- merge(dat.inla.load,dat.region,by.x=('fips'),by.y=('STATE_FIPS'),all.x=TRUE)
+
 # load climate data NEED TO GENERALISE
-dat.climate <- readRDS(paste0('~/git/climate/countries/USA/output/metrics_development/',dname.arg,'/',metric.arg,'_',dname.arg,'/state_weighted_summary_',metric.arg,'_',dname.arg,'_1979_2015.rds'))
-dat.climate$state.fips <- as.numeric(dat.climate$state.fips)
+# create population-weighted climate regions temperatures
+file.loc <- paste0('~/git/climate/countries/USA/output/metrics_climate_regions/',dname.arg,'/',metric.arg,'/')
+dat.climate <- readRDS(paste0(file.loc,'climate_region_values_',dname.arg,'_',metric.arg,'_1982_2013'))
 
 # merge mortality and climate data and reorder
-dat.merged <- merge(dat.inla.load,dat.climate,by.x=c('sex','age','year','month','fips'),by.y=c('sex','age','year','month','state.fips'),all.x=TRUE)
-dat.merged <- dat.merged[order(dat.merged$fips,dat.merged$sex,dat.merged$age,dat.merged$year,dat.merged$month),]
+dat.merged <- merge(dat.inla.load,dat.climate,by.x=c('sex','age','year','month','climate_region'),by.y=c('sex','age','year','month','climate_region'),all.x=TRUE)
+dat.merged <- dat.merged[order(dat.merged$climate_region,dat.merged$fips,dat.merged$sex,dat.merged$age,dat.merged$year,dat.merged$month),]
 
 # rename rows and remove unnecessary columns
-dat.merged$id <- NULL
 rownames(dat.merged) <- 1:nrow(dat.merged)
 
 # generalise climate variable name
 names(dat.merged)[grep(dname.arg,names(dat.merged))] <- 'variable'
+
+# create lookup table for climate regions
+regions.lookup <- data.frame(climate_region=sort(unique(dat.merged$climate_region)))
+regions.lookup$ID.clim <- seq(nrow(regions.lookup))
+
+dat.merged <- merge(dat.merged,regions.lookup,by='climate_region')
 
 library(dplyr)
 

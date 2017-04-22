@@ -55,8 +55,8 @@ dat.region$id <- NULL
 dat.inla.load <- merge(dat.inla.load,dat.region,by.x=('fips'),by.y=('STATE_FIPS'),all.x=TRUE)
 
 # summarise death data by climate region and then create new death rate
-dat.new <- ddply(dat.inla.load,.(sex,age,year,month,climate_region),summarize,pop.adj=sum(pop.adj),deaths.adj=sum(deaths.adj))
-dat.new$rate.adj <- with(dat.new,deaths.adj/pop.adj)
+#dat.new <- ddply(dat.inla.load,.(sex,age,year,month,climate_region),summarize,pop.adj=sum(pop.adj),deaths.adj=sum(deaths.adj))
+#dat.new$rate.adj <- with(dat.new,deaths.adj/pop.adj)
 
 # load climate data NEED TO GENERALISE
 # create population-weighted climate regions temperatures
@@ -64,8 +64,8 @@ file.loc <- paste0('~/git/climate/countries/USA/output/metrics_climate_regions/'
 dat.climate <- readRDS(paste0(file.loc,'climate_region_values_',dname.arg,'_',metric.arg,'_1982_2013'))
 
 # merge mortality and climate data and reorder
-dat.merged <- merge(dat.new,dat.climate,by.x=c('sex','age','year','month','climate_region'),by.y=c('sex','age','year','month','climate_region'),all.x=TRUE)
-dat.merged <- dat.merged[order(dat.merged$climate_region,dat.merged$sex,dat.merged$age,dat.merged$year,dat.merged$month),]
+dat.merged <- merge(dat.inla.load,dat.climate,by.x=c('sex','age','year','month','climate_region'),by.y=c('sex','age','year','month','climate_region'),all.x=TRUE)
+dat.merged <- dat.merged[order(dat.merged$climate_region,dat.merged$fips,dat.merged$sex,dat.merged$age,dat.merged$year,dat.merged$month),]
 
 # rename rows and remove unnecessary columns
 rownames(dat.merged) <- 1:nrow(dat.merged)
@@ -75,7 +75,7 @@ names(dat.merged)[grep(dname.arg,names(dat.merged))] <- 'variable'
 
 # create lookup table for climate regions
 regions.lookup <- data.frame(climate_region=sort(unique(dat.merged$climate_region)))
-regions.lookup$ID <- seq(nrow(regions.lookup))
+regions.lookup$ID.clim <- seq(nrow(regions.lookup))
 
 dat.merged <- merge(dat.merged,regions.lookup,by='climate_region')
 
@@ -87,14 +87,14 @@ age.filter <- unique(dat.inla.load$age)
 state.lookup <- read.csv('../../data/fips_lookup/name_fips_lookup.csv')
 
 # adjacency matrix with connections Hawaii -> California, Alaska -> Washington
-#USA.adj <- "../../output/adj_matrix_create/USA.graph.edit"
+USA.adj <- "../../output/adj_matrix_create/USA.graph.edit"
 
 ##############
 
 library(INLA)
 
 # load inla function
-source('../models/INLA/03_spatiotemporal/inla_functions_regions.R')
+source('../models/INLA/03_spatiotemporal/inla_functions.R')
 
 # input arguments into function to perform inference
 mapply(inla.function.climate.fast,age.sel=age.arg,sex.sel=sex.arg,year.start=year.start.arg,
