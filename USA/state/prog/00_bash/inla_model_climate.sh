@@ -7,17 +7,18 @@
 
 clear
 
-declare -a ages=(85 75 65 55 45 35 25 15 5 0)
-declare -a sexes=(2 1)
+declare -a ages=(15 5 0)
+declare -a sexes=(2)
 declare -a sexstrings=('male' 'female')
-declare -a models=(10 15)
+declare -a models=(10)
 declare -i start=1982
 declare -i end=2013
 declare -i start2=1982
-declare -i end2=1991
+declare -i end2=2013
 declare country="USA"
 declare dname="t2m"
-declare -a metrics=("number_of_min_3_day_above_90_upwaves" "number_of_min_3_day_above_95_upwaves")
+#declare -a metrics=("number_of_min_3_day_above_90_upwaves" "number_of_min_3_day_above_95_upwaves")
+declare -a metrics=("meanc")
 #declare metric="number_of_min_3_day_above_99_upwaves"
 #declare -a knotl=(5 10 15)
 #declare -a knoth=(20 25 30)
@@ -25,6 +26,29 @@ declare -a metrics=("number_of_min_3_day_above_90_upwaves" "number_of_min_3_day_
 #################################################
 # 1. RUN AGE-SEPARATED MODEL
 #################################################
+
+Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_faster.R 0 2 $start $end $model 0 $dname $metric $start2 $end2
+Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_faster.R 5 2 $start $end $model 0 $dname $metric $start2 $end2
+Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_faster.R 15 2 $start $end $model 0 $dname $metric $start2 $end2
+
+Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_fast.R 35 2 $start $end $model 0 $dname $metric $start2 $end2
+Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_fast.R 45 2 $start $end $model 0 $dname $metric $start2 $end2
+Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_fast.R 55 2 $start $end $model 0 $dname $metric $start2 $end2 
+Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_fast.R 65 2 $start $end $model 0 $dname $metric $start2 $end2 
+Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_fast.R 75 2 $start $end $model 0 $dname $metric $start2 $end2 
+Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_fast.R 85 2 $start $end $model 0 $dname $metric $start2 $end2
+
+Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_fast.R 0 1 $start $end $model 0 $dname $metric $start2 $end2
+Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_fast.R 5 1 $start $end $model 0 $dname $metric $start2 $end2
+Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_fast.R 15 1 $start $end $model 0 $dname $metric $start2 $end2
+Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_fast.R 25 1 $start $end $model 0 $dname $metric $start2 $end2
+Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_fast.R 35 1 $start $end $model 0 $dname $metric $start2 $end2
+Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_fast.R 45 1 $start $end $model 0 $dname $metric $start2 $end2 
+Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_fast.R 55 1 $start $end $model 0 $dname $metric $start2 $end2
+Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_fast.R 65 1 $start $end $model 0 $dname $metric $start2 $end2
+Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_fast.R 75 1 $start $end $model 0 $dname $metric $start2 $end2
+Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_fast.R 85 1 $start $end $model 0 $dname $metric $start2 $end2
+
 
 for metric in "${metrics[@]}"; do
 
@@ -38,7 +62,7 @@ echo "starting ${sexstrings[$sex-1]} $age INLA model $model, with climate variab
 
 # runs model
 #Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate.R $age $sex $start $end $model 0 $dname $metric $start2 $end2
-Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_fast.R $age $sex $start $end $model 0 $dname $metric $start2 $end2
+#Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_fast.R $age $sex $start $end $model 0 $dname $metric $start2 $end2
 #Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_faster.R $age $sex $start $end $model 0 $dname $metric $start2 $end2
 
 done; done; done; done;
@@ -51,7 +75,7 @@ for model in "${models[@]}"; do
 
 echo "combining results into one file from INLA model $model years $start - $end";
 
-Rscript ~/git/mortality/USA/state/prog/bind_posterior/bind_posterior_climate.R $start $end $country $model $dname $metric
+#Rscript ~/git/mortality/USA/state/prog/bind_posterior/bind_posterior_climate.R $start $end $country $model $dname $metric
 
 done;
 
