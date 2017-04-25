@@ -437,3 +437,21 @@ dev.off()
 
 }
 
+# for region model, plot climate parameters on map all on one page, one for men and one for women
+if(model %in% c('1g')){
+    
+    # source map
+    source('../../prog/01_functions/map_generate_climate.R')
+    
+    # load climate region lookup table
+    climate_region.lookup <- readRDS('../../data/fips_lookup/climate_region_lookup')
+    
+    # add climate region lookup reference to map
+    USA.df <- merge(USA.df,climate_region.lookup,by.x='climate_region',by.y='')
+    
+    # merge selected data to map dataframe for colouring of ggplot
+    plot <- merge(USA.df,dat,by.x=c('STATE_FIPS','DRAWSEQ'),by.y=c('fips','DRAWSEQ'))
+    plot <- with(plot, plot[order(sex,age,DRAWSEQ,order),])
+    
+}
+
