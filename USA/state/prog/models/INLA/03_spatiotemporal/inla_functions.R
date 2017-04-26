@@ -41,6 +41,31 @@ inla.function.climate <- function(age.sel,sex.sel,year.start,year.end,type,clust
     
     # INLA
     
+    if(type==17){
+        
+        # 1. Type Id space-time interaction with besag state interaction terms and state-month specific variable slope (iid)
+        # NO MONTH TERMS AND NO RW1
+        fml  <- deaths.adj ~
+        # global terms
+        1 +                                                                     		# global intercept
+        year.month +                                                           			# global slope
+        # month specific terms
+        #f(month, model='rw1',cyclic = TRUE) +                                           # month specific intercept
+        #f(month2, year.month2, model='rw1', cyclic= TRUE) +                             # month specific slope
+        # state-month specific terms
+        #f(month3, model="rw1",cyclic = TRUE,group=ID,control.group=list(model='besag',graph=USA.adj))+                  # state-month specific intercept (spatially-correlated)
+        #f(month4, year.month2, model="rw1",cyclic = TRUE,group=ID, control.group=list(model='besag',graph=USA.adj))+    # state-month specific slope (spatially-correlated)
+        # state specific terms
+        f(ID, model="besag",graph=USA.adj) +                                      		# state specific intercept (BYM)
+        f(ID2, year.month2, model="besag",graph=USA.adj) +                        		# state specific slope (BYM)
+        # climate specific terms
+        f(month5, variable, model="iid") +                                              # month specific climate slope
+        # random walk across time
+        #f(year.month3, model="rw1") +                                           		# rw1
+        # overdispersion term
+        f(e, model = "iid")                                                    		 	# overdispersion term
+    }
+    
     if(type==16){
         
         # 1. Type Id space-time interaction with besag state interaction terms and state-month specific variable slope (iid)
@@ -544,6 +569,31 @@ inla.function.climate.fast <- function(age.sel,sex.sel,year.start,year.end,type,
     dat.inla$e <- 1:nrow(dat.inla)
     
     # INLA
+    
+    if(type==17){
+        
+        # 1. Type Id space-time interaction with besag state interaction terms and state-month specific variable slope (iid)
+        # NO MONTH TERMS AND NO RW1
+        fml  <- deaths.adj ~
+        # global terms
+        1 +                                                                     		# global intercept
+        year.month +                                                           			# global slope
+        # month specific terms
+        #f(month, model='rw1',cyclic = TRUE) +                                           # month specific intercept
+        #f(month2, year.month2, model='rw1', cyclic= TRUE) +                             # month specific slope
+        # state-month specific terms
+        #f(month3, model="rw1",cyclic = TRUE,group=ID,control.group=list(model='besag',graph=USA.adj))+                  # state-month specific intercept (spatially-correlated)
+        #f(month4, year.month2, model="rw1",cyclic = TRUE,group=ID, control.group=list(model='besag',graph=USA.adj))+    # state-month specific slope (spatially-correlated)
+        # state specific terms
+        f(ID, model="besag",graph=USA.adj) +                                      		# state specific intercept (BYM)
+        f(ID2, year.month2, model="besag",graph=USA.adj) +                        		# state specific slope (BYM)
+        # climate specific terms
+        f(month5, variable, model="iid") +                                              # month specific climate slope
+        # random walk across time
+        #f(year.month3, model="rw1") +                                           		# rw1
+        # overdispersion term
+        f(e, model = "iid")                                                    		 	# overdispersion term
+    }
     
     if(type==16){
         
@@ -1062,6 +1112,31 @@ inla.function.climate.faster <- function(age.sel,sex.sel,year.start,year.end,typ
     dat.inla$e <- 1:nrow(dat.inla)
     
     # INLA
+    
+    if(type==17){
+        
+        # 1. Type Id space-time interaction with besag state interaction terms and state-month specific variable slope (iid)
+        # NO MONTH TERMS AND NO RW1
+        fml  <- deaths.adj ~
+        # global terms
+        1 +                                                                     		# global intercept
+        year.month +                                                           			# global slope
+        # month specific terms
+        #f(month, model='rw1',cyclic = TRUE) +                                           # month specific intercept
+        #f(month2, year.month2, model='rw1', cyclic= TRUE) +                             # month specific slope
+        # state-month specific terms
+        #f(month3, model="rw1",cyclic = TRUE,group=ID,control.group=list(model='besag',graph=USA.adj))+                  # state-month specific intercept (spatially-correlated)
+        #f(month4, year.month2, model="rw1",cyclic = TRUE,group=ID, control.group=list(model='besag',graph=USA.adj))+    # state-month specific slope (spatially-correlated)
+        # state specific terms
+        f(ID, model="besag",graph=USA.adj) +                                      		# state specific intercept (BYM)
+        f(ID2, year.month2, model="besag",graph=USA.adj) +                        		# state specific slope (BYM)
+        # climate specific terms
+        f(month5, variable, model="iid") +                                              # month specific climate slope
+        # random walk across time
+        #f(year.month3, model="rw1") +                                           		# rw1
+        # overdispersion term
+        f(e, model = "iid")                                                    		 	# overdispersion term
+    }
     
     if(type==16){
         

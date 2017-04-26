@@ -16,7 +16,7 @@ year.start.analysis.arg <- as.numeric(args[9])
 year.end.analysis.arg <- as.numeric(args[10])
 
 # types character for file strings
-types <- c('1','1a','2','2a','3','3a','4','1b','1c','1d','1e','1f','1de','1ef','1g','0')
+types <- c('1','1a','2','2a','3','3a','4','1b','1c','1d','1e','1f','1de','1ef','1g','0','minus1')
 type.selected <- types[type.arg]
 
 print(paste(age.arg,sex.arg,type.selected))
