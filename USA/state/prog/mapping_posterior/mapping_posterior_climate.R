@@ -884,6 +884,9 @@ if(model %in% c('1g')){
 
 }
 
+
+
+
 # combined plot of national and climate region model
 # create directories for output
 file.loc <- paste0('../../output/mapping_posterior_climate/',year.start,'_',year.end,'/',dname,'/',metric,'/non_pw/type_1dg/parameters/')
@@ -975,5 +978,41 @@ pdf(paste0(file.loc,'climate_month_params_forest_month_female_1dg_',year.start,'
 forest.plot.climate.month.sex(2)
 dev.off()
 
+forest.plot.climate.region.sex <- function(sex.sel) {
+    
+    f <- function(pal) brewer.pal(brewer.pal.info[pal, "maxcolors"], pal)
+    mycols <- c(f("Dark2"), f("Set1")[1:8], f("Set2"), f("Set3"),"#89C5DA", "#DA5724", "#74D944", "#CE50CA", "#3F4921", "#C0717C", "#CBD588", "#5F7FC7", "#673770", "#D3D93E", "#38333E", "#508578", "#D7C1B1", "#689030", "#AD6F3B", "#CD9BCD", "#D14285", "#6DDE88", "#652926", "#7FDCC0", "#C84248", "#8569D5", "#5E738F", "#D1A33D", "#8A7C64", "#599861" )
+    
+    # attach long month names
+    dat$month.short <- mapvalues(dat$ID,from=sort(unique(dat$ID)),to=month.short)
+    dat$month.short <- reorder(dat$month.short,dat$ID)
+    dat1d$month.short <- mapvalues(dat1d$ID,from=sort(unique(dat1d$ID)),to=month.short)
+    dat1d$month.short <- reorder(dat1d$month.short,dat1d$ID)
+    
+    # attach long age names
+    dat$age.long <- mapvalues(dat$age,from=sort(unique(dat$age)),to=as.character(age.code[,2]))
+    dat$age.long <- reorder(dat$age.long,dat$age)
+    
+    print(ggplot(data=subset(dat,sex==sex.sel)) +
+    #geom_point(data=subset(dat1d,sex==sex.sel),aes(x=climate_region,y=odds.mean),size=3,shape=4) +
+    geom_point(aes(x=climate_region,y=odds.mean,color=as.factor(month.short))) +
+    geom_hline(yintercept=0, lty=2) +
+    scale_y_continuous(labels=percent) +
+    ggtitle(paste0('Subnational ',sex.lookup[sex.sel],' percentage change in risk by climate region ',dname,' ',metric,' ',year.start,'-',year.end)) +
+    coord_flip() +
+    facet_wrap(~age.long) +
+    xlab("Age") + ylab("Change in risk (95% CI)") +
+    labs(color = "Month\n") +
+    scale_color_manual(values = mycols[c(10:24)]) +
+    theme_bw()
+    )
+}
 
+pdf(paste0(file.loc,'climate_month_params_forest_region_male_1dg_',year.start,'_',year.end,'_',dname,'_',metric,'.pdf'),paper='a4r',height=0,width=0)
+forest.plot.climate.region.sex(1)
+dev.off()
+
+pdf(paste0(file.loc,'climate_month_params_forest_region_female_1dg_',year.start,'_',year.end,'_',dname,'_',metric,'.pdf'),paper='a4r',height=0,width=0)
+forest.plot.climate.region.sex(2)
+dev.off()
 
