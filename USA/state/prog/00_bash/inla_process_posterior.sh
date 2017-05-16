@@ -11,18 +11,17 @@ declare -i start=1980
 declare -i end=2013
 declare country="USA"
 declare dname="t2m"
-declare metric="days_changing_by_5"
+declare metric="meanc"
 
 #################################################
 # 1. COMBINE RESULTS
 #################################################
 
 for model in "${models[@]}"; do
-:
 
 #echo "combining results into one file from INLA model $model years $start - $end";
 
-#Rscript ~/git/mortality/USA/state/prog/bind_posterior/bind_posterior_climate.R $start $end $country $model $dname $metric
+Rscript ~/git/mortality/USA/state/prog/bind_posterior/bind_posterior_climate.R $start $end $country $model $dname $metric
 
 done;
 
