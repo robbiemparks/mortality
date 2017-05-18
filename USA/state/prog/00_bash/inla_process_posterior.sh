@@ -11,7 +11,7 @@ declare -i start=1980
 declare -i end=2013
 declare country="USA"
 declare dname="t2m"
-declare -a metrics=("number_of_days_above_nonnormal_90")
+declare -a metrics=("number_of_min_3_day_above_+5_jumpupwaves")
 
 #################################################
 # 1. COMBINE RESULTS
