@@ -72,10 +72,12 @@ forest.plot.national.age <- function() {
     geom_pointrange(aes(x=ID,y=odds.mean,ymin=odds.ll,ymax=odds.ul,color=as.factor(sex))) +
     geom_hline(yintercept=0, lty=2) +
     scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
-    scale_y_continuous(labels=percent,limits=c(-0.02,0.02)) +
+    scale_y_continuous(labels=percent) +
+    #scale_y_continuous(labels=percent,limits=c(-0.02,0.02)) +
     #ylim(c(-0.03,0.03)) +
     ggtitle(paste0('National percentage change in risk by age group ',dname,' ',metric,' ',year.start,'-',year.end)) +
-    coord_flip() +
+    coord_flip(ylim = c(-0.03,0.03)) +
+    #coord_flip() +
     facet_wrap(~age.long) +
     xlab("Month") + ylab("Change in risk (95% CI)") +
     labs(color = "Sex\n") +
@@ -93,11 +95,13 @@ forest.plot.national.month <- function() {
     print(ggplot(data=dat) +
     geom_pointrange(aes(x=age,y=odds.mean,ymin=odds.ll,ymax=odds.ul,color=as.factor(sex))) +
     geom_hline(yintercept=0, lty=2) +
+    scale_y_continuous(labels=percent) +
     #scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
-    scale_y_continuous(labels=percent,limits=c(-0.02,0.02)) +
+    #scale_y_continuous(labels=percent,limits=c(-0.02,0.02)) +
+    coord_flip(ylim = c(-0.03,0.03)) +
     #ylim(c(-0.03,0.03)) +
     ggtitle(paste0('National percentage change in risk by month ',dname,' ',metric,' ',year.start,'-',year.end)) +
-    coord_flip() +
+    #coord_flip() +
     facet_wrap(~month.short) +
     xlab("Age") + ylab("Change in risk (95% CI)") +
     labs(color = "Sex\n") +
