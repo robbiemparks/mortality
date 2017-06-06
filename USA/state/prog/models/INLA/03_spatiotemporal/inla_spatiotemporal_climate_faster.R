@@ -11,9 +11,10 @@ year.end.arg <- as.numeric(args[4])
 type.arg <- as.numeric(args[5])
 cluster.arg <- as.numeric(args[6])
 dname.arg <- as.character(args[7])
-metric.arg <- as.character(args[8])
-year.start.analysis.arg <- as.numeric(args[9])
-year.end.analysis.arg <- as.numeric(args[10])
+metric1.arg <- as.character(args[8])
+metric2.arg <- as.character(args[9])
+year.start.analysis.arg <- as.numeric(args[10])
+year.end.analysis.arg <- as.numeric(args[11])
 
 # types character for file strings
 types <- c('1','1a','2','2a','3','3a','4','1b','1c','1d','1e','1f','1de','1ef','1g','0','minus1')
@@ -26,8 +27,11 @@ years <- year.start.arg:year.end.arg
 
 require(mailR)
 
+# combine two metrics in alphabetical order in a single string
+metric.arg = paste(sort(c(metric1.arg,metric2.arg)),collapse='_')
+
 # create files for output
-ifelse(!dir.exists(paste0('~/data/mortality/US/state/climate_effects/',dname.arg,'/',metric.arg,'/non_pw/type_',type.selected,'/age_groups')), dir.create(paste0('~/data/mortality/US/state/climate_effects/',dname.arg,'/',metric.arg,'/non_pw/type_',type.selected,'/age_groups'),recursive=TRUE), FALSE)
+ifelse(!dir.exists(paste0('~/data/mortality/US/state/climate_effects/2var/',dname.arg,'/',metric.arg,'/non_pw/type_',type.selected,'/age_groups')), dir.create(paste0('~/data/mortality/US/state/climate_effects/',dname.arg,'/2var/',metric.arg,'/non_pw/type_',type.selected,'/age_groups'),recursive=TRUE), FALSE)
 
 # load USA data
 dat.inla.load <- readRDS(paste0('../../output/prep_data/datus_state_rates_',year.start.arg,'_',year.end.arg))
@@ -57,21 +61,25 @@ dat.region$id <- NULL
 dat.inla.load <- merge(dat.inla.load,dat.region,by.x=('fips'),by.y=('STATE_FIPS'),all.x=TRUE)
 
 # load climate data NEED TO GENERALISE
-# create population-weighted climate regions temperatures
-file.loc <- paste0('~/git/climate/countries/USA/output/metrics_development/',dname.arg,'/',metric.arg,'_',dname.arg,'/')
-dat.climate <- readRDS(paste0(file.loc,'state_weighted_summary_',metric.arg,'_',dname.arg,'_1979_2015.rds'))
+file.loc1 <- paste0('~/git/climate/countries/USA/output/metrics_development/',dname.arg,'/',metric1.arg,'_',dname.arg,'/')
+file.loc2 <- paste0('~/git/climate/countries/USA/output/metrics_development/',dname.arg,'/',metric2.arg,'_',dname.arg,'/')
+dat.climate1 <- readRDS(paste0(file.loc1,'state_weighted_summary_',metric1.arg,'_',dname.arg,'_1979_2015.rds'))
+dat.climate2 <- readRDS(paste0(file.loc2,'state_weighted_summary_',metric2.arg,'_',dname.arg,'_1979_2015.rds'))
 
-dat.climate$state.fips <- as.numeric(as.character(dat.climate$state.fips))
+dat.climate1$state.fips <- as.numeric(as.character(dat.climate1$state.fips))
+dat.climate2$state.fips <- as.numeric(as.character(dat.climate2$state.fips))
 
 # merge mortality and climate data and reorder
-dat.merged <- merge(dat.inla.load,dat.climate,by.x=c('sex','age','year','month','fips'),by.y=c('sex','age','year','month','state.fips'),all.x=TRUE)
+dat.merged <- merge(dat.inla.load,dat.climate1,by.x=c('sex','age','year','month','fips','leap'),by.y=c('sex','age','year','month','state.fips','leap'),all.x=TRUE)
+dat.merged <- merge(dat.merged,dat.climate2,by.x=c('sex','age','year','month','fips','leap'),by.y=c('sex','age','year','month','state.fips','leap'),all.x=TRUE)
 dat.merged <- dat.merged[order(dat.merged$climate_region,dat.merged$fips,dat.merged$sex,dat.merged$age,dat.merged$year,dat.merged$month),]
 
 # rename rows and remove unnecessary columns
 rownames(dat.merged) <- 1:nrow(dat.merged)
 
-# generalise climate variable name
-names(dat.merged)[grep(dname.arg,names(dat.merged))] <- 'variable'
+# generalise climate variable names in alphabetical order
+names(dat.merged)[21]='variable1'
+names(dat.merged)[22]='variable2'
 
 # create lookup table for climate regions
 regions.lookup <- data.frame(climate_region=sort(unique(dat.merged$climate_region)))
@@ -97,7 +105,7 @@ USA.adj <- "../../output/adj_matrix_create/USA.graph.edit"
 library(INLA)
 
 # load inla function
-source('../models/INLA/03_spatiotemporal/inla_functions.R')
+source('../models/INLA/03_spatiotemporal/inla_functions_2var.R')
 
 # input arguments into function to perform inference
 mapply(inla.function.climate.faster,age.sel=age.arg,sex.sel=sex.arg,year.start=year.start.analysis.arg,

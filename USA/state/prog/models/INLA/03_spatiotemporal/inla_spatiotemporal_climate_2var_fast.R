@@ -70,16 +70,16 @@ dat.climate1$state.fips <- as.numeric(as.character(dat.climate1$state.fips))
 dat.climate2$state.fips <- as.numeric(as.character(dat.climate2$state.fips))
 
 # merge mortality and climate data and reorder
-dat.merged <- merge(dat.inla.load,dat.climate1,by.x=c('sex','age','year','month','fips'),by.y=c('sex','age','year','month','state.fips'),all.x=TRUE)
-dat.merged <- merge(dat.merged,dat.climate2,by.x=c('sex','age','year','month','fips'),by.y=c('sex','age','year','month','state.fips'),all.x=TRUE)
+dat.merged <- merge(dat.inla.load,dat.climate1,by.x=c('sex','age','year','month','fips','leap'),by.y=c('sex','age','year','month','state.fips','leap'),all.x=TRUE)
+dat.merged <- merge(dat.merged,dat.climate2,by.x=c('sex','age','year','month','fips','leap'),by.y=c('sex','age','year','month','state.fips','leap'),all.x=TRUE)
 dat.merged <- dat.merged[order(dat.merged$climate_region,dat.merged$fips,dat.merged$sex,dat.merged$age,dat.merged$year,dat.merged$month),]
 
 # rename rows and remove unnecessary columns
 rownames(dat.merged) <- 1:nrow(dat.merged)
 
 # generalise climate variable names in alphabetical order
-names(dat.merged)[grep(sort(c(metric1.arg,metric2.arg))[1],names(dat.merged))] <- 'variable1'
-names(dat.merged)[grep(sort(c(metric1.arg,metric2.arg))[2],names(dat.merged))] <- 'variable2'
+names(dat.merged)[21]='variable1'
+names(dat.merged)[22]='variable2'
 
 # create lookup table for climate regions
 regions.lookup <- data.frame(climate_region=sort(unique(dat.merged$climate_region)))
