@@ -27,7 +27,7 @@ dat$cause_letter = substr(dat$cause,1,1)
 # match state names to fips codes
 state.lookup <- read.csv('~/git/mortality/USA/state/data/fips_lookup/name_fips_lookup.csv')
 dat <- merge(dat,state.lookup[,c('code_name','fips')],by.x='stateres_fips',by.y='code_name',all.x=TRUE)
-dat <- dat[,c('monthdth','age','sex','year','countyres_fips','fips','cause_letter')]
+dat <- dat[,c('monthdth','age','sex','year','countyres_fips','fips','cause')]
 
 # add '0' to fips codes
 dat$fips<- paste0('0',as.character(dat$fips))
@@ -68,13 +68,13 @@ dat$age <-
                    	85)))))))))))))))))
 
 dat$dummy <- 1
-dat.summarised <- dplyr::summarise(group_by(dat,cause_letter,monthdth,age,fips,sex,year),sum(dummy))
+dat.summarised <- dplyr::summarise(group_by(dat,cause,monthdth,age,fips,sex,year),sum(dummy))
 dat.summarised <- plyr::rename(dat.summarised,c('sum(dummy)'='deaths'))
 
 # convert month of death into number
 dat.summarised$monthdth <- as.numeric(dat.summarised$monthdth)
 
 # output file for next stage of processing
-write.dta(dat.summarised,paste0("~/data/mortality/US/state/processed/cod/deaths",year,'.dta'))
+write.dta(dat.summarised,paste0("~/data/mortality/US/state/processed/cod/deathscod",year,'.dta'))
 
 
