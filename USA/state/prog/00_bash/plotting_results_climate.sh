@@ -5,12 +5,12 @@
 
 clear
 
-declare -i start=1982
+declare -i start=1980
 declare -i end=2013
 declare -a models=(10)
 declare country="USA"
 declare -a dnames=("t2m")
-declare -a metrics=("number_of_min_3_day_above_99_upwaves")
+declare -a metrics=("10percc3" "90percc3" "meanc3" "number_of_min_3_day_above_+5_jumpupwaves" "number_of_min_3_day_above_nonnormal_90_upwaves" "number_of_min_3_day_below_+5_jumpdownwaves" "number_of_min_3_day_below_nonnormal_90_downwaves")
 
 #################################################
 # 1. PLOT PARAMETERS OF STATE CLIMATE POSTERIORS
@@ -22,6 +22,6 @@ for metric in "${metrics[@]}"; do
 
 for model in "${models[@]}"; do
 
-Rscript ~/git/mortality/USA/state/prog/mapping_posterior/mapping_posterior_climate.R 1982 1991 $country $model $dname $metric
+Rscript ~/git/mortality/USA/state/prog/mapping_posterior/mapping_posterior_climate.R $start $end $country $model $dname $metric
 
 done; done; done;

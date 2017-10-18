@@ -124,7 +124,7 @@ Purpose:    create cause of death numbers by county/age/sex/year/ICD from MCD da
     // save the prepped data for this year
         keep cause age sex fips deaths year
         quietly compress
-        quietly save "`proj_dir'/data/cod/clean/deaths by ICD and county/deaths`y'.dta", replace
+        quietly save "`proj_dir'/data/cod/clean/deaths by ICD and county/deathscod`y'.dta", replace
     }
 
 // print out how many deaths in total for each year, for easier debugging

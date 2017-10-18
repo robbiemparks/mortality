@@ -1,9 +1,5 @@
 rm(list=ls())
 
-#library(maptools)
-#library(mapproj)
-#library(rgeos)
-#library(rgdal)
 library(RColorBrewer)
 library(ggplot2)
 library(plyr)
@@ -31,6 +27,11 @@ ifelse(!dir.exists(file.loc), dir.create(file.loc,recursive=TRUE), FALSE)
 # load the data
 dat <- readRDS(paste0('../../data/climate_effects/',dname,'/',metric,'/non_pw/type_',model,'/parameters/',country,'_rate_pred_type',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_fast'))
 
+# lookups for units
+temp = c("10percc3", "90percc3", "meanc3")
+episodes = c("number_of_min_3_day_above_+5_jumpupwaves", "number_of_min_3_day_above_nonnormal_90_upwaves", "number_of_min_3_day_below_+5_jumpdownwaves", "number_of_min_3_day_below_nonnormal_90_downwaves")
+unit.name = ifelse(metric %in% temp, paste0('per °C'), ifelse(metric %in% episodes, 'per episode','error'))
+
 # for national model, plot climate parameters (with CIs) all on one page, one for men and one for women
 if(model=='1d'){
 
@@ -46,11 +47,11 @@ geom_line(aes(x=ID,y=odds.mean)) +
 geom_ribbon(aes(x=ID,ymax=odds.ul,ymin=odds.ll),alpha=0.1,fill='red') +
 geom_hline(yintercept=0,alpha=0.5,linetype=2) +
 scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
-xlab('month') +
-ylab('Percentage increase in risk') +
+xlab('Month') +
+ylab(paste0('Excess risk ',unit.name)) +
 scale_y_continuous(labels=percent) +
 coord_cartesian(ylim = c(-0.02,0.02)) +
-ggtitle(paste0(sex.lookup2[sex.sel],' national percentage change in risk by month ',metric,' ',dname)) +
+#ggtitle(paste0(sex.lookup2[sex.sel],' national excess risk ',unit.name,' by month ',metric,' ',dname)) +
 guides(col = guide_legend(ncol = 10, byrow=TRUE)) +
 facet_wrap(~age.long) +
 theme(legend.position="bottom"))
@@ -75,11 +76,11 @@ forest.plot.national.age <- function() {
     scale_y_continuous(labels=percent) +
     #scale_y_continuous(labels=percent,limits=c(-0.02,0.02)) +
     #ylim(c(-0.03,0.03)) +
-    ggtitle(paste0('National percentage change in risk by age group ',dname,' ',metric,' ',year.start,'-',year.end)) +
+    #ggtitle(paste0('National excess risk by age group ',dname,' ',metric,' ',year.start,'-',year.end)) +
     coord_flip(ylim = c(-0.03,0.03)) +
     #coord_flip() +
     facet_wrap(~age.long) +
-    xlab("Month") + ylab("Change in risk (95% CI)") +
+    xlab("Month") + ylab(paste0("Excess risk ",unit.name)) +
     labs(color = "Sex\n") +
     scale_color_manual(labels = c("Men", "Women"), values = c("blue", "red")) +
     theme_bw()
@@ -100,10 +101,10 @@ forest.plot.national.month <- function() {
     #scale_y_continuous(labels=percent,limits=c(-0.02,0.02)) +
     coord_flip(ylim = c(-0.03,0.03)) +
     #ylim(c(-0.03,0.03)) +
-    ggtitle(paste0('National percentage change in risk by month ',dname,' ',metric,' ',year.start,'-',year.end)) +
+    #ggtitle(paste0('National percentage excess risk by month ',dname,' ',metric,' ',year.start,'-',year.end)) +
     #coord_flip() +
     facet_wrap(~month.short) +
-    xlab("Age") + ylab("Change in risk (95% CI)") +
+    xlab("Age") + ylab(paste0("Excess risk ",unit.name)) +
     labs(color = "Sex\n") +
     scale_color_manual(labels = c("Men", "Women"), values = c("blue", "red")) +
     theme_bw()
@@ -127,10 +128,10 @@ plot.posterior <- function(sex.sel){
     geom_line(aes(x=ID,y=odds.prob)) +
     geom_hline(yintercept=0,alpha=0.5,linetype=2) +
     scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
-    xlab('month') +
+    xlab('Month') +
     ylab('Posterior probability of increase in risk') +
     scale_y_continuous(labels=percent) +
-    ggtitle(paste0(sex.lookup2[sex.sel],' national posterior probabilites of increased risk ',metric,' ',dname)) +
+    #ggtitle(paste0(sex.lookup2[sex.sel],' national posterior probabilites of increased risk ',metric,' ',dname)) +
     guides(col = guide_legend(ncol = 10, byrow=TRUE)) +
     facet_wrap(~age.long) +
     theme(legend.position="bottom"))
@@ -155,10 +156,10 @@ plot.posterior <- function(sex.sel){
         geom_line(aes(x=ID,y=1-odds.prob)) +
         geom_hline(yintercept=0,alpha=0.5,linetype=2) +
         scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
-        xlab('month') +
+        xlab('Month') +
         ylab('Posterior probability of decrease in risk') +
         scale_y_continuous(labels=percent) +
-        ggtitle(paste0(sex.lookup2[sex.sel],' national posterior probabilites of decreased risk ',metric,' ',dname)) +
+        #ggtitle(paste0(sex.lookup2[sex.sel],' national posterior probabilites of decreased risk ',metric,' ',dname)) +
         guides(col = guide_legend(ncol = 10, byrow=TRUE)) +
         facet_wrap(~age.long) +
         theme(legend.position="bottom"))
@@ -220,7 +221,7 @@ plot.posterior <- function(sex.sel){
         scale_fill_manual(labels = c("Men", "Women"), values = c("blue", "red")) +
         scale_color_manual(labels = c("Men", "Women"), values = c("blue", "red")) +
         xlab('Month') +
-        ylab('Change in deaths from unit change') +
+        ylab(paste0('Change in deaths per ', unit.name)) +
         guides(fill=FALSE,color=FALSE) +
         theme_bw())
     }
@@ -259,7 +260,7 @@ if(model %in% c('1e','1f')){
         scale_fill_gradient2(limits=c(min.plot,max.plot),low="green", mid="white",high="red",midpoint=0,guide = guide_legend(title = ''),labels=percent) +
         facet_wrap(~month.short) +
         ggtitle(sex.sel) +
-        ggtitle(paste0(age.long,' ',sex.lookup2[sex.sel],' : ',metric,' ',dname,' percentage change in risk by month ',year.start,'-',year.end)) +
+        ggtitle(paste0(age.long,' ',sex.lookup2[sex.sel],' : ',metric,' ',dname,' percentage excess risk by month ',year.start,'-',year.end)) +
         theme_map() +
         theme(text = element_text(size = 15),legend.position = 'bottom',legend.justification=c(1,0),strip.background = element_blank()))
         }
@@ -327,7 +328,7 @@ if(model %in% c('1e','1f')){
         scale_fill_gradient2(limits=c(min.plot,max.plot),low="green", mid="white",high="red",midpoint=0,guide = guide_legend(title = ''),labels=percent) +
         facet_wrap(~age.long) +
         ggtitle(sex.sel) +
-        ggtitle(paste0(month.short[month.sel],' ',sex.lookup2[sex.sel],' : ',metric,' ',dname,' percentage change in risk by age for ',' ',year.start,'-',year.end)) +
+        ggtitle(paste0(month.short[month.sel],' ',sex.lookup2[sex.sel],' : ',metric,' ',dname,' percentage excess risk by age for ',' ',year.start,'-',year.end)) +
         theme_map() +
         theme(text = element_text(size = 15),legend.position = 'bottom',legend.justification=c(1,0),strip.background = element_blank()))
                     
@@ -528,7 +529,7 @@ if(model %in% c('1g')){
         scale_fill_gradient2(limits=c(min.plot,max.plot),low="green", mid="white",high="red",midpoint=0,guide = guide_legend(title = ''),labels=percent) +
         facet_wrap(~month.short) +
         ggtitle(sex.sel) +
-        ggtitle(paste0(age.long,' ',sex.lookup2[sex.sel],' : ',metric,' ',dname,' percentage change in risk by month ',year.start,'-',year.end)) +
+        ggtitle(paste0(age.long,' ',sex.lookup2[sex.sel],' : ',metric,' ',dname,' percentage excess risk by month ',year.start,'-',year.end)) +
         theme_map() +
         theme(text = element_text(size = 15),legend.position = 'bottom',legend.justification=c(1,0),strip.background = element_blank()))
     }
@@ -555,10 +556,10 @@ if(model %in% c('1g')){
         geom_hline(yintercept=0, lty=2) +
         scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
         scale_y_continuous(labels=percent) +
-        ggtitle(paste0('Subnational percentage change in risk by age group ',dname,' ',metric,' ',year.start,'-',year.end)) +
+        ggtitle(paste0('Subnational percentage excess risk by age group ',dname,' ',metric,' ',year.start,'-',year.end)) +
         coord_flip() +
         facet_wrap(~age.long) +
-        xlab("Month") + ylab("Change in risk (95% CI)") +
+        xlab("Month") + ylab("Excess risk (95% CI)") +
         labs(color = "Sex\n") +
         scale_color_manual(labels = c("Men", "Women"), values = c("blue", "red")) +
         theme_bw()
@@ -584,10 +585,10 @@ if(model %in% c('1g')){
         geom_hline(yintercept=0, lty=2) +
         #scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +) +
         scale_y_continuous(labels=percent) +
-        ggtitle(paste0('Subnational ',sex.lookup[sex.sel],' percentage change in risk by month ',dname,' ',metric,' ',year.start,'-',year.end)) +
+        ggtitle(paste0('Subnational ',sex.lookup[sex.sel],' percentage excess risk by month ',dname,' ',metric,' ',year.start,'-',year.end)) +
         coord_flip() +
         facet_wrap(~age.long) +
-        xlab("Age") + ylab("Change in risk (95% CI)") +
+        xlab("Age") + ylab("Excess risk (95% CI)") +
         labs(color = "Sex\n") +
         scale_color_manual(values = mycols[c(1:9)]) +
         theme_bw()
@@ -613,10 +614,10 @@ if(model %in% c('1g')){
         geom_hline(yintercept=0, lty=2) +
         #scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
         scale_y_continuous(labels=percent) +
-        ggtitle(paste0('Subnational percentage change in risk by month ',dname,' ',metric,' ',year.start,'-',year.end)) +
+        ggtitle(paste0('Subnational percentage excess risk by month ',dname,' ',metric,' ',year.start,'-',year.end)) +
         coord_flip() +
         facet_wrap(~month.short) +
-        xlab("Age") + ylab("Change in risk (95% CI)") +
+        xlab("Age") + ylab("excess risk (95% CI)") +
         labs(color = "Sex\n") +
         scale_color_manual(labels = c("Men", "Women"), values = c("blue", "red")) +
         theme_bw()
@@ -648,10 +649,10 @@ if(model %in% c('1g')){
         geom_hline(yintercept=0, lty=2) +
         #scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +) +
         scale_y_continuous(labels=percent) +
-        ggtitle(paste0('Subnational ',sex.lookup[sex.sel],' percentage change in risk by month ',dname,' ',metric,' ',year.start,'-',year.end)) +
+        ggtitle(paste0('Subnational ',sex.lookup[sex.sel],' percentage excess risk by month ',dname,' ',metric,' ',year.start,'-',year.end)) +
         coord_flip() +
         facet_wrap(~month.short) +
-        xlab("Age") + ylab("Change in risk (95% CI)") +
+        xlab("Age") + ylab("Excess risk (95% CI)") +
         labs(color = "Sex\n") +
         scale_color_manual(values = mycols[c(1:9)]) +
         theme_bw()
@@ -721,7 +722,7 @@ if(model %in% c('1g')){
         scale_fill_gradient2(limits=c(min.plot,max.plot),low="green", mid="white",high="red",midpoint=0,guide = guide_legend(title = ''),labels=percent) +
         facet_wrap(~age.long) +
         ggtitle(sex.sel) +
-        ggtitle(paste0(month.short[month.sel],' ',sex.lookup2[sex.sel],' : ',metric,' ',dname,' percentage change in risk by age for ',' ',year.start,'-',year.end)) +
+        ggtitle(paste0(month.short[month.sel],' ',sex.lookup2[sex.sel],' : ',metric,' ',dname,' percentage excess risk by age for ',' ',year.start,'-',year.end)) +
         theme_map() +
         theme(text = element_text(size = 15),legend.position = 'bottom',legend.justification=c(1,0),strip.background = element_blank()))
         
@@ -927,11 +928,11 @@ forest.plot.climate.age.sex <- function(sex.sel) {
     geom_point(aes(x=ID,y=odds.mean,color=as.factor(climate_region))) +
     geom_hline(yintercept=0, lty=2) +
     scale_y_continuous(labels=percent) +
-    ggtitle(paste0('Subnational ',sex.lookup[sex.sel],' percentage change in risk by month ',dname,' ',metric,' ',year.start,'-',year.end)) +
+    ggtitle(paste0('Subnational ',sex.lookup[sex.sel],' percentage excess risk by month ',dname,' ',metric,' ',year.start,'-',year.end)) +
     #coord_flip() +
     coord_flip(ylim = c(-0.03,0.03)) +
     facet_wrap(~age.long) +
-    xlab("Age") + ylab("Change in risk (95% CI)") +
+    xlab("Age") + ylab("Excess risk (95% CI)") +
     labs(color = "Sex\n") +
     scale_color_manual(values = mycols[c(1:9)]) +
     theme_bw()
@@ -967,10 +968,10 @@ forest.plot.climate.month.sex <- function(sex.sel) {
     geom_point(aes(x=age,y=odds.mean,color=as.factor(climate_region))) +
     geom_hline(yintercept=0, lty=2) +
     scale_y_continuous(labels=percent) +
-    ggtitle(paste0('Subnational ',sex.lookup[sex.sel],' percentage change in risk by month ',dname,' ',metric,' ',year.start,'-',year.end)) +
+    ggtitle(paste0('Subnational ',sex.lookup[sex.sel],' percentage excess risk by month ',dname,' ',metric,' ',year.start,'-',year.end)) +
     coord_flip() +
     facet_wrap(~month.short) +
-    xlab("Age") + ylab("Change in risk (95% CI)") +
+    xlab("Age") + ylab("Excess risk (95% CI)") +
     labs(color = "Sex\n") +
     scale_color_manual(values = mycols[c(1:9)]) +
     theme_bw()
@@ -1005,10 +1006,10 @@ forest.plot.climate.region.sex <- function(sex.sel) {
     geom_point(aes(x=climate_region,y=odds.mean,color=as.factor(month.short))) +
     geom_hline(yintercept=0, lty=2) +
     scale_y_continuous(labels=percent) +
-    ggtitle(paste0('Subnational ',sex.lookup[sex.sel],' percentage change in risk by climate region ',dname,' ',metric,' ',year.start,'-',year.end)) +
+    ggtitle(paste0('Subnational ',sex.lookup[sex.sel],' percentage excess risk by climate region ',dname,' ',metric,' ',year.start,'-',year.end)) +
     coord_flip() +
     facet_wrap(~age.long) +
-    xlab("Age") + ylab("Change in risk (95% CI)") +
+    xlab("Age") + ylab("Excess risk (95% CI)") +
     labs(color = "Month\n") +
     scale_color_manual(values = mycols[c(10:24)]) +
     theme_bw()
