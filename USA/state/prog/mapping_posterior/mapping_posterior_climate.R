@@ -212,6 +212,18 @@ plot.posterior <- function(sex.sel){
     # take one year
     dat.merged.sub <- subset(dat.merged,year==2013)
     
+    # export table in form that is digestible to human eyes
+    dat.merged.sub.csv <- dat.merged.sub[,c('sex','age','month','deaths.added','deaths.ll','deaths.ul')]
+    dat.merged.sub.csv$month = mapvalues(dat.merged.sub.csv$month, from=sort(unique(dat.merged.sub.csv$month)),to=month.short)
+    dat.merged.sub.csv$sex = mapvalues(dat.merged.sub.csv$sex, from=sort(unique(dat.merged.sub.csv$sex)),to=c('Men','Women'))
+    dat.merged.sub.csv$age.long <- mapvalues(dat.merged.sub.csv$age,from=sort(unique(dat.merged.sub.csv$age)),to=as.character(age.code[,2]))
+    dat.merged.sub.csv$age.long <- reorder(dat.merged.sub.csv$age.long,dat.merged.sub.csv$age)
+    dat.merged.sub.csv <- dat.merged.sub.csv[,c('sex','age.long','month','deaths.added','deaths.ll','deaths.ul')]
+    names(dat.merged.sub.csv) = c('sex','age','month','deaths added','2.5%','97.5%')
+
+    write.csv(dat.csv,paste0('../../data/climate_effects/',dname,'/',metric,'/non_pw/type_',model,'/parameters/',country,'_rate_pred_type',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_deaths_added.csv'))
+
+
     # plot for male and female
     # function to plot
     plot.deaths.nat <- function(){
