@@ -23,7 +23,7 @@ for(year in years){
     dat <- read.dta(paste0("~/data/mortality/US/state/processed/cod/deathscod",year,'.dta'))
     deaths = sum(dat$deaths)
     dat.add = data.frame(year=year,deaths=deaths)
-    dat.deaths.cod = rbind(dat.deaths,dat.add)
+    dat.deaths.cod = rbind(dat.deaths.cod,dat.add)
     
 }
 

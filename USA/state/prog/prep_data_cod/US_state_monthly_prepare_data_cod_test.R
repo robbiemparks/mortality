@@ -15,10 +15,17 @@ yearsummary  <- function(x=2000,y=-1) {
 	print(paste0('year ',x,' now being processed'))
   
 	# load year of deaths
-	file.loc <- '~/data/mortality/US/state/processed/county/'
+	file.loc <- '~/data/mortality/US/state/processed/cod/'
 	dat.name <- paste0(file.loc,"deathscod",x,".dta")
 	dat <- read.dta(dat.name)
-
+    
+    # code for correct COD
+    if(x<=1998){
+        
+    }
+    else()
+    
+    
 	# load lookup for fips
 	fips.lookup <- read.csv('~/data/mortality/US/state/lookup/fipsMap.csv')
 	dat$fips <- as.numeric(dat$fips)
