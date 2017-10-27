@@ -71,14 +71,14 @@ theme(legend.position="bottom"))
 }
 
     # national month intercept male
-pdf(paste0(file.loc,'climate_month_params_male_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'.pdf'),paper='a4r',height=0,width=0)
-    plot.function(1)
-    dev.off()
+    #pdf(paste0(file.loc,'climate_month_params_male_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'.pdf'),paper='a4r',height=0,width=0)
+#plot.function(1)
+#    dev.off()
     
     # national month intercept female
-pdf(paste0(file.loc,'climate_month_params_female_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'.pdf'),paper='a4r',height=0,width=0)
-plot.function(2)
-    dev.off()
+    #pdf(paste0(file.loc,'climate_month_params_female_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'.pdf'),paper='a4r',height=0,width=0)
+#plot.function(2)
+#    dev.off()
     
 # FOREST PLOTS OF PARAMETERS
 forest.plot.national.age <- function() {
@@ -125,14 +125,14 @@ forest.plot.national.month <- function() {
 }
 
 # national month intercept male
-pdf(paste0(file.loc,'climate_month_params_forest_age_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'.pdf'),paper='a4r',height=0,width=0)
-forest.plot.national.age()
-dev.off()
+#pdf(paste0(file.loc,'climate_month_params_forest_age_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'.pdf'),paper='a4r',height=0,width=0)
+#forest.plot.national.age()
+#dev.off()
 
 # national month intercept female
-pdf(paste0(file.loc,'climate_month_params_forest_month_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'.pdf'),paper='a4r',height=0,width=0)
-forest.plot.national.month()
-dev.off()
+#pdf(paste0(file.loc,'climate_month_params_forest_month_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'.pdf'),paper='a4r',height=0,width=0)
+#forest.plot.national.month()
+#dev.off()
 
 # HEATMAPS OF PARAMETERS (SEXY ALTERNATIVE TO FOREST PLOTS)
 heatmap.national.age <- function() {
@@ -146,12 +146,14 @@ heatmap.national.age <- function() {
     
     # ADD SIGNIFICANCE HIGHLIGHTS
     print(ggplot(data=subset(dat)) +
-    geom_tile(aes(x=ID,y=as.factor(age),fill=odds.mean,alpha=sig)) +
-    #scale_fill_gradient2(low='green',mid='white',high='red',limits=c(-0.05,0.05),labels=percent,guide = guide_legend(title = paste0("Excess\nrisk\n",unit.name))) +
+    geom_tile(aes(x=ID,y=as.factor(age),fill=odds.mean)) +
+    #geom_tile(aes(x=ID,y=as.factor(age),fill=odds.mean,alpha=sig)) +
+    geom_point(aes(x=ID,y=as.factor(age),size = ifelse(dat$sig == 0,NA,1)),shape='s') +
     scale_fill_gradientn(colours=c(gr,"white", re), na.value = "grey98",limits = c(-0.05, 0.05),labels=percent,guide = guide_legend(title = paste0("Excess\nrisk\n",unit.name))) +
     scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
     scale_y_discrete(labels=age.print) +
     scale_alpha(guide = 'none') +
+    scale_size(guide = 'none') +
     facet_wrap(~sex.long) +
     xlab("Month") + ylab('Age') +
     theme(text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.text.x = element_text(angle=90),
@@ -182,14 +184,14 @@ plot.posterior <- function(sex.sel){
     }
 
     # national posterior probability male
-pdf(paste0(file.loc,'climate_month_posterior_male_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'.pdf'),paper='a4r',height=0,width=0)
-    plot.posterior(1)
-    dev.off()
+    #pdf(paste0(file.loc,'climate_month_posterior_male_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'.pdf'),paper='a4r',height=0,width=0)
+#plot.posterior(1)
+#dev.off()
     
     # national posterior probability female
-pdf(paste0(file.loc,'climate_month_posterior_female_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'.pdf'),paper='a4r',height=0,width=0)
-    plot.posterior(2)
-    dev.off()
+    #pdf(paste0(file.loc,'climate_month_posterior_female_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'.pdf'),paper='a4r',height=0,width=0)
+#plot.posterior(2)
+#dev.off()
     
     # HEATMAPS OF ODDS INCREASING (SEXY ALTERNATIVE TO FOREST PLOTS)
     heatmap.posterior.increase.national <- function() {
@@ -240,14 +242,14 @@ pdf(paste0(file.loc,'climate_month_posterior_heatmap_increase_',model,'_',year.s
     }
     
     # national posterior probability male
-    pdf(paste0(file.loc,'climate_month_posterior__decrease_male_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'.pdf'),paper='a4r',height=0,width=0)
-    plot.posterior(1)
-    dev.off()
+    #pdf(paste0(file.loc,'climate_month_posterior__decrease_male_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'.pdf'),paper='a4r',height=0,width=0)
+    #plot.posterior(1)
+    #dev.off()
     
     # national posterior probability female
-    pdf(paste0(file.loc,'climate_month_posterior_decrease_female_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'.pdf'),paper='a4r',height=0,width=0)
-    plot.posterior(2)
-    dev.off()
+    #pdf(paste0(file.loc,'climate_month_posterior_decrease_female_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'.pdf'),paper='a4r',height=0,width=0)
+    #plot.posterior(2)
+    #dev.off()
 
 # HEATMAPS OF ODDS DECREASING (SEXY ALTERNATIVE TO FOREST PLOTS)
 heatmap.posterior.decrease.national <- function() {
@@ -274,10 +276,10 @@ heatmap.posterior.decrease.national <- function() {
     )
 }
 
-# national posterior increase probability
-pdf(paste0(file.loc,'climate_month_posterior_heatmap_decrease_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'.pdf'),paper='a4r',height=0,width=0)
-heatmap.posterior.decrease.national()
-dev.off()
+# national posterior decrease probability
+#pdf(paste0(file.loc,'climate_month_posterior_heatmap_decrease_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'.pdf'),paper='a4r',height=0,width=0)
+#heatmap.posterior.decrease.national()
+#dev.off()
 
     # ADDITIONAL DEATHS NATIONALLY
     # establish change in number of deaths for a slice in time (at the moment it's 2013)
@@ -304,7 +306,7 @@ dev.off()
     dat.merged.sub <- subset(dat.merged,year==2013)
     
     # add YLL from a reference point
-    ref = 80
+    ref = 90
     dat.merged.sub$yll.mean = ifelse((ref-(dat.merged.sub$age+5))>=0,
                                 (ref-(dat.merged.sub$age+5))*dat.merged.sub$deaths.added,
                                 0)
@@ -350,12 +352,45 @@ dev.off()
         guides(fill=FALSE,color=FALSE) +
         theme_bw())
     }
-    pdf(paste0(file.loc,'additional_deaths_nat_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'.pdf'),paper='a4r',height=0,width=0)
-        plot.deaths.nat()
-        dev.off()
+    #pdf(paste0(file.loc,'additional_deaths_nat_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'.pdf'),paper='a4r',height=0,width=0)
+    #plot.deaths.nat()
+    #dev.off()
+        
+    # heat for YLLs
+    heatmap.yll.national <- function() {
+        
+        dat = ddply(dat.merged.sub,.(sex,age,month),summarize,yll.mean=sum(yll.mean),yll.ll=sum(yll.ll),yll.ul=sum(yll.ul))
+        
+        dat$sex.long <- mapvalues(dat$sex,from=sort(unique(dat$sex)),to=c('Men','Women'))
+        dat$sig = ifelse(dat$yll.ll*dat$yll.ul>0,1,0)
+        
+        # set color ramp
+        gr <- colorRampPalette(c("darkgreen","green","lightgreen"))(200)
+        bl <- colorRampPalette(c("navy","royalblue","lightskyblue"))(200)
+        re <- colorRampPalette(c("mistyrose", "red2","darkred"))(200)
+        
+        # ADD VALUE IN BOX
+        print(ggplot(data=subset(dat),aes(x=month,y=as.factor(age))) +
+        geom_tile(aes(x=month,y=as.factor(age),fill=round(yll.mean,1))) +
+        geom_point(aes(size = ifelse(dat$sig == 0,NA,1)),shape='s') +
+        #geom_text(aes(month, as.factor(age), label = yll.mean), color = "black", size = 4) +
+        scale_fill_gradientn(colours=c(bl, "white", rev(gr)), na.value = "grey98",guide = guide_legend(title = paste0("YLL"))) +
+        scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
+        scale_y_discrete(labels=age.print) +
+        scale_alpha(guide = 'none') +
+        scale_size(guide = 'none') +
+        scale_shape(guide = 'none') +
+        facet_wrap(~sex.long) +
+        xlab("Month") + ylab('Age') +
+        theme(text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.text.x = element_text(angle=90),
+        panel.background = element_blank(),strip.background = element_blank(), axis.line = element_line(colour = "black"))
+        )
+    }
 }
 
-
+    pdf(paste0(file.loc,'yll_nat_heatmap_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'.pdf'),paper='a4r',height=0,width=0)
+        heatmap.yll.national()
+        dev.off()
 
 # for state model, plot climate parameters on map all on one page, one for men and one for women
 if(model %in% c('1e','1f')){
