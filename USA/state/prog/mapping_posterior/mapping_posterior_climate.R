@@ -34,7 +34,7 @@ dat <- readRDS(paste0('../../data/climate_effects/',dname,'/',metric,'/non_pw/ty
 # lookups for units
 temp = c("10percc3", "90percc3", "meanc3")
 episodes = c("number_of_min_3_day_above_+5_jumpupwaves_2", "number_of_min_3_day_above_nonnormal_90_upwaves_2", "number_of_min_3_day_below_+5_jumpdownwaves_2", "number_of_min_3_day_below_nonnormal_90_downwaves_2")
-unit.name = ifelse(metric %in% temp, paste0('per °C'), ifelse(metric %in% episodes, 'per episode','error'))
+unit.name = ifelse(metric %in% temp, paste0('°C'), ifelse(metric %in% episodes, ' episode(s)','error'))
 
 # for national model, plot climate parameters (with CIs) all on one page, one for men and one for women
 if(model=='1d'){
@@ -66,10 +66,10 @@ geom_ribbon(aes(x=ID,ymax=odds.ul,ymin=odds.ll),alpha=0.1,fill='red') +
 geom_hline(yintercept=0,alpha=0.5,linetype=2) +
 scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
 xlab('Month') +
-ylab(paste0('Excess risk ',unit.name)) +
+ylab(paste0('Excess risk per ',unit.name)) +
 scale_y_continuous(labels=percent) +
 coord_cartesian(ylim = c(-0.02,0.02)) +
-#ggtitle(paste0(sex.lookup2[sex.sel],' national excess risk ',unit.name,' by month ',metric,' ',dname)) +
+#ggtitle(paste0(sex.lookup2[sex.sel],' national excess risk per ',unit.name,' by month ',metric,' ',dname)) +
 guides(col = guide_legend(ncol = 10, byrow=TRUE)) +
 facet_wrap(~age.long) +
 theme(legend.position="bottom"))
@@ -98,7 +98,7 @@ forest.plot.national.age <- function() {
     coord_flip(ylim = c(-0.03,0.03)) +
     #coord_flip() +
     facet_wrap(~age.long) +
-    xlab("Month") + ylab(paste0("Excess risk ",unit.name)) +
+    xlab("Month") + ylab(paste0("Excess risk per ",unit.name)) +
     labs(color = "Sex\n") +
     scale_color_manual(labels = c("Men", "Women"), values = c("blue", "red")) +
     theme_bw()
@@ -122,7 +122,7 @@ forest.plot.national.month <- function() {
     #ggtitle(paste0('National percentage excess risk by month ',dname,' ',metric,' ',year.start,'-',year.end)) +
     #coord_flip() +
     facet_wrap(~month.short) +
-    xlab("Age") + ylab(paste0("Excess risk ",unit.name)) +
+    xlab("Age") + ylab(paste0("Excess risk per ",unit.name)) +
     labs(color = "Sex\n") +
     scale_color_manual(labels = c("Men", "Women"), values = c("blue", "red")) +
     theme_bw()
@@ -153,7 +153,7 @@ heatmap.national.age <- function() {
     print(ggplot(data=subset(dat)) +
     geom_tile(aes(x=ID,y=as.factor(age),fill=odds.mean)) +
     geom_point(aes(x=ID,y=as.factor(age),size = ifelse(dat$sig == 0,NA,1)),shape='s') +
-    scale_fill_gradientn(colours=c(gr,"white", re), na.value = "grey98",limits = c(-0.05, 0.05),labels=percent,guide = guide_legend(title = paste0("Excess risk ",unit.name))) +
+    scale_fill_gradientn(colours=c(gr,"white", re), na.value = "grey98",limits = c(-0.05, 0.05),labels=percent,guide = guide_legend(title = paste0("Excess risk per ",unit.name))) +
     scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
     scale_y_discrete(labels=age.print) +
     scale_size(guide = 'none') +
@@ -174,9 +174,9 @@ heatmap.national.age.scenarios <- function(sex.sel) {
     dat$sex.long <- mapvalues(dat$sex,from=sort(unique(dat$sex)),to=c('Men','Women'))
     
     # create a set of results for different temperature changes
-    dat.1 = dat ; dat.1$scenario = '+1°C' ;
-    dat.2 = dat ; dat.2$scenario = '+2°C' ; dat.2$odds.mean = exp(2)*dat.2$odds.mean
-    dat.4 = dat ; dat.4$scenario = '+4°C' ; dat.4$odds.mean = exp(4)*dat.4$odds.mean
+    dat.1 = dat ; dat.1$scenario = paste0('+1',unit.name) ;
+    dat.2 = dat ; dat.2$scenario = paste0('+2',unit.name) ; dat.2$odds.mean = exp(2)*dat.2$odds.mean
+    dat.4 = dat ; dat.4$scenario = paste0('+4',unit.name) ; dat.4$odds.mean = exp(4)*dat.4$odds.mean
     
     dat.test = rbind(dat.1,dat.2,dat.4)
     
@@ -192,7 +192,7 @@ heatmap.national.age.scenarios <- function(sex.sel) {
     geom_tile(aes(x=ID,y=as.factor(age),fill=odds.mean)) +
     geom_point(aes(x=ID,y=as.factor(age),size = sig),shape='s') +
     #geom_point(data=subset(dat,sex==sex.sel),aes(x=ID,y=as.factor(age),size = ifelse(dat$sig == 0,NA,1)),shape='s') +
-    scale_fill_gradientn(colours=c(gr,"white", re), na.value = "grey98",limits = c(exp(4)*-0.05, exp(4)*0.05),labels=percent,guide = guide_legend(title = paste0("Excess risk ",unit.name),override.aes = list(color = "white"))) +
+    scale_fill_gradientn(colours=c(gr,"white", re), na.value = "grey98",limits = c(exp(4)*-0.05, exp(4)*0.05),labels=percent,guide = guide_legend(title = paste0("Excess risk per ",unit.name),override.aes = list(color = "white"))) +
     scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
     scale_y_discrete(labels=age.print) +
     scale_size(guide = 'none') +
@@ -254,7 +254,7 @@ plot.posterior <- function(sex.sel){
     # ADD SIGNIFICANCE HIGHLIGHTS
     print(ggplot(data=subset(dat)) +
     geom_tile(aes(x=ID,y=as.factor(age),fill=odds.prob)) +
-    #scale_fill_gradient2(low='green',mid='white',high='red',limits=c(-0.05,0.05),labels=percent,guide = guide_legend(title = paste0("Excess\nrisk\n",unit.name))) +
+    #scale_fill_gradient2(low='green',mid='white',high='red',limits=c(-0.05,0.05),labels=percent,guide = guide_legend(title = paste0("Excess\nrisk\nper\n",unit.name))) +
     scale_fill_gradientn(colours=c("white", rev(bl)), na.value = "grey98",limits = c(0, 1),labels=percent,guide = guide_legend(title = paste0("Probability of increase in risk"))) +
     scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
     scale_y_discrete(labels=age.print) +
@@ -310,7 +310,7 @@ heatmap.posterior.decrease.national <- function() {
     
     print(ggplot(data=subset(dat)) +
     geom_tile(aes(x=ID,y=as.factor(age),fill=1-odds.prob)) +
-    #scale_fill_gradient2(low='green',mid='white',high='red',limits=c(-0.05,0.05),labels=percent,guide = guide_legend(title = paste0("Excess\nrisk\n",unit.name))) +
+    #scale_fill_gradient2(low='green',mid='white',high='red',limits=c(-0.05,0.05),labels=percent,guide = guide_legend(title = paste0("Excess\nrisk\nper\n",unit.name))) +
     scale_fill_gradientn(colours=c("white", rev(bl)), na.value = "grey98",limits = c(0, 1),labels=percent,guide = guide_legend(title = paste0("Probability of decrease in risk"))) +
     scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
     scale_y_discrete(labels=age.print) +
@@ -446,6 +446,10 @@ dev.off()
         panel.background = element_blank(),strip.background = element_blank(), axis.line = element_line(colour = "black"),legend.position = 'bottom',legend.justification='center',legend.background = element_rect(fill="gray90", size=.5, linetype="dotted")))
     }
     
+    pdf(paste0(file.loc,'yll_nat_heatmap_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'.pdf'),paper='a4r',height=0,width=0)
+    heatmap.yll.national()
+    dev.off()
+    
     # under different climate scenarios
     heatmap.national.yll.scenarios <- function(sex.sel) {
         
@@ -454,9 +458,9 @@ dev.off()
         dat$sig = ifelse(dat$yll.ll*dat$yll.ul>0,1,NA)
 
         # create a set of results for different temperature changes
-        dat.1 = dat ; dat.1$scenario = '+1°C' ;
-        dat.2 = dat ; dat.2$scenario = '+2°C' ; dat.2$yll.mean = exp(2)*dat.2$yll.mean
-        dat.4 = dat ; dat.4$scenario = '+4°C' ; dat.4$yll.mean = exp(4)*dat.4$yll.mean
+        dat.1 = dat ; dat.1$scenario = paste0('+1',unit.name) ;
+        dat.2 = dat ; dat.2$scenario = paste0('+2',unit.name) ; dat.2$yll.mean = exp(2)*dat.2$yll.mean
+        dat.4 = dat ; dat.4$scenario = paste0('+4',unit.name) ; dat.4$yll.mean = exp(4)*dat.4$yll.mean
         
         dat.test = rbind(dat.1,dat.2,dat.4)
         
