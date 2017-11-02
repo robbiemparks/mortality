@@ -88,10 +88,9 @@ if(mulitple==1){
     # absolute value of odds
     dat$odds.abs = abs(dat$odds.mean)
     
-
-    
     # find centroids to plot text
-    meds <- c(by(dat$var, dat$odds.abs, median))
+    dat.meds <- na.omit(dat)
+    meds <- ddply(dat.meds,.(var),summarize,median=median(odds.abs),sig=sum(sig))
     
     pdf(paste0(file.loc,'boxplot_odds_comparison_',year.start,'_',year.end,'_',dname,'_',metric.1,'.pdf'),paper='a4r',height=0,width=0)
 
@@ -99,7 +98,7 @@ if(mulitple==1){
     # boxplot
     print(ggplot() +
     geom_boxplot(data=subset(dat),aes(var,odds.abs)) +
-    # geom_text(data=subset(dat.sig)) +
+    geom_text(data=subset(meds),aes(x=as.factor(var),y=median,label=sig)) +
     xlab("Measure of anomaly") + ylab('Excess risk') +
     scale_y_continuous(labels=percent) +
     theme(text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.text.x = element_text(angle=90), plot.title = element_text(hjust = 0.5),

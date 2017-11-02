@@ -45,7 +45,7 @@ pr <- colorRampPalette(c("plum","orchid","darkmagenta"))(200)
 yl <- colorRampPalette(c("lightgoldenrod", "gold","darkorange"))(200)
 sm <- colorRampPalette(c("tan1","salmon2","salmon4"))(200)
 
-if(mulitple==1){
+if(multiple==1){
     
     # NEED TO GENERALISE!!!!
     
@@ -256,6 +256,10 @@ heatmap.national.age.scenarios <- function(sex.sel) {
     dat.2 = dat ; dat.2$scenario = paste0('+2',unit.name) ; dat.2$odds.mean = exp(2)*dat.2$odds.mean
     dat.4 = dat ; dat.4$scenario = paste0('+4',unit.name) ; dat.4$odds.mean = exp(4)*dat.4$odds.mean
     
+    dat.1$scenario = 'RCP2.6'
+    dat.2$scenario = 'RCP4.5'
+    dat.4$scenario = 'RCP8.5'
+    
     dat.test = rbind(dat.1,dat.2,dat.4)
     
     lims <- range(abs(dat.test$odds.mean))
@@ -298,6 +302,10 @@ heatmap.national.age.both.sex.scenarios <- function() {
     dat.1 = dat ; dat.1$scenario = paste0('+1',unit.name) ;
     dat.2 = dat ; dat.2$scenario = paste0('+2',unit.name) ; dat.2$odds.mean = exp(2)*dat.2$odds.mean
     dat.4 = dat ; dat.4$scenario = paste0('+4',unit.name) ; dat.4$odds.mean = exp(4)*dat.4$odds.mean
+    
+    dat.1$scenario = 'RCP2.6'
+    dat.2$scenario = 'RCP4.5'
+    dat.4$scenario = 'RCP8.5'
     
     dat.test = rbind(dat.1,dat.2,dat.4)
     
@@ -560,6 +568,10 @@ dev.off()
         dat.1 = dat ; dat.1$scenario = paste0('+1',unit.name) ;
         dat.2 = dat ; dat.2$scenario = paste0('+2',unit.name) ; dat.2$yll.mean = exp(2)*dat.2$yll.mean
         dat.4 = dat ; dat.4$scenario = paste0('+4',unit.name) ; dat.4$yll.mean = exp(4)*dat.4$yll.mean
+        
+        dat.1$scenario = 'RCP2.6'
+        dat.2$scenario = 'RCP4.5'
+        dat.4$scenario = 'RCP8.5'
 
         dat.test = rbind(dat.1,dat.2,dat.4)
         
@@ -601,6 +613,10 @@ dev.off()
         dat.1 = dat ; dat.1$scenario = paste0('+1',unit.name) ;
         dat.2 = dat ; dat.2$scenario = paste0('+2',unit.name) ; dat.2$yll.mean = exp(2)*dat.2$yll.mean
         dat.4 = dat ; dat.4$scenario = paste0('+4',unit.name) ; dat.4$yll.mean = exp(4)*dat.4$yll.mean
+        
+        dat.1$scenario = 'RCP2.6'
+        dat.2$scenario = 'RCP4.5'
+        dat.4$scenario = 'RCP8.5'
         
         dat.test = rbind(dat.1,dat.2,dat.4)
         
