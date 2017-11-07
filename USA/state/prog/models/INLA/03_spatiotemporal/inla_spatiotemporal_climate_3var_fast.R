@@ -28,7 +28,7 @@ years <- year.start.arg:year.end.arg
 
 require(mailR)
 
-# combine two metrics in alphabetical order in a single string
+# combine three metrics in alphabetical order in a single string
 metric.arg = paste(sort(c(metric1.arg,metric2.arg,metric3.arg)),collapse='_')
 
 # create files for output
