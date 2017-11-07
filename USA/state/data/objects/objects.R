@@ -24,7 +24,7 @@ models <- c('1','1a','2','2a','3','3a','4','1b','1c','1d','1e','1f','1de','1ef',
 # lookups for temperature units
 temp = c("10percc3", "90percc3", "meanc3")
 episodes = c("number_of_min_3_day_above_+5_jumpupwaves_2", "number_of_min_3_day_above_nonnormal_90_upwaves_2", "number_of_min_3_day_below_+5_jumpdownwaves_2", "number_of_min_3_day_below_nonnormal_90_downwaves_2")
-unit.name = ifelse(metric %in% temp, paste0('°C'), ifelse(metric %in% episodes, ' episode(s)','error'))
+#unit.name = ifelse(metric %in% temp, paste0('°C'), ifelse(metric %in% episodes, ' episode(s)','error'))
 
 # set color ramps
 gr <- colorRampPalette(c("darkgreen","green","lightgreen"))(200)

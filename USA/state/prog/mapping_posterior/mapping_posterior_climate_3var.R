@@ -20,6 +20,8 @@ metric1 <- as.character(args[6])
 metric2 <- as.character(args[7])
 metric3 <- as.character(args[8])
 
+#year.start=1980;year.end=2013;country='t2m';model=10;dname='t2m';metric1='meanc3';metric2='number_of_min_3_day_below_nonnormal_90_downwaves_2';metric3='number_of_min_3_day_above_nonnormal_90_upwaves_2'
+
 multiple = 0
 
 # source variables
@@ -31,6 +33,9 @@ model <- models[model]
 # combine three metrics in alphabetical order in a single string
 metric = paste(sort(c(metric1,metric2,metric3)),collapse='_')
 
+# create dictionary for variables
+
+
 # load the data
 dat <- readRDS(paste0('../../data/climate_effects/',dname,'/3var/',metric,'/non_pw/type_',model,'/parameters/',country,'_rate_pred_type',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_fast'))
 
@@ -38,109 +43,33 @@ dat <- readRDS(paste0('../../data/climate_effects/',dname,'/3var/',metric,'/non_
 file.loc <- paste0('../../output/mapping_posterior_climate/',year.start,'_',year.end,'/',dname,'/3var/',metric,'/non_pw/type_',model,'/parameters/')
 ifelse(!dir.exists(file.loc), dir.create(file.loc,recursive=TRUE), FALSE)
 
-
 # for national model, plot climate parameters (with CIs) all on one page, one for men and one for women
 if(model=='1d'){
 
 # attach long age names
-dat$age.long <- mapvalues(dat$age,from=sort(unique(dat$age)),to=as.character(age.code[,2]))
+#dat$age.long <- mapvalues(dat$age,from=sort(unique(dat$age)),to=as.character(age.code[,2]))
+dat$age.long <- mapvalues(dat$age,from=sort(unique(dat$age)),to=as.character(age.code[c(4:10),2]))
 dat$age.long <- reorder(dat$age.long,dat$age)
 
 # add significance marker
-#dat$sig = ifelse(dat$odds.ll*dat$odds.ul>0,1,0)
 dat$sig = ifelse(dat$odds.ll*dat$odds.ul>0,1,NA)
 
+# add Bayesian significance marker
+sig.threshold = 0.90
+dat$sig.bayes = ifelse(dat$odds.mean>0&dat$odds.prob>sig.threshold,1,
+                ifelse(dat$odds.mean<0&(1-dat$odds.prob)>sig.threshold,1,NA))
+
 # export table in form that is digestible to human eyes
-dat.csv = dat[,c('age.long','sex','ID','odds.mean','odds.ll','odds.ul')]
+dat.csv = dat[,c('age.long','sex','ID','odds.mean','odds.ll','odds.ul','var')]
 dat.csv$ID = mapvalues(dat.csv$ID, from=sort(unique(dat.csv$ID)),to=month.short)
 dat.csv$sex = mapvalues(dat.csv$sex, from=sort(unique(dat.csv$sex)),to=c('Men','Women'))
 dat.csv$odds.mean = round(100*(dat.csv$odds.mean),3)
 dat.csv$odds.ll = round(100*(dat.csv$odds.ll),3)
 dat.csv$odds.ul = round(100*(dat.csv$odds.ul),3)
-names(dat.csv) = c('age','sex','month','mean','2.5%','97.5%')
-write.csv(dat.csv,paste0('../../data/climate_effects/',dname,'/',metric,'/non_pw/type_',model,'/parameters/',country,'_rate_pred_type',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_fast.csv'))
+names(dat.csv) = c('age','sex','month','mean','2.5%','97.5%','var')
+write.csv(dat.csv,paste0('../../data/climate_effects/',dname,'/3var/',metric,'/non_pw/type_',model,'/parameters/',country,'_rate_pred_type',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_fast.csv'))
 
-# PARAMETER
-# function to plot
-plot.function <- function(sex.sel){
-print(ggplot(data=subset(dat,sex==sex.sel)) +
-geom_line(aes(x=ID,y=odds.mean)) +
-geom_ribbon(aes(x=ID,ymax=odds.ul,ymin=odds.ll),alpha=0.1,fill='red') +
-geom_hline(yintercept=0,alpha=0.5,linetype=2) +
-scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
-xlab('Month') +
-ylab(paste0('Excess risk for 1 additional ',unit.name)) +
-scale_y_continuous(labels=percent) +
-coord_cartesian(ylim = c(-0.02,0.02)) +
-#ggtitle(paste0(sex.lookup2[sex.sel],' national excess risk per ',unit.name,' by month ',metric,' ',dname)) +
-guides(col = guide_legend(ncol = 10, byrow=TRUE)) +
-facet_wrap(~age.long) +
-theme(legend.position="bottom"))
-}
-
-    # national month intercept male
-    #pdf(paste0(file.loc,'climate_month_params_male_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'.pdf'),paper='a4r',height=0,width=0)
-#plot.function(1)
-#    dev.off()
-    
-    # national month intercept female
-    #pdf(paste0(file.loc,'climate_month_params_female_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'.pdf'),paper='a4r',height=0,width=0)
-#plot.function(2)
-#    dev.off()
-    
-# FOREST PLOTS OF PARAMETERS
-forest.plot.national.age <- function() {
-    print(ggplot(data=dat) +
-    geom_pointrange(aes(x=ID,y=odds.mean,ymin=odds.ll,ymax=odds.ul,color=as.factor(sex))) +
-    geom_hline(yintercept=0, lty=2) +
-    scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
-    scale_y_continuous(labels=percent) +
-    #scale_y_continuous(labels=percent,limits=c(-0.02,0.02)) +
-    #ylim(c(-0.03,0.03)) +
-    #ggtitle(paste0('National excess risk by age group ',dname,' ',metric,' ',year.start,'-',year.end)) +
-    coord_flip(ylim = c(-0.03,0.03)) +
-    #coord_flip() +
-    facet_wrap(~age.long) +
-    xlab("Month") + ylab(paste0("Excess risk ",unit.name)) +
-    labs(color = "Sex\n") +
-    scale_color_manual(labels = c("Men", "Women"), values = c("blue", "red")) +
-    theme_bw()
-    )
-}
-
-forest.plot.national.month <- function() {
-    
-    # attach long month names
-    dat$month.short <- mapvalues(dat$ID,from=sort(unique(dat$ID)),to=month.short)
-    dat$month.short <- reorder(dat$month.short,dat$ID)
-    
-    print(ggplot(data=dat) +
-    geom_pointrange(aes(x=age,y=odds.mean,ymin=odds.ll,ymax=odds.ul,color=as.factor(sex))) +
-    geom_hline(yintercept=0, lty=2) +
-    scale_y_continuous(labels=percent) +
-    #scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
-    #scale_y_continuous(labels=percent,limits=c(-0.02,0.02)) +
-    coord_flip(ylim = c(-0.03,0.03)) +
-    #ylim(c(-0.03,0.03)) +
-    #ggtitle(paste0('National percentage excess risk by month ',dname,' ',metric,' ',year.start,'-',year.end)) +
-    #coord_flip() +
-    facet_wrap(~month.short) +
-    xlab("Age") + ylab(paste0("Excess risk ",unit.name)) +
-    labs(color = "Sex\n") +
-    scale_color_manual(labels = c("Men", "Women"), values = c("blue", "red")) +
-    theme_bw()
-    )
-}
-
-# national month intercept male
-#pdf(paste0(file.loc,'climate_month_params_forest_age_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'.pdf'),paper='a4r',height=0,width=0)
-#forest.plot.national.age()
-#dev.off()
-
-# national month intercept female
-#pdf(paste0(file.loc,'climate_month_params_forest_month_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'.pdf'),paper='a4r',height=0,width=0)
-#forest.plot.national.month()
-#dev.off()
+# FIX COLOURS!!!
 
 # HEATMAPS OF PARAMETERS (SEXY ALTERNATIVE TO FOREST PLOTS)
 heatmap.national.age <- function() {
@@ -149,15 +78,16 @@ heatmap.national.age <- function() {
     
     lims <- range(abs(dat$odds.mean))
     
-    # ADD SIGNIFICANCE HIGHLIGHTS
+    #dat = subset(dat,sex==2)
+    
     print(ggplot(data=subset(dat)) +
     geom_tile(aes(x=ID,y=as.factor(age),fill=odds.mean)) +
-    geom_point(aes(x=ID,y=as.factor(age),size = ifelse(dat$sig == 0,NA,1)),shape='* ') +
-    scale_fill_gradientn(colours=c(gr,"white", re), na.value = "grey98",limits = c(-lims[2], lims[2]),labels=percent,guide = guide_legend(nrow = 1,title = paste0("Excess risk for 1 additional ",unit.name))) +
+    geom_point(aes(x=ID,y=as.factor(age),size = sig.bayes),shape='*') +
+    scale_fill_gradientn(colours=c(gr,"white", re), na.value = "grey98",limits = c(-lims[2], lims[2]),labels=percent,guide = guide_legend(nrow = 1,title = paste0("Excess risk for 1 additional unit change"))) +
     scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
     scale_y_discrete(labels=age.print) +
     scale_size(guide = 'none') +
-    facet_wrap(~sex.long) +
+    facet_grid(sex.long~var) +
     xlab("Month") + ylab('Age') +
     theme(text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.text.x = element_text(angle=90), plot.title = element_text(hjust = 0.5),panel.background = element_blank(),strip.background = element_blank(), axis.line = element_line(colour = "black"),legend.position = 'bottom',legend.justification='center',legend.background = element_rect(fill="gray90", size=.5, linetype="dotted")))
 }
@@ -173,10 +103,10 @@ heatmap.national.age.scenarios <- function(sex.sel) {
     dat$sex.long <- mapvalues(dat$sex,from=sort(unique(dat$sex)),to=c('Men','Women'))
     
     # create a set of results for different temperature changes
-    dat.1 = dat ; dat.1$scenario = paste0('+1',unit.name) ;
-    dat.2 = dat ; dat.2$scenario = paste0('+2',unit.name) ; dat.2$odds.mean = exp(2)*dat.2$odds.mean
-    dat.3 = dat ; dat.3$scenario = paste0('+3',unit.name) ; dat.3$odds.mean = exp(3)*dat.3$odds.mean
-    dat.4 = dat ; dat.4$scenario = paste0('+4',unit.name) ; dat.4$odds.mean = exp(4)*dat.4$odds.mean
+    dat.1 = dat ;
+    dat.2 = dat ; dat.2$odds.mean = exp(2)*dat.2$odds.mean
+    dat.3 = dat ; dat.3$odds.mean = exp(3)*dat.3$odds.mean
+    dat.4 = dat ; dat.4$odds.mean = exp(4)*dat.4$odds.mean
     
     dat.1$scenario = 'RCP2.6'
     dat.2$scenario = 'RCP4.5'
@@ -192,14 +122,14 @@ heatmap.national.age.scenarios <- function(sex.sel) {
     
     print(ggplot(data=subset(dat.test)) +
     geom_tile(aes(x=ID,y=as.factor(age),fill=odds.mean)) +
-    geom_point(aes(x=ID,y=as.factor(age),size = sig),shape='*') +
+    geom_point(aes(x=ID,y=as.factor(age),size = sig.bayes),shape='*') +
     #geom_point(data=subset(dat,sex==sex.sel),aes(x=ID,y=as.factor(age),size = ifelse(dat$sig == 0,NA,1)),shape='*') +
     scale_fill_gradientn(colours=c(gr,"white", re), na.value = "grey98",limits = c(-lims[2], lims[2]),labels=percent,guide = guide_legend(title = paste0("Excess risk"),override.aes = list(color = "white"))) +
     scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
-    scale_y_discrete(labels=age.print) +
+    #scale_y_discrete(labels=age.print) +
     scale_size(guide = 'none') +
     #ggtitle('+1°C') +
-    facet_wrap(~scenario) +
+    facet_grid(var~scenario) +
     xlab("Month") + ylab('Age') +
     theme(text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.text.x = element_text(angle=90), plot.title = element_text(hjust = 0.5),
     panel.background = element_blank(),strip.background = element_blank(), axis.line = element_line(colour = "black"),legend.position = 'bottom',legend.justification='center',legend.background = element_rect(fill="gray90", size=.5, linetype="dotted")))
