@@ -51,7 +51,7 @@ if(multiple==1){
     
     # PLOT MULTIPLE METRICS ON ONE PLOT
     metric.1 = 'meanc3'
-    metric.2 = 'number_of_min_3_day_above_+5_jumpupwaves_2'
+    metric.2 = 'number_of_min_3_day_above_nonnormal_90_upwaves_2'
     metric.3 = 'number_of_min_3_day_below_nonnormal_90_downwaves_2'
     
     # create directories for output
@@ -62,7 +62,7 @@ if(multiple==1){
     dat.1 <- readRDS(paste0('../../data/climate_effects/',dname,'/',metric.1,'/non_pw/type_',model,'/parameters/',country,'_rate_pred_type',model,'_',year.start,'_',year.end,'_',dname,'_',metric.1,'_fast'))
     dat.1$var = 'Mean'
     dat.2 <- readRDS(paste0('../../data/climate_effects/',dname,'/',metric.2,'/non_pw/type_',model,'/parameters/',country,'_rate_pred_type',model,'_',year.start,'_',year.end,'_',dname,'_',metric.2,'_fast'))
-    dat.2$var = 'AWA'
+    dat.2$var = 'RWA'
     dat.3 <- readRDS(paste0('../../data/climate_effects/',dname,'/',metric.3,'/non_pw/type_',model,'/parameters/',country,'_rate_pred_type',model,'_',year.start,'_',year.end,'_',dname,'_',metric.3,'_fast'))
     dat.3$var = 'RCA'
     
@@ -92,7 +92,8 @@ if(multiple==1){
         geom_tile(aes(x=ID,y=as.factor(age),fill=odds.mean)) +
         geom_point(aes(x=ID,y=as.factor(age),size = sig),shape='*') +
         #geom_point(data=subset(dat,sex==sex.sel),aes(x=ID,y=as.factor(age),size = ifelse(dat$sig == 0,NA,1)),shape='*') +
-        scale_fill_gradientn(colours=c(rev(pr),"white", yl), na.value = "grey98",limits = c(-lims[2], lims[2]),labels=percent,guide = guide_legend(title = paste0("Excess risk of unit change"),override.aes = list(color = "white"))) +
+        scale_fill_gradientn(colours=c(gr,"white", re), na.value = "grey98",limits = c(-lims[2], lims[2]),labels=percent,guide = guide_legend(title = paste0("Excess risk of unit change"),override.aes = list(color = "white"))) +
+        guides(fill = guide_colorbar(barwidth = 10, barheight = 1,title = paste0("Excess risk for 1 additional unit change"))) +
         scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
         scale_y_discrete(labels=age.print) +
         scale_size(guide = 'none') +
