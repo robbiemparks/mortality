@@ -11,8 +11,8 @@ declare -a models=(10)
 declare country="USA"
 declare -a dnames=("t2m")
 declare metric1="meanc3"
-declare metric2=""
-declare metric3=""
+declare metric2="number_of_min_3_day_above_+5_jumpupwaves_2"
+declare metric3="number_of_min_5_day_below_+5_jumpdownwaves_2"
 
 #################################################
 # 1. PLOT PARAMETERS OF STATE CLIMATE POSTERIORS
