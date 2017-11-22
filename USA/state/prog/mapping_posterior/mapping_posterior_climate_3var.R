@@ -57,7 +57,7 @@ dat$age.long <- reorder(dat$age.long,dat$age)
 # add significance marker
 dat$sig = ifelse(dat$odds.ll*dat$odds.ul>0,1,NA)
 
-# add Bayesian significance marker
+# add Bayesian significance marker THIS IS WRONG
 sig.threshold = 0.90
 dat$sig.bayes = ifelse(dat$odds.mean>0&dat$odds.prob>sig.threshold,1,
                 ifelse(dat$odds.mean<0&(1-dat$odds.prob)>sig.threshold,1,NA))
