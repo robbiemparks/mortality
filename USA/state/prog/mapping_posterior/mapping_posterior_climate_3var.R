@@ -89,7 +89,7 @@ heatmap.national.age.single <- function(metric.arg) {
     scale_fill_gradientn(colours=c(gr,"white", re), na.value = "grey98",limits = c(-lims[2], lims[2]),labels=percent,guide = guide_legend(nrow = 1,title = paste0("Excess risk for 1 additional unit change"))) +
     guides(fill = guide_colorbar(barwidth = 10, barheight = 1,title = paste0("Excess risk for 1 additional unit change"))) +
     scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
-    scale_y_discrete(labels=age.print[c(2:10)]) +
+    scale_y_discrete(labels=age.print[c(1:10)]) +
     scale_size(guide = 'none') +
     facet_grid(var~sex.long) +
     xlab("Month") + ylab('Age') +
@@ -126,7 +126,7 @@ heatmap.national.age <- function() {
     scale_fill_gradientn(colours=c(gr,"white", re), na.value = "grey98",limits = c(-lims[2], lims[2]),labels=percent,guide = guide_legend(nrow = 1,title = paste0("Excess risk for 1 additional unit change"))) +
     guides(fill = guide_colorbar(barwidth = 10, barheight = 1,title = paste0("Excess risk for 1 additional unit change"))) +
     scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
-    scale_y_discrete(labels=age.print[c(2:10)]) +
+    scale_y_discrete(labels=age.print[c(1:10)]) +
     scale_size(guide = 'none') +
     facet_grid(sex.long~var) +
     xlab("Month") + ylab('Age') +
@@ -168,7 +168,7 @@ heatmap.national.age.scenarios <- function(sex.sel) {
     scale_fill_gradientn(colours=c(gr,"white", re), na.value = "grey98",limits = c(-lims[2], lims[2]),labels=percent,guide = guide_legend(title = paste0("Excess risk"),override.aes = list(color = "white"))) +
     guides(fill = guide_colorbar(barwidth = 10, barheight = 1,title = paste0("Excess risk for 1 additional unit change"))) +
     scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
-    scale_y_discrete(labels=age.print[c(2:10)]) +
+    scale_y_discrete(labels=age.print[c(1:10)]) +
     scale_size(guide = 'none') +
     #ggtitle('+1°C') +
     facet_grid(var~scenario) +
