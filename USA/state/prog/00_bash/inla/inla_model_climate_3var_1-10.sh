@@ -78,8 +78,7 @@ for model in "${models[@]}"; do
 
 echo "combining results into one file from INLA model $model years $start - $end";
 
-Rscript ~/git/mortality/USA/state/prog/bind_posterior/bind_posterior_climate_3var.R $start $end $country $model $dname $metric
-
+Rscript ~/git/mortality/USA/state/prog/bind_posterior/bind_posterior_climate_3var.R $start $end $country $model $dname $metric1 $metric2 $metric3
 done;
 
 #################################################
