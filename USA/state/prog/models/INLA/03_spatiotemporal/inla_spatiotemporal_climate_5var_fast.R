@@ -81,6 +81,18 @@ dat.climate3$state.fips <- as.numeric(as.character(dat.climate3$state.fips))
 dat.climate4$state.fips <- as.numeric(as.character(dat.climate4$state.fips))
 dat.climate5$state.fips <- as.numeric(as.character(dat.climate5$state.fips))
 
+# leap year test
+is.leapyear=function(year){
+    return(((year %% 4 == 0) & (year %% 100 != 0)) | (year %% 400 == 0))
+}
+
+# add leap year if not already there
+dat.climate1$leap <- as.integer(is.leapyear(dat.climate1$year))
+dat.climate2$leap <- as.integer(is.leapyear(dat.climate2$year))
+dat.climate3$leap <- as.integer(is.leapyear(dat.climate3$year))
+dat.climate4$leap <- as.integer(is.leapyear(dat.climate4$year))
+dat.climate5$leap <- as.integer(is.leapyear(dat.climate5$year))
+
 # merge mortality and climate data and reorder
 dat.merged <- merge(dat.inla.load,dat.climate1,by.x=c('sex','age','year','month','fips','leap'),by.y=c('sex','age','year','month','state.fips','leap'),all.x=TRUE)
 dat.merged <- merge(dat.merged,dat.climate2,by.x=c('sex','age','year','month','fips','leap'),by.y=c('sex','age','year','month','state.fips','leap'),all.x=TRUE)
