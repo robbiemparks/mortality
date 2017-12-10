@@ -8,8 +8,10 @@ year.end.arg <- as.numeric(args[2])
 library(dplyr)
 library(foreign)
 
+print(paste0('Now correcting cod deaths rates for years ',year.start.arg,'-',year.end.arg))
+
 # read unadjusted deaths and population file in
-dat <- readRDS(paste0('../../output/prep_data/datus_state_rates_',year.start.arg,'_',year.end.arg))
+dat <- readRDS(paste0('../../output/prep_data_cod/datus_state_rates_',year.start.arg,'_',year.end.arg))
 
 # move old adjusted rate
 dat$rate.adj.old <- dat$rate.adj
@@ -37,4 +39,4 @@ dat$deaths.adj <- as.numeric(dat$deaths.adj)
 dat$rate.adj <- dat$deaths.adj / dat$pop.adj
 
 # output file as RDS
-saveRDS(dat,paste0('../../output/prep_data/datus_state_rates_',year.start.arg,'_',year.end.arg))
+saveRDS(dat,paste0('../../output/prep_data_cod/datus_state_rates_',year.start.arg,'_',year.end.arg))
