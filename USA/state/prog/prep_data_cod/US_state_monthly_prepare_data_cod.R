@@ -10,7 +10,7 @@ library(foreign)
 
 # Function to summarise a year's data. x is the year in 2 number form (e.g. 1989 -> 89).
 # y is the number of rows. default (-1) is all rows.
-yearsummary  <- function(x=2000) {
+yearsummary_cod  <- function(x=2000) {
 
 	print(paste0('year ',x,' now being processed'))
   
@@ -24,7 +24,6 @@ yearsummary  <- function(x=2000) {
 	dat$fips <- as.numeric(dat$fips)
 
 	# COD look-up
-	cod.lookup.9 <- data.frame()
 	cod.lookup.10 <- data.frame(letter=as.character(toupper(letters)),
 								cause.group=c('Other','Other','Cancer','Cancer','Other', # A-E
 											'Other','Other','Other','Cardiopulmonary','Cardiopulmonary', # F-J
@@ -36,7 +35,13 @@ yearsummary  <- function(x=2000) {
 	# add extra label for CODs based on relevant ICD year
 	start_year = 1999
 	if(x<start_year) {
-
+		dat$cause[nchar(dat$cause)==3] <- paste0(dat$cause[nchar(dat$cause)==3],'0')
+		dat$cause.numeric = as.numeric(dat$cause)
+		dat$cause.group = 	ifelse(dat$cause.numeric>=1400&dat$cause.numeric<=2399,'Cancer',
+							ifelse(dat$cause.numeric>=3900&dat$cause.numeric<=5199,'Cardiopulmonary',
+							ifelse(dat$cause.numeric>=8000&dat$cause.numeric<=9999,'External',
+							'Other')))
+		dat.merged = dat
 	}
 	if(x>=start_year){
 		# merge cod in ICD 10 coding
@@ -58,12 +63,12 @@ yearsummary  <- function(x=2000) {
                    	85)))))))))
 
 	# summarise by state,year,month,sex,agegroup
-    if(x>=1982){
+    #if(x>=1982){
         dat.summarised <- summarise(group_by(dat.merged,cause.group,fips,year,monthdth,sex,agegroup),deaths=sum(deaths))
-    }
-    if(x<1982){
-        dat.summarised <- summarise(group_by(dat.merged,fips,year,monthdth,sex,agegroup),deaths=sum(deaths))
-    }
+    #}
+    #if(x<1982){
+        #dat.summarised <- summarise(group_by(dat.merged,fips,year,monthdth,sex,agegroup),deaths=sum(deaths))
+    #}
     
   	names(dat.summarised)[1:7] <- c('cause','fips','year','month','sex','age','deaths')
 	dat.summarised <- na.omit(dat.summarised)
@@ -75,7 +80,7 @@ yearsummary  <- function(x=2000) {
 	month 	= 	c(1:12)
 	sex 	= 	c(1:2)
 	age 	= 	c(0,5,15,25,35,45,55,65,75,85)
-	cause 	=	c('Other','Cancer','Cardiopulmonary','External')
+	cause 	=	c('Cancer','Cardiopulmonary','External','Other')
 
 	complete.grid <- expand.grid(fips=fips,month=month,sex=sex,age=age,cause=cause)
 	complete.grid$year <- unique(dat.summarised$year)
@@ -87,7 +92,8 @@ yearsummary  <- function(x=2000) {
 	dat.summarised.complete$deaths <- ifelse(is.na(dat.summarised.complete$deaths)==TRUE,0,dat.summarised.complete$deaths)
 
   	return(dat.summarised.complete)
-	}
+
+}
 
 # Function to append all the years desired to be summarised into one file
 appendyears  <- function(x=1980, y=1981) {
@@ -95,7 +101,7 @@ appendyears  <- function(x=1980, y=1981) {
   	z     <- x
   	dat   <- data.frame()
   	while (z %in% years) {
-    		dat <- rbind(dat, yearsummary(z))
+    		dat <- rbind(dat, yearsummary_cod(z))
     		print(paste0(z," done"))
     		z <- z+1
   	}
@@ -106,7 +112,7 @@ appendyears  <- function(x=1980, y=1981) {
 dat.appended <- appendyears(year.start.arg,year.end.arg)
 
 # reorder appended data
-dat.appended <- dat.appended[order(dat.appended$cause,dat.appended$fips,dat.appended$sex,dat.appended$age,dat.appended$year,dat.appended$month)]
+dat.appended <- dat.appended[order(dat.appended$cause,dat.appended$fips,dat.appended$sex,dat.appended$age,dat.appended$year,dat.appended$month),]
 
 # Filter missing age results and complete results
 #dat.appended.NA <- dat.appended[is.na(dat.appended$age),]
@@ -123,7 +129,7 @@ pop.state$fips <- as.integer(pop.state$fips)
 dat.merged <- merge(dat.appended,pop.state,by=c('sex','age','year','month','fips'))
 
 # reorder
-dat.merged <- dat.merged[order(dat.appended$cause,dat.merged$fips,dat.merged$sex,dat.merged$age,dat.merged$year,dat.merged$month)]
+dat.merged <- dat.merged[order(dat.merged$cause,dat.merged$fips,dat.merged$sex,dat.merged$age,dat.merged$year,dat.merged$month),]
 
 # add rates
 dat.merged$rate <- dat.merged$deaths / dat.merged$pop
