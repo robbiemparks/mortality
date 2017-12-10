@@ -6,8 +6,7 @@ year.start.arg <- as.numeric(args[1])
 year.end.arg <- as.numeric(args[2])
 
 # load data
-#filename <- paste0('../../output/prep_data/datus_state_rates_',year.start.arg,'_',year.end.arg)
-filename <- paste0('../../output/prep_data/datus_state_rates_deaths_adj_',year.start.arg,'_',year.end.arg)
+filename <- paste0('../../output/prep_data_cod/datus_state_rates_cod_',year.start.arg,'_',year.end.arg)
 dat <- readRDS(filename)
 
 # gender state and age lookup
@@ -26,20 +25,23 @@ dat <- merge(dat,dat.year.month, by=c('year','month'))
 
 library(ggplot2)
 
-# graph data by age for a particular state and sex
-plot.state <- function(state=1,sex=1) {
-   	ggplot(dat[dat$fips==state & dat$sex==sex,],aes(x=year.month)) +
-    	geom_line(aes(y=rate.adj),color='forestgreen') +
-    	xlab(label='time') +
-    	ylab(label='mortality rate') +
-    	ggtitle(paste0(state.lookup[state.lookup$fips==state,][[1]],', ',gender.lookup[sex],': mortality rates by agegroup')) +
-    	facet_wrap(~age, scale='free') +
+# graph data by age for a particular state cod and sex
+plot.state <- function(state=1,sex=1, cod='Cancer') {
+    ggplot(dat=subset(dat,fips==state&sex==sex&cod==cod))+
+    	geom_line(aes(x=year.month,y=100000*rate.adj),color='forestgreen') +
+    	xlab(label='Time') +
+    	ylab(label='Mortality rate per 100,000') +
+    	ggtitle(paste0(state.lookup[state.lookup$fips==state,][[1]],', ',gender.lookup[sex],' ',cod,': mortality rates by agegroup')) +
+		#facet_wrap(~age) +
+		facet_wrap(~age, scale='free') +
     	scale_colour_brewer(palette = "Set3") +
     	theme_bw()
 }
 
+# CURRENTLY STOPPED HERE! PROGRESS FROM HERE
+
 # create output directory
-ifelse(!dir.exists("../../output/data_explore"), dir.create("../../output/data_explore"), FALSE)
+ifelse(!dir.exists("../../output/data_explore_cod"), dir.create("../../output/data_explore_cod"), FALSE)
 
 # plot all states for males
 pdf(paste0('../../output/data_explore/states_by_age_male_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',width=0,height=0)

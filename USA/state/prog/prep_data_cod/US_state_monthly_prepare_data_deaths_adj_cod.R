@@ -39,4 +39,4 @@ dat$deaths.adj <- as.numeric(dat$deaths.adj)
 dat$rate.adj <- dat$deaths.adj / dat$pop.adj
 
 # output file as RDS
-saveRDS(dat,paste0('../../output/prep_data_cod/datus_state_rates_',year.start.arg,'_',year.end.arg))
+saveRDS(dat,paste0('../../output/prep_data_cod/datus_state_rates_cod_',year.start.arg,'_',year.end.arg))

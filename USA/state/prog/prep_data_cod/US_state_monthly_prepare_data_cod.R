@@ -19,6 +19,11 @@ yearsummary_cod  <- function(x=2000) {
 	dat.name <- paste0(file.loc,"deathscod",x,".dta")
 	dat <- read.dta(dat.name)
 
+	# fix sex classification if in certain years
+	if(x %in% c(2003:2010,2012)){
+		dat$sex = plyr::mapvalues(dat$sex,from=sort(unique(dat$sex)),to=c(2,1))
+	}
+
 	# load lookup for fips CHANGE TO SUBSTR OF FIPS
 	dat$fips = substr(dat$fips,1,2)
 	dat$fips <- as.numeric(dat$fips)
@@ -91,8 +96,9 @@ yearsummary_cod  <- function(x=2000) {
 	# assign missing deaths to have value 0
 	dat.summarised.complete$deaths <- ifelse(is.na(dat.summarised.complete$deaths)==TRUE,0,dat.summarised.complete$deaths)
 
-  	return(dat.summarised.complete)
+	print(paste0('total deaths ',sum(dat$deaths),' ',sum(dat.merged$deaths),' ',sum(dat.summarised.complete$deaths)))
 
+  	return(dat.summarised.complete)
 }
 
 # Function to append all the years desired to be summarised into one file
@@ -139,9 +145,9 @@ dat.merged$rate.adj <- dat.merged$deaths / dat.merged$pop.adj
 ifelse(!dir.exists("../../output/prep_data_cod"), dir.create("../../output/prep_data_cod"), FALSE)
 
 # plot to check rates
-png(paste0('../../output/prep_data_cod/rate_compared_',year.start.arg,'_',year.end.arg,'.png'))
+png(paste0('../../output/prep_data_cod/rate_compared_cod_',year.start.arg,'_',year.end.arg,'.png'))
 plot(dat.merged$rate,dat.merged$rate.adj)
 dev.off()
 
 # output file as RDS
-saveRDS(dat.merged,paste0('../../output/prep_data_cod/datus_state_rates_',year.start.arg,'_',year.end.arg))
+saveRDS(dat.merged,paste0('../../output/prep_data_cod/datus_state_rates_cod_',year.start.arg,'_',year.end.arg))
