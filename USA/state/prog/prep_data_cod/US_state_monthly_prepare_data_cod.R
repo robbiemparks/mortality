@@ -33,14 +33,15 @@ yearsummary  <- function(x=2000) {
 											'Other','External','External','External','External', # U-Y
 											'External')) # Z
 
-
-	# add extra label for CODs based on
+	# add extra label for CODs based on relevant ICD year
 	start_year = 1999
-	if(x>=start_year) {
-		# merge cod
-	}
-	if(x<start_year){
+	if(x<start_year) {
 
+	}
+	if(x>=start_year){
+		# merge cod in ICD 10 coding
+		dat$letter = substr(dat$cause,1,1)
+		dat.merged = merge(dat,cod.lookup.10,by.x='letter',by.y='letter',all.x=1)
 	}
 
 	# add agegroup groupings
@@ -58,28 +59,29 @@ yearsummary  <- function(x=2000) {
 
 	# summarise by state,year,month,sex,agegroup
     if(x>=1982){
-        dat.summarised <- summarise(group_by(dat.merged,stateFips,year,monthdth,sex,agegroup),sum(deaths))
+        dat.summarised <- summarise(group_by(dat.merged,cause.group,fips,year,monthdth,sex,agegroup),deaths=sum(deaths))
     }
     if(x<1982){
-        dat.summarised <- summarise(group_by(dat.merged,fips,year,monthdth,sex,agegroup),sum(deaths))
+        dat.summarised <- summarise(group_by(dat.merged,fips,year,monthdth,sex,agegroup),deaths=sum(deaths))
     }
     
-  	names(dat.summarised)[1:6] <- c('fips','year','month','sex','age','deaths')
+  	names(dat.summarised)[1:7] <- c('cause','fips','year','month','sex','age','deaths')
 	dat.summarised <- na.omit(dat.summarised)
 
-	# create an exhaustive list of location sex age month (in this case it should be 51 * 2 * 10 * 12 = 12240 rows)
-	fips <- 	c(1,2,4,5,6,8,9,10,11,12,13,15,16,17,18,19,20,21,22,23,24,25,
-			26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,
-			41,42,44,45,46,47,48,49,50,51,53,54,55,56)
-	month <- 	c(1:12)
-	sex <- 		c(1:2)
-	age <- 		c(0,5,15,25,35,45,55,65,75,85)
+	# create an exhaustive list of location sex age month (in this case it should be 51 * 2 * 10 * 12 * 4 = 12240 rows)
+	fips 	=	c(1,2,4,5,6,8,9,10,11,12,13,15,16,17,18,19,20,21,22,23,24,25,
+				26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,
+				41,42,44,45,46,47,48,49,50,51,53,54,55,56)
+	month 	= 	c(1:12)
+	sex 	= 	c(1:2)
+	age 	= 	c(0,5,15,25,35,45,55,65,75,85)
+	cause 	=	c('Other','Cancer','Cardiopulmonary','External')
 
-	complete.grid <- expand.grid(fips=fips,month=month,sex=sex,age=age)
+	complete.grid <- expand.grid(fips=fips,month=month,sex=sex,age=age,cause=cause)
 	complete.grid$year <- unique(dat.summarised$year)
 
 	# merge deaths counts with complete grid to ensure there are rows with zero deaths
-	dat.summarised.complete <- merge(complete.grid,dat.summarised,by=c('fips','year','month','sex','age'),all.x='TRUE')
+	dat.summarised.complete <- merge(complete.grid,dat.summarised,by=c('cause','fips','year','month','sex','age'),all.x='TRUE')
 
 	# assign missing deaths to have value 0
 	dat.summarised.complete$deaths <- ifelse(is.na(dat.summarised.complete$deaths)==TRUE,0,dat.summarised.complete$deaths)
@@ -104,7 +106,7 @@ appendyears  <- function(x=1980, y=1981) {
 dat.appended <- appendyears(year.start.arg,year.end.arg)
 
 # reorder appended data
-dat.appended <- dat.appended[order(dat.appended$fips,dat.appended$sex,dat.appended$age,dat.appended$year,dat.appended$month),]
+dat.appended <- dat.appended[order(dat.appended$cause,dat.appended$fips,dat.appended$sex,dat.appended$age,dat.appended$year,dat.appended$month)]
 
 # Filter missing age results and complete results
 #dat.appended.NA <- dat.appended[is.na(dat.appended$age),]
@@ -119,24 +121,16 @@ pop.state$fips <- as.integer(pop.state$fips)
 
 # merge deaths and population files
 dat.merged <- merge(dat.appended,pop.state,by=c('sex','age','year','month','fips'))
- 
-# extract unique table of year and months to generate year.month
-#dat.merged.year.month <- unique(dat.merged[,c('year', 'month')])
-#dat.merged.year.month$month <- as.integer(dat.merged.year.month$month)
-#dat.merged.year.month$year.month <- seq(nrow(dat.merged.year.month))
-
-# merge year.month table with population table to create year.month id
-#dat.merged <- merge(dat.merged,dat.merged.year.month, by=c('year','month'))
 
 # reorder
-dat.merged <- dat.merged[order(dat.merged$fips,dat.merged$sex,dat.merged$age,dat.merged$year,dat.merged$month),]
+dat.merged <- dat.merged[order(dat.appended$cause,dat.merged$fips,dat.merged$sex,dat.merged$age,dat.merged$year,dat.merged$month)]
 
 # add rates
 dat.merged$rate <- dat.merged$deaths / dat.merged$pop
 dat.merged$rate.adj <- dat.merged$deaths / dat.merged$pop.adj
 
 # create output directory
-ifelse(!dir.exists("../../output/prep_data"), dir.create("../../output/prep_data"), FALSE)
+ifelse(!dir.exists("../../output/prep_data_cod"), dir.create("../../output/prep_data_cod"), FALSE)
 
 # plot to check rates
 png(paste0('../../output/prep_data/rate_compared_',year.start.arg,'_',year.end.arg,'.png'))
