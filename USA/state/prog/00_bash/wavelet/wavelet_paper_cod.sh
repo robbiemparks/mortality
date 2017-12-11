@@ -27,7 +27,7 @@ clear
 echo "starting nationalised wavelet analysis for $country, $cod, years $start - $end";
 
 # runs wavelet analysis
-Rscript ~/git/mortality/USA/state/prog/wavelet/wavelet_national_cod.R $start $end $numsim $sig $noise $cod &
+#Rscript ~/git/mortality/USA/state/prog/wavelet/wavelet_national_cod.R $start $end $numsim $sig $noise $cod &
 
 done; done; done;
 
@@ -45,10 +45,10 @@ for cod in "${cods[@]}"; do
 echo "starting nationalised COM analysis for ${sexstrings[$sex-1]} $age, years $start - $end";
 
 # runs COM analysis
-Rscript ~/git/mortality/USA/state/prog/com/com_analysis_national_cod.R $start $end $age $sex
+Rscript ~/git/mortality/USA/state/prog/com/com_analysis_national_cod.R $start $end $age $sex $cod &
 
 # runs anti-COM analysis
-#Rscript ~/git/mortality/USA/state/prog/com/anti_com_analysis_national.R $start $end $age $sex
+Rscript ~/git/mortality/USA/state/prog/com/anti_com_analysis_national_cod.R $start $end $age $sex $cod &
 
 done; done; done;
 
@@ -63,7 +63,7 @@ echo "starting regional COM analysis for years $start - $end";
 echo "processing data for $country, years $start - $end";
 
 # process COM data
-#Rscript ~/git/mortality/USA/state/prog/com/com_data_process.R $start $end
+#Rscript ~/git/mortality/USA/state/prog/com/com_data_process_cod.R $start $end
 
 echo "plotting COM analysis for $country, years $start - $end";
 

@@ -6,10 +6,9 @@ year.start.arg <- as.numeric(args[1])
 year.end.arg <- as.numeric(args[2])
 age.arg <- as.numeric(args[3])
 sex.arg <- as.numeric(args[4])
-cod.arg <- as.character(args[5])
 
-library(plyr)
 require(CircStats)
+library(plyr)
 
 # create output directories
 file.loc <- paste0("../../output/com/",year.start.arg,'_',year.end.arg,"/national/")
@@ -34,6 +33,17 @@ dat.national <- ddply(dat,.(year,month,sex,age),summarize,deaths=sum(deaths),dea
 dat.national$rate.adj <- with(dat.national,deaths.pred/pop.adj)
 dat.national <- dat.national[order(dat.national$sex,dat.national$age,dat.national$year,dat.national$month),]
 
+# calculate rates per million and then round
+dat.national$rate.scaled <- round(1000000*(dat.national$rate.adj))
+
+# add max(deaths) - deaths
+dat$deaths.inv <- round((max(dat$deaths.adj) - dat$deaths.adj)/10)
+
+# add max(rate.scaled) - rate.scaled for each age-sex group
+test <- ddply(dat.national,.(sex,age),summarize,rate.scaled.max=max(rate.scaled))
+dat.national <- merge(dat.national,test)
+dat.national$rate.inv <- dat.national$rate.scaled.max - dat.national$rate.scaled
+
 # number of years for split wavelet analysis
 years <- c(year.start.arg:year.end.arg)
 num.years <- year.end.arg - year.start.arg + 1
@@ -43,9 +53,6 @@ halfway <- floor(num.years/2)
 year.group.1 <- years[1:halfway]
 year.group.2 <- years[(halfway+1):(num.years)]
 
-# source com functions
-source('../01_functions/com_functions.R')
-
 # USING DEATH COUNTS
 
 # perform function for each age, gender combination
@@ -54,7 +61,7 @@ source('../01_functions/com_functions.R')
 #mapply(circular.age.mean.split.1, age.selected=age.arg,sex.selected=sex.arg)
 #mapply(circular.age.mean.split.2, age.selected=age.arg,sex.selected=sex.arg)
 
-# USING DEATHS RATES
+# USING DEATH RATES
 
 # perform function for each age, gender combination
 mapply(circular.age.mean.rate.2, age.selected=age.arg,sex.selected=sex.arg,cod=cod.arg)
