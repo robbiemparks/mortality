@@ -17,13 +17,8 @@ file.loc <- paste0("../../output/wavelet/",year.start.arg,'_',year.end.arg,"/nat
 file.loc <- paste0(file.loc,num.sim,'_sim/')
 ifelse(!dir.exists(file.loc), dir.create(file.loc,recursive=TRUE), FALSE)
 
-# coding for graph-friendly information
-age.print <- as.vector(levels(factor(levels=c('0-4','5-14','15-24','25-34','35-44','45-54','55-64','65-74','75-84','85+'))))
-age.code <- data.frame(age=c(0,5,15,25,35,45,55,65,75,85),
-                       age.print=age.print)
-sex.lookup <- c('Men','Women')
-state.lookup <- read.csv('../../data/fips_lookup/name_fips_lookup.csv')
-noise.lookup <- c('white_noise','red_noise')
+# source relevant objects
+source('../../data/objects/objects.R')
 
 # load data and filter results
 dat <- readRDS(paste0('../../output/prep_data_cod/datus_state_rates_cod_',year.start.arg,'_',year.end.arg))

@@ -17,6 +17,7 @@ month.names <- c('January','February','March','April','May','June',
 
 # add fips lookup
 fips.lookup <- read.csv('../../data/fips_lookup/name_fips_lookup.csv')
+state.lookup <- read.csv('../../data/fips_lookup/name_fips_lookup.csv')
 
 # INLA model versions
 models <- c('1','1a','2','2a','3','3a','4','1b','1c','1d','1e','1f','1de','1ef','1g','0')
@@ -33,3 +34,6 @@ re <- colorRampPalette(c("mistyrose", "red2","darkred"))(200)
 pr <- colorRampPalette(c("plum","orchid","darkmagenta"))(200)
 yl <- colorRampPalette(c("lightgoldenrod", "gold","darkorange"))(200)
 sm <- colorRampPalette(c("tan1","salmon2","salmon4"))(200)
+
+# wavelet noise lookup
+noise.lookup <- noise.lookup <- c('white_noise','red_noise')
