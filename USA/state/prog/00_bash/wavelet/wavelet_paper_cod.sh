@@ -69,10 +69,14 @@ echo "processing data for $country, years $start - $end";
 
 done;
 
+for cod in "${cods[@]}"; do
+
 echo "plotting COM analysis for $country, years $start - $end";
 
 # plots
-Rscript ~/git/mortality/USA/state/prog/com/com_plot_cod.R $start $end
+Rscript ~/git/mortality/USA/state/prog/com/com_plot_cod.R $start $end $cod
+
+done;
 
 #################################################
 # 3. NATIONAL CLIMATE SEASONALITY INDEX
