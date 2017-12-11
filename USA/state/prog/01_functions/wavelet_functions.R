@@ -392,6 +392,3 @@ plot.wavelet.national.all.split <- function(sex.selected) {
     mtext(paste0(sex.lookup[sex.selected],' USA '), outer = TRUE, cex = 1.5)
 
 }
-
-ifelse(!dir.exists(paste0(file.loc,noise.lookup[noise.arg],'/plots/')), dir.create(paste0(file.loc,noise.lookup[noise.arg],'/plots/'),recursive=TRUE), FALSE)
-
