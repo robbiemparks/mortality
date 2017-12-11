@@ -5,7 +5,7 @@ plot.wavelet.national <- function(sex.selected,age.selected) {
     
     age.single <- as.matrix(age.code[age.code==age.selected,])[2]
     
-    plot.title <- paste0(sex.lookup[sex.selected],' USA ',age.single)
+    plot.title <- paste0(sex.lookup[sex.selected],' USA ',cod.arg,' ',age.single)
 
     # prepare data frame for anaylsis
     my.data <- data.frame(date=as.Date(as.character(dat$year),format='%Y'),log.rate=log(dat$rate.adj),log.deaths=log(dat$deaths.pred+1))
