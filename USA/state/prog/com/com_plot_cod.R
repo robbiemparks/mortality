@@ -4,6 +4,7 @@ rm(list=ls())
 args <- commandArgs(trailingOnly=TRUE)
 year.start.arg <- as.numeric(args[1])
 year.end.arg <- as.numeric(args[2])
+cod.arg <- as.character(args[3])
 
 library(rgeos)
 require(ggplot2)
