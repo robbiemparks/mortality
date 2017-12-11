@@ -1,5 +1,5 @@
 # function to plot national wavelet analysis for single sex
-plot.wavelet.national <- function(sex.selected,age.selected,cod='All Cause') {
+plot.wavelet.national <- function(sex.selected,age.selected,cod='AllCause') {
     
     dat<- subset(dat.national, sex==sex.selected & age==age.selected)
     
@@ -221,7 +221,7 @@ plot.wavelet.national.sex <- function(age.selected) {
 }
 
 # function to plot national wavelet analysis for all ages of single sex
-plot.wavelet.national.all <- function(sex.selected,cod='All cause') {
+plot.wavelet.national.all <- function(sex.selected,cod='Allcause') {
 
     dat <- subset(dat.national, sex==sex.selected)
     
