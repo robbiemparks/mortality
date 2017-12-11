@@ -13,9 +13,10 @@ declare country="USA"
 # 1. NATIONAL WAVELET ANALYSIS
 #################################################
 
-declare -a numsims=(10000)
+declare -a numsims=(10)
 declare -i sig=5
 declare -a noises=(1)
+declare -a causes=('Cancer' 'Cardiopulmonary' 'External' 'Other')
 
 for noise in "${noises[@]}"; do
 for numsim in "${numsims[@]}"; do
@@ -25,7 +26,7 @@ clear
 echo "starting nationalised wavelet analysis for $country, years $start - $end";
 
 # runs wavelet analysis
-#Rscript ~/git/mortality/USA/state/prog/wavelet/wavelet_national.R $start $end $numsim $sig $noise
+#Rscript ~/git/mortality/USA/state/prog/wavelet/wavelet_national_cod.R $start $end $numsim $sig $noise
 
 done; done;
 

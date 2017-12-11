@@ -221,7 +221,7 @@ plot.wavelet.national.sex <- function(age.selected) {
 }
 
 # function to plot national wavelet analysis for all ages of single sex
-plot.wavelet.national.all <- function(sex.selected,cause='All cause') {
+plot.wavelet.national.all <- function(sex.selected,cod='All cause') {
 
     dat <- subset(dat.national, sex==sex.selected)
     
@@ -287,7 +287,7 @@ plot.wavelet.national.all <- function(sex.selected,cause='All cause') {
     }
 
     # main title of entire thing
-    mtext(paste0(sex.lookup2[sex.selected],' ',cause), outer = TRUE, cex = 1.5)
+    mtext(paste0(sex.lookup2[sex.selected],' ',cod), outer = TRUE, cex = 1.5)
 
 
 }
