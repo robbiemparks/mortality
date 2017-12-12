@@ -557,7 +557,7 @@ inla.function.climate <- function(age.sel,sex.sel,year.start,year.end,type,clust
 }
 
 # functions to enable age group and sex to be selected with rough run to improve speed
-inla.function.climate.fast <- function(age.sel,sex.sel,year.start,year.end,type,cluster) {
+inla.function.climate.fast <- function(age.sel,sex.sel,year.start,year.end,type,cluster,cause='Allcause') {
     
     dat.inla <- dat.merged
     
@@ -1128,7 +1128,7 @@ inla.function.climate.fast <- function(age.sel,sex.sel,year.start,year.end,type,
 }
 
 # functions to enable age group and sex to be selected with faster AR1 structure in addition to rough run
-inla.function.climate.faster <- function(age.sel,sex.sel,year.start,year.end,type,cluster) {
+inla.function.climate.faster <- function(age.sel,sex.sel,year.start,year.end,type,cluster,cause='Allcause') {
     
     dat.inla <- dat.merged
     
