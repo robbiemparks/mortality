@@ -1,5 +1,3 @@
-# NEED AN OPTION FOR FAST AND FASTER
-
 rm(list=ls())
 
 # break down the arguments from Rscript
