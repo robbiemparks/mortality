@@ -11,11 +11,13 @@ declare -a models=(10)
 declare country="USA"
 declare -a dnames=("t2m")
 declare -a metrics=('meanc3')
-declare cod="External"
+declare -a cods=("External" "Cancer" "Cardiopulmonary" "Other")
 
 #################################################
 # 1. PLOT PARAMETERS OF STATE CLIMATE POSTERIORS
 #################################################
+
+for cod in "${cods[@]}"; do
 
 for dname in "${dnames[@]}"; do
 
