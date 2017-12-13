@@ -490,7 +490,7 @@ inla.function.climate <- function(age.sel,sex.sel,year.start,year.end,type,clust
     
     if(cod.arg!='AllCause'){
         # save all parameters of INLA model
-        parameters.name <- paste0('USA_rate_pred_type',type.selected,'_',age,'_',sex.lookup[sex],'_',year.start,'_',year.end,'_',dname.arg,'_',metric.arg,'_',cause,'_parameters') # CURRRENTLY HERE!!!
+        parameters.name <- paste0('USA_rate_pred_type',type.selected,'_',age,'_',sex.lookup[sex],'_',year.start,'_',year.end,'_',dname.arg,'_',metric.arg,'_',cause,'_parameters')
         #mod$misc <- NULL
         #mod$.args$.parent.frame <- NULL
         if(cluster==0){saveRDS(mod,paste0(file.loc,'/',parameters.name))}
@@ -1062,7 +1062,7 @@ inla.function.climate.fast <- function(age.sel,sex.sel,year.start,year.end,type,
     
     if(cod.arg!='AllCause'){
         # save all parameters of INLA model
-        parameters.name <- paste0('USA_rate_pred_type',type.selected,'_',age,'_',sex.lookup[sex],'_',year.start,'_',year.end,'_',dname.arg,'_',metric.arg,'_',cause,'_parameters_fast') # CURRRENTLY HERE!!!
+        parameters.name <- paste0('USA_rate_pred_type',type.selected,'_',age,'_',sex.lookup[sex],'_',year.start,'_',year.end,'_',dname.arg,'_',metric.arg,'_',cause,'_parameters_fast')
         #mod$misc <- NULL
         #mod$.args$.parent.frame <- NULL
         if(cluster==0){saveRDS(mod,paste0(file.loc,'/',parameters.name))}
