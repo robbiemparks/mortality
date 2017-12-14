@@ -27,4 +27,4 @@ for model in "${models[@]}"; do
 
 Rscript ~/git/mortality/USA/state/prog/mapping_posterior/mapping_posterior_climate_cod_1var.R $start $end $country $model $dname $metric $cod
 
-done; done; done;
+done; done; done; done;
