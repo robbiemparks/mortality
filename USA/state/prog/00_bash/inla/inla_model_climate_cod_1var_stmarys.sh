@@ -14,7 +14,7 @@ declare -a models=(10)
 declare -i start=1980
 declare -i end=2013
 declare -i start2=1980
-declare -i end2=1989
+declare -i end2=2013
 declare country="USA"
 declare dname="t2m"
 declare metric="meanc3"
@@ -41,7 +41,7 @@ Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatio
 Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_cod_fast.R 35 2 $start $end 10 0 $dname $metric $start2 $end2 $cod;
 Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_cod_fast.R 35 1 $start $end 10 0 $dname $metric $start2 $end2 $cod;
 Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_cod_fast.R 25 2 $start $end 10 0 $dname $metric $start2 $end2 $cod;
-#Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_cod_fast.R 25 1 $start $end 10 0 $dname $metric $start2 $end2 $cod;
+Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_cod_fast.R 25 1 $start $end 10 0 $dname $metric $start2 $end2 $cod;
 Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_cod_fast.R 15 2 $start $end 10 0 $dname $metric $start2 $end2 $cod;
 
 Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_cod_fast.R 15 1 $start $end 10 0 $dname $metric $start2 $end2 $cod;
@@ -49,6 +49,14 @@ Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatio
 Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_cod_fast.R  5 1 $start $end 10 0 $dname $metric $start2 $end2 $cod;
 Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_cod_fast.R  0 2 $start $end 10 0 $dname $metric $start2 $end2 $cod;
 Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_cod_fast.R  0 1 $start $end 10 0 $dname $metric $start2 $end2 $cod;
+
+for model in "${models[@]}"; do
+
+echo "combining results into one file from INLA model $model years $start - $end";
+
+Rscript ~/git/mortality/USA/state/prog/bind_posterior/bind_posterior_climate_cod.R $start2 $end2 $country 10 $dname $metric $cod;
+
+done;
 
 ) &
 

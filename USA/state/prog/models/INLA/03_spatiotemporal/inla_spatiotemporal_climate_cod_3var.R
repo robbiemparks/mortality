@@ -16,12 +16,17 @@ metric2.arg <- as.character(args[9])
 metric3.arg <- as.character(args[10])
 year.start.analysis.arg <- as.numeric(args[11])
 year.end.analysis.arg <- as.numeric(args[12])
+cod.arg <- as.character(args[13])
+
+# age.arg = 65 ; sex.arg = 1 ; year.start.arg = 1980 ; year.end.arg = 2013 ; type.arg = 10 ;
+# cluster.arg = 0 ; dname.arg = 't2m' ; metric.arg = 'meanc3' ; year.start.analysis.arg = 1980 ;
+# year.end.analysis.arg = 1989 ; cod.arg = 'Cancer'
 
 # types character for file strings
 types <- c('1','1a','2','2a','3','3a','4','1b','1c','1d','1e','1f','1de','1ef','1g','0','minus1')
 type.selected <- types[type.arg]
 
-print(paste(age.arg,sex.arg,type.selected))
+print(paste(age.arg,sex.arg,type.selected,cod.arg))
 
 # range of years
 years <- year.start.arg:year.end.arg
@@ -32,10 +37,16 @@ require(mailR)
 metric.arg = paste(sort(c(metric1.arg,metric2.arg,metric3.arg)),collapse='_')
 
 # create files for output
-ifelse(!dir.exists(paste0('~/data/mortality/US/state/climate_effects/3var/',dname.arg,'/',metric.arg,'/non_pw/type_',type.selected,'/age_groups')), dir.create(paste0('~/data/mortality/US/state/climate_effects/',dname.arg,'/3var/',metric.arg,'/non_pw/type_',type.selected,'/age_groups'),recursive=TRUE), FALSE)
+ifelse(!dir.exists(paste0('~/data/mortality/US/state/climate_effects/3var/',dname.arg,'/',metric.arg,'/non_pw/type_',type.selected,'/age_groups')), dir.create(paste0('~/data/mortality/US/state/climate_effects/',dname.arg,'/',metric.arg,'/non_pw/type_',type.selected,'/age_groups'),recursive=TRUE), FALSE)
 
-# load USA data
-dat.inla.load <- readRDS(paste0('../../output/prep_data/datus_state_rates_',year.start.arg,'_',year.end.arg))
+# load data and filter results
+if(cod.arg!='AllCause'){
+	dat.inla.load <- readRDS(paste0('../../output/prep_data_cod/datus_state_rates_cod_',year.start.arg,'_',year.end.arg))
+	dat.inla.load <- subset(dat.inla.load,cause==cod.arg)
+}
+if(cod.arg=='AllCause'){
+	dat.inla.load <- readRDS(paste0('../../output/prep_data/datus_state_rates_',year.start.arg,'_',year.end.arg))
+}
 
 # load climate region data
 dat.region <- readRDS(paste0('~/git/mortality/USA/state/output/mapping_posterior/INLA/type1a/1982_2013/maps/USA_state_data'))
@@ -110,8 +121,6 @@ library(dplyr)
 
 # lookups
 source('../../data/objects/objects.R')
-age.filter <- unique(dat.inla.load$age)
-state.lookup <- read.csv('../../data/fips_lookup/name_fips_lookup.csv')
 
 # adjacency matrix with connections Hawaii -> California, Alaska -> Washington
 USA.adj <- "../../output/adj_matrix_create/USA.graph.edit"
@@ -121,8 +130,8 @@ USA.adj <- "../../output/adj_matrix_create/USA.graph.edit"
 library(INLA)
 
 # load inla function
-source('../models/INLA/03_spatiotemporal/inla_functions_3var.R')
+source('../models/INLA/03_spatiotemporal/inla_functions_cod_3var.R')
 
 # input arguments into function to perform inference
-mapply(inla.function.climate.3var.fast,age.sel=age.arg,sex.sel=sex.arg,year.start=year.start.analysis.arg,
+mapply(inla.function.climate.3var,age.sel=age.arg,sex.sel=sex.arg,year.start=year.start.analysis.arg,
 year.end=year.end.analysis.arg,type=type.arg,cluster=cluster.arg)
