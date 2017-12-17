@@ -57,7 +57,7 @@ declare metric3="number_of_days_below_nonnormal_90_2"
 # 2. COMBINE RESULTS
 #################################################
 
-for model in "${models[@]}"; do
+fior model in "${models[@]}"; do
 
 echo "combining results into one file from INLA model $model years $start - $end";
 

@@ -36,7 +36,7 @@ model <- models[model]
 metric = paste(sort(c(metric1,metric2,metric3)),collapse='_')
 
 # create dictionary for variables
-dat.dict = data.frame(metric=c('meanc3','number_of_min_3_day_below_nonnormal_90_downwaves_2','number_of_min_3_day_above_nonnormal_90_upwaves_2','number_of_min_3_day_below_+5_jumpdownwaves_2','number_of_min_3_day_above_+5_jumpupwaves_2','number_of_days_above_nonnormal_90_2','number_of_days_below_nonnormal_10','number_of_days_above_+5_2','number_of_days_below_-5_2'),
+dat.dict = data.frame(metric=c('meanc3','number_of_min_3_day_below_nonnormal_90_downwaves_2','number_of_min_3_day_above_nonnormal_90_upwaves_2','number_of_min_3_day_below_+5_jumpdownwaves_2','number_of_min_3_day_above_+5_jumpupwaves_2','number_of_days_above_nonnormal_90_2','number_of_days_below_nonnormal_90_2','number_of_days_above_+5_2','number_of_days_below_-5_2'),
 name=c('Mean','RCA','RWA','ACA','AWA','DA90','DB10','DA+5','DB-5'),
 order=c(1,2,6,4,5,3,7,8,9))
 
