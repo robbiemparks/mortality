@@ -11,8 +11,7 @@ declare -a models=(10)
 declare country="USA"
 declare -a dnames=("t2m")
 declare -a metrics=('meanc3')
-#declare -a cods=("External" "Cancer" "Cardiopulmonary" "Other")
-declare -a cods=("External" "Other")
+declare -a cods=("External" "Cancer" "Cardiopulmonary" "Other")
 
 #################################################
 # 1. PLOT PARAMETERS OF STATE CLIMATE POSTERIORS
