@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a0955925-28ef-4974-88ac-9f337af19082" name="Default" comment="updated cod mortality models with 3 variables">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/climate_month_params_heatmap_1d_1980_2013_t2m_meanc3_Cardiopulmonary.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/climate_month_params_heatmap_1d_1980_2013_t2m_meanc3_Cardiopulmonary.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/number_of_days_above_nonnormal_90/non_pw/type_1d/parameters/climate_month_posterior_heatmap_increase_1d_1980_2013_t2m_number_of_days_above_nonnormal_90.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/number_of_days_above_nonnormal_90/non_pw/type_1d/parameters/climate_month_posterior_heatmap_increase_1d_1980_2013_t2m_number_of_days_above_nonnormal_90.pdf" />
+    <list default="true" id="a0955925-28ef-4974-88ac-9f337af19082" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/data/climate_effects/t2m/meanc3/non_pw/type_1d/parameters/USA_rate_pred_type1d_1980_2013_t2m_meanc3_fast.csv" afterPath="$PROJECT_DIR$/USA/state/data/climate_effects/t2m/meanc3/non_pw/type_1d/parameters/USA_rate_pred_type1d_1980_2013_t2m_meanc3_fast.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/data/climate_effects/t2m/number_of_days_above_nonnormal_90/non_pw/type_1d/parameters/USA_rate_pred_type1d_1980_2013_t2m_number_of_days_above_nonnormal_90_fast.csv" afterPath="$PROJECT_DIR$/USA/state/data/climate_effects/t2m/number_of_days_above_nonnormal_90/non_pw/type_1d/parameters/USA_rate_pred_type1d_1980_2013_t2m_number_of_days_above_nonnormal_90_fast.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/00_bash/plotting/cod_breakdown.sh" afterPath="$PROJECT_DIR$/USA/state/prog/00_bash/plotting/cod_breakdown.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/00_bash/plotting/plotting_results_climate_cod_1var.sh" afterPath="$PROJECT_DIR$/USA/state/prog/00_bash/plotting/plotting_results_climate_cod_1var.sh" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/format_mort_cod/breakdown_cod.R" afterPath="$PROJECT_DIR$/USA/state/prog/format_mort_cod/breakdown_cod.R" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -40,8 +34,8 @@
       <file leaf-file-name="breakdown_cod.R" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/USA/state/prog/format_mort_cod/breakdown_cod.R">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="761">
-              <caret line="109" column="16" lean-forward="true" selection-start-line="109" selection-start-column="16" selection-end-line="109" selection-end-column="16" />
+            <state relative-caret-position="2955">
+              <caret line="197" column="13" lean-forward="false" selection-start-line="187" selection-start-column="0" selection-end-line="198" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -120,16 +114,16 @@
         <option value="$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_cod_1var_6-10.sh" />
         <option value="$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_cod_1var_5-10.sh" />
         <option value="$PROJECT_DIR$/USA/state/prog/mapping_posterior/mapping_posterior_climate_cod_1var.R" />
-        <option value="$PROJECT_DIR$/USA/state/prog/format_mort_cod/breakdown_cod.R" />
         <option value="$PROJECT_DIR$/USA/state/prog/00_bash/plotting/plotting_results_climate_cod_1var.sh" />
         <option value="$PROJECT_DIR$/USA/state/prog/00_bash/plotting/cod_breakdown.sh" />
+        <option value="$PROJECT_DIR$/USA/state/prog/format_mort_cod/breakdown_cod.R" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="415" />
+    <option name="x" value="629" />
     <option name="y" value="-1417" />
-    <option name="width" value="2098" />
+    <option name="width" value="1884" />
     <option name="height" value="1023" />
   </component>
   <component name="ProjectLevelVcsManager">
@@ -530,13 +524,6 @@
       <option name="presentableId" value="Default" />
       <updated>1486989512159</updated>
     </task>
-    <task id="LOCAL-00035" summary="updated wavelet title">
-      <created>1513113221214</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1513113221214</updated>
-    </task>
     <task id="LOCAL-00036" summary="updated wavelet title">
       <created>1513115162640</created>
       <option name="number" value="00036" />
@@ -873,21 +860,28 @@
       <option name="project" value="LOCAL" />
       <updated>1513639931647</updated>
     </task>
-    <option name="localTasksCounter" value="84" />
+    <task id="LOCAL-00084" summary="updated cod mortality models with 3 variables">
+      <created>1513679332745</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1513679332745</updated>
+    </task>
+    <option name="localTasksCounter" value="85" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="415" y="-1417" width="2098" height="1023" extended-state="0" />
+    <frame x="629" y="-1417" width="1884" height="1023" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21449" sideWeight="0.49589685" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2388535" sideWeight="0.49589685" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="R Packages" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="R Graphics" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32942554" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32920793" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31132075" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31132075" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32942554" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3125" sideWeight="0.5041032" order="2" side_tool="true" content_ui="tabs" />
@@ -1109,6 +1103,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-945">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1288,8 +1283,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/USA/state/prog/format_mort_cod/breakdown_cod.R">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="761">
-          <caret line="109" column="16" lean-forward="true" selection-start-line="109" selection-start-column="16" selection-end-line="109" selection-end-column="16" />
+        <state relative-caret-position="2955">
+          <caret line="197" column="13" lean-forward="false" selection-start-line="187" selection-start-column="0" selection-end-line="198" selection-end-column="0" />
           <folding />
         </state>
       </provider>

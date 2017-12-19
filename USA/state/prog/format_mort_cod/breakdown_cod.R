@@ -127,7 +127,77 @@ if(year>=1999){
     ### 2. breakdown of cod by gbd
     ##################################################
 
-    c('J00',sprintf('J%s',seq(1:99)))
+    # potentially another way
+    #c('J00',sprintf('J%s',seq(1:99)))
+
+    # Intentional injuries (one missing??? check again)
+    intentional = c('X60','X61','X62','X63','X64','X65','X66','X67','X68','X69',
+    'X70','X71','X72','X73','X741','X742','X743','X744','X749','X75','X76',
+    'X77','X78','X79','X80','X81','X82','X83','X84','X85','X86',
+    'X87','X88','X89','X90','X91','X92','X93','X94','X95','X951',
+    'X952','X953','X954','X959','X96','X97','X98','X99','Y00','Y01',
+    'Y02','Y03','Y04','Y05','Y06','Y060','Y061','Y062','Y068','Y069',
+    'Y07','Y070','Y071','Y072','Y073','Y078','Y079','Y08','Y09','Y35',
+    'Y350','Y351','Y352','Y353','Y354','Y355','Y356','Y357','U011','Y36',
+    'Y360','Y361','Y362','Y363','Y364','Y365','Y366','Y367','Y368','Y369',
+    'Y870','Y871', 'Y890','Y891')
+
+    # Unintentional injuries TO FINISH TEMP SOLUTION
+    dat.merged$cause.description = ifelse(dat.merged$cause %in% intentional, 'Intentional','Other')
+
+    # establish the percentage of deaths by broad cause of death
+    dat.count = as.data.frame(dplyr::count(dat.merged,agegroup,sex,cause.group,cause.description))
+    dat.count = plyr::ddply(dat.count,c('agegroup','sex','cause.group'),mutate,percentage=round(100*n/sum(n),1))
+    dat.count$age.long = plyr::mapvalues(dat.count$age,from=sort(unique(dat.count$agegroup)),to=as.character(age.code[,2]))
+    dat.count$age.long <- reorder(dat.count$age.long,dat.count$agegroup)
+
+    dat.count.app = as.data.frame(dplyr::count(dat.merged,sex,cause.group,cause.description))
+    dat.count.app = plyr::ddply(dat.count.app,c('sex','cause.group'),mutate,percentage=round(100*n/sum(n),1))
+    dat.count.app$age.long = 'All ages'
+    dat.count.app$agegroup = -1
+
+    dat.count = rbind(dat.count.app,dat.count)
+
+    dat.count = merge(dat.count,cod.lookup.10,by=c('cause.group','letter'),all.x=1)
+
+    # friendly names for plotting
+    dat.count$sex.long = plyr::mapvalues(dat.count$sex,from=sort(unique(dat.count$sex)),to=c('Men','Women'))
+
+      # function to plot absolutely or relatively
+    plot = function(age.sel=-1,y.measure=1){
+
+        dat.count.sub = subset(dat.count,agegroup==age.sel)
+
+        p = ggplot(data=subset(dat.count.sub)) +
+        facet_wrap(~sex.long) +
+        xlab('Cause Group') + ylab('Number of deaths') + ggtitle(paste0(year,', ',unique(dat.count.sub$age.long))) +
+        scale_fill_manual(values=mycols) +
+        theme(text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        axis.text.x = element_text(angle=30), plot.title = element_text(hjust = 0.5),
+        panel.background = element_blank(),strip.background = element_blank(), axis.line = element_line(colour = "black"),
+        legend.position = 'bottom',legend.justification='center', legend.text=element_text(size=8),
+        legend.background = element_rect(fill="gray90", size=.4, linetype="dotted"))
+
+        if(y.measure==1){p = p + geom_bar(aes(y = n, x = cause.group, fill=cause.description),stat="identity")+ ylab('Number of deaths')}
+        if(y.measure==2){p = p + geom_bar(aes(y = percentage, x = cause.group, fill=cause.description),stat="identity")+ ylab('Percentage')}
+
+        print(p)
+
+    }
+
+    pdf(paste0(file.loc,year,'_absolute_external_highlight.pdf'),height=0,width=0,paper='a4r')
+    for(i in c(-1,0,5,15,25,35,45,55,65,75,85)){
+        plot(i,1)
+    }
+    dev.off()
+
+    pdf(paste0(file.loc,year,'_relative_external_highlight.pdf'),height=0,width=0,paper='a4r')
+    for(i in c(-1,0,5,15,25,35,45,55,65,75,85)){
+        plot(i,2)
+    }
+    dev.off()
+
+
 
 }
 
