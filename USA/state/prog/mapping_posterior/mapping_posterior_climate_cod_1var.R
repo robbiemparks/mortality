@@ -367,6 +367,7 @@ forest.plot.national.month <- function() {
     #plot.deaths.nat()
     #dev.off()
 
+    # heatmap for additional deaths
     heatmap.deaths.nat = function(){
         dat.merged.sub$sex.long <- mapvalues(dat.merged.sub$sex,from=sort(unique(dat.merged.sub$sex)),to=c('Men','Women'))
 
@@ -376,10 +377,9 @@ forest.plot.national.month <- function() {
         print(ggplot(data=dat.merged.sub) +
         geom_tile(aes(x=month,y=as.factor(age),fill=deaths.added)) +
         geom_text(aes(x=month,y=as.factor(age),label=paste0(round(deaths.added,1),'\n(',round(deaths.ll,1),'-\n',round(deaths.ul,1),')')),
-        size=2,fill='white') +
+        size=2,color='white') +
         scale_fill_gradientn(colours=c("navy","deepskyblue2","deepskyblue3","darkgreen","yellow3","gold","orange","red","darkred"),
-        na.value = "grey98", limits = c(-lims[2], lims[2]),
-        guide = guide_legend(nrow = 1,title = paste0("Change in death for additional 2",unit.name))) +
+        na.value = "grey98", limits = c(-lims[2], lims[2])) +
         guides(fill = guide_colorbar(barwidth = 30, barheight = 1,title = paste0("Change in death for 1 additional ",unit.name))) +
         scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
         scale_y_discrete(labels=age.print) +
@@ -414,14 +414,16 @@ forest.plot.national.month <- function() {
         # ADD VALUE IN BOX
         print(ggplot(data=subset(dat),aes(x=month,y=as.factor(age))) +
         geom_tile(aes(x=month,y=as.factor(age),fill=round(yll.mean,1))) +
-        geom_point(aes(size = ifelse(dat$sig == 0,NA,1)),shape='*') +
-        #geom_text(aes(month, as.factor(age), label = yll.mean), color = "black", size = 4) +
-        #scale_fill_gradient2(low = "purple", high ="brown" , mid = "white",    midpoint = 0,limits = c(-lims[2],lims[2]),guide = guide_legend(title = paste0("YLL per ",unit.name))) +
-        scale_fill_gradientn(colours=c(bl, "white", sm), na.value = "grey98", limits = c(-lims[2], lims[2]), guide = guide_legend(title = paste0("YLL for 1 additional ",unit.name))) +
-        guides(fill = guide_colorbar(barwidth = 30, barheight = 1,title = paste0("YLL for 1 additional ",unit.name))) +
+        geom_text(aes(x=month,y=as.factor(age),label=paste0(round(yll.mean,1),'\n(',round(yll.ll,1),'-\n',round(yll.ul,1),')')),
+        size=2,color='white') +
+        scale_fill_gradientn(colours=c("navy","deepskyblue2","deepskyblue3","darkgreen","yellow3","gold","orange","red","darkred"),
+        na.value = "grey98", limits = c(-floor(max(lims[1],lims[2]))-100, ceiling(max(lims[1],lims[2]))+100),
+        guide = guide_legend(title = paste0("YLL for 1 additional ",unit.name))) +
+        guides(fill = guide_colorbar(barwidth = 30, barheight = 1,title = paste0("Change in YLL for 1 additional ",unit.name))) +
         scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
         scale_y_discrete(labels=age.print) +
         scale_alpha(guide = 'none') +
+        ggtitle(cause) +
         scale_size(guide = 'none') +
         scale_shape(guide = 'none') +
         facet_wrap(~sex.long) +
@@ -474,12 +476,13 @@ forest.plot.national.month <- function() {
         panel.background = element_blank(),strip.background = element_blank(), axis.line = element_line(colour = "black"),legend.position = 'bottom',legend.justification='center',legend.background = element_rect(fill="gray90", size=.5, linetype="dotted")))
         
     }
-    pdf(paste0(file.loc,'yll_nat_heatmap_scenarios_male_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
-    heatmap.national.yll.scenarios(1)
-    dev.off()
-    pdf(paste0(file.loc,'yll_nat_heatmap_scenarios_female_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
-    heatmap.national.yll.scenarios(2)
-    dev.off()
+
+    #pdf(paste0(file.loc,'yll_nat_heatmap_scenarios_male_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
+    #heatmap.national.yll.scenarios(1)
+    #dev.off()
+    #pdf(paste0(file.loc,'yll_nat_heatmap_scenarios_female_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
+    #heatmap.national.yll.scenarios(2)
+    #dev.off()
     
     heatmap.national.yll.both.sex.scenarios <- function() {
         
@@ -522,9 +525,9 @@ forest.plot.national.month <- function() {
         panel.background = element_blank(),strip.background = element_blank(), axis.line = element_line(colour = "black"),legend.position = 'bottom',legend.justification='center',legend.background = element_rect(fill="gray90", size=.5, linetype="dotted")))
         
     }
-    pdf(paste0(file.loc,'yll_nat_heatmap_scenarios_bothsexes_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
-    heatmap.national.yll.both.sex.scenarios()
-    dev.off()
+    #pdf(paste0(file.loc,'yll_nat_heatmap_scenarios_bothsexes_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
+    #heatmap.national.yll.both.sex.scenarios()
+    #dev.off()
     
     # ADDITIONAL DEATHS SUBNATIONALLY
     

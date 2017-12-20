@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a0955925-28ef-4974-88ac-9f337af19082" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_cod_1var_7-10.sh" afterPath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_cod_1var_7-10.sh" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/mapping_posterior/mapping_posterior_climate_cod_1var.R" afterPath="$PROJECT_DIR$/USA/state/prog/mapping_posterior/mapping_posterior_climate_cod_1var.R" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,7 +21,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="plotting_results_climate_cod_1var.sh" pinned="false" current-in-tab="false">
+      <file leaf-file-name="plotting_results_climate_cod_1var.sh" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/USA/state/prog/00_bash/plotting/plotting_results_climate_cod_1var.sh">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="75">
@@ -34,26 +34,23 @@
       <file leaf-file-name="mapping_posterior_climate_cod_1var.R" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/USA/state/prog/mapping_posterior/mapping_posterior_climate_cod_1var.R">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="589">
-              <caret line="397" column="5" lean-forward="true" selection-start-line="397" selection-start-column="5" selection-end-line="397" selection-end-column="5" />
+            <state relative-caret-position="-795">
+              <caret line="404" column="39" lean-forward="false" selection-start-line="404" selection-start-column="39" selection-end-line="404" selection-end-column="39" />
               <folding>
                 <element signature="e#1320#5159#0" expanded="false" />
                 <element signature="e#10185#12047#0" expanded="false" />
-                <element signature="e#17207#18228#0" expanded="false" />
-                <element signature="e#20447#22379#0" expanded="false" />
-                <element signature="e#35691#50187#0" expanded="false" />
-                <element signature="e#50309#71725#0" expanded="false" />
+                <element signature="e#18483#20111#0" expanded="false" />
+                <element signature="e#20383#22304#0" expanded="false" />
+                <element signature="e#22598#24753#0" expanded="false" />
+                <element signature="e#25252#27519#0" expanded="false" />
+                <element signature="e#29848#30979#0" expanded="false" />
+                <element signature="e#33698#35012#0" expanded="false" />
+                <element signature="e#35626#50122#0" expanded="false" />
+                <element signature="e#50244#71660#0" expanded="false" />
+                <element signature="e#72415#74216#0" expanded="false" />
+                <element signature="e#74670#76248#0" expanded="false" />
+                <element signature="e#76710#78306#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="inla_model_climate_cod_1var_7-10.sh" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_cod_1var_7-10.sh">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="20" column="19" lean-forward="true" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -123,8 +120,8 @@
         <option value="$PROJECT_DIR$/USA/state/prog/00_bash/plotting/plotting_results_climate_cod_1var.sh" />
         <option value="$PROJECT_DIR$/USA/state/prog/00_bash/plotting/cod_breakdown.sh" />
         <option value="$PROJECT_DIR$/USA/state/prog/format_mort_cod/breakdown_cod.R" />
-        <option value="$PROJECT_DIR$/USA/state/prog/mapping_posterior/mapping_posterior_climate_cod_1var.R" />
         <option value="$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_cod_1var_7-10.sh" />
+        <option value="$PROJECT_DIR$/USA/state/prog/mapping_posterior/mapping_posterior_climate_cod_1var.R" />
       </list>
     </option>
   </component>
@@ -284,7 +281,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="inla" />
+              <option name="myItemId" value="plotting" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -505,13 +502,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1486989512159</updated>
-    </task>
-    <task id="LOCAL-00039" summary="updated wavelet title">
-      <created>1513117630482</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1513117630482</updated>
     </task>
     <task id="LOCAL-00040" summary="updated wavelet title">
       <created>1513151228937</created>
@@ -849,7 +839,14 @@
       <option name="project" value="LOCAL" />
       <updated>1513774984251</updated>
     </task>
-    <option name="localTasksCounter" value="88" />
+    <task id="LOCAL-00088" summary="updated cod mortality models with 3 variables">
+      <created>1513775648988</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1513775648988</updated>
+    </task>
+    <option name="localTasksCounter" value="89" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -888,7 +885,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="8" />
+      <option name="time" value="11" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1240,33 +1237,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/USA/state/prog/00_bash/plotting/plotting_results_climate_cod_1var.sh">
+    <entry file="file://$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_cod_1var_7-10.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="27" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+        <state relative-caret-position="300">
+          <caret line="20" column="19" lean-forward="true" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/USA/state/prog/mapping_posterior/mapping_posterior_climate_cod_1var.R">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="589">
-          <caret line="397" column="5" lean-forward="true" selection-start-line="397" selection-start-column="5" selection-end-line="397" selection-end-column="5" />
+        <state relative-caret-position="-795">
+          <caret line="404" column="39" lean-forward="false" selection-start-line="404" selection-start-column="39" selection-end-line="404" selection-end-column="39" />
           <folding>
             <element signature="e#1320#5159#0" expanded="false" />
             <element signature="e#10185#12047#0" expanded="false" />
-            <element signature="e#17207#18228#0" expanded="false" />
-            <element signature="e#20447#22379#0" expanded="false" />
-            <element signature="e#35691#50187#0" expanded="false" />
-            <element signature="e#50309#71725#0" expanded="false" />
+            <element signature="e#18483#20111#0" expanded="false" />
+            <element signature="e#20383#22304#0" expanded="false" />
+            <element signature="e#22598#24753#0" expanded="false" />
+            <element signature="e#25252#27519#0" expanded="false" />
+            <element signature="e#29848#30979#0" expanded="false" />
+            <element signature="e#33698#35012#0" expanded="false" />
+            <element signature="e#35626#50122#0" expanded="false" />
+            <element signature="e#50244#71660#0" expanded="false" />
+            <element signature="e#72415#74216#0" expanded="false" />
+            <element signature="e#74670#76248#0" expanded="false" />
+            <element signature="e#76710#78306#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_cod_1var_7-10.sh">
+    <entry file="file://$PROJECT_DIR$/USA/state/prog/00_bash/plotting/plotting_results_climate_cod_1var.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="19" lean-forward="true" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
+        <state relative-caret-position="75">
+          <caret line="5" column="27" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
           <folding />
         </state>
       </provider>
