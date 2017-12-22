@@ -24,6 +24,9 @@ declare cod="AllCause"
 # 1. RUN AGE-SEPARATED MODEL
 #################################################
 
+# to correct directory
+cd ~/git/mortality/USA/state/prog/00_bash/
+
 (
 
 Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_cod_fast.R 85 2 $start $end 10 0 $dname $metric $start2 $end2 $cod;
