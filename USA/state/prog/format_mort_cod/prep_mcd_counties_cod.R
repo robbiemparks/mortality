@@ -103,12 +103,10 @@ if(year<switch.year) {
 # ICD10 years
 if(year %in% c(1999,2000,2001)){
     dat <- dat[, c('monthdth','age','stateres_fips','countyres_fips','sex','year','icd10')]
-    # only take first letter of COD NOT SURE ASK MAJID
     dat$cause_letter = substr(dat$icd10,1,1)
 }
 if(year>=2002){
     dat <- dat[, c('monthdth','age','stateres_fips','countyres_fips','sex','year','cause')]
-    # only take first letter of COD NOT SURE ASK MAJID
     dat$cause_letter = substr(dat$cause,1,1)
 }
 
