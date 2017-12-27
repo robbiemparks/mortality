@@ -127,4 +127,4 @@ source('../models/INLA/03_spatiotemporal/inla_functions_cod_2var.R')
 
 # input arguments into function to perform inference
 mapply(inla.function.climate.2var,age.sel=age.arg,sex.sel=sex.arg,year.start=year.start.analysis.arg,
-year.end=year.end.analysis.arg,type=type.arg,cluster=cluster.arg)
+year.end=year.end.analysis.arg,type=type.arg,cluster=cluster.arg,cause=cod.arg)
