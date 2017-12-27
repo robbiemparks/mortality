@@ -31,7 +31,8 @@ require(mailR)
 metric.arg = paste(sort(c(metric1.arg,metric2.arg)),collapse='_')
 
 # create files for output
-ifelse(!dir.exists(paste0('~/data/mortality/US/state/climate_effects/2var/',dname.arg,'/',metric.arg,'/non_pw/type_',type.selected,'/age_groups')), dir.create(paste0('~/data/mortality/US/state/climate_effects/',dname.arg,'/2var/',metric.arg,'/non_pw/type_',type.selected,'/age_groups'),recursive=TRUE), FALSE)
+ifelse(!dir.exists(paste0('~/data/mortality/US/state/climate_effects/',dname.arg,'/2var/',metric.arg,'/non_pw/type_',type.selected,'/age_groups')),
+dir.create(paste0('~/data/mortality/US/state/climate_effects/',dname.arg,'/2var/',metric.arg,'/non_pw/type_',type.selected,'/age_groups'),recursive=TRUE), FALSE)
 
 # load USA data
 dat.inla.load <- readRDS(paste0('../../output/prep_data/datus_state_rates_',year.start.arg,'_',year.end.arg))
