@@ -19,7 +19,7 @@ declare country="USA"
 declare dname="t2m"
 declare metric1="meanc3"
 declare metric2="number_of_days_above_nonnormal_90_2" # also DB10 and SD
-declare cod="AllCause"
+declare cod="Cancer"
 
 #################################################
 # 1. RUN AGE-SEPARATED MODEL
