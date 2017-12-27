@@ -12,10 +12,8 @@ declare -i end=2013
 declare -a models=(10)
 declare country="USA"
 declare -a dnames=("t2m")
-declare -a metrics=('meanc3')
+declare -a metrics=('meanc3' 'number_of_days_above_nonnormal_90_2' 'number_of_days_below_nonnormal_90_2')
 declare -a cods=("AllCause" "External" "Cancer" "Cardiopulmonary" "Other")
-#declare -a metrics=('number_of_days_above_nonnormal_90_2' 'number_of_days_below_nonnormal_90_2')
-#declare -a cods=("AllCause")
 
 #################################################
 # 1. PLOT PARAMETERS OF STATE CLIMATE POSTERIORS
