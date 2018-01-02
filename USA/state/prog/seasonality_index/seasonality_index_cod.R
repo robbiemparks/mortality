@@ -163,91 +163,92 @@ for (j in c(1:2)) {
         dat.ci <- rbind(dat.ci,cbind(i,j,temp.start,temp.end))
     }}
 
-# # 2. REGIONAL
-#
-# # METHOD NOT TAKING ACCCOUNT OF POPULATION
-#
-# # load region data
-# dat.region <- readRDS(paste0('../../output/mapping_posterior/INLA/type1a/1982_2013/maps/USA_state_data'))
-# dat.region$fips <- as.numeric(as.character(dat.region$STATE_FIPS))
-#
-# # merge region data with death data
-# dat.region <- merge(dat,dat.region,by='fips')
-#
-# # generate region data
-# dat.region$deaths.pred <- with(dat.region,pop.adj*rate.adj)
-# dat.region <- ddply(dat.region,.(year,climate_region,month,sex,age),summarize,deaths=sum(deaths),deaths.pred=sum(deaths.pred),pop.adj=sum(pop.adj))
-# dat.region$climate_region <- gsub(' ','_',dat.region$climate_region)
-#
-# # calculate rates per million and then round
-# dat.region$rate.adj <- with(dat.region,deaths.pred+1/pop.adj)
-# dat.region$rate.scaled <- round(1000000*(dat.region$rate.adj))
-#
-# # climate region lookup
-# region.lookup <- unique(dat.region$climate_region)
-#
-# # figure out the ratio of max/min deaths over time with fixed max/min by sex, age, year
-# dat.max.min.fixed.region <- merge(dat.region,dat.COM,by=c('age','sex','month'))
-# dat.max.min.fixed.region <- ddply(dat.max.min.fixed.region,.(sex,age,climate_region,year), summarize,rate.max=rate.adj[type=='max'],pop.max=pop.adj[type=='max'],month.max=month[type=='max'],rate.min=rate.adj[type=='min'],pop.min=pop.adj[type=='min'],month.min=month[type=='min'])
-# dat.max.min.fixed.region$percent.change <- with(dat.max.min.fixed.region,round(100*(rate.max/rate.min),1)-100)
-#
-# # establish correct sex names for plotting
-# dat.max.min.fixed.region$sex.long <- as.factor(as.character(dat.max.min.fixed.region$sex))
-# levels(dat.max.min.fixed.region$sex.long) <- sex.lookup
-#
-# # add time value that starts at 0
-# dat.max.min.fixed.region$year.centre <- with(dat.max.min.fixed.region,year-year.start)
-#
-# # apply linear regression to each group by sex, age, month to find gradient
-# lin.reg.grad.region <- ddply(dat.max.min.fixed.region, .(sex,age,climate_region), function(z)coef(lm(percent.change ~ year.centre, data=z)))
-# lin.reg.grad.region$end.value <- with(lin.reg.grad.region,`(Intercept)`+year.centre*(num.years-1))
-# lin.reg.grad.region$start.value <- lin.reg.grad.region$`(Intercept)`
-# lin.reg.grad.region$sex.long <- with(lin.reg.grad.region,as.factor(as.character(sex)))
-# levels(lin.reg.grad.region$sex.long) <- sex.lookup
-#
-# # obtain significance of slopes
-# lin.reg.sig.region <- ddply(dat.max.min.fixed.region, .(sex,age,climate_region), function(z)coef(summary(lm(percent.change ~ year.centre, data=z))))
-# lin.reg.sig.region <- lin.reg.sig.region[!c(TRUE,FALSE),]
-# lin.reg.sig.region$sig.test.10 <- ifelse(lin.reg.sig.region[,6]<0.10,1,0)
-# lin.reg.sig.region$sig.test.5 <- ifelse(lin.reg.sig.region[,6]<0.05,1,0)
-#
-# # merge with data about gradients
-# lin.reg.grad.region <- merge(lin.reg.grad.region,lin.reg.sig.region,by=c('sex','age','climate_region'))
+# 2. REGIONAL
+
+# METHOD NOT TAKING ACCCOUNT OF POPULATION
+
+# load region data
+dat.region <- readRDS(paste0('../../output/mapping_posterior/INLA/type1a/1982_2013/maps/USA_state_data'))
+dat.region$fips <- as.numeric(as.character(dat.region$STATE_FIPS))
+
+# merge region data with death data
+dat.region <- merge(dat,dat.region,by='fips')
+
+# generate region data
+dat.region$deaths.pred <- with(dat.region,pop.adj*rate.adj)
+dat.region <- ddply(dat.region,.(year,climate_region,month,sex,age),summarize,deaths=sum(deaths),deaths.pred=sum(deaths.pred),pop.adj=sum(pop.adj))
+dat.region$climate_region <- gsub(' ','_',dat.region$climate_region)
+
+# calculate rates per million and then round
+dat.region$rate.adj <- with(dat.region,deaths.pred+1/pop.adj)
+dat.region$rate.scaled <- round(1000000*(dat.region$rate.adj))
+
+# climate region lookup
+region.lookup <- unique(dat.region$climate_region)
+
+# figure out the ratio of max/min deaths over time with fixed max/min by sex, age, year
+dat.max.min.fixed.region <- merge(dat.region,dat.COM,by=c('age','sex','month'))
+dat.max.min.fixed.region <- ddply(dat.max.min.fixed.region,.(sex,age,climate_region,year), summarize,rate.max=rate.adj[type=='max'],pop.max=pop.adj[type=='max'],month.max=month[type=='max'],rate.min=rate.adj[type=='min'],pop.min=pop.adj[type=='min'],month.min=month[type=='min'])
+dat.max.min.fixed.region$percent.change <- with(dat.max.min.fixed.region,round(100*(rate.max/rate.min),1)-100)
+
+# establish correct sex names for plotting
+dat.max.min.fixed.region$sex.long <- as.factor(as.character(dat.max.min.fixed.region$sex))
+levels(dat.max.min.fixed.region$sex.long) <- sex.lookup
+
+# add time value that starts at 0
+dat.max.min.fixed.region$year.centre <- with(dat.max.min.fixed.region,year-year.start)
+
+# apply linear regression to each group by sex, age, month to find gradient
+lin.reg.grad.region <- ddply(dat.max.min.fixed.region, .(sex,age,climate_region), function(z)coef(lm(percent.change ~ year.centre, data=z)))
+lin.reg.grad.region$end.value <- with(lin.reg.grad.region,`(Intercept)`+year.centre*(num.years-1))
+lin.reg.grad.region$start.value <- lin.reg.grad.region$`(Intercept)`
+lin.reg.grad.region$sex.long <- with(lin.reg.grad.region,as.factor(as.character(sex)))
+levels(lin.reg.grad.region$sex.long) <- sex.lookup
+
+# obtain significance of slopes
+lin.reg.sig.region <- ddply(dat.max.min.fixed.region, .(sex,age,climate_region), function(z)coef(summary(lm(percent.change ~ year.centre, data=z))))
+lin.reg.sig.region <- lin.reg.sig.region[!c(TRUE,FALSE),]
+lin.reg.sig.region$sig.test.10 <- ifelse(lin.reg.sig.region[,6]<0.10,1,0)
+lin.reg.sig.region$sig.test.5 <- ifelse(lin.reg.sig.region[,6]<0.05,1,0)
+
+# merge with data about gradients
+lin.reg.grad.region <- merge(lin.reg.grad.region,lin.reg.sig.region,by=c('sex','age','climate_region'))
 #
 # # MORTALITY SEASONALITY INDEX AGAINST CLIMATE VARIABLE SEASONALITY INDEX
 #
 # # STATIC MAX/MIN DEFINED BY COM
 #
-# # load climate data
-# file.loc.climate.fixed <- paste0('~/git/climate/countries/USA/output/seasonality_index_climate_region/',dname,'/',metric,'/')
-# dat.climate.fixed <- readRDS(paste0(file.loc.climate.fixed,'seasonality_index_com_fixed_',dname,'_',metric,'_',year.start.2,'_',year.end.2))
-# dat.climate.fixed$start.value.climate <- dat.climate.fixed$start.value
-# dat.climate.fixed$end.value.climate <- dat.climate.fixed$end.value
-# dat.climate.fixed <- dat.climate.fixed[,c('sex','age','climate_region','start.value.climate','end.value.climate')]
-#
-# lin.reg.grad.climate.fixed <- lin.reg.grad.region[,c('sex','age','climate_region','start.value','end.value')]
-# lin.reg.grad.climate.fixed$start.value.mort <- lin.reg.grad.climate.fixed$start.value
-# lin.reg.grad.climate.fixed$end.value.mort <- lin.reg.grad.climate.fixed$end.value
-# lin.reg.grad.climate.fixed <- lin.reg.grad.climate.fixed[,c('sex','age','climate_region','start.value.mort','end.value.mort')]
-#
-# # fix names of climate regions to match each other
-# dat.climate.fixed$climate_region <- gsub(' ','_',dat.climate.fixed$climate_region)
-#
-# # merge mortality data and climate data
-# dat.mort.climate.fixed <- merge(dat.climate.fixed,lin.reg.grad.climate.fixed,by=c('sex','age','climate_region'))
-#
-# # calculate differnce in mort
-# dat.mort.climate.fixed$diff.mort <- with(dat.mort.climate.fixed,end.value.mort-start.value.mort)
-# dat.mort.climate.fixed$diff.climate <- with(dat.mort.climate.fixed,end.value.climate-start.value.climate)
-#
-# # add print-friendly ages
-# dat.mort.climate.fixed <- merge(dat.mort.climate.fixed,age.code,by='age')
-# dat.mort.climate.fixed$age.print <- reorder(dat.mort.climate.fixed$age.print,dat.mort.climate.fixed$age)
-#
-# # linear regression for each age-sex and obtain significance of slopes
-# lin.reg.mort.climate.fixed <- ddply(dat.mort.climate.fixed,.(age,sex),function(z)coef(summary(lm(end.value.mort ~ end.value.climate, data=z))))
-# lin.reg.mort.climate.fixed <- lin.reg.mort.climate.fixed[!c(TRUE,FALSE),]
-# lin.reg.mort.climate.fixed$sig.test.5 <- ifelse(lin.reg.mort.climate.fixed[,6]<0.05,1,0)
+# load climate data
+# NEED TO RUN AGAIN WITH 1980 BELOW AND I DON'T THINK THAT CLIMATE VALUES ARE CORRECT FOR DAT.CLIMATE.FIXED FIX!!!!!
+file.loc.climate.fixed <- paste0('~/git/climate/countries/USA/output/seasonality_index_climate_region/',dname,'/',metric,'/')
+dat.climate.fixed <- readRDS(paste0(file.loc.climate.fixed,'seasonality_index_com_fixed_',dname,'_',metric,'_',cod,'_',year.start.2,'_',year.end.2))
+dat.climate.fixed$start.value.climate <- dat.climate.fixed$start.value
+dat.climate.fixed$end.value.climate <- dat.climate.fixed$end.value
+dat.climate.fixed <- dat.climate.fixed[,c('sex','age','climate_region','start.value.climate','end.value.climate')]
+
+lin.reg.grad.climate.fixed <- lin.reg.grad.region[,c('sex','age','climate_region','start.value','end.value')]
+lin.reg.grad.climate.fixed$start.value.mort <- lin.reg.grad.climate.fixed$start.value
+lin.reg.grad.climate.fixed$end.value.mort <- lin.reg.grad.climate.fixed$end.value
+lin.reg.grad.climate.fixed <- lin.reg.grad.climate.fixed[,c('sex','age','climate_region','start.value.mort','end.value.mort')]
+
+# fix names of climate regions to match each other
+dat.climate.fixed$climate_region <- gsub(' ','_',dat.climate.fixed$climate_region)
+
+# merge mortality data and climate data
+dat.mort.climate.fixed <- merge(dat.climate.fixed,lin.reg.grad.climate.fixed,by=c('sex','age','climate_region'))
+
+# calculate differnce in mort
+dat.mort.climate.fixed$diff.mort <- with(dat.mort.climate.fixed,end.value.mort-start.value.mort)
+dat.mort.climate.fixed$diff.climate <- with(dat.mort.climate.fixed,end.value.climate-start.value.climate)
+
+# add print-friendly ages
+dat.mort.climate.fixed <- merge(dat.mort.climate.fixed,age.code,by='age')
+dat.mort.climate.fixed$age.print <- reorder(dat.mort.climate.fixed$age.print,dat.mort.climate.fixed$age)
+
+# linear regression for each age-sex and obtain significance of slopes
+lin.reg.mort.climate.fixed <- ddply(dat.mort.climate.fixed,.(age,sex),function(z)coef(summary(lm(end.value.mort ~ end.value.climate, data=z))))
+lin.reg.mort.climate.fixed <- lin.reg.mort.climate.fixed[!c(TRUE,FALSE),]
+lin.reg.mort.climate.fixed$sig.test.5 <- ifelse(lin.reg.mort.climate.fixed[,6]<0.05,1,0)
 #
 # # DYNAMIC MAX/MIN
 #
@@ -293,8 +294,7 @@ ifelse(!dir.exists(file.loc.regional), dir.create(file.loc.regional, recursive=T
 saveRDS(lin.reg.grad.weight,paste0(file.loc,'seasonality_index_nat_changes_',cod,'_',year.start,'_',year.end))
 
 # export
-#saveRDS(lin.reg.mort.climate.fixed,paste0(file.loc.regional,'seasonality_index_climate_region_against_temp_grads_',year.start,'_',year.end))
-
+saveRDS(lin.reg.mort.climate.fixed,paste0(file.loc.regional,'seasonality_index_climate_region_against_temp_grads_',cod,'_',year.start,'_',year.end))
 
 ## GRAPHS ##
 
@@ -677,49 +677,51 @@ dev.off()
 #
 # # against climate
 #
-# # STATIC MAX/MIN BY COM
-#
-# # remove com data that doesn't meet wavelet criteria (automate?)
-# dat.mort.climate.fixed <- subset(dat.mort.climate.fixed,!(age==35 & sex==1))
-# dat.mort.climate.fixed <- subset(dat.mort.climate.fixed,!(age==5 & sex==2))
-# dat.mort.climate.fixed <- subset(dat.mort.climate.fixed,!(age==25 & sex==2))
-# dat.mort.climate.fixed <- subset(dat.mort.climate.fixed,!(age==15 & sex==2))
-#
-# # fix names of climate regions
-# dat.mort.climate.fixed$climate_region <- gsub('_',' ', dat.mort.climate.fixed$climate_region)
-#
-# # set colour scheme for climate colour map
-# #map.climate.colour <- colorRampPalette(rev(brewer.pal(9,"Accent")[c(1:3,5,6)]))(length(unique(dat.mort.climate.fixed$climate_region)))
-# map.climate.colour <- colorRampPalette(c("red","hotpink","brown","navy","cyan","green","orange"))(20)[c(10,12,13,15,18,19,20,1,5)]
-#
-# pdf(paste0(file.loc.regional,'seasonality_index_regional_against_climate_fixed_com_',year.start,'_',year.end,'.pdf'),height=0,width=0,paper='a4r')
-# #ggplot() +
-# #geom_point(data=subset(dat.mort.climate.fixed, sex==1|2),aes(shape=as.factor(sex),x=start.value.climate,y=start.value.mort,color=as.factor(climate_region))) +
-# #scale_shape_manual(values=c(16,17),labels=c('Men','Women'),guide = guide_legend(title = 'Sex:')) +
-# #xlim(c(0,15)) + ylim(c(-10,75)) +
-# #xlab(paste0('Temperature excess in ',year.start.2)) +
-# #ylab(paste0('Mortality excess in ',year.start.2)) +
-# #geom_vline(xintercept=0,linetype=2) +
-# #geom_hline(yintercept=0,linetype=2) +
-# #ggtitle(paste0('Seasonal excess mortality against ',dname,'.',metric,' in ',year.start.2)) +
-# #facet_wrap(~age) +
-# #scale_colour_manual(values=age.colours,guide = guide_legend(title = 'Climate region:')) +
-# #theme(legend.box.just = "centre",legend.box = "horizontal",legend.position='bottom',text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line.x = element_line(colour = "black"), axis.line.y = element_line(colour = "black"),rect = element_blank())
-#
-#
+# STATIC MAX/MIN BY COM
+
+# remove com data that doesn't meet wavelet criteria (automate?)
+#dat.mort.climate.fixed <- subset(dat.mort.climate.fixed,!(age==35 & sex==1))
+#dat.mort.climate.fixed <- subset(dat.mort.climate.fixed,!(age==5 & sex==2))
+#dat.mort.climate.fixed <- subset(dat.mort.climate.fixed,!(age==25 & sex==2))
+#dat.mort.climate.fixed <- subset(dat.mort.climate.fixed,!(age==15 & sex==2))
+
+# fix names of climate regions
+dat.mort.climate.fixed$climate_region <- gsub('_',' ', dat.mort.climate.fixed$climate_region)
+
+# set colour scheme for climate colour map
+#map.climate.colour <- colorRampPalette(rev(brewer.pal(9,"Accent")[c(1:3,5,6)]))(length(unique(dat.mort.climate.fixed$climate_region)))
+map.climate.colour <- colorRampPalette(c("red","hotpink","brown","navy","cyan","green","orange"))(20)[c(10,12,13,15,18,19,20,1,5)]
+
+pdf(paste0(file.loc.regional,'seasonality_index_regional_against_climate_fixed_com_',cod,'_',year.start,'_',year.end,'.pdf'),height=0,width=0,paper='a4r')
 # ggplot() +
-# geom_point(data=subset(dat.mort.climate.fixed, sex==1|2),aes(shape=as.factor(sex),x=end.value.climate,y=end.value.mort/100,color=as.factor(climate_region)),size=2) +
+# geom_point(data=subset(dat.mort.climate.fixed, sex==1|2),aes(shape=as.factor(sex),x=start.value.climate,y=start.value.mort,color=as.factor(climate_region))) +
 # scale_shape_manual(values=c(16,17),labels=c('Men','Women'),guide = guide_legend(title = 'Sex:')) +
-# scale_x_continuous(name=expression(paste("Temperature difference (",degree,"C)"))) +
-# scale_y_continuous(name=paste0('Percent difference in death rates'),labels=percent) +
-# #geom_hline(linetype=2, yintercept = seq(-1,1,0.1), alpha=0.2) +
-# #geom_vline(linetype=2, xintercept = seq(-100,100,10), alpha=0.2) +
-# geom_vline(xintercept=0,linetype=2,alpha=0.4) +
-# geom_hline(yintercept=0,linetype=2,alpha=0.4) +
-# facet_wrap(~age.print) +
-# scale_colour_manual(values=map.climate.colour,guide = guide_legend(title = 'Region:')) +
-# theme(legend.box.just = "centre",legend.box = "horizontal",legend.position='bottom',text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line.x = element_line(colour = "black"), axis.line.y = element_line(colour = "black"),rect = element_blank(),legend.background = element_rect(fill = "grey95"))
-#
+# xlim(c(0,15)) + ylim(c(-10,75)) +
+# xlab(paste0('Temperature excess in ',year.start.2)) +
+# ylab(paste0('Mortality excess in ',year.start.2)) +
+# geom_vline(xintercept=0,linetype=2) +
+# geom_hline(yintercept=0,linetype=2) +
+# ggtitle(paste0('Seasonal excess mortality against ',dname,'.',metric,' in ',year.start.2)) +
+# facet_wrap(~age) +
+# scale_colour_manual(values=age.colours,guide = guide_legend(title = 'Climate region:')) +
+# theme(legend.box.just = "centre",legend.box = "horizontal",legend.position='bottom',text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line.x = element_line(colour = "black"), axis.line.y = element_line(colour = "black"),rect = element_blank())
+
+
+ggplot() +
+geom_point(data=subset(dat.mort.climate.fixed, sex==1|2),aes(shape=as.factor(sex),x=abs(end.value.climate),y=end.value.mort/100,color=as.factor(climate_region)),size=2) +
+scale_shape_manual(values=c(16,17),labels=c('Men','Women'),guide = guide_legend(title = 'Sex:')) +
+scale_x_continuous(name=expression(paste("Absolute temperature difference (",degree,"C)"))) +
+scale_y_continuous(name=paste0('Percent difference in death rates'),labels=percent,limits=c(-0.05,1)) +
+#ylim(c(-0.05,1)) +
+#geom_hline(linetype=2, yintercept = seq(-1,1,0.1), alpha=0.2) +
+#geom_vline(linetype=2, xintercept = seq(-100,100,10), alpha=0.2) +
+geom_vline(xintercept=0,linetype=2,alpha=0.4) +
+geom_hline(yintercept=0,linetype=2,alpha=0.4) +
+ggtitle(cod) +
+facet_wrap(~age.print) +
+scale_colour_manual(values=map.climate.colour,guide = guide_legend(title = 'Region:')) +
+theme(legend.box.just = "centre",legend.box = "horizontal",legend.position='bottom',text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line.x = element_line(colour = "black"), axis.line.y = element_line(colour = "black"),rect = element_blank(),legend.background = element_rect(fill = "grey95"))
+
 #
 #
 # #ggplot() +
@@ -752,7 +754,7 @@ dev.off()
 # #theme(legend.box.just = "centre",legend.box = "horizontal",legend.position='bottom',text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line.x = element_line(colour = "black"), axis.line.y = element_line(colour = "black"),rect = element_blank())
 #
 #
-# dev.off()
+dev.off()
 #
 # # DYNAMIC MAX/MIN
 #
