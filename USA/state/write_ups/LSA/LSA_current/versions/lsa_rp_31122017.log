@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.10.13)  4 JAN 2018 15:52
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.10.13)  4 JAN 2018 18:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1089,21 +1089,21 @@ Underfull \hbox (badness 10000) in paragraph at lines 195--196
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 210--211
+Underfull \hbox (badness 10000) in paragraph at lines 208--209
 
  []
 
 [10]
-Underfull \hbox (badness 10000) in paragraph at lines 216--217
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 222--223
+Underfull \hbox (badness 10000) in paragraph at lines 214--215
 
  []
 
 [11]
+Underfull \hbox (badness 10000) in paragraph at lines 226--227
+
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 228--229
 
  []
@@ -1113,17 +1113,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 230--231
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 232--233
-
- []
-
 [12]
-Underfull \hbox (badness 10000) in paragraph at lines 236--237
+Underfull \hbox (badness 10000) in paragraph at lines 234--235
 
  []
 
 [13]
+Underfull \hbox (badness 10000) in paragraph at lines 246--247
+
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 248--249
 
  []
@@ -1134,17 +1134,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 250--251
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 252--253
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 264--265
+Underfull \hbox (badness 10000) in paragraph at lines 262--263
 
  []
 
 [14]
-Underfull \hbox (badness 10000) in paragraph at lines 266--267
+Underfull \hbox (badness 10000) in paragraph at lines 264--265
 
  []
 
@@ -1152,26 +1147,31 @@ Missing character: There is no â in font cmr10!
 Missing character: There is no € in font cmr10!
 Missing character: There is no ™ in font cmr10!
 [15]
-Underfull \hbox (badness 1102) in paragraph at lines 280--281
+Underfull \hbox (badness 1102) in paragraph at lines 278--279
 []|\OT1/cmr/m/n/10.95 How shift in cen-tre of tem-per-a-
  []
 
 
-Underfull \hbox (badness 1565) in paragraph at lines 281--282
+Underfull \hbox (badness 1565) in paragraph at lines 279--280
 []|\OT1/cmr/m/n/10.95 How much vari-a-tion around the
  []
 
 
-Underfull \hbox (badness 1533) in paragraph at lines 282--282
+Underfull \hbox (badness 1533) in paragraph at lines 280--280
 []|\OT1/cmr/m/n/10.95 Deviation of the 10th per-centile
  []
 
 
-Underfull \hbox (badness 1533) in paragraph at lines 283--283
+Underfull \hbox (badness 1533) in paragraph at lines 281--281
 []|\OT1/cmr/m/n/10.95 Deviation of the 10th per-centile
  []
 
 [16]
+Underfull \hbox (badness 10000) in paragraph at lines 295--296
+
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 297--298
 
  []
@@ -1191,16 +1191,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 303--304
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 305--306
-
- []
-
 [17
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 316--317
+Underfull \hbox (badness 10000) in paragraph at lines 314--315
 
  []
 
@@ -1225,7 +1220,7 @@ ublic/amsfonts/cm/cmr17.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/pub
 lic/amsfonts/cm/cmr8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public
 /amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/
 amsfonts/cm/cmsy8.pfb>
-Output written on lsa_rp_31122017.pdf (20 pages, 166178 bytes).
+Output written on lsa_rp_31122017.pdf (20 pages, 165594 bytes).
 PDF statistics:
  116 PDF objects out of 1000 (max. 8388607)
  82 compressed objects within 1 object stream

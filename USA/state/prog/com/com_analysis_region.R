@@ -17,11 +17,7 @@ file.loc.split <- paste0(file.loc,'values/split_period/')
 ifelse(!dir.exists(file.loc.split), dir.create(file.loc.split,recursive=TRUE), FALSE)
 
 # coding for graph-friendly information
-age.print <- as.vector(levels(factor(levels=c('0-4','5-14','15-24','25-34','35-44','45-54','55-64','65-74','75-84','85+'))))
-age.code <- data.frame(age=c(0,5,15,25,35,45,55,65,75,85), age.print=age.print)
-sex.lookup <- c('male','female')
-month.short <- c('Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec')
-state.lookup <- read.csv('../../data/fips_lookup/name_fips_lookup.csv')
+source('../../data/objects/objects.R')
 
 # load data and filter results
 dat <- readRDS(paste0('../../output/prep_data/datus_state_rates_',year.start.arg,'_',year.end.arg))
