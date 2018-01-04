@@ -81,10 +81,10 @@ for cod in "${cods[@]}"; do
 echo "starting regional COM analysis for $cod for years $start - $end";
 
 # runs regional COM analysis
-Rscript ~/git/mortality/USA/state/prog/com/com_analysis_region_cod.R $start $end $cod #DONE
+Rscript ~/git/mortality/USA/state/prog/com/com_analysis_region_cod.R $start $end $cod &
 
 # runs regional anti-COM analysis
-Rscript ~/git/mortality/USA/state/prog/com/anti_com_analysis_region_cod.R $start $end $cod
+Rscript ~/git/mortality/USA/state/prog/com/anti_com_analysis_region_cod.R $start $end $cod &
 
 echo "processing data for $country for $cod, years $start - $end";
 
@@ -93,8 +93,9 @@ Rscript ~/git/mortality/USA/state/prog/com/com_data_process_cod.R $start $end $c
 
 done;
 
-# plots
-Rscript ~/git/mortality/USA/state/prog/com/com_plot.R $start $end
+#################################################
+# 4. PLOTS
+#################################################
 
 for cod in "${cods[@]}"; do
 
@@ -106,7 +107,7 @@ echo "plotting COM analysis for $country for $cod, years $start - $end";
 done;
 
 #################################################
-# 3. NATIONAL CLIMATE SEASONALITY INDEX
+# 5. NATIONAL CLIMATE SEASONALITY INDEX
 #################################################
 
 declare dname="t2m"
@@ -116,7 +117,7 @@ declare metric="mean"
 #Rscript ~/git/climate/countries/USA/prog/10_seasonality_index/seasonality_index_climate_regions.R $start $end $start $end $dname $metric
 
 #################################################
-# 4. NATIONAL SEASONALITY INDEX ANALYSIS
+# 6. NATIONAL SEASONALITY INDEX ANALYSIS
 #################################################
 
 for cod in "${cods[@]}"; do
