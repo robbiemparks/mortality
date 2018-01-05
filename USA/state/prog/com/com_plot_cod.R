@@ -124,10 +124,14 @@ for(j in cod.broad) {
 }
 
 # entire period com plot v1 for all causes
+
+dat$size <- with(dat,1/(COM.95-COM.5))
+dat$size <- 3*(dat$size/max(dat.state$size))
+
 pdf(paste0(file.loc.reg.output,'USA_COM_rates_regional_axis_swapped_v1_',cod.arg,'_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
 ggplot() +
-geom_point(data=subset(dat,type=='max'),aes(x=factor(age),y=COM.mean,size=0.5),fill='red',shape=21) +
-geom_point(data=subset(dat,type=='min'),aes(y=COM.mean,x=factor(age),size=0.5),fill='green',shape=21) +
+geom_point(data=subset(dat,type=='max'),aes(x=factor(age),y=COM.mean,size=size),fill='red',shape=21) +
+geom_point(data=subset(dat,type=='min'),aes(y=COM.mean,x=factor(age),size=size),fill='green',shape=21) +
 geom_hline(linetype=2, yintercept = 0:12, alpha=0.2) +
 geom_vline(linetype=2, xintercept = 1:10,alpha=0.2) +
 #geom_errorbarh(aes(xmin=`COM.5`,xmax=`COM.95`,color=as.factor(sex)),height=0) +

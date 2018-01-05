@@ -2,35 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a0955925-28ef-4974-88ac-9f337af19082" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/USA/state/prog/00_bash/com/com_analysis.sh" afterPath="$PROJECT_DIR$/USA/state/prog/00_bash/com/com_analysis_allcause.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/com/1980_2013/national/values/combined_results/com_inv_com_rates_national_values_method_2_entire_AllCause_1980_2013" afterPath="$PROJECT_DIR$/USA/state/output/com/1980_2013/national/values/combined_results/com_inv_com_rates_national_values_method_2_entire_AllCause_1980_2013" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/com/1980_2013/national/values/combined_results/com_inv_com_rates_national_values_method_2_entire_Cancer_1980_2013" afterPath="$PROJECT_DIR$/USA/state/output/com/1980_2013/national/values/combined_results/com_inv_com_rates_national_values_method_2_entire_Cancer_1980_2013" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/com/1980_2013/national/values/combined_results/com_inv_com_rates_national_values_method_2_entire_Cardiopulmonary_1980_2013" afterPath="$PROJECT_DIR$/USA/state/output/com/1980_2013/national/values/combined_results/com_inv_com_rates_national_values_method_2_entire_Cardiopulmonary_1980_2013" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/com/1980_2013/national/values/combined_results/com_inv_com_rates_national_values_method_2_entire_External_1980_2013" afterPath="$PROJECT_DIR$/USA/state/output/com/1980_2013/national/values/combined_results/com_inv_com_rates_national_values_method_2_entire_External_1980_2013" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/com/1980_2013/national/values/combined_results/com_inv_com_rates_national_values_method_2_entire_Other_1980_2013" afterPath="$PROJECT_DIR$/USA/state/output/com/1980_2013/national/values/combined_results/com_inv_com_rates_national_values_method_2_entire_Other_1980_2013" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/com/1980_2013/national/values/combined_results/com_rates_national_values_method_2_entire_AllCause_1980_2013" afterPath="$PROJECT_DIR$/USA/state/output/com/1980_2013/national/values/combined_results/com_rates_national_values_method_2_entire_AllCause_1980_2013" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/com/1980_2013/national/values/combined_results/com_rates_national_values_method_2_entire_Cancer_1980_2013" afterPath="$PROJECT_DIR$/USA/state/output/com/1980_2013/national/values/combined_results/com_rates_national_values_method_2_entire_Cancer_1980_2013" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/com/1980_2013/national/values/combined_results/com_rates_national_values_method_2_entire_Cardiopulmonary_1980_2013" afterPath="$PROJECT_DIR$/USA/state/output/com/1980_2013/national/values/combined_results/com_rates_national_values_method_2_entire_Cardiopulmonary_1980_2013" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/com/1980_2013/national/values/combined_results/com_rates_national_values_method_2_entire_External_1980_2013" afterPath="$PROJECT_DIR$/USA/state/output/com/1980_2013/national/values/combined_results/com_rates_national_values_method_2_entire_External_1980_2013" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/com/1980_2013/national/values/combined_results/com_rates_national_values_method_2_entire_Other_1980_2013" afterPath="$PROJECT_DIR$/USA/state/output/com/1980_2013/national/values/combined_results/com_rates_national_values_method_2_entire_Other_1980_2013" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/com/1980_2013/national/values/combined_results/inv_com_rates_national_values_method_2_entire_AllCause_1980_2013" afterPath="$PROJECT_DIR$/USA/state/output/com/1980_2013/national/values/combined_results/inv_com_rates_national_values_method_2_entire_AllCause_1980_2013" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/com/1980_2013/national/values/combined_results/inv_com_rates_national_values_method_2_entire_Cancer_1980_2013" afterPath="$PROJECT_DIR$/USA/state/output/com/1980_2013/national/values/combined_results/inv_com_rates_national_values_method_2_entire_Cancer_1980_2013" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/com/1980_2013/national/values/combined_results/inv_com_rates_national_values_method_2_entire_Cardiopulmonary_1980_2013" afterPath="$PROJECT_DIR$/USA/state/output/com/1980_2013/national/values/combined_results/inv_com_rates_national_values_method_2_entire_Cardiopulmonary_1980_2013" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/com/1980_2013/national/values/combined_results/inv_com_rates_national_values_method_2_entire_External_1980_2013" afterPath="$PROJECT_DIR$/USA/state/output/com/1980_2013/national/values/combined_results/inv_com_rates_national_values_method_2_entire_External_1980_2013" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/com/1980_2013/national/values/combined_results/inv_com_rates_national_values_method_2_entire_Other_1980_2013" afterPath="$PROJECT_DIR$/USA/state/output/com/1980_2013/national/values/combined_results/inv_com_rates_national_values_method_2_entire_Other_1980_2013" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/seasonality_index/national/seasonality_index_change_sig5_weighted_AllCause_1980_2013.pdf" afterPath="$PROJECT_DIR$/USA/state/output/seasonality_index/national/seasonality_index_change_sig5_weighted_AllCause_1980_2013.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/seasonality_index/national/seasonality_index_change_sig5_weighted_Cancer_1980_2013.pdf" afterPath="$PROJECT_DIR$/USA/state/output/seasonality_index/national/seasonality_index_change_sig5_weighted_Cancer_1980_2013.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/seasonality_index/national/seasonality_index_change_sig5_weighted_Cardiopulmonary_1980_2013.pdf" afterPath="$PROJECT_DIR$/USA/state/output/seasonality_index/national/seasonality_index_change_sig5_weighted_Cardiopulmonary_1980_2013.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/seasonality_index/national/seasonality_index_change_sig5_weighted_External_1980_2013.pdf" afterPath="$PROJECT_DIR$/USA/state/output/seasonality_index/national/seasonality_index_change_sig5_weighted_External_1980_2013.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/seasonality_index/national/seasonality_index_change_sig5_weighted_Other_1980_2013.pdf" afterPath="$PROJECT_DIR$/USA/state/output/seasonality_index/national/seasonality_index_change_sig5_weighted_Other_1980_2013.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/seasonality_index/regional/seasonality_index_regional_against_climate_fixed_com_AllCause_1980_2013.pdf" afterPath="$PROJECT_DIR$/USA/state/output/seasonality_index/regional/seasonality_index_regional_against_climate_fixed_com_AllCause_1980_2013.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/seasonality_index/regional/seasonality_index_regional_against_climate_fixed_com_Cancer_1980_2013.pdf" afterPath="$PROJECT_DIR$/USA/state/output/seasonality_index/regional/seasonality_index_regional_against_climate_fixed_com_Cancer_1980_2013.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/seasonality_index/regional/seasonality_index_regional_against_climate_fixed_com_Cardiopulmonary_1980_2013.pdf" afterPath="$PROJECT_DIR$/USA/state/output/seasonality_index/regional/seasonality_index_regional_against_climate_fixed_com_Cardiopulmonary_1980_2013.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/seasonality_index/regional/seasonality_index_regional_against_climate_fixed_com_External_1980_2013.pdf" afterPath="$PROJECT_DIR$/USA/state/output/seasonality_index/regional/seasonality_index_regional_against_climate_fixed_com_External_1980_2013.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/seasonality_index/regional/seasonality_index_regional_against_climate_fixed_com_Other_1980_2013.pdf" afterPath="$PROJECT_DIR$/USA/state/output/seasonality_index/regional/seasonality_index_regional_against_climate_fixed_com_Other_1980_2013.pdf" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/data/objects/objects.R" afterPath="$PROJECT_DIR$/USA/state/data/objects/objects.R" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/00_bash/wavelet/wavelet_paper_cod.sh" afterPath="$PROJECT_DIR$/USA/state/prog/00_bash/wavelet/wavelet_paper_cod.sh" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/com/com_data_process_cod.R" afterPath="$PROJECT_DIR$/USA/state/prog/com/com_data_process_cod.R" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/com/com_plot_cod.R" afterPath="$PROJECT_DIR$/USA/state/prog/com/com_plot_cod.R" />
     </list>
@@ -53,8 +25,18 @@
       <file leaf-file-name="com_plot_cod.R" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/USA/state/prog/com/com_plot_cod.R">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="78">
-              <caret line="42" column="143" lean-forward="false" selection-start-line="42" selection-start-column="143" selection-end-line="42" selection-end-column="143" />
+            <state relative-caret-position="408">
+              <caret line="130" column="0" lean-forward="false" selection-start-line="130" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="com_data_process_cod.R" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/USA/state/prog/com/com_data_process_cod.R">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="588">
+              <caret line="99" column="10" lean-forward="false" selection-start-line="99" selection-start-column="10" selection-end-line="99" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -152,15 +134,15 @@
         <option value="$PROJECT_DIR$/USA/state/prog/com/com_analysis_region.R" />
         <option value="$PROJECT_DIR$/USA/state/prog/com/com_analysis_region_cod.R" />
         <option value="$PROJECT_DIR$/USA/state/prog/com/anti_com_analysis_region_cod.R" />
-        <option value="$PROJECT_DIR$/USA/state/prog/com/com_data_process_cod.R" />
         <option value="$PROJECT_DIR$/USA/state/prog/00_bash/wavelet/wavelet_paper_cod.sh" />
         <option value="$PROJECT_DIR$/USA/state/data/objects/objects.R" />
+        <option value="$PROJECT_DIR$/USA/state/prog/com/com_data_process_cod.R" />
         <option value="$PROJECT_DIR$/USA/state/prog/com/com_plot_cod.R" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-96" />
+    <option name="x" value="-151" />
     <option name="y" value="23" />
     <option name="width" value="1440" />
     <option name="height" value="877" />
@@ -2428,13 +2410,6 @@
       <option name="presentableId" value="Default" />
       <updated>1486989512159</updated>
     </task>
-    <task id="LOCAL-00072" summary="updated cod mortality models with 3 variables">
-      <created>1513537883801</created>
-      <option name="number" value="00072" />
-      <option name="presentableId" value="LOCAL-00072" />
-      <option name="project" value="LOCAL" />
-      <updated>1513537883801</updated>
-    </task>
     <task id="LOCAL-00073" summary="updated cod mortality models with 3 variables">
       <created>1513538462367</created>
       <option name="number" value="00073" />
@@ -2771,11 +2746,18 @@
       <option name="project" value="LOCAL" />
       <updated>1515099975591</updated>
     </task>
-    <option name="localTasksCounter" value="121" />
+    <task id="LOCAL-00121" summary="updated cod mortality models with 3 variables">
+      <created>1515152496956</created>
+      <option name="number" value="00121" />
+      <option name="presentableId" value="LOCAL-00121" />
+      <option name="project" value="LOCAL" />
+      <updated>1515152496956</updated>
+    </task>
+    <option name="localTasksCounter" value="122" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-96" y="23" width="1440" height="877" extended-state="0" />
+    <frame x="-151" y="23" width="1440" height="877" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25833333" sideWeight="0.49589685" order="0" side_tool="false" content_ui="combo" />
@@ -3202,14 +3184,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/USA/state/prog/com/com_data_process_cod.R">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-405">
-          <caret line="33" column="49" lean-forward="true" selection-start-line="33" selection-start-column="49" selection-end-line="33" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/USA/state/prog/00_bash/wavelet/wavelet_paper_cod.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="326">
@@ -3218,10 +3192,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/USA/state/prog/com/com_data_process_cod.R">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="588">
+          <caret line="99" column="10" lean-forward="false" selection-start-line="99" selection-start-column="10" selection-end-line="99" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/USA/state/prog/com/com_plot_cod.R">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="42" column="143" lean-forward="false" selection-start-line="42" selection-start-column="143" selection-end-line="42" selection-end-column="143" />
+        <state relative-caret-position="408">
+          <caret line="130" column="0" lean-forward="false" selection-start-line="130" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
           <folding />
         </state>
       </provider>

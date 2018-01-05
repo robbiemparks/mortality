@@ -86,8 +86,6 @@ for(j in region.lookup) {
 saveRDS(dat.entire,paste0(file.loc.reg.output,'com_rates_regional_values_method_2_entire_',cod.arg,'_',
         year.start.arg,'_',year.end.arg))
 
-dat.entire.com <- dat.entire
-
 #INV COM
 
 #construct dataset for entire period national analysis method 2
