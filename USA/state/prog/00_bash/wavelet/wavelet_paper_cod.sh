@@ -64,15 +64,15 @@ for cod in "${cods[@]}"; do
 echo "starting regional COM analysis for $cod for years $start - $end";
 
 # runs regional COM analysis
-Rscript ~/git/mortality/USA/state/prog/com/com_analysis_region_cod.R $start $end $cod &
+#Rscript ~/git/mortality/USA/state/prog/com/com_analysis_region_cod.R $start $end $cod &
 
 # runs regional anti-COM analysis
-Rscript ~/git/mortality/USA/state/prog/com/anti_com_analysis_region_cod.R $start $end $cod &
+#Rscript ~/git/mortality/USA/state/prog/com/anti_com_analysis_region_cod.R $start $end $cod &
 
 echo "processing data for $country for $cod, years $start - $end";
 
 # process COM data
-Rscript ~/git/mortality/USA/state/prog/com/com_data_process_cod.R $start $end $cod
+#Rscript ~/git/mortality/USA/state/prog/com/com_data_process_cod.R $start $end $cod
 
 done;
 
@@ -85,7 +85,7 @@ for cod in "${cods[@]}"; do
 echo "plotting COM analysis for $country for $cod, years $start - $end";
 
 # plots
-#Rscript ~/git/mortality/USA/state/prog/com/com_plot_cod.R $start $end $cod
+Rscript ~/git/mortality/USA/state/prog/com/com_plot_cod.R $start $end $cod
 
 done;
 
@@ -108,6 +108,6 @@ for cod in "${cods[@]}"; do
 echo "starting seasonality index analysis for $country, years $start - $end";
 
 # runs seasonality index analysis
-Rscript ~/git/mortality/USA/state/prog/seasonality_index/seasonality_index_cod.R $start $end $start $end $dname $metric $cod
+#Rscript ~/git/mortality/USA/state/prog/seasonality_index/seasonality_index_cod.R $start $end $start $end $dname $metric $cod
 
 done;

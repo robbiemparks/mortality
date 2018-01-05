@@ -27,11 +27,11 @@ halfway <- floor(num.years/2)
 year.group.1 <- years[1:halfway]
 year.group.2 <- years[(halfway+1):(num.years)]
 
+# 1. NATIONAL
+
 # load entire national data
 file.loc.nat.input <- paste0("../../output/com/",year.start.arg,'_',year.end.arg,"/national/values/combined_results/")
 file.loc.nat.output <- paste0("../../output/com/",year.start.arg,'_',year.end.arg,"/national/plots/")
-
-# 1. NATIONAL
 
 # DEATH COUNTS
 
@@ -41,12 +41,6 @@ file.loc.nat.output <- paste0("../../output/com/",year.start.arg,'_',year.end.ar
 
 # produce dataset for national
 dat.nat <- readRDS(paste0(file.loc.nat.input,'com_inv_com_rates_national_values_method_2_entire_',cod.arg,'_',year.start.arg,'_',year.end.arg))
-
-# remove com data that doesn't meet wavelet criteria NEED TO FIGURE OUT HOW
-#dat.nat <- subset(dat.nat,!(age==35 & sex=='Men'))
-#dat.nat <- subset(dat.nat,!(age==5 & sex=='Women'))
-#dat.nat <- subset(dat.nat,!(age==15 & sex=='Women'))
-#dat.nat <- subset(dat.nat,!(age==25 & sex=='Women'))
 
 # entire period com plot v1
 pdf(paste0(file.loc.nat.output,'USA_COM_rates_total_axis_swapped_v1_',cod.arg,'_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
@@ -107,3 +101,43 @@ theme(text = element_text(size = 15),panel.grid.major = element_blank(), panel.g
 panel.background = element_blank(),strip.background = element_blank(), axis.line = element_line(colour = "black"))
 dev.off()
 
+# REGIONAL
+
+file.loc.reg.input <- paste0("../../output/com/",year.start.arg,'_',year.end.arg,"/region/values/combined_results/")
+file.loc.reg.output <- paste0("../../output/com/",year.start.arg,'_',year.end.arg,"/region/plots/")
+ifelse(!dir.exists(file.loc.reg.input), dir.create(file.loc.reg.input, recursive=TRUE), FALSE)
+ifelse(!dir.exists(file.loc.reg.output), dir.create(file.loc.reg.output, recursive=TRUE), FALSE)
+
+# DEATH RATES
+
+# load region data
+dat = data.frame()
+for(j in cod.broad) {
+    dat.state <- readRDS(paste0(file.loc.reg.input,'com_rates_regional_values_method_2_entire_',
+                                j,'_',year.start.arg,'_',year.end.arg))
+    dat.state$cause = j ; dat.state$type = 'max'
+
+    dat.state.inv <- readRDS(paste0(file.loc.reg.input,'anti_com_rates_regional_values_method_2_entire_',
+                                j,'_',year.start.arg,'_',year.end.arg))
+    dat.state.inv$cause = j; dat.state.inv$type = 'min'
+    dat = rbind(dat,dat.state,dat.state.inv)
+}
+
+# entire period com plot v1 for all causes
+pdf(paste0(file.loc.reg.output,'USA_COM_rates_regional_axis_swapped_v1_',cod.arg,'_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
+ggplot() +
+geom_point(data=subset(dat,type=='max'),aes(x=factor(age),y=COM.mean,size=0.5),fill='red',shape=21) +
+geom_point(data=subset(dat,type=='min'),aes(y=COM.mean,x=factor(age),size=0.5),fill='green',shape=21) +
+geom_hline(linetype=2, yintercept = 0:12, alpha=0.2) +
+geom_vline(linetype=2, xintercept = 1:10,alpha=0.2) +
+#geom_errorbarh(aes(xmin=`COM.5`,xmax=`COM.95`,color=as.factor(sex)),height=0) +
+ylab('Month') +
+xlab('Age group') + #ggtitle(cod.arg) +
+scale_y_continuous(breaks=c(seq(0,12)),labels=c(month.short[12],month.short),expand = c(0.01, 0)) +
+scale_x_discrete(labels=age.print) +
+#xlim(1,12) +
+facet_wrap(~sex+cause,nrow=2) +
+scale_size(guide='none') +
+theme(text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.text.x = element_text(angle=90),
+panel.background = element_blank(),strip.background = element_blank(), axis.line = element_line(colour = "black"))
+dev.off()

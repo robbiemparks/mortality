@@ -46,6 +46,11 @@ noise.lookup <- noise.lookup <- c('white_noise','red_noise')
 models <- c('1','1a','2','2a','3','3a','4','1b','1c','1d','1e','1f','1de','1ef','1g','0')
 #model <- models[model]
 
+# climate regions
+region.lookup=c("Northwest","West_North_Central", "Northeast",
+                "Upper_Midwest","East_North_Central", "West",
+                "Southwest", "South", "Southeast")
+
 # ICD10 coding for intentional injuries
 intentional = c('X60','X61','X62','X63','X64','X65','X66','X67','X68','X69',
 'X70','X71','X72','X73','X74','X741','X742','X743','X744','X749',
@@ -57,3 +62,6 @@ intentional = c('X60','X61','X62','X63','X64','X65','X66','X67','X68','X69',
 'Y09','Y35', 'Y350','Y351','Y352','Y353','Y354','Y355','Y356','Y357',
 'U011','Y36', 'Y360','Y361','Y362','Y363','Y364','Y365','Y366','Y367',
 'Y368','Y369', 'Y870','Y871', 'Y890','Y891')
+
+# cod lookups
+cod.broad = c('Allcause','Cancer','Cardiopulmonary','External','Other')
