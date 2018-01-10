@@ -2,20 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a0955925-28ef-4974-88ac-9f337af19082" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/2var/meanc3_number_of_min_3_day_above_nonnormal_90_upwaves_2/non_pw/type_1d/parameters/climate_month_params_heatmap_1d_1980_2013_t2m_1_meanc3_number_of_min_3_day_above_nonnormal_90_upwaves_2.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/2var/meanc3_number_of_min_3_day_above_nonnormal_90_upwaves_2/non_pw/type_1d/parameters/climate_month_params_heatmap_1d_1980_2013_t2m_2_meanc3_number_of_min_3_day_above_nonnormal_90_upwaves_2.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/2var/meanc3_number_of_min_3_day_above_nonnormal_90_upwaves_2/non_pw/type_1d/parameters/climate_month_params_heatmap_1d_1980_2013_t2m_meanc3_number_of_min_3_day_above_nonnormal_90_upwaves_2.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/2var/meanc3_number_of_min_3_day_above_nonnormal_90_upwaves_2/non_pw/type_1d/parameters/climate_month_params_heatmap_scenarios_female_1d_1980_2013_t2m_meanc3_number_of_min_3_day_above_nonnormal_90_upwaves_2.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/2var/meanc3_number_of_min_3_day_above_nonnormal_90_upwaves_2/non_pw/type_1d/parameters/climate_month_params_heatmap_scenarios_male_1d_1980_2013_t2m_meanc3_number_of_min_3_day_above_nonnormal_90_upwaves_2.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/2var/meanc3_number_of_min_3_day_below_nonnormal_90_downwaves_2/non_pw/type_1d/parameters/zz_legacy/climate_month_params_heatmap_1d_1980_2013_t2m_1_meanc3_number_of_min_3_day_below_nonnormal_90_downwaves_2.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/2var/meanc3_number_of_min_3_day_below_nonnormal_90_downwaves_2/non_pw/type_1d/parameters/zz_legacy/climate_month_params_heatmap_1d_1980_2013_t2m_2_meanc3_number_of_min_3_day_below_nonnormal_90_downwaves_2.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/2var/meanc3_number_of_min_3_day_below_nonnormal_90_downwaves_2/non_pw/type_1d/parameters/zz_legacy/climate_month_params_heatmap_1d_1980_2013_t2m_meanc3_number_of_min_3_day_below_nonnormal_90_downwaves_2.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/2var/meanc3_number_of_min_3_day_below_nonnormal_90_downwaves_2/non_pw/type_1d/parameters/zz_legacy/climate_month_params_heatmap_scenarios_female_1d_1980_2013_t2m_meanc3_number_of_min_3_day_below_nonnormal_90_downwaves_2.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/2var/meanc3_number_of_min_3_day_below_nonnormal_90_downwaves_2/non_pw/type_1d/parameters/zz_legacy/climate_month_params_heatmap_scenarios_male_1d_1980_2013_t2m_meanc3_number_of_min_3_day_below_nonnormal_90_downwaves_2.pdf" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/data/objects/objects.R" afterPath="$PROJECT_DIR$/USA/state/data/objects/objects.R" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/00_bash/plotting/plotting_results_climate_cod_2var.sh" afterPath="$PROJECT_DIR$/USA/state/prog/00_bash/plotting/plotting_results_climate_cod_2var.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/mapping_posterior/mapping_posterior_climate_cod_2var.R" afterPath="$PROJECT_DIR$/USA/state/prog/mapping_posterior/mapping_posterior_climate_cod_2var.R" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -37,7 +25,7 @@
         <entry file="file://$PROJECT_DIR$/USA/state/prog/00_bash/plotting/plotting_results_climate_cod_2var.sh">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="480">
-              <caret line="32" column="99" lean-forward="false" selection-start-line="32" selection-start-column="99" selection-end-line="32" selection-end-column="99" />
+              <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -177,8 +165,8 @@
         <option value="$PROJECT_DIR$/USA/state/prog/attribution/attribution_map_cod_1var.R" />
         <option value="$PROJECT_DIR$/USA/state/prog/mapping_posterior/mapping_posterior_climate_cod_1var.R" />
         <option value="$PROJECT_DIR$/USA/state/prog/mapping_posterior/mapping_posterior_climate_cod_2var.R" />
-        <option value="$PROJECT_DIR$/USA/state/prog/00_bash/plotting/plotting_results_climate_cod_2var.sh" />
         <option value="$PROJECT_DIR$/USA/state/data/objects/objects.R" />
+        <option value="$PROJECT_DIR$/USA/state/prog/00_bash/plotting/plotting_results_climate_cod_2var.sh" />
       </list>
     </option>
   </component>
@@ -530,13 +518,6 @@
       <option name="presentableId" value="Default" />
       <updated>1486989512159</updated>
     </task>
-    <task id="LOCAL-00086" summary="updated cod mortality models with 3 variables">
-      <created>1513701874332</created>
-      <option name="number" value="00086" />
-      <option name="presentableId" value="LOCAL-00086" />
-      <option name="project" value="LOCAL" />
-      <updated>1513701874332</updated>
-    </task>
     <task id="LOCAL-00087" summary="updated cod mortality models with 3 variables">
       <created>1513774984251</created>
       <option name="number" value="00087" />
@@ -873,7 +854,14 @@
       <option name="project" value="LOCAL" />
       <updated>1515421163940</updated>
     </task>
-    <option name="localTasksCounter" value="135" />
+    <task id="LOCAL-00135" summary="updated cod mortality models with 3 variables">
+      <created>1515576645484</created>
+      <option name="number" value="00135" />
+      <option name="presentableId" value="LOCAL-00135" />
+      <option name="project" value="LOCAL" />
+      <updated>1515576645485</updated>
+    </task>
+    <option name="localTasksCounter" value="136" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1305,7 +1293,7 @@
     <entry file="file://$PROJECT_DIR$/USA/state/prog/00_bash/plotting/plotting_results_climate_cod_2var.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
-          <caret line="32" column="99" lean-forward="false" selection-start-line="32" selection-start-column="99" selection-end-line="32" selection-end-column="99" />
+          <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
           <folding />
         </state>
       </provider>
