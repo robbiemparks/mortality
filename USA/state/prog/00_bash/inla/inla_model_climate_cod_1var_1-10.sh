@@ -18,7 +18,7 @@ declare -i end2=2013
 declare country="USA"
 declare dname="t2m"
 declare metric="Cancer"
-declare cod="Cardiopulmonary"
+declare cod="External"
 
 #################################################
 # 1. RUN AGE-SEPARATED MODEL
