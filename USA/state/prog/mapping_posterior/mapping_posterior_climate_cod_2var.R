@@ -18,6 +18,8 @@ metric1 <- as.character(args[6])
 metric2 <- as.character(args[7])
 cause <- as.character(args[8])
 
+print(args)
+
 # year.start = 1980 ; year.end = 2013 ; country = 'USA' ; model = 10 ; dname = 't2m' ;
 # metric1 = 'meanc3' ; metric2 = 'sd'; cause = 'Cardiopulmonary'
 
@@ -76,7 +78,7 @@ if(model=='1d'){
     dat.csv$odds.ll = round(100*(dat.csv$odds.ll),3)
     dat.csv$odds.ul = round(100*(dat.csv$odds.ul),3)
     names(dat.csv) = c('age','sex','month','mean','2.5%','97.5%')
-    write.csv(dat.csv,paste0('../../data/climate_effects/',dname,'/',metric,'/non_pw/type_',model,'/parameters/',country,'_rate_pred_type',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_fast.csv'))
+    #write.csv(dat.csv,paste0('../../data/climate_effects/',dname,'/',metric,'/non_pw/type_',model,'/parameters/',country,'_rate_pred_type',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_fast.csv'))
 
     # HEATMAPS OF PARAMETERS (SEXY ALTERNATIVE TO FOREST PLOTS)
     heatmap.national.age <- function() {
