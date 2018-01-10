@@ -40,7 +40,7 @@ dat.dict = data.frame(metric=c('meanc3','number_of_min_3_day_below_nonnormal_90_
                                 'number_of_min_3_day_below_+5_jumpdownwaves_2',
                                 'number_of_min_3_day_above_+5_jumpupwaves_2',
                                 'number_of_days_above_nonnormal_90_2',
-                                'number_of_days_below_nonnormal_10_2',
+                                'number_of_days_below_nonnormal_90_2',
                                 'number_of_days_above_+5_2',
                                 'number_of_days_below_-5_2',
                                 'sd'),
