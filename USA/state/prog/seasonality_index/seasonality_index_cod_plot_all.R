@@ -62,6 +62,9 @@ age.colours <- c('#FF1493','#B8860B','#808080','#00BFFF','#00CED1')
 age.colours <- c(age.colours,'#66CDAA','#9ACD32','#ADFF2F','#9932CC','#FF8C00')
 age.colours=c("blue",brewer.pal(9,"BrBG")[c(9:6,4:1)],"grey")
 
+lin.reg.grad.weight$cause <- gsub('Allcause', 'All Cause', lin.reg.grad.weight$cause)
+
+
 # plot coefficient of seasonality for each age nationally at start and end of period with significance
 plot.function.diff.seas.sig.5 <- function(shape.selected) {
 
@@ -69,18 +72,28 @@ plot.function.diff.seas.sig.5 <- function(shape.selected) {
     #lin.reg.grad$shape.code <- as.factor(lin.reg.grad$shape.code)
 
     print(ggplot() +
-    geom_point(data=subset(lin.reg.grad.weight,sig.test.5==1),colour='black',aes(shape=as.factor(sex),x=(start.value.2/100),y=(end.value.2/100)),size=8) +
-    geom_point(data=subset(lin.reg.grad.weight,sex==1|2),aes(shape=as.factor(sex), color=as.factor(age),x=(start.value.2/100),y=(end.value.2/100)),size=6) +
+    geom_point(data=subset(lin.reg.grad.weight,sig.test.5==1),colour='hot pink',aes(shape=as.factor(sex),x=(start.value.2/100),y=(end.value.2/100)),size=5) +
+    geom_point(data=subset(lin.reg.grad.weight,sex==1|2),aes(shape=as.factor(sex), color=as.factor(age),x=(start.value.2/100),y=(end.value.2/100)),size=3) +
     geom_abline(slope=1,intercept=0, linetype=2,alpha=0.5) +
     scale_x_continuous(name=paste0('Percent difference in death rates in ',year.start),labels=percent,limits=c(0,(100/100))) +
     scale_y_continuous(name=paste0('Percent difference in death rates in ',year.end),labels=percent,limits=c(0,(100/100))) +
-    geom_hline(linetype=2, yintercept = seq(0,1,0.1), alpha=0.2) +
-    geom_vline(linetype=2, xintercept = seq(0,1,0.1), alpha=0.2) +
+    #geom_hline(linetype=2, yintercept = seq(0,1,0.1), alpha=0.2) +
+    #geom_vline(linetype=2, xintercept = seq(0,1,0.1), alpha=0.2) +
+    annotate("segment", x=-Inf, xend=Inf, y=-Inf, yend=-Inf)+
+    annotate("segment", x=-Inf, xend=-Inf, y=-Inf, yend=Inf) +
     scale_shape_manual(values=c(16,shape.selected),labels=c('Men','Women'),guide = guide_legend(title = 'Sex:')) +
     scale_colour_manual(labels=c('0-4','5-14','15-24','25-34','35-44','45-54','55-64','65-74','75-84','85+'),values=age.colours,guide = guide_legend(title = 'Age group:')) +
     facet_wrap(~cause) +
-    theme(legend.box.just = "centre",legend.box = "horizontal",legend.position='bottom',text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(), axis.line.x = element_line(colour = "black"),
-    axis.line.y = element_line(colour = "black"),rect = element_blank())#,legend.background = element_rect(fill = "grey95"))
+    theme(legend.box.just = "centre",legend.box = "horizontal",legend.position=c(.85, .2),text = element_text(size = 15),
+    panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(),
+    axis.line.x = element_line(colour = "black"), axis.line.y = element_line(colour = "black"),
+    rect = element_blank(),legend.background = element_rect(fill = "grey95"))
+
+  #   legend.position = c(.95, .95),
+  # legend.justification = c("right", "top"),
+  # legend.box.just = "right",
+  # legend.margin = margin(6, 6, 6, 6)
+
     )
 }
 

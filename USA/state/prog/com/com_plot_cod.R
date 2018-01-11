@@ -51,6 +51,8 @@ for (i in cod.broad){
 }
 dat.nat.complete$size <- 3*(dat.nat.complete$size/max(dat.nat.complete$size))
 
+dat.nat.complete$cause <- gsub('Allcause', 'All Cause', dat.nat.complete$cause)
+
 # entire period com plot v1
 pdf(paste0(file.loc.nat.output,'USA_COM_rates_total_axis_swapped_v1_',cod.arg,'_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
 ggplot() +
@@ -132,6 +134,49 @@ panel.background = element_blank(),strip.background = element_blank(), axis.line
 legend.position = 'bottom',legend.justification='center',legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
 dev.off()
 
+# entire period com plot v1a (plotting all causes together)
+pdf(paste0(file.loc.nat.output,'USA_COM_rates_total_axis_swapped_v2_allcauses_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
+dat.nat.complete$size = dat.nat.complete$size/2
+ggplot() +
+    geom_point(data=subset(dat.nat.complete,type=='max'),aes(x=factor(age),y=COM.mean,size=size),fill='red',shape=24) +
+geom_point(data=subset(dat.nat.complete,type=='min'),aes(y=COM.mean,x=factor(age),size=size),fill='green',shape=25) +
+#geom_point(data=subset(dat.nat.complete,type=='max'&cause!='Allcause'),aes(x=factor(age),y=COM.mean,size=size,shape=cause),color='dark red',alpha=0.5) +
+#geom_point(data=subset(dat.nat.complete,type=='min'&cause!='Allcause'),aes(y=COM.mean,x=factor(age),size=size,shape=cause),color='forest green',alpha=0.5) +
+#geom_hline(linetype=2, yintercept = 0:12, alpha=0.2) +
+#geom_vline(linetype=2, xintercept = 1:10,alpha=0.2) +
+#geom_errorbarh(aes(xmin=lowerCI,xmax=upperCI,color=as.factor(sex)),height=0) +
+ylab('Month') +
+xlab('Age group') + ggtitle('') +
+scale_y_continuous(breaks=c(seq(0,12)),labels=c(month.short[12],month.short),expand = c(0.01, 0)) +
+scale_x_discrete(labels=age.print) +
+#xlim(1,12) +
+facet_grid(sex~cause) +
+scale_size(guide='none') +
+annotate("segment", x=-Inf, xend=Inf, y=-Inf, yend=-Inf)+
+annotate("segment", x=-Inf, xend=-Inf, y=-Inf, yend=Inf) +
+theme(text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.text.x = element_text(angle=90),
+panel.background = element_blank(),strip.background = element_blank(), axis.line = element_line(colour = "black"),
+legend.position = 'bottom',legend.justification='center',legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"),
+panel.spacing = unit(2, "lines"))
+dev.off()
+
+# entire period com plot v1a (plotting all causes together)
+pdf(paste0(file.loc.nat.output,'USA_COM_rates_total_axis_swapped_v3_allcauses_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
+ggplot() +
+    geom_point(data=subset(dat.nat.complete,type=='max'),aes(x=factor(age),y=COM.mean,size=size,fill=as.factor(cause)),shape=24) +
+geom_point(data=subset(dat.nat.complete,type=='min'),aes(y=COM.mean,x=factor(age),size=size,fill=as.factor(cause)),shape=25) +
+ylab('Month') +
+xlab('Age group') + ggtitle('') +
+scale_y_continuous(breaks=c(seq(0,12)),labels=c(month.short[12],month.short),expand = c(0.01, 0)) +
+scale_x_discrete(labels=age.print) +
+scale_fill_discrete(name="Cause") +
+facet_wrap(~sex,nrow=1) +
+scale_size(guide='none') +
+theme(text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.text.x = element_text(angle=90),
+panel.background = element_blank(),strip.background = element_blank(), axis.line = element_line(colour = "black"),
+legend.position = 'bottom',legend.justification='center',legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"),panel.spacing = unit(2.5, "lines"))
+dev.off()
+
 # REGIONAL
 
 file.loc.reg.input <- paste0("../../output/com/",year.start.arg,'_',year.end.arg,"/region/values/combined_results/")
@@ -159,6 +204,7 @@ dat$sex <- as.factor(as.character(dat$sex))
 levels(dat$sex) <- c('Men','Women')
 dat$size <- with(dat,1/(COM.95-COM.5))
 dat$size <- 3*(dat$size/max(dat$size))
+
 # entire period com plot v1 for all causes
 
 # plot with all causes facetted by sex

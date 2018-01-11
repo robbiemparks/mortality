@@ -32,7 +32,7 @@ for metric2 in "${metrics2[@]}"; do
 
 for model in "${models[@]}"; do
 
-Rscript ~/git/mortality/USA/state/prog/bind_posterior/bind_posterior_climate_cod_2var.R $start $end $country 10 $dname $metric1 $metric2 $cod &
-#Rscript ~/git/mortality/USA/state/prog/mapping_posterior/mapping_posterior_climate_cod_2var.R $start $end $country $model $dname $metric1 $metric2 $cod
+#Rscript ~/git/mortality/USA/state/prog/bind_posterior/bind_posterior_climate_cod_2var.R $start $end $country 10 $dname $metric1 $metric2 $cod
+Rscript ~/git/mortality/USA/state/prog/mapping_posterior/mapping_posterior_climate_cod_2var.R $start $end $country $model $dname $metric1 $metric2 $cod
 
 done; done; done; done; done;
