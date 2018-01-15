@@ -46,7 +46,7 @@ file.loc.nat.input <- paste0("../../output/com/",year.start.arg,'_',year.end.arg
 file.loc.nat.output <- paste0("../../output/com/",year.start.arg,'_',year.end.arg,"/national/plots/")
 
 # produce dataset for national
-dat.nat <- readRDS(paste0(file.loc.nat.input,'com_inv_com_national_values_method_2_entire_',year.start.arg,'_',year.end.arg))
+dat.nat <- readRDS(paste0(file.loc.nat.input,'com_inv_com_rates_national_values_method_2_entire_AllCause_',year.start.arg,'_',year.end.arg))
 
 # remove com data that doesn't meet wavelet criteria (automate?)
 dat.nat <- subset(dat.nat,!(age==35 & sex=='Men'))
@@ -55,7 +55,7 @@ dat.nat <- subset(dat.nat,!(age==15 & sex=='Women'))
 dat.nat <- subset(dat.nat,!(age==25 & sex=='Women'))
 
 # load split national data
-dat.nat.split <- readRDS(paste0(file.loc.nat.input,'com_inv_com_national_values_method_2_split_',year.start.arg,'_',year.end.arg))
+#dat.nat.split <- readRDS(paste0(file.loc.nat.input,'com_inv_com_national_values_method_2_split_',year.start.arg,'_',year.end.arg))
 
 # entire period com plot v1
 pdf(paste0(file.loc.nat.output,'USA_COM_total_axis_swapped_v1_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
@@ -342,10 +342,10 @@ for(i in c(0,5,15,25,35,45,55,65,75,85)) {
 dat.super.temp.inv <- dat.super.temp
 
 # plot superregions
-#ggplot() +
-#geom_polygon(data=map,aes(x=long,y=lat,group=group),fill='white',color='Black',size=1) +
-#geom_polygon(data=subset(map.superregions),aes(x=long,y=lat,group=group),alpha=0,fill='Red',color='Red',size=1.2) +
-#geom_text(data=superregion.coords,aes(x=long.txt,y=lat.txt,label=region))
+# ggplot() +
+# geom_polygon(data=map,aes(x=long,y=lat,group=group),fill='white',color='Black',size=1) +
+# geom_polygon(data=subset(map.superregions),aes(x=long,y=lat,group=group),alpha=0,fill='Red',color='Red',size=1.2) +
+# geom_text(data=superregion.coords,aes(x=long.txt,y=lat.txt,label=region))
 
 # merge selected data to map dataframe for colouring of ggplot
 USA.df <- merge(map, shapefile.data, by='id')
@@ -361,16 +361,10 @@ dat.state <- readRDS(paste0(file.loc.region,'values/combined_results/com_rates_r
 dat.state.inv <- readRDS(paste0(file.loc.region,'values/combined_results/anti_com_rates_regional_values_method_2_entire_AllCause_',year.start.arg,'_',year.end.arg))
 
 # fix region names
-# CHECK THIS!!!
-#dat.state$region <- gsub('Northern_Rockies_and_Plains', 'West_North_Central', dat.state$region)
-#dat.state$region <- gsub('Ohio_Valley', 'Central', dat.state$region)
-#dat.state$region <- gsub('Upper_Midwest', 'East_North_Central', dat.state$region)#
-dat.state$region <- gsub('Upper_Midwest', 'Central', dat.state$region)
-#dat.state.inv$region <- gsub('Northern_Rockies_and_Plains', 'West_North_Central', dat.state.inv$region)
-#dat.state.inv$region <- gsub('Ohio_Valley', 'Central', dat.state.inv$region)
-#dat.state.inv$region <- gsub('Upper_Midwest', 'East_North_Central', dat.state.inv$region)
-dat.state.inv$region <- gsub('Upper_Midwest', 'Central', dat.state.inv$region)
-
+dat.state$region <- gsub('East_North_Central', 'Central', dat.state$region)
+dat.state$region <- gsub('Upper_Midwest', 'East_North_Central', dat.state$region)#
+dat.state.inv$region <- gsub('East_North_Central', 'Central', dat.state.inv$region)
+dat.state.inv$region <- gsub('Upper_Midwest', 'East_North_Central', dat.state.inv$region)
 
 # round com data for each region
 dat.state$COM.entire.round <- round(dat.state$COM.mean)
@@ -402,8 +396,8 @@ dat.state <- merge(dat.state,dat.mark)
 dat.state.inv <- merge(dat.state.inv,dat.mark)
 
 # mark rounded COM with a 0 if missing
-dat.state$COM.entire.round <- ifelse(dat.state$color.test==0,0,dat.state$COM.entire.round)
-dat.state.inv$COM.entire.round <- ifelse(dat.state.inv$color.test==0,0,dat.state.inv$COM.entire.round)
+#dat.state$COM.entire.round <- ifelse(dat.state$color.test==0,0,dat.state$COM.entire.round)
+#dat.state.inv$COM.entire.round <- ifelse(dat.state.inv$color.test==0,0,dat.state.inv$COM.entire.round)
 
 # load climate data for 1982-2013 for superregions
 dat.temp.super <- read.csv('../../data/temperature/climate_region_temp.csv')
@@ -413,110 +407,111 @@ dat.temp.super <- read.csv('../../data/temperature/climate_region_temp.csv')
 # COM MAPS
 ###############################################################
 
-# attach com max for each age to dat.super.temp
-dat.super.temp <- merge(dat.super.temp,dat.state,by=c('sex','age','region'))
-dat.super.temp$month <- dat.super.temp$COM.entire.round
-dat.super.temp <- merge(dat.super.temp,dat.temp.super,by=c('month','region'))
-
-dat.super.temp.inv <- merge(dat.super.temp.inv,dat.state.inv,by=c('sex','age','region'))
-dat.super.temp.inv$month <- dat.super.temp.inv$COM.entire.round
-dat.super.temp.inv <- merge(dat.super.temp.inv,dat.temp.super,by=c('month','region'))
-
-# merge selected data to map dataframe for colouring of ggplot
-
-dat.state.map <- merge(USA.df,dat.state,by='climate_region')
-dat.state.map <- merge(dat.state.map, age.code, by ='age')
-dat.state.map <- merge(dat.state.map,dat.temp.super,by.x=c('COM.entire.round','region'),by.y=c('month','region'),all.x=TRUE)
-dat.state.map <- merge(dat.state.map,superregion.coords[,c('long.txt','lat.txt','region')],by.x=c('region'),by.y=c('region'),all.x=1)
-dat.state.map <- with(dat.state.map, dat.state.map[order(sex,age,DRAWSEQ,order),])
-
-dat.state.map.inv <- merge(USA.df,dat.state.inv,by='climate_region')
-dat.state.map.inv <- merge(dat.state.map.inv, age.code, by ='age')
-dat.state.map.inv <- merge(dat.state.map.inv,dat.temp.super,by.x=c('COM.entire.round','region'),by.y=c('month','region'),all.x=TRUE)
-dat.state.map.inv <- merge(dat.state.map.inv,superregion.coords[,c('long.txt','lat.txt','region')],by.x=c('region'),by.y=c('region'),all.x=1)
-dat.state.map.inv <- with(dat.state.map.inv, dat.state.map.inv[order(sex,age,DRAWSEQ,order),])
-
-# keep all months in legend
-dat.state.map$test <- as.factor(as.character(dat.state.map$COM.entire.round))
-dat.state.map.inv$test <- as.factor(as.character(dat.state.map.inv$COM.entire.round))
-
-# make sure the age groups are in the correct order for plotting
-dat.state.map$age.print <- with(dat.state.map,reorder(age.print,age))
-dat.state.map.inv$age.print <- with(dat.state.map.inv,reorder(age.print,age))
-dat.super.temp$age.print <- with(dat.super.temp,reorder(age.print,age))
-dat.super.temp.inv$age.print <- with(dat.super.temp.inv,reorder(age.print,age))
-
-# fix map test colouring
-dat.state.map <- merge(dat.state.map, month.lookup)
-dat.state.map.inv <- merge(dat.state.map.inv, month.lookup)
-
-# reorder again
-dat.state.map <- with(dat.state.map, dat.state.map[order(sex,age,DRAWSEQ,order),])
-dat.state.map.inv <- with(dat.state.map.inv, dat.state.map.inv[order(sex,age,DRAWSEQ,order),])
-
-# ROUNDED
-
-# set colour scheme for months map
-map.climate.colour.1 <- '#FFFFFF'
-map.climate.colour.2 <- c('#0000CC','#0000FF','#B2B2FF','#ff7f7f','#ff0000','#990000')
-map.climate.colour.3 <- c('#330F53','#551A8B','#9975B9','#FF6207','#A94F43','#B52A27')
-map.climate.colour.2 <- c(map.climate.colour.2,rev(map.climate.colour.3))
-map.climate.colour <- c(map.climate.colour.1,map.climate.colour.2)
-
-# 1. map of com for entire period
-
-# function to plot
-plot.function.state.entire.round <- function(sex.sel) {
-    
-    print(ggplot(data=subset(dat.state.map,sex==sex.sel),aes(x=long,y=lat)) +
-    geom_polygon(aes(fill=as.factor(month.short),group=group),linetype=2,size=0) +
-    #geom_text(data=superregion.coords,color='black',aes(x=long.txt,y=lat.txt,label=id)) +
-    geom_text(data=subset(dat.super.temp,sex==sex.sel),color='white',size=2.5,aes(x=long.txt,y=lat.txt,label=temp_c)) +
-    geom_polygon(data=map.superregions,aes(x=long,y=lat,group=group),alpha=0,fill='Black',color='Black',size=0.5) +
-    #scale_fill_manual(values=map.climate.colour,labels=c('None', month.short[12], month.short[1:11]),drop=FALSE,guide = guide_legend(nrow=1,title = 'Month')) +
-    scale_fill_manual(values=map.climate.colour,drop=FALSE,guide = guide_legend(nrow=1,title = 'Month')) +
-    facet_wrap(~age.print) +
-    xlab('') +
-    ylab('') +
-    ggtitle(paste0(sex.lookup[sex.sel])) +
-    #ggtitle(paste0(sex.lookup[sex.sel],' : ',year.start.arg,'-',year.end.arg)) +
-    theme_map() +
-    theme(text = element_text(size = 15),legend.position = 'bottom',legend.justification=c(1,0),strip.background = element_blank()))
-}
-
-pdf(paste0(file.loc.region,'com_region_map_men_rounded_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
-plot.function.state.entire.round(1)
-dev.off()
-
-pdf(paste0(file.loc.region,'com_region_map_women_rounded_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
-plot.function.state.entire.round(2)
-dev.off()
-
-plot.function.state.entire.round.inv <- function(sex.sel) {
-    
-    print(ggplot(data=subset(dat.state.map.inv,sex==sex.sel),aes(x=long,y=lat)) +
-    geom_polygon(aes(fill=as.factor(month.short),group=group),linetype=2,size=0) +
-    geom_polygon(data=map.superregions,aes(x=long,y=lat,group=group),alpha=0,fill='Black',color='Black',size=0.5) +
-    #geom_text(data=superregion.coords,aes(x=long,y=lat,label=id)) +
-    geom_text(data=subset(dat.super.temp.inv,sex==sex.sel),color='white',size=2.5,aes(x=long.txt,y=lat.txt,label=temp_c)) +
-    geom_polygon(data=map.superregions,aes(x=long,y=lat,group=group),alpha=0,fill='Black',color='Black',size=0.5) +
-    #scale_fill_manual(values=map.climate.colour,labels=c('None', month.short),drop=FALSE,guide = guide_legend(nrow=1,title = 'Month')) +
-    scale_fill_manual(values=map.climate.colour,drop=FALSE,guide = guide_legend(nrow=1,title = 'Month')) +
-    facet_wrap(~age.print) +
-    xlab('') +
-    ylab('') +
-    ggtitle(paste0(sex.lookup[sex.sel])) +
-    #ggtitle(paste0(sex.lookup[sex.sel],' : ',year.start.arg,'-',year.end.arg)) +
-    theme_map() +
-    theme(text = element_text(size = 15),legend.position = 'bottom',legend.justification=c(1,0),strip.background = element_blank()))
-}
-pdf(paste0(file.loc.region,'anti_com_region_map_men_rounded_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
-plot.function.state.entire.round.inv(1)
-dev.off()
-
-pdf(paste0(file.loc.region,'anti_com_region_map_women_rounded_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
-plot.function.state.entire.round.inv(2)
-dev.off()
+# # attach com max for each age to dat.super.temp
+# dat.super.temp <- merge(dat.super.temp,dat.state,by=c('sex','age','region'))
+# dat.super.temp$month <- dat.super.temp$COM.entire.round
+# dat.super.temp <- merge(dat.super.temp,dat.temp.super,by=c('month','region'))
+#
+# dat.super.temp.inv <- merge(dat.super.temp.inv,dat.state.inv,by=c('sex','age','region'))
+# dat.super.temp.inv$month <- dat.super.temp.inv$COM.entire.round
+# dat.super.temp.inv <- merge(dat.super.temp.inv,dat.temp.super,by=c('month','region'))
+#
+# # merge selected data to map dataframe for colouring of ggplot
+#
+# dat.state.map <- merge(USA.df,dat.state,by='climate_region')
+# dat.state.map <- merge(dat.state.map, age.code, by ='age')
+# dat.state.map <- merge(dat.state.map,dat.temp.super,by.x=c('COM.entire.round','region'),by.y=c('month','region'),all.x=TRUE)
+# dat.state.map <- merge(dat.state.map,superregion.coords[,c('long.txt','lat.txt','region')],by.x=c('region'),by.y=c('region'),all.x=1)
+# dat.state.map <- with(dat.state.map, dat.state.map[order(sex,age,DRAWSEQ,order),])
+#
+# dat.state.map.inv <- merge(USA.df,dat.state.inv,by='climate_region')
+# dat.state.map.inv <- merge(dat.state.map.inv, age.code, by ='age')
+# dat.state.map.inv <- merge(dat.state.map.inv,dat.temp.super,by.x=c('COM.entire.round','region'),by.y=c('month','region'),all.x=TRUE)
+# dat.state.map.inv <- merge(dat.state.map.inv,superregion.coords[,c('long.txt','lat.txt','region')],by.x=c('region'),by.y=c('region'),all.x=1)
+# dat.state.map.inv <- with(dat.state.map.inv, dat.state.map.inv[order(sex,age,DRAWSEQ,order),])
+#
+# # keep all months in legend
+# dat.state.map$test <- as.factor(as.character(dat.state.map$COM.entire.round))
+# dat.state.map.inv$test <- as.factor(as.character(dat.state.map.inv$COM.entire.round))
+#
+# # make sure the age groups are in the correct order for plotting
+# dat.state.map$age.print <- with(dat.state.map,reorder(age.print,age))
+# dat.state.map.inv$age.print <- with(dat.state.map.inv,reorder(age.print,age))
+# dat.super.temp$age.print <- with(dat.super.temp,reorder(age.print,age))
+# dat.super.temp.inv$age.print <- with(dat.super.temp.inv,reorder(age.print,age))
+#
+# # fix map test colouring
+# dat.state.map <- merge(dat.state.map, month.lookup)
+# dat.state.map.inv <- merge(dat.state.map.inv, month.lookup)
+#
+# # reorder again
+# dat.state.map <- with(dat.state.map, dat.state.map[order(sex,age,DRAWSEQ,order),])
+# dat.state.map.inv <- with(dat.state.map.inv, dat.state.map.inv[order(sex,age,DRAWSEQ,order),])
+#
+# # ROUNDED
+#
+# # set colour scheme for months map
+# map.climate.colour.1 <- '#FFFFFF'
+# map.climate.colour.2 <- c('#0000CC','#0000FF','#B2B2FF','#ff7f7f','#ff0000','#990000')
+# map.climate.colour.3 <- c('#330F53','#551A8B','#9975B9','#FF6207','#A94F43','#B52A27')
+# map.climate.colour.2 <- c(map.climate.colour.2,rev(map.climate.colour.3))
+# map.climate.colour <- c(map.climate.colour.1,map.climate.colour.2)
+#
+# # 1. map of com for entire period
+#
+# # function to plot
+# plot.function.state.entire.round <- function(sex.sel) {
+#
+#     print(ggplot(data=subset(dat.state.map,sex==sex.sel),aes(x=long,y=lat)) +
+#     geom_polygon(aes(fill=as.factor(month.short),group=group),linetype=2,size=0) +
+#     #geom_text(data=superregion.coords,color='black',aes(x=long.txt,y=lat.txt,label=id)) +
+#     geom_text(data=subset(dat.super.temp,sex==sex.sel),color='white',size=2.5,aes(x=long.txt,y=lat.txt,label=temp_c)) +
+#     geom_polygon(data=map.superregions,aes(x=long,y=lat,group=group),alpha=0,fill='Black',color='Black',size=0.5) +
+#     #scale_fill_manual(values=map.climate.colour,labels=c('None', month.short[12], month.short[1:11]),drop=FALSE,guide = guide_legend(nrow=1,title = 'Month')) +
+#     scale_fill_manual(values=map.climate.colour,drop=FALSE,guide = guide_legend(nrow=1,title = 'Month')) +
+#     facet_wrap(~age.print) +
+#     xlab('') +
+#     ylab('') +
+#     ggtitle(paste0(sex.lookup[sex.sel])) +
+#     #ggtitle(paste0(sex.lookup[sex.sel],' : ',year.start.arg,'-',year.end.arg)) +
+#     theme_map() +
+#     theme(text = element_text(size = 15),legend.position = 'bottom',legend.justification=c(1,0),strip.background = element_blank()))
+# }
+#
+# pdf(paste0(file.loc.region,'com_region_map_men_rounded_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
+# plot.function.state.entire.round(1)
+# dev.off()
+#
+# pdf(paste0(file.loc.region,'com_region_map_women_rounded_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
+# plot.function.state.entire.round(2)
+# dev.off()
+#
+# plot.function.state.entire.round.inv <- function(sex.sel) {
+#
+#     print(ggplot(data=subset(dat.state.map.inv,sex==sex.sel),aes(x=long,y=lat)) +
+#     geom_polygon(aes(fill=as.factor(month.short),group=group),linetype=2,size=0) +
+#     geom_polygon(data=map.superregions,aes(x=long,y=lat,group=group),alpha=0,fill='Black',color='Black',size=0.5) +
+#     #geom_text(data=superregion.coords,aes(x=long,y=lat,label=id)) +
+#     geom_text(data=subset(dat.super.temp.inv,sex==sex.sel),color='white',size=2.5,aes(x=long.txt,y=lat.txt,label=temp_c)) +
+#     geom_polygon(data=map.superregions,aes(x=long,y=lat,group=group),alpha=0,fill='Black',color='Black',size=0.5) +
+#     #scale_fill_manual(values=map.climate.colour,labels=c('None', month.short),drop=FALSE,guide = guide_legend(nrow=1,title = 'Month')) +
+#     scale_fill_manual(values=map.climate.colour,drop=FALSE,guide = guide_legend(nrow=1,title = 'Month')) +
+#     facet_wrap(~age.print) +
+#     xlab('') +
+#     ylab('') +
+#     ggtitle(paste0(sex.lookup[sex.sel])) +
+#     #ggtitle(paste0(sex.lookup[sex.sel],' : ',year.start.arg,'-',year.end.arg)) +
+#     theme_map() +
+#     theme(text = element_text(size = 15),legend.position = 'bottom',legend.justification=c(1,0),strip.background = element_blank()))
+# }
+#
+# pdf(paste0(file.loc.region,'anti_com_region_map_men_rounded_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
+# plot.function.state.entire.round.inv(1)
+# dev.off()
+#
+# pdf(paste0(file.loc.region,'anti_com_region_map_women_rounded_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
+# plot.function.state.entire.round.inv(2)
+# dev.off()
 
 # DEATH RATES
 
@@ -526,11 +521,9 @@ dat.state <- readRDS(paste0(file.loc.region,'values/combined_results/com_rates_r
 dat.state.inv <- readRDS(paste0(file.loc.region,'values/combined_results/anti_com_rates_regional_values_method_2_entire_',year.start.arg,'_',year.end.arg))
 
 # fix region names
-dat.state$region <- gsub('Northern_Rockies_and_Plains', 'West_North_Central', dat.state$region)
-dat.state$region <- gsub('Ohio_Valley', 'Central', dat.state$region)
-dat.state$region <- gsub('Upper_Midwest', 'East_North_Central', dat.state$region)
-dat.state.inv$region <- gsub('Northern_Rockies_and_Plains', 'West_North_Central', dat.state.inv$region)
-dat.state.inv$region <- gsub('Ohio_Valley', 'Central', dat.state.inv$region)
+dat.state$region <- gsub('East_North_Central', 'Central', dat.state$region)
+dat.state$region <- gsub('Upper_Midwest', 'East_North_Central', dat.state$region)#
+dat.state.inv$region <- gsub('East_North_Central', 'Central', dat.state.inv$region)
 dat.state.inv$region <- gsub('Upper_Midwest', 'East_North_Central', dat.state.inv$region)
 
 # round com data for each region
