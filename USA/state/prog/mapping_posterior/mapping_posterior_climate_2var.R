@@ -19,7 +19,6 @@ dname <- as.character(args[5])
 metric1 <- as.character(args[6])
 metric2 <- as.character(args[7])
 
-
 print(args)
 
 #year.start=1980;year.end=2013;country='USA';model=10;dname='t2m';metric1='meanc3';metric2='number_of_min_3_day_above_nonnormal_90_upwaves_2';
