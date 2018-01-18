@@ -85,7 +85,7 @@ for cod in "${cods[@]}"; do
 echo "plotting COM analysis for $country for $cod, years $start - $end";
 
 # plots
-Rscript ~/git/mortality/USA/state/prog/com/com_plot_cod.R $start $end $cod
+#Rscript ~/git/mortality/USA/state/prog/com/com_plot_cod.R $start $end $cod
 
 done;
 
@@ -109,5 +109,6 @@ echo "starting seasonality index analysis for $country, years $start - $end";
 
 # runs seasonality index analysis
 #Rscript ~/git/mortality/USA/state/prog/seasonality_index/seasonality_index_cod.R $start $end $start $end $dname $metric $cod
+Rscript ~/git/mortality/USA/state/prog/seasonality_index/seasonality_index_cod_plot_all.R $start $end $start $end $dname $metric $cod
 
 done;

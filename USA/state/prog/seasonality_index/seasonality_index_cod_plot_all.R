@@ -55,6 +55,8 @@ for(i in cod.broad){
     lin.reg.grad.weight = rbind(lin.reg.grad.weight,dat.temp)
 }
 
+write.csv(lin.reg.grad.weight,paste0(file.loc,'seasonality_index_cod.csv'))
+
 ###############################################################
 # PLOTTING MATERIAL
 ###############################################################
@@ -63,7 +65,30 @@ age.colours <- c(age.colours,'#66CDAA','#9ACD32','#ADFF2F','#9932CC','#FF8C00')
 age.colours=c("blue",brewer.pal(9,"BrBG")[c(9:6,4:1)],"grey")
 
 lin.reg.grad.weight$cause <- gsub('Allcause', 'All Cause', lin.reg.grad.weight$cause)
+lin.reg.grad.weight$cause <- gsub('Cardiopulmonary', 'Cardiorespiratory', lin.reg.grad.weight$cause)
+lin.reg.grad.weight$cause <- gsub('External', 'Injuries', lin.reg.grad.weight$cause)
 
+# remove com data that doesn't meet wavelet criteria (currently manual)
+
+lin.reg.grad.weight$age = as.numeric(lin.reg.grad.weight$age)
+
+lin.reg.grad.weight <- subset(lin.reg.grad.weight,!(cause =='All Cause' & age == 35 & sex.long=='Men'))
+lin.reg.grad.weight <- subset(lin.reg.grad.weight,!(cause =='All Cause' & age == 5 & sex.long=='Women'))
+lin.reg.grad.weight <- subset(lin.reg.grad.weight,!(cause =='All Cause' & age == 25 & sex.long=='Women'))
+lin.reg.grad.weight <- subset(lin.reg.grad.weight,!(cause =='Cancer' & age == 0 & sex.long=='Men'))
+lin.reg.grad.weight <- subset(lin.reg.grad.weight,!(cause =='Cancer' & age == 5 & sex.long=='Men'))
+lin.reg.grad.weight <- subset(lin.reg.grad.weight,!(cause =='Cancer' & age == 15 & sex.long=='Men'))
+lin.reg.grad.weight <- subset(lin.reg.grad.weight,!(cause =='Cancer' & age == 25 & sex.long=='Men'))
+lin.reg.grad.weight <- subset(lin.reg.grad.weight,!(cause =='Cancer' & age == 35 & sex.long=='Men'))
+lin.reg.grad.weight <- subset(lin.reg.grad.weight,!(cause =='Cancer' & age == 45 & sex.long=='Men'))
+lin.reg.grad.weight <- subset(lin.reg.grad.weight,!(cause =='Cancer' & age == 0 & sex.long=='Women'))
+lin.reg.grad.weight <- subset(lin.reg.grad.weight,!(cause =='Cancer' & age == 5 & sex.long=='Women'))
+lin.reg.grad.weight <- subset(lin.reg.grad.weight,!(cause =='Cancer' & age == 15 & sex.long=='Women'))
+lin.reg.grad.weight <- subset(lin.reg.grad.weight,!(cause =='Cancer' & age == 25 & sex.long=='Women'))
+lin.reg.grad.weight <- subset(lin.reg.grad.weight,!(cause =='Cancer' & age == 35 & sex.long=='Women'))
+lin.reg.grad.weight <- subset(lin.reg.grad.weight,!(cause =='Injuries' & age == 65 & sex.long=='Men'))
+lin.reg.grad.weight <- subset(lin.reg.grad.weight,!(cause =='Injuries' & age == 45 & sex.long=='Women'))
+lin.reg.grad.weight <- subset(lin.reg.grad.weight,!(cause =='Injuries' & age == 55 & sex.long=='Women'))
 
 # plot coefficient of seasonality for each age nationally at start and end of period with significance
 plot.function.diff.seas.sig.5 <- function(shape.selected) {
