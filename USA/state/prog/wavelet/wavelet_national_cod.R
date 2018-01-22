@@ -9,6 +9,8 @@ sig.arg <- as.numeric(args[4])
 noise.arg <- as.numeric(args[5])
 cod.arg <- as.character(args[6])
 
+#year.start.arg = 1980 ; year.end.arg = 2013 ; num.sim = 10 ; sig.arg =
+
 print(args)
 
 require(WaveletComp)
@@ -27,6 +29,11 @@ dat <- readRDS(paste0('../../output/prep_data_cod/datus_state_rates_cod_',year.s
 if(cod.arg!='AllCause'){
     dat <- subset(dat,cause==cod.arg)
 }
+
+# fix names of causes
+dat$cause <- gsub('Allcause', 'all cause', dat$cause)
+dat$cause <- gsub('External', 'injuries', dat$cause)
+dat$cause <- gsub('Cardiopulmonary', 'cardiorespiratory', dat$cause)
 
 # number of years for split wavelet analysis
 years <- c(year.start.arg:year.end.arg)
@@ -50,13 +57,13 @@ ifelse(!dir.exists(paste0(file.loc,noise.lookup[noise.arg],'/plots/')), dir.crea
 source('../01_functions/wavelet_functions.R')
 
 # output national wavelet files sex separately
-pdf(paste0(file.loc,noise.lookup[noise.arg],'/plots/wavelet_national_men_',cod.arg,'_',num.sim,'_sim_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
-mapply(plot.wavelet.national,sex.selected=1,age=c(0,5,15,25,35,45,55,65,75,85),cod=cod.arg)
-dev.off()
-
-pdf(paste0(file.loc,noise.lookup[noise.arg],'/plots/wavelet_national_women_',cod.arg,'_',num.sim,'_sim_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
-mapply(plot.wavelet.national,sex.selected=2,age=c(0,5,15,25,35,45,55,65,75,85),cod=cod.arg)
-dev.off()
+# pdf(paste0(file.loc,noise.lookup[noise.arg],'/plots/wavelet_national_men_',cod.arg,'_',num.sim,'_sim_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
+# mapply(plot.wavelet.national,sex.selected=1,age=c(0,5,15,25,35,45,55,65,75,85),cod=cod.arg)
+# dev.off()
+#
+# pdf(paste0(file.loc,noise.lookup[noise.arg],'/plots/wavelet_national_women_',cod.arg,'_',num.sim,'_sim_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
+# mapply(plot.wavelet.national,sex.selected=2,age=c(0,5,15,25,35,45,55,65,75,85),cod=cod.arg)
+# dev.off()
 
 # output national wavelet files split time period
 #pdf(paste0(file.loc,noise.lookup[noise.arg],'/plots/wavelet_national_split_time_males_',num.sim,'_sim_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)

@@ -22,8 +22,8 @@ dname <- as.character(args[5])
 metric <- as.character(args[6])
 cod <- as.character(args[7])
 
-year.start = 1980 ; year.end = 2013 ; year.start.2 = 1980 ; year.end.2 = 2013 ; dname = 't2m' ; metric = 'mean'
-cod ='Cardiopulmonary'
+#year.start = 1980 ; year.end = 2013 ; year.start.2 = 1980 ; year.end.2 = 2013 ; dname = 't2m' ; metric = 'mean'
+#cod ='Cardiopulmonary'
 
 # length of analysis period
 num.years <- year.end - year.start + 1
@@ -34,9 +34,10 @@ if(cod!='AllCause'){
     dat <- subset(dat,cause==cod)
 }
 
-dat$cause <- gsub('Allcause', 'All Cause', dat$cause)
-dat$cause <- gsub('External', 'Injuries', dat$cause)
-dat$cause <- gsub('Cardiopulmonary', 'Cardiorespiratory', dat$cause)
+# fix names of causes
+dat$cause <- gsub('Allcause', 'all cause', dat$cause)
+dat$cause <- gsub('External', 'injuries', dat$cause)
+dat$cause <- gsub('Cardiopulmonary', 'cardiorespiratory', dat$cause)
 
 # source relevant objects
 source('../../data/objects/objects.R')
@@ -101,7 +102,7 @@ dat.pois.summary$ratio <- exp(dat.pois.summary$Estimate)
 dat.pois.summary$year.centre <- with(dat.pois.summary,year-year.start)
 
 # apply linear regression to each group by sex, age, month to find gradient
-lin.reg.grad.weight  <- ddply(dat.pois.summary, .(climate_region,sex,age),
+lin.reg.grad.weight  <- ddply(dat.pois.summary, .( sex,age),
                                 function(z)coef(lm(ratio ~ year.centre, data=z, weights=1/(se^2))))
 lin.reg.grad.weight$start.value <- lin.reg.grad.weight$`(Intercept)`
 lin.reg.grad.weight$end.value <- with(lin.reg.grad.weight,`(Intercept)`+year.centre*(num.years-1))
@@ -109,14 +110,14 @@ lin.reg.grad.weight$sex.long <- with(lin.reg.grad.weight,as.factor(as.character(
 levels(lin.reg.grad.weight$sex.long) <- sex.lookup
 
 # obtain significance of slopes
-lin.reg.sig.weight <- ddply(dat.pois.summary, .(climate_region, sex,age),
+lin.reg.sig.weight <- ddply(dat.pois.summary, .(sex,age),
                                 function(z)coef(summary(lm(ratio ~ year.centre, data=z,weights=1/(se^2)))))
 lin.reg.sig.weight <- lin.reg.sig.weight[!c(TRUE,FALSE),]
 lin.reg.sig.weight$sig.test.10 <- ifelse(lin.reg.sig.weight[,6]<0.10,1,0)
 lin.reg.sig.weight$sig.test.5 <- ifelse(lin.reg.sig.weight[,6]<0.05,1,0)
 
 # merge with data about gradients
-lin.reg.grad.weight <- merge(lin.reg.grad.weight,lin.reg.sig.weight,by=c('climate_region','sex','age'))
+lin.reg.grad.weight <- merge(lin.reg.grad.weight,lin.reg.sig.weight,by=c('sex','age'))
 
 # add ci info about differences between start and end year
 lin.reg.grad.weight$grad.uci <- with(lin.reg.grad.weight,year.centre+1.96*`Std. Error`)
@@ -195,13 +196,15 @@ dat.pois.summary <- dat.pois.summary[!c(TRUE,FALSE),]
 dat.pois.summary$se <- dat.pois.summary$`Std. Error`
 dat.pois.summary$ratio <- exp(dat.pois.summary$Estimate)
 
-#dat.max.min.fixed.region <- ddply(dat.max.min.fixed.region,.(sex,age,climate_region,year), summarize,rate.max=rate.adj[type=='max'],
-#pop.max=pop.adj[type=='max'],month.max=month[type=='max'],rate.min=rate.adj[type=='min'],pop.min=pop.adj[type=='min'],
-#month.min=month[type=='min'])
+# figure out the ratio of max/min deaths over time with fixed max/min by sex, age, year
+dat.max.min.fixed.region <- merge(dat.region,dat.COM,by=c('age','sex','month'))
+dat.max.min.fixed.region <- ddply(dat.max.min.fixed.region,.(sex,age,climate_region,year), summarize,rate.max=rate.adj[type=='max'],
+pop.max=pop.adj[type=='max'],month.max=month[type=='max'],rate.min=rate.adj[type=='min'],pop.min=pop.adj[type=='min'],
+month.min=month[type=='min'])
 
 dat.max.min.fixed.region$percent.change <- with(dat.max.min.fixed.region,round(100*(rate.max/rate.min),1)-100)
 
-# establish correct sex names for plotting
+#establish correct sex names for plotting
 dat.max.min.fixed.region$sex.long <- as.factor(as.character(dat.max.min.fixed.region$sex))
 levels(dat.max.min.fixed.region$sex.long) <- sex.lookup
 
@@ -345,13 +348,13 @@ dat.mort.climate.fixed <- subset(dat.mort.climate.fixed,!(cause =='Cancer' & age
 dat.mort.climate.fixed <- subset(dat.mort.climate.fixed,!(cause =='Cancer' & age == 15 & sex==1))
 dat.mort.climate.fixed <- subset(dat.mort.climate.fixed,!(cause =='Cancer' & age == 25 & sex==1))
 dat.mort.climate.fixed <- subset(dat.mort.climate.fixed,!(cause =='Cancer' & age == 35 & sex==1))
-dat.mort.climate.fixed <- subset(dat.mort.climate.fixed,!(cause =='Cancer' & age == 45 & sex=='Men'))
+dat.mort.climate.fixed <- subset(dat.mort.climate.fixed,!(cause =='Cancer' & age == 45 & sex==1))
 dat.mort.climate.fixed <- subset(dat.mort.climate.fixed,!(cause =='Cancer' & age == 0 & sex==2))
 dat.mort.climate.fixed <- subset(dat.mort.climate.fixed,!(cause =='Cancer' & age == 5 & sex==2))
 dat.mort.climate.fixed <- subset(dat.mort.climate.fixed,!(cause =='Cancer' & age == 15 & sex==2))
 dat.mort.climate.fixed <- subset(dat.mort.climate.fixed,!(cause =='Cancer' & age == 25 & sex==2))
 dat.mort.climate.fixed <- subset(dat.mort.climate.fixed,!(cause =='Cancer' & age == 35 & sex==2))
-dat.mort.climate.fixed <- subset(dat.mort.climate.fixede,!(cause =='External' & age == 65 & sex==1))
+dat.mort.climate.fixed <- subset(dat.mort.climate.fixed,!(cause =='External' & age == 65 & sex==1))
 dat.mort.climate.fixed <- subset(dat.mort.climate.fixed,!(cause =='External' & age == 45 & sex==2))
 dat.mort.climate.fixed <- subset(dat.mort.climate.fixed,!(cause =='External' & age == 55 & sex==2))
 
@@ -366,7 +369,7 @@ ggplot(data=subset(dat.mort.climate.fixed, sex==1|2),aes(shape=as.factor(sex),x=
 y=end.value.mort/100)) +
 geom_point(aes(color=as.factor(climate_region)),size=2) +
 geom_smooth(method="lm") +
-scale_shape_manual(values=c(16,17),labels=c('Men','Women'),guide = guide_legend(title = '')) +
+scale_shape_manual(values=c(16,17),labels=c('Male','Female'),guide = guide_legend(title = '')) +
 scale_x_continuous(name=expression(paste("Absolute temperature difference (",degree,"C)"))) +
 scale_y_continuous(name=paste0('Percent difference in death rates'),labels=percent,limits=c(-0.05,0.5)) +
 #ylim(c(-0.05,1)) +
@@ -376,9 +379,13 @@ geom_vline(xintercept=0,linetype=2,alpha=0.4) +
 geom_hline(yintercept=0,linetype=2,alpha=0.4) +
 #ggtitle(cod) +
 facet_wrap(~age.print) +
-scale_colour_manual(values=map.climate.colour,guide = guide_legend(title = 'Region:')) +
-theme(legend.box.just = "centre",legend.box = "horizontal",legend.position='bottom',text = element_text(size = 15),
+scale_colour_manual(values=map.climate.colour,guide = guide_legend(title = 'Region')) +
+# theme(legend.box.just = "centre",legend.box = "horizontal",legend.position='bottom',text = element_text(size = 15),
+# panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(),
+# axis.line.x = element_line(colour = "black"), axis.line.y = element_line(colour = "black"),rect = element_blank(),
+# legend.background = element_rect(fill = "grey95"))
+theme(legend.box.just = "centre",legend.box = "horizontal",legend.position=c(.8, .1),text = element_text(size = 10),
 panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(),
-axis.line.x = element_line(colour = "black"), axis.line.y = element_line(colour = "black"),rect = element_blank(),
-legend.background = element_rect(fill = "grey95"))
+axis.line.x = element_line(colour = "black"), axis.line.y = element_line(colour = "black"),
+rect = element_blank(),legend.background = element_rect(fill = "grey95"))
 dev.off()

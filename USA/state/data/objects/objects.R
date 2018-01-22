@@ -1,5 +1,6 @@
 # sex lookups
 sex.filter <- c('male','female')
+sex.filter2 <- c('Male','Female')
 sex.lookup <- c('Men','Women')
 sex.lookup2 <- c('Men','Women')
 

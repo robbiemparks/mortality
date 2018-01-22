@@ -6,9 +6,9 @@ year.start.arg <- as.numeric(args[1])
 year.end.arg <- as.numeric(args[2])
 cod.arg <- as.character(args[3])
 
-year.start.arg = 1980
-year.end.arg = 2013
-cod.arg = 'External'
+#year.start.arg = 1980
+#year.end.arg = 2013
+#cod.arg = 'External'
 
 library(rgeos)
 require(ggplot2)
@@ -60,9 +60,13 @@ for (i in cod.broad){
 dat.nat.complete$size <- 3*(dat.nat.complete$size/max(dat.nat.complete$size))
 
 # fix names
-dat.nat.complete$cause <- gsub('Allcause', 'All Cause', dat.nat.complete$cause)
+dat.nat.complete$cause <- gsub('Allcause', 'All cause', dat.nat.complete$cause)
 dat.nat.complete$cause <- gsub('External', 'Injuries', dat.nat.complete$cause)
 dat.nat.complete$cause <- gsub('Cardiopulmonary', 'Cardiorespiratory', dat.nat.complete$cause)
+
+# fix sex names
+dat.nat.complete$sex = as.factor(as.character(dat.nat.complete$sex))
+levels(dat.nat.complete$sex) <- sex.filter2
 
 # entire period com plot v1
 pdf(paste0(file.loc.nat.output,'USA_COM_rates_total_axis_swapped_v1_',cod.arg,'_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
@@ -163,7 +167,6 @@ ylab('Month') +
 xlab('Age group') + ggtitle('') +
 scale_y_continuous(breaks=c(seq(0,12)),labels=c(month.short[12],month.short),expand = c(0.01, 0)) +
 scale_x_discrete(labels=age.print) +
-#xlim(1,12) +
 facet_grid(sex~cause) +
 scale_size(guide='none') +
 annotate("segment", x=-Inf, xend=Inf, y=-Inf, yend=-Inf)+
@@ -177,23 +180,23 @@ dev.off()
 print(head(dat.nat.complete))
 
 # remove com data that doesn't meet wavelet criteria (currently manual)
-dat.nat.complete <- subset(dat.nat.complete,!(cause =='All Cause' & age == 35 & sex=='Men'))
-dat.nat.complete <- subset(dat.nat.complete,!(cause =='All Cause' & age == 5 & sex=='Women'))
-dat.nat.complete <- subset(dat.nat.complete,!(cause =='All Cause' & age == 25 & sex=='Women'))
-dat.nat.complete <- subset(dat.nat.complete,!(cause =='Cancer' & age == 0 & sex=='Men'))
-dat.nat.complete <- subset(dat.nat.complete,!(cause =='Cancer' & age == 5 & sex=='Men'))
-dat.nat.complete <- subset(dat.nat.complete,!(cause =='Cancer' & age == 15 & sex=='Men'))
-dat.nat.complete <- subset(dat.nat.complete,!(cause =='Cancer' & age == 25 & sex=='Men'))
-dat.nat.complete <- subset(dat.nat.complete,!(cause =='Cancer' & age == 35 & sex=='Men'))
-dat.nat.complete <- subset(dat.nat.complete,!(cause =='Cancer' & age == 45 & sex=='Men'))
-dat.nat.complete <- subset(dat.nat.complete,!(cause =='Cancer' & age == 0 & sex=='Women'))
-dat.nat.complete <- subset(dat.nat.complete,!(cause =='Cancer' & age == 5 & sex=='Women'))
-dat.nat.complete <- subset(dat.nat.complete,!(cause =='Cancer' & age == 15 & sex=='Women'))
-dat.nat.complete <- subset(dat.nat.complete,!(cause =='Cancer' & age == 25 & sex=='Women'))
-dat.nat.complete <- subset(dat.nat.complete,!(cause =='Cancer' & age == 35 & sex=='Women'))
-dat.nat.complete <- subset(dat.nat.complete,!(cause =='Injuries' & age == 65 & sex=='Men'))
-dat.nat.complete <- subset(dat.nat.complete,!(cause =='Injuries' & age == 45 & sex=='Women'))
-dat.nat.complete <- subset(dat.nat.complete,!(cause =='Injuries' & age == 55 & sex=='Women'))
+dat.nat.complete <- subset(dat.nat.complete,!(cause =='All Cause' & age == 35 & sex=='Male'))
+dat.nat.complete <- subset(dat.nat.complete,!(cause =='All Cause' & age == 5 & sex=='Female'))
+dat.nat.complete <- subset(dat.nat.complete,!(cause =='All Cause' & age == 25 & sex=='Female'))
+dat.nat.complete <- subset(dat.nat.complete,!(cause =='Cancer' & age == 0 & sex=='Male'))
+dat.nat.complete <- subset(dat.nat.complete,!(cause =='Cancer' & age == 5 & sex=='Male'))
+dat.nat.complete <- subset(dat.nat.complete,!(cause =='Cancer' & age == 15 & sex=='Male'))
+dat.nat.complete <- subset(dat.nat.complete,!(cause =='Cancer' & age == 25 & sex=='Male'))
+dat.nat.complete <- subset(dat.nat.complete,!(cause =='Cancer' & age == 35 & sex=='Male'))
+dat.nat.complete <- subset(dat.nat.complete,!(cause =='Cancer' & age == 45 & sex=='Male'))
+dat.nat.complete <- subset(dat.nat.complete,!(cause =='Cancer' & age == 0 & sex=='Female'))
+dat.nat.complete <- subset(dat.nat.complete,!(cause =='Cancer' & age == 5 & sex=='Female'))
+dat.nat.complete <- subset(dat.nat.complete,!(cause =='Cancer' & age == 15 & sex=='Female'))
+dat.nat.complete <- subset(dat.nat.complete,!(cause =='Cancer' & age == 25 & sex=='Female'))
+dat.nat.complete <- subset(dat.nat.complete,!(cause =='Cancer' & age == 35 & sex=='Female'))
+dat.nat.complete <- subset(dat.nat.complete,!(cause =='Injuries' & age == 65 & sex=='Male'))
+dat.nat.complete <- subset(dat.nat.complete,!(cause =='Injuries' & age == 45 & sex=='Female'))
+dat.nat.complete <- subset(dat.nat.complete,!(cause =='Injuries' & age == 55 & sex=='Female'))
 
 # entire period com plot v1a (plotting all causes together without nonsig)
 pdf(paste0(file.loc.nat.output,'USA_COM_rates_total_axis_swapped_v2_allcauses_nononsig_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
@@ -577,7 +580,7 @@ plot.function.state.entire.round <- function(sex.sel) {
     facet_wrap(~age.print) +
     xlab('') +
     ylab('') +
-    ggtitle(paste0(sex.lookup[sex.sel]))+#,' ',cod.arg)) +
+    ggtitle(paste0(sex.filter2[sex.sel]))+#,' ',cod.arg)) +
     #ggtitle(paste0(sex.lookup[sex.sel],' : ',year.start.arg,'-',year.end.arg)) +
     theme_map() +
     theme(text = element_text(size = 15),legend.position = 'bottom', legend.justification=c(1,0),strip.background = element_blank(),legend.background = element_rect(fill = "grey95")))
@@ -604,7 +607,7 @@ plot.function.state.entire.round.inv <- function(sex.sel) {
     facet_wrap(~age.print) +
     xlab('') +
     ylab('') +
-    ggtitle(paste0(sex.lookup[sex.sel]))+#,' ',cod.arg)) +
+    ggtitle(paste0(sex.filter2[sex.sel]))+#,' ',cod.arg)) +
     #ggtitle(paste0(sex.lookup[sex.sel],' : ',year.start.arg,'-',year.end.arg)) +
     theme_map() +
     theme(text = element_text(size = 15),legend.position = 'bottom',legend.justification=c(1,0),strip.background = element_blank(),legend.background = element_rect(fill = "grey95")))

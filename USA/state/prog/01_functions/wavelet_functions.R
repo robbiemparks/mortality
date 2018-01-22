@@ -287,7 +287,9 @@ plot.wavelet.national.all <- function(sex.selected,cod='Allcause') {
     }
 
     # main title of entire thing
-    mtext(paste0(sex.lookup2[sex.selected],': ',cod), outer = TRUE, cex = 1.5)
+    #mtext(paste0(sex.filter2[sex.selected],': ',cod), outer = TRUE, cex = 1.5)
+    mtext(paste0(sex.filter2[sex.selected]), outer = TRUE, cex = 1.5)
+
 
 
 }
