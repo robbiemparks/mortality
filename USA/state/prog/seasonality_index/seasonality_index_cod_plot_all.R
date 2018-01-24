@@ -19,8 +19,8 @@ dname <- as.character(args[5])
 metric <- as.character(args[6])
 cod <- as.character(args[7])
 
-year.start = 1980 ; year.end = 2013 ; year.start.2 = 1980 ; year.end.2 = 2013 ; dname = 't2m' ; metric = 'mean'
-cod ='Cardiopulmonary'
+#year.start = 1980 ; year.end = 2013 ; year.start.2 = 1980 ; year.end.2 = 2013 ; dname = 't2m' ; metric = 'mean'
+#cod ='Cardiopulmonary'
 
 # length of analysis period
 num.years <- year.end - year.start + 1
@@ -49,8 +49,7 @@ ifelse(!dir.exists(file.loc.regional), dir.create(file.loc.regional, recursive=T
 # load files
 lin.reg.grad.weight = data.frame()
 for(i in cod.broad){
-    dat.temp = readRDS(paste0(file.loc,'seasonality_index_nat_changes_',
-    i,'_',year.start,'_',year.end))
+    dat.temp = readRDS(paste0(file.loc,'seasonality_index_nat_changes_', i,'_',year.start,'_',year.end))
     dat.temp$cause = i
     lin.reg.grad.weight = rbind(lin.reg.grad.weight,dat.temp)
 }
@@ -106,7 +105,7 @@ plot.function.diff.seas.sig.5 <- function(shape.selected) {
     #geom_vline(linetype=2, xintercept = seq(0,1,0.1), alpha=0.2) +
     annotate("segment", x=-Inf, xend=Inf, y=-Inf, yend=-Inf)+
     annotate("segment", x=-Inf, xend=-Inf, y=-Inf, yend=Inf) +
-    scale_shape_manual(values=c(16,shape.selected),labels=c('Men','Women'),guide = guide_legend(title = '')) +
+    scale_shape_manual(values=c(16,shape.selected),labels=c('Male','Female'),guide = guide_legend(title = '')) +
     scale_colour_manual(labels=c('0-4','5-14','15-24','25-34','35-44','45-54','55-64','65-74','75-84','85+'),
     values=age.colours,guide = guide_legend(title = 'Age group (years)')) +
     facet_wrap(~cause) +
@@ -140,7 +139,7 @@ plot.function.diff.seas.sig.5.wo.allcause <- function(shape.selected) {
     scale_y_continuous(name=paste0('Percent difference in death rates in ',year.end),labels=percent,limits=c(0,(100/100))) +
     geom_hline(linetype=2, yintercept = seq(0,1,0.1), alpha=0.2) +
     geom_vline(linetype=2, xintercept = seq(0,1,0.1), alpha=0.2) +
-    scale_shape_manual(values=c(16,shape.selected),labels=c('Men','Women'),guide = guide_legend(title = '')) +
+    scale_shape_manual(values=c(16,shape.selected),labels=c('Male','Female'),guide = guide_legend(title = '')) +
     scale_colour_manual(labels=c('0-4','5-14','15-24','25-34','35-44','45-54','55-64','65-74','75-84','85+'),values=age.colours,guide = guide_legend(title = 'Age group:')) +
     facet_wrap(~cause) +
     theme(legend.box.just = "centre",legend.box = "horizontal",legend.position='bottom',text = element_text(size = 15),
