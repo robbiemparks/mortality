@@ -22,6 +22,13 @@ library(scales)
 # source relevant objects
 source('../../data/objects/objects.R')
 
+# fix cause of death names
+cod.print = ifelse(cod.arg=='AllCause','all cause',
+            ifelse(cod.arg=='Cancer', 'cancer',
+            ifelse(cod.arg=='Cardiopulmonary', 'cardiorespiratory',
+            ifelse(cod.arg=='External', 'injuries',
+            ifelse(cod.arg=='Other', 'other')))))
+
 # fix short names of months
 month.lookup <- data.frame(month.short=c('None   ',month.short),test=c(0:12))
 month.lookup$month.short <- factor(month.lookup$month.short, levels=c('None   ',month.short))
@@ -580,10 +587,11 @@ plot.function.state.entire.round <- function(sex.sel) {
     facet_wrap(~age.print) +
     xlab('') +
     ylab('') +
-    ggtitle(paste0(sex.filter2[sex.sel],' ',cod.arg)) +
+    ggtitle(paste0(sex.filter2[sex.sel],' ',cod.print)) +
     #ggtitle(paste0(sex.lookup[sex.sel],' : ',year.start.arg,'-',year.end.arg)) +
     theme_map() +
-    theme(text = element_text(size = 15),legend.position = 'bottom', legend.justification=c(1,0),strip.background = element_blank(),legend.background = element_rect(fill = "grey95")))
+    theme(text = element_text(size = 15),legend.position = 'bottom', legend.justification=c(1,0),
+    strip.background = element_blank(),legend.background = element_rect(fill = "grey95")))
 }
 
 pdf(paste0(file.loc.region,'com_rates_region_map_men_rounded_',cod.arg,'_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
@@ -607,10 +615,11 @@ plot.function.state.entire.round.inv <- function(sex.sel) {
     facet_wrap(~age.print) +
     xlab('') +
     ylab('') +
-    ggtitle(paste0(sex.filter2[sex.sel],' ',cod.arg)) +
+    ggtitle(paste0(sex.filter2[sex.sel],' ',cod.print)) +
     #ggtitle(paste0(sex.lookup[sex.sel],' : ',year.start.arg,'-',year.end.arg)) +
     theme_map() +
-    theme(text = element_text(size = 15),legend.position = 'bottom',legend.justification=c(1,0),strip.background = element_blank(),legend.background = element_rect(fill = "grey95")))
+    theme(text = element_text(size = 15),legend.position = 'bottom',legend.justification=c(1,0),
+    strip.background = element_blank(),legend.background = element_rect(fill = "grey95")))
 }
 
 pdf(paste0(file.loc.region,'anti_com_rates_region_map_men_rounded_',cod.arg,'_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
