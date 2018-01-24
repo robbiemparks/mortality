@@ -60,9 +60,9 @@ for (i in cod.broad){
 dat.nat.complete$size <- 3*(dat.nat.complete$size/max(dat.nat.complete$size))
 
 # fix names
-dat.nat.complete$cause <- gsub('Allcause', 'All cause', dat.nat.complete$cause)
-dat.nat.complete$cause <- gsub('External', 'Injuries', dat.nat.complete$cause)
-dat.nat.complete$cause <- gsub('Cardiopulmonary', 'Cardiorespiratory', dat.nat.complete$cause)
+dat.nat.complete$cause <- gsub('Allcause', 'all cause', dat.nat.complete$cause)
+dat.nat.complete$cause <- gsub('External', 'injuries', dat.nat.complete$cause)
+dat.nat.complete$cause <- gsub('Cardiopulmonary', 'cardiorespiratory', dat.nat.complete$cause)
 
 # fix sex names
 dat.nat.complete$sex = as.factor(as.character(dat.nat.complete$sex))
@@ -580,7 +580,7 @@ plot.function.state.entire.round <- function(sex.sel) {
     facet_wrap(~age.print) +
     xlab('') +
     ylab('') +
-    ggtitle(paste0(sex.filter2[sex.sel]))+#,' ',cod.arg)) +
+    ggtitle(paste0(sex.filter2[sex.sel],' ',cod.arg)) +
     #ggtitle(paste0(sex.lookup[sex.sel],' : ',year.start.arg,'-',year.end.arg)) +
     theme_map() +
     theme(text = element_text(size = 15),legend.position = 'bottom', legend.justification=c(1,0),strip.background = element_blank(),legend.background = element_rect(fill = "grey95")))
@@ -607,7 +607,7 @@ plot.function.state.entire.round.inv <- function(sex.sel) {
     facet_wrap(~age.print) +
     xlab('') +
     ylab('') +
-    ggtitle(paste0(sex.filter2[sex.sel]))+#,' ',cod.arg)) +
+    ggtitle(paste0(sex.filter2[sex.sel],' ',cod.arg)) +
     #ggtitle(paste0(sex.lookup[sex.sel],' : ',year.start.arg,'-',year.end.arg)) +
     theme_map() +
     theme(text = element_text(size = 15),legend.position = 'bottom',legend.justification=c(1,0),strip.background = element_blank(),legend.background = element_rect(fill = "grey95")))
