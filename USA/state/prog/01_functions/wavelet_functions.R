@@ -223,6 +223,13 @@ plot.wavelet.national.sex <- function(age.selected) {
 # function to plot national wavelet analysis for all ages of single sex
 plot.wavelet.national.all <- function(sex.selected,cod='Allcause') {
 
+    # fix cause of death names
+    cod.print = ifelse(cod=='AllCause','all cause',
+                ifelse(cod=='Cancer', 'cancer',
+                ifelse(cod=='Cardiopulmonary', 'cardiorespiratory',
+                ifelse(cod=='External', 'injuries',
+                ifelse(cod=='Other', 'other')))))
+
     dat <- subset(dat.national, sex==sex.selected)
     
     # set up grid plot
@@ -288,7 +295,7 @@ plot.wavelet.national.all <- function(sex.selected,cod='Allcause') {
 
     # main title of entire thing
     #mtext(paste0(sex.filter2[sex.selected],': ',cod), outer = TRUE, cex = 1.5)
-    mtext(paste0(sex.filter2[sex.selected], ' ', cod), outer = TRUE, cex = 1.5)
+    mtext(paste0(sex.filter2[sex.selected], ' ', cod.print), outer = TRUE, cex = 1.5)
 
 
 
