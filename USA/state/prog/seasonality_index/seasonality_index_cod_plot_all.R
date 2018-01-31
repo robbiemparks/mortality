@@ -19,8 +19,8 @@ dname <- as.character(args[5])
 metric <- as.character(args[6])
 cod <- as.character(args[7])
 
-#year.start = 1980 ; year.end = 2013 ; year.start.2 = 1980 ; year.end.2 = 2013 ; dname = 't2m' ; metric = 'mean'
-#cod ='Cardiopulmonary'
+year.start = 1980 ; year.end = 2013 ; year.start.2 = 1980 ; year.end.2 = 2013 ; dname = 't2m' ; metric = 'mean'
+cod ='Cardiopulmonary'
 
 # length of analysis period
 num.years <- year.end - year.start + 1
@@ -71,9 +71,9 @@ lin.reg.grad.weight$cause <- gsub('External', 'Injuries', lin.reg.grad.weight$ca
 
 lin.reg.grad.weight$age = as.numeric(lin.reg.grad.weight$age)
 
-lin.reg.grad.weight <- subset(lin.reg.grad.weight,!(cause =='All Cause' & age == 35 & sex.long=='Men'))
-lin.reg.grad.weight <- subset(lin.reg.grad.weight,!(cause =='All Cause' & age == 5 & sex.long=='Women'))
-lin.reg.grad.weight <- subset(lin.reg.grad.weight,!(cause =='All Cause' & age == 25 & sex.long=='Women'))
+lin.reg.grad.weight <- subset(lin.reg.grad.weight,!(cause =='All cause' & age == 35 & sex.long=='Men'))
+lin.reg.grad.weight <- subset(lin.reg.grad.weight,!(cause =='All cause' & age == 5 & sex.long=='Women'))
+lin.reg.grad.weight <- subset(lin.reg.grad.weight,!(cause =='All cause' & age == 25 & sex.long=='Women'))
 lin.reg.grad.weight <- subset(lin.reg.grad.weight,!(cause =='Cancer' & age == 0 & sex.long=='Men'))
 lin.reg.grad.weight <- subset(lin.reg.grad.weight,!(cause =='Cancer' & age == 5 & sex.long=='Men'))
 lin.reg.grad.weight <- subset(lin.reg.grad.weight,!(cause =='Cancer' & age == 15 & sex.long=='Men'))

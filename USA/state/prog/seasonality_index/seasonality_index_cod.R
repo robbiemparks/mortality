@@ -368,7 +368,7 @@ pdf(paste0(file.loc.regional,'seasonality_index_regional_against_climate_fixed_c
 ggplot(data=subset(dat.mort.climate.fixed, sex==1|2),aes(shape=as.factor(sex),x=abs(end.value.climate),
 y=end.value.mort/100)) +
 geom_point(aes(color=as.factor(climate_region)),size=2) +
-geom_smooth(method="lm") +
+#geom_smooth(method="lm") +
 scale_shape_manual(values=c(16,17),labels=c('Male','Female'),guide = guide_legend(title = '')) +
 scale_x_continuous(name=expression(paste("Absolute temperature difference (",degree,"C)"))) +
 scale_y_continuous(name=paste0('Percent difference in death rates'),labels=percent,limits=c(-0.05,0.5)) +
