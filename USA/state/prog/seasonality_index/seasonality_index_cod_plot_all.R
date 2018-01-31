@@ -9,6 +9,7 @@ library(ggplot2)
 library(plyr)
 library(scales)
 
+# something to test DELETE this line
 # break down the arguments from Rscript
 args <- commandArgs(trailingOnly=TRUE)
 year.start <- as.numeric(args[1])
