@@ -9,7 +9,6 @@ library(ggplot2)
 library(plyr)
 library(scales)
 
-# something to test DELETE this line
 # break down the arguments from Rscript
 args <- commandArgs(trailingOnly=TRUE)
 year.start <- as.numeric(args[1])
@@ -20,8 +19,8 @@ dname <- as.character(args[5])
 metric <- as.character(args[6])
 cod <- as.character(args[7])
 
-year.start = 1980 ; year.end = 2013 ; year.start.2 = 1980 ; year.end.2 = 2013 ; dname = 't2m' ; metric = 'mean'
-cod ='Cardiopulmonary'
+#year.start = 1980 ; year.end = 2013 ; year.start.2 = 1980 ; year.end.2 = 2013 ; dname = 't2m' ; metric = 'mean'
+#cod ='Cardiopulmonary'
 
 # length of analysis period
 num.years <- year.end - year.start + 1
