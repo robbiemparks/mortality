@@ -18,6 +18,8 @@ metric1 <- as.character(args[6])
 metric2 <- as.character(args[7])
 cause <- as.character(args[8])
 
+
+
 print(args)
 
 # year.start = 1980 ; year.end = 2013 ; country = 'USA' ; model = 10 ; dname = 't2m' ;
@@ -46,6 +48,14 @@ if(cause=='AllCause'){
     dat <- readRDS(paste0('../../data/climate_effects/',dname,'/2var/',metric,'/non_pw/type_',model,'/parameters/'
     ,country,'_rate_pred_type',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_fast'))
 }
+
+# get printable name
+cod.print = ifelse(cause=='AllCause', 'All cause',
+        ifelse(cause=='Cancer', 'Cancer',
+        ifelse(cause=='Cardiopulmonary', 'Cardiorespiratory',
+        ifelse(cause=='External', 'Injuries',
+        ifelse(cause=='Other', 'Other'
+        )))))
 
 # create directories for output
 file.loc <- paste0('../../output/mapping_posterior_climate/',year.start,'_',year.end,
@@ -83,7 +93,8 @@ if(model=='1d'){
     # HEATMAPS OF PARAMETERS (SEXY ALTERNATIVE TO FOREST PLOTS)
     heatmap.national.age <- function() {
 
-        dat$sex.long <- mapvalues(dat$sex,from=sort(unique(dat$sex)),to=c('Men','Women'))
+        dat$sex.long <- mapvalues(dat$sex,from=sort(unique(dat$sex)),to=c('Male','Female'))
+        dat$sex.long <- with(dat,reorder(dat$sex.long,sex))
 
         print(ggplot(data=subset(dat)) +
         geom_tile(aes(x=ID,y=as.factor(age),fill=odds.mean)) +
@@ -97,7 +108,7 @@ if(model=='1d'){
         scale_y_discrete(labels=age.print[c(1:10)]) +
         scale_size(guide = 'none') +
         facet_grid(sex.long~var) +
-        xlab("Month") + ylab('Age') + ggtitle(cause) +
+        xlab("Month") + ylab('Age') + ggtitle(cod.print) +
         theme(text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
         axis.text.x = element_text(angle=90), plot.title = element_text(hjust = 0.5),panel.background = element_blank(),
         strip.background = element_blank(), axis.line = element_line(colour = "black"),legend.position = 'bottom',

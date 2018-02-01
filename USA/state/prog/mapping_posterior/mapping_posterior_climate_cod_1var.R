@@ -232,14 +232,15 @@ forest.plot.national.month <- function() {
     # HEATMAPS OF PARAMETERS (SEXY ALTERNATIVE TO FOREST PLOTS)
     heatmap.national.age <- function() {
 
-        dat$sex.long <- mapvalues(dat$sex,from=sort(unique(dat$sex)),to=c('Men','Women'))
+        dat$sex.long <- mapvalues(dat$sex,from=sort(unique(dat$sex)),to=c('Male','Female'))
+        dat$sex.long <- with(dat,reorder(dat$sex.long,sex))
 
         lims <- range(abs(dat$odds.mean))
 
         # fix name fo plotting
-        cause = ifelse(cause=='AllCause', 'All cause',
+        cod.print = ifelse(cause=='AllCause', 'All cause',
                 ifelse(cause=='Cancer', 'Cancer',
-                ifelse(cause=='Cardiopulmonary' 'Cardiorespiratory',
+                ifelse(cause=='Cardiopulmonary', 'Cardiorespiratory',
                 ifelse(cause=='External', 'Injuries',
                 ifelse(cause=='Other', 'Other'
                 )))))
@@ -257,7 +258,7 @@ forest.plot.national.month <- function() {
         guides(fill = guide_colorbar(barwidth = 30, barheight = 1,title = paste0("Excess risk for 1 additional ",unit.name))) +
         scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
         scale_y_discrete(labels=age.print) +
-        ggtitle(cause) +
+        ggtitle(cod.print) +
         scale_size(guide = 'none') +
         facet_wrap(~sex.long) +
         xlab("Month") + ylab('Age') +

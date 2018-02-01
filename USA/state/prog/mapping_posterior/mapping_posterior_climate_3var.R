@@ -127,9 +127,10 @@ dev.off()
 
 # HEATMAPS OF PARAMETERS (SEXY ALTERNATIVE TO FOREST PLOTS)
 heatmap.national.age <- function() {
-    
-    dat$sex.long <- mapvalues(dat$sex,from=sort(unique(dat$sex)),to=c('Men','Women'))
-    
+
+    dat$sex.long <- mapvalues(dat$sex,from=sort(unique(dat$sex)),to=c('Male','Female'))
+    dat$sex.long <- with(dat,reorder(dat$sex.long,sex))
+
     lims <- range(abs(dat$odds.mean))
     
     #dat = subset(dat,sex==2)
@@ -137,11 +138,16 @@ heatmap.national.age <- function() {
     print(ggplot(data=subset(dat)) +
     geom_tile(aes(x=ID,y=as.factor(age),fill=odds.mean)) +
     geom_point(aes(x=ID,y=as.factor(age),size = sig),shape='*') +
-    scale_fill_gradientn(colours=colorway, na.value = "grey98",limits = c(-lims[2], lims[2]),labels=percent,guide = guide_legend(nrow = 1,title = paste0("Excess risk for 1 additional unit change"))) +
-    guides(fill = guide_colorbar(barwidth = 10, barheight = 1,title = paste0("Excess risk for 1 additional unit change"))) +
+    scale_fill_gradientn(colours=colorway, na.value = "grey98",
+    breaks=c(-0.025, -0.02, -0.015, -0.01, -0.005, 0, 0.005, 0.01, 0.015, 0.02, 0.025),
+    #na.value = "grey98",
+    limits = c(-0.027, 0.027),
+    labels=percent,guide = guide_legend(nrow = 1,title = paste0("Excess risk for 1 additional unit change"))) +
+    guides(fill = guide_colorbar(barwidth = 30, barheight = 1,title = paste0("Excess risk for unit change"))) +
     scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
     scale_y_discrete(labels=age.print[c(1:10)]) +
     scale_size(guide = 'none') +
+    ggtitle('All cause') +
     facet_grid(sex.long~var) +
     xlab("Month") + ylab('Age') +
     theme(text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.text.x = element_text(angle=90), plot.title = element_text(hjust = 0.5),panel.background = element_blank(),strip.background = element_blank(), axis.line = element_line(colour = "black"),legend.position = 'bottom',legend.justification='center',legend.background = element_rect(fill="gray90", size=.5, linetype="dotted")))
