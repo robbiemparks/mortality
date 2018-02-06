@@ -13,7 +13,7 @@ print(args)
 packages = c('WaveletComp', 'RColorBrewer', 'plyr')
 lapply(packages, require, character.only=TRUE)
 
-# source relevant objects
+# relevant objects
 ages = c(0,5,15,25,35,45,55,65,75,85)
 noise.lookup = c('white_noise','red_noise')
 age.print = as.vector(levels(factor(levels=c('0-4','5-14','15-24','25-34','35-44','45-54','55-64','65-74','75-84','85+'))))
@@ -30,7 +30,7 @@ ifelse(!dir.exists(output.loc), dir.create(output.loc,recursive=TRUE), FALSE)
 input.loc = 'file_here'
 dat = readRDS(input.loc)
 
-# function to plot national wavelet analysis for all ages of single sex
+# function to plot national wavelet analysis for all ages of single gender
 plot.wavelet.national.all = function(sex.selected) {
 
     dat = subset(dat, sex==sex.selected)
