@@ -7,9 +7,6 @@ lapply(packages, require, character.only=TRUE)
 # add fips lookup
 fips.lookup <- read.csv('name_fips_lookup.csv')
 
-# source relevant objects
-source('../../data/objects/objects.R')
-
 ###############################################################
 # PREPARING MAP
 ###############################################################
