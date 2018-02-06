@@ -4,7 +4,6 @@
     <list default="true" id="62b91b4b-6761-4ef0-820a-b55e2d811d0d" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/elife_wavelet_submission/figure_5.R" afterPath="$PROJECT_DIR$/USA/state/prog/elife_wavelet_submission/figure_5.R" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/elife_wavelet_submission/figure_6.R" afterPath="$PROJECT_DIR$/USA/state/prog/elife_wavelet_submission/figure_6.R" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -39,7 +38,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="figure_3.R" pinned="false" current-in-tab="false">
+      <file leaf-file-name="figure_3.R" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/USA/state/prog/elife_wavelet_submission/figure_3.R">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="480">
@@ -63,15 +62,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="figure_5.R" pinned="false" current-in-tab="true">
+      <file leaf-file-name="figure_5.R" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/USA/state/prog/elife_wavelet_submission/figure_5.R">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="641">
-              <caret line="383" column="24" lean-forward="false" selection-start-line="383" selection-start-column="24" selection-end-line="383" selection-end-column="24" />
+            <state relative-caret-position="3585">
+              <caret line="341" column="0" lean-forward="false" selection-start-line="341" selection-start-column="0" selection-end-line="341" selection-end-column="0" />
               <folding>
-                <element signature="e#1288#3092#0" expanded="false" />
-                <element signature="e#3217#4947#0" expanded="false" />
-                <element signature="e#5017#5163#0" expanded="false" />
+                <element signature="e#1323#3127#0" expanded="false" />
+                <element signature="e#3252#4982#0" expanded="false" />
+                <element signature="e#5052#5198#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -82,6 +81,16 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="540">
               <caret line="36" column="6" lean-forward="false" selection-start-line="36" selection-start-column="6" selection-end-line="36" selection-end-column="6" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="objects.R" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/USA/state/data/objects/objects.R">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="30">
+              <caret line="2" column="8" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -289,6 +298,32 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mortality" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mortality" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="USA" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="state" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="objects" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -768,7 +803,14 @@
       <option name="project" value="LOCAL" />
       <updated>1517933558445</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="test commit">
+      <created>1517933841532</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1517933841532</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1145,14 +1187,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/USA/state/data/objects/objects.R">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="57" column="0" lean-forward="false" selection-start-line="57" selection-start-column="0" selection-end-line="60" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/USA/state/prog/com/com_data_process_cod.R">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -1193,22 +1227,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/USA/state/prog/elife_wavelet_submission/figure_3.R">
+    <entry file="file://$PROJECT_DIR$/USA/state/data/objects/objects.R">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="32" column="17" lean-forward="false" selection-start-line="32" selection-start-column="17" selection-end-line="32" selection-end-column="42" />
-          <folding>
-            <element signature="e#2819#4330#0" expanded="false" />
-            <element signature="e#4589#4773#0" expanded="false" />
-            <element signature="e#4897#5081#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/USA/state/prog/elife_wavelet_submission/figure_4.R">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1995">
-          <caret line="133" column="17" lean-forward="false" selection-start-line="133" selection-start-column="17" selection-end-line="133" selection-end-column="17" />
+        <state relative-caret-position="30">
+          <caret line="2" column="8" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1223,12 +1245,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/USA/state/prog/elife_wavelet_submission/figure_5.R">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="641">
-          <caret line="383" column="24" lean-forward="false" selection-start-line="383" selection-start-column="24" selection-end-line="383" selection-end-column="24" />
+        <state relative-caret-position="3585">
+          <caret line="341" column="0" lean-forward="false" selection-start-line="341" selection-start-column="0" selection-end-line="341" selection-end-column="0" />
           <folding>
-            <element signature="e#1288#3092#0" expanded="false" />
-            <element signature="e#3217#4947#0" expanded="false" />
-            <element signature="e#5017#5163#0" expanded="false" />
+            <element signature="e#1323#3127#0" expanded="false" />
+            <element signature="e#3252#4982#0" expanded="false" />
+            <element signature="e#5052#5198#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/USA/state/prog/elife_wavelet_submission/figure_4.R">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1995">
+          <caret line="133" column="17" lean-forward="false" selection-start-line="133" selection-start-column="17" selection-end-line="133" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/USA/state/prog/elife_wavelet_submission/figure_3.R">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="32" column="17" lean-forward="false" selection-start-line="32" selection-start-column="17" selection-end-line="32" selection-end-column="42" />
+          <folding>
+            <element signature="e#2819#4330#0" expanded="false" />
+            <element signature="e#4589#4773#0" expanded="false" />
+            <element signature="e#4897#5081#0" expanded="false" />
           </folding>
         </state>
       </provider>

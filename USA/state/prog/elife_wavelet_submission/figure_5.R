@@ -18,6 +18,8 @@ ages = c(0,5,15,25,35,45,55,65,75,85)
 age.print <- as.vector(levels(factor(levels=c('0-4','5-14','15-24','25-34','35-44','45-54','55-64','65-74','75-84','85+'))))
 sex.lookup = c('Men','Women')
 month.short <- c('Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec')
+sex.filter2 <- c('Male','Female')
+
 # climate regions
 region.lookup=c("Northwest","West_North_Central", "Northeast",
                 "Upper_Midwest","East_North_Central", "West",
@@ -338,23 +340,18 @@ map.climate.colour <- c('#FFFFFF',map.climate.colour)
 
 # 1. map of com for entire period
 
-# add short month name
-
 # function to plot
 plot.function.state.entire.round <- function(sex.sel) {
 
     print(ggplot(data=subset(dat.state.map,sex==sex.sel),aes(x=long,y=lat)) +
     geom_polygon(aes(fill=as.factor(month.short),group=group),linetype=2,size=0) +
-    #geom_text(data=superregion.coords,color='black',aes(x=long.txt,y=lat.txt,label=id)) +
     geom_text(data=subset(dat.super.temp,sex==sex.sel),color='white',size=2.5,aes(x=long.txt,y=lat.txt,label=temp_c)) +
     geom_polygon(data=map.superregions,aes(x=long,y=lat,group=group),alpha=0,fill='Black',color='Black',size=0.5) +
-    #scale_fill_manual(values=map.climate.colour,labels=c('None', month.short[12], month.short[1:11]),drop=FALSE,guide = guide_legend(nrow=1,title = 'Month')) +
     scale_fill_manual(values=map.climate.colour,drop=FALSE,guide = guide_legend(nrow=1,title = 'Month')) +
     facet_wrap(~age.print) +
     xlab('') +
     ylab('') +
-    ggtitle(paste0(sex.filter2[sex.sel],' ',cod.print,' maximum')) +
-    #ggtitle(paste0(sex.lookup[sex.sel],' : ',year.start.arg,'-',year.end.arg)) +
+    ggtitle(paste0(sex.filter2[sex.sel],' maximum')) +
     theme_map() +
     theme(text = element_text(size = 15),legend.position = 'bottom', legend.justification=c(1,0),
     strip.background = element_blank(),legend.background = element_rect(fill = "grey95")))
@@ -373,16 +370,13 @@ plot.function.state.entire.round.inv <- function(sex.sel) {
     print(ggplot(data=subset(dat.state.map.inv,sex==sex.sel),aes(x=long,y=lat)) +
     geom_polygon(aes(fill=as.factor(month.short),group=group),linetype=2,size=0) +
     geom_polygon(data=map.superregions,aes(x=long,y=lat,group=group),alpha=0,fill='Black',color='Black',size=0.5) +
-    #geom_text(data=superregion.coords,aes(x=long,y=lat,label=id)) +
     geom_text(data=subset(dat.super.temp.inv,sex==sex.sel),color='white',size=2.5,aes(x=long.txt,y=lat.txt,label=temp_c)) +
     geom_polygon(data=map.superregions,aes(x=long,y=lat,group=group),alpha=0,fill='Black',color='Black',size=0.5) +
-    #scale_fill_manual(values=map.climate.colour,labels=c('None', month.short),drop=FALSE,guide = guide_legend(nrow=1,title = 'Month')) +
     scale_fill_manual(values=map.climate.colour,drop=FALSE,guide = guide_legend(nrow=1,title = 'Month')) +
     facet_wrap(~age.print) +
     xlab('') +
     ylab('') +
     ggtitle(paste0(sex.filter2[sex.sel],' minimum')) +
-    #ggtitle(paste0(sex.lookup[sex.sel],' : ',year.start.arg,'-',year.end.arg)) +
     theme_map() +
     theme(text = element_text(size = 15),legend.position = 'bottom',legend.justification=c(1,0),
     strip.background = element_blank(),legend.background = element_rect(fill = "grey95")))
