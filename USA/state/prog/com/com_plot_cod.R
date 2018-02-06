@@ -6,10 +6,6 @@ year.start.arg <- as.numeric(args[1])
 year.end.arg <- as.numeric(args[2])
 cod.arg <- as.character(args[3])
 
-#year.start.arg = 1980
-#year.end.arg = 2013
-#cod.arg = 'External'
-
 library(rgeos)
 require(ggplot2)
 library(rgdal)

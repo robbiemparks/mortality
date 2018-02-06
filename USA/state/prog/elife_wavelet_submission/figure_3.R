@@ -14,6 +14,7 @@ output.loc = paste0("/output/com/",year.start.arg,'_',year.end.arg,"/national/va
 ifelse(!dir.exists(output.loc), dir.create(output.loc,recursive=TRUE), FALSE)
 
 # relevant objects
+ages = c(0,5,15,25,35,45,55,65,75,85)
 sex.lookup = c('Men','Women')
 source('../../data/objects/objects.R')
 
@@ -128,26 +129,21 @@ circular_min <- function(age.selected,sex.selected) {
 mapply(circular_max, age.selected=age.arg,sex.selected=sex.arg)
 mapply(circular_min, age.selected=age.arg,sex.selected=sex.arg)
 
-# construct dataset for entire period national analysis method 2
+# construct dataset for max and min
 dat.entire <- data.frame()
-for(k in c(1,2)){
-    for(i in c(0,5,15,25,35,45,55,65,75,85)){
-        dat.temp <- readRDS(paste0(file.loc.nat.entire,'method_2/com_rate_cod_',tolower(sex.filter[k]),'_',i,'_',cod.arg))
+for(sex in c(1,2)){
+    for(age in ages){
+        dat.temp <- readRDS(paste0(output.loc,'max_',sex.lookup[sex],'_',age))
         dat.entire <- rbind(dat.entire,dat.temp)
         print(dat.entire)
     }}
-saveRDS(dat.entire,paste0(file.loc.nat.output,'max_',year.start.arg,'_',year.end.arg))
-
-# NATIONAL DEATH RATES
-# INV COM
-
-# construct dataset for entire period national analysis method 2
+saveRDS(dat.entire,paste0(output.loc,'max_',year.start.arg,'_',year.end.arg))
 dat.entire <- data.frame()
-for(k in c(1,2)){
-    for(i in c(0,5,15,25,35,45,55,65,75,85)){
-        dat.temp <- readRDS(paste0(file.loc.nat.entire,'method_2/anti_com_rate_cod_',sex.filter[k],'_',i,'_',cod.arg))
+for(sex in c(1,2)){
+    for(age in ages){
+        dat.temp <- readRDS(paste0(output.loc,'min_',sex.lookup[sex],'_',age))
         dat.entire <- rbind(dat.entire,dat.temp)
         print(dat.entire)
     }}
-saveRDS(dat.entire,paste0(file.loc.nat.output,'inv_com_rates_national_values_method_2_entire_',cod.arg,'_',year.start.arg,'_',year.end.arg))
+saveRDS(dat.entire,paste0(output.loc,'min_',year.start.arg,'_',year.end.arg))
 
