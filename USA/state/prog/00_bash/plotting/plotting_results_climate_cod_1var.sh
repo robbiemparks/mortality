@@ -14,7 +14,7 @@ declare country="USA"
 declare -a dnames=("tapp")
 declare -a cods=("AllCause")
 declare -a metrics=('meanc3')
-#declare -a cods=("External")
+declare -a cods=("AllCause'" "Cancer" "Cardiopulmonary" "External" "Other")
 #declare -a metrics=('meanc3' 'number_of_days_above_nonnormal_90_2' 'number_of_days_below_nonnormal_90_2')
 
 #################################################
@@ -29,7 +29,7 @@ for metric in "${metrics[@]}"; do
 
 for model in "${models[@]}"; do
 
-# sRscript ~/git/mortality/USA/state/prog/bind_posterior/bind_posterior_climate_cod_1var.R $start $end $country $model $dname $metric $cod
+Rscript ~/git/mortality/USA/state/prog/bind_posterior/bind_posterior_climate_cod_1var.R $start $end $country $model $dname $metric $cod
 Rscript ~/git/mortality/USA/state/prog/mapping_posterior/mapping_posterior_climate_cod_1var.R $start $end $country $model $dname $metric $cod
 
 done; done; done; done;
