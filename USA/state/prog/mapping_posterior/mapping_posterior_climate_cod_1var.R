@@ -19,9 +19,7 @@ dname <- as.character(args[5])
 metric <- as.character(args[6])
 cause <- as.character(args[7])
 
-
-
-#year.start = 1980 ; year.end = 2013 ; country = 'USA' ; model = 10 ; dname = 't2m' ; metric = 'meanc3' ; cause = 'Cardiopulmonary'
+year.start = 1980 ; year.end = 2013 ; country = 'USA' ; model = 10 ; dname = 't2m' ; metric = 'meanc3' ; cause = 'External'
 
 multiple = 0
 
@@ -315,8 +313,8 @@ forest.plot.national.month <- function() {
     dat.merged.sub <- subset(dat.merged,year==2013)
     
     # add YLL from a reference point (2013)
-    ref.male  = 90
-    ref.female= 90
+    ref.male  = 76.40
+    ref.female= 81.2
     dat.merged.sub$yll.mean.m = ifelse((ref.male-(dat.merged.sub$age+5))>=0,
                                 (ref.male-(dat.merged.sub$age+5))*dat.merged.sub$deaths.added,
                                 0)
@@ -588,7 +586,15 @@ forest.plot.national.month <- function() {
         
         dat$sex.long <- mapvalues(dat$sex,from=sort(unique(dat$sex)),to=c('Men','Women'))
         dat$sig = ifelse(dat$yll.ll*dat$yll.ul>0,1,0)
-        
+
+        # fix name fo plotting
+        cod.print = ifelse(cause=='AllCause', 'All cause',
+                ifelse(cause=='Cancer', 'Cancer',
+                ifelse(cause=='Cardiopulmonary', 'Cardiorespiratory',
+                ifelse(cause=='External', 'Injuries',
+                ifelse(cause=='Other', 'Other'
+                )))))
+
         lims <- range(abs(dat$yll.mean))
         
         # ADD VALUE IN BOX
@@ -603,7 +609,7 @@ forest.plot.national.month <- function() {
         scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
         scale_y_discrete(labels=age.print) +
         scale_alpha(guide = 'none') +
-        ggtitle(cause) +
+        ggtitle(cod.print) +
         scale_size(guide = 'none') +
         scale_shape(guide = 'none') +
         facet_wrap(~sex.long) +

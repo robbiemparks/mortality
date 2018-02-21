@@ -18,7 +18,12 @@ model <- as.numeric(args[4])
 dname <- as.character(args[5])
 metric <- as.character(args[6])
 
+#year.start = 1980 ; year.end = 2013 ; country = 'USA' ; model = 10 ; dname = 't2m' ; metric = 'meanc3'
+
 multiple = 1
+
+# go to correct directory
+setwd('~/git/mortality/USA/state/prog/00_bash/')
 
 # source variables
 source('../../data/objects/objects.R')
