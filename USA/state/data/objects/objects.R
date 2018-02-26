@@ -60,17 +60,37 @@ region.lookup=c("Northwest","West_North_Central", "Northeast",
                 "Upper_Midwest","East_North_Central", "West",
                 "Southwest", "South", "Southeast")
 
+# load intentional and unintentional lookup
+dat.injuries.lookup = read.csv('~/git/mortality/USA/state/data/cod/intentional_injuries_lookup.csv')
+
+dat.injuries.lookup$icd9in = gsub("\\.", "", as.character(dat.injuries.lookup$icd9in))
+icd9.in = icd9.in[icd9.in != ""]
+
+icd9.un = dat.injuries.lookup$icd9un = gsub("\\.", "", dat.injuries.lookup$icd9un)
+icd9.un = icd9.un[icd9.un != ""]
+
+icd10.in = dat.injuries.lookup$icd10in = gsub("\\.", "", dat.injuries.lookup$icd10in)
+icd10.in = icd10.in[icd10.in != ""]
+
+icd10.un = dat.injuries.lookup$icd10un = gsub("\\.", "", dat.injuries.lookup$icd10un)
+icd10.un = icd10.un[icd10.un != ""]
+
+
 # ICD10 coding for intentional injuries
-intentional = c('X60','X61','X62','X63','X64','X65','X66','X67','X68','X69',
-'X70','X71','X72','X73','X74','X741','X742','X743','X744','X749',
-'X75','X76','X77','X78','X79','X80','X81','X82','X83','X84',
-'X85','X86', 'X87','X88','X89','X90','X91','X92','X93','X94',
-'X95','X951', 'X952','X953','X954','X959','X96','X97','X98','X99',
-'Y00','Y01', 'Y02','Y03','Y04','Y05','Y06','Y060','Y061','Y062',
-'Y068','Y069', 'Y07','Y070','Y071','Y072','Y073','Y078','Y079','Y08',
-'Y09','Y35', 'Y350','Y351','Y352','Y353','Y354','Y355','Y356','Y357',
-'U011','Y36', 'Y360','Y361','Y362','Y363','Y364','Y365','Y366','Y367',
-'Y368','Y369', 'Y870','Y871', 'Y890','Y891')
+#intentional = c('X60','X61','X62','X63','X64','X65','X66','X67','X68','X69',
+# 'X70','X71','X72','X73','X74','X741','X742','X743','X744','X749',
+# 'X75','X76','X77','X78','X79','X80','X81','X82','X83','X84',
+# 'X85','X86', 'X87','X88','X89','X90','X91','X92','X93','X94',
+# 'X95','X951', 'X952','X953','X954','X959','X96','X97','X98','X99',
+# 'Y00','Y01', 'Y02','Y03','Y04','Y05','Y06','Y060','Y061','Y062',
+# 'Y068','Y069', 'Y07','Y070','Y071','Y072','Y073','Y078','Y079','Y08',
+# 'Y09','Y35', 'Y350','Y351','Y352','Y353','Y354','Y355','Y356','Y357',
+# 'U011','Y36', 'Y360','Y361','Y362','Y363','Y364','Y365','Y366','Y367',
+# 'Y368','Y369', 'Y870','Y871', 'Y890','Y891')
+
+# ICD10 coding for unintentional injuries
+unintentional = c()
 
 # cod lookups
 cod.broad = c('Allcause','Cancer','Cardiopulmonary','External','Other')
+

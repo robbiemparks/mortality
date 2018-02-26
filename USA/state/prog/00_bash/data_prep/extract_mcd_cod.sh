@@ -36,7 +36,7 @@ echo "formatting mcd files for $year2";
 done;
 
 #################################################
-# 2. PROCESS DEATH RATES (NOT FINISHED!!)
+# 2. PROCESS DEATH RATES
 #################################################
 
 echo "preparing monthly death rates for years $start - $end";
