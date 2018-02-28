@@ -63,18 +63,25 @@ region.lookup=c("Northwest","West_North_Central", "Northeast",
 # load intentional and unintentional lookup
 dat.injuries.lookup = read.csv('~/git/mortality/USA/state/data/cod/intentional_injuries_lookup.csv')
 
-dat.injuries.lookup$icd9in = gsub("\\.", "", as.character(dat.injuries.lookup$icd9in))
+icd9.in = dat.injuries.lookup$icd9in = gsub("\\.", "", dat.injuries.lookup$icd9in)
 icd9.in = icd9.in[icd9.in != ""]
+icd9.in = data.frame(cause=icd9.in,cause.group='Intentional')
 
 icd9.un = dat.injuries.lookup$icd9un = gsub("\\.", "", dat.injuries.lookup$icd9un)
 icd9.un = icd9.un[icd9.un != ""]
+icd9.un = data.frame(cause=icd9.un,cause.group='Unintentional')
+
+icd9.lookup = rbind(icd9.in,icd9.un)
 
 icd10.in = dat.injuries.lookup$icd10in = gsub("\\.", "", dat.injuries.lookup$icd10in)
 icd10.in = icd10.in[icd10.in != ""]
+icd10.in = data.frame(cause=icd10.in,cause.group='Intentional')
 
 icd10.un = dat.injuries.lookup$icd10un = gsub("\\.", "", dat.injuries.lookup$icd10un)
 icd10.un = icd10.un[icd10.un != ""]
+icd10.un = data.frame(cause=icd10.un,cause.group='Unintentional')
 
+icd10.lookup = rbind(icd10.in,icd10.un)
 
 # ICD10 coding for intentional injuries
 #intentional = c('X60','X61','X62','X63','X64','X65','X66','X67','X68','X69',

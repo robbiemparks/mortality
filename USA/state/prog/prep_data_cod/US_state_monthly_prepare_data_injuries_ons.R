@@ -10,7 +10,7 @@ library(foreign)
 
 # source only the 'intentional' variable (better way to do this a la python?)
 source('../../data/objects/objects.R')
-rm(list=setdiff(ls(), "intentional"))
+rm(list=setdiff(ls(), c("icd9.lookup","icd10.lookup")))
 
 # Function to summarise a year's data. x is the year in 2 number form (e.g. 1989 -> 89).
 # y is the number of rows. default (-1) is all rows.
@@ -32,33 +32,16 @@ yearsummary_cod  <- function(x=2000) {
 	dat$fips = substr(dat$fips,1,2)
 	dat$fips <- as.numeric(dat$fips)
 
-	# COD look-up
-	cod.lookup.10 <- data.frame(letter=as.character(toupper(letters)),
-								cause.group=c('Other','Other','Cancer','Cancer','Other', # A-E
-											'Other','Other','Other','Cardiopulmonary','Cardiopulmonary', # F-J
-											'Other','Other','Other','Other','Other', # K-O
-											'Other','Other','Other','External','External', # P-T
-											'Other','External','External','External','External', # U-Y
-											'External')) # Z
-
 	# add extra label for CODs based on relevant ICD year
 	start_year = 1999
 	if(x<start_year) {
-		dat$cause[nchar(dat$cause)==3] <- paste0(dat$cause[nchar(dat$cause)==3],'0')
-		dat$cause.numeric = as.numeric(dat$cause)
-		dat$cause.group = 	ifelse(dat$cause.numeric>=1400&dat$cause.numeric<=2399,'Cancer',
-							ifelse(dat$cause.numeric>=3900&dat$cause.numeric<=5199,'Cardiopulmonary',
-							ifelse(dat$cause.numeric>=8000&dat$cause.numeric<=9999,'External',
-							'Other')))
-		dat.merged = dat
+		# SOMETHING LIKE
+		dat.merged = merge(dat,icd9.lookup,by='cause',all.x=0)
+
 	}
 	if(x>=start_year){
 		# merge cod in ICD 10 coding
-		dat$letter = substr(dat$cause,1,1)
-		dat.merged = merge(dat,cod.lookup.10,by.x='letter',by.y='letter',all.x=1)
-
-		# Unintentional injuries TO FINISH TEMP SOLUTION
-    	#dat.merged$cause.description = ifelse(dat.merged$cause %in% intentional, 'Intentional','Other')
+		dat.merged = merge(dat,icd10.lookup,by='cause',all.x=0)
 	}
 
 	# add agegroup groupings
@@ -92,7 +75,7 @@ yearsummary_cod  <- function(x=2000) {
 	month 	= 	c(1:12)
 	sex 	= 	c(1:2)
 	age 	= 	c(0,5,15,25,35,45,55,65,75,85)
-	cause 	=	c('Cancer','Cardiopulmonary','External','Other')
+	cause 	=	c('Unintentional','Intentional')
 
 	complete.grid <- expand.grid(fips=fips,month=month,sex=sex,age=age,cause=cause)
 	complete.grid$year <- unique(dat.summarised$year)
