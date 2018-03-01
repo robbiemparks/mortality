@@ -120,6 +120,8 @@ legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
 
 # create age-standardised national data
 
+
+
 # 3. time trends for injuries across time, age-standarised (annual time) STACKED PLOT
 
 # graph data by age for a particular state cod and sex for rate
