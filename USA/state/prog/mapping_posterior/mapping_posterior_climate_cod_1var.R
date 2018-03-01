@@ -247,8 +247,6 @@ forest.plot.national.month <- function() {
         print(ggplot(data=subset(dat)) +
         geom_tile(aes(x=ID,y=as.factor(age),fill=odds.mean)) +
         geom_point(aes(x=ID,y=as.factor(age),size = ifelse(dat$sig == 0,NA,1)),shape='* ') +
-        #scale_fill_gradientn(colours=c(gr,"white", re), na.value = "grey98",limits = c(-lims[2], lims[2]),
-        #labels=percent,guide = guide_legend(nrow = 1,title = paste0("Excess risk for 1 additional ",unit.name))) +
         scale_fill_gradientn(colours=colorway,
         breaks=c(-0.025, -0.02, -0.015, -0.01, -0.005, 0, 0.005, 0.01, 0.015, 0.02, 0.025),
         na.value = "grey98",limits = c(-0.027, 0.027),

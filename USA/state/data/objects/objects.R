@@ -9,6 +9,11 @@ age.print <- as.vector(levels(factor(levels=c('0-4','5-14','15-24','25-34','35-4
 age.code <- data.frame(age=c(0,5,15,25,35,45,55,65,75,85),age.print=age.print)
 age.filter <- c(0,5,15,25,35,45,55,65,75,85)
 
+# age colours
+age.colours <- c('#FF1493','#B8860B','#808080','#00BFFF','#00CED1')
+age.colours <- c(age.colours,'#66CDAA','#9ACD32','#ADFF2F','#9932CC','#FF8C00')
+age.colours=c("blue",brewer.pal(9,"BrBG")[c(9:6,4:1)],"grey")
+
 # month lookups
 month.lookup <- c('January','February','March','April','May','June','July','August','September','October','November','December')
 month.short <- c('Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec')
@@ -72,6 +77,7 @@ icd9.un = icd9.un[icd9.un != ""]
 icd9.un = data.frame(cause=icd9.un,cause.group='Unintentional')
 
 icd9.lookup = rbind(icd9.in,icd9.un)
+icd9.lookup$cause = gsub(" ", "", icd9.lookup$cause)
 
 icd10.in = dat.injuries.lookup$icd10in = gsub("\\.", "", dat.injuries.lookup$icd10in)
 icd10.in = icd10.in[icd10.in != ""]
@@ -82,6 +88,16 @@ icd10.un = icd10.un[icd10.un != ""]
 icd10.un = data.frame(cause=icd10.un,cause.group='Unintentional')
 
 icd10.lookup = rbind(icd10.in,icd10.un)
+icd10.lookup$cause = gsub(" ", "", icd10.lookup$cause)
+
+# COD look-up
+cod.lookup.10 <- data.frame(letter=as.character(toupper(letters)),
+                            cause.group=c('Other','Other','Cancer','Cancer','Other', # A-E
+                                        'Other','Other','Other','Cardiopulmonary','Cardiopulmonary', # F-J
+                                        'Other','Other','Other','Other','Other', # K-O
+                                        'Other','Other','Other','External','External', # P-T
+                                        'Other','External','External','External','External', # U-Y
+                                        'External')) # Z
 
 # ICD10 coding for intentional injuries
 #intentional = c('X60','X61','X62','X63','X64','X65','X66','X67','X68','X69',

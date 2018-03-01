@@ -8,8 +8,9 @@ year.end.arg <- as.numeric(args[2])
 library(dplyr)
 library(foreign)
 
-# source only the 'intentional' variable (better way to do this a la python?)
- rm(list=setdiff(ls(), c("icd9.lookup","icd10.lookup")))
+# source only the 'intentional' variable
+source('../../data/objects/objects.R')
+rm(list=setdiff(ls(), c("icd9.lookup","icd10.lookup","cod.lookup.icd10")))
 
 # Function to summarise a year's data. x is the year in 2 number form (e.g. 1989 -> 89).
 # y is the number of rows. default (-1) is all rows.
@@ -39,8 +40,18 @@ yearsummary_cod  <- function(x=2000) {
 
 	}
 	if(x>=start_year){
+        # merge cod in ICD 10 coding for broad letter coding
+		dat$letter = substr(dat$cause,1,1)
+		dat.merged = merge(dat,cod.lookup.10,by.x='letter',by.y='letter',all.x=1)
+
+        # only filter for external
+        dat.merged = subset(dat.merged,cause.group=='External')
+        dat.merged$cause.group = NULL
+
 		# merge cod in ICD 10 coding
-		dat.merged = merge(dat,icd10.lookup,by='cause',all.x=0)
+		dat.merged = merge(dat.merged,icd10.lookup,by='cause',all.x=1)
+        dat.merged$cause.group = as.character(dat.merged$cause.group)
+        dat.merged$cause.group = ifelse(is.na(dat.merged$cause.group)==TRUE,'Other',dat.merged$cause.group)
 	}
 
 	# add agegroup groupings
@@ -58,7 +69,7 @@ yearsummary_cod  <- function(x=2000) {
 
 	# summarise by state,year,month,sex,agegroup
     #if(x>=1982){
-        dat.summarised <- summarise(group_by(dat.merged,cause.group,fips,year,monthdth,sex,agegroup),deaths=sum(deaths))
+        dat.summarised <- dplyr::summarise(group_by(dat.merged,cause.group,fips,year,monthdth,sex,agegroup),deaths=sum(deaths))
     #}
     #if(x<1982){
         #dat.summarised <- summarise(group_by(dat.merged,fips,year,monthdth,sex,agegroup),deaths=sum(deaths))
@@ -74,7 +85,7 @@ yearsummary_cod  <- function(x=2000) {
 	month 	= 	c(1:12)
 	sex 	= 	c(1:2)
 	age 	= 	c(0,5,15,25,35,45,55,65,75,85)
-	cause 	=	c('Unintentional','Intentional')
+	cause 	=	c('Unintentional','Intentional','Other')
 
 	complete.grid <- expand.grid(fips=fips,month=month,sex=sex,age=age,cause=cause)
 	complete.grid$year <- unique(dat.summarised$year)
@@ -85,7 +96,7 @@ yearsummary_cod  <- function(x=2000) {
 	# assign missing deaths to have value 0
 	dat.summarised.complete$deaths <- ifelse(is.na(dat.summarised.complete$deaths)==TRUE,0,dat.summarised.complete$deaths)
 
-	print(paste0('total deaths ',sum(dat$deaths),' ',sum(dat.merged$deaths),' ',sum(dat.summarised.complete$deaths)))
+	print(paste0('total deaths in year ',sum(dat$deaths),', total deaths for injuries ',sum(dat.merged$deaths),' ',sum(dat.summarised.complete$deaths)))
 
   	return(dat.summarised.complete)
 }
@@ -131,11 +142,6 @@ dat.merged$rate.adj <- dat.merged$deaths / dat.merged$pop.adj
 
 # create output directory
 ifelse(!dir.exists("../../output/prep_data_cod"), dir.create("../../output/prep_data_cod"), FALSE)
-
-# # plot to check rates
-# png(paste0('../../output/prep_data_cod/rate_compared_cod_',year.start.arg,'_',year.end.arg,'.png'))
-# plot(dat.merged$rate,dat.merged$rate.adj)
-# dev.off()
 
 # output file as RDS
 saveRDS(dat.merged,paste0('../../output/prep_data_cod/datus_state_rates_cod_injuries_ons_',year.start.arg,'_',year.end.arg))
