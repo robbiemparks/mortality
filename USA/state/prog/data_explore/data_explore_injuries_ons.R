@@ -1,5 +1,13 @@
 rm(list=ls())
 
+library(RColorBrewer)
+
+# to correct colours
+f <- function(pal) brewer.pal(brewer.pal.info[pal, "maxcolors"], pal)
+mycols <- c(f("Dark2"), f("Set1")[1:8], f("Set2"), f("Set3"),"#89C5DA", "#DA5724", "#74D944", "#CE50CA", "#3F4921", "#C0717C", "#CBD588", "#5F7FC7", "#673770", "#D3D93E", "#38333E", "#508578", "#D7C1B1", "#689030", "#AD6F3B", "#CD9BCD", "#D14285", "#6DDE88", "#652926", "#7FDCC0", "#C84248", "#8569D5", "#5E738F", "#D1A33D", "#8A7C64", "#599861" )
+#to make picking the number of the colour you want easier:
+plot(1:length(mycols),col=mycols[1:length(mycols)],cex=4,pch=20); abline(v=c(10,20,30,40,50,60))
+
 # break down the arguments from Rscript
 args <- commandArgs(trailingOnly=TRUE)
 year.start.arg <- as.numeric(args[1])
@@ -58,8 +66,6 @@ dat.last.year$sex.long <- with(dat.last.year,reorder(dat.last.year$sex.long,sex)
 # fix names of months
 dat.last.year$ID = mapvalues(dat.last.year$month, from=sort(unique(dat.last.year$month)),to=month.short)
 dat.last.year$ID = with(dat.last.year,reorder(dat.last.year$ID,month))
-
-library(RColorBrewer)
 
 # 1. x axis age-group, y-axis injury death rate for last year
 ggplot(data=dat.last.year) +
@@ -137,58 +143,75 @@ legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
 ############################
 
 pdf('~/Desktop/plots.pdf',paper='a4r',height=0,width=0)
+
 # 1.
-ggplot(dat=dat.national.com.sex, aes(x=year,y=1000000*ASDR,fill=cause)) +
+ggplot(dat=dat.national.com.sex, aes(x=month,y=1000000*ASDR,colour=as.factor(year))) +
     ggtitle('ASDRs for injuries in the USA (ONS coding)') +
-    geom_area(position='stack') +
-    facet_grid(~ID) +
-    xlab('Year') +
-    ylab('Death rate per million') +
-    theme_bw() + theme( panel.grid.major = element_blank(),
+    geom_line() +
+    xlab('Time') +
+    ylab('Age standardised death rate (per 1,000,000)') +
+    scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
+    scale_colour_discrete(guide = guide_legend(nrow = 1,title = paste0("Year"))) +
+    facet_grid(~cause) +
+        theme_bw() + theme( panel.grid.major = element_blank(),
     panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
-    panel.border = element_rect(colour = "black"),strip.background = element_blank())
+    panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+    legend.position = 'bottom',legend.justification='center',
+    legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
 
 # 2.
 ggplot(dat=dat.national.com.sex, aes(x=year,y=1000000*ASDR,fill=cause)) +
     ggtitle('ASDRs for injuries in the USA (ONS coding)') +
     geom_area(position='stack') +
-    facet_grid(cause~ID) +
+    facet_grid(~ID) +
     xlab('Year') +
-    ylab('Death rate per million') +
-    theme_bw() + theme( panel.grid.major = element_blank(),
+    ylab('Age standardised death rate (per 1,000,000)') +
+    scale_fill_discrete(guide = guide_legend(nrow = 1,title = paste0("Type"))) +
+    theme_bw() + theme( panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
     panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
-    panel.border = element_rect(colour = "black"),strip.background = element_blank())
+    panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+    legend.position = 'bottom',legend.justification='center',
+    legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
 
 # 3.
-ggplot(dat=dat.national.com.sex, aes(x=year.month,y=1000000*ASDR,fill=cause)) +
+ggplot(dat=dat.national.com.sex, aes(x=year,y=1000000*ASDR,fill=cause)) +
     ggtitle('ASDRs for injuries in the USA (ONS coding)') +
     geom_area(position='stack') +
-    xlab('Time') +
-    ylab('Death rate per million') +
-    theme_bw() + theme( panel.grid.major = element_blank(),
+    facet_grid(cause~ID) +
+    xlab('Year') +
+    ylab('Age standardised death rate (per 1,000,000)') +
+    scale_fill_discrete(guide = guide_legend(nrow = 1,title = paste0("Type"))) +
+    theme_bw() + theme( panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
     panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
-    panel.border = element_rect(colour = "black"),strip.background = element_blank())
+    panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+    legend.position = 'bottom',legend.justification='center',
+    legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
 
 # 4.
 ggplot(dat=dat.national.com.sex, aes(x=year.month,y=1000000*ASDR,fill=cause)) +
     ggtitle('ASDRs for injuries in the USA (ONS coding)') +
     geom_area(position='stack') +
     xlab('Time') +
-    ylab('Death rate per million') +
-    facet_grid(~cause) +
-        theme_bw() + theme( panel.grid.major = element_blank(),
+    ylab('Age standardised death rate (per 1,000,000)') +
+    scale_fill_discrete(guide = guide_legend(nrow = 1,title = paste0("Type"))) +
+    theme_bw() + theme( panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
     panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
-    panel.border = element_rect(colour = "black"),strip.background = element_blank())
+    panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+    legend.position = 'bottom',legend.justification='center',
+    legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
 
 # 5.
-ggplot(dat=dat.national.com.sex, aes(x=as.factor(month),y=1000000*ASDR,colour=year)) +
+ggplot(dat=dat.national.com.sex, aes(x=year.month,y=1000000*ASDR,fill=cause)) +
     ggtitle('ASDRs for injuries in the USA (ONS coding)') +
-    geom_point() +
+    geom_area(position='stack') +
     xlab('Time') +
-    ylab('Death rate per million') +
+    ylab('Age standardised death rate (per 1,000,000)') +
     facet_grid(~cause) +
-        theme_bw() + theme( panel.grid.major = element_blank(),
+    scale_fill_discrete(guide = guide_legend(nrow = 1,title = paste0("Type"))) +
+    theme_bw() + theme( panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
     panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
-    panel.border = element_rect(colour = "black"),strip.background = element_blank())
+    panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+    legend.position = 'bottom',legend.justification='center',
+    legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
 
 dev.off()
