@@ -27,9 +27,18 @@ dat <- merge(dat,dat.year.month, by=c('year','month'))
 library(plyr)
 
 # create nationalised data
-dat.national <- ddply(dat,.(cause,year,month,sex,age),summarize,deaths=sum(deaths),pop.adj=sum(pop.adj))
-dat.national$rate.adj <- with(dat.national,deaths/pop.adj)
-dat.national <- dat.national[order(dat.national$cause,dat.national$sex,dat.national$age,dat.national$year,dat.national$month),]
+dat.national = ddply(dat,.(cause,year,month,sex,age),summarize,deaths=sum(deaths),pop.adj=sum(pop.adj))
+dat.national$rate.adj = with(dat.national,deaths/pop.adj)
+dat.national = dat.national[order(dat.national$cause,dat.national$sex,dat.national$age,dat.national$year,dat.national$month),]
+
+# create age-standardised national data
+dat.national.com.sex = ddply(dat.national,.(cause,year,month,age),summarize, deaths=sum(deaths),pop.adj=sum(pop.adj))
+dat.national.com.sex$rate.adj = with(dat.national.com.sex, deaths/pop.adj)
+# attach weightings from WHO ASDR
+dat.national.com.sex = merge(dat.national.com.sex,StdPopMF,by='age',all.x=1)
+dat.national.com.sex = dat.national.com.sex[order(dat.national.com.sex$cause,dat.national.com.sex$age,dat.national.com.sex$year,
+                                            dat.national.com.sex$month),]
+dat.national.com.sex = ddply(dat.national.com.sex,.(cause,year,month), summarize, ASDR=sum(rate.adj*weight)/sum(weight))
 
 library(ggplot2)
 
@@ -117,10 +126,6 @@ plot.title = element_text(hjust = 0.5),panel.background = element_blank(),
 strip.background = element_blank(), axis.line = element_line(colour = "black"),
 legend.position = 'bottom',legend.justification='center',
 legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
-
-# create age-standardised national data
-
-
 
 # 3. time trends for injuries across time, age-standarised (annual time) STACKED PLOT
 

@@ -117,3 +117,16 @@ unintentional = c()
 # cod lookups
 cod.broad = c('Allcause','Cancer','Cardiopulmonary','External','Other')
 
+# for ASDRs
+# from http://apps.who.int/healthinfo/statistics/mortality/whodpms/definitions/pop.htm
+StdPopMF =      c(1822+7033,        # 0-4
+                8687+8597,          # 5-14
+                8474+8222,          # 15-24
+                7928+7605,          # 25-34
+                7145+6590,          # 35-44
+                6038+5371,          # 45-54
+                4547+3723,          # 55-64
+                2955+2210,          # 65-74
+                1515+905,           # 75-84
+                632)                # 85+
+StdPopMF = data.frame(age=age.filter,weight=StdPopMF)
