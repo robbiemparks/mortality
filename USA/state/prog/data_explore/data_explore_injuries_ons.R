@@ -18,16 +18,6 @@ dat <- readRDS(filename)
 # gender state and age lookup
 source('../../data/objects/objects.R')
 
-
-# extract unique table of year and months to generate year.month
-dat.year.month <- unique(dat[,c('year', 'month')])
-dat.year.month$month <- as.integer(dat.year.month$month)
-dat.year.month$year.month <- seq(nrow(dat.year.month))
-
-# merge year.month table with population table to create year.month id
-dat <- merge(dat,dat.year.month, by=c('year','month'))
-####
-
 library(plyr)
 
 # create nationalised data
@@ -66,6 +56,85 @@ dat.last.year$sex.long <- with(dat.last.year,reorder(dat.last.year$sex.long,sex)
 # fix names of months
 dat.last.year$ID = mapvalues(dat.last.year$month, from=sort(unique(dat.last.year$month)),to=month.short)
 dat.last.year$ID = with(dat.last.year,reorder(dat.last.year$ID,month))
+
+############################
+# for nationalised ASDR data
+############################
+
+pdf('~/Desktop/injury_ons_cod_plots.pdf',paper='a4r',height=0,width=0)
+
+# 1.
+ggplot(dat=dat.national.com.sex, aes(x=month,y=1000000*ASDR,colour=as.factor(year))) +
+    ggtitle('ASDRs in the USA (ONS coding)') +
+    geom_line() +
+    xlab('Time') +
+    ylab('Age standardised death rate (per 1,000,000)') +
+    scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
+    scale_colour_manual(values=yearpalette, guide = guide_legend(nrow = 1,title = paste0("Year"))) +
+    facet_grid(~cause) +
+        theme_bw() + theme( panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
+    panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+    legend.position = 'bottom',legend.justification='center',
+    legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
+
+# 2.
+ggplot(dat=dat.national.com.sex, aes(x=year,y=1000000*ASDR,fill=cause)) +
+    ggtitle('ASDRs for injuries in the USA (ONS coding)') +
+    geom_area(position='stack') +
+    facet_grid(~ID) +
+    xlab('Year') +
+    ylab('Age standardised death rate (per 1,000,000)') +
+    scale_fill_manual(values=mycols[c(1,11,50)], guide = guide_legend(nrow = 1,title = paste0("Type"))) +
+    theme_bw() + theme(panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
+    panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
+    panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+    legend.position = 'bottom',legend.justification='center',
+    legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
+
+# 3.
+ggplot(dat=dat.national.com.sex, aes(x=year,y=1000000*ASDR,fill=cause)) +
+    ggtitle('ASDRs for injuries in the USA (ONS coding)') +
+    geom_area(position='stack') +
+    facet_grid(cause~ID) +
+    xlab('Year') +
+    ylab('Age standardised death rate (per 1,000,000)') +
+    scale_fill_manual(values=mycols[c(1,11,50)], guide = guide_legend(nrow = 1,title = paste0("Type"))) +
+    theme_bw() + theme( panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
+    panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
+    panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+    legend.position = 'bottom',legend.justification='center',
+    legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
+
+# 4.
+ggplot(dat=dat.national.com.sex, aes(x=date,y=1000000*ASDR,fill=cause)) +
+    ggtitle('ASDRs for injuries in the USA (ONS coding)') +
+    geom_area(position='stack') +
+    xlab('Year') +
+    ylab('Age standardised death rate (per 1,000,000)') +
+    scale_x_date(labels = date_format("%Y"),date_breaks = "1 year") +
+    scale_fill_manual(values=mycols[c(1,11,50)], guide = guide_legend(nrow = 1,title = paste0("Type"))) +
+    theme_bw() + theme( panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
+    panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
+    panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+    legend.position = 'bottom',legend.justification='center',
+    legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
+
+# 5.
+ggplot(dat=dat.national.com.sex, aes(x=date,y=1000000*ASDR,color=cause)) +
+    ggtitle('ASDRs for injuries in the USA (ONS coding)') +
+    geom_line() +
+    xlab('Year') +
+    ylab('Age standardised death rate (per 1,000,000)') +
+    scale_x_date(labels = date_format("%Y"),date_breaks = "1 year") +
+    scale_color_manual(values=mycols[c(1,11,50)], guide = guide_legend(nrow = 1,title = paste0("Type"))) +
+    theme_bw() + theme( panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
+    panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
+    panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+    legend.position = 'bottom',legend.justification='center',
+    legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
+
+dev.off()
 
 # # 1. x axis age-group, y-axis injury death rate for last year
 # ggplot(data=dat.last.year) +
@@ -137,82 +206,3 @@ dat.last.year$ID = with(dat.last.year,reorder(dat.last.year$ID,month))
 # legend.position = 'bottom',legend.justification='center',
 # legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
 #
-
-############################
-# for nationalised ASDR data
-############################
-
-pdf('~/Desktop/plots.pdf',paper='a4r',height=0,width=0)
-
-# 1.
-ggplot(dat=dat.national.com.sex, aes(x=month,y=1000000*ASDR,colour=as.factor(year))) +
-    ggtitle('ASDRs for injuries in the USA (ONS coding)') +
-    geom_line() +
-    xlab('Time') +
-    ylab('Age standardised death rate (per 1,000,000)') +
-    scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
-    scale_colour_manual(values=yearpalette, guide = guide_legend(nrow = 1,title = paste0("Year"))) +
-    facet_grid(~cause) +
-        theme_bw() + theme( panel.grid.major = element_blank(),
-    panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
-    panel.border = element_rect(colour = "black"),strip.background = element_blank(),
-    legend.position = 'bottom',legend.justification='center',
-    legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
-
-# 2.
-ggplot(dat=dat.national.com.sex, aes(x=year,y=1000000*ASDR,fill=cause)) +
-    ggtitle('ASDRs for injuries in the USA (ONS coding)') +
-    geom_area(position='stack') +
-    facet_grid(~ID) +
-    xlab('Year') +
-    ylab('Age standardised death rate (per 1,000,000)') +
-    scale_fill_manual(values=mycols[c(1,11,50)], guide = guide_legend(nrow = 1,title = paste0("Type"))) +
-    theme_bw() + theme(panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
-    panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
-    panel.border = element_rect(colour = "black"),strip.background = element_blank(),
-    legend.position = 'bottom',legend.justification='center',
-    legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
-
-# 3.
-ggplot(dat=dat.national.com.sex, aes(x=year,y=1000000*ASDR,fill=cause)) +
-    ggtitle('ASDRs for injuries in the USA (ONS coding)') +
-    geom_area(position='stack') +
-    facet_grid(cause~ID) +
-    xlab('Year') +
-    ylab('Age standardised death rate (per 1,000,000)') +
-    scale_fill_manual(values=mycols[c(1,11,50)], guide = guide_legend(nrow = 1,title = paste0("Type"))) +
-    theme_bw() + theme( panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
-    panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
-    panel.border = element_rect(colour = "black"),strip.background = element_blank(),
-    legend.position = 'bottom',legend.justification='center',
-    legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
-
-# 4.
-ggplot(dat=dat.national.com.sex, aes(x=date,y=1000000*ASDR,fill=cause)) +
-    ggtitle('ASDRs for injuries in the USA (ONS coding)') +
-    geom_area(position='stack') +
-    xlab('Year') +
-    ylab('Age standardised death rate (per 1,000,000)') +
-    scale_x_date(labels = date_format("%Y"),date_breaks = "1 year") +
-    scale_fill_manual(values=mycols[c(1,11,50)], guide = guide_legend(nrow = 1,title = paste0("Type"))) +
-    theme_bw() + theme( panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
-    panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
-    panel.border = element_rect(colour = "black"),strip.background = element_blank(),
-    legend.position = 'bottom',legend.justification='center',
-    legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
-
-# 5.
-ggplot(dat=dat.national.com.sex, aes(x=date,y=1000000*ASDR,color=cause)) +
-    ggtitle('ASDRs for injuries in the USA (ONS coding)') +
-    geom_line() +
-    xlab('Year') +
-    ylab('Age standardised death rate (per 1,000,000)') +
-    scale_x_date(labels = date_format("%Y"),date_breaks = "1 year") +
-    scale_color_manual(values=mycols[c(1,11,50)], guide = guide_legend(nrow = 1,title = paste0("Type"))) +
-    theme_bw() + theme( panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
-    panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
-    panel.border = element_rect(colour = "black"),strip.background = element_blank(),
-    legend.position = 'bottom',legend.justification='center',
-    legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
-
-dev.off()

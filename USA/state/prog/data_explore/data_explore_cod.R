@@ -16,74 +16,110 @@ yearpalette = colorfunc(year.end.arg-year.start.arg +1)
 # lookups
 source('../../data/objects/objects.R')
 
-# extract unique table of year and months to generate year.month
-dat.year.month <- unique(dat[,c('year', 'month')])
-dat.year.month$month <- as.integer(dat.year.month$month)
-dat.year.month$year.month <- seq(nrow(dat.year.month))
+# fix cod names
+dat$cause <- gsub('Cardiopulmonary', 'Cardiorespiratory', dat$cause)
+dat$cause <- gsub('External', 'Injuries', dat$cause)
 
-# merge year.month table with population table to create year.month id
-dat <- merge(dat,dat.year.month, by=c('year','month'))
-####
+# create nationalised data
+dat.national = ddply(dat,.(cause,year,month,sex,age),summarize,deaths=sum(deaths.adj),pop.adj=sum(pop.adj))
+dat.national$rate.adj = with(dat.national,deaths/pop.adj)
+dat.national = dat.national[order(dat.national$cause,dat.national$sex,dat.national$age,dat.national$year,dat.national$month),]
+
+# create ASDR national data
+dat.national.com.sex = ddply(dat.national,.(cause,year,month,age),summarize, deaths=sum(deaths),pop.adj=sum(pop.adj))
+dat.national.com.sex$rate.adj = with(dat.national.com.sex, deaths/pop.adj)
+dat.national.com.sex = merge(dat.national.com.sex,StdPopMF,by='age',all.x=1)
+dat.national.com.sex = dat.national.com.sex[order(dat.national.com.sex$cause,dat.national.com.sex$age,dat.national.com.sex$year,
+                                            dat.national.com.sex$month),]
+dat.national.com.sex = ddply(dat.national.com.sex,.(cause,year,month), summarize, ASDR=sum(rate.adj*weight)/sum(weight))
+# dat.national.com.sex = merge(dat.national.com.sex,dat.year.month, by=c('year','month'))
+dat.national.com.sex$ID = mapvalues(dat.national.com.sex$month, from=sort(unique(dat.national.com.sex$month)),to=month.short)
+dat.national.com.sex$ID = with(dat.national.com.sex,reorder(dat.national.com.sex$ID,month))
+
+# create a date column
+library(zoo)
+dat.national.com.sex$date = zoo::as.yearmon(paste(dat.national.com.sex$year, dat.national.com.sex$month), "%Y %m")
+dat.national.com.sex$date = as.Date(dat.national.com.sex$date, format="%b %Y")
 
 library(ggplot2)
 
-# graph data by age for a particular state cod and sex
-plot.state <- function(state=1,sex=1) {
-    ggplot(dat=subset(dat,fips==state&sex==sex))+
-    	geom_line(aes(x=year.month,y=100000*rate.adj,color=cause)) +
-    	xlab(label='Time') +
-    	ylab(label='Mortality rate per 100,000') +
-    	ggtitle(paste0(state.lookup[state.lookup$fips==state,][[1]],', ',gender.lookup[sex],' : mortality rates by age group and cause of death')) +
-		facet_wrap(~age,scale='free') +
-    	scale_colour_brewer(palette = "Set3") +
-        theme(text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.text.x = element_text(angle=90), plot.title = element_text(hjust = 0.5),
-        panel.background = element_blank(),strip.background = element_blank(), axis.line = element_line(colour = "black"),legend.position = 'bottom',legend.justification='center',legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
-}
+############################
+# for nationalised ASDR data
+############################
 
-# create output directory
-ifelse(!dir.exists("../../output/data_explore_cod"), dir.create("../../output/data_explore_cod"), FALSE)
+pdf('~/Desktop/broad_cod_plots.pdf',paper='a4r',height=0,width=0)
 
-# plot all states for males
-pdf(paste0('../../output/data_explore_cod/states_by_age_male_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',width=0,height=0)
-for (i in state.lookup$fips) {
-	print(plot.state(i,1))
-}
-dev.off()
+# 1.
+ggplot(dat=dat.national.com.sex, aes(x=month,y=1000000*ASDR,colour=as.factor(year))) +
+    ggtitle('ASDRs in the USA over time') +
+    geom_line() +
+    xlab('Time') +
+    ylab('Age standardised death rate (per 1,000,000)') +
+    scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
+    scale_colour_manual(values=yearpalette, guide = guide_legend(nrow = 2,title = paste0("Year"))) +
+    facet_grid(~cause) +
+        theme_bw() + theme( panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
+    panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+    legend.position = 'bottom',legend.justification='center',
+    legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
 
-# plot all states for females
-pdf(paste0('../../output/data_explore_cod/states_by_age_female_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',width=0,height=0)
-for (i in state.lookup$fips) {
-	print(plot.state(i,2))
-}
-dev.off()
+# 2.
+ggplot(dat=dat.national.com.sex,color='black', aes(x=year,y=1000000*ASDR,fill=cause)) +
+    ggtitle('ASDRs in the USA') +
+    geom_area(position='stack') +
+    facet_grid(~ID) +
+    xlab('Year') +
+    ylab('Age standardised death rate (per 1,000,000)') +
+    scale_fill_manual(values=colors.broad.cod, guide = guide_legend(nrow = 1,title = paste0("Cause of death"))) +
+    theme_bw() + theme(panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
+    panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
+    panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+    legend.position = 'bottom',legend.justification='center',
+    legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
 
-# graph data by state for a particular age and sex
-plot.age <- function(age=1,sex=1) {
-	dat$fips <- as.factor(dat$fips)
-	levels(dat$fips) <- state.lookup$full_name
-   	ggplot(dat[dat$age==age.lookup[age] & dat$sex==sex,],aes(x=year.month)) +
-    	geom_line(aes(y=rate.adj*100000,color=cause),) +
-    	xlab(label='Time') +
-    	ylab(label='Mortality rate per 100,000') +
-    	ggtitle(paste0(age.lookup[age],', ',gender.lookup[sex],': mortality rates by agegroup')) +
-    	facet_wrap(~fips) +
-    	scale_colour_brewer(palette = "Set3") +
-        theme(text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(), axis.text.x = element_text(angle=90), plot.title = element_text(hjust = 0.5),
-        panel.background = element_blank(),strip.background = element_blank(), axis.line = element_line(colour = "black"),legend.position = 'bottom',legend.justification='center',legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
-}
+# 3.
+ggplot(dat=dat.national.com.sex, aes(x=year,y=1000000*ASDR,fill=cause)) +
+    ggtitle('ASDRs in the USA') +
+    geom_area(position='stack') +
+    facet_grid(cause~ID) +
+    xlab('Year') +
+    ylab('Age standardised death rate (per 1,000,000)') +
+    scale_fill_manual(values=mycols[c(1:4)], guide = guide_legend(nrow = 1,title = paste0("Type"))) +
+    theme_bw() + theme( panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
+    panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
+    panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+    legend.position = 'bottom',legend.justification='center',
+    legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
 
-# plot all ages for males
-pdf(paste0('../../output/data_explore_cod/age_by_state_male_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',width=0,height=0)
-for (i in seq(length(age.lookup))) {
-	print(plot.age(i,1))
-}
-dev.off()
+# 4.
+ggplot(dat=dat.national.com.sex, aes(x=date,y=1000000*ASDR,fill=cause)) +
+    ggtitle('ASDRs in the USA') +
+    geom_area(position='stack') +
+    xlab('Year') +
+    ylab('Age standardised death rate (per 1,000,000)') +
+    scale_x_date(labels = date_format("%Y"),date_breaks = "1 year") +
+    scale_fill_manual(values=mycols[c(1:4)], guide = guide_legend(nrow = 1,title = paste0("Type"))) +
+    theme_bw() + theme( panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
+    panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
+    panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+    legend.position = 'bottom',legend.justification='center',
+    legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
 
-# plot all ages for females
-pdf(paste0('../../output/data_explore_cod/age_by_state_female_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',width=0,height=0)
-for (i in seq(length(age.lookup))) {
-	print(plot.age(i,2))
-}
+# 5.
+ggplot(dat=dat.national.com.sex, aes(x=date,y=1000000*ASDR,color=cause)) +
+    ggtitle('ASDRs in the USA') +
+    geom_line() +
+    xlab('Year') +
+    ylab('Age standardised death rate (per 1,000,000)') +
+    scale_x_date(labels = date_format("%Y"),date_breaks = "1 year") +
+    scale_fill_manual(values=mycols[c(1:4)], guide = guide_legend(nrow = 1,title = paste0("Type"))) +
+    theme_bw() + theme( panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
+    panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
+    panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+    legend.position = 'bottom',legend.justification='center',
+    legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
+
 dev.off()
 
 

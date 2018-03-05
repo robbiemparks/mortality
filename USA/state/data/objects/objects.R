@@ -14,6 +14,16 @@ age.colours <- c('#FF1493','#B8860B','#808080','#00BFFF','#00CED1')
 age.colours <- c(age.colours,'#66CDAA','#9ACD32','#ADFF2F','#9932CC','#FF8C00')
 age.colours=c("blue",brewer.pal(9,"BrBG")[c(9:6,4:1)],"grey")
 
+# to correct colours
+f <- function(pal) brewer.pal(brewer.pal.info[pal, "maxcolors"], pal)
+mycols <- c(f("Dark2"), f("Set1")[1:8], f("Set2"), f("Set3"),"#89C5DA", "#DA5724", "#74D944", "#CE50CA", "#3F4921", "#C0717C", "#CBD588", "#5F7FC7", "#673770", "#D3D93E", "#38333E", "#508578", "#D7C1B1", "#689030", "#AD6F3B", "#CD9BCD", "#D14285", "#6DDE88", "#652926", "#7FDCC0", "#C84248", "#8569D5", "#5E738F", "#D1A33D", "#8A7C64", "#599861" )
+#to make picking the number of the colour you want easier:
+#plot(1:length(mycols),col=mycols[1:length(mycols)],cex=4,pch=20); abline(v=c(10,20,30,40,50,60))
+
+
+# colors for causes of death
+colors.broad.cod = mycols[c(4,4,1,4)]
+
 # month lookups
 month.lookup <- c('January','February','March','April','May','June','July','August','September','October','November','December')
 month.short <- c('Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec')
@@ -131,8 +141,4 @@ StdPopMF =      c(1822+7033,        # 0-4
                 632)                # 85+
 StdPopMF = data.frame(age=age.filter,weight=StdPopMF)
 
-# to correct colours
-f <- function(pal) brewer.pal(brewer.pal.info[pal, "maxcolors"], pal)
-mycols <- c(f("Dark2"), f("Set1")[1:8], f("Set2"), f("Set3"),"#89C5DA", "#DA5724", "#74D944", "#CE50CA", "#3F4921", "#C0717C", "#CBD588", "#5F7FC7", "#673770", "#D3D93E", "#38333E", "#508578", "#D7C1B1", "#689030", "#AD6F3B", "#CD9BCD", "#D14285", "#6DDE88", "#652926", "#7FDCC0", "#C84248", "#8569D5", "#5E738F", "#D1A33D", "#8A7C64", "#599861" )
-#to make picking the number of the colour you want easier:
-#plot(1:length(mycols),col=mycols[1:length(mycols)],cex=4,pch=20); abline(v=c(10,20,30,40,50,60))
+
