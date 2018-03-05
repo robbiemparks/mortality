@@ -21,11 +21,25 @@ mycols <- c(f("Dark2"), f("Set1")[1:8], f("Set2"), f("Set3"),"#89C5DA", "#DA5724
 #plot(1:length(mycols),col=mycols[1:length(mycols)],cex=4,pch=20); abline(v=c(10,20,30,40,50,60))
 
 
-# colors for causes of death
+# colors for broad causes of death
 colors.broad.cod = mycols[c(    14,  # Cancer
-                                9,  # Cardio
-                                24, # Injuries
+                                9,   # Cardio
+                                24,  # Injuries
                                 11)] # Other
+
+# colors for months
+colors.months = mycols[c(       1,  # Jan
+                                2,   # Feb
+                                3,  # Mar
+                                4,  # Apr
+                                5,   # May
+                                6,  # Jun
+                                7,  # Jul
+                                8,   # Aug
+                                9,  # Sep
+                                10,  # Oct
+                                11,   # Nov
+                                12)] # Dec
 
 # month lookups
 month.lookup <- c('January','February','March','April','May','June','July','August','September','October','November','December')

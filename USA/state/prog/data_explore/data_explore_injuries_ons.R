@@ -1,11 +1,11 @@
 rm(list=ls())
 
-library(RColorBrewer)
-
 # break down the arguments from Rscript
 args <- commandArgs(trailingOnly=TRUE)
 year.start.arg <- as.numeric(args[1])
 year.end.arg <- as.numeric(args[2])
+
+library(RColorBrewer)
 
 # year palette
 colorfunc = colorRampPalette(brewer.pal(6 , "RdBu" ))

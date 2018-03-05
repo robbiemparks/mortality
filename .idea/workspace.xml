@@ -5,6 +5,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/data/objects/objects.R" afterPath="$PROJECT_DIR$/USA/state/data/objects/objects.R" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/data_explore/data_explore_cod.R" afterPath="$PROJECT_DIR$/USA/state/prog/data_explore/data_explore_cod.R" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/data_explore/data_explore_injuries_ons.R" afterPath="$PROJECT_DIR$/USA/state/prog/data_explore/data_explore_injuries_ons.R" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,8 +23,8 @@
       <file leaf-file-name="data_explore_cod.R" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/USA/state/prog/data_explore/data_explore_cod.R">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="51" column="4" lean-forward="true" selection-start-line="51" selection-start-column="4" selection-end-line="51" selection-end-column="4" />
+            <state relative-caret-position="836">
+              <caret line="298" column="9" lean-forward="true" selection-start-line="298" selection-start-column="9" selection-end-line="298" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -32,8 +33,8 @@
       <file leaf-file-name="data_explore_injuries_ons.R" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/USA/state/prog/data_explore/data_explore_injuries_ons.R">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1755">
-              <caret line="117" column="29" lean-forward="true" selection-start-line="117" selection-start-column="29" selection-end-line="117" selection-end-column="29" />
+            <state relative-caret-position="105">
+              <caret line="7" column="21" lean-forward="false" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -42,8 +43,8 @@
       <file leaf-file-name="objects.R" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/USA/state/data/objects/objects.R">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="27" selection-end-column="44" />
+            <state relative-caret-position="450">
+              <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="41" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -72,12 +73,12 @@
       <find>sig.test.5</find>
       <find>yll</find>
       <find>letter</find>
-      <find>scale</find>
       <find>heatmap</find>
       <find>colorway</find>
       <find>month.short</find>
       <find>age.colours</find>
       <find>gsub</find>
+      <find>scale</find>
     </findStrings>
     <replaceStrings>
       <replace>output.loc</replace>
@@ -115,8 +116,8 @@
         <option value="$PROJECT_DIR$/USA/state/prog/mapping_posterior/mapping_posterior_climate_cod_1var.R" />
         <option value="$PROJECT_DIR$/USA/state/prog/prep_data_cod/US_state_monthly_prepare_data_injuries_ons.R" />
         <option value="$PROJECT_DIR$/USA/state/prog/prep_data_cod/US_state_monthly_prepare_data_deaths_adj_injuries_ons.R" />
-        <option value="$PROJECT_DIR$/USA/state/prog/data_explore/data_explore_injuries_ons.R" />
         <option value="$PROJECT_DIR$/USA/state/data/objects/objects.R" />
+        <option value="$PROJECT_DIR$/USA/state/prog/data_explore/data_explore_injuries_ons.R" />
         <option value="$PROJECT_DIR$/USA/state/prog/data_explore/data_explore_cod.R" />
       </list>
     </option>
@@ -494,13 +495,6 @@
       <option name="presentableId" value="Default" />
       <updated>1517410459211</updated>
     </task>
-    <task id="LOCAL-00008" summary="test commit">
-      <created>1517490728163</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1517490728163</updated>
-    </task>
     <task id="LOCAL-00009" summary="test commit">
       <created>1517754272661</created>
       <option name="number" value="00009" />
@@ -837,7 +831,14 @@
       <option name="project" value="LOCAL" />
       <updated>1520262814825</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="test commit">
+      <created>1520263527115</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1520263527115</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1279,26 +1280,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/USA/state/prog/data_explore/data_explore_injuries_ons.R">
+    <entry file="file://$PROJECT_DIR$/USA/state/data/objects/objects.R">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1755">
-          <caret line="117" column="29" lean-forward="true" selection-start-line="117" selection-start-column="29" selection-end-line="117" selection-end-column="29" />
+        <state relative-caret-position="450">
+          <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="41" selection-end-column="42" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/USA/state/data/objects/objects.R">
+    <entry file="file://$PROJECT_DIR$/USA/state/prog/data_explore/data_explore_injuries_ons.R">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="27" selection-end-column="44" />
+        <state relative-caret-position="105">
+          <caret line="7" column="21" lean-forward="false" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/USA/state/prog/data_explore/data_explore_cod.R">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="51" column="4" lean-forward="true" selection-start-line="51" selection-start-column="4" selection-end-line="51" selection-end-column="4" />
+        <state relative-caret-position="836">
+          <caret line="298" column="9" lean-forward="true" selection-start-line="298" selection-start-column="9" selection-end-line="298" selection-end-column="9" />
           <folding />
         </state>
       </provider>
