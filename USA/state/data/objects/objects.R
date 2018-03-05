@@ -27,18 +27,23 @@ colors.broad.cod = mycols[c(    14,  # Cancer
                                 24,  # Injuries
                                 11)] # Other
 
+# colors for sub-causes of death
+colors.injuries = mycols[c(     8,  # Intentional
+                                24,   # Unintentional
+                                33)] # Other
+
 # colors for months
-colors.months = mycols[c(       1,  # Jan
+colors.months = mycols[c(       1,   # Jan
                                 2,   # Feb
-                                3,  # Mar
-                                4,  # Apr
+                                3,   # Mar
+                                4,   # Apr
                                 5,   # May
-                                6,  # Jun
-                                7,  # Jul
+                                6,   # Jun
+                                7,   # Jul
                                 8,   # Aug
-                                9,  # Sep
+                                9,   # Sep
                                 10,  # Oct
-                                11,   # Nov
+                                11,  # Nov
                                 12)] # Dec
 
 # month lookups
