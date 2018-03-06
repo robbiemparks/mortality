@@ -116,7 +116,7 @@ icd9.un = data.frame(cause=icd9.un,cause.group='Unintentional')
 icd9.lookup = rbind(icd9.in,icd9.un)
 icd9.lookup$cause = gsub(" ", "", icd9.lookup$cause)
 icd9.lookup$cause[nchar(icd9.lookup$cause)==3] = paste0(icd9.lookup$cause[nchar(icd9.lookup$cause)==3],'0')
-icd9.lookup$cause[nchar(icd9.lookup$cause)>=5] = substr(icd9.lookup$cause[nchar(icd9.lookup$cause)>=3],1,4)
+icd9.lookup$cause[nchar(icd9.lookup$cause)>=5] = substr(icd9.lookup$cause[nchar(icd9.lookup$cause)>=5],1,4)
 icd9.lookup = unique(icd9.lookup)
 
 icd10.in = dat.injuries.lookup$icd10in = gsub("\\.", "", dat.injuries.lookup$icd10in)
