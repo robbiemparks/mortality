@@ -1,5 +1,8 @@
 rm(list=ls())
 
+# NOTE this file is currently only correct for 2007-2013
+# further investigation requried for further years
+
 library(foreign)
 library(readr)
 
