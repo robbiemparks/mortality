@@ -11,6 +11,10 @@ library(RColorBrewer)
 colorfunc = colorRampPalette(brewer.pal(6 , "RdBu" ))
 yearpalette = colorfunc(year.end.arg-year.start.arg +1)
 
+# create directories for output
+file.loc <- paste0('../../output/data_explore_cod/')
+ifelse(!dir.exists(file.loc), dir.create(file.loc, recursive=TRUE), FALSE)
+
 # load data
 filename <- paste0('../../output/prep_data_cod/datus_state_rates_cod_injuries_ons_',year.start.arg,'_',year.end.arg)
 dat <- readRDS(filename)
@@ -47,7 +51,7 @@ library(ggplot2)
 # for nationalised ASDR data
 ############################
 
-pdf('~/Desktop/injury_ons_cod_plots.pdf',paper='a4r',height=0,width=0)
+pdf(paste0(file.loc,'injury_ons_cod_plots.pdf'),paper='a4r',height=0,width=0)
 
 # 1.
 ggplot(dat=dat.national.com.sex, aes(x=month,y=1000000*ASDR,colour=as.factor(year))) +
@@ -137,7 +141,7 @@ dat.last.year$sex.long <- with(dat.last.year,reorder(dat.last.year$sex.long,sex)
 dat.last.year$ID = mapvalues(dat.last.year$month, from=sort(unique(dat.last.year$month)),to=month.short)
 dat.last.year$ID = with(dat.last.year,reorder(dat.last.year$ID,month))
 
-pdf('~/Desktop/injury_ons_last_year_plots.pdf',paper='a4r',height=0,width=0)
+pdf(paste0(file.loc,'injury_ons_last_year_plots.pdf'),paper='a4r',height=0,width=0)
 
 # x axis age-group, y-axis death rate for last year
 ggplot(data=dat.last.year) +
@@ -221,7 +225,7 @@ dat.last.years$sex.long <- with(dat.last.years,reorder(dat.last.years$sex.long,s
 dat.last.years$ID = mapvalues(dat.last.years$month, from=sort(unique(dat.last.years$month)),to=month.short)
 dat.last.years$ID = with(dat.last.years,reorder(dat.last.years$ID,month))
 
-pdf('~/Desktop/injury_ons_last_years_plots.pdf',paper='a4r',height=0,width=0)
+pdf(paste0(file.loc,'injury_ons_last_years_plots.pdf'),paper='a4r',height=0,width=0)
 
 # x axis age-group, y-axis death rate for last year
 ggplot(data=dat.last.years) +

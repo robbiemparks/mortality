@@ -5,6 +5,10 @@ args <- commandArgs(trailingOnly=TRUE)
 year.start.arg <- as.numeric(args[1])
 year.end.arg <- as.numeric(args[2])
 
+# create directories for output
+file.loc <- paste0('../../output/data_explore_cod/')
+ifelse(!dir.exists(file.loc), dir.create(file.loc, recursive=TRUE), FALSE)
+
 # load data
 filename <- paste0('../../output/prep_data_cod/datus_state_rates_cod_',year.start.arg,'_',year.end.arg)
 dat <- readRDS(filename)
@@ -51,7 +55,7 @@ library(ggplot2)
 # for nationalised ASDR data
 ############################
 
-pdf('~/Desktop/broad_cod_asdr_plots.pdf',paper='a4r',height=0,width=0)
+pdf(paste0(file.loc,'broad_cod_asdr_plots.pdf'),paper='a4r',height=0,width=0)
 
 library(scales)
 
@@ -143,7 +147,7 @@ dat.last.year$sex.long <- with(dat.last.year,reorder(dat.last.year$sex.long,sex)
 dat.last.year$ID = mapvalues(dat.last.year$month, from=sort(unique(dat.last.year$month)),to=month.short)
 dat.last.year$ID = with(dat.last.year,reorder(dat.last.year$ID,month))
 
-pdf('~/Desktop/broad_cod_last_year_plots.pdf',paper='a4r',height=0,width=0)
+pdf(paste0(file.loc,'broad_cod_last_year_plots.pdf'),paper='a4r',height=0,width=0)
 
 # x axis age-group, y-axis death rate for last year
 ggplot(data=dat.last.year) +
@@ -227,7 +231,7 @@ dat.last.years$sex.long <- with(dat.last.years,reorder(dat.last.years$sex.long,s
 dat.last.years$ID = mapvalues(dat.last.years$month, from=sort(unique(dat.last.years$month)),to=month.short)
 dat.last.years$ID = with(dat.last.years,reorder(dat.last.years$ID,month))
 
-pdf('~/Desktop/broad_cod_last_years_plots.pdf',paper='a4r',height=0,width=0)
+pdf(paste0(file.loc,'broad_cod_last_years_plots.pdf'),paper='a4r',height=0,width=0)
 
 # x axis age-group, y-axis death rate for last year
 ggplot(data=dat.last.years) +
