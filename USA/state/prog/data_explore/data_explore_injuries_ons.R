@@ -23,6 +23,7 @@ dat <- readRDS(filename)
 source('../../data/objects/objects.R')
 
 library(plyr)
+library(scales)
 
 # create nationalised data
 dat.national = ddply(dat,.(cause,year,month,sex,age),summarize,deaths=sum(deaths.adj),pop.adj=sum(pop.adj))

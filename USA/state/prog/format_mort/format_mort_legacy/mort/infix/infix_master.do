@@ -6,7 +6,6 @@ set more off
 
 *Main Calling program for infixing all years from 1968-2005*
 
-
 * do /groups/high/original_data/US_vital_statistics/MCD/format_mort/infix/infix_master.do
 
 

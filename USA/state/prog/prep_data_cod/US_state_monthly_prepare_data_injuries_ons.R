@@ -10,7 +10,7 @@ library(foreign)
 
 # source only the 'intentional' variable
 source('../../data/objects/objects.R')
-rm(list=setdiff(ls(), c("icd9.lookup","icd10.lookup","cod.lookup.icd10")))
+rm(list=setdiff(ls(), c("icd9.lookup","icd10.lookup","cod.lookup.10")))
 
 # Function to summarise a year's data. x is the year in 2 number form (e.g. 1989 -> 89).
 # y is the number of rows. default (-1) is all rows.
@@ -35,8 +35,24 @@ yearsummary_cod  <- function(x=2000) {
 	# add extra label for CODs based on relevant ICD year
 	start_year = 1999
 	if(x<start_year) {
-		# SOMETHING LIKE
-		dat.merged = merge(dat,icd9.lookup,by='cause',all.x=0)
+        # ICD 9 coding for broad cod coding
+		dat$cause[nchar(dat$cause)==3] <- paste0(dat$cause[nchar(dat$cause)==3],'0')
+		dat$cause.numeric = as.numeric(dat$cause)
+		dat$cause.group = 	ifelse(dat$cause.numeric>=1400&dat$cause.numeric<=2399,'Cancer',
+							ifelse(dat$cause.numeric>=3900&dat$cause.numeric<=5199,'Cardiopulmonary',
+							ifelse(dat$cause.numeric>=8000&dat$cause.numeric<=9999,'External',
+							'Other')))
+		dat.merged = dat
+
+        # only filter for external
+        dat.merged = subset(dat.merged,cause.group=='External')
+        dat.merged$cause.group = NULL
+
+		# merge cod in ICD 9 coding
+		icd9.lookup$cause = as.numeric(icd9.lookup$cause)
+		dat.merged = merge(dat.merged,icd9.lookup,by='cause',all.x=1)
+        dat.merged$cause.group = as.character(dat.merged$cause.group)
+        dat.merged$cause.group = ifelse(is.na(dat.merged$cause.group)==TRUE,'Other',dat.merged$cause.group)
 
 	}
 	if(x>=start_year){
@@ -68,13 +84,7 @@ yearsummary_cod  <- function(x=2000) {
                    	85)))))))))
 
 	# summarise by state,year,month,sex,agegroup
-    #if(x>=1982){
-        dat.summarised <- dplyr::summarise(group_by(dat.merged,cause.group,fips,year,monthdth,sex,agegroup),deaths=sum(deaths))
-    #}
-    #if(x<1982){
-        #dat.summarised <- summarise(group_by(dat.merged,fips,year,monthdth,sex,agegroup),deaths=sum(deaths))
-    #}
-    
+    dat.summarised <- dplyr::summarise(group_by(dat.merged,cause.group,fips,year,monthdth,sex,agegroup),deaths=sum(deaths))
   	names(dat.summarised)[1:7] <- c('cause','fips','year','month','sex','age','deaths')
 	dat.summarised <- na.omit(dat.summarised)
 

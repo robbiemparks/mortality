@@ -1,3 +1,5 @@
+library(RColorBrewer)
+
 # sex lookups
 sex.filter <- c('male','female')
 sex.filter2 <- c('Male','Female')
@@ -101,15 +103,21 @@ region.lookup=c("Northwest","West_North_Central", "Northeast",
 dat.injuries.lookup = read.csv('~/git/mortality/USA/state/data/cod/intentional_injuries_lookup.csv')
 
 icd9.in = dat.injuries.lookup$icd9in = gsub("\\.", "", dat.injuries.lookup$icd9in)
+icd9.in = gsub("E", "", icd9.in)
+
 icd9.in = icd9.in[icd9.in != ""]
 icd9.in = data.frame(cause=icd9.in,cause.group='Intentional')
 
 icd9.un = dat.injuries.lookup$icd9un = gsub("\\.", "", dat.injuries.lookup$icd9un)
+icd9.un = gsub("E", "", icd9.un)
 icd9.un = icd9.un[icd9.un != ""]
 icd9.un = data.frame(cause=icd9.un,cause.group='Unintentional')
 
 icd9.lookup = rbind(icd9.in,icd9.un)
 icd9.lookup$cause = gsub(" ", "", icd9.lookup$cause)
+icd9.lookup$cause[nchar(icd9.lookup$cause)==3] = paste0(icd9.lookup$cause[nchar(icd9.lookup$cause)==3],'0')
+icd9.lookup$cause[nchar(icd9.lookup$cause)>=5] = substr(icd9.lookup$cause[nchar(icd9.lookup$cause)>=3],1,4)
+icd9.lookup = unique(icd9.lookup)
 
 icd10.in = dat.injuries.lookup$icd10in = gsub("\\.", "", dat.injuries.lookup$icd10in)
 icd10.in = icd10.in[icd10.in != ""]
