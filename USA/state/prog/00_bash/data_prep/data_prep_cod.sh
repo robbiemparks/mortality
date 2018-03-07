@@ -12,11 +12,19 @@ declare -i start=1980
 declare -i end=2013
 
 #################################################
-# 1. PROCESS DATA
+# 1. PROCESS DATA FOR BROAD CAUSES
 #################################################
 
 echo "preparing monthly death rates for years $start - $end";
 
-Rscript ~/git/mortality/USA/state/prog/prep_data_cod/US_state_monthly_prepare_data_cod.R $start $end
-Rscript ~/git/mortality/USA/state/prog/prep_data_cod/US_state_monthly_prepare_data_deaths_adj_cod.R $start $end
+#Rscript ~/git/mortality/USA/state/prog/prep_data_cod/US_state_monthly_prepare_data_cod.R $start $end
+#Rscript ~/git/mortality/USA/state/prog/prep_data_cod/US_state_monthly_prepare_data_deaths_adj_cod.R $start $end
 
+#################################################
+# 1. PROCESS DATA FOR INJURIES
+#################################################
+
+echo "preparing monthly death rates for years $start - $end";
+
+Rscript ~/git/mortality/USA/state/prog/prep_data_cod/US_state_monthly_prepare_data_injuries_ons.R $start $end
+Rscript ~/git/mortality/USA/state/prog/prep_data_cod/US_state_monthly_prepare_data_deaths_adj_injuries_ons.R $start $end

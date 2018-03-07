@@ -7,10 +7,6 @@ year.end.arg <- as.numeric(args[2])
 
 library(RColorBrewer)
 
-# year palette
-colorfunc = colorRampPalette(brewer.pal(6 , "RdBu" ))
-yearpalette = colorfunc(year.end.arg-year.start.arg +1)
-
 # create directories for output
 file.loc <- paste0('../../output/data_explore_cod/')
 ifelse(!dir.exists(file.loc), dir.create(file.loc, recursive=TRUE), FALSE)
@@ -21,6 +17,16 @@ dat <- readRDS(filename)
 
 # gender state and age lookup
 source('../../data/objects/objects.R')
+
+# year palette
+colorfunc = colorRampPalette(brewer.pal(6 , "RdBu" ))
+#colorfunc = colorRampPalette(colors.years)
+yearpalette = colorfunc(year.end.arg-year.start.arg +1)
+
+# fix cod names TEMP
+dat$cause <- gsub('Intentional', '2. Intentional', dat$cause)
+dat$cause <- gsub('Unintentional', '1. Unintentional', dat$cause)
+dat$cause <- gsub('Other', '3. Undetermined whether accidentally or purposely inflicted', dat$cause)
 
 library(plyr)
 library(scales)
