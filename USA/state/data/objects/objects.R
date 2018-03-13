@@ -127,10 +127,13 @@ icd9.lookup = unique(icd9.lookup)
 icd10.in = dat.injuries.lookup$icd10in = gsub("\\.", "", dat.injuries.lookup$icd10in)
 icd10.in = icd10.in[icd10.in != ""]
 icd10.in = data.frame(cause=icd10.in,cause.group='Intentional')
+icd10.in$cause[nchar(icd10.in$cause)==3] <- paste0(icd10.in$cause[nchar(icd10.in$cause)==3],'0')
+
 
 icd10.un = dat.injuries.lookup$icd10un = gsub("\\.", "", dat.injuries.lookup$icd10un)
 icd10.un = icd10.un[icd10.un != ""]
 icd10.un = data.frame(cause=icd10.un,cause.group='Unintentional')
+icd10.un$cause[nchar(icd10.un$cause)==3] <- paste0(icd10.un$cause[nchar(icd10.un$cause)==3],'0')
 
 icd10.lookup = rbind(icd10.in,icd10.un)
 icd10.lookup$cause = gsub(" ", "", icd10.lookup$cause)

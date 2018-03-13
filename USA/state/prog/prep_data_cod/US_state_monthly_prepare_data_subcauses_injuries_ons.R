@@ -102,20 +102,25 @@ yearsummary_injuries  <- function(x=2000) {
         # cause subgroups FINISH
         dat.merged$cause.sub =
                             ifelse(dat.merged$letter=='V'&dat.merged$cause.numeric>=0&dat.merged$cause.numeric<=999,'Transport accidents',
-                            ifelse(dat.merged$letter=='W'&dat.merged$cause.numeric>=0&dat.merged$cause.numeric<=999,'Other external causes of accidental injury', # FIX
-                            ifelse(dat.merged$letter=='X'&dat.merged$cause.numeric>=0&dat.merged$cause.numeric<=599,'Exposure to environment',
-                            ifelse(dat.merged$letter=='X'&dat.merged$cause.numeric>=600&dat.merged$cause.numeric<=840,'Self-harm',
+                            ifelse(dat.merged$letter=='W'&dat.merged$cause.numeric>=0&dat.merged$cause.numeric<=999,'Other external causes of accidental injury',
+                            ifelse(dat.merged$letter=='X'&dat.merged$cause.numeric>=0&dat.merged$cause.numeric<=599,'Other external causes of accidental injury',
+                            ifelse(dat.merged$letter=='X'&dat.merged$cause.numeric>=600&dat.merged$cause.numeric<=840,'Intentional self-harm',
                             ifelse(dat.merged$letter=='X'&dat.merged$cause.numeric>=850&dat.merged$cause.numeric<=999,'Assault',
                             ifelse(dat.merged$letter=='Y'&dat.merged$cause.numeric>=0&dat.merged$cause.numeric<=99,'Assault',
-                            ifelse(dat.merged$letter=='Y'&dat.merged$cause.numeric>=350&dat.merged$cause.numeric<369,'Legal intervention and operations of war',
+                            ifelse(dat.merged$letter=='Y'&dat.merged$cause.numeric>=100&dat.merged$cause.numeric<=349,'Event of undetermined intent',
+                            ifelse(dat.merged$letter=='Y'&dat.merged$cause.numeric>=350&dat.merged$cause.numeric<=369,'Legal intervention and operations of war',
                             ifelse(dat.merged$letter=='Y'&dat.merged$cause.numeric>=400&dat.merged$cause.numeric<=849,'	Complications of medical and surgical care',
-                            ifelse(dat.merged$letter=='Y'&dat.merged$cause.numeric>=870&dat.merged$cause.numeric<=899,'Sequelae of external causes of morbidity and mortality',
-                            'NA')))))))))
+                            ifelse(dat.merged$letter=='Y'&dat.merged$cause.numeric>=850&dat.merged$cause.numeric<=899,'Sequelae of external causes of morbidity and mortality',
+                            'NA'))))))))))
 
 		# merge cod in ICD 10 coding
 		dat.merged = merge(dat.merged,icd10.lookup,by='cause',all.x=1)
         dat.merged$cause.group = as.character(dat.merged$cause.group)
         dat.merged$cause.group = ifelse(is.na(dat.merged$cause.group)==TRUE,'Other',dat.merged$cause.group)
+
+        dat.summarised = ddply(dat.merged,.(letter,cause.numeric,cause.group,cause.sub),summarise,deaths=sum(deaths))
+        dat.summarised$year = x
+
 	}
 
 
@@ -144,7 +149,7 @@ dat.appended = appendyears(year.start.arg,year.end.arg)
 dat.appended = dat.appended[order(dat.appended$year,dat.appended$cause.group,dat.appended$cause.numeric),]
 
 # obtain unique results
-dat.analyse = unique(dat.appended[,c(1,2,3)])
+dat.analyse = unique(dat.appended[,c(1:4)])
 
 # reorder appended data
 dat.appended = dat.appended[order(dat.appended$year,dat.appended$cause.group,dat.appended$cause.numeric),]
