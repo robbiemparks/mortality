@@ -99,7 +99,7 @@ yearsummary_injuries  <- function(x=2000) {
         # numerical cause
         dat.merged$cause.numeric = as.numeric(as.character(substr(dat.merged$cause,2,4)))
 
-        # cause subgroups FINISH
+        # cause subgroups
         dat.merged$cause.sub =
                             ifelse(dat.merged$letter=='V'&dat.merged$cause.numeric>=0&dat.merged$cause.numeric<=999,'Transport accidents',
                             ifelse(dat.merged$letter=='W'&dat.merged$cause.numeric>=0&dat.merged$cause.numeric<=999,'Other external causes of accidental injury',
@@ -112,6 +112,9 @@ yearsummary_injuries  <- function(x=2000) {
                             ifelse(dat.merged$letter=='Y'&dat.merged$cause.numeric>=400&dat.merged$cause.numeric<=849,'	Complications of medical and surgical care',
                             ifelse(dat.merged$letter=='Y'&dat.merged$cause.numeric>=850&dat.merged$cause.numeric<=899,'Sequelae of external causes of morbidity and mortality',
                             'NA'))))))))))
+
+        # to fix contraversal poisioning deaths to have their own category
+        dat.merged$cause.sub = ifelse(dat.merged$letter=='X'&(dat.merged$cause.numeric==410|dat.merged$cause.numeric==420|dat.merged$cause.numeric==450|dat.merged$cause.numeric==490),'Poisoning of undetermined intent',dat.merged$cause.sub)
 
 		# merge cod in ICD 10 coding
 		dat.merged = merge(dat.merged,icd10.lookup,by='cause',all.x=1)
