@@ -43,15 +43,14 @@ library(ggplot2)
 
 pdf(paste0(file.loc,'injury_ons_subcod_plots.pdf'),paper='a4r',height=0,width=0)
 # 1.
-ggplot(dat=subset(dat.national,year=year.end.arg), aes(x="",y=deaths,color=as.factor(cause.sub),fill=as.factor(cause.sub))) +
+ggplot(dat=subset(dat.national,year==year.end.arg), aes(x="",y=deaths,color=as.factor(cause.sub),fill=as.factor(cause.sub))) +
     geom_bar(width = 1, stat = "identity") +
     #coord_polar("y", start=0) +
     xlab('Class of injury death') + ylab('deaths') +
-    scale_fill_manual(values=colors.injuries, guide = guide_legend(nrow = 1,title = paste0("Type"))) +
-    scale_color_manual(values=colors.injuries, guide = guide_legend(nrow = 1,title = paste0("Type"))) +
+    scale_fill_manual(values=colors.subinjuries, guide = guide_legend(nrow = 3,title = paste0("Type"))) +
+    scale_color_manual(values=colors.subinjuries, guide = guide_legend(nrow = 3,title = paste0("Type"))) +
     ggtitle(year.end.arg) +
     facet_wrap(~cause) +
-    ggtitle('') +
     theme_bw() +
     theme(panel.grid.major = element_blank(),
     panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),

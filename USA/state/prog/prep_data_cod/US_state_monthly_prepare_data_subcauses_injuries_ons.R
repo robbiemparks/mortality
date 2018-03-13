@@ -1,5 +1,7 @@
 rm(list=ls())
 
+# FIX THIS BY AGE AND BY SEX
+
 # break down the arguments from Rscript
 args <- commandArgs(trailingOnly=TRUE)
 year.start.arg <- as.numeric(args[1])
@@ -102,8 +104,8 @@ yearsummary_injuries  <- function(x=2000) {
         # cause subgroups
         dat.merged$cause.sub =
                             ifelse(dat.merged$letter=='V'&dat.merged$cause.numeric>=0&dat.merged$cause.numeric<=999,'Transport accidents',
-                            ifelse(dat.merged$letter=='W'&dat.merged$cause.numeric>=0&dat.merged$cause.numeric<=999,'Other external causes of accidental injury',
-                            ifelse(dat.merged$letter=='X'&dat.merged$cause.numeric>=0&dat.merged$cause.numeric<=599,'Other external causes of accidental injury',
+                            ifelse(dat.merged$letter=='W'&dat.merged$cause.numeric>=0&dat.merged$cause.numeric<=999,'Other external causes of accidental injury', #RENAME IN DETAIL
+                            ifelse(dat.merged$letter=='X'&dat.merged$cause.numeric>=0&dat.merged$cause.numeric<=599,'Other external causes of accidental injury', #RENAME IN DETAIL
                             ifelse(dat.merged$letter=='X'&dat.merged$cause.numeric>=600&dat.merged$cause.numeric<=840,'Intentional self-harm',
                             ifelse(dat.merged$letter=='X'&dat.merged$cause.numeric>=850&dat.merged$cause.numeric<=999,'Assault',
                             ifelse(dat.merged$letter=='Y'&dat.merged$cause.numeric>=0&dat.merged$cause.numeric<=99,'Assault',
