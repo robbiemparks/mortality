@@ -157,10 +157,12 @@ dat.analyse = unique(dat.appended[,c(1:4)])
 # reorder appended data
 dat.appended = dat.appended[order(dat.appended$year,dat.appended$cause.group,dat.appended$cause.numeric),]
 
-
 # create output directory
 ifelse(!dir.exists("../../output/prep_data_cod"), dir.create("../../output/prep_data_cod"), FALSE)
 
-# output file as RDS and csv
+# output deaths file as RDS and csv
+saveRDS(dat.appended,paste0('../../output/prep_data_cod/datus_nat_deaths_subcod_injuries_ons_',year.start.arg,'_',year.end.arg))
+
+# output summary file as RDS and csv
 saveRDS(dat.analyse,paste0('../../output/prep_data_cod/datus_injuries_ons_',year.start.arg,'_',year.end.arg))
 write.csv(dat.analyse,paste0('../../output/prep_data_cod/datus_injuries_ons_',year.start.arg,'_',year.end.arg,'.csv'))

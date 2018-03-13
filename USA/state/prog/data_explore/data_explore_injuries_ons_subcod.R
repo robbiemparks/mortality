@@ -1,0 +1,61 @@
+rm(list=ls())
+
+# break down the arguments from Rscript
+args <- commandArgs(trailingOnly=TRUE)
+year.start.arg <- as.numeric(args[1])
+year.end.arg <- as.numeric(args[2])
+
+library(RColorBrewer)
+
+# create directories for output
+file.loc <- paste0('../../output/data_explore_cod/')
+ifelse(!dir.exists(file.loc), dir.create(file.loc, recursive=TRUE), FALSE)
+
+# load data
+filename <- paste0('../../output/prep_data_cod/datus_nat_deaths_subcod_injuries_ons_',year.start.arg,'_',year.end.arg)
+dat <- readRDS(filename)
+
+# gender state and age lookup
+source('../../data/objects/objects.R')
+
+# year palette
+colorfunc = colorRampPalette(brewer.pal(6 , "RdBu" ))
+#colorfunc = colorRampPalette(colors.years)
+yearpalette = colorfunc(year.end.arg-year.start.arg +1)
+
+# fix cod names
+dat$cause = dat$cause.group ; dat$cause.group=NULL
+dat$cause <- gsub('Intentional', '2. Intentional', dat$cause)
+dat$cause <- gsub('Unintentional', '1. Unintentional', dat$cause)
+dat$cause <- gsub('Other', '3. Undetermined whether accidentally or purposely inflicted', dat$cause)
+
+library(plyr)
+library(scales)
+
+# create nationalised data
+dat.national = ddply(dat,.(cause,cause.sub,year),summarize,deaths=sum(deaths))
+
+library(ggplot2)
+
+############################
+# for nationalised ASDR data
+############################
+
+pdf(paste0(file.loc,'injury_ons_subcod_plots.pdf'),paper='a4r',height=0,width=0)
+# 1.
+ggplot(dat=subset(dat.national,year=year.end.arg), aes(x="",y=deaths,color=as.factor(cause.sub),fill=as.factor(cause.sub))) +
+    geom_bar(width = 1, stat = "identity") +
+    #coord_polar("y", start=0) +
+    xlab('Class of injury death') + ylab('deaths') +
+    scale_fill_manual(values=colors.injuries, guide = guide_legend(nrow = 1,title = paste0("Type"))) +
+    scale_color_manual(values=colors.injuries, guide = guide_legend(nrow = 1,title = paste0("Type"))) +
+    ggtitle(year.end.arg) +
+    facet_wrap(~cause) +
+    ggtitle('') +
+    theme_bw() +
+    theme(panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
+    panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+    legend.position = 'bottom',legend.justification='center',
+    legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
+dev.off()
