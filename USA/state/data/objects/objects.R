@@ -30,8 +30,8 @@ colors.broad.cod = mycols[c(    14,  # Cancer
                                 11)] # Other
 
 # colors for sub-causes of death
-colors.injuries = mycols[c(     9,   # Intentional
-                                10,  # Unintentional
+colors.injuries = mycols[c(     25,   # Intentional
+                                53,  # Unintentional
                                 33)] # Other
 
 colors.subinjuries = mycols[c(1:20)]

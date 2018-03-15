@@ -61,7 +61,7 @@ pdf(paste0(file.loc,'injury_ons_cod_plots.pdf'),paper='a4r',height=0,width=0)
 
 # 1.
 ggplot(dat=dat.national.com.sex, aes(x=month,y=100000*ASDR,colour=as.factor(year))) +
-    ggtitle('ASDRs in the USA (ONS coding)') +
+    #ggtitle('ASDRs in the USA (ONS coding)') +
     geom_line() +
     xlab('Time') +
     ylab('Age standardised death rate (per 100,000)') +
@@ -76,7 +76,7 @@ ggplot(dat=dat.national.com.sex, aes(x=month,y=100000*ASDR,colour=as.factor(year
 
 # 2.
 ggplot(dat=dat.national.com.sex, aes(x=year,y=100000*ASDR,fill=cause)) +
-    ggtitle('ASDRs for injuries in the USA (ONS coding)') +
+    #ggtitle('ASDRs for injuries in the USA (ONS coding)') +
     geom_area(position='stack') +
     facet_grid(~ID) +
     xlab('Year') +
@@ -90,7 +90,7 @@ ggplot(dat=dat.national.com.sex, aes(x=year,y=100000*ASDR,fill=cause)) +
 
 # 3.
 ggplot(dat=dat.national.com.sex, aes(x=year,y=100000*ASDR,fill=cause)) +
-    ggtitle('ASDRs for injuries in the USA (ONS coding)') +
+    #ggtitle('ASDRs for injuries in the USA (ONS coding)') +
     geom_area(position='stack') +
     facet_grid(cause~ID) +
     xlab('Year') +
@@ -104,7 +104,7 @@ ggplot(dat=dat.national.com.sex, aes(x=year,y=100000*ASDR,fill=cause)) +
 
 # 4.
 ggplot(dat=dat.national.com.sex, aes(x=date,y=100000*ASDR,fill=cause)) +
-    ggtitle('ASDRs for injuries in the USA (ONS coding)') +
+    #ggtitle('ASDRs for injuries in the USA (ONS coding)') +
     geom_area(position='stack') +
     xlab('Year') +
     ylab('Age standardised death rate (per 100,000)') +
@@ -118,7 +118,7 @@ ggplot(dat=dat.national.com.sex, aes(x=date,y=100000*ASDR,fill=cause)) +
 
 # 5.
 ggplot(dat=dat.national.com.sex, aes(x=date,y=100000*ASDR,color=cause)) +
-    ggtitle('ASDRs for injuries in the USA (ONS coding)') +
+    #ggtitle('ASDRs for injuries in the USA (ONS coding)') +
     geom_line() +
     xlab('Year') +
     ylab('Age standardised death rate (per 100,000)') +
