@@ -58,7 +58,7 @@ ggplot(dat=dat.national, aes(x=year,y=deaths,fill=cause.sub)) +
     ylab('Deaths') +
     #facet_wrap(~cause)+
     #scale_x_date(labels = date_format("%Y"),date_breaks = "1 year") +
-    scale_fill_manual(values=colors.subinjuries, guide = guide_legend(byrow=TRUE,nrow = 2,title = paste0("Type"))) +
+    scale_fill_manual(values=colors.subinjuries, guide = guide_legend(byrow=TRUE,nrow = 2,title = paste0("Sub-cause"))) +
     theme_bw() + theme( panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
     panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
     panel.border = element_rect(colour = "black"),strip.background = element_blank(),
@@ -66,18 +66,18 @@ ggplot(dat=dat.national, aes(x=year,y=deaths,fill=cause.sub)) +
     legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
 
 # 2.
-ggplot(dat=subset(dat.national,year==year.end.arg), aes(x="",y=deaths,color=as.factor(cause.sub),fill=as.factor(cause.sub))) +
-    geom_bar(width = 1, stat = "identity") +
-    #coord_polar("y", start=0) +
-    xlab('Class of injury death') + ylab('deaths') +
-    scale_fill_manual(values=colors.subinjuries, guide = guide_legend(nrow = 3,title = paste0("Type"))) +
-    scale_color_manual(values=colors.subinjuries, guide = guide_legend(nrow = 3,title = paste0("Type"))) +
-    ggtitle(year.end.arg) +
-    facet_wrap(~cause) +
-    theme_bw() +
-    theme(panel.grid.major = element_blank(),
-    panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
-    panel.border = element_rect(colour = "black"),strip.background = element_blank(),
-    legend.position = 'bottom',legend.justification='center',
-    legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
+# ggplot(dat=subset(dat.national,year==year.end.arg), aes(x="",y=deaths,color=as.factor(cause.sub),fill=as.factor(cause.sub))) +
+#     geom_bar(width = 1, stat = "identity") +
+#     #coord_polar("y", start=0) +
+#     xlab('Class of injury death') + ylab('deaths') +
+#     scale_fill_manual(values=colors.subinjuries, guide = guide_legend(nrow = 3,title = paste0("Type"))) +
+#     scale_color_manual(values=colors.subinjuries, guide = guide_legend(nrow = 3,title = paste0("Type"))) +
+#     ggtitle(year.end.arg) +
+#     facet_wrap(~cause) +
+#     theme_bw() +
+#     theme(panel.grid.major = element_blank(),
+#     panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
+#     panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+#     legend.position = 'bottom',legend.justification='center',
+#     legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
 dev.off()

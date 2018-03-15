@@ -36,7 +36,7 @@ colors.injuries = mycols[c(     25,  # Unintentional
 
 colors.subinjuries = mycols[c(
                                 17,  # Complications of medical and surgical care
-                                43,  # Other external causes of accidental injury
+                                50,  # Other external causes of accidental injury
                                 54,  # Transport accidents
                                 34,  # Legal intervention and operations of war
                                 12,  # Assault
