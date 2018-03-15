@@ -5,12 +5,15 @@ args <- commandArgs(trailingOnly=TRUE)
 year.start.arg <- as.numeric(args[1])
 year.end.arg <- as.numeric(args[2])
 
+print(year.start.arg)
+print(year.end.arg)
+
 library(dplyr)
 library(foreign)
 
-# source only the 'intentional' variable
+# source only the intented variable
 source('../../data/objects/objects.R')
-rm(list=setdiff(ls(), c("icd9.lookup","icd10.lookup","cod.lookup.10")))
+rm(list=setdiff(ls(), c("year.start.arg","year.end.arg","icd9.lookup","icd10.lookup","cod.lookup.10")))
 
 # Function to summarise a year's data. x is the year in 2 number form (e.g. 1989 -> 89).
 # y is the number of rows. default (-1) is all rows.
@@ -96,7 +99,7 @@ yearsummary_cod  <- function(x=2000) {
 	month 	= 	c(1:12)
 	sex 	= 	c(1:2)
 	age 	= 	c(0,5,15,25,35,45,55,65,75,85)
-	cause 	=	c('Unintentional','Intentional','Other')
+	cause 	=	c('Unintentional','Intentional')
 
 	complete.grid <- expand.grid(fips=fips,month=month,sex=sex,age=age,cause=cause)
 	complete.grid$year <- unique(dat.summarised$year)
@@ -150,6 +153,31 @@ dat.merged <- dat.merged[order(dat.merged$cause,dat.merged$fips,dat.merged$sex,d
 # add rates
 dat.merged$rate <- dat.merged$deaths / dat.merged$pop
 dat.merged$rate.adj <- dat.merged$deaths / dat.merged$pop.adj
+
+# move old adjusted rate
+dat.merged$rate.adj.old <- dat.merged$rate.adj
+
+# leap year test
+is.leapyear=function(year){
+    return(((year %% 4 == 0) & (year %% 100 != 0)) | (year %% 400 == 0))
+}
+
+dat.merged$leap <- as.integer(is.leapyear(dat.merged$year))
+
+# adjust deaths to a 31-day month
+# 30-day months = April, June, September, November (4,6,9,11)
+# 31-day months = January, March, May, July, August, October, December (1,3,5,7,8,10,12)
+# 28/29-day months = Februray (2)
+dat.merged$deaths.adj <- ifelse(dat.merged$month %in% c(1,3,5,7,8,10,12), dat.merged$deaths,
+                  ifelse(dat.merged$month %in% c(4,6,9,11), dat.merged$deaths*(31/30),
+                  ifelse((dat.merged$month==2 & dat.merged$leap==0), dat.merged$deaths*(31/28),
+                  ifelse((dat.merged$month==2 & dat.merged$leap==1), dat.merged$deaths*(31/29),
+                  'ERROR'
+                  ))))
+dat.merged$deaths.adj <- as.numeric(dat.merged$deaths.adj)
+
+# calculate new rate.adj
+dat.merged$rate.adj <- dat.merged$deaths.adj / dat.merged$pop.adj
 
 # create output directory
 ifelse(!dir.exists("../../output/prep_data_cod"), dir.create("../../output/prep_data_cod"), FALSE)

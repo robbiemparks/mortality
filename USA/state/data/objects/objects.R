@@ -30,8 +30,8 @@ colors.broad.cod = mycols[c(    14,  # Cancer
                                 11)] # Other
 
 # colors for sub-causes of death
-colors.injuries = mycols[c(     8,   # Intentional
-                                24,  # Unintentional
+colors.injuries = mycols[c(     9,   # Intentional
+                                10,  # Unintentional
                                 33)] # Other
 
 colors.subinjuries = mycols[c(1:20)]
@@ -106,8 +106,8 @@ region.lookup=c("Northwest","West_North_Central", "Northeast",
                 "Upper_Midwest","East_North_Central", "West",
                 "Southwest", "South", "Southeast")
 
-# load intentional and unintentional lookup
-dat.injuries.lookup = read.csv('~/git/mortality/USA/state/data/cod/intentional_injuries_lookup.csv')
+# load intentional and unintentional lookup (with poisoning and unclear variables added to unintentional)
+dat.injuries.lookup = read.csv('~/git/mortality/USA/state/data/cod/intentional_injuries_lookup_unintentional_edit.csv')
 
 icd9.in = dat.injuries.lookup$icd9in = gsub("\\.", "", dat.injuries.lookup$icd9in)
 icd9.in = gsub("E", "", icd9.in)

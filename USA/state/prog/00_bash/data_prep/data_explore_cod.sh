@@ -6,7 +6,7 @@
 
 clear
 
-declare -i start=1980
+declare -i start=1999
 declare -i end=2013
 
 # to correct directory

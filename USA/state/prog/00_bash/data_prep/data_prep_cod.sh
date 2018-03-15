@@ -8,6 +8,9 @@
 
 clear
 
+# to correct directory
+cd ~/git/mortality/USA/state/prog/00_bash/
+
 declare -i start=1980
 declare -i end=2013
 
@@ -27,4 +30,3 @@ echo "preparing monthly death rates for years $start - $end";
 echo "preparing monthly death rates for years $start - $end";
 
 Rscript ~/git/mortality/USA/state/prog/prep_data_cod/US_state_monthly_prepare_data_injuries_ons.R $start $end
-Rscript ~/git/mortality/USA/state/prog/prep_data_cod/US_state_monthly_prepare_data_deaths_adj_injuries_ons.R $start $end
