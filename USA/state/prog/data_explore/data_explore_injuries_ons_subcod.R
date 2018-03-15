@@ -29,20 +29,43 @@ dat$cause <- gsub('Intentional', '2. Intentional', dat$cause)
 dat$cause <- gsub('Unintentional', '1. Unintentional', dat$cause)
 dat$cause <- gsub('Other', '3. Undetermined whether accidentally or purposely inflicted', dat$cause)
 
+dat$cause.sub <- gsub('Assault', '5. Assault', dat$cause.sub)
+dat$cause.sub <- gsub('Complications of medical and surgical care', '1. Complications of medical and surgical care', dat$cause.sub)
+dat$cause.sub <- gsub('Transport accidents', '3. Transport accidents', dat$cause.sub)
+dat$cause.sub <- gsub('Intentional self-harm', '6. Intentional self-harm', dat$cause.sub)
+dat$cause.sub <- gsub('Legal intervention and operations of war', '4. Legal intervention and operations of war', dat$cause.sub)
+dat$cause.sub <- gsub('Other external causes of accidental injury', '2. Other external causes of accidental injury', dat$cause.sub)
+
+
 library(plyr)
 library(scales)
 
 # create nationalised data
-dat.national = ddply(dat,.(cause,cause.sub,year),summarize,deaths=sum(deaths))
+dat.national = ddply(dat,.(cause.sub,year),summarize,deaths=sum(deaths))
 
 library(ggplot2)
 
 ############################
-# for nationalised ASDR data
+# for nationalised death count data
 ############################
 
 pdf(paste0(file.loc,'injury_ons_subcod_plots.pdf'),paper='a4r',height=0,width=0)
 # 1.
+ggplot(dat=dat.national, aes(x=year,y=deaths,fill=cause.sub)) +
+    #geom_line()+
+    geom_area(position='stack') +
+    xlab('Year') +
+    ylab('Deaths') +
+    #facet_wrap(~cause)+
+    #scale_x_date(labels = date_format("%Y"),date_breaks = "1 year") +
+    scale_fill_manual(values=colors.subinjuries, guide = guide_legend(byrow=TRUE,nrow = 2,title = paste0("Type"))) +
+    theme_bw() + theme( panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
+    panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
+    panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+    legend.position = 'bottom',legend.justification='center',
+    legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
+
+# 2.
 ggplot(dat=subset(dat.national,year==year.end.arg), aes(x="",y=deaths,color=as.factor(cause.sub),fill=as.factor(cause.sub))) +
     geom_bar(width = 1, stat = "identity") +
     #coord_polar("y", start=0) +

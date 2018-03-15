@@ -112,7 +112,7 @@ yearsummary_injuries  <- function(x=2000) {
                             ifelse(dat.merged$letter=='Y'&dat.merged$cause.numeric>=100&dat.merged$cause.numeric<=349,'Other external causes of accidental injury',
                             ifelse(dat.merged$letter=='Y'&dat.merged$cause.numeric>=350&dat.merged$cause.numeric<=369,'Legal intervention and operations of war',
                             ifelse(dat.merged$letter=='Y'&dat.merged$cause.numeric>=400&dat.merged$cause.numeric<=849,'Complications of medical and surgical care',
-                            ifelse(dat.merged$letter=='Y'&dat.merged$cause.numeric>=850&dat.merged$cause.numeric<=899,'Sequelae of external causes of morbidity and mortality',
+                            ifelse(dat.merged$letter=='Y'&dat.merged$cause.numeric>=850&dat.merged$cause.numeric<=899,'Other external causes of accidental injury',
                             'NA'))))))))))
 
         # to fix contraversal poisioning deaths to have their own category
