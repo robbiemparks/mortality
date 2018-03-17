@@ -10,7 +10,6 @@ library(foreign)
 
 # source only the 'intentional' variable (better way to do this a la python?)
 source('../../data/objects/objects.R')
-rm(list=setdiff(ls(), "intentional"))
 
 # Function to summarise a year's data. x is the year in 2 number form (e.g. 1989 -> 89).
 # y is the number of rows. default (-1) is all rows.
@@ -32,15 +31,6 @@ yearsummary_cod  <- function(x=2000) {
 	dat$fips = substr(dat$fips,1,2)
 	dat$fips <- as.numeric(dat$fips)
 
-	# COD look-up
-	cod.lookup.10 <- data.frame(letter=as.character(toupper(letters)),
-								cause.group=c('Other','Other','Cancer','Cancer','Other', # A-E
-											'Other','Other','Other','Cardiopulmonary','Cardiopulmonary', # F-J
-											'Other','Other','Other','Other','Other', # K-O
-											'Other','Other','Other','External','External', # P-T
-											'Other','External','External','External','External', # U-Y
-											'External')) # Z
-
 	# add extra label for CODs based on relevant ICD year
 	start_year = 1999
 	if(x<start_year) {
@@ -50,6 +40,10 @@ yearsummary_cod  <- function(x=2000) {
 							ifelse(dat$cause.numeric>=3900&dat$cause.numeric<=5199,'Cardiopulmonary',
 							ifelse(dat$cause.numeric>=8000&dat$cause.numeric<=9999,'External',
 							'Other')))
+
+        # move deaths due to weather-based heat/cold to 'Other'
+        dat$cause.group = ifelse(dat$cause.numeric==9000|dat$cause.numeric==9010,'Other',dat$cause.group)
+
 		dat.merged = dat
 	}
 	if(x>=start_year){
@@ -57,8 +51,9 @@ yearsummary_cod  <- function(x=2000) {
 		dat$letter = substr(dat$cause,1,1)
 		dat.merged = merge(dat,cod.lookup.10,by.x='letter',by.y='letter',all.x=1)
 
-		# Unintentional injuries TO FINISH TEMP SOLUTION
-    	#dat.merged$cause.description = ifelse(dat.merged$cause %in% intentional, 'Intentional','Other')
+        # move deaths due to weather-based heat/cold to 'Other'
+        dat$cause.group = ifelse(dat$cause=='X30'|dat$cause=='X31','Other',dat$cause.group)
+
 	}
 
 	# add agegroup groupings
