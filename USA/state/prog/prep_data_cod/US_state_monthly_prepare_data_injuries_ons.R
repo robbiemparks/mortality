@@ -5,9 +5,6 @@ args <- commandArgs(trailingOnly=TRUE)
 year.start.arg <- as.numeric(args[1])
 year.end.arg <- as.numeric(args[2])
 
-print(year.start.arg)
-print(year.end.arg)
-
 library(dplyr)
 library(foreign)
 
@@ -45,10 +42,17 @@ yearsummary_cod  <- function(x=2000) {
 							ifelse(dat$cause.numeric>=3900&dat$cause.numeric<=5199,'Cardiopulmonary',
 							ifelse(dat$cause.numeric>=8000&dat$cause.numeric<=9999,'External',
 							'Other')))
+
+        dat$cause.group = as.character(dat$cause.group)
+
+        # move deaths due to weather-based heat/cold to 'Other'
+        dat$cause.group = ifelse(dat$cause.numeric==9000|dat$cause.numeric==9010,'Other',dat$cause.group)
+
 		dat.merged = dat
 
         # only filter for external
         dat.merged = subset(dat.merged,cause.group=='External')
+
         dat.merged$cause.group = NULL
 
 		# merge cod in ICD 9 coding
@@ -63,6 +67,11 @@ yearsummary_cod  <- function(x=2000) {
         dat$cause[nchar(dat$cause)==3] <- paste0(dat$cause[nchar(dat$cause)==3],'0')
 		dat$letter = substr(dat$cause,1,1)
 		dat.merged = merge(dat,cod.lookup.10,by.x='letter',by.y='letter',all.x=1)
+
+        dat.merged$cause.group = as.character(dat.merged$cause.group)
+
+        # move deaths due to weather-based heat/cold to 'Other'
+        dat.merged$cause.group = ifelse((dat.merged$cause=='X30'|dat.merged$cause=='X31'),'Other',as.character(dat.merged$cause.group))
 
         # only filter for external
         dat.merged = subset(dat.merged,cause.group=='External')

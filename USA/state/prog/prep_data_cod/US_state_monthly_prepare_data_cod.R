@@ -11,7 +11,7 @@ library(foreign)
 # source only the 'intentional' variable (better way to do this a la python?)
 source('../../data/objects/objects.R')
 
-# Function to summarise a year's data. x is the year in 2 number form (e.g. 1989 -> 89).
+# Function to summarise a year's data. x is the year.
 # y is the number of rows. default (-1) is all rows.
 yearsummary_cod  <- function(x=2000) {
 
@@ -40,6 +40,7 @@ yearsummary_cod  <- function(x=2000) {
 							ifelse(dat$cause.numeric>=3900&dat$cause.numeric<=5199,'Cardiopulmonary',
 							ifelse(dat$cause.numeric>=8000&dat$cause.numeric<=9999,'External',
 							'Other')))
+        dat$cause.group = as.character(dat$cause.group)
 
         # move deaths due to weather-based heat/cold to 'Other'
         dat$cause.group = ifelse(dat$cause.numeric==9000|dat$cause.numeric==9010,'Other',dat$cause.group)
@@ -50,10 +51,12 @@ yearsummary_cod  <- function(x=2000) {
 		# merge cod in ICD 10 coding
 		dat$letter = substr(dat$cause,1,1)
 		dat.merged = merge(dat,cod.lookup.10,by.x='letter',by.y='letter',all.x=1)
+        dat.merged$cause.group = as.character(dat.merged$cause.group)
 
         # move deaths due to weather-based heat/cold to 'Other'
-        dat.merged$cause.group = ifelse(dat.merged$cause=='X30'|dat.merged$cause=='X31','Other',dat.merged$cause.group)
+        dat.merged$cause.group = ifelse((dat.merged$cause=='X30'|dat.merged$cause=='X31'),'Other',as.character(dat.merged$cause.group))
 
+        # remove september 11th 2001 deaths
 	}
 
 	# add agegroup groupings
@@ -70,17 +73,12 @@ yearsummary_cod  <- function(x=2000) {
                    	85)))))))))
 
 	# summarise by state,year,month,sex,agegroup
-    #if(x>=1982){
-        dat.summarised <- summarise(group_by(dat.merged,cause.group,fips,year,monthdth,sex,agegroup),deaths=sum(deaths))
-    #}
-    #if(x<1982){
-        #dat.summarised <- summarise(group_by(dat.merged,fips,year,monthdth,sex,agegroup),deaths=sum(deaths))
-    #}
+    dat.summarised <- summarise(group_by(dat.merged,cause.group,fips,year,monthdth,sex,agegroup),deaths=sum(deaths))
     
   	names(dat.summarised)[1:7] <- c('cause','fips','year','month','sex','age','deaths')
 	dat.summarised <- na.omit(dat.summarised)
 
-	# create an exhaustive list of location sex age month (in this case it should be 51 * 2 * 10 * 12 * 4 = 12240 rows)
+	# create an exhaustive list of location sex age month (in this case it should be 51 * 2 * 10 * 12 * 4 = 48,960 rows)
 	fips 	=	c(1,2,4,5,6,8,9,10,11,12,13,15,16,17,18,19,20,21,22,23,24,25,
 				26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,
 				41,42,44,45,46,47,48,49,50,51,53,54,55,56)
@@ -143,6 +141,8 @@ dat.merged <- dat.merged[order(dat.merged$cause,dat.merged$fips,dat.merged$sex,d
 dat.merged$rate <- dat.merged$deaths / dat.merged$pop
 dat.merged$rate.adj <- dat.merged$deaths / dat.merged$pop.adj
 
+dat = dat.merged
+
 # move old adjusted rate
 dat$rate.adj.old <- dat$rate.adj
 
@@ -172,4 +172,4 @@ dat$rate.adj <- dat$deaths.adj / dat$pop.adj
 ifelse(!dir.exists("../../output/prep_data_cod"), dir.create("../../output/prep_data_cod"), FALSE)
 
 # output file as RDS
-saveRDS(dat.merged,paste0('../../output/prep_data_cod/datus_state_rates_cod_',year.start.arg,'_',year.end.arg))
+saveRDS(dat,paste0('../../output/prep_data_cod/datus_state_rates_cod_',year.start.arg,'_',year.end.arg))
