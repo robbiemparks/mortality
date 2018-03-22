@@ -18,7 +18,7 @@ declare -i end2=2013
 declare country="USA"
 declare dname="tapp"
 declare metric="meanc3"
-declare cod="AllCause"
+declare cod="Unintentional"
 
 #################################################
 # 1. RUN AGE-SEPARATED MODEL
