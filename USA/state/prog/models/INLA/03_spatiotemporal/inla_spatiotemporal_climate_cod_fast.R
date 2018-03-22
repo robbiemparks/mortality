@@ -88,9 +88,6 @@ names(dat.merged)[grep(dname.arg,names(dat.merged))] <- 'variable'
 regions.lookup <- data.frame(climate_region=sort(unique(dat.merged$climate_region)))
 regions.lookup$ID.clim <- seq(nrow(regions.lookup))
 
-# export climate region table
-#saveRDS(regions.lookup,'../../data/fips_lookup/climate_region_lookup')
-
 dat.merged <- merge(dat.merged,regions.lookup,by='climate_region')
 
 library(dplyr)
