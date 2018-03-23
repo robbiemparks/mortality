@@ -240,8 +240,10 @@ forest.plot.national.month <- function() {
                 ifelse(cause=='Cancer', 'Cancer',
                 ifelse(cause=='Cardiopulmonary', 'Cardiorespiratory',
                 ifelse(cause=='External', 'Injuries',
-                ifelse(cause=='Other', 'Other'
-                )))))
+                ifelse(cause=='Other', 'Other',
+                ifelse(cause=='Intentional','Intentional',
+                ifelse(cause=='Unintentional','Unintentional',
+                )))))))
 
         # ADD SIGNIFICANCE HIGHLIGHTS
         print(ggplot(data=subset(dat)) +
