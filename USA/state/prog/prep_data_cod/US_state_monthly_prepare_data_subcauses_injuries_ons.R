@@ -74,7 +74,7 @@ yearsummary_injuries  <- function(x=2000) {
 							ifelse(dat.merged$cause.numeric>=9100&dat.merged$cause.numeric<=9159, 'Other external causes of accidental injury',#'Accidents Caused By Submersion, Suffocation, And Foreign Bodies',
 							ifelse(dat.merged$cause.numeric>=9160&dat.merged$cause.numeric<=9289, 'Other external causes of accidental injury',#'Other Accidents',
 							ifelse(dat.merged$cause.numeric>=9290&dat.merged$cause.numeric<=9299, 'Other external causes of accidental injury',#'Late Effects Of Accidental Injury',
-							ifelse(dat.merged$cause.numeric>=9300&dat.merged$cause.numeric<=9499, 'Complications of medical and surgical care',#'Drugs, Medicinal And Biological Substances Causing Adverse Effects In Therapeutic Use',
+							ifelse(dat.merged$cause.numeric>=9300&dat.merged$cause.numeric<=9499, 'Complications of medical and surgical care',#' ',
 							ifelse(dat.merged$cause.numeric>=9500&dat.merged$cause.numeric<=9599, 'Intentional self-harm',#'Suicide And Self-Inflicted Injury',
 							ifelse(dat.merged$cause.numeric>=9600&dat.merged$cause.numeric<=9699, 'Assault',#'Homicide And Injury Purposely Inflicted By Other Persons',
 							ifelse(dat.merged$cause.numeric>=9700&dat.merged$cause.numeric<=9799, 'Legal intervention and operations of war',#'Legal Intervention',
@@ -124,7 +124,7 @@ yearsummary_injuries  <- function(x=2000) {
                             ifelse(dat.merged$letter=='Y'&dat.merged$cause.numeric>=850&dat.merged$cause.numeric<=899,'Other external causes of accidental injury',
                             'NA'))))))))))
 
-        # to fix contraversal poisioning deaths to have their own category
+        # to fix contraversal poisioning deaths to have their own category if desired
         dat.merged$cause.sub = ifelse(dat.merged$letter=='X'&(dat.merged$cause.numeric==410|dat.merged$cause.numeric==420|dat.merged$cause.numeric==450|dat.merged$cause.numeric==490),'Other external causes of accidental injury',dat.merged$cause.sub)
 
 		# merge cod in ICD 10 coding
