@@ -18,7 +18,7 @@ declare -i end2=2013
 declare country="USA"
 declare dname="t2m"
 declare metric="meanc3"
-declare cod="External"
+declare cod="Intentional"
 
 #################################################
 # 1. RUN AGE-SEPARATED MODEL
