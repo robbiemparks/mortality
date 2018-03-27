@@ -81,7 +81,7 @@ yearsummary_injuries  <- function(x=2000) {
 							ifelse(dat.merged$cause.numeric>=9700&dat.merged$cause.numeric<=9799, 'Other external causes of injury',#'Legal Intervention',
 							ifelse(dat.merged$cause.numeric>=9800&dat.merged$cause.numeric<=9899, 'Other external causes of injury',#'Injury Undetemined Whether Accidentlally Or Purposely Inflicted',
 							ifelse(dat.merged$cause.numeric>=9900&dat.merged$cause.numeric<=9999, 'Other external causes of injury',#'Injury Resulting From Operations Of War',
-							'NA')))))))))))))))))))))))
+							'NA'))))))))))))))))))))))))
 
 		# merge cod in ICD 9 coding
 		icd9.lookup$cause = as.numeric(icd9.lookup$cause)
@@ -126,7 +126,7 @@ yearsummary_injuries  <- function(x=2000) {
                             ifelse(dat.merged$letter=='Y'&dat.merged$cause.numeric>=350&dat.merged$cause.numeric<=369,'LOther external causes of injury',
                             ifelse(dat.merged$letter=='Y'&dat.merged$cause.numeric>=400&dat.merged$cause.numeric<=849,'Other external causes of injury',
                             ifelse(dat.merged$letter=='Y'&dat.merged$cause.numeric>=850&dat.merged$cause.numeric<=899,'Other external causes of injury',
-                            'NA'))))))))))
+                            'NA')))))))))))))
 
         # to fix contraversal poisioning deaths to have their own category if desired
         dat.merged$cause.sub = ifelse(dat.merged$letter=='X'&(dat.merged$cause.numeric==410|dat.merged$cause.numeric==420|dat.merged$cause.numeric==450|dat.merged$cause.numeric==490),'Other external causes of injury',dat.merged$cause.sub)
@@ -164,9 +164,8 @@ yearsummary_injuries  <- function(x=2000) {
 	sex 	= 	c(1:2)
 	age 	= 	c(0,5,15,25,35,45,55,65,75,85)
 	cause.group 	=	c('Unintentional','Intentional')
-    cause.sub 	=	c(  'Assault','Intentional self-harm','Legal intervention and operations of war',
-                            'Other external causes of accidental injury',
-                            'Complications of medical and surgical care','Transport accidents')
+    cause.sub 	=	c(  'Transport accidents','Accidental falls','Other external causes of injury',
+                        'Accidental drowning and submersion','Intentional self-harm','Assault')
 
     #
 	complete.grid <- expand.grid(fips=fips,month=month,sex=sex,age=age,cause.group=cause.group,cause.sub=cause.sub)
