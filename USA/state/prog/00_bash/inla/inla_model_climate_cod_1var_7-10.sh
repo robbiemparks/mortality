@@ -18,7 +18,7 @@ declare -i end2=1989
 declare country="USA"
 declare dname="t2m"
 declare metric="meanc3"
-declare cod="Accidental drowning and submersion"
+declare cod="Accidental_drowning_and_submersion"
 
 #################################################
 # 1. RUN AGE-SEPARATED MODEL

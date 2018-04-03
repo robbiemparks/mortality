@@ -18,7 +18,7 @@ declare -i end2=1989
 declare country="USA"
 declare dname="t2m"
 declare metric="meanc3"
-declare cod="Transport accidents"
+declare cod="Transport_accidents"
 
 #################################################
 # 1. RUN AGE-SEPARATED MODEL

@@ -14,7 +14,7 @@ dname.arg <- as.character(args[7])
 metric.arg <- as.character(args[8])
 year.start.analysis.arg <- as.numeric(args[9])
 year.end.analysis.arg <- as.numeric(args[10])
-cod.arg <- as.character(args[11])
+cod.arg <- as.character(args[11]) ; cod.arg <- gsub('_',' ',cod.arg)
 
 # types character for file strings
 types <- c('1','1a','2','2a','3','3a','4','1b','1c','1d','1e','1f','1de','1ef','1g','0','minus1')
@@ -47,6 +47,8 @@ if(cod.arg%in%c('Transport accidents','Accidental falls','Other external causes 
 	dat.inla.load <- readRDS(paste0('../../output/prep_data_cod/datus_nat_deaths_subcod_injuries_ons_',year.start.arg,'_',year.end.arg))
     dat.inla.load$cause.group = NULL ; names(dat.inla.load)[6] = 'cause'
     dat.inla.load <- subset(dat.inla.load,cause==cod.arg)
+
+    print(head(dat.inla.load))
 }
 
 # load climate region data
