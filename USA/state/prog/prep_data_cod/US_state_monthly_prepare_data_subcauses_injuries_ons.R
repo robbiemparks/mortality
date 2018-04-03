@@ -258,15 +258,23 @@ dat.merged$rate.adj <- dat.merged$deaths.adj / dat.merged$pop.adj
 # output deaths file as RDS and csv
 saveRDS(dat.merged,paste0('../../output/prep_data_cod/datus_nat_deaths_subcod_injuries_ons_',year.start.arg,'_',year.end.arg))
 
-# append cods and output to single file
+# append cods and output to single file, merging description names along the way
+start_year = 1999
 dat.cods = data.frame()
 for(x in c(year.start.arg:year.end.arg)){
     dat.cod = readRDS(paste0('../../output/prep_data_cod/cods/cods_',x))
+    if(x<start_year) {
+        dat.cod$icd = 9
+    }
+    if(x>=start_year) {
+        dat.cod$icd = 10
+    }
     dat.cods = rbind(dat.cods,dat.cod)
 }
-dat.cods = unique(dat.cods[c('cause','cause.sub')])
+dat.cods = unique(dat.cods[c('cause','cause.sub','icd')])
 dat.cods = dat.cods[order(dat.cods$cause.sub,dat.cods$cause),]
+
 
 # output summary file as RDS and csv
 saveRDS(dat.cods,paste0('../../output/prep_data_cod/cods/cods_',year.start.arg,'_',year.end.arg))
-write.csv(dat.cods,paste0('../../output/prep_data_cod/cods/cods_',year.start.arg,'_',year.end.arg,'.csv'))
+write.csv(dat.cods,paste0('../../output/prep_data_cod/cods/cods_',year.start.arg,'_',year.end.arg,'.csv'),row.names=FALSE)
