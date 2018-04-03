@@ -14,11 +14,11 @@ declare -a models=(10)
 declare -i start=1980
 declare -i end=2013
 declare -i start2=1980
-declare -i end2=2013
+declare -i end2=1989
 declare country="USA"
 declare dname="t2m"
-declare metric="number_of_days_below_nonnormal_90_2"
-declare cod="Cardiopulmonary"
+declare metric="meanc3"
+declare cod="Accidental falls"
 
 #################################################
 # 1. RUN AGE-SEPARATED MODEL

@@ -261,13 +261,18 @@ saveRDS(dat.merged,paste0('../../output/prep_data_cod/datus_nat_deaths_subcod_in
 # append cods and output to single file, merging description names along the way
 start_year = 1999
 dat.cods = data.frame()
+dat.lookup = read.csv('../../data/cod/icd10cmtoicd9gem.csv')
 for(x in c(year.start.arg:year.end.arg)){
     dat.cod = readRDS(paste0('../../output/prep_data_cod/cods/cods_',x))
     if(x<start_year) {
         dat.cod$icd = 9
+        # merge code with cod lookup
+        dat.test = merge(dat.cod,dat.lookup,by.x='cause',by.y='icd9cm_eq',all.x=TRUE)
     }
     if(x>=start_year) {
         dat.cod$icd = 10
+        dat.test = merge(dat.cod,dat.lookup,by.x='cause',by.y='icd10_eq',all.x=TRUE)
+
     }
     dat.cods = rbind(dat.cods,dat.cod)
 }

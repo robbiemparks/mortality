@@ -42,11 +42,11 @@ if(cod.arg%in%c('Intentional','Unintentional')){
 	dat.inla.load <- readRDS(paste0('../../output/prep_data_cod/datus_state_rates_cod_injuries_ons_',year.start.arg,'_',year.end.arg))
     dat.inla.load <- subset(dat.inla.load,cause==cod.arg)
 }
-
-# FINISH THE BELOW CONDITION
-if(cod.arg%in%c('FILL IN','')){
+if(cod.arg%in%c('Transport accidents','Accidental falls','Other external causes of injury',
+				'Accidental drowning and submersion','Intentional self-harm','Assault')){
 	dat.inla.load <- readRDS(paste0('../../output/prep_data_cod/datus_nat_deaths_subcod_injuries_ons_',year.start.arg,'_',year.end.arg))
-    dat.inla.load <- subset(dat.inla.load,cause.sub==cod.arg)
+    dat.inla.load$cause.group = NULL ; names(dat.inla.load)[6] = 'cause'
+    dat.inla.load <- subset(dat.inla.load,cause==cod.arg)
 }
 
 # load climate region data
