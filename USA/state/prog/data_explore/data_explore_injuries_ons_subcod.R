@@ -48,12 +48,21 @@ dat.national = ddply(dat,.(cause.sub,year,month,sex,age),summarize,deaths=sum(de
 dat.national$rate.adj = with(dat.national,deaths/pop.adj)
 dat.national = dat.national[order(dat.national$cause.sub,dat.national$sex,dat.national$age,dat.national$year,dat.national$month),]
 
-# create ASDR national data
-dat.national.com.sex = ddply(dat.national,.(cause.sub,year,age),summarize, deaths=sum(deaths),pop.adj=mean(pop.adj))
+# create monthly ASDR national data
+dat.national.com.sex = ddply(dat.national,.(cause.sub,month,year,age),summarize, deaths=sum(deaths),pop.adj=sum(pop.adj))
 dat.national.com.sex$rate.adj = with(dat.national.com.sex, deaths/pop.adj)
 dat.national.com.sex = merge(dat.national.com.sex,StdPopMF,by='age',all.x=1)
 dat.national.com.sex = dat.national.com.sex[order(dat.national.com.sex$cause.sub,dat.national.com.sex$age,dat.national.com.sex$year),]
-dat.national.com.sex = ddply(dat.national.com.sex,.(cause.sub,year), summarize, ASDR=sum(rate.adj*weight)/sum(weight))
+dat.national.com.sex = ddply(dat.national.com.sex,.(cause.sub,year,month), summarize, ASDR=sum(rate.adj*weight)/sum(weight))
+
+# create yearly ASDR national data
+dat.national.com.sex.year = ddply(dat.national.com.sex,.(cause.sub,year), summarize, ASDR=mean(ASDR))
+# dat.national.com.sex.year = ddply(dat.national,.(cause.sub,year,age,sex),summarize, deaths=sum(deaths),pop.adj=mean(pop.adj))
+# dat.national.com.sex.year = ddply(dat.national.com.sex.year,.(cause.sub,year,age),summarize, deaths=sum(deaths),pop.adj=sum(pop.adj))
+# dat.national.com.sex.year$rate.adj = with(dat.national.com.sex.year, deaths/pop.adj)
+# dat.national.com.sex.year = merge(dat.national.com.sex.year,StdPopMF,by='age',all.x=1)
+# dat.national.com.sex.year = dat.national.com.sex.year[order(dat.national.com.sex.year$cause.sub,dat.national.com.sex.year$age,dat.national.com.sex.year$year),]
+# dat.national.com.sex.year = ddply(dat.national.com.sex.year,.(cause.sub,year), summarize, ASDR=sum(rate.adj*weight)/sum(weight))
 
 library(ggplot2)
 
@@ -106,18 +115,65 @@ for(i in c(1,2)){
 dev.off()
 
 ############################
-# for nationalised death count data
+# for nationalised ASDR data
 ############################
 
 pdf(paste0(file.loc,'injury_ons_subcod_plots.pdf'),paper='a4r',height=0,width=0)
 
 # 1.
-ggplot(dat=dat.national.com.sex, aes(x=year,y=ASDR*100000,fill=cause.sub)) +
+ggplot(dat=dat.national.com.sex, aes(x=month,y=100000*ASDR,colour=as.factor(year))) +
+    #ggtitle('ASDRs in the USA (ONS coding)') +
+    geom_line() +
+    xlab('Time') +
+    ylab('Age standardised death rate (per 100,000)') +
+    scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
+    scale_colour_manual(values=yearpalette, guide = guide_legend(nrow = 2,title = paste0("Year"))) +
+    facet_grid(~cause.sub) +
+    theme_bw() + theme( panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
+    panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
+    panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+    legend.position = 'bottom',legend.justification='center',
+    legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
+dev.off()
+
+
+############################
+# for nationalised death count data
+############################
+
+ggplot(dat=dat.national.com.sex, aes(x=year,y=rate.adj*100000,fill=cause.sub)) +
     geom_area(position='stack') +
     xlab('Year') +
     ylab('Age standardised death rate (per 100,000)') +
-    #facet_wrap(~cause)+
-    #scale_x_date(labels = date_format("%Y"),date_breaks = "1 year") +
+    facet_wrap(~age, scales='free') +
+    scale_fill_manual(values=colors.subinjuries, guide = guide_legend(byrow=TRUE,nrow = 2,title = paste0("Sub-cause"))) +
+    theme_bw() + theme( panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
+    panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
+    panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+    legend.position = 'bottom',legend.justification='center',
+    legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
+
+pdf(paste0(file.loc,'injury_ons_subcod_plots.pdf'),paper='a4r',height=0,width=0)
+
+1.
+ggplot(dat=dat.national.com.sex.year, aes(x=year,y=ASDR*100000,fill=cause.sub)) +
+    geom_area(position='stack') +
+    xlab('Year') +
+    ylab('Age standardised death rate (per 100,000)') +
+    #facet_wrap(~age, scales='free') +
+    scale_fill_manual(values=colors.subinjuries, guide = guide_legend(byrow=TRUE,nrow = 2,title = paste0("Sub-cause"))) +
+    theme_bw() + theme( panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
+    panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
+    panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+    legend.position = 'bottom',legend.justification='center',
+    legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
+
+2.
+ggplot(dat=dat.national.com.sex.year, aes(x=year,y=ASDR*100000,color=cause.sub)) +
+    geom_line() +
+    geom_vline(xintercept=1999) +
+    xlab('Year') +
+    ylab('Age standardised death rate (per 100,000)') +
     scale_fill_manual(values=colors.subinjuries, guide = guide_legend(byrow=TRUE,nrow = 2,title = paste0("Sub-cause"))) +
     theme_bw() + theme( panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
     panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),

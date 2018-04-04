@@ -35,12 +35,12 @@ colors.injuries = mycols[c(     25,  # Unintentional
                                 33)] # Other
 
 colors.subinjuries = mycols[c(
-                                17,  # Complications of medical and surgical care
-                                50,  # Other external causes of accidental injury
-                                54,  # Transport accidents
-                                34,  # Legal intervention and operations of war
-                                12,  # Assault
-                                20)]# Intentional self-harm
+                                17,  #
+                                50,  #
+                                54,  #
+                                1,  #
+                                12,  #
+                                20)]#
 
 # colors for years progression
 colors.years = mycols[c(        9,   # Beginning
