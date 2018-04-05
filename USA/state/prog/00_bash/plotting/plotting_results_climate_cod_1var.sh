@@ -13,7 +13,8 @@ declare -a models=(10)
 declare country="USA"
 declare -a dnames=("t2m")
 declare -a metrics=('meanc3')
-declare -a cods=("Unintentional" "Intentional")
+declare -a cods=("Transport_accidents" "Intentional_self-harm" "Accidental_falls" "Accidental_drowning_and_submersion")
+#declare -a cods=("Unintentional" "Intentional")
 #declare -a cods=("AllCause" "Cancer" "Cardiopulmonary" "External" "Other")
 
 #################################################

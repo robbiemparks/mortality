@@ -17,7 +17,7 @@ country <- as.character(args[3])
 model <- as.numeric(args[4])
 dname <- as.character(args[5])
 metric <- as.character(args[6])
-cause <- as.character(args[7])
+cause <- as.character(args[7]) ; cause <- gsub('_',' ',cause)
 
 #year.start = 1980 ; year.end = 2013 ; country = 'USA' ; model = 10 ; dname = 't2m' ; metric = 'meanc3' ; cause = 'External'
 

@@ -8,7 +8,7 @@ country <- as.character(args[3])
 model <- as.numeric(args[4])
 dname <- as.character(args[5])
 metric <- as.character(args[6])
-cause <- as.character(args[7])
+cause <- as.character(args[7]) ; cause <- gsub('_',' ',cause)
 
 library(INLA)
 
