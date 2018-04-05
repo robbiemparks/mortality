@@ -243,7 +243,12 @@ forest.plot.national.month <- function() {
                 ifelse(cause=='Other', 'Other',
                 ifelse(cause=='Intentional','Intentional',
                 ifelse(cause=='Unintentional','Unintentional',
-                )))))))
+                ifelse(cause=='Transport accidents','Transport accidents',
+                ifelse(cause=='Intentional self-harm','Intentional self-harm',
+                ifelse(cause=='Accidental falls','Accidental falls',
+                ifelse(cause=='Accidental drowning and submersion','Accidental drowning and submersion',
+                ifelse(cause=='Assault','Assault','NA'
+                ))))))))))))
 
         # ADD SIGNIFICANCE HIGHLIGHTS
         print(ggplot(data=subset(dat)) +
