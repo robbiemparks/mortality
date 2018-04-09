@@ -18,8 +18,8 @@ year.end.analysis.arg <- as.numeric(args[11])
 cod.arg <- as.character(args[12])
 
 # age.arg = 65 ; sex.arg = 1 ; year.start.arg = 1980 ; year.end.arg = 2013 ; type.arg = 10 ;
-# cluster.arg = 0 ; dname.arg = 't2m' ; metric1.arg = 'meanc3' ; metric2.arg = 'number_of_days_above_nonnormal_90_2' ;
-# year.start.analysis.arg = 1980 ; year.end.analysis.arg = 1989 ; cod.arg = 'Cardiopulmonary'
+#cluster.arg = 0 ; dname.arg = 't2m' ; metric1.arg = 'meanc3' ; metric2.arg = 'number_of_days_above_nonnormal_90_2' ;
+#year.start.analysis.arg = 1980 ; # year.end.analysis.arg = 1989 ; cod.arg = 'Cardiopulmonary'
 
 # types character for file strings
 types <- c('1','1a','2','2a','3','3a','4','1b','1c','1d','1e','1f','1de','1ef','1g','0','minus1')
@@ -40,39 +40,10 @@ ifelse(!dir.exists(paste0('~/data/mortality/US/state/climate_effects/',dname.arg
 dir.create(paste0('~/data/mortality/US/state/climate_effects/',dname.arg,'/2var/',metric.arg,'/non_pw/type_',type.selected,'/age_groups'),recursive=TRUE), FALSE)
 
 # load data and filter results
-if(cod.arg=='AllCause'){
-	dat.inla.load <- readRDS(paste0('../../output/prep_data/datus_state_rates_',year.start.arg,'_',year.end.arg))
-}
-if(cod.arg%in%c('Cancer','Cardiopulmonary','External','Other')){
-	dat.inla.load <- readRDS(paste0('../../output/prep_data_cod/datus_state_rates_cod_',year.start.arg,'_',year.end.arg))
-	dat.inla.load <- subset(dat.inla.load,cause==cod.arg)
-}
-if(cod.arg%in%c('Intentional','Unintentional')){
-	dat.inla.load <- readRDS(paste0('../../output/prep_data_cod/datus_state_rates_cod_injuries_ons_',year.start.arg,'_',year.end.arg))
-    dat.inla.load <- subset(dat.inla.load,cause==cod.arg)
-}
+source('../models/INLA/03_spatiotemporal/inla_load_data_cod.R')
 
-
-# load climate region data
-dat.region <- readRDS(paste0('~/git/mortality/USA/state/output/mapping_posterior/INLA/type1a/1982_2013/maps/USA_state_data'))
-
-# fix climate region names
-dat.region$climate_region <- 	c('Northwest','West North Central','Northeast','West North Central','West North Central',
-'West North Central','East North Central','Northwest','Northeast','East North Central',
-'Northwest','Northeast','East North Central','Northeast','West North Central',
-'Northeast','Northeast','Northeast','Northeast','Northeast',
-'Central','West','Southwest','West','Central',
-'Central','Northeast','Northeast','Central','Northeast',
-'Southwest','Central','South','Southeast','Central',
-'Southwest','South','Southeast','Central','South',
-'Southwest','Southeast','South','Southeast','Southeast',
-'South','South','Southeast','East North Central','Northwest',
-'West')
-
-# fix climate region fips type
-dat.region$STATE_FIPS <- as.numeric(as.character(dat.region$STATE_FIPS))
-
-dat.region$id <- NULL
+# load climate region data and fix names
+source('../models/INLA/03_spatiotemporal/inla_climate_regions.R')
 
 # merge mortality data with climate region data and get new deaths rates
 dat.inla.load <- merge(dat.inla.load,dat.region,by.x=('fips'),by.y=('STATE_FIPS'),all.x=TRUE)
@@ -132,5 +103,5 @@ library(INLA)
 source('../models/INLA/03_spatiotemporal/inla_functions_cod_2var.R')
 
 # input arguments into function to perform inference
-mapply(inla.function.climate.2var.fast,age.sel=age.arg,sex.sel=sex.arg,year.start=year.start.analysis.arg,
+mapply(inla.function.climate.2var.faster,age.sel=age.arg,sex.sel=sex.arg,year.start=year.start.analysis.arg,
 year.end=year.end.analysis.arg,type=type.arg,cluster=cluster.arg,cause=cod.arg)
