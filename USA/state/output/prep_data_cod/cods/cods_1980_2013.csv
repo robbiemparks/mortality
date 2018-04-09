@@ -83,6 +83,24 @@
 "9688","Assault",9
 "9689","Assault",9
 "9690","Assault",9
+"9700","Assault",9
+"9710","Assault",9
+"9720","Assault",9
+"9730","Assault",9
+"9740","Assault",9
+"9750","Assault",9
+"9760","Assault",9
+"9770","Assault",9
+"9780","Assault",9
+"9909","Assault",9
+"9912","Assault",9
+"9919","Assault",9
+"9930","Assault",9
+"9950","Assault",9
+"9960","Assault",9
+"9970","Assault",9
+"9979","Assault",9
+"9990","Assault",9
 "X850","Assault",10
 "X860","Assault",10
 "X870","Assault",10
@@ -117,6 +135,23 @@
 "Y079","Assault",10
 "Y080","Assault",10
 "Y090","Assault",10
+"Y350","Assault",10
+"Y351","Assault",10
+"Y352","Assault",10
+"Y353","Assault",10
+"Y355","Assault",10
+"Y356","Assault",10
+"Y357","Assault",10
+"Y362","Assault",10
+"Y364","Assault",10
+"Y366","Assault",10
+"Y367","Assault",10
+"Y368","Assault",10
+"Y369","Assault",10
+"X410","Drugs",10
+"X420","Drugs",10
+"X450","Drugs",10
+"X490","Drugs",10
 "9500","Intentional self-harm",9
 "9501","Intentional self-harm",9
 "9502","Intentional self-harm",9
@@ -637,15 +672,6 @@
 "9494","Other external causes of injury",9
 "9496","Other external causes of injury",9
 "9499","Other external causes of injury",9
-"9700","Other external causes of injury",9
-"9710","Other external causes of injury",9
-"9720","Other external causes of injury",9
-"9730","Other external causes of injury",9
-"9740","Other external causes of injury",9
-"9750","Other external causes of injury",9
-"9760","Other external causes of injury",9
-"9770","Other external causes of injury",9
-"9780","Other external causes of injury",9
 "9800","Other external causes of injury",9
 "9801","Other external causes of injury",9
 "9802","Other external causes of injury",9
@@ -690,15 +716,6 @@
 "9888","Other external causes of injury",9
 "9889","Other external causes of injury",9
 "9890","Other external causes of injury",9
-"9909","Other external causes of injury",9
-"9912","Other external causes of injury",9
-"9919","Other external causes of injury",9
-"9930","Other external causes of injury",9
-"9950","Other external causes of injury",9
-"9960","Other external causes of injury",9
-"9970","Other external causes of injury",9
-"9979","Other external causes of injury",9
-"9990","Other external causes of injury",9
 "W200","Other external causes of injury",10
 "W210","Other external causes of injury",10
 "W220","Other external causes of injury",10
@@ -794,15 +811,11 @@
 "X380","Other external causes of injury",10
 "X390","Other external causes of injury",10
 "X400","Other external causes of injury",10
-"X410","Other external causes of injury",10
-"X420","Other external causes of injury",10
 "X430","Other external causes of injury",10
 "X440","Other external causes of injury",10
-"X450","Other external causes of injury",10
 "X460","Other external causes of injury",10
 "X470","Other external causes of injury",10
 "X480","Other external causes of injury",10
-"X490","Other external causes of injury",10
 "X500","Other external causes of injury",10
 "X510","Other external causes of injury",10
 "X520","Other external causes of injury",10
@@ -837,19 +850,6 @@
 "Y320","Other external causes of injury",10
 "Y330","Other external causes of injury",10
 "Y340","Other external causes of injury",10
-"Y350","Other external causes of injury",10
-"Y351","Other external causes of injury",10
-"Y352","Other external causes of injury",10
-"Y353","Other external causes of injury",10
-"Y355","Other external causes of injury",10
-"Y356","Other external causes of injury",10
-"Y357","Other external causes of injury",10
-"Y362","Other external causes of injury",10
-"Y364","Other external causes of injury",10
-"Y366","Other external causes of injury",10
-"Y367","Other external causes of injury",10
-"Y368","Other external causes of injury",10
-"Y369","Other external causes of injury",10
 "Y400","Other external causes of injury",10
 "Y401","Other external causes of injury",10
 "Y402","Other external causes of injury",10
