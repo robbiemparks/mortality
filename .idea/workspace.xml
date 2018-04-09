@@ -2,46 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="62b91b4b-6761-4ef0-820a-b55e2d811d0d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/USA/state/prog/adj_matrix_create/adj_matrix_create_contig_usa.R" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_1var_1-10.sh" afterPath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/zz_legacy/inla_model_climate_1var_1-10.sh" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_1var_5-10.sh" afterPath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/zz_legacy/inla_model_climate_1var_5-10.sh" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_1var_6-10.sh" afterPath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/zz_legacy/inla_model_climate_1var_6-10.sh" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_1var_7-10.sh" afterPath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/zz_legacy/inla_model_climate_1var_7-10.sh" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_1var_stmarys.sh" afterPath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/zz_legacy/inla_model_climate_1var_stmarys.sh" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_2var_1-10.sh" afterPath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/zz_legacy/inla_model_climate_2var_1-10.sh" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_2var_5-10.sh" afterPath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/zz_legacy/inla_model_climate_2var_5-10.sh" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_2var_6-10.sh" afterPath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/zz_legacy/inla_model_climate_2var_6-10.sh" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_2var_7-10.sh" afterPath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/zz_legacy/inla_model_climate_2var_7-10.sh" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_2var_stmarys.sh" afterPath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/zz_legacy/inla_model_climate_2var_stmarys.sh" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_3var_1-10.sh" afterPath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/zz_legacy/inla_model_climate_3var_1-10.sh" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_3var_6-10.sh" afterPath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/zz_legacy/inla_model_climate_3var_6-10.sh" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_3var_7-10.sh" afterPath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/zz_legacy/inla_model_climate_3var_7-10.sh" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_3var_stmarys.sh" afterPath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/zz_legacy/inla_model_climate_3var_stmarys.sh" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_5var_1-10.sh" afterPath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/zz_legacy/inla_model_climate_5var_1-10.sh" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_5var_5-10.sh" afterPath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/zz_legacy/inla_model_climate_5var_5-10.sh" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_5var_6-10.sh" afterPath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/zz_legacy/inla_model_climate_5var_6-10.sh" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_5var_7-10.sh" afterPath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/zz_legacy/inla_model_climate_5var_7-10.sh" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_5var_stmarys.sh" afterPath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/zz_legacy/inla_model_climate_5var_stmarys.sh" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_bind_posterior_cod_2var.sh" afterPath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/zz_legacy/inla_model_climate_bind_posterior_cod_2var.sh" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_forecast.sh" afterPath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/zz_legacy/inla_model_forecast.sh" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_nat.sh" afterPath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/zz_legacy/inla_model_nat.sh" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_state.sh" afterPath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/zz_legacy/inla_model_state.sh" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_process_posterior.sh" afterPath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/zz_legacy/inla_process_posterior.sh" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_cod_1var_1-10.sh" afterPath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_cod_1var_1-10.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_cod_1var_5-10.sh" afterPath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_cod_1var_5-10.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_cod_1var_6-10.sh" afterPath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_cod_1var_6-10.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_cod_1var_7-10.sh" afterPath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_cod_1var_7-10.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_cod_1var_stmarys.sh" afterPath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_cod_1var_stmarys.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_cod_2var_1-10.sh" afterPath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_cod_2var_1-10.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_cod_2var_5-10.sh" afterPath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_cod_2var_5-10.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_cod_2var_6-10.sh" afterPath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_cod_2var_6-10.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_cod_2var_7-10.sh" afterPath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_cod_2var_7-10.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_cod_2var_stmarys.sh" afterPath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_cod_2var_stmarys.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/models/INLA/03_spatiotemporal/inla_functions_cod.R" afterPath="$PROJECT_DIR$/USA/state/prog/models/INLA/03_spatiotemporal/inla_functions_cod.R" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_cod.R" afterPath="$PROJECT_DIR$/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_cod.R" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_cod_2var.R" afterPath="$PROJECT_DIR$/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_cod_2var.R" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_cod_3var.R" afterPath="$PROJECT_DIR$/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_cod_3var.R" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -90,7 +51,7 @@
         <entry file="file://$PROJECT_DIR$/USA/state/prog/models/INLA/03_spatiotemporal/inla_functions_cod.R">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="225">
-              <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="18" selection-end-column="4" />
+              <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="17" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -599,13 +560,6 @@
       <option name="presentableId" value="Default" />
       <updated>1517410459211</updated>
     </task>
-    <task id="LOCAL-00099" summary="test commit">
-      <created>1521478722047</created>
-      <option name="number" value="00099" />
-      <option name="presentableId" value="LOCAL-00099" />
-      <option name="project" value="LOCAL" />
-      <updated>1521478722047</updated>
-    </task>
     <task id="LOCAL-00100" summary="test commit">
       <created>1521480715275</created>
       <option name="number" value="00100" />
@@ -942,7 +896,14 @@
       <option name="project" value="LOCAL" />
       <updated>1523288021570</updated>
     </task>
-    <option name="localTasksCounter" value="148" />
+    <task id="LOCAL-00148" summary="test commit">
+      <created>1523291183749</created>
+      <option name="number" value="00148" />
+      <option name="presentableId" value="LOCAL-00148" />
+      <option name="project" value="LOCAL" />
+      <updated>1523291183749</updated>
+    </task>
+    <option name="localTasksCounter" value="149" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1422,7 +1383,7 @@
     <entry file="file://$PROJECT_DIR$/USA/state/prog/models/INLA/03_spatiotemporal/inla_functions_cod.R">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
-          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="18" selection-end-column="4" />
+          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="17" selection-end-column="5" />
           <folding />
         </state>
       </provider>
