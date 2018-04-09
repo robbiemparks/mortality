@@ -39,3 +39,4 @@ echo "plotting deaths rates by injury subsub-COD $start - $end";
 
 # runs code
 Rscript ~/git/mortality/USA/state/prog/data_explore/data_explore_injuries_ons_subcod.R $start $end
+#Rscript ~/git/mortality/USA/state/prog/data_explore/data_explore_injuries_ons_subcod_no_drugs.R $start $end

@@ -122,7 +122,7 @@ dev.off()
 # for nationalised ASDR data
 ############################
 
-pdf(paste0(file.loc,'injury_ons_subcod_plots_no_drugs.pdf'),paper='a4r',height=0,width=0)
+pdf(paste0(file.loc,'injury_ons_subcod_plots_no_drugs_1.pdf'),paper='a4r',height=0,width=0)
 
 # 1.
 ggplot(dat=dat.national.com.sex, aes(x=month,y=100000*ASDR,colour=as.factor(year))) +
