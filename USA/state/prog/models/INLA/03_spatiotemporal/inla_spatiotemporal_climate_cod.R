@@ -71,8 +71,15 @@ library(dplyr)
 # lookups
 source('../../data/objects/objects.R')
 
-# adjacency matrix with connections Hawaii -> California, Alaska -> Washington
-USA.adj <- "../../output/adj_matrix_create/USA.graph.edit"
+# adjacency matrix with connections
+if(contiguous.arg == 0){
+    # Hawaii -> California, Alaska -> Washington
+    USA.adj <- "../../output/adj_matrix_create/USA.graph.edit"
+}
+if(contiguous.arg == 1){
+    # only contiguous USA
+    USA.adj <- "../../output/adj_matrix_create/USA.graph.contig"
+}
 
 ##############
 
@@ -84,13 +91,13 @@ source('../models/INLA/03_spatiotemporal/inla_functions_cod.R')
 # input arguments into function to perform inference
 if(fast.arg==0){
     mapply(inla.function.climate,age.sel=age.arg,sex.sel=sex.arg,year.start=year.start.analysis.arg,
-	year.end=year.end.analysis.arg,type=type.arg,cluster=cluster.arg,cause=cod.arg)
+	year.end=year.end.analysis.arg,type=type.arg,cluster=cluster.arg,cause=cod.arg,contig=contiguous.arg)
 }
 if(fast.arg==1){
     mapply(inla.function.climate.fast,age.sel=age.arg,sex.sel=sex.arg,year.start=year.start.analysis.arg,
-	year.end=year.end.analysis.arg,type=type.arg,cluster=cluster.arg,cause=cod.arg)
+	year.end=year.end.analysis.arg,type=type.arg,cluster=cluster.arg,cause=cod.arg,contig=contiguous.arg)
 }
 if(fast.arg==2){
     mapply(inla.function.climate.faster,age.sel=age.arg,sex.sel=sex.arg,year.start=year.start.analysis.arg,
-	year.end=year.end.analysis.arg,type=type.arg,cluster=cluster.arg,cause=cod.arg)
+	year.end=year.end.analysis.arg,type=type.arg,cluster=cluster.arg,cause=cod.arg,contig=contiguous.arg)
 }

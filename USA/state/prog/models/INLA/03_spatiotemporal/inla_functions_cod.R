@@ -1,5 +1,5 @@
 # functions to enable age group and sex to be selected
-inla.function.climate <- function(age.sel,sex.sel,year.start,year.end,type,cluster,cause='Allcause') {
+inla.function.climate <- function(age.sel,sex.sel,year.start,year.end,type,cluster,cause='Allcause',contig) {
     
     dat.inla <- dat.merged
     
@@ -10,9 +10,12 @@ inla.function.climate <- function(age.sel,sex.sel,year.start,year.end,type,clust
     dat.inla <- dat.inla[dat.inla$sex==sex & dat.inla$age==age & dat.inla$year %in% fit.years,]
     
     # load drawseq lookup
-    drawseq.lookup <-readRDS('~/git/mortality/USA/state/output/adj_matrix_create/drawseq.lookup.rds')
-    
-    #dat.inla <- merge(dat.inla,drawseq.lookup, by='fips')
+    if(contig == 0){
+        drawseq.lookup <-readRDS('~/git/mortality/USA/state/output/adj_matrix_create/drawseq.lookup.rds')
+    }
+    if(contig == 1){
+        drawseq.lookup <-readRDS('~/git/mortality/USA/state/output/adj_matrix_create/drawseq.lookup.contig.rds')
+    }
     
     # extract unique table of year and months to generate year.month
     dat.year.month <- unique(dat.inla[,c('year', 'month')])

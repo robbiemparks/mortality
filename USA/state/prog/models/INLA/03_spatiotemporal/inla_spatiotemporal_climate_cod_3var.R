@@ -98,8 +98,15 @@ library(dplyr)
 # lookups
 source('../../data/objects/objects.R')
 
-# adjacency matrix with connections Hawaii -> California, Alaska -> Washington
-USA.adj <- "../../output/adj_matrix_create/USA.graph.edit"
+# adjacency matrix with connections
+if(contiguous.arg == 0){
+    # Hawaii -> California, Alaska -> Washington
+    USA.adj <- "../../output/adj_matrix_create/USA.graph.edit"
+}
+if(contiguous.arg == 1){
+    # only contiguous USA
+    USA.adj <- "../../output/adj_matrix_create/USA.graph.contig"
+}
 
 ##############
 
