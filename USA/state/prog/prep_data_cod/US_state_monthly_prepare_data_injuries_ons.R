@@ -73,6 +73,9 @@ yearsummary_cod  <- function(x=2000) {
         # move deaths due to weather-based heat/cold to 'Other'
         dat.merged$cause.group = ifelse((dat.merged$cause=='X30'|dat.merged$cause=='X31'),'Other',as.character(dat.merged$cause.group))
 
+		# move contraversial deaths due to drugs to 'Other'
+        dat.merged$cause.group = ifelse((dat.merged$cause=='X41'|dat.merged$cause=='X42'|dat.merged$cause=='X45'),'Other',as.character(dat.merged$cause.group))
+
         # only filter for external
         dat.merged = subset(dat.merged,cause.group=='External')
         dat.merged$cause.group = NULL

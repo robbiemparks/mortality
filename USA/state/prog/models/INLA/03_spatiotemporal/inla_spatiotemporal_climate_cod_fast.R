@@ -31,25 +31,7 @@ require(mailR)
 ifelse(!dir.exists(paste0('~/data/mortality/US/state/climate_effects/',dname.arg,'/',metric.arg,'/non_pw/type_',type.selected,'/age_groups')), dir.create(paste0('~/data/mortality/US/state/climate_effects/',dname.arg,'/',metric.arg,'/non_pw/type_',type.selected,'/age_groups'),recursive=TRUE), FALSE)
 
 # load data and filter results
-if(cod.arg=='AllCause'){
-	dat.inla.load <- readRDS(paste0('../../output/prep_data/datus_state_rates_',year.start.arg,'_',year.end.arg))
-}
-if(cod.arg%in%c('Cancer','Cardiopulmonary','External','Other')){
-	dat.inla.load <- readRDS(paste0('../../output/prep_data_cod/datus_state_rates_cod_',year.start.arg,'_',year.end.arg))
-	dat.inla.load <- subset(dat.inla.load,cause==cod.arg)
-}
-if(cod.arg%in%c('Intentional','Unintentional')){
-	dat.inla.load <- readRDS(paste0('../../output/prep_data_cod/datus_state_rates_cod_injuries_ons_',year.start.arg,'_',year.end.arg))
-    dat.inla.load <- subset(dat.inla.load,cause==cod.arg)
-}
-if(cod.arg%in%c('Transport accidents','Accidental falls','Other external causes of injury',
-				'Accidental drowning and submersion','Intentional self-harm','Assault')){
-	dat.inla.load <- readRDS(paste0('../../output/prep_data_cod/datus_nat_deaths_subcod_injuries_ons_',year.start.arg,'_',year.end.arg))
-    dat.inla.load$cause.group = NULL ; names(dat.inla.load)[6] = 'cause'
-    dat.inla.load <- subset(dat.inla.load,cause==cod.arg)
-
-    print(head(dat.inla.load))
-}
+source('../models/INLA/03_spatiotemporal/inla_load_data_cod.R')
 
 # load climate region data
 dat.region <- readRDS(paste0('~/git/mortality/USA/state/output/mapping_posterior/INLA/type1a/1982_2013/maps/USA_state_data'))
