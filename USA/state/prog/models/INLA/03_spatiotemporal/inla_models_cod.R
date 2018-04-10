@@ -1,4 +1,4 @@
-    if(type==17){
+    if(type.arg==17){
         
         # 1. Type Id space-time interaction with besag state interaction terms and state-month specific variable slope (iid)
         # NO MONTH TERMS AND NO RW1
@@ -23,7 +23,7 @@
         f(e, model = "iid")                                                    		 	# overdispersion term
     }
     
-    if(type==16){
+    if(type.arg==16){
         
         # 1. Type Id space-time interaction with besag state interaction terms and state-month specific variable slope (iid)
         # NO MONTH TERMS
@@ -48,7 +48,7 @@
         f(e, model = "iid")                                                    		 	# overdispersion term
     }
     
-    if(type==1){
+    if(type.arg==1){
         
         # 1. Type I space-time interaction
         fml  <- deaths.adj ~
@@ -70,7 +70,7 @@
         f(e, model = "iid")                                                     		# overdispersion term
     }
     
-    if(type==2){
+    if(type.arg==2){
         
         # 1. Type Ia space-time interaction
         fml  <- deaths.adj ~
@@ -95,7 +95,7 @@
         f(e, model = "iid")                                                    		 	# overdispersion term
     }
     
-    if(type==3) {
+    if(type.arg==3) {
         
         # 2. Type II space-time interaction
         fml  <- deaths.adj ~
@@ -122,7 +122,7 @@
         f(e, model = "iid")                                                     		# overdispersion term
     }
     
-    if(type==4) {
+    if(type.arg==4) {
         
         # 2. Type IIa space-time interaction
         fml  <- deaths.adj ~
@@ -152,7 +152,7 @@
         f(e, model = "iid")                                                             # overdispersion term
     }
     
-    if(type==5) {
+    if(type.arg==5) {
         
         # 3. Type III space-time interaction
         fml  <- deaths.adj ~
@@ -179,7 +179,7 @@
         f(e, model = "iid")                                                     		# overdispersion term
     }
     
-    if(type==6) {
+    if(type.arg==6) {
         
         # 3. Type IIIa space-time interaction
         fml  <- deaths.adj ~
@@ -208,7 +208,7 @@
         f(e, model = "iid")                                                     		# overdispersion term
     }
     
-    if(type==7) {
+    if(type.arg==7) {
         
         # 4. Type IV space-time interaction
         
@@ -234,7 +234,7 @@
         f(e, model = "iid")                                                     		# overdispersion term
     }
     
-    if(type==8){
+    if(type.arg==8){
         
         # 1. Type Ib space-time interaction with besag state interaction terms and national variable slope
         fml  <- deaths.adj ~
@@ -258,7 +258,7 @@
         f(e, model = "iid")                                                    		 	# overdispersion term
     }
     
-    if(type==9){
+    if(type.arg==9){
         
         # 1. Type Ic space-time interaction with besag state interaction terms and state specific variable slope
         fml  <- deaths.adj ~
@@ -282,7 +282,7 @@
         f(e, model = "iid")                                                    		 	# overdispersion term
     }
     
-    if(type==10){
+    if(type.arg==10){
 
         # 1. Type Id space-time interaction with besag state interaction terms and state-month specific variable slope (rw1)
         fml  <- deaths.adj ~
@@ -306,7 +306,7 @@
         f(e, model = "iid")                                                    		 	# overdispersion term
     }
     
-    if(type==11){
+    if(type.arg==11){
         
         # 1. Type Ie space-time interaction with besag state interaction terms and state-month specific variable slope (rw1)
         fml  <- deaths.adj ~
@@ -332,7 +332,7 @@
     
     
     
-    if(type==12){
+    if(type.arg==12){
         
         # 1. Type If space-time interaction with besag state interaction terms and spatially-correlated state-month specific variable slope (rw1)
         fml  <- deaths.adj ~
@@ -356,7 +356,7 @@
         f(e, model = "iid")                                                    		 	# overdispersion term
     }
     
-    if(type==13){
+    if(type.arg==13){
         
         # 1. Type Ief space-time interaction with besag state interaction terms and spatially-correlated state-month specific variable slope (rw1)
         fml  <- deaths.adj ~
@@ -381,7 +381,7 @@
         f(e, model = "iid")                                                    		 	# overdispersion term
     }
     
-    if(type==14){
+    if(type.arg==14){
         
         # 1. Type Ide space-time interaction with besag state interaction terms and separate month- and state-specific variable slope (iid)
         fml  <- deaths.adj ~
@@ -406,7 +406,7 @@
         f(e, model = "iid")                                                    		 	# overdispersion term
     }
     
-    if(type==15){
+    if(type.arg==15){
         
         # 1. Type Ig space-time interaction with besag state interaction terms and region-month specific variable slope (rw1)
         fml  <- deaths.adj ~

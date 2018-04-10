@@ -16,7 +16,7 @@ year.start.analysis.arg <- as.numeric(args[9])
 year.end.analysis.arg <- as.numeric(args[10])
 cod.arg <- as.character(args[11]) ; cod.arg <- gsub('_',' ',cod.arg)
 fast.arg <- as.numeric(args[12])
-contiguous.arg <- as.numeric(args[13])
+contig.arg <- as.numeric(args[13])
 
 # age.arg = 65 ; sex.arg = 1 ; year.start.arg = 1980 ; year.end.arg = 2013 ; type.arg = 10 ;
 # cluster.arg = 0 ; dname.arg = 't2m' ; metric.arg = 'meanc3' ; year.start.analysis.arg = 1980 ;
@@ -72,11 +72,11 @@ library(dplyr)
 source('../../data/objects/objects.R')
 
 # adjacency matrix with connections
-if(contiguous.arg == 0){
+if(contig.arg == 0){
     # Hawaii -> California, Alaska -> Washington
     USA.adj <- "../../output/adj_matrix_create/USA.graph.edit"
 }
-if(contiguous.arg == 1){
+if(contig.arg == 1){
     # only contiguous USA
     USA.adj <- "../../output/adj_matrix_create/USA.graph.contig"
 }
@@ -86,19 +86,13 @@ if(contiguous.arg == 1){
 library(INLA)
 
 # filter all data by sex age and month
-sex <- sex.arg
-age <- age.arg
 fit.years <- year.start.arg:year.end.arg
-dat.inla <- dat.merged[dat.merged$sex==sex & dat.merged$age==age & dat.merged$year %in% fit.years,]
+dat.inla <- dat.merged[dat.merged$sex==sex.arg & dat.merged$age==age.arg & dat.merged$year %in% fit.years,]
 
 # filter Hawaii and Alaska if required and load correct drawseq lookup
-if(contig == 0){
-    drawseq.lookup <-readRDS('~/git/mortality/USA/state/output/adj_matrix_create/drawseq.lookup.rds')
-}
-if(contig == 1){
-    drawseq.lookup <-readRDS('~/git/mortality/USA/state/output/adj_matrix_create/drawseq.lookup.contig.rds')
-    dat.inla = subset(dat.inla,!(DRAWSEQ %in% c('1','51')))
-}
+if(contig.arg == 0){drawseq.lookup <-readRDS('~/git/mortality/USA/state/output/adj_matrix_create/drawseq.lookup.rds')}
+if(contig.arg == 1){drawseq.lookup <-readRDS('~/git/mortality/USA/state/output/adj_matrix_create/drawseq.lookup.contig.rds')
+dat.inla = subset(dat.inla,!(DRAWSEQ %in% c('1','51')))}
 
 # extract unique table of year and months to generate year.month
 dat.year.month <- unique(dat.inla[,c('year', 'month')])
@@ -108,8 +102,7 @@ dat.year.month$year.month <- seq(nrow(dat.year.month))
 # merge year.month table with population table to create year.month id
 dat.inla <- merge(dat.inla,dat.year.month, by=c('year','month'))
 
-# make sure that the order of the main data file matches that of the shapefile,
-# otherwise the model will not be valid
+# make sure that the order of the main data file matches that of the shapefile otherwise the model will not be valid
 dat.inla <- dat.inla[order(dat.inla$DRAWSEQ,dat.inla$sex,dat.inla$age,dat.inla$year.month),]
 
 # add ID column for INLA
@@ -125,7 +118,7 @@ dat.inla$ID3 <- dat.inla$ID2 <- dat.inla$ID
 dat.inla$e <- 1:nrow(dat.inla)
 
 # create directory for output
-file.loc <- paste0('~/data/mortality/US/state/climate_effects/',dname.arg,'/',metric.arg,'/non_pw/type_',type.selected,'/age_groups/',age)
+file.loc <- paste0('~/data/mortality/US/state/climate_effects/',dname.arg,'/',metric.arg,'/non_pw/type_',type.selected,'/age_groups/',age.arg)
 ifelse(!dir.exists(file.loc), dir.create(file.loc, recursive=TRUE), FALSE)
 
 # load inla function
