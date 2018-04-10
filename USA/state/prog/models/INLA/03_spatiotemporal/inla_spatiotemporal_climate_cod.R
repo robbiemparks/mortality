@@ -121,13 +121,13 @@ source('../models/INLA/03_spatiotemporal/inla_functions_cod.R')
 
 # input arguments into function to perform inference
 if(fast.arg==0){
-    inla.function.climate()
+    mod = inla.function.climate()
 }
 if(fast.arg==1){
-    inla.function.climate.fast()
+    mod = inla.function.climate.fast()
 }
 if(fast.arg==2){
-    inla.function.climate.faster()
+    mod = inla.function.climate.faster()
 }
 
 # prep data for output
@@ -177,7 +177,7 @@ if(fast.arg==2){subject.arg = paste0(subject.arg,' faster non-pw done')}
 
 print(subject.arg)
 
-# email notification
+# sending email
 sender = "emailr349@gmail.com"
 recipients = c("r.parks15@imperial.ac.uk")
 send.mail(from = sender,
