@@ -130,7 +130,7 @@ dev.off()
 # attach long age and sex names
 dat.nat.broad.year$age.long = mapvalues(dat.nat.broad.year$age,from=sort(unique(dat.nat.broad.year$age)),to=as.character(age.code[,2]))
 dat.nat.broad.year$age.long = reorder(dat.nat.broad.year$age.long,dat.nat.broad.year$age)
-dat.nat.broad.year$age.long = as.character(dat.nat.broad.year$age.long)
+#dat.nat.broad.year$age.long = as.character(dat.nat.broad.year$age.long)
 dat.nat.broad.year$sex.long = mapvalues(dat.nat.broad.year$sex,from=sort(unique(dat.nat.broad.year$sex)),to=as.character(sex.filter2))
 dat.nat.broad.year$sex.long = reorder(dat.nat.broad.year$sex.long,rev(dat.nat.broad.year$sex))
 dat.nat.broad.year$sex.long = as.character(dat.nat.broad.year$sex.long)
@@ -206,7 +206,7 @@ dev.off()
 # attach long age names
 dat.national$age.long = mapvalues(dat.national$age,from=sort(unique(dat.national$age)),to=as.character(age.code[,2]))
 dat.national$age.long = reorder(dat.national$age.long,dat.national$age)
-dat.national$age.long = as.character(dat.national$age.long)
+#dat.national$age.long = as.character(dat.national$age.long)
 
 pdf(paste0(file.loc,'injury_ons_subsubcod_age_sex_plots_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
 # 1.
@@ -231,7 +231,7 @@ dev.off()
 # attach long age and sex names
 dat.national.year$age.long = mapvalues(dat.national.year$age,from=sort(unique(dat.national.year$age)),to=as.character(age.code[,2]))
 dat.national.year$age.long = reorder(dat.national.year$age.long,dat.national.year$age)
-dat.national.year$age.long = as.character(dat.national.year$age.long)
+#dat.national.year$age.long = as.character(dat.national.year$age.long)
 dat.national.year$sex.long = mapvalues(dat.national.year$sex,from=sort(unique(dat.national.year$sex)),to=as.character(sex.filter2))
 dat.national.year$sex.long = reorder(dat.national.year$sex.long,rev(dat.national.year$sex))
 dat.national.year$sex.long = as.character(dat.national.year$sex.long)
