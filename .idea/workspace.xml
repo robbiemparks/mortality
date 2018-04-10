@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="62b91b4b-6761-4ef0-820a-b55e2d811d0d" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/models/INLA/03_spatiotemporal/inla_functions_cod.R" afterPath="$PROJECT_DIR$/USA/state/prog/models/INLA/03_spatiotemporal/inla_functions_cod.R" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -30,15 +31,15 @@
       <file leaf-file-name="inla_functions_cod.R" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/USA/state/prog/models/INLA/03_spatiotemporal/inla_functions_cod.R">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="91">
-              <caret line="86" column="1" lean-forward="false" selection-start-line="86" selection-start-column="1" selection-end-line="86" selection-end-column="1" />
+            <state relative-caret-position="2640">
+              <caret line="176" column="16" lean-forward="true" selection-start-line="176" selection-start-column="16" selection-end-line="176" selection-end-column="16" />
               <folding>
-                <element signature="e#7615#23488#0" expanded="false" />
-                <element signature="e#23685#35022#0" expanded="false" />
-                <element signature="e#35208#47400#0" expanded="false" />
-                <element signature="e#47578#54370#0" expanded="false" />
-                <element signature="e#54539#71412#0" expanded="false" />
-                <element signature="e#71569#85304#0" expanded="false" />
+                <element signature="e#7614#23487#0" expanded="false" />
+                <element signature="e#23684#35021#0" expanded="false" />
+                <element signature="e#35207#47399#0" expanded="false" />
+                <element signature="e#47577#54369#0" expanded="false" />
+                <element signature="e#54538#71411#0" expanded="false" />
+                <element signature="e#71568#85303#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -579,13 +580,6 @@
       <option name="presentableId" value="Default" />
       <updated>1517410459211</updated>
     </task>
-    <task id="LOCAL-00103" summary="test commit">
-      <created>1521718444517</created>
-      <option name="number" value="00103" />
-      <option name="presentableId" value="LOCAL-00103" />
-      <option name="project" value="LOCAL" />
-      <updated>1521718444517</updated>
-    </task>
     <task id="LOCAL-00104" summary="test commit">
       <created>1521719747847</created>
       <option name="number" value="00104" />
@@ -922,7 +916,14 @@
       <option name="project" value="LOCAL" />
       <updated>1523362503891</updated>
     </task>
-    <option name="localTasksCounter" value="152" />
+    <task id="LOCAL-00152" summary="test commit">
+      <created>1523362508371</created>
+      <option name="number" value="00152" />
+      <option name="presentableId" value="LOCAL-00152" />
+      <option name="project" value="LOCAL" />
+      <updated>1523362508371</updated>
+    </task>
+    <option name="localTasksCounter" value="153" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1376,15 +1377,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/USA/state/prog/models/INLA/03_spatiotemporal/inla_functions_cod.R">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="91">
-          <caret line="86" column="1" lean-forward="false" selection-start-line="86" selection-start-column="1" selection-end-line="86" selection-end-column="1" />
+        <state relative-caret-position="2640">
+          <caret line="176" column="16" lean-forward="true" selection-start-line="176" selection-start-column="16" selection-end-line="176" selection-end-column="16" />
           <folding>
-            <element signature="e#7615#23488#0" expanded="false" />
-            <element signature="e#23685#35022#0" expanded="false" />
-            <element signature="e#35208#47400#0" expanded="false" />
-            <element signature="e#47578#54370#0" expanded="false" />
-            <element signature="e#54539#71412#0" expanded="false" />
-            <element signature="e#71569#85304#0" expanded="false" />
+            <element signature="e#7614#23487#0" expanded="false" />
+            <element signature="e#23684#35021#0" expanded="false" />
+            <element signature="e#35207#47399#0" expanded="false" />
+            <element signature="e#47577#54369#0" expanded="false" />
+            <element signature="e#54538#71411#0" expanded="false" />
+            <element signature="e#71568#85303#0" expanded="false" />
           </folding>
         </state>
       </provider>

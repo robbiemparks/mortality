@@ -166,7 +166,6 @@ if(cod.arg =='AllCause'){
 
 # subject for email
 subject = paste0(sex.lookup[sex.sel],' ',age.sel,' model ',type.selected,' ',dname.arg,' ',metric.arg,' ',cause,' ',year.start.arg,'-',year.end.arg)
-
 if(fast.arg==0){subject = paste0(subject,' non-pw done')}
 if(fast.arg==1){subject = paste0(subject,' fast non-pw done')}
 if(fast.arg==2){subject = paste0(subject,' faster non-pw done')}
