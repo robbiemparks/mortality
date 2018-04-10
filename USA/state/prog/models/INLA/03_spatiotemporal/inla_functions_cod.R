@@ -14,6 +14,8 @@ inla.function.climate <- function(){
     control.compute = list(dic=TRUE),
     control.predictor = list(link = 1),
     ))
+
+    return(mod)
 }
 
 # functions to enable age group and sex to be selected with rough run to improve speed
@@ -41,6 +43,8 @@ inla.function.climate.fast <- function() {
     control.inla=list(diagonal=0),
     control.mode = list(result = mod.rough, restart = TRUE),
     ))
+
+    return(mod)
 }
 
 # functions to enable age group and sex to be selected with faster AR1 structure in addition to rough run
@@ -70,6 +74,8 @@ inla.function.climate.faster <- function() {
     control.mode = list(result = mod.rough, restart = TRUE),
     #verbose=TRUE
     ))
+
+    return(mod)
 }
 
 # OTHER LEGACY FUNCTIONS
