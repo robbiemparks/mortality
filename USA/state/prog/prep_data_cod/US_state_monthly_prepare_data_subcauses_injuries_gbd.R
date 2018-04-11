@@ -38,6 +38,9 @@ yearsummary_injuries  <- function(x=2000) {
 	dat$fips = substr(dat$fips,1,2)
 	dat$fips <- as.numeric(dat$fips)
 
+    # load gbd injury lookup
+    dat.cod = read_excel('../../data/cod/injuries_gbd/injury_gbd_lookup.xlsx')
+
 	# add extra label for CODs based on relevant ICD year
 	start_year = 1999
 	if(x<start_year) {
@@ -58,14 +61,30 @@ yearsummary_injuries  <- function(x=2000) {
         dat.merged = subset(dat,cause.group=='External')
         dat.merged$cause.group = NULL
 
-        # cause groups and subgroups
-		dat.cod = read_excel('injury_gbd_lookup.xlsx')
+        # merge cod data
+        dat.cod = dat.cod[,c(1:4)]
+        dat.cod$cause.icd9 = gsub('E','',dat.cod$cause.icd9)
+        dat.cod$cause.icd9 = gsub('\\.','',dat.cod$cause.icd9)
+        dat.cod$cause.icd9 = gsub('\r\n','',dat.cod$cause.icd9)
+        dat.cod$cause_sub = gsub('\r\n',' ',dat.cod$cause_sub)
+        s = strsplit(dat.cod$cause.icd9, split=",")
+        dat.cod = data.frame(intent = rep(dat.cod$cause_group, sapply(s, length)),cause_group = rep(dat.cod$cause, sapply(s, length)),cause_sub = rep(dat.cod$cause_sub, sapply(s, length)),cause.icd9 = unlist(s))
+        dat.cod$cause.icd9 = as.numeric(as.character(dat.cod$cause.icd9))
+        dat.merged = merge(dat.merged,dat.cod,by.x='cause.numeric',by.y='cause.icd9',all.x=TRUE)
+
+        # replace missing values with Garbage definition
+        dat.merged$intent = as.character(dat.merged$intent)
+        dat.merged$cause_group = as.character(dat.merged$cause_group)
+        dat.merged$cause_sub = as.character(dat.merged$cause_sub)
+
+        dat.merged[is.na(dat.merged)] <- "Garbage"
+        dat.na = dat.merged[rowSums(is.na(dat.merged)) > 0,]
 
 		# merge cod in ICD 9 coding
-		icd9.lookup$cause = as.numeric(icd9.lookup$cause)
-		dat.merged = merge(dat.merged,icd9.lookup,by='cause',all.x=1)
-        dat.merged$cause.group = as.character(dat.merged$cause.group)
-        dat.merged$cause.group = ifelse(is.na(dat.merged$cause.group)==TRUE,'Other',dat.merged$cause.group)
+		#icd9.lookup$cause = as.numeric(icd9.lookup$cause)
+		#dat.merged = merge(dat.merged,icd9.lookup,by='cause',all.x=1)
+        #dat.merged$cause.group = as.character(dat.merged$cause.group)
+        #dat.merged$cause.group = ifelse(is.na(dat.merged$cause.group)==TRUE,'Other',dat.merged$cause.group)
 
         dat.merged$letter = ' '
 
@@ -89,22 +108,17 @@ yearsummary_injuries  <- function(x=2000) {
         # numerical cause
         dat.merged$cause.numeric = as.numeric(as.character(substr(dat.merged$cause,2,4)))
 
-        # cause subgroups
-        dat.merged$cause.sub =
-                            ifelse(dat.merged$letter=='V'&dat.merged$cause.numeric>=0&dat.merged$cause.numeric<=999,'Transport accidents',
-                            ifelse(dat.merged$letter=='W'&dat.merged$cause.numeric>=0&dat.merged$cause.numeric<=199,'Accidental falls',
-							ifelse(dat.merged$letter=='W'&dat.merged$cause.numeric>=200&dat.merged$cause.numeric<=649,'Other external causes of injury', # 'exposure to mechnical forces'
-							ifelse(dat.merged$letter=='W'&dat.merged$cause.numeric>=650&dat.merged$cause.numeric<=749,'Accidental drowning and submersion',
-							ifelse(dat.merged$letter=='W'&dat.merged$cause.numeric>=750&dat.merged$cause.numeric<=999,'Other external causes of injury', # 'exposure to electric current, radiation and extreme ambient air temperature and pressure'
-                            ifelse(dat.merged$letter=='X'&dat.merged$cause.numeric>=0&dat.merged$cause.numeric<=599,'Other external causes of injury', # encounters with forces of nature/overexertion
-                            ifelse(dat.merged$letter=='X'&dat.merged$cause.numeric>=600&dat.merged$cause.numeric<=840,'Intentional self-harm',
-                            ifelse(dat.merged$letter=='X'&dat.merged$cause.numeric>=850&dat.merged$cause.numeric<=999,'Assault',
-                            ifelse(dat.merged$letter=='Y'&dat.merged$cause.numeric>=0&dat.merged$cause.numeric<=99,'Assault',
-                            ifelse(dat.merged$letter=='Y'&dat.merged$cause.numeric>=100&dat.merged$cause.numeric<=349,'Other external causes of injury', # 'event of undeterminded intent'
-                            ifelse(dat.merged$letter=='Y'&dat.merged$cause.numeric>=350&dat.merged$cause.numeric<=389,'Assault', # 'Legal intervention, operations of war, military operations, and terrorism'
-                            ifelse(dat.merged$letter=='Y'&dat.merged$cause.numeric>=400&dat.merged$cause.numeric<=849,'Other external causes of injury', # medical complications etc.
-                            ifelse(dat.merged$letter=='Y'&dat.merged$cause.numeric>=850&dat.merged$cause.numeric<=899,'Other external causes of injury', #
-                            'NA')))))))))))))
+        # merge cod data
+        dat.cod = dat.cod[,c(1:3,5)]
+        dat.cod$cause.icd10 = gsub('\\.','',dat.cod$cause.icd10)
+        dat.cod$cause.icd10 = gsub('\r\n','',dat.cod$cause.icd10)
+        dat.cod$cause.icd10 = gsub(' ','',dat.cod$cause.icd10)
+        dat.cod$cause.icd10 = gsub('ZZZZ','',dat.cod$cause.icd10)
+        dat.cod$cause_sub = gsub('\r\n',' ',dat.cod$cause_sub)
+        s = strsplit(dat.cod$cause.icd10, split=",")
+        dat.cod = data.frame(intent = rep(dat.cod$cause_group, sapply(s, length)),cause_group = rep(dat.cod$cause, sapply(s, length)),cause_sub = rep(dat.cod$cause_sub, sapply(s, length)),cause.icd10 = unlist(s))
+        dat.cod$cause.icd10 = as.character(dat.cod$cause.icd10)
+        dat.merged = merge(dat.merged,dat.cod,by.x='cause',by.y='cause.icd10',all.x=TRUE)
 
         # to fix contraversal poisioning deaths to have their own category if desired
         #dat.merged$cause.sub = ifelse(dat.merged$letter=='X'&(dat.merged$cause.numeric==410|dat.merged$cause.numeric==420|dat.merged$cause.numeric==450|dat.merged$cause.numeric==490),'Other external causes of injury',dat.merged$cause.sub)
@@ -118,9 +132,8 @@ yearsummary_injuries  <- function(x=2000) {
 	}
 
     # find unique values of causes of death and sub-groupings and save
-    dat.unique = unique(dat.merged[c('cause','cause.sub')])
-    saveRDS(dat.unique,paste0('../../output/prep_data_cod/cods/cods_',x))
-
+    #dat.unique = unique(dat.merged[c('cause','cause.sub')])
+    #saveRDS(dat.unique,paste0('../../output/prep_data_cod/cods/cods_',x))
 
     # add agegroup groupings
   	dat.merged$agegroup <-
