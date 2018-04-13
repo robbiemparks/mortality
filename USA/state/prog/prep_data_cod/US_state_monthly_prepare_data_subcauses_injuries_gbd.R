@@ -77,7 +77,7 @@ yearsummary_injuries  <- function(x=2000) {
         dat.merged$cause_group = as.character(dat.merged$cause_group)
         dat.merged$cause_sub = as.character(dat.merged$cause_sub)
 
-        dat.merged[is.na(dat.merged)] <- "Garbage"
+        #dat.merged[is.na(dat.merged)] <- "Garbage"
         dat.na = dat.merged[rowSums(is.na(dat.merged)) > 0,]
 
 		# merge cod in ICD 9 coding
