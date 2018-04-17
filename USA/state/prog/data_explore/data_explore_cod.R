@@ -33,6 +33,10 @@ dat.national = ddply(dat,.(cause,year,month,sex,age),summarize,deaths=sum(deaths
 dat.national$rate.adj = with(dat.national,deaths/pop.adj)
 dat.national = dat.national[order(dat.national$cause,dat.national$sex,dat.national$age,dat.national$year,dat.national$month),]
 
+# create yearly nationalised data for sub sub-causes
+dat.national.year = ddply(dat.national,.(cause,year,sex,age),summarize,deaths=sum(deaths),pop.adj=mean(pop.adj))
+dat.national.year$rate.adj = with(dat.national.year,deaths/pop.adj)
+
 # create ASDR national data
 dat.national.com.sex = ddply(dat.national,.(cause,year,month,age),summarize, deaths=sum(deaths),pop.adj=sum(pop.adj))
 dat.national.com.sex$rate.adj = with(dat.national.com.sex, deaths/pop.adj)
@@ -40,9 +44,21 @@ dat.national.com.sex = merge(dat.national.com.sex,StdPopMF,by='age',all.x=1)
 dat.national.com.sex = dat.national.com.sex[order(dat.national.com.sex$cause,dat.national.com.sex$age,dat.national.com.sex$year,
                                             dat.national.com.sex$month),]
 dat.national.com.sex = ddply(dat.national.com.sex,.(cause,year,month), summarize, ASDR=sum(rate.adj*weight)/sum(weight))
-# dat.national.com.sex = merge(dat.national.com.sex,dat.year.month, by=c('year','month'))
 dat.national.com.sex$ID = mapvalues(dat.national.com.sex$month, from=sort(unique(dat.national.com.sex$month)),to=month.short)
 dat.national.com.sex$ID = with(dat.national.com.sex,reorder(dat.national.com.sex$ID,month))
+
+# create monthly ASDR national data for sub causes
+dat.nat.broad.asdr = ddply(dat.national,.(cause,month,year,age),summarize, deaths=sum(deaths),pop.adj=sum(pop.adj))
+dat.nat.broad.asdr$rate.adj = with(dat.nat.broad.asdr, deaths/pop.adj)
+dat.nat.broad.asdr = merge(dat.nat.broad.asdr,StdPopMF,by='age',all.x=1)
+dat.nat.broad.asdr = dat.nat.broad.asdr[order(dat.nat.broad.asdr$cause,dat.nat.broad.asdr$age,dat.nat.broad.asdr$year),]
+dat.nat.broad.asdr = ddply(dat.nat.broad.asdr,.(cause,year,month), summarize, ASDR=sum(rate.adj*weight)/sum(weight))
+
+# create yearly ASDR national data
+dat.nat.broad.asdr.year = ddply(dat.nat.broad.asdr,.(cause,year), summarize, ASDR=mean(ASDR))
+
+# create yearly ASDR national data FIX THIS
+dat.national.com.sex.year = ddply(dat.national.com.sex,.(cause,year), summarize, ASDR=median(ASDR))
 
 # create a date column
 library(zoo)
@@ -130,11 +146,46 @@ ggplot(dat=dat.national.com.sex, aes(x=date,y=100000*ASDR,color=cause)) +
     legend.position = 'bottom',legend.justification='center',
     legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
 
+# 6.
+ggplot(dat=dat.national.com.sex.year, aes(x=year,y=ASDR*100000,fill=cause)) +
+    geom_area(position='stack') +
+    xlab('Year') +
+    ylab('Age standardised death rate (per 100,000)') +
+    scale_fill_manual(values=colors.broad.cod, guide = guide_legend(byrow=TRUE,nrow = 1,title = paste0("Cause of death"))) +
+    theme_bw() + theme( panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
+    panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
+    panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+    legend.position = 'bottom',legend.justification='center',
+    legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
+
 dev.off()
 
 ############################
 # for nationalised data
 ############################
+
+# attach long age and sex names
+dat.national.year$age.long = mapvalues(dat.national.year$age,from=sort(unique(dat.national.year$age)),to=as.character(age.code[,2]))
+dat.national.year$age.long = reorder(dat.national.year$age.long,dat.national.year$age)
+dat.national.year$sex.long = mapvalues(dat.national.year$sex,from=sort(unique(dat.national.year$sex)),to=as.character(sex.filter2))
+dat.national.year$sex.long = reorder(dat.national.year$sex.long,rev(dat.national.year$sex))
+dat.national.year$sex.long = as.character(dat.national.year$sex.long)
+
+pdf(paste0(file.loc,'broad_cod_age_sex_yearly_plots_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
+# 1. stacked yearly plot
+ggplot(dat=dat.national.year, aes(x=year,y=rate.adj*100000,color=cause)) +
+    geom_line() +
+    xlab('Year') +
+    ylab('Death rate (per 100,000)') +
+    geom_vline(xintercept=1999, linetype="dotted") +
+    facet_grid(sex.long~age.long) +
+    scale_color_manual(values=colors.broad.cod, guide = guide_legend(byrow=TRUE,nrow = 1,title = paste0("Cause"))) +
+    theme_bw() + theme( panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
+    panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
+    panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+    legend.position = 'bottom',legend.justification='center',
+    legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
+dev.off()
 
 pdf(paste0(file.loc,'cod_plots_by_agesex.pdf'),paper='a4r',height=0,width=0)
 
@@ -243,17 +294,40 @@ dev.off()
 # subset of last 5-year's data
 last.years = c((year.end.arg-4):(year.end.arg))
 dat.last.years = subset(dat.national,year %in% last.years)
-dat.last.years = ddply(dat.last.years,.(cause,month,sex,age),summarize,rate.adj=mean(rate.adj))
+dat.last.years = ddply(dat.last.years,.(cause,month,sex,age),summarize,deaths=sum(deaths),rate.adj=mean(rate.adj))
 
 # fix names of sexes
 dat.last.years$sex.long <- mapvalues(dat.last.years$sex,from=sort(unique(dat.last.years$sex)),to=c('Male','Female'))
-dat.last.years$sex.long <- with(dat.last.years,reorder(dat.last.years$sex.long,sex))
+#dat.last.years$sex.long <- with(dat.last.years,reorder(dat.last.years$sex.long,sex))
+
+# fix names of ages
+dat.last.years$age.long <- mapvalues(dat.last.years$age,from=sort(unique(dat.last.years$age)),to=as.character(age.code[,2]))
+dat.last.years$age.long <- reorder(dat.last.years$age.long,dat.last.years$age)
 
 # fix names of months
 dat.last.years$ID = mapvalues(dat.last.years$month, from=sort(unique(dat.last.years$month)),to=month.short)
 dat.last.years$ID = with(dat.last.years,reorder(dat.last.years$ID,month))
 
 pdf(paste0(file.loc,'broad_cod_last_years_plots.pdf'),paper='a4r',height=0,width=0)
+
+# full bar chart per age-sex group with breakdown of types of injuries
+ggplot(data=dat.last.years, aes(x="",y=deaths,color=as.factor(cause),fill=as.factor(cause))) +
+    geom_bar(width = 1, position='fill', stat = "identity") +
+    #coord_polar("y", start=0) +
+    xlab('Age group') + ylab('Proportion of deaths') +
+    scale_fill_manual(values=colors.broad.cod, guide = guide_legend(nrow = 1,title = paste0("Cause of death"))) +
+    scale_color_manual(values=colors.broad.cod, guide = guide_legend(nrow = 1,title = paste0("Cause of death"))) +
+    ggtitle(paste0((year.end.arg-4),'-',year.end.arg,' 5-year average')) +
+    scale_y_continuous(labels = scales::percent) +
+    facet_grid(sex.long~age.long) +
+    theme_bw() +
+    theme(panel.grid.major = element_blank(),
+    axis.ticks.x=element_blank(),
+    #axis.title.y=element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank(),
+    panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
+    panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+    legend.position = 'bottom',legend.justification='center',
+    legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
 
 # x axis age-group, y-axis death rate for last year
 ggplot(data=dat.last.years) +
