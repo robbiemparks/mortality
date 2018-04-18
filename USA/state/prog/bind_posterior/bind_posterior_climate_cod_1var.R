@@ -9,6 +9,8 @@ model <- as.numeric(args[4])
 dname <- as.character(args[5])
 metric <- as.character(args[6])
 cause <- as.character(args[7]) ; cause <- gsub('_',' ',cause)
+contig.arg <- as.numeric(args[8])
+
 
 library(INLA)
 
@@ -30,13 +32,13 @@ if(model=='1d'){
                 file.name <- paste0('~/data/mortality/US/state/climate_effects/',
                 dname,'/',metric,'/non_pw/type_',model,'/age_groups/',age.filter[j],
                 '/',country,'_rate_pred_type',model,'_',age.filter[j],'_',sex.filter[i],'_',
-                year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'_parameters_fast')
+                year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'_parameters_fast_contig')
             }
             if(cause=='AllCause'){
                 file.name <- paste0('~/data/mortality/US/state/climate_effects/',
                 dname,'/',metric,'/non_pw/type_',model,'/age_groups/',age.filter[j],
                 '/',country,'_rate_pred_type',model,'_',age.filter[j],'_',sex.filter[i],
-                '_',year.start,'_',year.end,'_',dname,'_',metric,'_parameters_fast')
+                '_',year.start,'_',year.end,'_',dname,'_',metric,'_parameters_fast_contig')
             }
             model.current <- try(readRDS(file.name))
             if(inherits(model.current,"try-error")){
@@ -44,13 +46,13 @@ if(model=='1d'){
                 file.name <- paste0('~/data/mortality/US/state/climate_effects/',
                 dname,'/',metric,'/non_pw/type_',model,'/age_groups/',age.filter[j],
                 '/',country,'_rate_pred_type',model,'_',age.filter[j],'_',sex.lookup[i],'_',
-                year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'_parameters_fast')
+                year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'_parameters_fast_contig')
             }
                 if(cause=='AllCause'){
                 file.name <- paste0('~/data/mortality/US/state/climate_effects/',
                 dname,'/',metric,'/non_pw/type_',model,'/age_groups/',age.filter[j],
                 '/',country,'_rate_pred_type',model,'_',age.filter[j],'_',sex.lookup[i],
-                '_',year.start,'_',year.end,'_',dname,'_',metric,'_parameters_fast')
+                '_',year.start,'_',year.end,'_',dname,'_',metric,'_parameters_fast_contig')
             }
             }
             #file.name <- paste0('~/data/mortality/US/state/climate_effects/',dname,'/',metric,'/non_pw/type_',model,'/age_groups/',age.filter[j],'/',country,'_rate_pred_type',model,'_',age.filter[j],'_',sex.filter[i],'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'_parameters_fast')
@@ -89,10 +91,10 @@ ifelse(!dir.exists(file.loc.git), dir.create(file.loc.git, recursive=TRUE), FALS
 
 # save bound posterior
 if(cause!='AllCause'){
-    save.name <- paste0(country,'_rate_pred_type',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'_fast')
+    save.name <- paste0(country,'_rate_pred_type',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'_fast_contig')
 }
 if(cause=='AllCause'){
-    save.name <- paste0(country,'_rate_pred_type',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_fast')
+    save.name <- paste0(country,'_rate_pred_type',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_fast_contig')
 }
 
 #save.name <- paste0(country,'_rate_pred_type',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'_fast')
