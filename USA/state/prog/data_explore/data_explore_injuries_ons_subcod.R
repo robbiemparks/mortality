@@ -43,6 +43,11 @@ library(scales)
 
 ########################################### SUB CAUSES ###########################################
 
+# SOMETHING NOT RIGHT ABOUT THE POPULATION IN THIS STEP!!!!
+# POPULATIONS MUCH TOO LARGE!!!
+# REASON: THERE ARE TOO MANY REPEATS OF POPULATION PER SUB-CAUSE,
+# SO
+
 # create monthly nationalised data for broad sub-causes
 dat.nat.broad = ddply(dat,.(cause,year,month,sex,age),summarize,deaths=sum(deaths.adj),pop.adj=sum(pop.adj))
 dat.nat.broad $rate.adj = with(dat.nat.broad,deaths/pop.adj)
@@ -107,25 +112,25 @@ dat.nat.broad$age.long = mapvalues(dat.nat.broad$age,from=sort(unique(dat.nat.br
 dat.nat.broad$age.long = reorder(dat.nat.broad$age.long,dat.nat.broad$age)
 dat.nat.broad$age.long = as.character(dat.nat.broad$age.long)
 
-pdf(paste0(file.loc,'injury_ons_subcod_age_sex_monthly_plots_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
-# 1.
-for(i in c(1,2)){
-    for(j in c(0,5,15,25,35,45,55,65,75,85)){
-        print(ggplot(dat=subset(dat.nat.broad,age==j&sex==i), aes(x=month,y=100000*rate.adj,colour=as.factor(year))) +
-            geom_line() +
-            xlab('Time') +
-            ylab('Death rate (per 100,000)') +
-            ggtitle(paste0(sex.filter2[i],' ',age.code[age.code$age==j,][2])) +
-            scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
-            scale_colour_manual(values=yearpalette, guide = guide_legend(nrow = 2,title = paste0("Year"))) +
-            facet_grid(~cause) +
-            theme_bw() + theme( panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
-            panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
-            panel.border = element_rect(colour = "black"),strip.background = element_blank(),
-            legend.position = 'bottom',legend.justification='center', strip.text = element_text(size=10),
-            legend.background = element_rect(fill="gray90", size=.5, linetype="dotted")))
-}}
-dev.off()
+# pdf(paste0(file.loc,'injury_ons_subcod_age_sex_monthly_plots_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
+# # 1.
+# for(i in c(1,2)){
+#     for(j in c(0,5,15,25,35,45,55,65,75,85)){
+#         print(ggplot(dat=subset(dat.nat.broad,age==j&sex==i), aes(x=month,y=100000*rate.adj,colour=as.factor(year))) +
+#             geom_line() +
+#             xlab('Time') +
+#             ylab('Death rate (per 100,000)') +
+#             ggtitle(paste0(sex.filter2[i],' ',age.code[age.code$age==j,][2])) +
+#             scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
+#             scale_colour_manual(values=yearpalette, guide = guide_legend(nrow = 2,title = paste0("Year"))) +
+#             facet_grid(~cause) +
+#             theme_bw() + theme( panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
+#             panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
+#             panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+#             legend.position = 'bottom',legend.justification='center', strip.text = element_text(size=10),
+#             legend.background = element_rect(fill="gray90", size=.5, linetype="dotted")))
+# }}
+# dev.off()
 
 # attach long age and sex names
 dat.nat.broad.year$age.long = mapvalues(dat.nat.broad.year$age,from=sort(unique(dat.nat.broad.year$age)),to=as.character(age.code[,2]))
@@ -135,21 +140,21 @@ dat.nat.broad.year$sex.long = mapvalues(dat.nat.broad.year$sex,from=sort(unique(
 dat.nat.broad.year$sex.long = reorder(dat.nat.broad.year$sex.long,rev(dat.nat.broad.year$sex))
 dat.nat.broad.year$sex.long = as.character(dat.nat.broad.year$sex.long)
 
-pdf(paste0(file.loc,'injury_ons_subcod_age_sex_yearly_plots_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
-# 1. stacked yearly plot
-ggplot(dat=dat.nat.broad.year, aes(x=year,y=rate.adj*100000,color=cause)) +
-    geom_line() +
-    xlab('Year') +
-    ylab('Death rate (per 100,000)') +
-    geom_vline(xintercept=1999, linetype="dotted") +
-    facet_grid(sex.long~age.long) +
-    scale_color_manual(values=colors.injuries, guide = guide_legend(byrow=TRUE,nrow = 1,title = paste0("Cause"))) +
-    theme_bw() + theme( panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
-    panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
-    panel.border = element_rect(colour = "black"),strip.background = element_blank(),
-    legend.position = 'bottom',legend.justification='center',
-    legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
-dev.off()
+# pdf(paste0(file.loc,'injury_ons_subcod_age_sex_yearly_plots_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
+# # 1. stacked yearly plot
+# ggplot(dat=dat.nat.broad.year, aes(x=year,y=rate.adj*100000,color=cause)) +
+#     geom_line() +
+#     xlab('Year') +
+#     ylab('Death rate (per 100,000)') +
+#     geom_vline(xintercept=1999, linetype="dotted") +
+#     facet_grid(sex.long~age.long) +
+#     scale_color_manual(values=colors.injuries, guide = guide_legend(byrow=TRUE,nrow = 1,title = paste0("Cause"))) +
+#     theme_bw() + theme( panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
+#     panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
+#     panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+#     legend.position = 'bottom',legend.justification='center',
+#     legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
+# dev.off()
 
 ############################
 # for nationalised ASDR data
@@ -171,7 +176,7 @@ ggplot(dat=dat.nat.broad.asdr, aes(x=month,y=100000*ASDR,colour=as.factor(year))
     legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
 
 # 2. stacked yearly plot
-ggplot(dat=dat.nat.broad.asdr.year, aes(x=year,y=ASDR*100000,fill=cause)) +
+ggplot(dat=dat.nat.broad.asdr.year, aes(x=year,y=12*ASDR*100000,fill=cause)) +
     geom_area(position='stack') +
     xlab('Year') +
     ylab('Age standardised death rate (per 100,000)') +
@@ -208,25 +213,25 @@ dat.national$age.long = mapvalues(dat.national$age,from=sort(unique(dat.national
 dat.national$age.long = reorder(dat.national$age.long,dat.national$age)
 #dat.national$age.long = as.character(dat.national$age.long)
 
-pdf(paste0(file.loc,'injury_ons_subsubcod_age_sex_plots_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
-# 1.
-for(i in c(1,2)){
-    for(j in c(0,5,15,25,35,45,55,65,75,85)){
-        print(ggplot(dat=subset(dat.national,age==j&sex==i), aes(x=month,y=100000*rate.adj,colour=as.factor(year))) +
-            geom_line() +
-            xlab('Time') +
-            ylab('Death rate (per 100,000)') +
-            ggtitle(paste0(sex.filter2[i],' ',age.code[age.code$age==j,][2])) +
-            scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
-            scale_colour_manual(values=yearpalette, guide = guide_legend(nrow = 2,title = paste0("Year"))) +
-            facet_grid(~cause.sub) +
-            theme_bw() + theme( panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
-            panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
-            panel.border = element_rect(colour = "black"),strip.background = element_blank(),
-            legend.position = 'bottom',legend.justification='center', strip.text = element_text(size=10),
-            legend.background = element_rect(fill="gray90", size=.5, linetype="dotted")))
-}}
-dev.off()
+# pdf(paste0(file.loc,'injury_ons_subsubcod_age_sex_plots_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
+# # 1.
+# for(i in c(1,2)){
+#     for(j in c(0,5,15,25,35,45,55,65,75,85)){
+#         print(ggplot(dat=subset(dat.national,age==j&sex==i), aes(x=month,y=100000*rate.adj,colour=as.factor(year))) +
+#             geom_line() +
+#             xlab('Time') +
+#             ylab('Death rate (per 100,000)') +
+#             ggtitle(paste0(sex.filter2[i],' ',age.code[age.code$age==j,][2])) +
+#             scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
+#             scale_colour_manual(values=yearpalette, guide = guide_legend(nrow = 2,title = paste0("Year"))) +
+#             facet_grid(~cause.sub) +
+#             theme_bw() + theme( panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
+#             panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
+#             panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+#             legend.position = 'bottom',legend.justification='center', strip.text = element_text(size=10),
+#             legend.background = element_rect(fill="gray90", size=.5, linetype="dotted")))
+# }}
+# dev.off()
 
 # attach long age and sex names
 dat.national.year$age.long = mapvalues(dat.national.year$age,from=sort(unique(dat.national.year$age)),to=as.character(age.code[,2]))
@@ -237,11 +242,25 @@ dat.national.year$sex.long = reorder(dat.national.year$sex.long,rev(dat.national
 dat.national.year$sex.long = as.character(dat.national.year$sex.long)
 
 pdf(paste0(file.loc,'injury_ons_subsubcod_age_sex_yearly_plots_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
-# 1. stacked yearly plot
+# 1.  yearly plot
 ggplot(dat=dat.national.year, aes(x=year,y=rate.adj*100000,color=cause.sub)) +
     geom_line() +
     xlab('Year') +
     ylab('Death rate (per 100,000)') +
+    geom_vline(xintercept=1999, linetype="dotted") +
+    facet_grid(sex.long~age.long) +
+    scale_color_manual(values=colors.subinjuries, guide = guide_legend(byrow=TRUE,nrow = 1,title = paste0("Cause"))) +
+    theme_bw() + theme( panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
+    panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
+    panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+    legend.position = 'bottom',legend.justification='center',
+    legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
+
+# 2.  yearly plot log-scale
+ggplot(dat=dat.national.year, aes(x=year,y=log(rate.adj*100000),color=cause.sub)) +
+    geom_line() +
+    xlab('Year') +
+    ylab('log(Death rate (per 100,000))') +
     geom_vline(xintercept=1999, linetype="dotted") +
     facet_grid(sex.long~age.long) +
     scale_color_manual(values=colors.subinjuries, guide = guide_legend(byrow=TRUE,nrow = 1,title = paste0("Cause"))) +
@@ -272,7 +291,7 @@ ggplot(dat=dat.national.com.sex, aes(x=month,y=100000*ASDR,colour=as.factor(year
     legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
 
 # 2. stacked yearly plot
-ggplot(dat=dat.national.com.sex.year, aes(x=year,y=ASDR*100000,fill=cause.sub)) +
+ggplot(dat=dat.national.com.sex.year, aes(x=year,y=12*ASDR*100000,fill=cause.sub)) +
     geom_area(position='stack') +
     xlab('Year') +
     ylab('Age standardised death rate (per 100,000)') +

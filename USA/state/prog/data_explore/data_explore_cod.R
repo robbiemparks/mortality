@@ -147,7 +147,7 @@ ggplot(dat=dat.national.com.sex, aes(x=date,y=100000*ASDR,color=cause)) +
     legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
 
 # 6.
-ggplot(dat=dat.national.com.sex.year, aes(x=year,y=ASDR*100000,fill=cause)) +
+ggplot(dat=dat.national.com.sex.year, aes(x=year,y=12*ASDR*100000,fill=cause)) +
     geom_area(position='stack') +
     xlab('Year') +
     ylab('Age standardised death rate (per 100,000)') +
@@ -172,7 +172,7 @@ dat.national.year$sex.long = reorder(dat.national.year$sex.long,rev(dat.national
 dat.national.year$sex.long = as.character(dat.national.year$sex.long)
 
 pdf(paste0(file.loc,'broad_cod_age_sex_yearly_plots_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
-# 1. stacked yearly plot
+# 1. yearly plot
 ggplot(dat=dat.national.year, aes(x=year,y=rate.adj*100000,color=cause)) +
     geom_line() +
     xlab('Year') +
@@ -185,29 +185,44 @@ ggplot(dat=dat.national.year, aes(x=year,y=rate.adj*100000,color=cause)) +
     panel.border = element_rect(colour = "black"),strip.background = element_blank(),
     legend.position = 'bottom',legend.justification='center',
     legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
-dev.off()
 
-pdf(paste0(file.loc,'cod_plots_by_agesex.pdf'),paper='a4r',height=0,width=0)
-
-# 1.
-for(i in c(1,2)){
-    for(j in c(0,5,15,25,35,45,55,65,75,85)){
-print(ggplot(dat=subset(dat.national,age==j&sex==i), aes(x=month,y=rate.adj*100000,colour=as.factor(year))) +
+# 2. yearly plot log-scale
+ggplot(dat=dat.national.year, aes(x=year,y=log(rate.adj*100000),color=cause)) +
     geom_line() +
-    xlab('Time') +
-    ylab('Age standardised death rate (per 100,000)') +
-    ggtitle(paste0(sex.lookup[i],' ',j)) +
-    scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
-    scale_colour_manual(values=yearpalette, guide = guide_legend(nrow = 2,title = paste0("Year"))) +
-    facet_grid(~cause) +
+    xlab('Year') +
+    ylab('log(Death rate (per 100,000))') +
+    geom_vline(xintercept=1999, linetype="dotted") +
+    facet_grid(sex.long~age.long) +
+    scale_color_manual(values=colors.broad.cod, guide = guide_legend(byrow=TRUE,nrow = 1,title = paste0("Cause"))) +
     theme_bw() + theme( panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
     panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
     panel.border = element_rect(colour = "black"),strip.background = element_blank(),
     legend.position = 'bottom',legend.justification='center',
-    legend.background = element_rect(fill="gray90", size=.5, linetype="dotted")))
-}}
+    legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
 
 dev.off()
+
+# pdf(paste0(file.loc,'cod_plots_by_agesex.pdf'),paper='a4r',height=0,width=0)
+#
+# # 1.
+# for(i in c(1,2)){
+#     for(j in c(0,5,15,25,35,45,55,65,75,85)){
+# print(ggplot(dat=subset(dat.national,age==j&sex==i), aes(x=month,y=rate.adj*100000,colour=as.factor(year))) +
+#     geom_line() +
+#     xlab('Time') +
+#     ylab('Age standardised death rate (per 100,000)') +
+#     ggtitle(paste0(sex.lookup[i],' ',j)) +
+#     scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
+#     scale_colour_manual(values=yearpalette, guide = guide_legend(nrow = 2,title = paste0("Year"))) +
+#     facet_grid(~cause) +
+#     theme_bw() + theme( panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
+#     panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
+#     panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+#     legend.position = 'bottom',legend.justification='center',
+#     legend.background = element_rect(fill="gray90", size=.5, linetype="dotted")))
+# }}
+#
+# dev.off()
 
 # subset of last year's data
 dat.last.year = subset(dat.national,year==year.end.arg)
