@@ -124,7 +124,7 @@ if(multiple==1){
 # create directories for output
 file.loc <- paste0('../../output/mapping_posterior_climate/',year.start,'_',year.end,
 '/',dname,'/',metric,'/non_pw/type_',model,'/parameters/')
-if(contig==1){
+if(contig.arg==1){
     file.loc <- paste0('../../output/mapping_posterior_climate/',year.start,'_',year.end,
 '/',dname,'/',metric,'/non_pw/type_',model,'/parameters/contig/')
 }
