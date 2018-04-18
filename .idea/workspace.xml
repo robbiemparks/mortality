@@ -2,16 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="62b91b4b-6761-4ef0-820a-b55e2d811d0d" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/USA/state/prog/00_bash/plotting/plotting_results.sh" afterPath="$PROJECT_DIR$/USA/state/prog/00_bash/plotting/zz_legacy/plotting_results.sh" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/USA/state/prog/00_bash/plotting/plotting_results_climate_1var.sh" afterPath="$PROJECT_DIR$/USA/state/prog/00_bash/plotting/zz_legacy/plotting_results_climate_1var.sh" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/USA/state/prog/00_bash/plotting/plotting_results_climate_2var.sh" afterPath="$PROJECT_DIR$/USA/state/prog/00_bash/plotting/zz_legacy/plotting_results_climate_2var.sh" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/USA/state/prog/00_bash/plotting/plotting_results_climate_3var.sh" afterPath="$PROJECT_DIR$/USA/state/prog/00_bash/plotting/zz_legacy/plotting_results_climate_3var.sh" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/USA/state/prog/bind_posterior/bind_posterior_climate_2var.R" afterPath="$PROJECT_DIR$/USA/state/prog/bind_posterior/zz_legacy/bind_posterior_climate_2var.R" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/USA/state/prog/bind_posterior/bind_posterior_climate_3var.R" afterPath="$PROJECT_DIR$/USA/state/prog/bind_posterior/zz_legacy/bind_posterior_climate_3var.R" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/USA/state/prog/bind_posterior/bind_posterior_climate_5var.R" afterPath="$PROJECT_DIR$/USA/state/prog/bind_posterior/zz_legacy/bind_posterior_climate_5var.R" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/USA/state/prog/mapping_posterior/mapping_posterior.R" afterPath="$PROJECT_DIR$/USA/state/prog/mapping_posterior/zz_legacy/mapping_posterior.R" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/USA/state/prog/mapping_posterior/mapping_posterior_climate_1var.R" afterPath="$PROJECT_DIR$/USA/state/prog/mapping_posterior/zz_legacy/mapping_posterior_climate_1var.R" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/USA/state/prog/mapping_posterior/mapping_posterior_climate_2var.R" afterPath="$PROJECT_DIR$/USA/state/prog/mapping_posterior/zz_legacy/mapping_posterior_climate_2var.R" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/USA/state/prog/mapping_posterior/mapping_posterior_climate_3var.R" afterPath="$PROJECT_DIR$/USA/state/prog/mapping_posterior/zz_legacy/mapping_posterior_climate_3var.R" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/USA/state/prog/mapping_posterior/mapping_posterior_climate_5var.R" afterPath="$PROJECT_DIR$/USA/state/prog/mapping_posterior/zz_legacy/mapping_posterior_climate_5var.R" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/00_bash/plotting/plotting_results_climate_cod_1var.sh" afterPath="$PROJECT_DIR$/USA/state/prog/00_bash/plotting/plotting_results_climate_cod_1var.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/bind_posterior/bind_posterior_climate_cod_1var.R" afterPath="$PROJECT_DIR$/USA/state/prog/bind_posterior/bind_posterior_climate_cod_1var.R" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/mapping_posterior/mapping_posterior_climate_cod_1var.R" afterPath="$PROJECT_DIR$/USA/state/prog/mapping_posterior/mapping_posterior_climate_cod_1var.R" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -26,17 +23,7 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="inla_spatiotemporal_climate_cod.R" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_cod.R">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="18" column="11" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="plotting_results_climate_cod_1var.sh" pinned="false" current-in-tab="false">
+      <file leaf-file-name="plotting_results_climate_cod_1var.sh" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/USA/state/prog/00_bash/plotting/plotting_results_climate_cod_1var.sh">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="495">
@@ -46,11 +33,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="bind_posterior_climate_cod_1var.R" pinned="false" current-in-tab="true">
+      <file leaf-file-name="bind_posterior_climate_cod_1var.R" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/USA/state/prog/bind_posterior/bind_posterior_climate_cod_1var.R">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1455">
-              <caret line="97" column="1" lean-forward="true" selection-start-line="97" selection-start-column="1" selection-end-line="97" selection-end-column="1" />
+            <state relative-caret-position="165">
+              <caret line="11" column="29" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mapping_posterior_climate_cod_1var.R" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/USA/state/prog/mapping_posterior/mapping_posterior_climate_cod_1var.R">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="645">
+              <caret line="43" column="72" lean-forward="false" selection-start-line="43" selection-start-column="72" selection-end-line="43" selection-end-column="72" />
               <folding />
             </state>
           </provider>
@@ -126,7 +123,6 @@
         <option value="$PROJECT_DIR$/USA/state/prog/format_mort/format_mort_legacy/mort/infix/infix_master.do" />
         <option value="$PROJECT_DIR$/USA/state/prog/prep_data_cod/US_state_monthly_prepare_data_cod.R" />
         <option value="$PROJECT_DIR$/USA/state/prog/00_bash/plotting/plotting_results_climate_cod_2var.sh" />
-        <option value="$PROJECT_DIR$/USA/state/prog/mapping_posterior/mapping_posterior_climate_cod_1var.R" />
         <option value="$PROJECT_DIR$/USA/state/prog/prep_data_cod/US_state_monthly_prepare_data_subcauses_injuries_ons_no_drugs.R" />
         <option value="$PROJECT_DIR$/USA/state/prog/data_explore/data_explore_injuries_ons_subcod_no_drugs.R" />
         <option value="$PROJECT_DIR$/USA/state/prog/00_bash/data_prep/data_explore_cod.sh" />
@@ -164,6 +160,7 @@
         <option value="$PROJECT_DIR$/USA/state/prog/data_explore/data_explore_injuries_ons.R" />
         <option value="$PROJECT_DIR$/USA/state/prog/00_bash/plotting/plotting_results_climate_cod_1var.sh" />
         <option value="$PROJECT_DIR$/USA/state/prog/bind_posterior/bind_posterior_climate_cod_1var.R" />
+        <option value="$PROJECT_DIR$/USA/state/prog/mapping_posterior/mapping_posterior_climate_cod_1var.R" />
       </list>
     </option>
   </component>
@@ -262,6 +259,32 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="mapping_posterior" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mortality" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mortality" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="USA" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="state" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="prog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="00_bash" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -283,11 +306,11 @@
       <recent name="$PROJECT_DIR$/USA/state/prog/elife_wavelet_submission" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/USA/state/prog/mapping_posterior/zz_legacy" />
       <recent name="$PROJECT_DIR$/USA/state/prog/bind_posterior/zz_legacy" />
       <recent name="$PROJECT_DIR$/USA/state/prog/00_bash/plotting/zz_legacy" />
       <recent name="$PROJECT_DIR$/USA/state/prog/data_explore/zz_legacy" />
       <recent name="$PROJECT_DIR$/USA/state/prog/00_bash/inla/zz_legacy" />
-      <recent name="$PROJECT_DIR$/USA/state/prog/models/INLA/03_spatiotemporal/zz_legacy" />
     </key>
   </component>
   <component name="RunManager" selected="Bash.data_explore_cod.sh">
@@ -526,13 +549,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1517410459211</updated>
-    </task>
-    <task id="LOCAL-00132" summary="test commit">
-      <created>1522777662593</created>
-      <option name="number" value="00132" />
-      <option name="presentableId" value="LOCAL-00132" />
-      <option name="project" value="LOCAL" />
-      <updated>1522777662593</updated>
     </task>
     <task id="LOCAL-00133" summary="test commit">
       <created>1522873498248</created>
@@ -870,7 +886,14 @@
       <option name="project" value="LOCAL" />
       <updated>1523960423739</updated>
     </task>
-    <option name="localTasksCounter" value="181" />
+    <task id="LOCAL-00181" summary="test commit">
+      <created>1524034604045</created>
+      <option name="number" value="00181" />
+      <option name="presentableId" value="LOCAL-00181" />
+      <option name="project" value="LOCAL" />
+      <updated>1524034604045</updated>
+    </task>
+    <option name="localTasksCounter" value="182" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1202,14 +1225,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/USA/state/prog/mapping_posterior/mapping_posterior_climate_cod_1var.R">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="33" lean-forward="false" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/USA/state/prog/01_functions/map_generate.R">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="660">
@@ -1218,7 +1233,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/USA/state/prog/mapping_posterior/mapping_posterior_climate_1var.R">
+    <entry file="file://$PROJECT_DIR$/USA/state/prog/mapping_posterior/zz_legacy/mapping_posterior_climate_1var.R">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="258">
           <caret line="105" column="62" lean-forward="false" selection-start-line="105" selection-start-column="57" selection-end-line="105" selection-end-column="62" />
@@ -1322,18 +1337,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/USA/state/prog/00_bash/plotting/plotting_results_climate_cod_1var.sh">
+    <entry file="file://$PROJECT_DIR$/USA/state/prog/mapping_posterior/mapping_posterior_climate_cod_1var.R">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+        <state relative-caret-position="645">
+          <caret line="43" column="72" lean-forward="false" selection-start-line="43" selection-start-column="72" selection-end-line="43" selection-end-column="72" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/USA/state/prog/bind_posterior/bind_posterior_climate_cod_1var.R">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1455">
-          <caret line="97" column="1" lean-forward="true" selection-start-line="97" selection-start-column="1" selection-end-line="97" selection-end-column="1" />
+        <state relative-caret-position="165">
+          <caret line="11" column="29" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/USA/state/prog/00_bash/plotting/plotting_results_climate_cod_1var.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
           <folding />
         </state>
       </provider>

@@ -18,6 +18,7 @@ model <- as.numeric(args[4])
 dname <- as.character(args[5])
 metric <- as.character(args[6])
 cause <- as.character(args[7]) ; cause <- gsub('_',' ',cause)
+contig.arg <- as.numeric(args[8])
 
 #year.start = 1980 ; year.end = 2013 ; country = 'USA' ; model = 10 ; dname = 't2m' ; metric = 'meanc3' ; cause = 'External'
 
@@ -36,11 +37,11 @@ colorway = c("navy","deepskyblue2","deepskyblue3","darkgreen","yellow3","gold","
 # load the data
 if(cause!='AllCause'){
     dat <- readRDS(paste0('../../data/climate_effects/',dname,'/',metric,'/non_pw/type_',model,'/parameters/',
-    country,'_rate_pred_type',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'_fast'))
+    country,'_rate_pred_type',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'_fast_contig'))
 }
 if(cause=='AllCause'){
     dat <- readRDS(paste0('../../data/climate_effects/',dname,'/',metric,'/non_pw/type_',model,'/parameters/'
-    ,country,'_rate_pred_type',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_fast'))
+    ,country,'_rate_pred_type',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_fast_contig'))
 }
 
 if(multiple==1){
