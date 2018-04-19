@@ -24,7 +24,7 @@ year.event <- as.numeric(args[10])
 month.event <- as.numeric(args[11])
 
 #year.start=1980;year.end=2013;country='USA';model=10;dname='t2m';metric1='meanc3';
-# year.start2=1979;year.end2=2015; cause = 'Cardiopulmonary'
+# year.start2=1979;year.end2=2015; cause = 'Cancer'
 # month.event = 7 ; year.event = 2006
 
 multiple = 0
