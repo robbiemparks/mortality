@@ -43,14 +43,10 @@ library(scales)
 
 ########################################### SUB CAUSES ###########################################
 
-# SOMETHING NOT RIGHT ABOUT THE POPULATION IN THIS STEP!!!!
-# POPULATIONS MUCH TOO LARGE!!!
-# REASON: THERE ARE TOO MANY REPEATS OF POPULATION PER SUB-CAUSE,
-# SOLUTION: DDPLY BY SUBCAUSE FIRST, ATTACH
-
 # create monthly nationalised data for broad sub-causes
-dat.nat.broad = ddply(dat,.(cause,year,month,sex,age),summarize,deaths=sum(deaths.adj),pop.adj=sum(pop.adj)/6) # is this right?
-dat.nat.broad $rate.adj = with(dat.nat.broad,deaths/pop.adj)
+dat.nat.broad = ddply(dat,.(cause,year,month,sex,age),summarize,deaths=sum(deaths.adj),pop.adj=sum(pop.adj))
+dat.nat.broad$pop.adj = dat.nat.broad$pop.adj / 3; # why is this true???
+dat.nat.broad$rate.adj = with(dat.nat.broad,deaths/pop.adj)
 dat.nat.broad  = dat.nat.broad[order(dat.nat.broad$cause,dat.nat.broad$sex,dat.nat.broad$age,dat.nat.broad$year,dat.nat.broad$month),]
 
 # create yearly nationalised data for broad sub-causes
@@ -140,21 +136,35 @@ dat.nat.broad.year$sex.long = mapvalues(dat.nat.broad.year$sex,from=sort(unique(
 dat.nat.broad.year$sex.long = reorder(dat.nat.broad.year$sex.long,rev(dat.nat.broad.year$sex))
 dat.nat.broad.year$sex.long = as.character(dat.nat.broad.year$sex.long)
 
-# pdf(paste0(file.loc,'injury_ons_subcod_age_sex_yearly_plots_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
-# # 1. stacked yearly plot
-# ggplot(dat=dat.nat.broad.year, aes(x=year,y=rate.adj*100000,color=cause)) +
-#     geom_line() +
-#     xlab('Year') +
-#     ylab('Death rate (per 100,000)') +
-#     geom_vline(xintercept=1999, linetype="dotted") +
-#     facet_grid(sex.long~age.long) +
-#     scale_color_manual(values=colors.injuries, guide = guide_legend(byrow=TRUE,nrow = 1,title = paste0("Cause"))) +
-#     theme_bw() + theme( panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
-#     panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
-#     panel.border = element_rect(colour = "black"),strip.background = element_blank(),
-#     legend.position = 'bottom',legend.justification='center',
-#     legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
-# dev.off()
+pdf(paste0(file.loc,'injury_ons_subcod_age_sex_yearly_plots_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
+# 1. yearly plot
+ggplot(dat=dat.nat.broad.year, aes(x=year,y=rate.adj*100000,color=cause)) +
+    geom_line() +
+    xlab('Year') +
+    ylab('Death rate (per 100,000)') +
+    geom_vline(xintercept=1999, linetype="dotted") +
+    facet_grid(sex.long~age.long) +
+    scale_color_manual(values=colors.injuries, guide = guide_legend(byrow=TRUE,nrow = 1,title = paste0("Cause"))) +
+    theme_bw() + theme( panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
+    panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
+    panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+    legend.position = 'bottom',legend.justification='center',
+    legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
+
+# 2. yearly plot log-scale
+ggplot(dat=dat.nat.broad.year, aes(x=year,y=log(rate.adj*100000),color=cause)) +
+    geom_line() +
+    xlab('Year') +
+    ylab('log(Death rate (per 100,000))') +
+    geom_vline(xintercept=1999, linetype="dotted") +
+    facet_grid(sex.long~age.long) +
+    scale_color_manual(values=colors.injuries, guide = guide_legend(byrow=TRUE,nrow = 1,title = paste0("Cause"))) +
+    theme_bw() + theme( panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
+    panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
+    panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+    legend.position = 'bottom',legend.justification='center',
+    legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
+dev.off()
 
 ############################
 # for nationalised ASDR data
@@ -188,7 +198,7 @@ ggplot(dat=dat.nat.broad.asdr.year, aes(x=year,y=12*ASDR*100000,fill=cause)) +
     legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
 
 # 3. stacked yearly plot facetted by subcause
-ggplot(dat=dat.nat.broad.asdr.year, aes(x=year,y=ASDR*100000,fill=cause)) +
+ggplot(dat=dat.nat.broad.asdr.year, aes(x=year,y=12*ASDR*100000,fill=cause)) +
     geom_area(position='stack') +
     geom_vline(xintercept=1999, linetype="dotted") +
     xlab('Year') +
@@ -303,7 +313,7 @@ ggplot(dat=dat.national.com.sex.year, aes(x=year,y=12*ASDR*100000,fill=cause.sub
     legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
 
 # 3. stacked yearly plot facetted by subsubcause
-ggplot(dat=dat.national.com.sex.year, aes(x=year,y=ASDR*100000,fill=cause.sub)) +
+ggplot(dat=dat.national.com.sex.year, aes(x=year,y=12*ASDR*100000,fill=cause.sub)) +
     geom_area(position='stack') +
     geom_vline(xintercept=1999, linetype="dotted") +
     xlab('Year') +
