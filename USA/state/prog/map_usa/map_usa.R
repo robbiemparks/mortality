@@ -41,7 +41,6 @@ theme_map <- function(base_size=9, base_family=""){
     )
 }
 
-
 # load shapefile
 us <- readOGR(dsn="../../data/shapefiles",layer="states")
 
@@ -99,8 +98,6 @@ shapefile.data$climate_region <- 	c('Northwest','West North Central','Northeast'
 # merge selected data to map dataframe for colouring of ggplot
 USA.df <- merge(map, shapefile.data, by='id')
 USA.df$STATE_FIPS <- as.integer(as.character(USA.df$STATE_FIPS))
-
-# extract coordinates of states
 
 # set colour scheme for geographical colour map
 map.region.colour <- colorRampPalette(rev(brewer.pal(12,"Accent")[c(1:3,5,6)]))(length(unique(USA.df$SUB_REGION)))
