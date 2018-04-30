@@ -264,6 +264,8 @@ forest.plot.national.month <- function() {
         scale_fill_gradientn(colours=colorway,
         breaks=c(-0.025, -0.02, -0.015, -0.01, -0.005, 0, 0.005, 0.01, 0.015, 0.02, 0.025),
         na.value = "grey98",limits = c(-0.027, 0.027),
+        #breaks=c(-0.08, -0.06, -0.04, -0.02, 0, 0.02, 0.04, 0.06, 0.08),
+        #na.value = "grey98",limits = c(-0.1, 0.1),
         labels=percent,guide = guide_legend(nrow = 1,title = paste0("Excess risk for 1 additional ",unit.name," above long-term average"))) +
         guides(fill = guide_colorbar(barwidth = 30, barheight = 1,title = paste0("Excess risk for 1 additional ",unit.name," above long-term average"))) +
         scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
