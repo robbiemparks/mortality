@@ -11,11 +11,13 @@ args <- commandArgs(trailingOnly=TRUE)
 year <- as.numeric(args[1])
 print(year)
 
+# correct file names for different extractions
+if (year <= 2013){us = 'USPART2'; ps = 'PSPART2'}
+if (year >= 2014){us = 'USAllCnty.txt'; ps = 'PSAllCnty.txt'}
+
 # read files
-dat.us <- read.dta(paste0('~/data/mortality/US/state/raw/cdc/',year,'/MULT',year,'.USPART2.processed.age_recode.dta'))
-#head(dat.us)
-try(dat.ps <- read.dta(paste0('~/data/mortality/US/state/raw/cdc/',year,'/MULT',year,'.PSPART2.processed.age_recode.dta')))
-#if(exists('dat.ps')==TRUE){head(dat.ps)}
+dat.us <- read.dta(paste0('~/data/mortality/US/state/raw/cdc/',year,'/MULT',year,'.',us,'.processed.age_recode.dta'))
+try(dat.ps <- read.dta(paste0('~/data/mortality/US/state/raw/cdc/',year,'/MULT',year,'.',ps,'.processed.age_recode.dta')))
 
 # append datasets if necessary
 dat <- dat.us
