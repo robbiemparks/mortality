@@ -71,7 +71,7 @@ library(ggplot2)
 # for nationalised ASDR data
 ############################
 
-pdf(paste0(file.loc,'broad_cod_asdr_plots.pdf'),paper='a4r',height=0,width=0)
+pdf(paste0(file.loc,'broad_cod_asdr_plots',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
 
 library(scales)
 
@@ -235,7 +235,7 @@ dat.last.year$sex.long <- with(dat.last.year,reorder(dat.last.year$sex.long,sex)
 dat.last.year$ID = mapvalues(dat.last.year$month, from=sort(unique(dat.last.year$month)),to=month.short)
 dat.last.year$ID = with(dat.last.year,reorder(dat.last.year$ID,month))
 
-pdf(paste0(file.loc,'broad_cod_last_year_plots.pdf'),paper='a4r',height=0,width=0)
+pdf(paste0(file.loc,'broad_cod_last_year_plots',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
 
 # x axis age-group, y-axis death rate for last year
 ggplot(data=dat.last.year) +
@@ -323,7 +323,7 @@ dat.last.years$age.long <- reorder(dat.last.years$age.long,dat.last.years$age)
 dat.last.years$ID = mapvalues(dat.last.years$month, from=sort(unique(dat.last.years$month)),to=month.short)
 dat.last.years$ID = with(dat.last.years,reorder(dat.last.years$ID,month))
 
-pdf(paste0(file.loc,'broad_cod_last_years_plots.pdf'),paper='a4r',height=0,width=0)
+pdf(paste0(file.loc,'broad_cod_last_years_plots',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
 
 # full bar chart per age-sex group with breakdown of types of injuries
 ggplot(data=dat.last.years, aes(x="",y=deaths,color=as.factor(cause),fill=as.factor(cause))) +
