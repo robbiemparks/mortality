@@ -482,7 +482,7 @@ ggplot(data=dat.last.years) +
     scale_colour_manual(values=colors.months,guide = guide_legend(nrow = 1,title = paste0("Month"))) +
     geom_hline(linetype=1, yintercept = 0, alpha=0.5) +
     ggtitle(paste0((year.end.arg-4),'-',year.end.arg,' 5-year average')) +
-    facet_grid(sex.long~cause) +
+    facet_grid(sex.long~cause.sub) +
     theme_bw() + theme( panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
     panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
     panel.border = element_rect(colour = "black"),strip.background = element_blank(),
@@ -498,14 +498,14 @@ ggplot(data=dat.last.years) +
     scale_colour_manual(values=colors.months,guide = guide_legend(nrow = 1,title = paste0("Month"))) +
     geom_hline(linetype=1, yintercept = 0, alpha=0.5) +
     ggtitle(paste0((year.end.arg-4),'-',year.end.arg,' 5-year average')) +
-    facet_grid(sex.long~cause) +
+    facet_grid(sex.long~cause.sub) +
     theme_bw() + theme( panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
     panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
     panel.border = element_rect(colour = "black"),strip.background = element_blank(),
     legend.position = 'bottom',legend.justification='center',
     legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
 
-# x axis month, y-axis death rate for last year
+# x axis month, y-axis death rate for last years
 ggplot(data=dat.last.years) +
     geom_line(aes(x=month,y=100000*rate.adj,color=as.factor(age))) +
     #geom_point(aes(x=month,y=1000000*rate.adj,color=as.factor(age))) +
@@ -516,7 +516,7 @@ ggplot(data=dat.last.years) +
     scale_colour_manual(labels=c('0-4','5-14','15-24','25-34','35-44','45-54','55-64','65-74','75-84','85+'),
     values=age.colours,guide = guide_legend(title = 'Age group (years)')) +
     ggtitle(paste0((year.end.arg-4),'-',year.end.arg,' 5-year average')) +
-    facet_grid(sex.long~cause,scales="free") +
+    facet_grid(sex.long~cause.sub,scales="free") +
     theme_bw() + theme( panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
     panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
     panel.border = element_rect(colour = "black"),strip.background = element_blank(),
@@ -533,7 +533,7 @@ ggplot(data=dat.last.years) +
     scale_colour_manual(labels=c('0-4','5-14','15-24','25-34','35-44','45-54','55-64','65-74','75-84','85+'),
     values=age.colours,guide = guide_legend(title = 'Age group (years)')) +
     ggtitle(paste0((year.end.arg-4),'-',year.end.arg,' 5-year average')) +
-    facet_grid(sex.long~cause,scales="free") +
+    facet_grid(sex.long~cause.sub,scales="free") +
     theme_bw() + theme( panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
     panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
     panel.border = element_rect(colour = "black"),strip.background = element_blank(),
