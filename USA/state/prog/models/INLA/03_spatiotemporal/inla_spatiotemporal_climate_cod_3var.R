@@ -55,9 +55,9 @@ dat.inla.load <- merge(dat.inla.load,dat.region,by.x=('fips'),by.y=('STATE_FIPS'
 file.loc1 <- paste0('~/git/climate/countries/USA/output/metrics_development/',dname.arg,'/',metric1.arg,'_',dname.arg,'/')
 file.loc2 <- paste0('~/git/climate/countries/USA/output/metrics_development/',dname.arg,'/',metric2.arg,'_',dname.arg,'/')
 file.loc3 <- paste0('~/git/climate/countries/USA/output/metrics_development/',dname.arg,'/',metric3.arg,'_',dname.arg,'/')
-dat.climate1 <- readRDS(paste0(file.loc1,'state_weighted_summary_',metric1.arg,'_',dname.arg,'_1979_2015.rds'))
-dat.climate2 <- readRDS(paste0(file.loc2,'state_weighted_summary_',metric2.arg,'_',dname.arg,'_1979_2015.rds'))
-dat.climate3 <- readRDS(paste0(file.loc3,'state_weighted_summary_',metric3.arg,'_',dname.arg,'_1979_2015.rds'))
+dat.climate1 <- readRDS(paste0(file.loc1,'state_weighted_summary_',metric1.arg,'_',dname.arg,'_1979_2016.rds'))
+dat.climate2 <- readRDS(paste0(file.loc2,'state_weighted_summary_',metric2.arg,'_',dname.arg,'_1979_2016.rds'))
+dat.climate3 <- readRDS(paste0(file.loc3,'state_weighted_summary_',metric3.arg,'_',dname.arg,'_1979_2016.rds'))
 
 dat.climate1$state.fips <- as.numeric(as.character(dat.climate1$state.fips))
 dat.climate2$state.fips <- as.numeric(as.character(dat.climate2$state.fips))
