@@ -117,11 +117,9 @@ dat.national <- dat.national[order(dat.national$sex,dat.national$age,dat.nationa
 dat.national.test = subset(dat.national,age==65&sex==2)
 dat.pois.summary <- ddply(dat.national.test,.(sex,age), function(z)coef(summary(glm(deaths.pred ~ 1 + year.month + (1 + year.month)*(cos.12+sin.12+cos.6+sin.6), offset=log(pop.adj),family=poisson(link="log"),data=z))))
 
-
 glm(deaths.pred ~ 1 + year.month + (1 + year)*(cos.12+sin.12+cos.6+sin.6), offset=log(pop.adj),family=poisson(link="log"),data=dat.national.test)
-glm(deaths.pred ~ 1 + year.month, offset=log(pop.adj),family=poisson(link="log"),data=dat.national.test)
 
-
+# ALTNERNATIVELY fix the max/min months values from the COM analysis and then look at the change in magnitude over time TO DO
 
 
 
