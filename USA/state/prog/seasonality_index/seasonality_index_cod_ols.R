@@ -98,19 +98,28 @@ dat.national <- dat.national[order(dat.national$sex,dat.national$age,dat.nationa
 # --------------------- -------------------------------------
 
 # add sinusoidal terms
-dat.national$sin.6  =
-dat.national$cos.6  =
-dat.national$sin.12 =
-dat.national$cos.12 =
+dat.national$cos.12 = with(dat.national,cos(2*pi*month/12))
+dat.national$sin.12 = with(dat.national,sin(2*pi*month/12))
+dat.national$cos.6  = with(dat.national,cos(2*pi*month/6))
+dat.national$sin.6  = with(dat.national,sin(2*pi*month/6))
 
+# extract unique table of year and months to generate year.month
+dat.year.month <- unique(dat.national[,c('year', 'month')])
+dat.year.month <- dat.year.month[order(dat.year.month$year,dat.year.month$month),]
+dat.year.month$month <- as.integer(dat.year.month$month)
+dat.year.month$year.month <- seq(nrow(dat.year.month))
 
-
+# merge year.month table with population table to create year.month id
+dat.national <- merge(dat.national,dat.year.month, by=c('year','month'))
+dat.national <- dat.national[order(dat.national$sex,dat.national$age,dat.national$year,dat.national$month),]
 
 # apply Poisson glm with population offsetting
-dat.pois.summary <- ddply(dat.pois,.(sex,age), function(z)coef(summary(glm(log(deaths.pred) ~ year.month + offset(log(pop.adj)),family=poisson,data=z))))
+dat.national.test = subset(dat.national,age==65&sex==2)
+dat.pois.summary <- ddply(dat.national.test,.(sex,age), function(z)coef(summary(glm(deaths.pred ~ 1 + year.month + (1 + year.month)*(cos.12+sin.12+cos.6+sin.6), offset=log(pop.adj),family=poisson(link="log"),data=z))))
 
 
-
+glm(deaths.pred ~ 1 + year.month + (1 + year)*(cos.12+sin.12+cos.6+sin.6), offset=log(pop.adj),family=poisson(link="log"),data=dat.national.test)
+glm(deaths.pred ~ 1 + year.month, offset=log(pop.adj),family=poisson(link="log"),data=dat.national.test)
 
 
 
