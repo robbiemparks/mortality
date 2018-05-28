@@ -46,7 +46,7 @@ source('../models/INLA/03_spatiotemporal/inla_load_data_cod.R')
 # merge mortality data with climate region data
 # dat.inla.load <- merge(dat.inla.load,dat.region,by.x=('fips'),by.y=('STATE_FIPS'),all.x=TRUE)
 
-# load climate data for 1979-2015
+# load climate data for 1979-2016
 file.loc <- paste0('~/git/climate/countries/USA/output/metrics_development/',dname.arg,'/',metric.arg,'_',dname.arg,'/')
 dat.climate <- readRDS(paste0(file.loc,'state_weighted_summary_',metric.arg,'_',dname.arg,'_1979_2016.rds'))
 dat.climate$state.fips <- as.numeric(as.character(dat.climate$state.fips))
