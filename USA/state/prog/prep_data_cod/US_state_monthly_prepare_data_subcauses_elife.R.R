@@ -80,6 +80,11 @@ yearsummary_injuries  <- function(x=2000) {
                             ifelse(dat.merged$cause.numeric>=2860&dat.merged$cause.numeric<=2899, 'Endocrine disorders',#'',
 
                             # genitourinary diseases
+                            ifelse(dat.merged$cause.numeric>=5800&dat.merged$cause.numeric<=6119, 'Genitourinary diseases',#'',
+                            ifelse(dat.merged$cause.numeric>=6170&dat.merged$cause.numeric<=6299, 'Genitourinary diseases',#'',
+
+                            # neuropsychiatric disorders
+                            ifelse(dat.merged$cause.numeric>=&dat.merged$cause.numeric<=, '',#'',
                             ifelse(dat.merged$cause.numeric>=&dat.merged$cause.numeric<=, '',#'',
                             ifelse(dat.merged$cause.numeric>=&dat.merged$cause.numeric<=, '',#'',
 
