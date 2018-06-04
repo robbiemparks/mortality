@@ -84,12 +84,14 @@ yearsummary_injuries  <- function(x=2000) {
                             ifelse(dat.merged$cause.numeric>=6170&dat.merged$cause.numeric<=6299, 'Genitourinary diseases',#'',
 
                             # neuropsychiatric disorders
-                            ifelse(dat.merged$cause.numeric>=&dat.merged$cause.numeric<=, '',#'',
-                            ifelse(dat.merged$cause.numeric>=&dat.merged$cause.numeric<=, '',#'',
-                            ifelse(dat.merged$cause.numeric>=&dat.merged$cause.numeric<=, '',#'',
+                            ifelse(dat.merged$cause.numeric>=2900&dat.merged$cause.numeric<=2909, 'Neuropsychiatric disorders',#'',
+                            ifelse(dat.merged$cause.numeric>=2920&dat.merged$cause.numeric<=3029, 'Neuropsychiatric disorders',#'',
+                            ifelse(dat.merged$cause.numeric>=3051&dat.merged$cause.numeric<=3051, 'Neuropsychiatric disorders',#'',
+                            ifelse(dat.merged$cause.numeric>=3060&dat.merged$cause.numeric<=3199, 'Neuropsychiatric disorders',#'',
+                            ifelse(dat.merged$cause.numeric>=3240&dat.merged$cause.numeric<=3599, 'Neuropsychiatric disorders',#'',
 
-
-                            ifelse(dat.merged$cause.numeric>=&dat.merged$cause.numeric<=, '',#'',
+                            # Substance use disorders
+                            ifelse(dat.merged$cause.numeric>=&dat.merged$cause.numeric<=, 'Substance use disorders',#'',
 
 
 
