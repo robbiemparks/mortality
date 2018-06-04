@@ -44,8 +44,8 @@ yearsummary_injuries  <- function(x=2000) {
 		dat$cause[nchar(dat$cause)==3] <- paste0(dat$cause[nchar(dat$cause)==3],'0')
 		dat$cause.numeric = as.numeric(dat$cause)
 		dat$cause.group = 	ifelse(dat$cause.numeric>=1400&dat$cause.numeric<=2399,'Cancer',
-							ifelse(dat$cause.numeric>=3900&dat$cause.numeric<=5199,'Cardiopulmonary',
-							ifelse(dat$cause.numeric>=8000&dat$cause.numeric<=9999,'External',
+							ifelse(dat$cause.numeric>=3900&dat$cause.numeric<=5199,'Cardiorespiratory',
+							ifelse(dat$cause.numeric>=8000&dat$cause.numeric<=9999,'Injuries',
 							'Other')))
 
         dat$cause.group = as.character(dat$cause.group)
@@ -53,9 +53,9 @@ yearsummary_injuries  <- function(x=2000) {
         # move deaths due to weather-based heat/cold to 'Other'
         dat$cause.group = ifelse(as.numeric(substr(dat$cause.numeric,1,3))==900|as.numeric(substr(dat$cause.numeric,1,3))==901,'Other',dat$cause.group)
 
-        # only filter for external
-        dat.merged = subset(dat,cause.group=='External')
-        dat.merged$cause.group = NULL
+        # # only filter for external
+        # dat.merged = subset(dat,cause.group=='External')
+        # dat.merged$cause.group = NULL
 
         # cause subgroups
         dat.merged$cause.sub =
