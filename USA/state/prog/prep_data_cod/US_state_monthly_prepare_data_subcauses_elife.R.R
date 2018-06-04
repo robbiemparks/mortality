@@ -87,7 +87,7 @@ yearsummary_injuries  <- function(x=2000) {
                             ifelse(dat.merged$cause.numeric>=3051&dat.merged$cause.numeric<=3051, 'Neuropsychiatric disorders',#'',
                             ifelse(dat.merged$cause.numeric>=3060&dat.merged$cause.numeric<=3199, 'Neuropsychiatric disorders',#'',
                             ifelse(dat.merged$cause.numeric>=3240&dat.merged$cause.numeric<=3599, 'Neuropsychiatric disorders',#'', 5
-                            # Substance use disorders
+                            # substance use disorders
                             ifelse(dat.merged$cause.numeric>=2910&dat.merged$cause.numeric<=2919, 'Substance use disorders',#'',
                             ifelse(dat.merged$cause.numeric>=3030&dat.merged$cause.numeric<=3039, 'Substance use disorders',#'',
                             ifelse(dat.merged$cause.numeric>=3050&dat.merged$cause.numeric<=3050, 'Substance use disorders',#'',
@@ -164,8 +164,23 @@ yearsummary_injuries  <- function(x=2000) {
                             ifelse(dat.merged$letter=='H'&dat.merged$cause.numeric>=650&dat.merged$cause.numeric<=669,'Respiratory infections',
                             ifelse(dat.merged$letter=='J'&dat.merged$cause.numeric>=300&dat.merged$cause.numeric<=989,'Chronic respiratory diseases',
 			                # maternal and perinatal subcauses
-                            ifelse(dat.merged$letter=='J'&dat.merged$cause.numeric>=300&dat.merged$cause.numeric<=989,'Maternal conditions',
-                            ifelse(dat.merged$letter=='J'&dat.merged$cause.numeric>=300&dat.merged$cause.numeric<=989,'Perinatal conditions',
+                            ifelse(dat.merged$letter=='O'&dat.merged$cause.numeric>=0&dat.merged$cause.numeric<=999,'Maternal conditions',
+                            ifelse(dat.merged$letter=='P'&dat.merged$cause.numeric>=0&dat.merged$cause.numeric<=969,'Perinatal conditions',
+			                # endocrine disorders
+                            ifelse(dat.merged$letter=='D'&dat.merged$cause.numeric>=550&dat.merged$cause.numeric<=648,'Endocrine disorders',
+                            ifelse(dat.merged$letter=='D'&dat.merged$cause.numeric>=650&dat.merged$cause.numeric<=899,'Endocrine disorders',
+                            ifelse(dat.merged$letter=='E'&dat.merged$cause.numeric>=30&dat.merged$cause.numeric<=79,'Endocrine disorders',
+                            ifelse(dat.merged$letter=='E'&dat.merged$cause.numeric>=150&dat.merged$cause.numeric<=169,'Endocrine disorders',
+                            ifelse(dat.merged$letter=='E'&dat.merged$cause.numeric>=200&dat.merged$cause.numeric<=349,'Endocrine disorders',
+                            ifelse(dat.merged$letter=='E'&dat.merged$cause.numeric>=650&dat.merged$cause.numeric<=889,'Endocrine disorders',
+                            # genitourinary diseases
+                            ifelse(dat.merged$letter=='N'&dat.merged$cause.numeric>=0&dat.merged$cause.numeric<=649,'Genitourinary diseases',
+                            ifelse(dat.merged$letter=='N'&dat.merged$cause.numeric>=750&dat.merged$cause.numeric<=989,'Genitourinary diseases',
+                            # neuropsychiatric disorders
+                            ifelse(dat.merged$letter==''&dat.merged$cause.numeric>=&dat.merged$cause.numeric<=,'Neuropsychiatric disorders',
+
+                            # substance use disorders
+                            ifelse(dat.merged$letter=='N'&dat.merged$cause.numeric>=750&dat.merged$cause.numeric<=989,'Genitourinary diseases',
 
 
 
