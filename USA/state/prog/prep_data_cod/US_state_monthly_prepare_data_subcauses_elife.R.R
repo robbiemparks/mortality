@@ -57,12 +57,34 @@ yearsummary_injuries  <- function(x=2000) {
         dat.merged$cause.sub =
 
 			                # cardio subcauses
-                            ifelse(dat.merged$cause.numeric>=&dat.merged$cause.numeric<=, 'Cardiovascular',#'',
-                            ifelse(dat.merged$cause.numeric>=&dat.merged$cause.numeric<=, 'Respiratory infections',#'',
-                            ifelse(dat.merged$cause.numeric>=&dat.merged$cause.numeric<=, 'Respiratory infections',#'',
-                            ifelse(dat.merged$cause.numeric>=&dat.merged$cause.numeric<=, 'Respiratory infections',#'',
-                            ifelse(dat.merged$cause.numeric>=&dat.merged$cause.numeric<=, 'Chronic respiratory diseases',#'',
-                            ifelse(dat.merged$cause.numeric>=&dat.merged$cause.numeric<=, 'Chronic respiratory diseases',#'',
+                            ifelse(dat.merged$cause.numeric>=3900&dat.merged$cause.numeric<=4599, 'Cardiovascular',#'',
+                            ifelse(dat.merged$cause.numeric>=4600&dat.merged$cause.numeric<=4669, 'Respiratory infections',#'',
+                            ifelse(dat.merged$cause.numeric>=4800&dat.merged$cause.numeric<=4879, 'Respiratory infections',#'',
+                            ifelse(dat.merged$cause.numeric>=3810&dat.merged$cause.numeric<=3829, 'Respiratory infections',#'',
+                            ifelse(dat.merged$cause.numeric>=4700&dat.merged$cause.numeric<=4789, 'Chronic respiratory diseases',#'',
+                            ifelse(dat.merged$cause.numeric>=4900&dat.merged$cause.numeric<=5199, 'Chronic respiratory diseases',#'',
+
+			                # maternal and perinatal subcauses
+                            ifelse(dat.merged$cause.numeric>=6300&dat.merged$cause.numeric<=6769, 'Maternal conditions',#'',
+                            ifelse(dat.merged$cause.numeric>=7600&dat.merged$cause.numeric<=7712, 'Perinatal conditions',#'',
+                            ifelse(dat.merged$cause.numeric>=7714&dat.merged$cause.numeric<=7799, 'Perinatal conditions',#'',
+
+                            # endocrine disorders
+                            ifelse(dat.merged$cause.numeric>=2400&dat.merged$cause.numeric<=2429, 'Endocrine disorders',#'',
+                            ifelse(dat.merged$cause.numeric>=2440&dat.merged$cause.numeric<=2469, 'Endocrine disorders',#'',
+                            ifelse(dat.merged$cause.numeric>=2510&dat.merged$cause.numeric<=2599, 'Endocrine disorders',#'',
+                            ifelse(dat.merged$cause.numeric>=2700&dat.merged$cause.numeric<=2739, 'Endocrine disorders',#'',
+                            ifelse(dat.merged$cause.numeric>=2750&dat.merged$cause.numeric<=2794, 'Endocrine disorders',#'',
+                            ifelse(dat.merged$cause.numeric>=2796&dat.merged$cause.numeric<=2799, 'Endocrine disorders',#'',
+                            ifelse(dat.merged$cause.numeric>=2820&dat.merged$cause.numeric<=2858, 'Endocrine disorders',#'',
+                            ifelse(dat.merged$cause.numeric>=2860&dat.merged$cause.numeric<=2899, 'Endocrine disorders',#'',
+
+                            # genitourinary diseases
+                            ifelse(dat.merged$cause.numeric>=&dat.merged$cause.numeric<=, '',#'',
+                            ifelse(dat.merged$cause.numeric>=&dat.merged$cause.numeric<=, '',#'',
+
+
+                            ifelse(dat.merged$cause.numeric>=&dat.merged$cause.numeric<=, '',#'',
 
 
 
