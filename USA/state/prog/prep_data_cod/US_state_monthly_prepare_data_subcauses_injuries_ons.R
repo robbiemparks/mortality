@@ -104,7 +104,7 @@ yearsummary_injuries  <- function(x=2000) {
         dat.merged$cause.group = as.character(dat.merged$cause.group)
 
         # move deaths due to weather-based heat/cold to 'Other'
-        dat.merged$cause.group = ifelse((dat.merged$cause=='X30'|dat.merged$cause=='X31'),'Other',as.character(dat.merged$cause.group))
+        dat.merged$cause.group = ifelse((dat.merged$cause=='X300'|dat.merged$cause=='X310'),'Other',as.character(dat.merged$cause.group))
 
         # only filter for external
         dat.merged = subset(dat.merged,cause.group=='External')

@@ -33,7 +33,7 @@ yearsummary_injuries  <- function(x=2000) {
 		dat$sex = plyr::mapvalues(dat$sex,from=sort(unique(dat$sex)),to=c(2,1))
 	}
 
-	# load lookup for fips CHANGE TO SUBSTR OF FIPS
+	# load lookup for fips
 	dat$fips = substr(dat$fips,1,2)
 	dat$fips <- as.numeric(dat$fips)
 
@@ -44,9 +44,10 @@ yearsummary_injuries  <- function(x=2000) {
 		dat$cause[nchar(dat$cause)==3] <- paste0(dat$cause[nchar(dat$cause)==3],'0')
 		dat$cause.numeric = as.numeric(dat$cause)
 		dat$cause.group = 	ifelse(dat$cause.numeric>=1400&dat$cause.numeric<=2399,'Cancer',
-							ifelse(dat$cause.numeric>=3900&dat$cause.numeric<=5199,'Cardiorespiratory',
+                            ifelse(dat$cause.numeric>=3810&dat$cause.numeric<=3829,'Cardiopulmonary',
+							ifelse(dat$cause.numeric>=3900&dat$cause.numeric<=5199,'Cardiopulmonary',
 							ifelse(dat$cause.numeric>=8000&dat$cause.numeric<=9999,'Injuries',
-							'Other')))
+							'Other'))))
 
         dat$cause.group = as.character(dat$cause.group)
 
@@ -97,33 +98,35 @@ yearsummary_injuries  <- function(x=2000) {
                             # to close the brackets above
 							'NA')))))))))))))))))))))))))))))
 
+        dat.merged$cause.sub =
+
                             # injury subcauses
-                            # ifelse(dat.merged$cause.numeric>=8000&dat.merged$cause.numeric<=8079, 'Transport accidents',#'Railway Accidents',
-							# ifelse(dat.merged$cause.numeric>=8100&dat.merged$cause.numeric<=8199, 'Transport accidents',#'Motor Vehicle Traffic Accidents',
-							# ifelse(dat.merged$cause.numeric>=8200&dat.merged$cause.numeric<=8259, 'Transport accidents',#'Motor Vehicle Nontraffic Accidents',
-							# ifelse(dat.merged$cause.numeric>=8260&dat.merged$cause.numeric<=8299, 'Transport accidents',#'Other Road Vehicle Accidents',
-							# ifelse(dat.merged$cause.numeric>=8300&dat.merged$cause.numeric<=8389, 'Transport accidents',#'Water Transport Accidents',
-							# ifelse(dat.merged$cause.numeric>=8400&dat.merged$cause.numeric<=8459, 'Transport accidents',#'Air and Space Transport Accidents',
-							# ifelse(dat.merged$cause.numeric>=8460&dat.merged$cause.numeric<=8499, 'Transport accidents',#'Vehicle Accidents, Not Elsewhere Classifiable',
-							# ifelse(dat.merged$cause.numeric>=8500&dat.merged$cause.numeric<=8589, 'Other external causes of injury',#'Accidental Poisoning By Drugs, Medicinal Substances, And Biologicals',
-							# ifelse(dat.merged$cause.numeric>=8600&dat.merged$cause.numeric<=8699, 'Other external causes of injury',#'Accidental Poisoning By Other Solid And Liquid Substances, And Biologicals',
-							# ifelse(dat.merged$cause.numeric>=8700&dat.merged$cause.numeric<=8769, 'Other external causes of injury',#'Misadventures To Patients During Surgical And Medical Care',
-							# ifelse(dat.merged$cause.numeric>=8780&dat.merged$cause.numeric<=8799, 'Other external causes of injury',#'Non-Misadventures To Patients During Surigcal And Medical Care',
-							# ifelse(dat.merged$cause.numeric>=8800&dat.merged$cause.numeric<=8889, 'Accidental falls', #'Accidental Falls',
-							# ifelse(dat.merged$cause.numeric>=8900&dat.merged$cause.numeric<=8999, 'Other external causes of injury',#'Accidents Caused By Fire and Flames',
-							# ifelse(dat.merged$cause.numeric>=9000&dat.merged$cause.numeric<=9099, 'Other external causes of injury',#'Accidents Due To Natural And Environmental Factors',
-							# ifelse(dat.merged$cause.numeric>=9100&dat.merged$cause.numeric<=9109, 'Accidental drowning and submersion',#'Accidents Caused By Submersion',
-							# ifelse(dat.merged$cause.numeric>=9110&dat.merged$cause.numeric<=9159, 'Other external causes of injury',#'Accidents Caused By Suffocation And Foreign Bodies',
-							# ifelse(dat.merged$cause.numeric>=9160&dat.merged$cause.numeric<=9289, 'Other external causes of injury',#'Other Accidents',
-							# ifelse(dat.merged$cause.numeric>=9290&dat.merged$cause.numeric<=9299, 'Other external causes of injury',#'Late Effects Of Accidental Injury',
-							# ifelse(dat.merged$cause.numeric>=9300&dat.merged$cause.numeric<=9499, 'Other external causes of injury',#'Complications of medical and surgical care',
-							# ifelse(dat.merged$cause.numeric>=9500&dat.merged$cause.numeric<=9599, 'Intentional self-harm',#'Suicide And Self-Inflicted Injury',
-							# ifelse(dat.merged$cause.numeric>=9600&dat.merged$cause.numeric<=9699, 'Assault',#'Homicide And Injury Purposely Inflicted By Other Persons',
-							# ifelse(dat.merged$cause.numeric>=9700&dat.merged$cause.numeric<=9799, 'Assault',#'Legal Intervention',
-							# ifelse(dat.merged$cause.numeric>=9800&dat.merged$cause.numeric<=9899, 'Other external causes of injury',#'Injury Undetemined Whether Accidentlally Or Purposely Inflicted',
-							# ifelse(dat.merged$cause.numeric>=9900&dat.merged$cause.numeric<=9999, 'Assault',#'Injury Resulting From Operations Of War',
+                            ifelse(dat.merged$cause.numeric>=8000&dat.merged$cause.numeric<=8079, 'Transport accidents',#'Railway Accidents',
+							ifelse(dat.merged$cause.numeric>=8100&dat.merged$cause.numeric<=8199, 'Transport accidents',#'Motor Vehicle Traffic Accidents',
+							ifelse(dat.merged$cause.numeric>=8200&dat.merged$cause.numeric<=8259, 'Transport accidents',#'Motor Vehicle Nontraffic Accidents',
+							ifelse(dat.merged$cause.numeric>=8260&dat.merged$cause.numeric<=8299, 'Transport accidents',#'Other Road Vehicle Accidents',
+							ifelse(dat.merged$cause.numeric>=8300&dat.merged$cause.numeric<=8389, 'Transport accidents',#'Water Transport Accidents',
+							ifelse(dat.merged$cause.numeric>=8400&dat.merged$cause.numeric<=8459, 'Transport accidents',#'Air and Space Transport Accidents',
+							ifelse(dat.merged$cause.numeric>=8460&dat.merged$cause.numeric<=8499, 'Transport accidents',#'Vehicle Accidents, Not Elsewhere Classifiable',
+							ifelse(dat.merged$cause.numeric>=8500&dat.merged$cause.numeric<=8589, 'Other external causes of injury',#'Accidental Poisoning By Drugs, Medicinal Substances, And Biologicals',
+							ifelse(dat.merged$cause.numeric>=8600&dat.merged$cause.numeric<=8699, 'Other external causes of injury',#'Accidental Poisoning By Other Solid And Liquid Substances, And Biologicals',
+							ifelse(dat.merged$cause.numeric>=8700&dat.merged$cause.numeric<=8769, 'Other external causes of injury',#'Misadventures To Patients During Surgical And Medical Care',
+							ifelse(dat.merged$cause.numeric>=8780&dat.merged$cause.numeric<=8799, 'Other external causes of injury',#'Non-Misadventures To Patients During Surigcal And Medical Care',
+							ifelse(dat.merged$cause.numeric>=8800&dat.merged$cause.numeric<=8889, 'Accidental falls', #'Accidental Falls',
+							ifelse(dat.merged$cause.numeric>=8900&dat.merged$cause.numeric<=8999, 'Other external causes of injury',#'Accidents Caused By Fire and Flames',
+							ifelse(dat.merged$cause.numeric>=9000&dat.merged$cause.numeric<=9099, 'Other external causes of injury',#'Accidents Due To Natural And Environmental Factors',
+							ifelse(dat.merged$cause.numeric>=9100&dat.merged$cause.numeric<=9109, 'Accidental drowning and submersion',#'Accidents Caused By Submersion',
+							ifelse(dat.merged$cause.numeric>=9110&dat.merged$cause.numeric<=9159, 'Other external causes of injury',#'Accidents Caused By Suffocation And Foreign Bodies',
+							ifelse(dat.merged$cause.numeric>=9160&dat.merged$cause.numeric<=9289, 'Other external causes of injury',#'Other Accidents',
+							ifelse(dat.merged$cause.numeric>=9290&dat.merged$cause.numeric<=9299, 'Other external causes of injury',#'Late Effects Of Accidental Injury',
+							ifelse(dat.merged$cause.numeric>=9300&dat.merged$cause.numeric<=9499, 'Other external causes of injury',#'Complications of medical and surgical care',
+							ifelse(dat.merged$cause.numeric>=9500&dat.merged$cause.numeric<=9599, 'Intentional self-harm',#'Suicide And Self-Inflicted Injury',
+							ifelse(dat.merged$cause.numeric>=9600&dat.merged$cause.numeric<=9699, 'Assault',#'Homicide And Injury Purposely Inflicted By Other Persons',
+							ifelse(dat.merged$cause.numeric>=9700&dat.merged$cause.numeric<=9799, 'Assault',#'Legal Intervention',
+							ifelse(dat.merged$cause.numeric>=9800&dat.merged$cause.numeric<=9899, 'Other external causes of injury',#'Injury Undetemined Whether Accidentlally Or Purposely Inflicted',
+							ifelse(dat.merged$cause.numeric>=9900&dat.merged$cause.numeric<=9999, 'Assault',#'Injury Resulting From Operations Of War',
                             # to close the brackets above
-                            # 'NA')))))))))))))))))))))))))))))))))))))))))))))))))))))
+                            dat.merged$cause.sub))))))))))))))))))))))))
 
         dat.merged$letter = ' '
 
@@ -138,11 +141,15 @@ yearsummary_injuries  <- function(x=2000) {
         dat.merged$cause.group = as.character(dat.merged$cause.group)
 
         # move deaths due to weather-based heat/cold to 'Other'
-        dat.merged$cause.group = ifelse((dat.merged$cause=='X30'|dat.merged$cause=='X31'),'Other',as.character(dat.merged$cause.group))
-
+        dat.merged$cause.group = ifelse((dat.merged$cause=='X300'|dat.merged$cause=='X310'),'Other',as.character(dat.merged$cause.group))
 
         # numerical cause
         dat.merged$cause.numeric = as.numeric(as.character(substr(dat.merged$cause,2,4)))
+
+        # move deaths due to Ottis Media to 'Cardiopulmonary'
+        dat.merged$cause.group =
+                            ifelse((dat.merged$letter=='H'&dat.merged$cause.numeric>=650&dat.merged$cause.numeric<=669),'Cardiopulmonary',
+                            as.character(dat.merged$cause.group))
 
         # cause subgroups
         dat.merged$cause.sub =
@@ -178,29 +185,31 @@ yearsummary_injuries  <- function(x=2000) {
                             ifelse(dat.merged$letter=='F'&dat.merged$cause.numeric>=180&dat.merged$cause.numeric<=199,'Substance use disorders',
                             ifelse(dat.merged$letter=='X'&dat.merged$cause.numeric>=410&dat.merged$cause.numeric<=429,'Substance use disorders',
                             ifelse(dat.merged$letter=='X'&dat.merged$cause.numeric>=450&dat.merged$cause.numeric<=459,'Substance use disorders',
+                            ifelse(dat.merged$letter=='X'&dat.merged$cause.numeric>=490&dat.merged$cause.numeric<=499,'Substance use disorders',
 
                             # to close the brackets above
-                            'NA')))))))))))))))))))))))))
+                            'NA'))))))))))))))))))))))))))
 
-                            # # injury subcauses
-                            # ifelse(dat.merged$letter=='V'&dat.merged$cause.numeric>=0&dat.merged$cause.numeric<=999,'Transport accidents',
-                            # ifelse(dat.merged$letter=='W'&dat.merged$cause.numeric>=0&dat.merged$cause.numeric<=199,'Accidental falls',
-                            # ifelse(dat.merged$letter=='W'&dat.merged$cause.numeric>=200&dat.merged$cause.numeric<=649,'Other external causes of injury', # 'exposure to mechnical forces'
-                            # ifelse(dat.merged$letter=='W'&dat.merged$cause.numeric>=650&dat.merged$cause.numeric<=749,'Accidental drowning and submersion',
-                            # ifelse(dat.merged$letter=='W'&dat.merged$cause.numeric>=750&dat.merged$cause.numeric<=999,'Other external causes of injury', # 'exposure to electric current, radiation and extreme ambient air temperature and pressure'
-                            # ifelse(dat.merged$letter=='X'&dat.merged$cause.numeric>=0&dat.merged$cause.numeric<=599,'Other external causes of injury', # encounters with forces of nature/overexertion
-                            # ifelse(dat.merged$letter=='X'&dat.merged$cause.numeric>=600&dat.merged$cause.numeric<=840,'Intentional self-harm',
-                            # ifelse(dat.merged$letter=='X'&dat.merged$cause.numeric>=850&dat.merged$cause.numeric<=999,'Assault',
-                            # ifelse(dat.merged$letter=='Y'&dat.merged$cause.numeric>=0&dat.merged$cause.numeric<=99,'Assault',
-                            # ifelse(dat.merged$letter=='Y'&dat.merged$cause.numeric>=100&dat.merged$cause.numeric<=349,'Other external causes of injury', # 'event of undeterminded intent'
-                            # ifelse(dat.merged$letter=='Y'&dat.merged$cause.numeric>=350&dat.merged$cause.numeric<=389,'Assault', # 'Legal intervention, operations of war, military operations, and terrorism'
-                            # ifelse(dat.merged$letter=='Y'&dat.merged$cause.numeric>=400&dat.merged$cause.numeric<=849,'Other external causes of injury', # medical complications etc.
-                            # ifelse(dat.merged$letter=='Y'&dat.merged$cause.numeric>=850&dat.merged$cause.numeric<=899,'Other external causes of injury', #
-                            # 'NA')))))))))))))
+        dat.merged$cause.sub =
+
+                            # injury subcauses
+                            ifelse(dat.merged$letter=='V'&dat.merged$cause.numeric>=0&dat.merged$cause.numeric<=999,'Transport accidents',
+                            ifelse(dat.merged$letter=='W'&dat.merged$cause.numeric>=0&dat.merged$cause.numeric<=199,'Accidental falls',
+                            ifelse(dat.merged$letter=='W'&dat.merged$cause.numeric>=200&dat.merged$cause.numeric<=649,'Other external causes of injury', # 'exposure to mechnical forces'
+                            ifelse(dat.merged$letter=='W'&dat.merged$cause.numeric>=650&dat.merged$cause.numeric<=749,'Accidental drowning and submersion',
+                            ifelse(dat.merged$letter=='W'&dat.merged$cause.numeric>=750&dat.merged$cause.numeric<=999,'Other external causes of injury', # 'exposure to electric current, radiation and extreme ambient air temperature and pressure'
+                            ifelse(dat.merged$letter=='X'&dat.merged$cause.numeric>=0&dat.merged$cause.numeric<=599,'Other external causes of injury', # encounters with forces of nature/overexertion
+                            ifelse(dat.merged$letter=='X'&dat.merged$cause.numeric>=600&dat.merged$cause.numeric<=840,'Intentional self-harm',
+                            ifelse(dat.merged$letter=='X'&dat.merged$cause.numeric>=850&dat.merged$cause.numeric<=999,'Assault',
+                            ifelse(dat.merged$letter=='Y'&dat.merged$cause.numeric>=0&dat.merged$cause.numeric<=99,'Assault',
+                            ifelse(dat.merged$letter=='Y'&dat.merged$cause.numeric>=100&dat.merged$cause.numeric<=349,'Other external causes of injury', # 'event of undeterminded intent'
+                            ifelse(dat.merged$letter=='Y'&dat.merged$cause.numeric>=350&dat.merged$cause.numeric<=389,'Assault', # 'Legal intervention, operations of war, military operations, and terrorism'
+                            ifelse(dat.merged$letter=='Y'&dat.merged$cause.numeric>=400&dat.merged$cause.numeric<=849,'Other external causes of injury', # medical complications etc.
+                            ifelse(dat.merged$letter=='Y'&dat.merged$cause.numeric>=850&dat.merged$cause.numeric<=899,'Other external causes of injury', #
+                            dat.merged$cause.sub)))))))))))))
 
         # to fix contraversal poisioning deaths to have their own category if desired
-        #dat.merged$cause.sub = ifelse(dat.merged$letter=='X'&(dat.merged$cause.numeric==410|dat.merged$cause.numeric==420|dat.merged$cause.numeric==450|dat.merged$cause.numeric==490),'Other external causes of injury',dat.merged$cause.sub)
-        # dat.merged$cause.sub = ifelse(dat.merged$letter=='X'&(dat.merged$cause.numeric==410|dat.merged$cause.numeric==420|dat.merged$cause.numeric==450|dat.merged$cause.numeric==490),'Drugs',dat.merged$cause.sub)
+        dat.merged$cause.group = ifelse(dat.merged$letter=='X'&(dat.merged$cause.numeric==410|dat.merged$cause.numeric==420|dat.merged$cause.numeric==450|dat.merged$cause.numeric==490),'Other',dat.merged$cause.group)
 
 		# merge cod in ICD 10 coding
 		# dat.merged = merge(dat.merged,icd10.lookup,by='cause',all.x=1)
@@ -211,8 +220,7 @@ yearsummary_injuries  <- function(x=2000) {
 
     # find unique values of causes of death and sub-groupings and save
     dat.unique = unique(dat.merged[c('cause','cause.sub')])
-    saveRDS(dat.unique,paste0('../../output/prep_data_cod/cods/cods_',x))
-
+    saveRDS(dat.unique,paste0('../../output/prep_data_cod/cods/cods_elife_',x))
 
     # add agegroup groupings
   	dat.merged$agegroup <-
@@ -227,10 +235,16 @@ yearsummary_injuries  <- function(x=2000) {
                 ifelse (dat.merged$age<85,  75,
                    	85)))))))))
 
-	# # summarise by state,year,month,sex,agegroup
+	# summarise by state,year,month,sex,agegroup
     dat.summarised <- dplyr::summarise(group_by(dat.merged,cause.group,cause.sub,fips,year,monthdth,sex,agegroup),deaths=sum(deaths))
-  	names(dat.summarised)[1:8] <- c('cause.group','cause.sub','fips','year','month','sex','age','deaths')
+    dat.summarised$cause.sub = ifelse(dat.summarised$cause.sub=='NA',dat.summarised$cause.group,dat.summarised$cause.sub)
+    names(dat.summarised)[1:8] <- c('cause.group','cause.sub','fips','year','month','sex','age','deaths')
+
+    # dat.summarised <- dplyr::summarise(group_by(dat.merged,cause.group,cause.sub,fips,year,monthdth,sex,agegroup),deaths=sum(deaths))
+  	# dat.summarised$cause.sub = ifelse(dat.summarised$cause.sub=='NA',dat.summarised$cause.group,dat.summarised$cause.sub)
+    # names(dat.summarised)[1:8] <- c('cause.group','cause.sub','fips','year','month','sex','age','deaths')
 	dat.summarised <- na.omit(dat.summarised)
+
     #
 	# create an exhaustive list of location sex age month (in this case it should be 51 * 2 * 10 * 12 * 4 = 12240 rows)
 	fips 	=	c(1,2,4,5,6,8,9,10,11,12,13,15,16,17,18,19,20,21,22,23,24,25,
@@ -239,9 +253,10 @@ yearsummary_injuries  <- function(x=2000) {
 	month 	= 	c(1:12)
 	sex 	= 	c(1:2)
 	age 	= 	c(0,5,15,25,35,45,55,65,75,85)
-	cause.group 	=	c('Unintentional','Intentional')
-    cause.sub 	=	c(  'Transport accidents','Accidental falls','Other external causes of injury',
-                        'Accidental drowning and submersion','Intentional self-harm','Assault')
+	cause.group 	=	c('Cancer','Cardiopulmonary','Injuries','Other')
+    cause.sub 	=	c('Cancer','Cardiovascular','Chronic respiratory diseases', 'Respiratory infections',
+                        'Injuries','Endocrine disorders','Genitourinary diseases', 'Maternal conditions',
+                        'Other','Neuropsychiatric disorders','Perinatal conditions','Substance use disorders')
 
     # create complete grid
 	complete.grid <- expand.grid(fips=fips,month=month,sex=sex,age=age,cause.group=cause.group,cause.sub=cause.sub)
@@ -253,7 +268,7 @@ yearsummary_injuries  <- function(x=2000) {
 	# # assign missing deaths to have value 0
 	dat.summarised.complete$deaths <- ifelse(is.na(dat.summarised.complete$deaths)==TRUE,0,dat.summarised.complete$deaths)
 
-	print(paste0('total deaths in year ',sum(dat$deaths),', total deaths for injuries ',sum(dat.merged$deaths),' ',sum(dat.summarised$deaths)))
+	print(paste0('total deaths in year ',sum(dat$deaths),', total deaths for processed causes ',sum(dat.merged$deaths),' ',sum(dat.summarised$deaths)))
 
   	return(dat.summarised.complete)
 }

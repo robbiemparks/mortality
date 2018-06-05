@@ -37,9 +37,10 @@ yearsummary_cod  <- function(x=2000) {
 		dat$cause[nchar(dat$cause)==3] <- paste0(dat$cause[nchar(dat$cause)==3],'0')
 		dat$cause.numeric = as.numeric(dat$cause)
 		dat$cause.group = 	ifelse(dat$cause.numeric>=1400&dat$cause.numeric<=2399,'Cancer',
+							ifelse(dat$cause.numeric>=3810&dat$cause.numeric<=3829,'Cardiopulmonary',
 							ifelse(dat$cause.numeric>=3900&dat$cause.numeric<=5199,'Cardiopulmonary',
 							ifelse(dat$cause.numeric>=8000&dat$cause.numeric<=9999,'External',
-							'Other')))
+							'Other'))))
         dat$cause.group = as.character(dat$cause.group)
 
         # move deaths due to weather-based heat/cold to 'Other'
@@ -54,7 +55,17 @@ yearsummary_cod  <- function(x=2000) {
         dat.merged$cause.group = as.character(dat.merged$cause.group)
 
         # move deaths due to weather-based heat/cold to 'Other'
-        dat.merged$cause.group = ifelse((dat.merged$cause=='X30'|dat.merged$cause=='X31'),'Other',as.character(dat.merged$cause.group))
+        dat.merged$cause.group = ifelse((dat.merged$cause=='X300'|dat.merged$cause=='X310'),'Other',as.character(dat.merged$cause.group))
+
+        # numerical cause
+        dat.merged$cause.numeric = as.numeric(as.character(substr(dat.merged$cause,2,4)))
+
+        # move deaths due to Ottis Media to 'Cardiopulmonary'
+        dat.merged$cause.group =
+                            ifelse((dat.merged$letter=='H'&dat.merged$cause.numeric>=650&dat.merged$cause.numeric<=669),'Cardiopulmonary',
+                            as.character(dat.merged$cause.group))
+
+        dat.merged$cause.numeric = NULL
 
         # remove september 11th 2001 deaths
 	}
