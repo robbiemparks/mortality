@@ -210,7 +210,7 @@ yearsummary_injuries  <- function(x=2000) {
         dat.merged$cause.group = ifelse((dat.merged$cause=='X300'|dat.merged$cause=='X310'),'Other',as.character(dat.merged$cause.group))
         dat.merged$cause.sub = ifelse((dat.merged$cause=='X300'|dat.merged$cause=='X310'),'NA',as.character(dat.merged$cause.sub))
 
-        # to fix contraversial poisioning deaths
+        # to fix poisioning deaths
         dat.merged$cause.group = ifelse(dat.merged$letter=='X'&(dat.merged$cause.numeric==410|dat.merged$cause.numeric==420|dat.merged$cause.numeric==450|dat.merged$cause.numeric==490),'Other',dat.merged$cause.group)
         dat.merged$cause.sub = ifelse(dat.merged$letter=='X'&(dat.merged$cause.numeric==410|dat.merged$cause.numeric==420|dat.merged$cause.numeric==450|dat.merged$cause.numeric==490),'Substance use disorders',dat.merged$cause.sub)
 
@@ -342,15 +342,16 @@ dat.merged$rate.adj <- dat.merged$deaths.adj / dat.merged$pop.adj
 # obtain unique results
 # dat.analyse = unique(dat.appended[,c(1:3)])
 
-# output deaths file as RDS and csv
-saveRDS(dat.merged,paste0('../../output/prep_data_cod/datus_nat_deaths_subcod_elife_',year.start.arg,'_',year.end.arg))
+# output deaths file as RDS
+# saveRDS(dat.merged,paste0('../../output/prep_data_cod/datus_nat_deaths_subcod_elife_',year.start.arg,'_',year.end.arg))
+saveRDS(dat.merged,paste0('~/data/mortality/US/state/processed/rates/datus_nat_deaths_subcod_elife_',year.start.arg,'_',year.end.arg))
 
 # append cods and output to single file, merging description names along the way
 start_year = 1999
 dat.cods = data.frame()
 dat.lookup = read.csv('../../data/cod/icd10cmtoicd9gem.csv')
 for(x in c(year.start.arg:year.end.arg)){
-    dat.cod = readRDS(paste0('../../output/prep_data_cod/cods/cods_',x))
+    dat.cod = readRDS(paste0('../../output/prep_data_cod/cods/cods_elife_',x))
     if(x<start_year) {
         dat.cod$icd = 9
         # merge code with cod lookup
@@ -369,5 +370,5 @@ dat.cods = dat.cods[order(dat.cods$cause.sub,dat.cods$cause),]
 
 
 # output summary file as RDS and csv
-saveRDS(dat.cods,paste0('../../output/prep_data_cod/cods/cods_',year.start.arg,'_',year.end.arg))
-write.csv(dat.cods,paste0('../../output/prep_data_cod/cods/cods_',year.start.arg,'_',year.end.arg,'.csv'),row.names=FALSE)
+saveRDS(dat.cods,paste0('../../output/prep_data_cod/cods/cods_elife_',year.start.arg,'_',year.end.arg))
+write.csv(dat.cods,paste0('../../output/prep_data_cod/cods/cods_elife_',year.start.arg,'_',year.end.arg,'.csv'),row.names=FALSE)
