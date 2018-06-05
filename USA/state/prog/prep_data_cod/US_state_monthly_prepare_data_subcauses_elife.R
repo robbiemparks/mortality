@@ -143,11 +143,6 @@ yearsummary_injuries  <- function(x=2000) {
         # numerical cause
         dat.merged$cause.numeric = as.numeric(as.character(substr(dat.merged$cause,2,4)))
 
-        # move deaths due to Ottis Media to 'Cardiopulmonary'
-        dat.merged$cause.group =
-                            ifelse((dat.merged$letter=='H'&dat.merged$cause.numeric>=650&dat.merged$cause.numeric<=669),'Cardiopulmonary',
-                            as.character(dat.merged$cause.group))
-
         # cause subgroups
         dat.merged$cause.sub =
 
@@ -205,11 +200,16 @@ yearsummary_injuries  <- function(x=2000) {
                             ifelse(dat.merged$letter=='Y'&dat.merged$cause.numeric>=850&dat.merged$cause.numeric<=899,'Other external causes of injury', #
                             dat.merged$cause.sub)))))))))))))
 
+        # move deaths due to Ottis Media to 'Cardiopulmonary'
+        dat.merged$cause.group =
+                            ifelse((dat.merged$letter=='H'&dat.merged$cause.numeric>=650&dat.merged$cause.numeric<=669),'Cardiopulmonary',
+                            as.character(dat.merged$cause.group))
+
         # move deaths due to weather-based heat/cold to 'Other'
         dat.merged$cause.group = ifelse((dat.merged$cause=='X300'|dat.merged$cause=='X310'),'Other',as.character(dat.merged$cause.group))
         dat.merged$cause.sub = ifelse((dat.merged$cause=='X300'|dat.merged$cause=='X310'),'NA',as.character(dat.merged$cause.sub))
 
-        # to fix contraversal poisioning deaths
+        # to fix contraversial poisioning deaths
         dat.merged$cause.group = ifelse(dat.merged$letter=='X'&(dat.merged$cause.numeric==410|dat.merged$cause.numeric==420|dat.merged$cause.numeric==450|dat.merged$cause.numeric==490),'Other',dat.merged$cause.group)
         dat.merged$cause.sub = ifelse(dat.merged$letter=='X'&(dat.merged$cause.numeric==410|dat.merged$cause.numeric==420|dat.merged$cause.numeric==450|dat.merged$cause.numeric==490),'Substance use disorders',dat.merged$cause.sub)
 
