@@ -43,7 +43,7 @@ yearsummary_injuries  <- function(x=2000) {
         # ICD 9 coding for broad cod coding
 		dat$cause[nchar(dat$cause)==3] <- paste0(dat$cause[nchar(dat$cause)==3],'0')
 		dat$cause.numeric = as.numeric(dat$cause)
-		dat$cause.group = 	ifelse(dat$cause.numeric>=1400&dat$cause.numeric<=2089,'Cancer', # USED TO BE UP TO 2399 BUT CHANGED!
+		dat$cause.group = 	ifelse(dat$cause.numeric>=1400&dat$cause.numeric<=2399,'Cancer', # includes 'Other neoplasms'
                             ifelse(dat$cause.numeric>=3810&dat$cause.numeric<=3829,'Cardiopulmonary', # Ottis Media addition
 							ifelse(dat$cause.numeric>=3900&dat$cause.numeric<=5199,'Cardiopulmonary',
 							ifelse(dat$cause.numeric>=8000&dat$cause.numeric<=9999,'External',
@@ -134,12 +134,18 @@ yearsummary_injuries  <- function(x=2000) {
 	}
 
 	if(x>=start_year){
+
+        # NEED TO FIX TO INCLUDE OTHER NEOPLASMS
+
         # merge cod in ICD 10 coding for broad letter coding
 		dat$cause[nchar(dat$cause)==3] <- paste0(dat$cause[nchar(dat$cause)==3],'0')
 		dat$letter = substr(dat$cause,1,1)
 		dat.merged = merge(dat,cod.lookup.10,by.x='letter',by.y='letter',all.x=1)
 
         dat.merged$cause.group = as.character(dat.merged$cause.group)
+
+        # move deaths due to weather-based heat/cold to 'Other'
+        dat.merged$cause.group = ifelse((dat.merged$cause=='X300'|dat.merged$cause=='X310'),'Other',as.character(dat.merged$cause.group))
 
         # numerical cause
         dat.merged$cause.numeric = as.numeric(as.character(substr(dat.merged$cause,2,4)))
@@ -182,6 +188,7 @@ yearsummary_injuries  <- function(x=2000) {
 
                             # to close the brackets above
                             'NA'))))))))))))))))))))))))))
+                            # dat.merged$cause.sub))))))))))))))))))))))))))
 
         dat.merged$cause.sub =
 
@@ -200,6 +207,7 @@ yearsummary_injuries  <- function(x=2000) {
                             ifelse(dat.merged$letter=='Y'&dat.merged$cause.numeric>=400&dat.merged$cause.numeric<=849,'Other external causes of injury', # medical complications etc.
                             ifelse(dat.merged$letter=='Y'&dat.merged$cause.numeric>=850&dat.merged$cause.numeric<=899,'Other external causes of injury', #
                             dat.merged$cause.sub)))))))))))))
+                            # 'NA')))))))))))))
 
         # move deaths due to Ottis Media to 'Cardiopulmonary'
         dat.merged$cause.group =
@@ -207,11 +215,11 @@ yearsummary_injuries  <- function(x=2000) {
                             as.character(dat.merged$cause.group))
 
         # move deaths due to weather-based heat/cold to 'Other'
-        dat.merged$cause.group = ifelse((dat.merged$cause=='X300'|dat.merged$cause=='X310'),'Other',as.character(dat.merged$cause.group))
+        # dat.merged$cause.group = ifelse((dat.merged$cause=='X300'|dat.merged$cause=='X310'),'Other',as.character(dat.merged$cause.group))
         dat.merged$cause.sub = ifelse((dat.merged$cause=='X300'|dat.merged$cause=='X310'),'NA',as.character(dat.merged$cause.sub))
 
         # to fix poisioning deaths
-        dat.merged$cause.group = ifelse(dat.merged$letter=='X'&(dat.merged$cause.numeric==410|dat.merged$cause.numeric==420|dat.merged$cause.numeric==450|dat.merged$cause.numeric==490),'Other',dat.merged$cause.group)
+        # dat.merged$cause.group = ifelse(dat.merged$letter=='X'&(dat.merged$cause.numeric==410|dat.merged$cause.numeric==420|dat.merged$cause.numeric==450|dat.merged$cause.numeric==490),'Other',dat.merged$cause.group)
         dat.merged$cause.sub = ifelse(dat.merged$letter=='X'&(dat.merged$cause.numeric==410|dat.merged$cause.numeric==420|dat.merged$cause.numeric==450|dat.merged$cause.numeric==490),'Substance use disorders',dat.merged$cause.sub)
 
 		# merge cod in ICD 10 coding
