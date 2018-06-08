@@ -6,6 +6,7 @@ year.start.arg <- as.numeric(args[1])
 year.end.arg <- as.numeric(args[2])
 
 library(dplyr)
+library(plyr)
 library(foreign)
 
 # source only the 'intentional' variable (better way to do this a la python?)
@@ -44,7 +45,7 @@ yearsummary_cod  <- function(x=2000) {
         dat$cause.group = as.character(dat$cause.group)
 
         # move deaths due to weather-based heat/cold to 'Other'
-        dat$cause.group = ifelse(dat$cause.numeric==9000|dat$cause.numeric==9010,'Other',dat$cause.group)
+        dat$cause.group = ifelse(as.numeric(substr(dat$cause.numeric,1,3))==900|as.numeric(substr(dat$cause.numeric,1,3))==901,'Other',dat$cause.group)
 
 		dat.merged = dat
 	}
@@ -84,7 +85,7 @@ yearsummary_cod  <- function(x=2000) {
                    	85)))))))))
 
 	# summarise by state,year,month,sex,agegroup
-    dat.summarised <- summarise(group_by(dat.merged,cause.group,fips,year,monthdth,sex,agegroup),deaths=sum(deaths))
+    dat.summarised <- dplyr::summarise(group_by(dat.merged,cause.group,fips,year,monthdth,sex,agegroup),deaths=sum(deaths))
     
   	names(dat.summarised)[1:7] <- c('cause','fips','year','month','sex','age','deaths')
 	dat.summarised <- na.omit(dat.summarised)
