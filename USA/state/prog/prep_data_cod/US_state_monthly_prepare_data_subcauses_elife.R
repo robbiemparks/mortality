@@ -51,6 +51,9 @@ yearsummary_elife  <- function(x=2000) {
 
         dat$cause.group = as.character(dat$cause.group)
 
+        # move deaths due to weather-based heat/cold to 'Other'
+        dat$cause.group = ifelse(as.numeric(substr(dat$cause.numeric,1,3))==900|as.numeric(substr(dat$cause.numeric,1,3))==901,'Other',dat$cause.group)
+
         dat.merged = dat
 
         # cause subgroups
@@ -126,8 +129,7 @@ yearsummary_elife  <- function(x=2000) {
                             dat.merged$cause.sub))))))))))))))))))))))))
 
         # move deaths due to weather-based heat/cold to 'Other'
-        dat.merged$cause.group = ifelse(as.numeric(dat.merged$cause.numeric)==9000|as.numeric(dat.merged$cause.numeric)==9010,'Other',dat.merged$cause.group)
-        dat.merged$cause.sub = ifelse(as.numeric(dat.merged$cause.numeric)==9000|as.numeric(dat.merged$cause.numeric)==9010,'NA',dat.merged$cause.sub)
+        dat.merged$cause.sub = ifelse(as.numeric(substr(dat$cause.numeric,1,3))==900|as.numeric(substr(dat$cause.numeric,1,3))==901,'NA',dat.merged$cause.sub)
 
         dat.merged$letter = ' '
 

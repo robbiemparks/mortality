@@ -47,16 +47,15 @@ yearsummary_cod  <- function(x=2000) {
         dat$cause.group = as.character(dat$cause.group)
 
         # move deaths due to weather-based heat/cold to 'Other'
-        dat$cause.group = ifelse(dat$cause.numeric==9000|dat$cause.numeric==9010,'Other',dat$cause.group)
+        dat$cause.group = ifelse(as.numeric(substr(dat$cause.numeric,1,3))==900|as.numeric(substr(dat$cause.numeric,1,3))==901,'Other',dat$cause.group)
 
 		dat.merged = dat
 
         # only filter for external
         dat.merged = subset(dat.merged,cause.group=='External')
-
         dat.merged$cause.group = NULL
 
-		# merge cod in ICD 9 coding
+		# merge cod in ICD 9 coding PROBLEM?
 		icd9.lookup$cause = as.numeric(icd9.lookup$cause)
 		dat.merged = merge(dat.merged,icd9.lookup,by='cause',all.x=1)
         dat.merged$cause.group = as.character(dat.merged$cause.group)
