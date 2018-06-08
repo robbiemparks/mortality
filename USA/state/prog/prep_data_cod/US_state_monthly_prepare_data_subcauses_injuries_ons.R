@@ -184,13 +184,17 @@ yearsummary_injuries  <- function(x=2000) {
     complete.grid = merge(complete.grid,dat.unique)
 
 	# test to make sure combinations of causes do not give out ones that are impossible
-	print(unique(complete.grid[c('cause','cause.sub')]))
+	#print(unique(complete.grid[c('cause.group','cause.sub')]))
 
 	# merge deaths counts with complete grid to ensure there are rows with zero deaths
 	dat.summarised.complete <- merge(complete.grid,dat.summarised,by=c('cause.group','cause.sub','fips','year','month','sex','age'),all.x='TRUE')
 
 	# # assign missing deaths to have value 0
 	dat.summarised.complete$deaths <- ifelse(is.na(dat.summarised.complete$deaths)==TRUE,0,dat.summarised.complete$deaths)
+
+	# print statistics of sub-causes
+	print(ddply(dat.summarised.complete,.(cause.sub),summarise,deaths=sum(deaths)))
+	print(ddply(dat.summarised.complete,.(cause.group),summarise,deaths=sum(deaths)))
 
 	print(paste0('total deaths in year ',sum(dat$deaths),', total deaths for injuries ',sum(dat.merged$deaths),' ',sum(dat.summarised$deaths)))
 

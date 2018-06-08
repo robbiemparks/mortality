@@ -277,11 +277,17 @@ yearsummary_elife  <- function(x=2000) {
     dat.unique = as.data.frame(unique(dat.summarised[c('cause.group','cause.sub')]))
     complete.grid = merge(complete.grid,dat.unique)
 
+    # test to make sure combinations of causes do not give out ones that are impossible
+    # print(unique(complete.grid[c('cause.group','cause.sub')]))
+
 	# merge deaths counts with complete grid to ensure there are rows with zero deaths
 	dat.summarised.complete <- merge(complete.grid,dat.summarised,by=c('cause.group','cause.sub','fips','year','month','sex','age'),all.x='TRUE')
 
 	# # assign missing deaths to have value 0
 	dat.summarised.complete$deaths <- ifelse(is.na(dat.summarised.complete$deaths)==TRUE,0,dat.summarised.complete$deaths)
+
+	# print statistics of sub-causes
+	print(ddply(subset(dat.summarised.complete,cause.group=='External'),.(cause.sub),summarise,deaths=sum(deaths)))
 
 	print(paste0('total deaths in year ',sum(dat$deaths),', total deaths for processed causes ',sum(dat.merged$deaths),' ',sum(dat.summarised$deaths)))
 	print(paste0('total injury deaths in year ',with(subset(dat.summarised.complete,cause.group=='External'),sum(deaths))))
@@ -295,7 +301,7 @@ appendyears  <- function(x=1980, y=1981) {
   	z     <- x
   	dat   <- data.frame()
   	while (z %in% years) {
-    		dat <- rbind(dat, yearsummary_injuries(z))
+    		dat <- rbind(dat, yearsummary_elife(z))
     		print(paste0(z," done"))
     		z <- z+1
   	}

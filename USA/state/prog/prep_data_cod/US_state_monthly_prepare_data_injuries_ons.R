@@ -6,6 +6,7 @@ year.start.arg <- as.numeric(args[1])
 year.end.arg <- as.numeric(args[2])
 
 library(dplyr)
+library(plyr)
 library(foreign)
 
 # source only the intented variable
@@ -121,6 +122,9 @@ yearsummary_cod  <- function(x=2000) {
 
 	# assign missing deaths to have value 0
 	dat.summarised.complete$deaths <- ifelse(is.na(dat.summarised.complete$deaths)==TRUE,0,dat.summarised.complete$deaths)
+
+	# print statistics of sub-causes
+	print(ddply(dat.summarised.complete,.(cause),summarise,deaths=sum(deaths)))
 
 	print(paste0('total deaths in year ',sum(dat$deaths),', total deaths for injuries ',sum(dat.merged$deaths),' ',sum(dat.summarised.complete$deaths)))
 
