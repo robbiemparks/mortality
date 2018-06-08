@@ -115,6 +115,9 @@ yearsummary_cod  <- function(x=2000) {
 	# assign missing deaths to have value 0
 	dat.summarised.complete$deaths <- ifelse(is.na(dat.summarised.complete$deaths)==TRUE,0,dat.summarised.complete$deaths)
 
+	# print statistics of cause groups
+	print(ddply(dat.summarised.complete,.(cause),summarise,deaths=sum(deaths)))
+
 	print(paste0('total deaths ',sum(dat$deaths),' ',sum(dat.merged$deaths),' ',sum(dat.summarised.complete$deaths)))
 
   	return(dat.summarised.complete)

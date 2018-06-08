@@ -286,6 +286,9 @@ yearsummary_elife  <- function(x=2000) {
 	# # assign missing deaths to have value 0
 	dat.summarised.complete$deaths <- ifelse(is.na(dat.summarised.complete$deaths)==TRUE,0,dat.summarised.complete$deaths)
 
+    # print statistics of cause groups
+	print(ddply(dat.summarised.complete,.(cause.group),summarise,deaths=sum(deaths)))
+
 	# print statistics of sub-causes
 	print(ddply(subset(dat.summarised.complete,cause.group=='External'),.(cause.sub),summarise,deaths=sum(deaths)))
 
