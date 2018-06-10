@@ -9,7 +9,7 @@ cd ~/git/mortality/USA/state/prog/00_bash/
 clear
 
 declare -i start=1980
-declare -i end=2013
+declare -i end=2016
 declare country="USA"
 
 #################################################
@@ -18,8 +18,10 @@ declare country="USA"
 
 declare -a numsims=(10)
 declare -i sig=5
-declare -a noises=(1 2)
-declare -a cods=("AllCause" "Cancer" "Cardiopulmonary" "External" "Cardiovascular" "Chronic_respiratory_diseases" "Respiratory_infections" "Endocrine_disorders" "Genitourinary_diseases" "Maternal_conditions" "Neuropsychiatric_disorders" "Perinatal_conditions" "Substance_use_disorders")
+declare -a noises=(1)
+#declare -a noises=(1 2)
+declare -a cods=("Chronic_respiratory_diseases" "Respiratory_infections" "Endocrine_disorders" "Genitourinary_diseases" "Maternal_conditions" "Neuropsychiatric_disorders" "Perinatal_conditions" "Substance_use_disorders")
+#declare -a cods=("AllCause" "Cancer" "Cardiopulmonary" "External" "Cardiovascular" "Chronic_respiratory_diseases" "Respiratory_infections" "Endocrine_disorders" "Genitourinary_diseases" "Maternal_conditions" "Neuropsychiatric_disorders" "Perinatal_conditions" "Substance_use_disorders")
 
 for noise in "${noises[@]}"; do
 for numsim in "${numsims[@]}"; do
@@ -30,7 +32,7 @@ clear
 echo "starting nationalised wavelet analysis for $country, $cod, years $start - $end";
 
 # runs wavelet analysis
-Rscript ~/git/mortality/USA/state/prog/wavelet/wavelet_national_cod.R $start $end $numsim $sig $noise $cod &
+Rscript ~/git/mortality/USA/state/prog/wavelet/wavelet_national_cod.R $start $end $numsim $sig $noise $cod
 
 done; done; done;
 

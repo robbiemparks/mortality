@@ -1,66 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="21b4bedd-3c09-4223-a30e-537ba1f7f93e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_1980_2016" afterPath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_1980_2016" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_1981" afterPath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_1981" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_1982" afterPath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_1982" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_1983" afterPath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_1983" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_1984" afterPath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_1984" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_1985" afterPath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_1985" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_1986" afterPath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_1986" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_1987" afterPath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_1987" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_1988" afterPath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_1988" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_1989" afterPath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_1989" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_1990" afterPath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_1990" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_1991" afterPath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_1991" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_1992" afterPath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_1992" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_1993" afterPath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_1993" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_1994" afterPath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_1994" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_1995" afterPath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_1995" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_1996" afterPath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_1996" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_1997" afterPath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_1997" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_1998" afterPath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_1998" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_2003" afterPath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_2003" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_2004" afterPath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_2004" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_2005" afterPath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_2005" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_2006" afterPath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_2006" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_2007" afterPath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_2007" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_2008" afterPath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_2008" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_2009" afterPath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_2009" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_2010" afterPath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_2010" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_2011" afterPath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_2011" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_2012" afterPath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_2012" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_2013" afterPath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_2013" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_2014" afterPath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_2014" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_2015" afterPath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_2015" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_2016" afterPath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_2016" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_elife_1980_2016" afterPath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_elife_1980_2016" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_elife_1981" afterPath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_elife_1981" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_elife_1982" afterPath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_elife_1982" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_elife_1983" afterPath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_elife_1983" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_elife_1984" afterPath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_elife_1984" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_elife_1985" afterPath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_elife_1985" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_elife_1986" afterPath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_elife_1986" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_elife_1987" afterPath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_elife_1987" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_elife_1988" afterPath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_elife_1988" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_elife_1989" afterPath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_elife_1989" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_elife_1990" afterPath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_elife_1990" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_elife_1991" afterPath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_elife_1991" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_elife_1992" afterPath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_elife_1992" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_elife_1993" afterPath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_elife_1993" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_elife_1994" afterPath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_elife_1994" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_elife_1995" afterPath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_elife_1995" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_elife_1996" afterPath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_elife_1996" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_elife_1997" afterPath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_elife_1997" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_elife_1998" afterPath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_elife_1998" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/prep_data_cod/datus_nat_deaths_subcod_injuries_ons_1980_2016" afterPath="$PROJECT_DIR$/USA/state/output/prep_data_cod/datus_nat_deaths_subcod_injuries_ons_1980_2016" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/prep_data_cod/datus_state_rates_cod_1980_2016" afterPath="$PROJECT_DIR$/USA/state/output/prep_data_cod/datus_state_rates_cod_1980_2016" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/prep_data_cod/datus_state_rates_cod_injuries_ons_1980_2016" afterPath="$PROJECT_DIR$/USA/state/output/prep_data_cod/datus_state_rates_cod_injuries_ons_1980_2016" />
+    <list default="true" id="21b4bedd-3c09-4223-a30e-537ba1f7f93e" name="Default" comment="Add eLife COD coding">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_1980_2016.csv" afterPath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_1980_2016.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_elife_1980_2016.csv" afterPath="$PROJECT_DIR$/USA/state/output/prep_data_cod/cods/cods_elife_1980_2016.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/00_bash/data_prep/data_prep_cod.sh" afterPath="$PROJECT_DIR$/USA/state/prog/00_bash/data_prep/data_prep_cod.sh" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/00_bash/wavelet/wavelet_paper_cod.sh" afterPath="$PROJECT_DIR$/USA/state/prog/00_bash/wavelet/wavelet_paper_cod.sh" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/01_functions/wavelet_functions.R" afterPath="$PROJECT_DIR$/USA/state/prog/01_functions/wavelet_functions.R" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/wavelet/wavelet_national_cod.R" afterPath="$PROJECT_DIR$/USA/state/prog/wavelet/wavelet_national_cod.R" />
@@ -84,18 +26,18 @@
       <file leaf-file-name="data_prep_cod.sh" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/USA/state/prog/00_bash/data_prep/data_prep_cod.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="34" column="49" lean-forward="false" selection-start-line="34" selection-start-column="49" selection-end-line="34" selection-end-column="49" />
+            <state relative-caret-position="150">
+              <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="11" selection-end-column="42" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="wavelet_paper_cod.sh" pinned="false" current-in-tab="false">
+      <file leaf-file-name="wavelet_paper_cod.sh" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/USA/state/prog/00_bash/wavelet/wavelet_paper_cod.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="21" column="67" lean-forward="false" selection-start-line="21" selection-start-column="67" selection-end-line="21" selection-end-column="81" />
+            <state relative-caret-position="360">
+              <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -104,18 +46,18 @@
       <file leaf-file-name="wavelet_national_cod.R" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/USA/state/prog/wavelet/wavelet_national_cod.R">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="930">
-              <caret line="92" column="6" lean-forward="true" selection-start-line="92" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
+            <state relative-caret-position="525">
+              <caret line="35" column="35" lean-forward="false" selection-start-line="35" selection-start-column="35" selection-end-line="35" selection-end-column="35" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="wavelet_functions.R" pinned="false" current-in-tab="true">
+      <file leaf-file-name="wavelet_functions.R" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/USA/state/prog/01_functions/wavelet_functions.R">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="238" column="0" lean-forward="false" selection-start-line="238" selection-start-column="0" selection-end-line="295" selection-end-column="0" />
+            <state relative-caret-position="180">
+              <caret line="231" column="64" lean-forward="false" selection-start-line="231" selection-start-column="64" selection-end-line="231" selection-end-column="64" />
               <folding />
             </state>
           </provider>
@@ -155,17 +97,16 @@
         <option value="$PROJECT_DIR$/USA/state/prog/prep_data_cod/US_state_monthly_prepare_data_subcauses_elife.R" />
         <option value="$PROJECT_DIR$/USA/state/prog/00_bash/plotting/plotting_results_climate_cod_1var.sh" />
         <option value="$PROJECT_DIR$/USA/state/prog/00_bash/data_prep/data_prep_cod.sh" />
+        <option value="$PROJECT_DIR$/USA/state/prog/01_functions/wavelet_functions.R" />
         <option value="$PROJECT_DIR$/USA/state/prog/00_bash/wavelet/wavelet_paper_cod.sh" />
         <option value="$PROJECT_DIR$/USA/state/prog/wavelet/wavelet_national_cod.R" />
-        <option value="$PROJECT_DIR$/USA/state/prog/01_functions/wavelet_functions.R" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="818" />
-    <option name="y" value="-1404" />
-    <option name="width" value="1692" />
-    <option name="height" value="1361" />
+    <option name="y" value="23" />
+    <option name="width" value="1440" />
+    <option name="height" value="877" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -272,13 +213,24 @@
       <recent name="$PROJECT_DIR$/USA/state/prog/prep_data_cod" />
     </key>
   </component>
-  <component name="RunManager" selected="Bash.data_prep_cod.sh">
+  <component name="RunManager" selected="Bash.wavelet_paper_cod.sh">
     <configuration default="false" name="data_prep_cod.sh" type="BashConfigurationType" factoryName="Bash" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="INTERPRETER_PATH" value="/bin/bash" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/USA/state/prog/00_bash/data_prep" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/USA/state/prog/00_bash/data_prep/data_prep_cod.sh" />
+      <option name="PARAMETERS" value="" />
+      <module name="mortality" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="wavelet_paper_cod.sh" type="BashConfigurationType" factoryName="Bash" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="INTERPRETER_PATH" value="/bin/bash" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/USA/state/prog/00_bash/wavelet" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/USA/state/prog/00_bash/wavelet/wavelet_paper_cod.sh" />
       <option name="PARAMETERS" value="" />
       <module name="mortality" />
       <envs />
@@ -437,12 +389,14 @@
       <option name="USE_KEYWORD" value="false" />
       <method />
     </configuration>
-    <list size="1">
+    <list size="2">
       <item index="0" class="java.lang.String" itemvalue="Bash.data_prep_cod.sh" />
+      <item index="1" class="java.lang.String" itemvalue="Bash.wavelet_paper_cod.sh" />
     </list>
     <recent_temporary>
-      <list size="1">
-        <item index="0" class="java.lang.String" itemvalue="Bash.data_prep_cod.sh" />
+      <list size="2">
+        <item index="0" class="java.lang.String" itemvalue="Bash.wavelet_paper_cod.sh" />
+        <item index="1" class="java.lang.String" itemvalue="Bash.data_prep_cod.sh" />
       </list>
     </recent_temporary>
   </component>
@@ -712,11 +666,18 @@
       <option name="project" value="LOCAL" />
       <updated>1528473782332</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="Add eLife COD coding">
+      <created>1528557004306</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1528557004306</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="818" y="-1404" width="1692" height="1361" extended-state="0" />
+    <frame x="0" y="23" width="1440" height="877" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3860606" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -726,7 +687,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32908162" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22069523" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3566879" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24951456" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32986626" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -967,32 +928,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/USA/state/prog/00_bash/data_prep/data_prep_cod.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="34" column="49" lean-forward="false" selection-start-line="34" selection-start-column="49" selection-end-line="34" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/USA/state/prog/00_bash/wavelet/wavelet_paper_cod.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="67" lean-forward="false" selection-start-line="21" selection-start-column="67" selection-end-line="21" selection-end-column="81" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/USA/state/prog/wavelet/wavelet_national_cod.R">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="930">
-          <caret line="92" column="6" lean-forward="true" selection-start-line="92" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
+        <state relative-caret-position="150">
+          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="11" selection-end-column="42" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/USA/state/prog/01_functions/wavelet_functions.R">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="238" column="0" lean-forward="false" selection-start-line="238" selection-start-column="0" selection-end-line="295" selection-end-column="0" />
+        <state relative-caret-position="180">
+          <caret line="231" column="64" lean-forward="false" selection-start-line="231" selection-start-column="64" selection-end-line="231" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/USA/state/prog/wavelet/wavelet_national_cod.R">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="35" column="35" lean-forward="false" selection-start-line="35" selection-start-column="35" selection-end-line="35" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/USA/state/prog/00_bash/wavelet/wavelet_paper_cod.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
           <folding />
         </state>
       </provider>

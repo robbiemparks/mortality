@@ -229,7 +229,7 @@ plot.wavelet.national.all <- function(sex.selected,cod='AllCause') {
                 ifelse(cod=='Cardiopulmonary', 'cardiorespiratory',
                 ifelse(cod=='External', 'injuries',
                 ifelse(cod=='Other', 'other',
-                ifelse(cod=='Cardiovascular','Cardiovascular'))))))
+                ifelse(cod=='Cardiovascular','cardiovascular'))))))
 
     dat <- subset(dat.national, sex==sex.selected)
     
