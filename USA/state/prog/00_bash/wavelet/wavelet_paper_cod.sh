@@ -22,19 +22,21 @@ declare -a noises=(1)
 #declare -a noises=(1 2)
 declare -a cods=("Chronic_respiratory_diseases")
 #declare -a cods=("AllCause" "Cancer" "Cardiopulmonary" "External" "Cardiovascular" "Chronic_respiratory_diseases" "Respiratory_infections" "Endocrine_disorders" "Genitourinary_diseases" "Maternal_conditions" "Neuropsychiatric_disorders" "Perinatal_conditions" "Substance_use_disorders")
+declare -a logs=(0)
 
 for noise in "${noises[@]}"; do
 for numsim in "${numsims[@]}"; do
 for cod in "${cods[@]}"; do
+for log in "${logs[@]}"; do
 
 clear
 
 echo "starting nationalised wavelet analysis for $country, $cod, years $start - $end";
 
 # runs wavelet analysis
-Rscript ~/git/mortality/USA/state/prog/wavelet/wavelet_national_cod.R $start $end $numsim $sig $noise $cod
+Rscript ~/git/mortality/USA/state/prog/wavelet/wavelet_national_cod.R $start $end $numsim $sig $noise $cod $log
 
-done; done; done;
+done; done; done; done;
 
 #################################################
 # 2. NATIONAL COM ANALYSIS

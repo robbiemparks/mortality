@@ -100,8 +100,9 @@ dat.dict = data.frame(metric=c('meanc3','number_of_min_3_day_below_nonnormal_90_
 name=c('Mean','RCA','RWA','ACA','AWA','DA90','DB10','DA+5','DB-5','SD'),
 order=c(1,2,6,4,5,3,7,8,9,10))
 
-# wavelet noise lookup
-noise.lookup <- noise.lookup <- c('white_noise','red_noise')
+# wavelet noise and loglookup
+noise.lookup <- c('white_noise','red_noise')
+log.lookup = c('no_log','log')
 
 # models to choose from
 models <- c('1','1a','2','2a','3','3a','4','1b','1c','1d','1e','1f','1de','1ef','1g','0')

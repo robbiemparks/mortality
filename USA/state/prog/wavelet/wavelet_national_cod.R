@@ -8,6 +8,7 @@ num.sim <- as.numeric(args[3])
 sig.arg <- as.numeric(args[4])
 noise.arg <- as.numeric(args[5])
 cod.arg <- as.character(args[6]) ; cod.arg <- gsub('_',' ',cod.arg)
+log.arg = as.numeric(args[7])
 
 #year.start.arg = 1980 ; year.end.arg = 2013 ; num.sim = 10 ; sig.arg =
 
@@ -60,7 +61,8 @@ dat.national <- ddply(dat,.(year,month,sex,age),summarize,deaths=sum(deaths),dea
 dat.national$rate.adj <- with(dat.national,deaths.pred/pop.adj)
 dat.national <- dat.national[order(dat.national$sex,dat.national$age,dat.national$year,dat.national$month),]
 
-ifelse(!dir.exists(paste0(file.loc,noise.lookup[noise.arg],'/plots/')), dir.create(paste0(file.loc,noise.lookup[noise.arg],'/plots/'),recursive=TRUE), FALSE)
+dir.output = paste0(file.loc,noise.lookup[noise.arg],'/plots/',log.lookup[log.arg+1],'/')
+ifelse(!dir.exists(dir.output), dir.create(dir.output,recursive=TRUE), FALSE)
 
 # source wavelet functions
 source('../01_functions/wavelet_functions.R')
@@ -90,11 +92,11 @@ source('../01_functions/wavelet_functions.R')
 
 # output national wavelet files sex separately all on one page
 pdf(paste0(file.loc,noise.lookup[noise.arg],'/plots/wavelet_national_all_men_',cod.arg,'_',num.sim,'_sim_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
-plot.wavelet.national.all(1,cod.arg)
+plot.wavelet.national.all(1,cod.arg,log.arg)
 dev.off()
 
 pdf(paste0(file.loc,noise.lookup[noise.arg],'/plots/wavelet_national_all_women_',cod.arg,'_',num.sim,'_sim_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
-plot.wavelet.national.all(2,cod.arg)
+plot.wavelet.national.all(2,cod.arg,log.arg)
 dev.off()
 
 # output national wavelet files sex separately split time period all on one page
