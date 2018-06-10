@@ -25,7 +25,7 @@
         <entry file="file://$PROJECT_DIR$/USA/state/prog/00_bash/wavelet/wavelet_paper_cod.sh">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="330">
-              <caret line="22" column="37" lean-forward="false" selection-start-line="22" selection-start-column="37" selection-end-line="22" selection-end-column="37" />
+              <caret line="22" column="44" lean-forward="false" selection-start-line="22" selection-start-column="44" selection-end-line="22" selection-end-column="44" />
               <folding />
             </state>
           </provider>
@@ -305,46 +305,46 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="CREATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Men_0_Genitourinary diseases</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Men_15_Genitourinary diseases</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Men_25_Genitourinary diseases</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Men_35_Genitourinary diseases</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Men_45_Genitourinary diseases</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Men_55_Genitourinary diseases</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Men_5_Genitourinary diseases</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Men_65_Genitourinary diseases</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Men_75_Genitourinary diseases</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Men_85_Genitourinary diseases</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Women_0_Genitourinary diseases</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Women_15_Genitourinary diseases</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Women_25_Genitourinary diseases</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Women_35_Genitourinary diseases</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Women_45_Genitourinary diseases</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Women_55_Genitourinary diseases</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Women_5_Genitourinary diseases</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Women_65_Genitourinary diseases</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Women_75_Genitourinary diseases</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Women_85_Genitourinary diseases</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Men_0_Genitourinary diseases</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Men_15_Genitourinary diseases</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Men_25_Genitourinary diseases</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Men_35_Genitourinary diseases</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Men_45_Genitourinary diseases</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Men_55_Genitourinary diseases</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Men_5_Genitourinary diseases</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Men_65_Genitourinary diseases</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Men_75_Genitourinary diseases</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Men_85_Genitourinary diseases</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Women_0_Genitourinary diseases</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Women_15_Genitourinary diseases</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Women_25_Genitourinary diseases</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Women_35_Genitourinary diseases</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Women_45_Genitourinary diseases</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Women_55_Genitourinary diseases</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Women_5_Genitourinary diseases</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Women_65_Genitourinary diseases</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Women_75_Genitourinary diseases</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Women_85_Genitourinary diseases</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Men_0_Maternal conditions</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Men_15_Maternal conditions</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Men_25_Maternal conditions</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Men_35_Maternal conditions</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Men_45_Maternal conditions</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Men_55_Maternal conditions</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Men_5_Maternal conditions</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Men_65_Maternal conditions</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Men_75_Maternal conditions</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Men_85_Maternal conditions</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Women_0_Maternal conditions</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Women_15_Maternal conditions</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Women_25_Maternal conditions</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Women_35_Maternal conditions</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Women_45_Maternal conditions</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Women_55_Maternal conditions</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Women_5_Maternal conditions</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Women_65_Maternal conditions</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Women_75_Maternal conditions</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Women_85_Maternal conditions</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Men_0_Maternal conditions</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Men_15_Maternal conditions</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Men_25_Maternal conditions</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Men_35_Maternal conditions</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Men_45_Maternal conditions</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Men_55_Maternal conditions</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Men_5_Maternal conditions</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Men_65_Maternal conditions</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Men_75_Maternal conditions</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Men_85_Maternal conditions</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Women_0_Maternal conditions</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Women_15_Maternal conditions</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Women_25_Maternal conditions</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Women_35_Maternal conditions</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Women_45_Maternal conditions</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Women_55_Maternal conditions</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Women_5_Maternal conditions</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Women_65_Maternal conditions</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Women_75_Maternal conditions</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Women_85_Maternal conditions</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Deleted" />
@@ -633,13 +633,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1528108809576</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Add eLife COD coding">
-      <created>1528134545685</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1528134545685</updated>
     </task>
     <task id="LOCAL-00006" summary="Add eLife COD coding">
       <created>1528136064980</created>
@@ -977,7 +970,14 @@
       <option name="project" value="LOCAL" />
       <updated>1528657606439</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="Add eLife COD coding">
+      <created>1528657739593</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1528657739593</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1341,7 +1341,7 @@
     <entry file="file://$PROJECT_DIR$/USA/state/prog/00_bash/wavelet/wavelet_paper_cod.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
-          <caret line="22" column="37" lean-forward="false" selection-start-line="22" selection-start-column="37" selection-end-line="22" selection-end-column="37" />
+          <caret line="22" column="44" lean-forward="false" selection-start-line="22" selection-start-column="44" selection-end-line="22" selection-end-column="44" />
           <folding />
         </state>
       </provider>
