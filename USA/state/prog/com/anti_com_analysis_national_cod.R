@@ -23,9 +23,18 @@ ifelse(!dir.exists(file.loc.split), dir.create(file.loc.split,recursive=TRUE), F
 source('../../data/objects/objects.R')
 
 # load data and filter results
-dat <- readRDS(paste0('../../output/prep_data_cod/datus_state_rates_cod_',year.start.arg,'_',year.end.arg))
-if(cod.arg!='AllCause'){
-    dat <- subset(dat,cause==cod.arg)
+if(cod.arg %in% c("AllCause", "Cancer", "Cardiopulmonary", "External")) {
+    dat <- readRDS(paste0('../../output/prep_data_cod/datus_state_rates_cod_',year.start.arg,'_',year.end.arg))
+    if(cod.arg!='AllCause'){
+        dat <- subset(dat,cause==cod.arg)
+    }
+}
+if(cod.arg %in% c("Cardiovascular", "Chronic respiratory diseases", "Respiratory infections", "Endocrine disorders",
+                    "Genitourinary diseases", "Maternal conditions", "Neuropsychiatric disorders","Perinatal conditions",
+                    "Substance use disorders")) {
+    dat <- readRDS(paste0('~/data/mortality/US/state/processed/rates/datus_nat_deaths_subcod_elife_',year.start.arg,'_',year.end.arg))
+    dat <- subset(dat,cause.sub==cod.arg)
+    dat$cause = dat$cause.sub ; dat$cause.group = NULL ; dat$cause.sub = NULL
 }
 
 # generate nationalised data
