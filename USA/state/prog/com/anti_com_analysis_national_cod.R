@@ -6,7 +6,7 @@ year.start.arg <- as.numeric(args[1])
 year.end.arg <- as.numeric(args[2])
 age.arg <- as.numeric(args[3])
 sex.arg <- as.numeric(args[4])
-cod.arg <- as.character(args[5])
+cod.arg <- as.character(args[5]);cod.arg <- gsub('_',' ',cod.arg)
 
 require(CircStats)
 library(plyr)
