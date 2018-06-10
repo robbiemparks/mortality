@@ -221,7 +221,7 @@ plot.wavelet.national.sex <- function(age.selected) {
 }
 
 # function to plot national wavelet analysis for all ages of single sex
-plot.wavelet.national.all <- function(sex.selected,cod='AllCause') {
+plot.wavelet.national.all <- function(sex.selected,cod='AllCause',log.selected=0) {
 
     # fix cause of death names
     cod.print = ifelse(cod=='AllCause','all cause',
@@ -256,7 +256,8 @@ plot.wavelet.national.all <- function(sex.selected,cod='AllCause') {
         my.data <- data.frame(date=as.Date(as.character(dat.temp$year),format='%Y'),rate = dat.temp$rate.adj, deaths =dat.temp$deaths.pred, log.rate=log(dat.temp$rate.adj),log.deaths=log(dat.temp$deaths.pred+1))
     
         # perform wavelet analysis
-        my.w <- analyze.wavelet(my.data, "rate",
+        if(log.selected==0){time.s = 'rate'} ; if(log.selected==1){time.s = 'log.rate'}
+        my.w <- analyze.wavelet(my.data, time.s,
         # my.w <- analyze.wavelet(my.data, "log.rate",
         lowerPeriod=2, upperPeriod=32,
         loess.span = 3/26,
