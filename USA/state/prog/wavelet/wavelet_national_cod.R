@@ -90,13 +90,13 @@ source('../01_functions/wavelet_functions.R')
 #mapply(plot.wavelet.national.sex,age=c(0,5,15,25,35,45,55,65,75,85))
 #dev.off()
 
-# output national wavelet files sex separately all on one page
-pdf(paste0(file.loc,noise.lookup[noise.arg],'/plots/wavelet_national_all_men_',cod.arg,'_',num.sim,'_sim_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
-plot.wavelet.national.all(1,cod.arg,log.arg)
+pdf(paste0(dir.output,'wavelet_national_all_women_',cod.arg,'_',num.sim,'_sim_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
+plot.wavelet.national.all(2,cod.arg,log.arg)
 dev.off()
 
-pdf(paste0(file.loc,noise.lookup[noise.arg],'/plots/wavelet_national_all_women_',cod.arg,'_',num.sim,'_sim_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
-plot.wavelet.national.all(2,cod.arg,log.arg)
+# output national wavelet files sex separately all on one page
+pdf(paste0(dir.output,'wavelet_national_all_men_',cod.arg,'_',num.sim,'_sim_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
+plot.wavelet.national.all(1,cod.arg,log.arg)
 dev.off()
 
 # output national wavelet files sex separately split time period all on one page

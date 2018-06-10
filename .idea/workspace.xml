@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="21b4bedd-3c09-4223-a30e-537ba1f7f93e" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/data/objects/objects.R" afterPath="$PROJECT_DIR$/USA/state/data/objects/objects.R" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/00_bash/wavelet/wavelet_paper_cod.sh" afterPath="$PROJECT_DIR$/USA/state/prog/00_bash/wavelet/wavelet_paper_cod.sh" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/wavelet/wavelet_national_cod.R" afterPath="$PROJECT_DIR$/USA/state/prog/wavelet/wavelet_national_cod.R" />
     </list>
@@ -36,8 +35,8 @@
       <file leaf-file-name="wavelet_paper_cod.sh" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/USA/state/prog/00_bash/wavelet/wavelet_paper_cod.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="585">
-              <caret line="39" column="0" lean-forward="true" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+            <state relative-caret-position="615">
+              <caret line="41" column="26" lean-forward="true" selection-start-line="41" selection-start-column="26" selection-end-line="41" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -46,8 +45,8 @@
       <file leaf-file-name="wavelet_national_cod.R" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/USA/state/prog/wavelet/wavelet_national_cod.R">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="481">
-              <caret line="64" column="44" lean-forward="false" selection-start-line="64" selection-start-column="44" selection-end-line="64" selection-end-column="44" />
+            <state relative-caret-position="905">
+              <caret line="100" column="0" lean-forward="true" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -57,7 +56,7 @@
         <entry file="file://$PROJECT_DIR$/USA/state/prog/01_functions/wavelet_functions.R">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="30">
-              <caret line="249" column="4" lean-forward="true" selection-start-line="249" selection-start-column="4" selection-end-line="249" selection-end-column="4" />
+              <caret line="249" column="4" lean-forward="false" selection-start-line="249" selection-start-column="4" selection-end-line="249" selection-end-column="4" />
               <folding>
                 <element signature="e#136#2009#0" expanded="false" />
                 <element signature="e#2166#6777#0" expanded="false" />
@@ -71,7 +70,7 @@
         <entry file="file://$PROJECT_DIR$/USA/state/data/objects/objects.R">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="436">
-              <caret line="104" column="20" lean-forward="true" selection-start-line="104" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
+              <caret line="104" column="20" lean-forward="false" selection-start-line="104" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -102,8 +101,8 @@
         <option value="$PROJECT_DIR$/USA/state/prog/00_bash/plotting/plotting_results_climate_cod_1var.sh" />
         <option value="$PROJECT_DIR$/USA/state/prog/00_bash/data_prep/data_prep_cod.sh" />
         <option value="$PROJECT_DIR$/USA/state/prog/01_functions/wavelet_functions.R" />
-        <option value="$PROJECT_DIR$/USA/state/prog/00_bash/wavelet/wavelet_paper_cod.sh" />
         <option value="$PROJECT_DIR$/USA/state/data/objects/objects.R" />
+        <option value="$PROJECT_DIR$/USA/state/prog/00_bash/wavelet/wavelet_paper_cod.sh" />
         <option value="$PROJECT_DIR$/USA/state/prog/wavelet/wavelet_national_cod.R" />
       </list>
     </option>
@@ -729,7 +728,14 @@
       <option name="project" value="LOCAL" />
       <updated>1528640602655</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="Add eLife COD coding">
+      <created>1528641130275</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1528641130275</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -743,7 +749,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32908162" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23233908" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23233908" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24951456" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32986626" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -1050,7 +1056,7 @@
     <entry file="file://$PROJECT_DIR$/USA/state/data/objects/objects.R">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="436">
-          <caret line="104" column="20" lean-forward="true" selection-start-line="104" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
+          <caret line="104" column="20" lean-forward="false" selection-start-line="104" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1058,7 +1064,7 @@
     <entry file="file://$PROJECT_DIR$/USA/state/prog/01_functions/wavelet_functions.R">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
-          <caret line="249" column="4" lean-forward="true" selection-start-line="249" selection-start-column="4" selection-end-line="249" selection-end-column="4" />
+          <caret line="249" column="4" lean-forward="false" selection-start-line="249" selection-start-column="4" selection-end-line="249" selection-end-column="4" />
           <folding>
             <element signature="e#136#2009#0" expanded="false" />
             <element signature="e#2166#6777#0" expanded="false" />
@@ -1069,16 +1075,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/USA/state/prog/00_bash/wavelet/wavelet_paper_cod.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="39" column="0" lean-forward="true" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+        <state relative-caret-position="615">
+          <caret line="41" column="26" lean-forward="true" selection-start-line="41" selection-start-column="26" selection-end-line="41" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/USA/state/prog/wavelet/wavelet_national_cod.R">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="481">
-          <caret line="64" column="44" lean-forward="false" selection-start-line="64" selection-start-column="44" selection-end-line="64" selection-end-column="44" />
+        <state relative-caret-position="905">
+          <caret line="100" column="0" lean-forward="true" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
           <folding />
         </state>
       </provider>
