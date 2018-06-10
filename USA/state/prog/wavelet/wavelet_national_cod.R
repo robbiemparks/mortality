@@ -10,7 +10,7 @@ noise.arg <- as.numeric(args[5])
 cod.arg <- as.character(args[6]) ; cod.arg <- gsub('_',' ',cod.arg)
 log.arg = as.numeric(args[7])
 
-#year.start.arg = 1980 ; year.end.arg = 2013 ; num.sim = 10 ; sig.arg =
+#year.start.arg = 1980 ; year.end.arg = 2016 ; num.sim = 10 ; sig.arg = 5 ; noise.arg = 1 ; cod.arg = 'Maternal_conditions' ; log.arg = 0
 
 print(args)
 
