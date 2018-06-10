@@ -4,8 +4,6 @@
     <list default="true" id="21b4bedd-3c09-4223-a30e-537ba1f7f93e" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/00_bash/wavelet/wavelet_paper_cod.sh" afterPath="$PROJECT_DIR$/USA/state/prog/00_bash/wavelet/wavelet_paper_cod.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/com/anti_com_analysis_national_cod.R" afterPath="$PROJECT_DIR$/USA/state/prog/com/anti_com_analysis_national_cod.R" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/com/com_analysis_national_cod.R" afterPath="$PROJECT_DIR$/USA/state/prog/com/com_analysis_national_cod.R" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -26,8 +24,8 @@
       <file leaf-file-name="wavelet_paper_cod.sh" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/USA/state/prog/00_bash/wavelet/wavelet_paper_cod.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="24" column="19" lean-forward="true" selection-start-line="24" selection-start-column="19" selection-end-line="24" selection-end-column="19" />
+            <state relative-caret-position="330">
+              <caret line="22" column="40" lean-forward="false" selection-start-line="22" selection-start-column="40" selection-end-line="22" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -300,16 +298,6 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Men_0_Cardiovascular</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Men_5_Cardiovascular</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Women_0_Cardiovascular</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Women_5_Cardiovascular</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Men_0_AllCause</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Men_0_Cardiovascular</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Men_5_Cardiovascular</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Women_0_Cardiovascular</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Women_15_Cardiovascular</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Women_5_Cardiovascular</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -317,37 +305,46 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="CREATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Men_15_Cardiovascular</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Men_25_Cardiovascular</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Men_35_Cardiovascular</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Men_45_Cardiovascular</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Men_55_Cardiovascular</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Men_65_Cardiovascular</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Men_75_Cardiovascular</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Men_85_Cardiovascular</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Women_15_Cardiovascular</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Women_25_Cardiovascular</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Women_35_Cardiovascular</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Women_45_Cardiovascular</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Women_55_Cardiovascular</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Women_65_Cardiovascular</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Women_75_Cardiovascular</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Women_85_Cardiovascular</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Men_15_Cardiovascular</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Men_25_Cardiovascular</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Men_35_Cardiovascular</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Men_45_Cardiovascular</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Men_55_Cardiovascular</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Men_65_Cardiovascular</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Men_75_Cardiovascular</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Men_85_Cardiovascular</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Women_25_Cardiovascular</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Women_35_Cardiovascular</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Women_45_Cardiovascular</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Women_55_Cardiovascular</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Women_65_Cardiovascular</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Women_75_Cardiovascular</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Women_85_Cardiovascular</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Men_0_Chronic respiratory diseases</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Men_15_Chronic respiratory diseases</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Men_25_Chronic respiratory diseases</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Men_35_Chronic respiratory diseases</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Men_45_Chronic respiratory diseases</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Men_55_Chronic respiratory diseases</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Men_5_Chronic respiratory diseases</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Men_65_Chronic respiratory diseases</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Men_75_Chronic respiratory diseases</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Men_85_Chronic respiratory diseases</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Women_0_Chronic respiratory diseases</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Women_15_Chronic respiratory diseases</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Women_25_Chronic respiratory diseases</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Women_35_Chronic respiratory diseases</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Women_45_Chronic respiratory diseases</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Women_55_Chronic respiratory diseases</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Women_5_Chronic respiratory diseases</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Women_65_Chronic respiratory diseases</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Women_75_Chronic respiratory diseases</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/anti_com_rate_cod_Women_85_Chronic respiratory diseases</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Men_0_Chronic respiratory diseases</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Men_15_Chronic respiratory diseases</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Men_25_Chronic respiratory diseases</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Men_35_Chronic respiratory diseases</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Men_45_Chronic respiratory diseases</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Men_55_Chronic respiratory diseases</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Men_5_Chronic respiratory diseases</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Men_65_Chronic respiratory diseases</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Men_75_Chronic respiratory diseases</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Men_85_Chronic respiratory diseases</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Women_0_Chronic respiratory diseases</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Women_15_Chronic respiratory diseases</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Women_25_Chronic respiratory diseases</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Women_35_Chronic respiratory diseases</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Women_45_Chronic respiratory diseases</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Women_55_Chronic respiratory diseases</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Women_5_Chronic respiratory diseases</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Women_65_Chronic respiratory diseases</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Women_75_Chronic respiratory diseases</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/entire_period/method_2/com_rate_cod_Women_85_Chronic respiratory diseases</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Deleted" />
@@ -636,13 +633,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1528108809576</updated>
-    </task>
-    <task id="LOCAL-00001" summary="Add eLife COD coding">
-      <created>1528109901977</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1528109901978</updated>
     </task>
     <task id="LOCAL-00002" summary="Add eLife COD coding">
       <created>1528109999314</created>
@@ -980,7 +970,14 @@
       <option name="project" value="LOCAL" />
       <updated>1528656916124</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="Add eLife COD coding">
+      <created>1528657295132</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1528657295133</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1343,8 +1340,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/USA/state/prog/00_bash/wavelet/wavelet_paper_cod.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="19" lean-forward="true" selection-start-line="24" selection-start-column="19" selection-end-line="24" selection-end-column="19" />
+        <state relative-caret-position="330">
+          <caret line="22" column="40" lean-forward="false" selection-start-line="22" selection-start-column="40" selection-end-line="22" selection-end-column="40" />
           <folding />
         </state>
       </provider>
