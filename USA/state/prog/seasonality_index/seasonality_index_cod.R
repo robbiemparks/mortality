@@ -20,18 +20,27 @@ year.start.2 <- as.numeric(args[3])
 year.end.2 <- as.numeric(args[4])
 dname <- as.character(args[5])
 metric <- as.character(args[6])
-cod <- as.character(args[7])
+cod <- as.character(args[7]) ; cod <- gsub('_',' ',cod)
 
-#year.start = 1980 ; year.end = 2013 ; year.start.2 = 1980 ; year.end.2 = 2013 ; dname = 't2m' ; metric = 'mean'
+#year.start = 1980 ; year.end = 2016 ; year.start.2 = 1980 ; year.end.2 = 2016 ; dname = 't2m' ; metric = 'mean'
 #cod ='Cardiopulmonary'
 
 # length of analysis period
 num.years <- year.end - year.start + 1
 
 # load data and filter results
-dat <- readRDS(paste0('../../output/prep_data_cod/datus_state_rates_cod_',year.start,'_',year.end))
-if(cod!='AllCause'){
-    dat <- subset(dat,cause==cod)
+if(cod %in% c("AllCause", "Cancer", "Cardiopulmonary", "External")) {
+    dat <- readRDS(paste0('../../output/prep_data_cod/datus_state_rates_cod_',year.start,'_',year.end))
+    if(cod!='AllCause'){
+        dat <- subset(dat,cause==cod.arg)
+    }
+}
+if(cod %in% c("Cardiovascular", "Chronic respiratory diseases", "Respiratory infections", "Endocrine disorders",
+                    "Genitourinary diseases", "Maternal conditions", "Neuropsychiatric disorders","Perinatal conditions",
+                    "Substance use disorders")) {
+    dat <- readRDS(paste0('~/data/mortality/US/state/processed/rates/datus_nat_deaths_subcod_elife_',year.start,'_',year.end))
+    dat <- subset(dat,cause.sub==cod)
+    dat$cause = dat$cause.sub ; dat$cause.group = NULL ; dat$cause.sub = NULL
 }
 
 # fix names of causes
@@ -143,134 +152,134 @@ for (j in c(1:2)) {
         dat.ci <- rbind(dat.ci,cbind(i,j,temp.start,temp.end))
     }}
 
-# 2. REGIONAL
-
-# METHOD TAKING ACCOUNT OF POPULATION
-
-# load region data
-dat.region <- readRDS(paste0('../../output/mapping_posterior/INLA/type1a/1982_2013/maps/USA_state_data'))
-dat.region$fips <- as.numeric(as.character(dat.region$STATE_FIPS))
-
-# fix climate region names
-dat.region$climate_region <- 	c('Northwest','West North Central','Northeast','West North Central','West North Central',
-'West North Central','East North Central','Northwest','Northeast','East North Central',
-'Northwest','Northeast','East North Central','Northeast','West North Central',
-'Northeast','Northeast','Northeast','Northeast','Northeast',
-'Central','West','Southwest','West','Central',
-'Central','Northeast','Northeast','Central','Northeast',
-'Southwest','Central','South','Southeast','Central',
-'Southwest','South','Southeast','Central','South',
-'Southwest','Southeast','South','Southeast','Southeast',
-'South','South','Southeast','East North Central','Northwest',
-'West')
-
-# merge region data with death data
-dat.region <- merge(dat,dat.region,by='fips')
-
-# generate region data
-dat.region$deaths.pred <- with(dat.region,pop.adj*rate.adj)
-dat.region <- ddply(dat.region,.(year,climate_region,month,sex,age),summarize,deaths=sum(deaths),
-                deaths.pred=sum(deaths.pred),pop.adj=sum(pop.adj))
-dat.region$climate_region <- gsub(' ','_',dat.region$climate_region)
-
-# calculate rates per million and then round
-dat.region$rate.adj = (dat.region$deaths.pred+1)/ dat.region$pop.adj
-dat.region$rate.scaled <- round(1000000*(dat.region$rate.adj))
-
-# climate region lookup
-region.lookup <- unique(dat.region$climate_region)
-
-# apply Poisson glm with population offsetting
-# figure out the ratio of max/min deaths over time with fixed max/min by sex, age, year
-dat.pois <- merge(dat.region,dat.COM,by=c('age','sex','month'))
-dat.pois <- dat.pois[,c('climate_region','age','sex','year','deaths.pred','pop.adj','type')]
-dat.pois$maxmonth <- ifelse(dat.pois$type=='max',1,0)
-dat.pois <- with(dat.pois,dat.pois[order(age,sex,year,maxmonth),])
-
-dat.pois.summary <- ddply(dat.pois,.(climate_region,sex,age,year),
-        function(z)coef(summary(glm(deaths.pred ~ maxmonth + offset(log(pop.adj)),family=poisson,data=z))))
-
-# generate exponential versions to get back into correct world
-#dat.pois.coef$ratio <- exp(dat.pois.coef$maxmonth)
-dat.pois.summary <- dat.pois.summary[!c(TRUE,FALSE),]
-dat.pois.summary$se <- dat.pois.summary$`Std. Error`
-dat.pois.summary$ratio <- exp(dat.pois.summary$Estimate)
-
-# figure out the ratio of max/min deaths over time with fixed max/min by sex, age, year
-dat.max.min.fixed.region <- merge(dat.region,dat.COM,by=c('age','sex','month'))
-dat.max.min.fixed.region <- ddply(dat.max.min.fixed.region,.(sex,age,climate_region,year), summarize,rate.max=rate.adj[type=='max'],
-pop.max=pop.adj[type=='max'],month.max=month[type=='max'],rate.min=rate.adj[type=='min'],pop.min=pop.adj[type=='min'],
-month.min=month[type=='min'])
-
-dat.max.min.fixed.region$percent.change <- with(dat.max.min.fixed.region,round(100*(rate.max/rate.min),1)-100)
-
-#establish correct sex names for plotting
-dat.max.min.fixed.region$sex.long <- as.factor(as.character(dat.max.min.fixed.region$sex))
-levels(dat.max.min.fixed.region$sex.long) <- sex.lookup
-
-# add time value that starts at 0
-dat.max.min.fixed.region$year.centre <- with(dat.max.min.fixed.region,year-year.start)
-
-# apply linear regression to each group by sex, age, month to find gradient
-lin.reg.grad.region <- ddply(dat.max.min.fixed.region, .(sex,age,climate_region),
-                            function(z)coef(lm(percent.change ~ year.centre, data=z)))
-lin.reg.grad.region$end.value <- with(lin.reg.grad.region,`(Intercept)`+year.centre*(num.years-1))
-lin.reg.grad.region$start.value <- lin.reg.grad.region$`(Intercept)`
-lin.reg.grad.region$sex.long <- with(lin.reg.grad.region,as.factor(as.character(sex)))
-levels(lin.reg.grad.region$sex.long) <- sex.lookup
-
-# obtain significance of slopes
-lin.reg.sig.region <- ddply(dat.max.min.fixed.region, .(sex,age,climate_region),
-                            function(z)coef(summary(lm(percent.change ~ year.centre, data=z))))
-lin.reg.sig.region <- lin.reg.sig.region[!c(TRUE,FALSE),]
-lin.reg.sig.region$sig.test.10 <- ifelse(lin.reg.sig.region[,6]<0.10,1,0)
-lin.reg.sig.region$sig.test.5 <- ifelse(lin.reg.sig.region[,6]<0.05,1,0)
-
-# merge with data about gradients
-lin.reg.grad.region <- merge(lin.reg.grad.region,lin.reg.sig.region,by=c('sex','age','climate_region'))
-
-# MORTALITY SEASONALITY INDEX AGAINST CLIMATE VARIABLE SEASONALITY INDEX
-
-# STATIC MAX/MIN DEFINED BY COM
-
-# load climate data
-file.loc.climate.fixed <- paste0('~/git/climate/countries/USA/output/seasonality_index_climate_region/',dname,'/',metric,'/')
-dat.climate.fixed <- readRDS(paste0(file.loc.climate.fixed,'seasonality_index_com_fixed_',dname,'_',metric,'_',cod,'_',year.start.2,'_',year.end.2))
-dat.climate.fixed$start.value.climate <- dat.climate.fixed$start.value
-dat.climate.fixed$end.value.climate <- dat.climate.fixed$end.value
-dat.climate.fixed <- dat.climate.fixed[,c('sex','age','climate_region','start.value.climate','end.value.climate')]
-
-lin.reg.grad.climate.fixed <- lin.reg.grad.region[,c('sex','age','climate_region','start.value','end.value')]
-lin.reg.grad.climate.fixed$start.value.mort <- lin.reg.grad.climate.fixed$start.value
-lin.reg.grad.climate.fixed$end.value.mort <- lin.reg.grad.climate.fixed$end.value
-lin.reg.grad.climate.fixed <- lin.reg.grad.climate.fixed[,c('sex','age','climate_region','start.value.mort','end.value.mort')]
-
-# fix names of climate regions to match each other
-dat.climate.fixed$climate_region <- gsub(' ','_',dat.climate.fixed$climate_region)
-
-# merge mortality data and climate data
-dat.mort.climate.fixed <- merge(dat.climate.fixed,lin.reg.grad.climate.fixed,by=c('sex','age','climate_region'))
-
-# attach the last population and calculate slope with significance
-dat.mort.climate.fixed = merge(dat.mort.climate.fixed,subset(dat.region,year==year.end.2&month==12),by=c('age','sex','climate_region'))
-dat.mort.climate.fixed = dat.mort.climate.fixed[]
-
-# calculate differnce in mort
-dat.mort.climate.fixed$diff.mort <- with(dat.mort.climate.fixed,end.value.mort-start.value.mort)
-dat.mort.climate.fixed$diff.climate <- with(dat.mort.climate.fixed,end.value.climate-start.value.climate)
-
-# add print-friendly ages
-dat.mort.climate.fixed <- merge(dat.mort.climate.fixed,age.code,by='age')
-dat.mort.climate.fixed$age.print <- reorder(dat.mort.climate.fixed$age.print,dat.mort.climate.fixed$age)
-
-# linear regression for each age-sex and obtain significance of slopes
-# NEED TO DO THIS TAKING INTO ACCOUNT POPULATION (AS ABOVE IN NATIONAL STUDY)
-lin.reg.mort.climate.fixed <- ddply(dat.mort.climate.fixed,.(age,sex),
-                            function(z)coef(summary(lm(end.value.mort ~ end.value.climate , data=z))))
-lin.reg.mort.climate.fixed <- lin.reg.mort.climate.fixed[!c(TRUE,FALSE),]
-lin.reg.mort.climate.fixed$sig.test.5 <- ifelse(lin.reg.mort.climate.fixed[,6]<0.05,1,0)
-
-#dat.mort.climate.fixed.test = ddply(dat.mort.climate.fixed,.(sex,age), function(z)coef(summary(glm(deaths.pred ~ maxmonth + offset(log(pop.adj)),family=poisson,data=z))))
+# # 2. REGIONAL
+#
+# # METHOD TAKING ACCOUNT OF POPULATION
+#
+# # load region data
+# dat.region <- readRDS(paste0('../../output/mapping_posterior/INLA/type1a/1982_2013/maps/USA_state_data'))
+# dat.region$fips <- as.numeric(as.character(dat.region$STATE_FIPS))
+#
+# # fix climate region names
+# dat.region$climate_region <- 	c('Northwest','West North Central','Northeast','West North Central','West North Central',
+# 'West North Central','East North Central','Northwest','Northeast','East North Central',
+# 'Northwest','Northeast','East North Central','Northeast','West North Central',
+# 'Northeast','Northeast','Northeast','Northeast','Northeast',
+# 'Central','West','Southwest','West','Central',
+# 'Central','Northeast','Northeast','Central','Northeast',
+# 'Southwest','Central','South','Southeast','Central',
+# 'Southwest','South','Southeast','Central','South',
+# 'Southwest','Southeast','South','Southeast','Southeast',
+# 'South','South','Southeast','East North Central','Northwest',
+# 'West')
+#
+# # merge region data with death data
+# dat.region <- merge(dat,dat.region,by='fips')
+#
+# # generate region data
+# dat.region$deaths.pred <- with(dat.region,pop.adj*rate.adj)
+# dat.region <- ddply(dat.region,.(year,climate_region,month,sex,age),summarize,deaths=sum(deaths),
+#                 deaths.pred=sum(deaths.pred),pop.adj=sum(pop.adj))
+# dat.region$climate_region <- gsub(' ','_',dat.region$climate_region)
+#
+# # calculate rates per million and then round
+# dat.region$rate.adj = (dat.region$deaths.pred+1)/ dat.region$pop.adj
+# dat.region$rate.scaled <- round(1000000*(dat.region$rate.adj))
+#
+# # climate region lookup
+# region.lookup <- unique(dat.region$climate_region)
+#
+# # apply Poisson glm with population offsetting
+# # figure out the ratio of max/min deaths over time with fixed max/min by sex, age, year
+# dat.pois <- merge(dat.region,dat.COM,by=c('age','sex','month'))
+# dat.pois <- dat.pois[,c('climate_region','age','sex','year','deaths.pred','pop.adj','type')]
+# dat.pois$maxmonth <- ifelse(dat.pois$type=='max',1,0)
+# dat.pois <- with(dat.pois,dat.pois[order(age,sex,year,maxmonth),])
+#
+# dat.pois.summary <- ddply(dat.pois,.(climate_region,sex,age,year),
+#         function(z)coef(summary(glm(deaths.pred ~ maxmonth + offset(log(pop.adj)),family=poisson,data=z))))
+#
+# # generate exponential versions to get back into correct world
+# #dat.pois.coef$ratio <- exp(dat.pois.coef$maxmonth)
+# dat.pois.summary <- dat.pois.summary[!c(TRUE,FALSE),]
+# dat.pois.summary$se <- dat.pois.summary$`Std. Error`
+# dat.pois.summary$ratio <- exp(dat.pois.summary$Estimate)
+#
+# # figure out the ratio of max/min deaths over time with fixed max/min by sex, age, year
+# dat.max.min.fixed.region <- merge(dat.region,dat.COM,by=c('age','sex','month'))
+# dat.max.min.fixed.region <- ddply(dat.max.min.fixed.region,.(sex,age,climate_region,year), summarize,rate.max=rate.adj[type=='max'],
+# pop.max=pop.adj[type=='max'],month.max=month[type=='max'],rate.min=rate.adj[type=='min'],pop.min=pop.adj[type=='min'],
+# month.min=month[type=='min'])
+#
+# dat.max.min.fixed.region$percent.change <- with(dat.max.min.fixed.region,round(100*(rate.max/rate.min),1)-100)
+#
+# #establish correct sex names for plotting
+# dat.max.min.fixed.region$sex.long <- as.factor(as.character(dat.max.min.fixed.region$sex))
+# levels(dat.max.min.fixed.region$sex.long) <- sex.lookup
+#
+# # add time value that starts at 0
+# dat.max.min.fixed.region$year.centre <- with(dat.max.min.fixed.region,year-year.start)
+#
+# # apply linear regression to each group by sex, age, month to find gradient
+# lin.reg.grad.region <- ddply(dat.max.min.fixed.region, .(sex,age,climate_region),
+#                             function(z)coef(lm(percent.change ~ year.centre, data=z)))
+# lin.reg.grad.region$end.value <- with(lin.reg.grad.region,`(Intercept)`+year.centre*(num.years-1))
+# lin.reg.grad.region$start.value <- lin.reg.grad.region$`(Intercept)`
+# lin.reg.grad.region$sex.long <- with(lin.reg.grad.region,as.factor(as.character(sex)))
+# levels(lin.reg.grad.region$sex.long) <- sex.lookup
+#
+# # obtain significance of slopes
+# lin.reg.sig.region <- ddply(dat.max.min.fixed.region, .(sex,age,climate_region),
+#                             function(z)coef(summary(lm(percent.change ~ year.centre, data=z))))
+# lin.reg.sig.region <- lin.reg.sig.region[!c(TRUE,FALSE),]
+# lin.reg.sig.region$sig.test.10 <- ifelse(lin.reg.sig.region[,6]<0.10,1,0)
+# lin.reg.sig.region$sig.test.5 <- ifelse(lin.reg.sig.region[,6]<0.05,1,0)
+#
+# # merge with data about gradients
+# lin.reg.grad.region <- merge(lin.reg.grad.region,lin.reg.sig.region,by=c('sex','age','climate_region'))
+#
+# # MORTALITY SEASONALITY INDEX AGAINST CLIMATE VARIABLE SEASONALITY INDEX
+#
+# # STATIC MAX/MIN DEFINED BY COM
+#
+# # load climate data
+# file.loc.climate.fixed <- paste0('~/git/climate/countries/USA/output/seasonality_index_climate_region/',dname,'/',metric,'/')
+# dat.climate.fixed <- readRDS(paste0(file.loc.climate.fixed,'seasonality_index_com_fixed_',dname,'_',metric,'_',cod,'_',year.start.2,'_',year.end.2))
+# dat.climate.fixed$start.value.climate <- dat.climate.fixed$start.value
+# dat.climate.fixed$end.value.climate <- dat.climate.fixed$end.value
+# dat.climate.fixed <- dat.climate.fixed[,c('sex','age','climate_region','start.value.climate','end.value.climate')]
+#
+# lin.reg.grad.climate.fixed <- lin.reg.grad.region[,c('sex','age','climate_region','start.value','end.value')]
+# lin.reg.grad.climate.fixed$start.value.mort <- lin.reg.grad.climate.fixed$start.value
+# lin.reg.grad.climate.fixed$end.value.mort <- lin.reg.grad.climate.fixed$end.value
+# lin.reg.grad.climate.fixed <- lin.reg.grad.climate.fixed[,c('sex','age','climate_region','start.value.mort','end.value.mort')]
+#
+# # fix names of climate regions to match each other
+# dat.climate.fixed$climate_region <- gsub(' ','_',dat.climate.fixed$climate_region)
+#
+# # merge mortality data and climate data
+# dat.mort.climate.fixed <- merge(dat.climate.fixed,lin.reg.grad.climate.fixed,by=c('sex','age','climate_region'))
+#
+# # attach the last population and calculate slope with significance
+# dat.mort.climate.fixed = merge(dat.mort.climate.fixed,subset(dat.region,year==year.end.2&month==12),by=c('age','sex','climate_region'))
+# dat.mort.climate.fixed = dat.mort.climate.fixed[]
+#
+# # calculate differnce in mort
+# dat.mort.climate.fixed$diff.mort <- with(dat.mort.climate.fixed,end.value.mort-start.value.mort)
+# dat.mort.climate.fixed$diff.climate <- with(dat.mort.climate.fixed,end.value.climate-start.value.climate)
+#
+# # add print-friendly ages
+# dat.mort.climate.fixed <- merge(dat.mort.climate.fixed,age.code,by='age')
+# dat.mort.climate.fixed$age.print <- reorder(dat.mort.climate.fixed$age.print,dat.mort.climate.fixed$age)
+#
+# # linear regression for each age-sex and obtain significance of slopes
+# # NEED TO DO THIS TAKING INTO ACCOUNT POPULATION (AS ABOVE IN NATIONAL STUDY)
+# lin.reg.mort.climate.fixed <- ddply(dat.mort.climate.fixed,.(age,sex),
+#                             function(z)coef(summary(lm(end.value.mort ~ end.value.climate , data=z))))
+# lin.reg.mort.climate.fixed <- lin.reg.mort.climate.fixed[!c(TRUE,FALSE),]
+# lin.reg.mort.climate.fixed$sig.test.5 <- ifelse(lin.reg.mort.climate.fixed[,6]<0.05,1,0)
+#
+# #dat.mort.climate.fixed.test = ddply(dat.mort.climate.fixed,.(sex,age), function(z)coef(summary(glm(deaths.pred ~ maxmonth + offset(log(pop.adj)),family=poisson,data=z))))
 
 ###############################################################
 # DIRECTORY CREATION
@@ -288,7 +297,7 @@ ifelse(!dir.exists(file.loc.regional), dir.create(file.loc.regional, recursive=T
 saveRDS(lin.reg.grad.weight,paste0(file.loc,'seasonality_index_nat_changes_',cod,'_',year.start,'_',year.end))
 
 # export
-saveRDS(lin.reg.mort.climate.fixed,paste0(file.loc.regional,'seasonality_index_climate_region_against_temp_grads_',cod,'_',year.start,'_',year.end))
+# saveRDS(lin.reg.mort.climate.fixed,paste0(file.loc.regional,'seasonality_index_climate_region_against_temp_grads_',cod,'_',year.start,'_',year.end))
 
 ## GRAPHS ##
 
