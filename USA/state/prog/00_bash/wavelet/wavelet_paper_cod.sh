@@ -20,7 +20,7 @@ declare -a numsims=(10)
 declare -i sig=5
 declare -a noises=(1)
 #declare -a noises=(1 2)
-declare -a cods=("Other")
+declare -a cods=("Intentional" "Unintentional")
 #declare -a cods=("AllCause" "Cancer" "Cardiopulmonary" "External" "Intentional" "Unintentional" "Other" Cardiovascular" "Chronic_respiratory_diseases" "Respiratory_infections" "Endocrine_disorders" "Genitourinary_diseases" "Maternal_conditions" "Neuropsychiatric_disorders" "Perinatal_conditions" "Substance_use_disorders")
 declare -a logs=(0)
 
@@ -92,7 +92,7 @@ echo "plotting COM analysis for $country for $cod, years $start - $end";
 #Rscript ~/git/mortality/USA/state/prog/com/com_data_process_cod.R $start $end $cod
 
 # plots
-Rscript ~/git/mortality/USA/state/prog/com/com_plot_cod.R $start $end $cod
+#Rscript ~/git/mortality/USA/state/prog/com/com_plot_cod.R $start $end $cod
 
 done;
 
@@ -115,7 +115,7 @@ for cod in "${cods[@]}"; do
 echo "starting seasonality index analysis for $country, years $start - $end";
 
 # runs seasonality index analysis
-#Rscript ~/git/mortality/USA/state/prog/seasonality_index/seasonality_index_cod.R $start $end $start $end $dname $metric $cod
+Rscript ~/git/mortality/USA/state/prog/seasonality_index/seasonality_index_cod.R $start $end $start $end $dname $metric $cod
 #Rscript ~/git/mortality/USA/state/prog/seasonality_index/seasonality_index_cod_plot_all.R $start $end $start $end $dname $metric $cod
 
 done;

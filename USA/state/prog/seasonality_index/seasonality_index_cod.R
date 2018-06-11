@@ -29,7 +29,7 @@ cod <- as.character(args[7]) ; cod <- gsub('_',' ',cod)
 num.years <- year.end - year.start + 1
 
 # load data and filter results
-if(cod %in% c("AllCause", "Cancer", "Cardiopulmonary", "External")) {
+if(cod %in% c("AllCause", "Cancer", "Cardiopulmonary", "External", "Other")) {
     dat <- readRDS(paste0('../../output/prep_data_cod/datus_state_rates_cod_',year.start,'_',year.end))
     if(cod!='AllCause'){
         dat <- subset(dat,cause==cod)
@@ -41,6 +41,10 @@ if(cod %in% c("Cardiovascular", "Chronic respiratory diseases", "Respiratory inf
     dat <- readRDS(paste0('~/data/mortality/US/state/processed/rates/datus_nat_deaths_subcod_elife_',year.start,'_',year.end))
     dat <- subset(dat,cause.sub==cod)
     dat$cause = dat$cause.sub ; dat$cause.group = NULL ; dat$cause.sub = NULL
+}
+if(cod %in% c("Intentional", "Unintentional")) {
+    dat <- readRDS(paste0('../../output/prep_data_cod/datus_state_rates_cod_injuries_ons_',year.start,'_',year.end))
+    dat <- subset(dat,cause==cod)
 }
 
 # fix names of causes
