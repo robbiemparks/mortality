@@ -52,10 +52,10 @@ for cod in "${cods[@]}"; do
 echo "starting nationalised COM analysis for ${sexstrings[$sex-1]} $age, years $start - $end";
 
 # runs COM analysis
-Rscript ~/git/mortality/USA/state/prog/com/com_analysis_national_cod.R $start $end $age $sex $cod &
+#Rscript ~/git/mortality/USA/state/prog/com/com_analysis_national_cod.R $start $end $age $sex $cod &
 
 # runs anti-COM analysis
-Rscript ~/git/mortality/USA/state/prog/com/anti_com_analysis_national_cod.R $start $end $age $sex $cod &
+#Rscript ~/git/mortality/USA/state/prog/com/anti_com_analysis_national_cod.R $start $end $age $sex $cod &
 
 done; done; done;
 
@@ -89,10 +89,10 @@ for cod in "${cods[@]}"; do
 echo "plotting COM analysis for $country for $cod, years $start - $end";
 
 # processes com data
-#Rscript ~/git/mortality/USA/state/prog/com/com_data_process_cod.R $start $end $cod
+Rscript ~/git/mortality/USA/state/prog/com/com_data_process_cod.R $start $end $cod
 
 # plots
-#Rscript ~/git/mortality/USA/state/prog/com/com_plot_cod.R $start $end $cod
+Rscript ~/git/mortality/USA/state/prog/com/com_plot_cod.R $start $end $cod
 
 done;
 
