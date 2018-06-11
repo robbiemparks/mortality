@@ -39,6 +39,10 @@ if(cod.arg %in% c("Cardiovascular", "Chronic respiratory diseases", "Respiratory
     dat <- subset(dat,cause.sub==cod.arg)
     dat$cause = dat$cause.sub ; dat$cause.group = NULL ; dat$cause.sub = NULL
 }
+if(cod.arg %in% c("Intentional", "Unintentional")) {
+    dat <- readRDS(paste0('../../output/prep_data_cod/datus_state_rates_cod_injuries_ons_',year.start.arg,'_',year.end.arg))
+    dat <- subset(dat,cause==cod.arg)
+}
 
 # fix names of causes
 dat$cause <- gsub('Allcause', 'all cause', dat$cause)

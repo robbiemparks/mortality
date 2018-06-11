@@ -228,6 +228,8 @@ plot.wavelet.national.all <- function(sex.selected,cod='AllCause',log.selected=0
                 ifelse(cod=='Cancer', 'cancer',
                 ifelse(cod=='Cardiopulmonary', 'cardiorespiratory',
                 ifelse(cod=='External', 'injuries',
+                ifelse(cod=='Unintentional','unintentional',
+                ifelse(cod=='Intentional','intentional',
                 ifelse(cod=='Other', 'other',
                 ifelse(cod=='Cardiovascular','cardiovascular',
                 ifelse(cod=='Chronic respiratory diseases','chronic respiratory diseases',
@@ -237,7 +239,7 @@ plot.wavelet.national.all <- function(sex.selected,cod='AllCause',log.selected=0
                 ifelse(cod=='Maternal conditions','maternal conditions',
                 ifelse(cod=='Neuropsychiatric disorders', 'neuropsychiatric disorders',
                 ifelse(cod=='Perinatal conditions','perinatal conditions',
-                ifelse(cod=='Substance use disorders','substance use disorders'))))))))))))))
+                ifelse(cod=='Substance use disorders','substance use disorders'))))))))))))))))
 
     dat <- subset(dat.national, sex==sex.selected)
     
