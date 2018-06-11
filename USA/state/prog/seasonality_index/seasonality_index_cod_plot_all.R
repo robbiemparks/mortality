@@ -142,7 +142,8 @@ plot.function.diff.seas.sig.5(lin.reg.grad.weight.injury,17,0.85,.2,2)
 dev.off()
 
 pdf(paste0(file.loc,'seasonality_index_change_sig5_weighted_allcauses_with_other_',year.start,'_',year.end,'.pdf'),height=0,width=0,paper='a4r')
-plot.function.diff.seas.sig.5(lin.reg.grad.weight.other,17,.77,.33,3)
+plot.function.diff.seas.sig.5(lin.reg.grad.weight.other,17,.77
+,.33,3)
 dev.off()
 
 # plot coefficient of seasonality for each age nationally at start and end of period with significance
