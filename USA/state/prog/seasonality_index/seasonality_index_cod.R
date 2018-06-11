@@ -32,7 +32,7 @@ num.years <- year.end - year.start + 1
 if(cod %in% c("AllCause", "Cancer", "Cardiopulmonary", "External")) {
     dat <- readRDS(paste0('../../output/prep_data_cod/datus_state_rates_cod_',year.start,'_',year.end))
     if(cod!='AllCause'){
-        dat <- subset(dat,cause==cod.arg)
+        dat <- subset(dat,cause==cod)
     }
 }
 if(cod %in% c("Cardiovascular", "Chronic respiratory diseases", "Respiratory infections", "Endocrine disorders",
@@ -66,14 +66,14 @@ dat.national <- dat.national[order(dat.national$sex,dat.national$age,dat.nationa
 # DYNAMIC MAX MIN
 
 # figure out the ratio of max/min deaths over time by sex, age, year
-dat.max.min <-  ddply(dat.national, .(sex,age,year), summarize, max=max(rate.adj),month.max=month[rate.adj==max(rate.adj)],min=min(rate.adj),month.min=month[rate.adj==min(rate.adj)])
-dat.max.min$ratio <- with(dat.max.min,max/min)
-dat.max.min$percent.change <- round(100*(dat.max.min$ratio),1)-100
-
-# figure out the absolute difference between max/min over time by sex, age, year
-dat.max.min$abs.diff <- with(dat.max.min,100000*(max-min))
-dat.max.min$sex.long <- as.factor(as.character(dat.max.min$sex))
-levels(dat.max.min$sex.long) <- sex.lookup
+# dat.max.min <-  ddply(dat.national, .(sex,age,year), summarize, max=max(rate.adj),month.max=month[rate.adj==max(rate.adj)],min=min(rate.adj),month.min=month[rate.adj==min(rate.adj)])
+# dat.max.min$ratio <- with(dat.max.min,max/min)
+# dat.max.min$percent.change <- round(100*(dat.max.min$ratio),1)-100
+#
+# # figure out the absolute difference between max/min over time by sex, age, year
+# dat.max.min$abs.diff <- with(dat.max.min,100000*(max-min))
+# dat.max.min$sex.long <- as.factor(as.character(dat.max.min$sex))
+# levels(dat.max.min$sex.long) <- sex.lookup
 
 # STATIC MAX MIN DEFINED BY COM
 
@@ -323,10 +323,10 @@ plot.function.diff.seas.sig.5 <- function(shape.selected) {
     geom_point(data=subset(lin.reg.grad.weight,sig.test.5==1),colour='black',aes(shape=as.factor(sex),x=(start.value.2/100),y=(end.value.2/100)),size=8) +
     geom_point(data=subset(lin.reg.grad.weight,sex==1|2),aes(shape=as.factor(sex), color=as.factor(age),x=(start.value.2/100),y=(end.value.2/100)),size=6) +
     geom_abline(slope=1,intercept=0, linetype=2,alpha=0.5) +
-    scale_x_continuous(name=paste0('Percent difference in death rates in ',year.start),labels=percent,limits=c(0,(100/100))) +
-    scale_y_continuous(name=paste0('Percent difference in death rates in ',year.end),labels=percent,limits=c(0,(100/100))) +
-    geom_hline(linetype=2, yintercept = seq(0,1,0.1), alpha=0.2) +
-    geom_vline(linetype=2, xintercept = seq(0,1,0.1), alpha=0.2) +
+    scale_x_continuous(name=paste0('Percent difference in death rates in ',year.start),labels=percent,limits=c(0,(200/100))) +
+    scale_y_continuous(name=paste0('Percent difference in death rates in ',year.end),labels=percent,limits=c(0,(200/100))) +
+    # geom_hline(linetype=2, yintercept = seq(0,1,0.1), alpha=0.2) +
+    # geom_vline(linetype=2, xintercept = seq(0,1,0.1), alpha=0.2) +
     scale_shape_manual(values=c(16,shape.selected),labels=c('Men','Women'),guide = guide_legend(title = 'Sex:')) +
     scale_colour_manual(labels=c('0-4','5-14','15-24','25-34','35-44','45-54','55-64','65-74','75-84','85+'),values=age.colours,guide = guide_legend(title = 'Age group:')) +
     ggtitle(cod) +

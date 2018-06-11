@@ -20,7 +20,7 @@ declare -a numsims=(10)
 declare -i sig=5
 declare -a noises=(1)
 #declare -a noises=(1 2)
-#declare -a cods=("Substance_use_disorders")
+#declare -a cods=("Respiratory_infections" "Endocrine_disorders" "Genitourinary_diseases" "Maternal_conditions" "Perinatal_conditions" "Substance_use_disorders")
 declare -a cods=("AllCause" "Cancer" "Cardiopulmonary" "External" "Cardiovascular" "Chronic_respiratory_diseases" "Respiratory_infections" "Endocrine_disorders" "Genitourinary_diseases" "Maternal_conditions" "Neuropsychiatric_disorders" "Perinatal_conditions" "Substance_use_disorders")
 declare -a logs=(0)
 
@@ -116,6 +116,6 @@ echo "starting seasonality index analysis for $country, years $start - $end";
 
 # runs seasonality index analysis
 Rscript ~/git/mortality/USA/state/prog/seasonality_index/seasonality_index_cod.R $start $end $start $end $dname $metric $cod
-Rscript ~/git/mortality/USA/state/prog/seasonality_index/seasonality_index_cod_plot_all.R $start $end $start $end $dname $metric $cod
+#Rscript ~/git/mortality/USA/state/prog/seasonality_index/seasonality_index_cod_plot_all.R $start $end $start $end $dname $metric $cod
 
 done;
