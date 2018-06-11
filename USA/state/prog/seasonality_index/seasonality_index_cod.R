@@ -341,60 +341,60 @@ pdf(paste0(file.loc,'seasonality_index_change_sig5_weighted_',cod,'_',year.start
 plot.function.diff.seas.sig.5(17)
 dev.off()
 
-# ######################################################################
-# # REGIONAL PLOTS
-# ######################################################################
-
-# add cause of death for filtering
-dat.mort.climate.fixed$cause = cod
-
-# remove com data that doesn't meet wavelet criteria (currently manual)
-dat.mort.climate.fixed <- subset(dat.mort.climate.fixed,!(cause =='AllCause' & age == 35 & sex==1))
-dat.mort.climate.fixed <- subset(dat.mort.climate.fixed,!(cause =='AllCause' & age == 5 & sex==2))
-dat.mort.climate.fixed <- subset(dat.mort.climate.fixed,!(cause =='AllCause' & age == 25 & sex==2))
-dat.mort.climate.fixed <- subset(dat.mort.climate.fixed,!(cause =='Cancer' & age == 0 & sex==1))
-dat.mort.climate.fixed <- subset(dat.mort.climate.fixed,!(cause =='Cancer' & age == 5 & sex==1))
-dat.mort.climate.fixed <- subset(dat.mort.climate.fixed,!(cause =='Cancer' & age == 15 & sex==1))
-dat.mort.climate.fixed <- subset(dat.mort.climate.fixed,!(cause =='Cancer' & age == 25 & sex==1))
-dat.mort.climate.fixed <- subset(dat.mort.climate.fixed,!(cause =='Cancer' & age == 35 & sex==1))
-dat.mort.climate.fixed <- subset(dat.mort.climate.fixed,!(cause =='Cancer' & age == 45 & sex==1))
-dat.mort.climate.fixed <- subset(dat.mort.climate.fixed,!(cause =='Cancer' & age == 0 & sex==2))
-dat.mort.climate.fixed <- subset(dat.mort.climate.fixed,!(cause =='Cancer' & age == 5 & sex==2))
-dat.mort.climate.fixed <- subset(dat.mort.climate.fixed,!(cause =='Cancer' & age == 15 & sex==2))
-dat.mort.climate.fixed <- subset(dat.mort.climate.fixed,!(cause =='Cancer' & age == 25 & sex==2))
-dat.mort.climate.fixed <- subset(dat.mort.climate.fixed,!(cause =='Cancer' & age == 35 & sex==2))
-dat.mort.climate.fixed <- subset(dat.mort.climate.fixed,!(cause =='External' & age == 65 & sex==1))
-dat.mort.climate.fixed <- subset(dat.mort.climate.fixed,!(cause =='External' & age == 45 & sex==2))
-dat.mort.climate.fixed <- subset(dat.mort.climate.fixed,!(cause =='External' & age == 55 & sex==2))
-
-# fix region names
-dat.mort.climate.fixed$climate_region <- gsub('_',' ', dat.mort.climate.fixed$climate_region)
-
-# set colour scheme for climate colour map
-map.climate.colour <- colorRampPalette(c("red","hotpink","brown","navy","cyan","green","orange"))(20)[c(10,12,13,15,18,19,20,1,5)]
-
-pdf(paste0(file.loc.regional,'seasonality_index_regional_against_climate_fixed_com_',cod,'_',year.start,'_',year.end,'.pdf'),height=0,width=0,paper='a4r')
-ggplot(data=subset(dat.mort.climate.fixed, sex==1|2),aes(shape=as.factor(sex),x=abs(end.value.climate),
-y=end.value.mort/100)) +
-geom_point(aes(color=as.factor(climate_region)),size=2) +
-#geom_smooth(method="lm") +
-scale_shape_manual(values=c(16,17),labels=c('Male','Female'),guide = guide_legend(title = '')) +
-scale_x_continuous(name=expression(paste("Absolute temperature difference (",degree,"C)"))) +
-scale_y_continuous(name=paste0('Percent difference in death rates'),labels=percent,limits=c(-0.05,0.5)) +
-#ylim(c(-0.05,1)) +
-#geom_hline(linetype=2, yintercept = seq(-1,1,0.1), alpha=0.2) +
-#geom_vline(linetype=2, xintercept = seq(-100,100,10), alpha=0.2) +
-geom_vline(xintercept=0,linetype=2,alpha=0.4) +
-geom_hline(yintercept=0,linetype=2,alpha=0.4) +
-#ggtitle(cod) +
-facet_wrap(~age.print) +
-scale_colour_manual(values=map.climate.colour,guide = guide_legend(title = 'Region')) +
-# theme(legend.box.just = "centre",legend.box = "horizontal",legend.position='bottom',text = element_text(size = 15),
+# # ######################################################################
+# # # REGIONAL PLOTS
+# # ######################################################################
+#
+# # add cause of death for filtering
+# dat.mort.climate.fixed$cause = cod
+#
+# # remove com data that doesn't meet wavelet criteria (currently manual)
+# dat.mort.climate.fixed <- subset(dat.mort.climate.fixed,!(cause =='AllCause' & age == 35 & sex==1))
+# dat.mort.climate.fixed <- subset(dat.mort.climate.fixed,!(cause =='AllCause' & age == 5 & sex==2))
+# dat.mort.climate.fixed <- subset(dat.mort.climate.fixed,!(cause =='AllCause' & age == 25 & sex==2))
+# dat.mort.climate.fixed <- subset(dat.mort.climate.fixed,!(cause =='Cancer' & age == 0 & sex==1))
+# dat.mort.climate.fixed <- subset(dat.mort.climate.fixed,!(cause =='Cancer' & age == 5 & sex==1))
+# dat.mort.climate.fixed <- subset(dat.mort.climate.fixed,!(cause =='Cancer' & age == 15 & sex==1))
+# dat.mort.climate.fixed <- subset(dat.mort.climate.fixed,!(cause =='Cancer' & age == 25 & sex==1))
+# dat.mort.climate.fixed <- subset(dat.mort.climate.fixed,!(cause =='Cancer' & age == 35 & sex==1))
+# dat.mort.climate.fixed <- subset(dat.mort.climate.fixed,!(cause =='Cancer' & age == 45 & sex==1))
+# dat.mort.climate.fixed <- subset(dat.mort.climate.fixed,!(cause =='Cancer' & age == 0 & sex==2))
+# dat.mort.climate.fixed <- subset(dat.mort.climate.fixed,!(cause =='Cancer' & age == 5 & sex==2))
+# dat.mort.climate.fixed <- subset(dat.mort.climate.fixed,!(cause =='Cancer' & age == 15 & sex==2))
+# dat.mort.climate.fixed <- subset(dat.mort.climate.fixed,!(cause =='Cancer' & age == 25 & sex==2))
+# dat.mort.climate.fixed <- subset(dat.mort.climate.fixed,!(cause =='Cancer' & age == 35 & sex==2))
+# dat.mort.climate.fixed <- subset(dat.mort.climate.fixed,!(cause =='External' & age == 65 & sex==1))
+# dat.mort.climate.fixed <- subset(dat.mort.climate.fixed,!(cause =='External' & age == 45 & sex==2))
+# dat.mort.climate.fixed <- subset(dat.mort.climate.fixed,!(cause =='External' & age == 55 & sex==2))
+#
+# # fix region names
+# dat.mort.climate.fixed$climate_region <- gsub('_',' ', dat.mort.climate.fixed$climate_region)
+#
+# # set colour scheme for climate colour map
+# map.climate.colour <- colorRampPalette(c("red","hotpink","brown","navy","cyan","green","orange"))(20)[c(10,12,13,15,18,19,20,1,5)]
+#
+# pdf(paste0(file.loc.regional,'seasonality_index_regional_against_climate_fixed_com_',cod,'_',year.start,'_',year.end,'.pdf'),height=0,width=0,paper='a4r')
+# ggplot(data=subset(dat.mort.climate.fixed, sex==1|2),aes(shape=as.factor(sex),x=abs(end.value.climate),
+# y=end.value.mort/100)) +
+# geom_point(aes(color=as.factor(climate_region)),size=2) +
+# #geom_smooth(method="lm") +
+# scale_shape_manual(values=c(16,17),labels=c('Male','Female'),guide = guide_legend(title = '')) +
+# scale_x_continuous(name=expression(paste("Absolute temperature difference (",degree,"C)"))) +
+# scale_y_continuous(name=paste0('Percent difference in death rates'),labels=percent,limits=c(-0.05,0.5)) +
+# #ylim(c(-0.05,1)) +
+# #geom_hline(linetype=2, yintercept = seq(-1,1,0.1), alpha=0.2) +
+# #geom_vline(linetype=2, xintercept = seq(-100,100,10), alpha=0.2) +
+# geom_vline(xintercept=0,linetype=2,alpha=0.4) +
+# geom_hline(yintercept=0,linetype=2,alpha=0.4) +
+# #ggtitle(cod) +
+# facet_wrap(~age.print) +
+# scale_colour_manual(values=map.climate.colour,guide = guide_legend(title = 'Region')) +
+# # theme(legend.box.just = "centre",legend.box = "horizontal",legend.position='bottom',text = element_text(size = 15),
+# # panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(),
+# # axis.line.x = element_line(colour = "black"), axis.line.y = element_line(colour = "black"),rect = element_blank(),
+# # legend.background = element_rect(fill = "grey95"))
+# theme(legend.box.just = "centre",legend.box = "horizontal",legend.position=c(.8, .1),text = element_text(size = 10),
 # panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(),
-# axis.line.x = element_line(colour = "black"), axis.line.y = element_line(colour = "black"),rect = element_blank(),
-# legend.background = element_rect(fill = "grey95"))
-theme(legend.box.just = "centre",legend.box = "horizontal",legend.position=c(.8, .1),text = element_text(size = 10),
-panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(),
-axis.line.x = element_line(colour = "black"), axis.line.y = element_line(colour = "black"),
-rect = element_blank(),legend.background = element_rect(fill = "grey95"))
-dev.off()
+# axis.line.x = element_line(colour = "black"), axis.line.y = element_line(colour = "black"),
+# rect = element_blank(),legend.background = element_rect(fill = "grey95"))
+# dev.off()
