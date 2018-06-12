@@ -13,6 +13,14 @@ declare -i end=2016
 declare country="USA"
 
 #################################################
+# 0. NATIONAL DEATH STATISTICS BY CAUSE OF DEATH
+#################################################
+
+echo "calculating death statistics for $country by cause of death, years $start - $end";
+
+Rscript ~/git/mortality/USA/state/prog/wavelet/wavelet_national_cod.R $start $end $numsim $sig $noise $cod $log
+
+#################################################
 # 1. NATIONAL WAVELET ANALYSIS
 #################################################
 
@@ -94,8 +102,6 @@ echo "plotting COM analysis for $country for $cod, years $start - $end";
 #Rscript ~/git/mortality/USA/state/prog/com/com_plot_cod.R $start $end $cod
 
 done;
-
-# TO DOOOOOOOO STILL BELOW
 
 #################################################
 # 5. NATIONAL CLIMATE SEASONALITY INDEX

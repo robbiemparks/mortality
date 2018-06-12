@@ -1,59 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="21b4bedd-3c09-4223-a30e-537ba1f7f93e" name="Default" comment="Add eLife COD coding">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/plots/USA_COM_rates_total_axis_swapped_v2_AllCause_1980_2016.pdf" afterPath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/plots/USA_COM_rates_total_axis_swapped_v2_AllCause_1980_2016.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/plots/USA_COM_rates_total_axis_swapped_v2_Cancer_1980_2016.pdf" afterPath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/plots/USA_COM_rates_total_axis_swapped_v2_Cancer_1980_2016.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/plots/USA_COM_rates_total_axis_swapped_v2_Cardiopulmonary_1980_2016.pdf" afterPath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/plots/USA_COM_rates_total_axis_swapped_v2_Cardiopulmonary_1980_2016.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/plots/USA_COM_rates_total_axis_swapped_v2_Cardiovascular_1980_2016.pdf" afterPath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/plots/USA_COM_rates_total_axis_swapped_v2_Cardiovascular_1980_2016.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/plots/USA_COM_rates_total_axis_swapped_v2_Chronic respiratory diseases_1980_2016.pdf" afterPath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/plots/USA_COM_rates_total_axis_swapped_v2_Chronic respiratory diseases_1980_2016.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/plots/USA_COM_rates_total_axis_swapped_v2_Endocrine disorders_1980_2016.pdf" afterPath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/plots/USA_COM_rates_total_axis_swapped_v2_Endocrine disorders_1980_2016.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/plots/USA_COM_rates_total_axis_swapped_v2_External_1980_2016.pdf" afterPath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/plots/USA_COM_rates_total_axis_swapped_v2_External_1980_2016.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/plots/USA_COM_rates_total_axis_swapped_v2_Genitourinary diseases_1980_2016.pdf" afterPath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/plots/USA_COM_rates_total_axis_swapped_v2_Genitourinary diseases_1980_2016.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/plots/USA_COM_rates_total_axis_swapped_v2_Intentional_1980_2016.pdf" afterPath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/plots/USA_COM_rates_total_axis_swapped_v2_Intentional_1980_2016.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/plots/USA_COM_rates_total_axis_swapped_v2_Maternal conditions_1980_2016.pdf" afterPath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/plots/USA_COM_rates_total_axis_swapped_v2_Maternal conditions_1980_2016.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/plots/USA_COM_rates_total_axis_swapped_v2_Neuropsychiatric disorders_1980_2016.pdf" afterPath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/plots/USA_COM_rates_total_axis_swapped_v2_Neuropsychiatric disorders_1980_2016.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/plots/USA_COM_rates_total_axis_swapped_v2_Other_1980_2016.pdf" afterPath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/plots/USA_COM_rates_total_axis_swapped_v2_Other_1980_2016.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/plots/USA_COM_rates_total_axis_swapped_v2_Perinatal conditions_1980_2016.pdf" afterPath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/plots/USA_COM_rates_total_axis_swapped_v2_Perinatal conditions_1980_2016.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/plots/USA_COM_rates_total_axis_swapped_v2_Respiratory infections_1980_2016.pdf" afterPath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/plots/USA_COM_rates_total_axis_swapped_v2_Respiratory infections_1980_2016.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/plots/USA_COM_rates_total_axis_swapped_v2_Substance use disorders_1980_2016.pdf" afterPath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/plots/USA_COM_rates_total_axis_swapped_v2_Substance use disorders_1980_2016.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/plots/USA_COM_rates_total_axis_swapped_v2_Unintentional_1980_2016.pdf" afterPath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/plots/USA_COM_rates_total_axis_swapped_v2_Unintentional_1980_2016.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/plots/USA_COM_rates_total_axis_swapped_v2_allcauses_nononsig_1980_2016.pdf" afterPath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/plots/USA_COM_rates_total_axis_swapped_v2_allcauses_nononsig_1980_2016.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/plots/USA_COM_rates_total_axis_swapped_v2_cardio_nononsig_1980_2016.pdf" afterPath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/plots/USA_COM_rates_total_axis_swapped_v2_cardio_nononsig_1980_2016.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/plots/USA_COM_rates_total_axis_swapped_v2_injuries_nononsig_1980_2016.pdf" afterPath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/plots/USA_COM_rates_total_axis_swapped_v2_injuries_nononsig_1980_2016.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/plots/USA_COM_rates_total_axis_swapped_v2_other_nononsig_1980_2016.pdf" afterPath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/plots/USA_COM_rates_total_axis_swapped_v2_other_nononsig_1980_2016.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/combined_results/com_inv_com_rates_national_values_method_2_entire_Intentional_1980_2016" afterPath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/combined_results/com_inv_com_rates_national_values_method_2_entire_Intentional_1980_2016" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/combined_results/com_inv_com_rates_national_values_method_2_entire_Other_1980_2016" afterPath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/combined_results/com_inv_com_rates_national_values_method_2_entire_Other_1980_2016" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/combined_results/com_inv_com_rates_national_values_method_2_entire_Unintentional_1980_2016" afterPath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/combined_results/com_inv_com_rates_national_values_method_2_entire_Unintentional_1980_2016" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/combined_results/com_rates_national_values_method_2_entire_Intentional_1980_2016" afterPath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/combined_results/com_rates_national_values_method_2_entire_Intentional_1980_2016" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/combined_results/com_rates_national_values_method_2_entire_Other_1980_2016" afterPath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/combined_results/com_rates_national_values_method_2_entire_Other_1980_2016" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/combined_results/com_rates_national_values_method_2_entire_Unintentional_1980_2016" afterPath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/combined_results/com_rates_national_values_method_2_entire_Unintentional_1980_2016" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/combined_results/inv_com_rates_national_values_method_2_entire_Intentional_1980_2016" afterPath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/combined_results/inv_com_rates_national_values_method_2_entire_Intentional_1980_2016" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/combined_results/inv_com_rates_national_values_method_2_entire_Other_1980_2016" afterPath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/combined_results/inv_com_rates_national_values_method_2_entire_Other_1980_2016" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/combined_results/inv_com_rates_national_values_method_2_entire_Unintentional_1980_2016" afterPath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/values/combined_results/inv_com_rates_national_values_method_2_entire_Unintentional_1980_2016" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/com/1980_2016/region/plots/anti_com_rates_region_map_men_rounded_External_1980_2016.pdf" afterPath="$PROJECT_DIR$/USA/state/output/com/1980_2016/region/plots/anti_com_rates_region_map_men_rounded_External_1980_2016.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/com/1980_2016/region/plots/anti_com_rates_region_map_women_rounded_External_1980_2016.pdf" afterPath="$PROJECT_DIR$/USA/state/output/com/1980_2016/region/plots/anti_com_rates_region_map_women_rounded_External_1980_2016.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/com/1980_2016/region/plots/com_rates_region_map_men_rounded_External_1980_2016.pdf" afterPath="$PROJECT_DIR$/USA/state/output/com/1980_2016/region/plots/com_rates_region_map_men_rounded_External_1980_2016.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/com/1980_2016/region/plots/com_rates_region_map_women_rounded_External_1980_2016.pdf" afterPath="$PROJECT_DIR$/USA/state/output/com/1980_2016/region/plots/com_rates_region_map_women_rounded_External_1980_2016.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/seasonality_index/national/seasonality_index_change_sig5_weighted_AllCause_1980_2016.pdf" afterPath="$PROJECT_DIR$/USA/state/output/seasonality_index/national/seasonality_index_change_sig5_weighted_AllCause_1980_2016.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/seasonality_index/national/seasonality_index_change_sig5_weighted_Cancer_1980_2016.pdf" afterPath="$PROJECT_DIR$/USA/state/output/seasonality_index/national/seasonality_index_change_sig5_weighted_Cancer_1980_2016.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/seasonality_index/national/seasonality_index_change_sig5_weighted_Cardiopulmonary_1980_2016.pdf" afterPath="$PROJECT_DIR$/USA/state/output/seasonality_index/national/seasonality_index_change_sig5_weighted_Cardiopulmonary_1980_2016.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/seasonality_index/national/seasonality_index_change_sig5_weighted_Cardiovascular_1980_2016.pdf" afterPath="$PROJECT_DIR$/USA/state/output/seasonality_index/national/seasonality_index_change_sig5_weighted_Cardiovascular_1980_2016.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/seasonality_index/national/seasonality_index_change_sig5_weighted_Chronic respiratory diseases_1980_2016.pdf" afterPath="$PROJECT_DIR$/USA/state/output/seasonality_index/national/seasonality_index_change_sig5_weighted_Chronic respiratory diseases_1980_2016.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/seasonality_index/national/seasonality_index_change_sig5_weighted_Endocrine disorders_1980_2016.pdf" afterPath="$PROJECT_DIR$/USA/state/output/seasonality_index/national/seasonality_index_change_sig5_weighted_Endocrine disorders_1980_2016.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/seasonality_index/national/seasonality_index_change_sig5_weighted_External_1980_2016.pdf" afterPath="$PROJECT_DIR$/USA/state/output/seasonality_index/national/seasonality_index_change_sig5_weighted_External_1980_2016.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/seasonality_index/national/seasonality_index_change_sig5_weighted_Genitourinary diseases_1980_2016.pdf" afterPath="$PROJECT_DIR$/USA/state/output/seasonality_index/national/seasonality_index_change_sig5_weighted_Genitourinary diseases_1980_2016.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/seasonality_index/national/seasonality_index_change_sig5_weighted_Intentional_1980_2016.pdf" afterPath="$PROJECT_DIR$/USA/state/output/seasonality_index/national/seasonality_index_change_sig5_weighted_Intentional_1980_2016.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/seasonality_index/national/seasonality_index_change_sig5_weighted_Maternal conditions_1980_2016.pdf" afterPath="$PROJECT_DIR$/USA/state/output/seasonality_index/national/seasonality_index_change_sig5_weighted_Maternal conditions_1980_2016.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/seasonality_index/national/seasonality_index_change_sig5_weighted_Neuropsychiatric disorders_1980_2016.pdf" afterPath="$PROJECT_DIR$/USA/state/output/seasonality_index/national/seasonality_index_change_sig5_weighted_Neuropsychiatric disorders_1980_2016.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/seasonality_index/national/seasonality_index_change_sig5_weighted_Other_1980_2016.pdf" afterPath="$PROJECT_DIR$/USA/state/output/seasonality_index/national/seasonality_index_change_sig5_weighted_Other_1980_2016.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/seasonality_index/national/seasonality_index_change_sig5_weighted_Perinatal conditions_1980_2016.pdf" afterPath="$PROJECT_DIR$/USA/state/output/seasonality_index/national/seasonality_index_change_sig5_weighted_Perinatal conditions_1980_2016.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/seasonality_index/national/seasonality_index_change_sig5_weighted_Respiratory infections_1980_2016.pdf" afterPath="$PROJECT_DIR$/USA/state/output/seasonality_index/national/seasonality_index_change_sig5_weighted_Respiratory infections_1980_2016.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/seasonality_index/national/seasonality_index_change_sig5_weighted_Substance use disorders_1980_2016.pdf" afterPath="$PROJECT_DIR$/USA/state/output/seasonality_index/national/seasonality_index_change_sig5_weighted_Substance use disorders_1980_2016.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/seasonality_index/national/seasonality_index_change_sig5_weighted_Unintentional_1980_2016.pdf" afterPath="$PROJECT_DIR$/USA/state/output/seasonality_index/national/seasonality_index_change_sig5_weighted_Unintentional_1980_2016.pdf" />
+    <list default="true" id="21b4bedd-3c09-4223-a30e-537ba1f7f93e" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/00_bash/wavelet/wavelet_paper_cod.sh" afterPath="$PROJECT_DIR$/USA/state/prog/00_bash/wavelet/wavelet_paper_cod.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/seasonality_index/seasonality_index_cod.R" afterPath="$PROJECT_DIR$/USA/state/prog/seasonality_index/seasonality_index_cod.R" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -71,11 +21,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="wavelet_paper_cod.sh" pinned="false" current-in-tab="true">
+      <file leaf-file-name="wavelet_paper_cod.sh" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/USA/state/prog/00_bash/wavelet/wavelet_paper_cod.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="458">
-              <caret line="124" column="0" lean-forward="false" selection-start-line="124" selection-start-column="0" selection-end-line="124" selection-end-column="0" />
+            <state relative-caret-position="300">
+              <caret line="20" column="46" lean-forward="false" selection-start-line="20" selection-start-column="39" selection-end-line="20" selection-end-column="46" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="data_summary_cod.R" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/USA/state/prog/data_explore/data_summary_cod.R">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="375">
+              <caret line="25" column="68" lean-forward="true" selection-start-line="25" selection-start-column="68" selection-end-line="25" selection-end-column="68" />
               <folding />
             </state>
           </provider>
@@ -199,10 +159,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="445" />
-    <option name="y" value="-1417" />
+    <option name="x" value="980" />
+    <option name="y" value="-1412" />
     <option name="width" value="1525" />
-    <option name="height" value="977" />
+    <option name="height" value="1375" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
@@ -320,33 +280,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="data" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mortality" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mortality" />
+              <option name="myItemId" value="prog" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="USA" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="state" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="data" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="objects" />
+              <option name="myItemId" value="data_explore" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1494,13 +1432,6 @@
       <option name="presentableId" value="Default" />
       <updated>1528108809576</updated>
     </task>
-    <task id="LOCAL-00028" summary="Add eLife COD coding">
-      <created>1528462879040</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1528462879040</updated>
-    </task>
     <task id="LOCAL-00029" summary="Add eLife COD coding">
       <created>1528464423317</created>
       <option name="number" value="00029" />
@@ -1837,11 +1768,18 @@
       <option name="project" value="LOCAL" />
       <updated>1528809133649</updated>
     </task>
-    <option name="localTasksCounter" value="77" />
+    <task id="LOCAL-00077" summary="Add eLife COD coding">
+      <created>1528815096950</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1528815096950</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="445" y="-1417" width="1525" height="977" extended-state="0" />
+    <frame x="980" y="-1412" width="1525" height="1375" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24342549" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1851,7 +1789,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32908162" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32768363" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2983051" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2983051" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24951456" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32986626" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -1879,14 +1817,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/USA/state/prog/com/com_plot_cod.R">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="795">
-          <caret line="53" column="9" lean-forward="false" selection-start-line="53" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/USA/state/prog/01_functions/wavelet_functions.R">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3375">
@@ -2269,8 +2199,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/USA/state/prog/00_bash/wavelet/wavelet_paper_cod.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="458">
-          <caret line="124" column="0" lean-forward="false" selection-start-line="124" selection-start-column="0" selection-end-line="124" selection-end-column="0" />
+        <state relative-caret-position="300">
+          <caret line="20" column="46" lean-forward="false" selection-start-line="20" selection-start-column="39" selection-end-line="20" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/USA/state/prog/data_explore/data_summary_cod.R">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" column="68" lean-forward="true" selection-start-line="25" selection-start-column="68" selection-end-line="25" selection-end-column="68" />
           <folding />
         </state>
       </provider>
