@@ -385,14 +385,15 @@ geom_point(aes(color=as.factor(climate_region)),size=2) +
 #geom_smooth(method="lm") +
 scale_shape_manual(values=c(16,17),labels=c('Male','Female'),guide = guide_legend(title = '')) +
 scale_x_continuous(name=expression(paste("Absolute temperature difference (",degree,"C)"))) +
-scale_y_continuous(name=paste0('Percent difference in death rates'),labels=percent,limits=c(-0.05,0.5)) +
+scale_y_continuous(name=paste0('Percent difference in death rates'),labels=percent) +
+# scale_y_continuous(name=paste0('Percent difference in death rates'),labels=percent,limits=c(-0.05,0.5)) +
 #ylim(c(-0.05,1)) +
 #geom_hline(linetype=2, yintercept = seq(-1,1,0.1), alpha=0.2) +
 #geom_vline(linetype=2, xintercept = seq(-100,100,10), alpha=0.2) +
 geom_vline(xintercept=0,linetype=2,alpha=0.4) +
 geom_hline(yintercept=0,linetype=2,alpha=0.4) +
 #ggtitle(cod) +
-facet_wrap(~age.print) +
+facet_wrap(~age.print,scales='free') +
 scale_colour_manual(values=map.climate.colour,guide = guide_legend(title = 'Region')) +
 # theme(legend.box.just = "centre",legend.box = "horizontal",legend.position='bottom',text = element_text(size = 15),
 # panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(),
