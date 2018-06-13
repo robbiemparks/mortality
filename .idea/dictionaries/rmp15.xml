@@ -652,6 +652,8 @@
       <w>AIC.rqs</w>
       <w>AIC.rqss</w>
       <w>ANSI</w>
+      <w>AR</w>
+      <w>ARIMA</w>
       <w>ARMAacf</w>
       <w>ARMAtoMA</w>
       <w>ASCII</w>
@@ -720,6 +722,7 @@
       <w>CJ</w>
       <w>CO2</w>
       <w>COGravity</w>
+      <w>COI</w>
       <w>CRAN.packages</w>
       <w>CRAN_check_details</w>
       <w>CRAN_check_issues</w>
@@ -891,6 +894,7 @@
       <w>F</w>
       <w>FAQ</w>
       <w>FGN</w>
+      <w>FXtrade.transactions</w>
       <w>Facet</w>
       <w>FacetGrid</w>
       <w>FacetNull</w>
@@ -904,6 +908,7 @@
       <w>FitRegressionFGN</w>
       <w>Formaldehyde</w>
       <w>Formula</w>
+      <w>FourierRand</w>
       <w>Ftest</w>
       <w>Function</w>
       <w>Fzero</w>
@@ -1609,6 +1614,7 @@
       <w>Summary.ordered</w>
       <w>SupremeCourt</w>
       <w>Surg</w>
+      <w>SurrogateData</w>
       <w>Surv</w>
       <w>SurvSim</w>
       <w>Survival</w>
@@ -1697,6 +1703,7 @@
       <w>UScounties.ndorder</w>
       <w>UScounties.storder</w>
       <w>UScrime</w>
+      <w>USelection2016.Instagram</w>
       <w>USprecip</w>
       <w>UseMethod</w>
       <w>VA</w>
@@ -1711,6 +1718,9 @@
       <w>WWWusage</w>
       <w>Wafer</w>
       <w>Wald1.sarlm</w>
+      <w>WaveletCoherency</w>
+      <w>WaveletComp</w>
+      <w>WaveletTransform</w>
       <w>Weibull2</w>
       <w>Wendland</w>
       <w>Wendland.beta</w>
@@ -2749,6 +2759,8 @@
       <w>amis</w>
       <w>aml</w>
       <w>amv_dimnames</w>
+      <w>analyze.coherency</w>
+      <w>analyze.wavelet</w>
       <w>ancestry</w>
       <w>and</w>
       <w>anemones</w>
@@ -8511,6 +8523,7 @@
       <w>markdownToHTML</w>
       <w>markupSpecs</w>
       <w>marrangeGrob</w>
+      <w>marriages.Turkey</w>
       <w>mask</w>
       <w>maskReactiveContext</w>
       <w>mat.or.vec</w>
@@ -9667,6 +9680,7 @@
       <w>percent_format</w>
       <w>percent_rank</w>
       <w>perimeter</w>
+      <w>periodic.series</w>
       <w>periodicSpline</w>
       <w>perlcode</w>
       <w>permutation</w>
@@ -10818,6 +10832,7 @@
       <w>recode_factor</w>
       <w>recogniseCdf</w>
       <w>reconcilePropertiesAndPrototype</w>
+      <w>reconstruct</w>
       <w>recordGraphics</w>
       <w>recordPlot</w>
       <w>recover</w>
@@ -13822,8 +13837,15 @@
       <w>waterstriders</w>
       <w>watson</w>
       <w>watson.two</w>
+      <w>wc</w>
+      <w>wc.angle</w>
+      <w>wc.avg</w>
+      <w>wc.image</w>
+      <w>wc.phasediff.image</w>
+      <w>wc.sel.phases</w>
       <w>wd</w>
       <w>wday</w>
+      <w>weather.radiation.Mannheim</w>
       <w>weave</w>
       <w>week</w>
       <w>weekdays</w>
@@ -14054,8 +14076,13 @@
       <w>writehex</w>
       <w>wrld_simpl</w>
       <w>wrpcauchy.ml</w>
+      <w>wt</w>
+      <w>wt.avg</w>
+      <w>wt.image</w>
       <w>wt.mean</w>
+      <w>wt.phase.image</w>
       <w>wt.sd</w>
+      <w>wt.sel.phases</w>
       <w>wt.var</w>
       <w>wtd.Ecdf</w>
       <w>wtd.loess.noiter</w>
