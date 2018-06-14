@@ -15,10 +15,14 @@ year.start.2 <- as.numeric(args[3])
 year.end.2 <- as.numeric(args[4])
 dname <- as.character(args[5])
 metric <- as.character(args[6])
-cod <- as.character(args[7])
+cod <- as.character(args[7]) ; cod <- gsub('_',' ',cod)
 
 #year.start = 1980 ; year.end = 2016 ; year.start.2 = 1980 ; year.end.2 = 2016 ; dname = 't2m' ; metric = 'mean'
 #cod ='Cardiopulmonary'
+
+# output directory
+file.loc <- paste0('../../output/seasonality_index_ols/')
+ifelse(!dir.exists(file.loc), dir.create(file.loc, recursive=TRUE), FALSE)
 
 # length of analysis period
 num.years <- year.end - year.start + 1
@@ -90,6 +94,9 @@ seas.index.func = function(age.selected,sex.selected) {
     dat.pois.summary.gamma = glm(deaths.pred ~ 1 + year.month + (1 + year)*(cos(2*pi*month/12)+sin(2*pi*month/12)+cos(2*pi*month/6)+sin(2*pi*month/6)), offset=log(pop.adj),family=poisson(link="log"),data=dat.national.test)
     dat.pois.summary.nogamma = glm(deaths.pred ~ 1 + year.month + (cos(2*pi*month/12)+sin(2*pi*month/12)+cos(2*pi*month/6)+sin(2*pi*month/6)), offset=log(pop.adj),family=poisson(link="log"),data=dat.national.test)
 
+    # anova test
+    anova(dat.pois.summary.gamma,dat.pois.summary.nogamma,test='LRT')
+
     pred <- predict(dat.pois.summary.gamma, newdata = dat.national.test, se.fit = TRUE)
     pred.exp = data.frame(year.month =dat.national.test$year.month , pred=exp(pred$fit),ll=exp(pred$fit-1.96*pred$se),ul=exp(pred$fit+1.96*pred$se),se=exp(pred$se))
 
@@ -105,6 +112,9 @@ seas.index.func = function(age.selected,sex.selected) {
     # report this value.
     start.end$per.year.perc = 100*(start.end$diff/num.years) ; start.end$per.decade.perc = 10*start.end$per.year.perc
 
+    # add age, sex, cod
+    start.end$age = age.selected ; start.end$sex= sex.selected ; start.end$cause = cod
+
     # plot to test if wanted
     print(ggplot() +
         geom_point(data=dat.national.test,aes(x=year.month,y=deaths.pred)) +
@@ -114,7 +124,19 @@ seas.index.func = function(age.selected,sex.selected) {
     return(start.end)
 }
 
+dat.complete = data.frame()
+# Function to append all the age and sexes desired to be summarised into one file
+for(j in c(0,5,15,25,35,45,55,65,75,85)){
+    for(i in c(1,2)) {
 
+        dat.temp = seas.index.func(j,i)
+        dat.complete = rbind(dat.complete,dat.temp)
+    }
+}
+
+# save as as rds and csv
+saveRDS(dat.complete,paste0(file.loc,'seasonality_index_nat_changes_',cod,'_',year.start,'_',year.end))
+write.csv(dat.complete,paste0(file.loc,'seasonality_index_nat_changes_',cod,'_',year.start,'_',year.end,'.csv'))
 
 # LEGACY
 
