@@ -87,7 +87,7 @@ echo "starting regional COM analysis for $cod for years $start - $end";
 # runs regional anti-COM analysis
 #Rscript ~/git/mortality/USA/state/prog/com/anti_com_analysis_region_cod.R $start $end $cod &
 
-echo "processing data for $country for $cod, years $start - $end";
+#echo "processing data for $country for $cod, years $start - $end";
 
 # process COM data
 #Rscript ~/git/mortality/USA/state/prog/com/com_data_process_cod.R $start $end $cod
@@ -135,7 +135,9 @@ for cod in "${cods[@]}"; do
 echo "starting seasonality index analysis for $country, years $start - $end";
 :
 # runs seasonality index analysis (figure 4, figure 6, appendix figure 3, appendix figure 4)
-#Rscript ~/git/mortality/USA/state/prog/seasonality_index/seasonality_index_cod.R $start $end $start $end $dname $metric $cod
+Rscript ~/git/mortality/USA/state/prog/seasonality_index/seasonality_index_cod.R $start $end $start $end $dname $metric $cod
+
+# runs ols model as per revisions
 #Rscript ~/git/mortality/USA/state/prog/seasonality_index/seasonality_index_cod_ols.R $start $end $start $end $dname $metric $cod
 
 
