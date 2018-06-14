@@ -95,7 +95,9 @@ seas.index.func = function(age.selected,sex.selected) {
     dat.pois.summary.nogamma = glm(deaths.pred ~ 1 + year.month + (cos(2*pi*month/12)+sin(2*pi*month/12)+cos(2*pi*month/6)+sin(2*pi*month/6)), offset=log(pop.adj),family=poisson(link="log"),data=dat.national.test)
 
     # anova test
-    anova(dat.pois.summary.gamma,dat.pois.summary.nogamma,test='LRT')
+    anova.test = anova(dat.pois.summary.nogamma,dat.pois.summary.gamma,test='LRT')
+    print(anova.test[2,5])
+    anova.result = anova.test[2,5]
 
     pred <- predict(dat.pois.summary.gamma, newdata = dat.national.test, se.fit = TRUE)
     pred.exp = data.frame(year.month =dat.national.test$year.month , pred=exp(pred$fit),ll=exp(pred$fit-1.96*pred$se),ul=exp(pred$fit+1.96*pred$se),se=exp(pred$se))
@@ -112,8 +114,8 @@ seas.index.func = function(age.selected,sex.selected) {
     # report this value.
     start.end$per.year.perc = 100*(start.end$diff/num.years) ; start.end$per.decade.perc = 10*start.end$per.year.perc
 
-    # add age, sex, cod
-    start.end$age = age.selected ; start.end$sex= sex.selected ; start.end$cause = cod
+    # add anova p-value, age, sex, cod
+    start.end$`p-value` = anova.result ; start.end$age = age.selected ; start.end$sex= sex.selected ; start.end$cause = cod
 
     # plot to test if wanted
     print(ggplot() +
