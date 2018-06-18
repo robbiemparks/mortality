@@ -411,14 +411,14 @@ map.climate.colour <- colorRampPalette(c("red","hotpink","brown","navy","cyan","
 
 pdf(paste0(file.loc.regional,'seasonality_index_regional_against_climate_fixed_com_',cod,'_',year.start,'_',year.end,'.pdf'),height=0,width=0,paper='a4r')
 ggplot(data=subset(dat.mort.climate.fixed, sex==1|2),aes(shape=as.factor(sex),x=abs(end.value.climate),
-y=end.value.mort/100)) +
+y=abs(end.value.mort/100))) +
 geom_point(aes(color=as.factor(climate_region)),size=2) +
 #geom_smooth(method="lm") +
 scale_shape_manual(values=c(16,17),labels=c('Male','Female'),guide = guide_legend(title = '')) +
 scale_x_continuous(name=expression(paste("Absolute temperature difference (",degree,"C)"))) +
 scale_y_continuous(name=paste0('Percent difference in death rates'),labels=percent) +
 ggtitle(cod.print) +
-# scale_y_continuous(name=paste0('Percent difference in death rates'),labels=percent,limits=c(-0.05,0.5)) +
+scale_y_continuous(name=paste0('Percent difference in death rates'),labels=percent,limits=c(0,1)) +
 #ylim(c(-0.05,1)) +
 #geom_hline(linetype=2, yintercept = seq(-1,1,0.1), alpha=0.2) +
 #geom_vline(linetype=2, xintercept = seq(-100,100,10), alpha=0.2) +
