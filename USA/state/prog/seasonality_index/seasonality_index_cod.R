@@ -207,9 +207,24 @@ dat.region$rate.scaled <- round(1000000*(dat.region$rate.adj))
 # climate region lookup
 region.lookup <- unique(dat.region$climate_region)
 
+# load regional com data to establish max min locations
+file.loc.reg.input <- paste0("../../output/com/",year.start,'_',year.end,"/region/values/combined_results/")
+dat.COM.max <- readRDS(paste0(file.loc.reg.input,'com_rates_regional_values_method_2_entire_',cod,'_',year.start,'_',year.end))
+dat.COM.max$type = 'max'
+dat.COM.min <- readRDS(paste0(file.loc.reg.input,'anti_com_rates_regional_values_method_2_entire_',cod,'_',year.start,'_',year.end))
+dat.COM.min$type = 'min'
+dat.COM = rbind(dat.COM.max,dat.COM.min)
+dat.COM$region <- gsub('_',' ',dat.COM$region)
+
+# round to get month required for merging
+dat.COM$COM.mean <- round(dat.COM$COM.mean)
+dat.COM$COM.mean <- ifelse(dat.COM$COM.mean==0,12,dat.COM$COM.mean)
+dat.COM$month <- dat.COM$COM.mean
+levels(dat.COM$sex) <- c(1,2)
+
 # apply Poisson glm with population offsetting
 # figure out the ratio of max/min deaths over time with fixed max/min by sex, age, year
-dat.pois <- merge(dat.region,dat.COM,by=c('age','sex','month'))
+dat.pois <- merge(dat.region,dat.COM,by.x=c('age','sex','month','climate_region'),by.y=c('age','sex','month','region'))
 dat.pois <- dat.pois[,c('climate_region','age','sex','year','deaths.pred','pop.adj','type')]
 dat.pois$maxmonth <- ifelse(dat.pois$type=='max',1,0)
 dat.pois <- with(dat.pois,dat.pois[order(age,sex,year,maxmonth),])
@@ -431,4 +446,17 @@ theme(plot.title = element_text(hjust=0.5), legend.box.just = "centre",legend.bo
 panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(),
 axis.line.x = element_line(colour = "black"), axis.line.y = element_line(colour = "black"),
 rect = element_blank(),legend.background = element_rect(fill = "grey95"))
+dev.off()
+
+# plot to compare national and regional values
+pdf(paste0(file.loc.regional,'seasonality_index_regional_against_national_index_',cod,'_',year.start,'_',year.end,'.pdf'),height=0,width=0,paper='a4r')
+ggplot() +
+    ggtitle(cod) +
+    ylab('Change per year') + xlab('Age') +
+    geom_point(data=lin.reg.grad.region,aes(x=age,y=Estimate,col=climate_region),size=1) +
+    geom_line(data=lin.reg.grad.region,aes(x=age,y=Estimate,col=climate_region),alpha=0.2) +
+    geom_point(data=subset(lin.reg.grad.weight,sig.test.5==1),aes(x=age,y=100*Estimate),size=3,color='hot pink') +
+    geom_point(data=lin.reg.grad.weight,aes(x=age,y=100*Estimate),size=2) +
+    geom_hline(yintercept=0) +
+    facet_wrap(~sex)
 dev.off()
