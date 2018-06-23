@@ -143,8 +143,7 @@ Rscript ~/git/mortality/USA/state/prog/seasonality_index/seasonality_index_cod.R
 
 done;
 
-# (figure 4, appendix figure 3, alternative figure 4, alternative appendix figure 3)
-#Rscript ~/git/mortality/USA/state/prog/seasonality_index/seasonality_index_cod_plot_all.R $start $end $start $end $dname $metric $cod
-#Rscript ~/git/mortality/USA/state/prog/seasonality_index/seasonality_index_cod_plot_all_ols.R $start $end $start $end $dname $metric $cod
-
-
+# (figure 4, appendix figure 3, alternative figure 4, alternative appendix figure 3, figure comparing original and ols)
+#Rscript ~/git/mortality/USA/state/prog/seasonality_index/seasonality_index_cod_plot_all.R $start $end $start $end $dname $metric
+#Rscript ~/git/mortality/USA/state/prog/seasonality_index/seasonality_index_cod_plot_all_ols.R $start $end $start $end $dname $metric
+Rscript ~/git/mortality/USA/state/prog/seasonality_index/seasonality_index_cod_compare_plot.R $start $end $start $end $dname $metric
