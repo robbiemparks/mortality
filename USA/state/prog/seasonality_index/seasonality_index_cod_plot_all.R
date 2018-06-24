@@ -78,6 +78,12 @@ for(i in cod.other){
 }
 lin.reg.grad.weight.other$age = as.numeric(lin.reg.grad.weight.other$age)
 
+# remove impossible age-sex values from 'maternal conditions' and 'perinatal conditions'
+lin.reg.grad.weight.other = subset(lin.reg.grad.weight.other,!(cause=='Maternal conditions'&sex==1))
+lin.reg.grad.weight.other = subset(lin.reg.grad.weight.other,!(cause=='Maternal conditions'&sex==2&age%in%c(0,5,55,65,75,85)))
+lin.reg.grad.weight.other = subset(lin.reg.grad.weight.other,!(cause=='Perinatal conditions'&age%in%c(5,15,25,35,45,55,65,75,85)))
+
+
 ###############################################################
 # PLOTTING MATERIAL
 ###############################################################
