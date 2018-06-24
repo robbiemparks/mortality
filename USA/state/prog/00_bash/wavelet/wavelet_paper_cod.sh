@@ -139,11 +139,12 @@ echo "starting seasonality index analysis for $country, years $start - $end";
 
 # runs ols model as per revisions
 #Rscript ~/git/mortality/USA/state/prog/seasonality_index/seasonality_index_cod_ols.R $start $end $start $end $dname $metric $cod
+Rscript ~/git/mortality/USA/state/prog/seasonality_index/seasonality_index_cod_cosinor.R $start $end $start $end $dname $metric $cod
 
 
 done;
 
 # (figure 4, appendix figure 3, alternative figure 4, alternative appendix figure 3, figure comparing original and ols)
-Rscript ~/git/mortality/USA/state/prog/seasonality_index/seasonality_index_cod_plot_all.R $start $end $start $end $dname $metric
+#Rscript ~/git/mortality/USA/state/prog/seasonality_index/seasonality_index_cod_plot_all.R $start $end $start $end $dname $metric
 #Rscript ~/git/mortality/USA/state/prog/seasonality_index/seasonality_index_cod_plot_all_ols.R $start $end $start $end $dname $metric
 #Rscript ~/git/mortality/USA/state/prog/seasonality_index/seasonality_index_cod_compare_plot.R $start $end $start $end $dname $metric
