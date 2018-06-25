@@ -731,6 +731,7 @@
       <w>A1inv</w>
       <w>ACF</w>
       <w>AES</w>
+      <w>AFL</w>
       <w>AIC</w>
       <w>AIC.nlrq</w>
       <w>AIC.rq</w>
@@ -918,7 +919,9 @@
       <w>CRSargs</w>
       <w>CST</w>
       <w>CV</w>
+      <w>CVD</w>
       <w>CVDH</w>
+      <w>CVDdaily</w>
       <w>CVHTF</w>
       <w>CVar</w>
       <w>CVd</w>
@@ -3450,6 +3453,7 @@
       <w>`~`</w>
       <w>a</w>
       <w>a_ply</w>
+      <w>aaft</w>
       <w>aaply</w>
       <w>aareg</w>
       <w>abIseq</w>
@@ -4605,6 +4609,7 @@
       <w>case</w>
       <w>case.names</w>
       <w>case_when</w>
+      <w>casecross</w>
       <w>casefold</w>
       <w>cat</w>
       <w>cat.FileListTree</w>
@@ -4773,7 +4778,9 @@
       <w>chunkToLineReader</w>
       <w>ci</w>
       <w>ci.binom</w>
+      <w>ciPhase</w>
       <w>ciapower</w>
+      <w>cipolygon</w>
       <w>circ.cor</w>
       <w>circ.disp</w>
       <w>circ.mean</w>
@@ -5229,6 +5236,10 @@
       <w>corresp</w>
       <w>cos</w>
       <w>cosh</w>
+      <w>cosinor</w>
+      <w>cosinor.lm</w>
+      <w>cosinor.lm.default</w>
+      <w>cosinor_analyzer</w>
       <w>cospi</w>
       <w>couldBeLonLat</w>
       <w>count</w>
@@ -5285,6 +5296,7 @@
       <w>create</w>
       <w>create.post</w>
       <w>create2GDAL</w>
+      <w>createAdj</w>
       <w>createFileAtomically</w>
       <w>createFileAtomically.default</w>
       <w>createLink</w>
@@ -6207,6 +6219,7 @@
       <w>excel_sheets</w>
       <w>exclude</w>
       <w>exclude.too.far</w>
+      <w>exercise</w>
       <w>exists</w>
       <w>existsFunction</w>
       <w>existsMethod</w>
@@ -6484,6 +6497,7 @@
       <w>fixedPanel</w>
       <w>fixedRow</w>
       <w>fixef</w>
+      <w>flagleap</w>
       <w>flatten</w>
       <w>flattenAssignment</w>
       <w>flattenPanel</w>
@@ -7355,6 +7369,7 @@
       <w>gglagplot</w>
       <w>ggmonthplot</w>
       <w>ggplot</w>
+      <w>ggplot.cosinor.lm</w>
       <w>ggplot.summaryP</w>
       <w>ggplot.transcan</w>
       <w>ggplot2</w>
@@ -7932,6 +7947,7 @@
       <w>index2char</w>
       <w>indexByRow</w>
       <w>indices</w>
+      <w>indoor</w>
       <w>infIndexPlot</w>
       <w>inferno</w>
       <w>infert</w>
@@ -8283,6 +8299,7 @@
       <w>invoke_map_dfr</w>
       <w>invoke_map_int</w>
       <w>invoke_map_lgl</w>
+      <w>invyrfraction</w>
       <w>iowagpa</w>
       <w>ip</w>
       <w>iqr</w>
@@ -8750,6 +8767,7 @@
       <w>k12hat</w>
       <w>k3.linear</w>
       <w>kable</w>
+      <w>kalfil</w>
       <w>kappa</w>
       <w>kappa.default</w>
       <w>kappa.lm</w>
@@ -9728,7 +9746,9 @@
       <w>month.name</w>
       <w>monthDays</w>
       <w>monthdays</w>
+      <w>monthglm</w>
       <w>monthlyRolling</w>
+      <w>monthmean</w>
       <w>monthplot</w>
       <w>months</w>
       <w>months.Date</w>
@@ -10074,6 +10094,7 @@
       <w>noNA</w>
       <w>nobs</w>
       <w>nobsY</w>
+      <w>nochars</w>
       <w>nodal</w>
       <w>node</w>
       <w>node_caar</w>
@@ -10093,6 +10114,7 @@
       <w>nomiss</w>
       <w>nomogram</w>
       <w>nonS3methods</w>
+      <w>nonlintest</w>
       <w>nonstwm</w>
       <w>nonzeroCoef</w>
       <w>noquote</w>
@@ -10136,6 +10158,8 @@
       <w>ns_env</w>
       <w>ns_env_name</w>
       <w>ns_imports_env</w>
+      <w>nscosinor</w>
+      <w>nscosinor.initial</w>
       <w>nsdiffs</w>
       <w>nsl</w>
       <w>nslookup</w>
@@ -10611,6 +10635,7 @@
       <w>percent</w>
       <w>percent_format</w>
       <w>percent_rank</w>
+      <w>peri</w>
       <w>perimeter</w>
       <w>period</w>
       <w>period_to_seconds</w>
@@ -10633,6 +10658,7 @@
       <w>pgamma</w>
       <w>pgeom</w>
       <w>phare</w>
+      <w>phasecalc</w>
       <w>pheft</w>
       <w>phenoModel</w>
       <w>phones</w>
@@ -10666,7 +10692,9 @@
       <w>plot</w>
       <w>plot.1d</w>
       <w>plot.Arima</w>
+      <w>plot.Cosinor</w>
       <w>plot.Gabriel</w>
+      <w>plot.Monthmean</w>
       <w>plot.PBmodcomp</w>
       <w>plot.Quantile2</w>
       <w>plot.ar</w>
@@ -10705,13 +10733,16 @@
       <w>plot.lrm.partial</w>
       <w>plot.lspec</w>
       <w>plot.mc.sim</w>
+      <w>plot.monthglm</w>
       <w>plot.mrelnet</w>
       <w>plot.mselm</w>
       <w>plot.mst</w>
       <w>plot.multnet</w>
       <w>plot.nb</w>
       <w>plot.new</w>
+      <w>plot.nonlintest</w>
       <w>plot.notablyDifferent</w>
+      <w>plot.nsCosinor</w>
       <w>plot.oldlogspline</w>
       <w>plot.parallelBenchmark</w>
       <w>plot.polyclass</w>
@@ -10752,11 +10783,14 @@
       <w>plot.xmean.ordinaly</w>
       <w>plot.xy</w>
       <w>plot.zoo</w>
+      <w>plotCircle</w>
+      <w>plotCircular</w>
       <w>plotCoef</w>
       <w>plotCorrPrecision</w>
       <w>plotHelper</w>
       <w>plotLines</w>
       <w>plotMap</w>
+      <w>plotMonth</w>
       <w>plotMultSim</w>
       <w>plotOHLC</w>
       <w>plotOutput</w>
@@ -11048,6 +11082,7 @@
       <w>print.CapturedEvaluation</w>
       <w>print.Class</w>
       <w>print.CmdArgsFunction</w>
+      <w>print.Cosinor</w>
       <w>print.DLLInfo</w>
       <w>print.DLLInfoList</w>
       <w>print.DLLRegisteredRoutines</w>
@@ -11064,6 +11099,7 @@
       <w>print.LMtestlist</w>
       <w>print.LocationSet</w>
       <w>print.ME_res</w>
+      <w>print.Monthmean</w>
       <w>print.NativeRoutineList</w>
       <w>print.NullVerbose</w>
       <w>print.Object</w>
@@ -11089,6 +11125,7 @@
       <w>print.by</w>
       <w>print.bystats</w>
       <w>print.bystats2</w>
+      <w>print.casecross</w>
       <w>print.char.list</w>
       <w>print.char.matrix</w>
       <w>print.condition</w>
@@ -11135,11 +11172,14 @@
       <w>print.lspec</w>
       <w>print.mChoice</w>
       <w>print.mhgr</w>
+      <w>print.monthglm</w>
       <w>print.moranex</w>
       <w>print.moransad</w>
       <w>print.nb</w>
       <w>print.nlrq</w>
+      <w>print.nonlintest</w>
       <w>print.noquote</w>
+      <w>print.nsCosinor</w>
       <w>print.numeric_version</w>
       <w>print.octmode</w>
       <w>print.oldlogspline</w>
@@ -11173,6 +11213,7 @@
       <w>print.srcref</w>
       <w>print.stsls</w>
       <w>print.substi</w>
+      <w>print.summary.Cosinor</w>
       <w>print.summary.PBS</w>
       <w>print.summary.areg.boot</w>
       <w>print.summary.crq</w>
@@ -11187,8 +11228,10 @@
       <w>print.summary.inla.mesh</w>
       <w>print.summary.localmoransad</w>
       <w>print.summary.mChoice</w>
+      <w>print.summary.monthglm</w>
       <w>print.summary.moransad</w>
       <w>print.summary.nlrq</w>
+      <w>print.summary.nsCosinor</w>
       <w>print.summary.rq</w>
       <w>print.summary.rqs</w>
       <w>print.summary.rqss</w>
@@ -12016,6 +12059,7 @@
       <w>right</w>
       <w>right_join</w>
       <w>rinvchisq</w>
+      <w>rinvgamma</w>
       <w>ripemd160</w>
       <w>rivers</w>
       <w>rlang</w>
@@ -12429,6 +12473,7 @@
       <w>scatterplotMatrix</w>
       <w>schmidt</w>
       <w>schools</w>
+      <w>schz</w>
       <w>scientific</w>
       <w>scientific_format</w>
       <w>scoped_bindings</w>
@@ -12455,10 +12500,12 @@
       <w>search_path</w>
       <w>searchpaths</w>
       <w>seasadj</w>
+      <w>season</w>
       <w>seasonal</w>
       <w>seasonaldummy</w>
       <w>seasonaldummyf</w>
       <w>seasonplot</w>
+      <w>seasrescheck</w>
       <w>sec_axis</w>
       <w>secal</w>
       <w>second</w>
@@ -12817,6 +12864,7 @@
       <w>simulate.fracdiff</w>
       <w>simulate.lme</w>
       <w>simulate.nnetar</w>
+      <w>simulate_cosinor</w>
       <w>sin</w>
       <w>sindexf</w>
       <w>singer</w>
@@ -12828,6 +12876,7 @@
       <w>sink</w>
       <w>sink.number</w>
       <w>sinpi</w>
+      <w>sinusoid</w>
       <w>sir</w>
       <w>sizeDiss</w>
       <w>sizeof</w>
@@ -13229,6 +13278,7 @@
       <w>sterling</w>
       <w>stext</w>
       <w>stext.default</w>
+      <w>stillbirth</w>
       <w>stitch</w>
       <w>stitch_rhtml</w>
       <w>stitch_rmd</w>
@@ -13606,6 +13656,7 @@
       <w>summarize_each_</w>
       <w>summarize_if</w>
       <w>summary</w>
+      <w>summary.Cosinor</w>
       <w>summary.Date</w>
       <w>summary.EventData</w>
       <w>summary.KRmodcomp</w>
@@ -13621,6 +13672,7 @@
       <w>summary.areg.boot</w>
       <w>summary.bayes</w>
       <w>summary.bestglm</w>
+      <w>summary.casecross</w>
       <w>summary.connection</w>
       <w>summary.crq</w>
       <w>summary.crqs</w>
@@ -13646,10 +13698,12 @@
       <w>summary.mChoice</w>
       <w>summary.manova</w>
       <w>summary.matrix</w>
+      <w>summary.monthglm</w>
       <w>summary.moransad</w>
       <w>summary.mslm</w>
       <w>summary.nb</w>
       <w>summary.nlrq</w>
+      <w>summary.nsCosinor</w>
       <w>summary.oldlogspline</w>
       <w>summary.polyclass</w>
       <w>summary.polymars</w>
@@ -13878,6 +13932,7 @@
       <w>testPlatformEquivalence</w>
       <w>testTransform</w>
       <w>testVirtual</w>
+      <w>test_cosinor</w>
       <w>testhare</w>
       <w>tex</w>
       <w>texi2dvi</w>
@@ -13921,6 +13976,7 @@
       <w>thin</w>
       <w>thinPolys</w>
       <w>thinnedSpatialPoly</w>
+      <w>third</w>
       <w>throttle</w>
       <w>throw</w>
       <w>throw.Exception</w>
@@ -14512,6 +14568,7 @@
       <w>updateTextAreaInput</w>
       <w>updateTextInput</w>
       <w>updateWts</w>
+      <w>update_covnames</w>
       <w>update_geom_defaults</w>
       <w>update_labels</w>
       <w>update_list</w>
@@ -14702,6 +14759,7 @@
       <w>viridis.map</w>
       <w>viridis_pal</w>
       <w>vis.gam</w>
+      <w>vitamind</w>
       <w>vline_0</w>
       <w>vline_at</w>
       <w>vm.bootstrap.ci</w>
@@ -14989,6 +15047,7 @@
       <w>wtd.rank</w>
       <w>wtd.table</w>
       <w>wtd.var</w>
+      <w>wtest</w>
       <w>wtloss</w>
       <w>x11</w>
       <w>xDetails</w>
@@ -15115,6 +15174,7 @@
       <w>ynbind</w>
       <w>yq</w>
       <w>yres</w>
+      <w>yrfraction</w>
       <w>yscale.components.default</w>
       <w>yscale.components.fractions</w>
       <w>yscale.components.log</w>

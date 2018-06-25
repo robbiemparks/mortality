@@ -448,15 +448,32 @@ axis.line.x = element_line(colour = "black"), axis.line.y = element_line(colour 
 rect = element_blank(),legend.background = element_rect(fill = "grey95"))
 dev.off()
 
+# fix region names
+lin.reg.grad.region$climate_region <- gsub('_',' ', lin.reg.grad.region$climate_region)
+
+# fix sex names
+lin.reg.grad.region$sex.long <- mapvalues(lin.reg.grad.region$sex,from=sort(unique(lin.reg.grad.region$sex)),to=c('Male','Female'))
+lin.reg.grad.region$sex.long <- reorder(lin.reg.grad.region$sex.long,lin.reg.grad.region$sex)
+lin.reg.grad.weight$sex.long <- mapvalues(lin.reg.grad.weight$sex,from=sort(unique(lin.reg.grad.weight$sex)),to=c('Male','Female'))
+lin.reg.grad.weight$sex.long <- reorder(lin.reg.grad.weight$sex.long,lin.reg.grad.weight$sex)
+
 # plot to compare national and regional values
 pdf(paste0(file.loc.regional,'seasonality_index_regional_against_national_index_',cod,'_',year.start,'_',year.end,'.pdf'),height=0,width=0,paper='a4r')
 ggplot() +
-    ggtitle(cod) +
-    ylab('Change per year') + xlab('Age') +
-    geom_point(data=lin.reg.grad.region,aes(x=age,y=Estimate,col=climate_region),size=1) +
-    geom_line(data=lin.reg.grad.region,aes(x=age,y=Estimate,col=climate_region),alpha=0.2) +
-    geom_point(data=subset(lin.reg.grad.weight,sig.test.5==1),aes(x=age,y=100*Estimate),size=3,color='hot pink') +
-    geom_point(data=lin.reg.grad.weight,aes(x=age,y=100*Estimate),size=2) +
-    geom_hline(yintercept=0) +
-    facet_wrap(~sex)
+    ggtitle(cod.print) +
+    ylab('Percentage point change per year') + xlab('Age') +
+    geom_point(data=lin.reg.grad.region,aes(x=as.factor(age),y=Estimate,col=climate_region),size=1) +
+    # geom_line(data=lin.reg.grad.region,aes(x=age,y=Estimate,col=climate_region),alpha=0.2) +
+    geom_point(data=subset(lin.reg.grad.weight,sig.test.5==1),aes(x=as.factor(age),y=100*Estimate),size=4,color='hot pink') +
+    geom_point(data=lin.reg.grad.weight,aes(x=as.factor(age),y=100*Estimate),size=2) +
+    scale_x_discrete(labels=age.print) +
+    scale_colour_manual(values=map.climate.colour,guide = guide_legend(title = 'Region')) +
+    geom_hline(yintercept=0,lty=2) +
+    facet_wrap(~sex.long) +
+    theme_bw() + theme(panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
+    plot.title = element_text(hjust = 0.5),panel.background = element_blank(),
+    panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
+    panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+    legend.position = 'bottom',legend.justification='center',
+    legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
 dev.off()
