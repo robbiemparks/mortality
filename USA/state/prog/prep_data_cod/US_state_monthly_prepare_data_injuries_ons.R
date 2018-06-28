@@ -55,7 +55,7 @@ yearsummary_cod  <- function(x=2000) {
         dat.merged = subset(dat.merged,cause.group=='External')
         dat.merged$cause.group = NULL
 
-		# merge cod in ICD 9 coding PROBLEM?
+		# merge cod in ICD 9 coding
 		icd9.lookup$cause = as.numeric(icd9.lookup$cause)
 		dat.merged = merge(dat.merged,icd9.lookup,by='cause',all.x=1)
         dat.merged$cause.group = as.character(dat.merged$cause.group)
