@@ -53,4 +53,4 @@ Rscript ~/git/mortality/USA/state/prog/prep_data_cod/US_state_monthly_prepare_da
 
 echo "preparing monthly death rates in eLife-requested causes of death for years $start - $end";
 
-Rscript ~/git/mortality/USA/state/prog/prep_data_cod/US_state_monthly_prepare_data_subcauses_elife.R $start $end
+#Rscript ~/git/mortality/USA/state/prog/prep_data_cod/US_state_monthly_prepare_data_subcauses_elife.R $start $end

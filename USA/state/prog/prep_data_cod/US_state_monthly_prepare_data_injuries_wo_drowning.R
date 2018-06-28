@@ -64,6 +64,7 @@ yearsummary_cod  <- function(x=2000) {
 		# remove drowning deaths from unintentional
 		dat.merged$cause.group = ifelse(dat.merged$cause.numeric>=9100&dat.merged$cause.numeric<=9109, 'Accidental drowning and submersion',dat.merged$cause.group)
 
+		dat.merged$cause.numeric = NULL
 	}
 	if(x>=start_year){
         # merge cod in ICD 10 coding for broad letter coding
@@ -88,9 +89,13 @@ yearsummary_cod  <- function(x=2000) {
         dat.merged$cause.group = as.character(dat.merged$cause.group)
         dat.merged$cause.group = ifelse(is.na(dat.merged$cause.group)==TRUE,'Other',dat.merged$cause.group)
 
+        # numerical cause for filtering
+        dat.merged$cause.numeric = as.numeric(as.character(substr(dat.merged$cause,2,4)))
+
 		# remove drowning deaths from unintentional
 		dat.merged$cause.group = ifelse(dat.merged$letter=='W'&dat.merged$cause.numeric>=650&dat.merged$cause.numeric<=749,'Accidental drowning and submersion',dat.merged$cause.group)
 
+		dat.merged$cause.numeric = NULL
 	}
 
 	# add agegroup groupings
@@ -132,7 +137,7 @@ yearsummary_cod  <- function(x=2000) {
 	# print statistics of sub-causes
 	print(ddply(dat.summarised.complete,.(cause),summarise,deaths=sum(deaths)))
 
-	print(paste0('total deaths in year ',sum(dat$deaths),', total deaths for injuries ',sum(dat.merged$deaths),' ',sum(dat.summarised.complete$deaths)))
+	print(paste0('total deaths in year ',sum(dat$deaths),', total injury deaths with drowning ',sum(dat.merged$deaths),' total injury deaths wo drowning ',sum(dat.summarised.complete$deaths)))
 
   	return(dat.summarised.complete)
 }
