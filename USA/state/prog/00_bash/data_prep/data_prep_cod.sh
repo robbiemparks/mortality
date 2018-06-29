@@ -44,7 +44,7 @@ echo "preparing monthly death rates in injury sub-causes of deaths for years $st
 
 echo "preparing monthly death rates in injury sub-causes of deaths for years $start - $end";
 
-Rscript ~/git/mortality/USA/state/prog/prep_data_cod/US_state_monthly_prepare_data_injuries_wo_drowning.R $start $end
+#Rscript ~/git/mortality/USA/state/prog/prep_data_cod/US_state_monthly_prepare_data_injuries_wo_drowning.R $start $end
 
 
 #################################################
