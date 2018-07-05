@@ -145,7 +145,7 @@ cod.print = ifelse(cause=='AllCause', 'All cause',
         ifelse(cause=='Transport accidents','Transport accidents',
         ifelse(cause=='Intentional self-harm','Intentional self-harm',
         ifelse(cause=='Accidental falls','Accidental falls',
-        ifelse(cause=='Accidental drowning and submersion','Accidental drowning and submersion',
+        ifelse(cause=='Accidental drowning and submersion','Drowning',
         ifelse(cause=='Assault','Assault','NA'
         )))))))))))))
 
@@ -168,34 +168,6 @@ if(model=='1d'){
     dat.csv$odds.ul = round(100*(dat.csv$odds.ul),3)
     names(dat.csv) = c('age','sex','month','mean','2.5%','97.5%')
     #write.csv(dat.csv,paste0('../../data/climate_effects/',dname,'/',metric,'/non_pw/type_',model,'/parameters/',country,'_rate_pred_type',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_fast.csv'))
-
-    # PARAMETER
-    # function to plot
-    plot.function <- function(sex.sel){
-    print(ggplot(data=subset(dat,sex==sex.sel)) +
-    geom_line(aes(x=ID,y=odds.mean)) +
-    geom_ribbon(aes(x=ID,ymax=odds.ul,ymin=odds.ll),alpha=0.1,fill='red') +
-    geom_hline(yintercept=0,alpha=0.5,linetype=2) +
-    scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
-    xlab('Month') +
-    ylab(paste0('Excess risk for 1 additional ',unit.name)) +
-    scale_y_continuous(labels=percent) +
-    coord_cartesian(ylim = c(-0.02,0.02)) +
-    #ggtitle(paste0(sex.lookup2[sex.sel],' national excess risk per ',unit.name,' by month ',metric,' ',dname)) +
-    guides(col = guide_legend(ncol = 10, byrow=TRUE)) +
-    facet_wrap(~age.long) +
-    theme(legend.position="bottom"))
-    }
-
-    # national month intercept male
-    #pdf(paste0(file.loc,'climate_month_params_male_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
-    #plot.function(1)
-    #dev.off()
-
-    #  national month intercept female
-    #pdf(paste0(file.loc,'climate_month_params_female_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
-    #plot.function(2)
-    #dev.off()
 
     # FOREST PLOTS OF PARAMETERS
     forest.plot.national.age <- function() {
@@ -288,9 +260,48 @@ if(model=='1d'){
         )
     }
 
-    # national month intercept
+    # plot heatmap
     pdf(paste0(file.loc,'climate_month_params_heatmap_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
     heatmap.national.age()
+    dev.off()
+
+    # HEATMAPS OF PARAMETERS ALTERNATIVE
+    heatmap.national.age.alt <- function() {
+
+        dat$sex.long <- mapvalues(dat$sex,from=sort(unique(dat$sex)),to=c('Male','Female'))
+        dat$sex.long <- with(dat,reorder(dat$sex.long,sex))
+
+        lims <- range(abs(dat$odds.mean))
+
+        # ADD SIGNIFICANCE HIGHLIGHTS
+        print(ggplot() +
+        geom_rect(data=subset(dat,mean>0),aes(xmin=ID-0.5*odds.prob,xmax=ID+0.5*odds.prob,ymin=age-2.5*odds.prob,ymax=age+2.5*odds.prob,fill=odds.mean))+
+        geom_rect(data=subset(dat,mean<0),aes(xmin=ID-0.5*(1-odds.prob),xmax=ID+0.5*(1-odds.prob),ymin=age-2.5*(1-odds.prob),ymax=age+2.5*(1-odds.prob),fill=odds.mean))+
+        scale_fill_gradientn(colours=colorway,
+        breaks=c(-0.025, -0.02, -0.015, -0.01, -0.005, 0, 0.005, 0.01, 0.015, 0.02, 0.025),
+        na.value = "grey98",limits = c(-0.027, 0.027),
+        #breaks=c(-0.08, -0.06, -0.04, -0.02, 0, 0.02, 0.04, 0.06, 0.08),
+        #na.value = "grey98",limits = c(-0.1, 0.1),
+        labels=percent,guide = guide_legend(nrow = 1,title = paste0("Excess risk for 1 additional ",unit.name," above long-term average"))) +
+        guides(fill = guide_colorbar(barwidth = 30, barheight = 1,title = paste0("Excess risk for 1 additional ",unit.name," above long-term average"))) +
+        scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
+        scale_y_discrete(labels=age.print) +
+        ggtitle(cod.print) +
+        scale_size(guide = 'none') +
+        facet_wrap(~sex.long) +
+        xlab("Month") + ylab('Age') +
+        theme_bw() + theme(panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
+        plot.title = element_text(hjust = 0.5),panel.background = element_blank(),
+        panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
+        panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+        legend.position = 'bottom',legend.justification='center',
+        legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
+        )
+    }
+
+    # national month intercept
+    pdf(paste0(file.loc,'climate_month_params_heatmap_alt_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
+    heatmap.national.age.alt()
     dev.off()
 
 
