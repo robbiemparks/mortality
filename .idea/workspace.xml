@@ -2,291 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="21b4bedd-3c09-4223-a30e-537ba1f7f93e" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_1989/t2m/meanc3/non_pw/type_1d/parameters/additional_deaths_heatmap_nat_1d_1980_1989_t2m_meanc3_Accidental drowning and submersion.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_1989/t2m/meanc3/non_pw/type_1d/parameters/additional_deaths_heatmap_nat_1d_1980_1989_t2m_meanc3_Accidental falls.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_1989/t2m/meanc3/non_pw/type_1d/parameters/additional_deaths_heatmap_nat_1d_1980_1989_t2m_meanc3_Intentional self-harm.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_1989/t2m/meanc3/non_pw/type_1d/parameters/additional_deaths_heatmap_nat_1d_1980_1989_t2m_meanc3_Transport accidents.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_1989/t2m/meanc3/non_pw/type_1d/parameters/climate_month_params_heatmap_1d_1980_1989_t2m_meanc3_Accidental drowning and submersion.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_1989/t2m/meanc3/non_pw/type_1d/parameters/climate_month_params_heatmap_1d_1980_1989_t2m_meanc3_Accidental falls.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_1989/t2m/meanc3/non_pw/type_1d/parameters/climate_month_params_heatmap_1d_1980_1989_t2m_meanc3_Cancer.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_1989/t2m/meanc3/non_pw/type_1d/parameters/climate_month_params_heatmap_1d_1980_1989_t2m_meanc3_Cardiopulmonary.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_1989/t2m/meanc3/non_pw/type_1d/parameters/climate_month_params_heatmap_1d_1980_1989_t2m_meanc3_External.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_1989/t2m/meanc3/non_pw/type_1d/parameters/climate_month_params_heatmap_1d_1980_1989_t2m_meanc3_Intentional self-harm.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_1989/t2m/meanc3/non_pw/type_1d/parameters/climate_month_params_heatmap_1d_1980_1989_t2m_meanc3_Transport accidents.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_1989/t2m/meanc3/non_pw/type_1d/parameters/climate_month_params_heatmap_scenarios_bothsexes_1d_1980_1989_t2m_meanc3_Cancer.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_1989/t2m/meanc3/non_pw/type_1d/parameters/climate_month_params_heatmap_scenarios_bothsexes_1d_1980_1989_t2m_meanc3_Cardiopulmonary.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_1989/t2m/meanc3/non_pw/type_1d/parameters/climate_month_params_heatmap_scenarios_bothsexes_1d_1980_1989_t2m_meanc3_External.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_1989/t2m/meanc3/non_pw/type_1d/parameters/climate_month_params_heatmap_scenarios_female_1d_1980_1989_t2m_meanc3_Cancer.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_1989/t2m/meanc3/non_pw/type_1d/parameters/climate_month_params_heatmap_scenarios_female_1d_1980_1989_t2m_meanc3_Cardiopulmonary.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_1989/t2m/meanc3/non_pw/type_1d/parameters/climate_month_params_heatmap_scenarios_female_1d_1980_1989_t2m_meanc3_External.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_1989/t2m/meanc3/non_pw/type_1d/parameters/climate_month_params_heatmap_scenarios_male_1d_1980_1989_t2m_meanc3_Cancer.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_1989/t2m/meanc3/non_pw/type_1d/parameters/climate_month_params_heatmap_scenarios_male_1d_1980_1989_t2m_meanc3_Cardiopulmonary.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_1989/t2m/meanc3/non_pw/type_1d/parameters/climate_month_params_heatmap_scenarios_male_1d_1980_1989_t2m_meanc3_External.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_1989/t2m/meanc3/non_pw/type_1d/parameters/climate_month_posterior_heatmap_decrease_1d_1980_1989_t2m_meanc3_Cancer.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_1989/t2m/meanc3/non_pw/type_1d/parameters/climate_month_posterior_heatmap_decrease_1d_1980_1989_t2m_meanc3_Cardiopulmonary.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_1989/t2m/meanc3/non_pw/type_1d/parameters/climate_month_posterior_heatmap_decrease_1d_1980_1989_t2m_meanc3_External.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_1989/t2m/meanc3/non_pw/type_1d/parameters/climate_month_posterior_heatmap_increase_1d_1980_1989_t2m_meanc3.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_1989/t2m/meanc3/non_pw/type_1d/parameters/lost_lifetime_earnings_life_heatmap_nat_1d_1980_1989_t2m_meanc3_Accidental drowning and submersion.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_1989/t2m/meanc3/non_pw/type_1d/parameters/lost_lifetime_earnings_life_heatmap_nat_1d_1980_1989_t2m_meanc3_Accidental falls.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_1989/t2m/meanc3/non_pw/type_1d/parameters/lost_lifetime_earnings_life_heatmap_nat_1d_1980_1989_t2m_meanc3_Intentional self-harm.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_1989/t2m/meanc3/non_pw/type_1d/parameters/lost_lifetime_earnings_life_heatmap_nat_1d_1980_1989_t2m_meanc3_Transport accidents.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_1989/t2m/meanc3/non_pw/type_1d/parameters/lost_lifetime_earnings_life_sig_heatmap_nat_1d_1980_1989_t2m_meanc3_Accidental drowning and submersion.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_1989/t2m/meanc3/non_pw/type_1d/parameters/lost_lifetime_earnings_life_sig_heatmap_nat_1d_1980_1989_t2m_meanc3_Accidental falls.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_1989/t2m/meanc3/non_pw/type_1d/parameters/lost_lifetime_earnings_life_sig_heatmap_nat_1d_1980_1989_t2m_meanc3_Intentional self-harm.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_1989/t2m/meanc3/non_pw/type_1d/parameters/lost_lifetime_earnings_life_sig_heatmap_nat_1d_1980_1989_t2m_meanc3_Transport accidents.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_1989/t2m/meanc3/non_pw/type_1d/parameters/value_state_life_heatmap_nat_1d_1980_1989_t2m_meanc3_Accidental drowning and submersion.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_1989/t2m/meanc3/non_pw/type_1d/parameters/value_state_life_heatmap_nat_1d_1980_1989_t2m_meanc3_Accidental falls.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_1989/t2m/meanc3/non_pw/type_1d/parameters/value_state_life_heatmap_nat_1d_1980_1989_t2m_meanc3_Intentional self-harm.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_1989/t2m/meanc3/non_pw/type_1d/parameters/value_state_life_heatmap_nat_1d_1980_1989_t2m_meanc3_Transport accidents.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_1989/t2m/meanc3/non_pw/type_1d/parameters/value_state_life_sig_heatmap_nat_1d_1980_1989_t2m_meanc3_Accidental drowning and submersion.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_1989/t2m/meanc3/non_pw/type_1d/parameters/value_state_life_sig_heatmap_nat_1d_1980_1989_t2m_meanc3_Accidental falls.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_1989/t2m/meanc3/non_pw/type_1d/parameters/value_state_life_sig_heatmap_nat_1d_1980_1989_t2m_meanc3_Intentional self-harm.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_1989/t2m/meanc3/non_pw/type_1d/parameters/value_state_life_sig_heatmap_nat_1d_1980_1989_t2m_meanc3_Transport accidents.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_1989/t2m/meanc3/non_pw/type_1d/parameters/yll_nat_heatmap_1d_1980_1989_t2m_meanc3_Accidental drowning and submersion.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_1989/t2m/meanc3/non_pw/type_1d/parameters/yll_nat_heatmap_1d_1980_1989_t2m_meanc3_Accidental falls.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_1989/t2m/meanc3/non_pw/type_1d/parameters/yll_nat_heatmap_1d_1980_1989_t2m_meanc3_Intentional self-harm.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_1989/t2m/meanc3/non_pw/type_1d/parameters/yll_nat_heatmap_1d_1980_1989_t2m_meanc3_Transport accidents.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_1998/t2m/meanc3/non_pw/type_1d/parameters/additional_deaths_heatmap_nat_1d_1980_1998_t2m_meanc3_Intentional.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_1998/t2m/meanc3/non_pw/type_1d/parameters/additional_deaths_heatmap_nat_1d_1980_1998_t2m_meanc3_Unintentional.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_1998/t2m/meanc3/non_pw/type_1d/parameters/climate_month_params_heatmap_1d_1980_1998_t2m_meanc3_Intentional.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_1998/t2m/meanc3/non_pw/type_1d/parameters/climate_month_params_heatmap_1d_1980_1998_t2m_meanc3_Unintentional.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_1998/t2m/meanc3/non_pw/type_1d/parameters/lost_lifetime_earnings_life_heatmap_nat_1d_1980_1998_t2m_meanc3_Intentional.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_1998/t2m/meanc3/non_pw/type_1d/parameters/lost_lifetime_earnings_life_heatmap_nat_1d_1980_1998_t2m_meanc3_Unintentional.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_1998/t2m/meanc3/non_pw/type_1d/parameters/lost_lifetime_earnings_life_sig_heatmap_nat_1d_1980_1998_t2m_meanc3_Intentional.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_1998/t2m/meanc3/non_pw/type_1d/parameters/lost_lifetime_earnings_life_sig_heatmap_nat_1d_1980_1998_t2m_meanc3_Unintentional.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_1998/t2m/meanc3/non_pw/type_1d/parameters/value_state_life_heatmap_nat_1d_1980_1998_t2m_meanc3_Intentional.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_1998/t2m/meanc3/non_pw/type_1d/parameters/value_state_life_heatmap_nat_1d_1980_1998_t2m_meanc3_Unintentional.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_1998/t2m/meanc3/non_pw/type_1d/parameters/value_state_life_sig_heatmap_nat_1d_1980_1998_t2m_meanc3_Intentional.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_1998/t2m/meanc3/non_pw/type_1d/parameters/value_state_life_sig_heatmap_nat_1d_1980_1998_t2m_meanc3_Unintentional.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_1998/t2m/meanc3/non_pw/type_1d/parameters/yll_nat_heatmap_1d_1980_1998_t2m_meanc3_Intentional.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_1998/t2m/meanc3/non_pw/type_1d/parameters/yll_nat_heatmap_1d_1980_1998_t2m_meanc3_Unintentional.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/additional_deaths_heatmap_nat_1d_1980_2013_t2m_meanc3_AllCause.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/additional_deaths_heatmap_nat_1d_1980_2013_t2m_meanc3_Cancer.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/additional_deaths_heatmap_nat_1d_1980_2013_t2m_meanc3_Cardiopulmonary.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/additional_deaths_heatmap_nat_1d_1980_2013_t2m_meanc3_External.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/additional_deaths_heatmap_nat_1d_1980_2013_t2m_meanc3_Other.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/climate_month_params_heatmap_1d_1980_2013_t2m_meanc3_AllCause.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/climate_month_params_heatmap_1d_1980_2013_t2m_meanc3_Cancer.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/climate_month_params_heatmap_1d_1980_2013_t2m_meanc3_Cardiopulmonary.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/climate_month_params_heatmap_1d_1980_2013_t2m_meanc3_External.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/climate_month_params_heatmap_1d_1980_2013_t2m_meanc3_Other.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/climate_month_params_heatmap_scenarios_bothsexes_1d_1980_2013_t2m_meanc3.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/climate_month_params_heatmap_scenarios_female_1d_1980_2013_t2m_meanc3.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/climate_month_params_heatmap_scenarios_male_1d_1980_2013_t2m_meanc3.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/contig/additional_deaths_heatmap_nat_1d_1980_2013_t2m_meanc3_AllCause.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/contig/additional_deaths_heatmap_nat_1d_1980_2013_t2m_meanc3_Cancer.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/contig/additional_deaths_heatmap_nat_1d_1980_2013_t2m_meanc3_Cardiopulmonary.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/contig/additional_deaths_heatmap_nat_1d_1980_2013_t2m_meanc3_External.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/contig/climate_month_params_heatmap_1d_1980_2013_t2m_meanc3_Accidental drowning and submersion.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/contig/climate_month_params_heatmap_1d_1980_2013_t2m_meanc3_Accidental falls.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/contig/climate_month_params_heatmap_1d_1980_2013_t2m_meanc3_AllCause.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/contig/climate_month_params_heatmap_1d_1980_2013_t2m_meanc3_Assault.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/contig/climate_month_params_heatmap_1d_1980_2013_t2m_meanc3_Cancer.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/contig/climate_month_params_heatmap_1d_1980_2013_t2m_meanc3_Cardiopulmonary.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/contig/climate_month_params_heatmap_1d_1980_2013_t2m_meanc3_External.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/contig/climate_month_params_heatmap_1d_1980_2013_t2m_meanc3_Intentional.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/contig/climate_month_params_heatmap_1d_1980_2013_t2m_meanc3_Transport accidents.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/contig/climate_month_params_heatmap_1d_1980_2013_t2m_meanc3_Unintentional.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/contig/lost_lifetime_earnings_life_heatmap_nat_1d_1980_2013_t2m_meanc3_AllCause.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/contig/lost_lifetime_earnings_life_heatmap_nat_1d_1980_2013_t2m_meanc3_Cancer.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/contig/lost_lifetime_earnings_life_heatmap_nat_1d_1980_2013_t2m_meanc3_Cardiopulmonary.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/contig/lost_lifetime_earnings_life_heatmap_nat_1d_1980_2013_t2m_meanc3_External.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/contig/lost_lifetime_earnings_life_sig_heatmap_nat_1d_1980_2013_t2m_meanc3_AllCause.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/contig/lost_lifetime_earnings_life_sig_heatmap_nat_1d_1980_2013_t2m_meanc3_Cancer.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/contig/lost_lifetime_earnings_life_sig_heatmap_nat_1d_1980_2013_t2m_meanc3_Cardiopulmonary.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/contig/lost_lifetime_earnings_life_sig_heatmap_nat_1d_1980_2013_t2m_meanc3_External.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/contig/value_state_life_heatmap_nat_1d_1980_2013_t2m_meanc3_AllCause.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/contig/value_state_life_heatmap_nat_1d_1980_2013_t2m_meanc3_Cancer.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/contig/value_state_life_heatmap_nat_1d_1980_2013_t2m_meanc3_Cardiopulmonary.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/contig/value_state_life_heatmap_nat_1d_1980_2013_t2m_meanc3_External.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/contig/value_state_life_sig_heatmap_nat_1d_1980_2013_t2m_meanc3_AllCause.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/contig/value_state_life_sig_heatmap_nat_1d_1980_2013_t2m_meanc3_Cancer.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/contig/value_state_life_sig_heatmap_nat_1d_1980_2013_t2m_meanc3_Cardiopulmonary.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/contig/value_state_life_sig_heatmap_nat_1d_1980_2013_t2m_meanc3_External.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/contig/yll_nat_heatmap_1d_1980_2013_t2m_meanc3_AllCause.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/contig/yll_nat_heatmap_1d_1980_2013_t2m_meanc3_Cancer.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/contig/yll_nat_heatmap_1d_1980_2013_t2m_meanc3_External.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/contig/yll_nat_sig_heatmap_1d_1980_2013_t2m_meanc3_AllCause.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/contig/yll_nat_sig_heatmap_1d_1980_2013_t2m_meanc3_Cancer.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/contig/yll_nat_sig_heatmap_1d_1980_2013_t2m_meanc3_External.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/lost_lifetime_earnings_life_heatmap_nat_1d_1980_2013_t2m_meanc3_AllCause.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/lost_lifetime_earnings_life_heatmap_nat_1d_1980_2013_t2m_meanc3_Cancer.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/lost_lifetime_earnings_life_heatmap_nat_1d_1980_2013_t2m_meanc3_Cardiopulmonary.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/lost_lifetime_earnings_life_heatmap_nat_1d_1980_2013_t2m_meanc3_External.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/lost_lifetime_earnings_life_heatmap_nat_1d_1980_2013_t2m_meanc3_Other.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/lost_lifetime_earnings_life_sig_heatmap_nat_1d_1980_2013_t2m_meanc3_AllCause.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/lost_lifetime_earnings_life_sig_heatmap_nat_1d_1980_2013_t2m_meanc3_Cancer.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/lost_lifetime_earnings_life_sig_heatmap_nat_1d_1980_2013_t2m_meanc3_Cardiopulmonary.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/lost_lifetime_earnings_life_sig_heatmap_nat_1d_1980_2013_t2m_meanc3_External.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/lost_lifetime_earnings_life_sig_heatmap_nat_1d_1980_2013_t2m_meanc3_Other.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/value_state_life_heatmap_nat_1d_1980_2013_t2m_meanc3_AllCause.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/value_state_life_heatmap_nat_1d_1980_2013_t2m_meanc3_Cancer.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/value_state_life_heatmap_nat_1d_1980_2013_t2m_meanc3_Cardiopulmonary.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/value_state_life_heatmap_nat_1d_1980_2013_t2m_meanc3_External.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/value_state_life_heatmap_nat_1d_1980_2013_t2m_meanc3_Other.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/value_state_life_sig_heatmap_nat_1d_1980_2013_t2m_meanc3_AllCause.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/value_state_life_sig_heatmap_nat_1d_1980_2013_t2m_meanc3_Cancer.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/value_state_life_sig_heatmap_nat_1d_1980_2013_t2m_meanc3_Cardiopulmonary.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/value_state_life_sig_heatmap_nat_1d_1980_2013_t2m_meanc3_External.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/value_state_life_sig_heatmap_nat_1d_1980_2013_t2m_meanc3_Other.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/yll_nat_heatmap_1d_1980_2013_t2m_meanc3_AllCause.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/yll_nat_heatmap_1d_1980_2013_t2m_meanc3_Cancer.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/yll_nat_heatmap_1d_1980_2013_t2m_meanc3_Cardiopulmonary.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/yll_nat_heatmap_1d_1980_2013_t2m_meanc3_External.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/yll_nat_heatmap_1d_1980_2013_t2m_meanc3_Other.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/yll_nat_sig_heatmap_1d_1980_2013_t2m_meanc3_AllCause.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/yll_nat_sig_heatmap_1d_1980_2013_t2m_meanc3_Cancer.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/yll_nat_sig_heatmap_1d_1980_2013_t2m_meanc3_Cardiopulmonary.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/yll_nat_sig_heatmap_1d_1980_2013_t2m_meanc3_External.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/yll_nat_sig_heatmap_1d_1980_2013_t2m_meanc3_Other.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/climate_month_params_heatmap_1d_1980_2016_t2m_meanc3_External.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/climate_month_params_heatmap_1d_1980_2016_t2m_meanc3_Intentional.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/climate_month_params_heatmap_1d_1980_2016_t2m_meanc3_Unintentional wo drowning.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/climate_month_params_heatmap_1d_1980_2016_t2m_meanc3_Unintentional.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/mean/non_pw/type_1d/parameters/climate_month_params_male_1d_1982_1991_t2m_mean.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/mean/non_pw/type_1d/parameters/climate_month_posterior_male_1d_1982_1991_t2m_mean.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/mean/non_pw/type_1e/parameters/climate_month_params_map_male_1e_1982_1991_t2m_mean.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/mean/non_pw/type_1e/parameters/climate_month_posterior_map_male_1e_1982_1991_t2m_mean.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/meanc/non_pw/type_1d/parameters/additional_deaths_nat_1d_1982_1991_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/meanc/non_pw/type_1d/parameters/climate_month_params_female_1d_1982_1991_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/meanc/non_pw/type_1d/parameters/climate_month_params_male_1d_1982_1991_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/meanc/non_pw/type_1d/parameters/climate_month_posterior__decrease_male_1d_1982_1991_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/meanc/non_pw/type_1d/parameters/climate_month_posterior_decrease_female_1d_1982_1991_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/meanc/non_pw/type_1d/parameters/climate_month_posterior_female_1d_1982_1991_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/meanc/non_pw/type_1d/parameters/climate_month_posterior_male_1d_1982_1991_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/meanc/non_pw/type_1e/parameters/climate_age_deaths_map_female_1e_1982_1991_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/meanc/non_pw/type_1e/parameters/climate_age_deaths_map_male_1e_1982_1991_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/meanc/non_pw/type_1e/parameters/climate_age_params_map_female_1e_1982_1991_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/meanc/non_pw/type_1e/parameters/climate_age_params_map_male_1e_1982_1991_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/meanc/non_pw/type_1e/parameters/climate_age_posterior_map_female_1e_1982_1991_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/meanc/non_pw/type_1e/parameters/climate_age_posterior_map_female_decreased1e_1982_1991_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/meanc/non_pw/type_1e/parameters/climate_age_posterior_map_male_1e_1982_1991_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/meanc/non_pw/type_1e/parameters/climate_age_posterior_map_male_decreased_1e_1982_1991_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/meanc/non_pw/type_1e/parameters/climate_month_deaths_map_female_1e_1982_1991_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/meanc/non_pw/type_1e/parameters/climate_month_deaths_map_male_1e_1982_1991_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/meanc/non_pw/type_1e/parameters/climate_month_params_map_female_1e_1982_1991_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/meanc/non_pw/type_1e/parameters/climate_month_params_map_male_1e_1982_1991_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/meanc/non_pw/type_1e/parameters/climate_month_posterior_map_female_1e_1982_1991_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/meanc/non_pw/type_1e/parameters/climate_month_posterior_map_male_1e_1982_1991_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/meanc/non_pw/type_1f/parameters/climate_age_deaths_map_female_1f_1982_1991_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/meanc/non_pw/type_1f/parameters/climate_age_deaths_map_male_1f_1982_1991_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/meanc/non_pw/type_1f/parameters/climate_age_params_map_female_1f_1982_1991_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/meanc/non_pw/type_1f/parameters/climate_age_params_map_male_1f_1982_1991_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/meanc/non_pw/type_1f/parameters/climate_age_posterior_map_female_1f_1982_1991_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/meanc/non_pw/type_1f/parameters/climate_age_posterior_map_female_decreased1f_1982_1991_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/meanc/non_pw/type_1f/parameters/climate_age_posterior_map_male_1f_1982_1991_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/meanc/non_pw/type_1f/parameters/climate_age_posterior_map_male_decreased_1f_1982_1991_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/meanc/non_pw/type_1f/parameters/climate_month_deaths_map_female_1f_1982_1991_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/meanc/non_pw/type_1f/parameters/climate_month_deaths_map_male_1f_1982_1991_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/meanc/non_pw/type_1f/parameters/climate_month_params_map_female_1f_1982_1991_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/meanc/non_pw/type_1f/parameters/climate_month_params_map_male_1f_1982_1991_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/meanc/non_pw/type_1f/parameters/climate_month_posterior_map_female_1f_1982_1991_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/meanc/non_pw/type_1f/parameters/climate_month_posterior_map_male_1f_1982_1991_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/number_of_min_3_day_above_90_upwaves/non_pw/type_1d/parameters/climate_month_params_female_1d_1982_1991_t2m_number_of_min_3_day_above_90_upwaves.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/number_of_min_3_day_above_90_upwaves/non_pw/type_1d/parameters/climate_month_params_forest_age_1d_1982_1991_t2m_number_of_min_3_day_above_90_upwaves.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/number_of_min_3_day_above_90_upwaves/non_pw/type_1d/parameters/climate_month_params_forest_month_1d_1982_1991_t2m_number_of_min_3_day_above_90_upwaves.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/number_of_min_3_day_above_90_upwaves/non_pw/type_1d/parameters/climate_month_params_male_1d_1982_1991_t2m_number_of_min_3_day_above_90_upwaves.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/number_of_min_3_day_above_90_upwaves/non_pw/type_1d/parameters/climate_month_posterior__decrease_male_1d_1982_1991_t2m_number_of_min_3_day_above_90_upwaves.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/number_of_min_3_day_above_90_upwaves/non_pw/type_1d/parameters/climate_month_posterior_decrease_female_1d_1982_1991_t2m_number_of_min_3_day_above_90_upwaves.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/number_of_min_3_day_above_90_upwaves/non_pw/type_1d/parameters/climate_month_posterior_female_1d_1982_1991_t2m_number_of_min_3_day_above_90_upwaves.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/number_of_min_3_day_above_90_upwaves/non_pw/type_1d/parameters/climate_month_posterior_male_1d_1982_1991_t2m_number_of_min_3_day_above_90_upwaves.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/number_of_min_3_day_above_90_upwaves/non_pw/type_1dg/parameters/climate_age_params_forest_month_female_1dg_1982_1991_t2m_number_of_min_3_day_above_90_upwaves.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/number_of_min_3_day_above_90_upwaves/non_pw/type_1dg/parameters/climate_age_params_forest_month_male_1dg_1982_1991_t2m_number_of_min_3_day_above_90_upwaves.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/number_of_min_3_day_above_90_upwaves/non_pw/type_1dg/parameters/climate_month_params_forest_month_female_1dg_1982_1991_t2m_number_of_min_3_day_above_90_upwaves.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/number_of_min_3_day_above_90_upwaves/non_pw/type_1dg/parameters/climate_month_params_forest_month_male_1dg_1982_1991_t2m_number_of_min_3_day_above_90_upwaves.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/number_of_min_3_day_above_90_upwaves/non_pw/type_1dg/parameters/climate_month_params_forest_region_female_1dg_1982_1991_t2m_number_of_min_3_day_above_90_upwaves.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/number_of_min_3_day_above_90_upwaves/non_pw/type_1dg/parameters/climate_month_params_forest_region_male_1dg_1982_1991_t2m_number_of_min_3_day_above_90_upwaves.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/number_of_min_3_day_above_90_upwaves/non_pw/type_1g/parameters/climate_age_params_forest_month_female_1g_1982_1991_t2m_number_of_min_3_day_above_90_upwaves.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/number_of_min_3_day_above_90_upwaves/non_pw/type_1g/parameters/climate_age_params_forest_month_male_1g_1982_1991_t2m_number_of_min_3_day_above_90_upwaves.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/number_of_min_3_day_above_90_upwaves/non_pw/type_1g/parameters/climate_month_params_forest_age_1g_1982_1991_t2m_number_of_min_3_day_above_90_upwaves.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/number_of_min_3_day_above_90_upwaves/non_pw/type_1g/parameters/climate_month_params_forest_month_1g_1982_1991_t2m_number_of_min_3_day_above_90_upwaves.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/number_of_min_3_day_above_90_upwaves/non_pw/type_1g/parameters/climate_month_params_forest_month_female_1g_1982_1991_t2m_number_of_min_3_day_above_90_upwaves.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/number_of_min_3_day_above_90_upwaves/non_pw/type_1g/parameters/climate_month_params_forest_month_male_1g_1982_1991_t2m_number_of_min_3_day_above_90_upwaves.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/number_of_min_3_day_above_99_upwaves/non_pw/type_1d/parameters/additional_deaths_nat_1d_1982_1991_t2m_number_of_min_3_day_above_99_upwaves.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/number_of_min_3_day_above_99_upwaves/non_pw/type_1d/parameters/climate_month_params_female_1d_1982_1991_t2m_number_of_min_3_day_above_99_upwaves.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/number_of_min_3_day_above_99_upwaves/non_pw/type_1d/parameters/climate_month_params_forest_age_1d_1982_1991_t2m_number_of_min_3_day_above_99_upwaves.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/number_of_min_3_day_above_99_upwaves/non_pw/type_1d/parameters/climate_month_params_forest_month_1d_1982_1991_t2m_number_of_min_3_day_above_99_upwaves.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/number_of_min_3_day_above_99_upwaves/non_pw/type_1d/parameters/climate_month_params_male_1d_1982_1991_t2m_number_of_min_3_day_above_99_upwaves.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/number_of_min_3_day_above_99_upwaves/non_pw/type_1d/parameters/climate_month_posterior__decrease_male_1d_1982_1991_t2m_number_of_min_3_day_above_99_upwaves.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/number_of_min_3_day_above_99_upwaves/non_pw/type_1d/parameters/climate_month_posterior_decrease_female_1d_1982_1991_t2m_number_of_min_3_day_above_99_upwaves.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/number_of_min_3_day_above_99_upwaves/non_pw/type_1d/parameters/climate_month_posterior_female_1d_1982_1991_t2m_number_of_min_3_day_above_99_upwaves.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/number_of_min_3_day_above_99_upwaves/non_pw/type_1d/parameters/climate_month_posterior_male_1d_1982_1991_t2m_number_of_min_3_day_above_99_upwaves.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/sd/non_pw/type_1d/parameters/additional_deaths_nat_1d_1982_1991_t2m_sd.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/sd/non_pw/type_1d/parameters/climate_month_params_female_1d_1982_1991_t2m_sd.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/sd/non_pw/type_1d/parameters/climate_month_params_male_1d_1982_1991_t2m_sd.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/sd/non_pw/type_1d/parameters/climate_month_posterior__decrease_male_1d_1982_1991_t2m_sd.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/sd/non_pw/type_1d/parameters/climate_month_posterior_decrease_female_1d_1982_1991_t2m_sd.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/sd/non_pw/type_1d/parameters/climate_month_posterior_female_1d_1982_1991_t2m_sd.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/sd/non_pw/type_1d/parameters/climate_month_posterior_male_1d_1982_1991_t2m_sd.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/sd/non_pw/type_1e/parameters/climate_age_deaths_map_female_1e_1982_1991_t2m_sd.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/sd/non_pw/type_1e/parameters/climate_age_deaths_map_male_1e_1982_1991_t2m_sd.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/sd/non_pw/type_1e/parameters/climate_age_params_map_female_1e_1982_1991_t2m_sd.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/sd/non_pw/type_1e/parameters/climate_age_params_map_male_1e_1982_1991_t2m_sd.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/sd/non_pw/type_1e/parameters/climate_age_posterior_map_female_1e_1982_1991_t2m_sd.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/sd/non_pw/type_1e/parameters/climate_age_posterior_map_female_decreased1e_1982_1991_t2m_sd.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/sd/non_pw/type_1e/parameters/climate_age_posterior_map_male_1e_1982_1991_t2m_sd.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/sd/non_pw/type_1e/parameters/climate_age_posterior_map_male_decreased_1e_1982_1991_t2m_sd.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/sd/non_pw/type_1e/parameters/climate_month_deaths_map_female_1e_1982_1991_t2m_sd.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/sd/non_pw/type_1e/parameters/climate_month_deaths_map_male_1e_1982_1991_t2m_sd.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/sd/non_pw/type_1e/parameters/climate_month_params_map_female_1e_1982_1991_t2m_sd.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/sd/non_pw/type_1e/parameters/climate_month_params_map_male_1e_1982_1991_t2m_sd.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/sd/non_pw/type_1e/parameters/climate_month_posterior_map_female_1e_1982_1991_t2m_sd.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/sd/non_pw/type_1e/parameters/climate_month_posterior_map_male_1e_1982_1991_t2m_sd.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/sd/non_pw/type_1f/parameters/climate_age_deaths_map_female_1f_1982_1991_t2m_sd.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/sd/non_pw/type_1f/parameters/climate_age_deaths_map_male_1f_1982_1991_t2m_sd.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/sd/non_pw/type_1f/parameters/climate_age_params_map_female_1f_1982_1991_t2m_sd.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/sd/non_pw/type_1f/parameters/climate_age_params_map_male_1f_1982_1991_t2m_sd.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/sd/non_pw/type_1f/parameters/climate_age_posterior_map_female_1f_1982_1991_t2m_sd.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/sd/non_pw/type_1f/parameters/climate_age_posterior_map_female_decreased1f_1982_1991_t2m_sd.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/sd/non_pw/type_1f/parameters/climate_age_posterior_map_male_1f_1982_1991_t2m_sd.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/sd/non_pw/type_1f/parameters/climate_age_posterior_map_male_decreased_1f_1982_1991_t2m_sd.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/sd/non_pw/type_1f/parameters/climate_month_deaths_map_female_1f_1982_1991_t2m_sd.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/sd/non_pw/type_1f/parameters/climate_month_deaths_map_male_1f_1982_1991_t2m_sd.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/sd/non_pw/type_1f/parameters/climate_month_params_map_female_1f_1982_1991_t2m_sd.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/sd/non_pw/type_1f/parameters/climate_month_params_map_male_1f_1982_1991_t2m_sd.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/sd/non_pw/type_1f/parameters/climate_month_posterior_map_female_1f_1982_1991_t2m_sd.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_1991/t2m/sd/non_pw/type_1f/parameters/climate_month_posterior_map_male_1f_1982_1991_t2m_sd.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_2013/t2m/meanc/non_pw/type_1d/parameters/additional_deaths_nat_1d_1982_2013_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_2013/t2m/meanc/non_pw/type_1d/parameters/climate_month_params_female_1d_1982_2013_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_2013/t2m/meanc/non_pw/type_1d/parameters/climate_month_params_forest_age_1d_1982_2013_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_2013/t2m/meanc/non_pw/type_1d/parameters/climate_month_params_forest_month_1d_1982_2013_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_2013/t2m/meanc/non_pw/type_1d/parameters/climate_month_params_male_1d_1982_2013_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_2013/t2m/meanc/non_pw/type_1d/parameters/climate_month_posterior__decrease_male_1d_1982_2013_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_2013/t2m/meanc/non_pw/type_1d/parameters/climate_month_posterior_decrease_female_1d_1982_2013_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_2013/t2m/meanc/non_pw/type_1d/parameters/climate_month_posterior_female_1d_1982_2013_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_2013/t2m/meanc/non_pw/type_1d/parameters/climate_month_posterior_male_1d_1982_2013_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_2013/t2m/meanc/non_pw/type_1dg/parameters/climate_age_params_forest_month_female_1dg_1982_2013_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_2013/t2m/meanc/non_pw/type_1dg/parameters/climate_age_params_forest_month_male_1dg_1982_2013_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_2013/t2m/meanc/non_pw/type_1dg/parameters/climate_month_params_forest_month_female_1dg_1982_2013_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_2013/t2m/meanc/non_pw/type_1dg/parameters/climate_month_params_forest_month_male_1dg_1982_2013_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_2013/t2m/meanc/non_pw/type_1dg/parameters/climate_month_params_forest_region_female_1dg_1982_2013_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_2013/t2m/meanc/non_pw/type_1dg/parameters/climate_month_params_forest_region_male_1dg_1982_2013_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_2013/t2m/meanc/non_pw/type_1e/parameters/85plus.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_2013/t2m/meanc/non_pw/type_1g/parameters/climate_age_params_forest_month_female_1g_1982_2013_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_2013/t2m/meanc/non_pw/type_1g/parameters/climate_age_params_forest_month_male_1g_1982_2013_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_2013/t2m/meanc/non_pw/type_1g/parameters/climate_month_params_forest_age_1g_1982_2013_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_2013/t2m/meanc/non_pw/type_1g/parameters/climate_month_params_forest_month_1g_1982_2013_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_2013/t2m/meanc/non_pw/type_1g/parameters/climate_month_params_forest_month_female_1g_1982_2013_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_2013/t2m/meanc/non_pw/type_1g/parameters/climate_month_params_forest_month_male_1g_1982_2013_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_2013/t2m/meanc/non_pw/type_1g/parameters/climate_month_params_map_female_1g_1982_2013_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_2013/t2m/meanc/non_pw/type_1g/parameters/climate_month_params_map_male_1g_1982_2013_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_2013/t2m/meanc/non_pw/type_1g/parameters/climate_month_posterior_map_female_1g_1982_2013_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1982_2013/t2m/meanc/non_pw/type_1g/parameters/climate_month_posterior_map_male_1g_1982_2013_t2m_meanc.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1999_2013/t2m/meanc3/non_pw/type_1d/parameters/climate_month_params_heatmap_1d_1999_2013_t2m_meanc3_Intentional.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1999_2013/t2m/meanc3/non_pw/type_1d/parameters/climate_month_params_heatmap_1d_1999_2013_t2m_meanc3_Unintentional.pdf" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/zz_legacy/climate_month_params_heatmap_1d_1980_2013_t2m_meanc3_Cancer.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/zz_legacy/climate_month_params_heatmap_1d_1980_2013_t2m_meanc3_Cancer.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/zz_legacy/climate_month_params_heatmap_1d_1980_2013_t2m_meanc3_Cardiopulmonary.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/zz_legacy/climate_month_params_heatmap_1d_1980_2013_t2m_meanc3_Cardiopulmonary.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/zz_legacy/climate_month_params_heatmap_scenarios_bothsexes_1d_1980_2013_t2m_meanc3.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/zz_legacy/climate_month_params_heatmap_scenarios_bothsexes_1d_1980_2013_t2m_meanc3.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/zz_legacy/climate_month_params_heatmap_scenarios_female_1d_1980_2013_t2m_meanc3.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/zz_legacy/climate_month_params_heatmap_scenarios_female_1d_1980_2013_t2m_meanc3.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/zz_legacy/climate_month_params_heatmap_scenarios_male_1d_1980_2013_t2m_meanc3.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/zz_legacy/climate_month_params_heatmap_scenarios_male_1d_1980_2013_t2m_meanc3.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/zz_legacy/yll_nat_heatmap_1d_1980_2013_t2m_meanc3_AllCause.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/zz_legacy/yll_nat_heatmap_1d_1980_2013_t2m_meanc3_AllCause.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/zz_legacy/yll_nat_heatmap_1d_1980_2013_t2m_meanc3_Cancer.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/zz_legacy/yll_nat_heatmap_1d_1980_2013_t2m_meanc3_Cancer.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/zz_legacy/yll_nat_heatmap_1d_1980_2013_t2m_meanc3_Cardiopulmonary.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/zz_legacy/yll_nat_heatmap_1d_1980_2013_t2m_meanc3_Cardiopulmonary.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/zz_legacy/yll_nat_heatmap_1d_1980_2013_t2m_meanc3_External.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2013/t2m/meanc3/non_pw/type_1d/parameters/zz_legacy/yll_nat_heatmap_1d_1980_2013_t2m_meanc3_External.pdf" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/injury_paper.sh" afterPath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/injury_paper.sh" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_cod_1var_1-10.sh" afterPath="$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_cod_1var_1-10.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/mapping_posterior/mapping_posterior_climate_cod_1var.R" afterPath="$PROJECT_DIR$/USA/state/prog/mapping_posterior/mapping_posterior_climate_cod_1var.R" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -317,8 +34,8 @@
       <file leaf-file-name="inla_model_climate_cod_1var_1-10.sh" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_cod_1var_1-10.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="414">
-              <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+            <state relative-caret-position="792">
+              <caret line="131" column="0" lean-forward="false" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -434,6 +151,7 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
+    <option name="x" value="-3840" />
     <option name="width" value="1920" />
     <option name="height" value="1080" />
   </component>
@@ -847,13 +565,6 @@
       <option name="presentableId" value="Default" />
       <updated>1528108809576</updated>
     </task>
-    <task id="LOCAL-00083" summary="Edited bash file to describe what's going on a bit more for eLife revisions">
-      <created>1528907923093</created>
-      <option name="number" value="00083" />
-      <option name="presentableId" value="LOCAL-00083" />
-      <option name="project" value="LOCAL" />
-      <updated>1528907923093</updated>
-    </task>
     <task id="LOCAL-00084" summary="Edited bash file to describe what's going on a bit more for eLife revisions">
       <created>1528930426309</created>
       <option name="number" value="00084" />
@@ -1190,14 +901,21 @@
       <option name="project" value="LOCAL" />
       <updated>1530783078593</updated>
     </task>
-    <option name="localTasksCounter" value="132" />
+    <task id="LOCAL-00132" summary="Added bash file for injury paper">
+      <created>1530787323192</created>
+      <option name="number" value="00132" />
+      <option name="presentableId" value="LOCAL-00132" />
+      <option name="project" value="LOCAL" />
+      <updated>1530787323193</updated>
+    </task>
+    <option name="localTasksCounter" value="133" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1920" height="1080" extended-state="6" />
+    <frame x="-3840" y="0" width="1920" height="1080" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34631804" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26307365" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="R Packages" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3291639" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="R Graphics" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1224,7 +942,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add eLife COD coding" />
     <MESSAGE value="Edited bash file to describe what's going on a bit more for eLife revisions" />
-    <option name="LAST_COMMIT_MESSAGE" value="Edited bash file to describe what's going on a bit more for eLife revisions" />
+    <MESSAGE value="Added bash file for injury paper" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added bash file for injury paper" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1599,8 +1318,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_cod_1var_1-10.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+        <state relative-caret-position="792">
+          <caret line="131" column="0" lean-forward="false" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
           <folding />
         </state>
       </provider>
