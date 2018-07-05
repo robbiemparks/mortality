@@ -2,20 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="21b4bedd-3c09-4223-a30e-537ba1f7f93e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/External/climate_month_params_forest_age_1d_1980_2016_t2m_meanc3_External.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/External/climate_month_params_forest_age_1d_1980_2016_t2m_meanc3_External.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/External/climate_month_params_forest_month_1d_1980_2016_t2m_meanc3_External.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/External/climate_month_params_forest_month_1d_1980_2016_t2m_meanc3_External.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/External/climate_month_params_heatmap_1d_1980_2016_t2m_meanc3_External.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/External/climate_month_params_heatmap_1d_1980_2016_t2m_meanc3_External.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Intentional/climate_month_params_forest_age_1d_1980_2016_t2m_meanc3_Intentional.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Intentional/climate_month_params_forest_age_1d_1980_2016_t2m_meanc3_Intentional.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Intentional/climate_month_params_forest_month_1d_1980_2016_t2m_meanc3_Intentional.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Intentional/climate_month_params_forest_month_1d_1980_2016_t2m_meanc3_Intentional.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Intentional/climate_month_params_heatmap_1d_1980_2016_t2m_meanc3_Intentional.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Intentional/climate_month_params_heatmap_1d_1980_2016_t2m_meanc3_Intentional.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Unintentional wo drowning/climate_month_params_forest_age_1d_1980_2016_t2m_meanc3_Unintentional wo drowning.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Unintentional wo drowning/climate_month_params_forest_age_1d_1980_2016_t2m_meanc3_Unintentional wo drowning.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Unintentional wo drowning/climate_month_params_forest_month_1d_1980_2016_t2m_meanc3_Unintentional wo drowning.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Unintentional wo drowning/climate_month_params_forest_month_1d_1980_2016_t2m_meanc3_Unintentional wo drowning.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Unintentional wo drowning/climate_month_params_heatmap_1d_1980_2016_t2m_meanc3_Unintentional wo drowning.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Unintentional wo drowning/climate_month_params_heatmap_1d_1980_2016_t2m_meanc3_Unintentional wo drowning.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Unintentional/climate_month_params_forest_age_1d_1980_2016_t2m_meanc3_Unintentional.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Unintentional/climate_month_params_forest_age_1d_1980_2016_t2m_meanc3_Unintentional.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Unintentional/climate_month_params_forest_month_1d_1980_2016_t2m_meanc3_Unintentional.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Unintentional/climate_month_params_forest_month_1d_1980_2016_t2m_meanc3_Unintentional.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Unintentional/climate_month_params_heatmap_1d_1980_2016_t2m_meanc3_Unintentional.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Unintentional/climate_month_params_heatmap_1d_1980_2016_t2m_meanc3_Unintentional.pdf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/USA/state/prog/prep_data_cod/icd10_coding_rodrigo.R" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/mapping_posterior/mapping_posterior_climate_cod_1var.R" afterPath="$PROJECT_DIR$/USA/state/prog/mapping_posterior/mapping_posterior_climate_cod_1var.R" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -33,7 +21,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="injury_paper.sh" pinned="false" current-in-tab="true">
+      <file leaf-file-name="injury_paper.sh" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/USA/state/prog/00_bash/inla/injury_paper.sh">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="126">
@@ -70,11 +58,40 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="US_state_monthly_prepare_data_cod.R" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/USA/state/prog/prep_data_cod/US_state_monthly_prepare_data_cod.R">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="396">
+              <caret line="55" column="31" lean-forward="true" selection-start-line="55" selection-start-column="31" selection-end-line="55" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="US_state_monthly_prepare_data_subcauses_elife.R" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/USA/state/prog/prep_data_cod/US_state_monthly_prepare_data_subcauses_elife.R">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="726">
+              <caret line="192" column="58" lean-forward="true" selection-start-line="192" selection-start-column="58" selection-end-line="192" selection-end-column="58" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="icd10_coding_rodrigo.R" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/USA/state/prog/prep_data_cod/icd10_coding_rodrigo.R">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="792">
+              <caret line="44" column="46" lean-forward="true" selection-start-line="44" selection-start-column="46" selection-end-line="44" selection-end-column="46" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>age.</find>
       <find>seasonality_index_climate_region</find>
       <find>lin.reg.grad.weight.csv</find>
       <find>month.short</find>
@@ -104,7 +121,11 @@
       <find>datus_state_rates_cod</find>
       <find>dat.national</find>
       <find>dat.mort</find>
+      <find>dat.merged</find>
     </findStrings>
+    <replaceStrings>
+      <replace>dat</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -148,6 +169,7 @@
         <option value="$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_cod_1var_1-10.sh" />
         <option value="$PROJECT_DIR$/USA/state/prog/mapping_posterior/mapping_posterior_climate_cod_1var.R" />
         <option value="$PROJECT_DIR$/USA/state/prog/00_bash/inla/injury_paper.sh" />
+        <option value="$PROJECT_DIR$/USA/state/prog/prep_data_cod/icd10_coding_rodrigo.R" />
       </list>
     </option>
   </component>
@@ -246,33 +268,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="seasonality_index" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mortality" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mortality" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="USA" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="state" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="prog" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bind_posterior" />
+              <option name="myItemId" value="prep_data_cod" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -289,10 +285,10 @@
       <recent name="$PROJECT_DIR$/USA/state/prog/prep_data_cod/zz_legacy" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/USA/state/prog/prep_data_cod" />
       <recent name="$PROJECT_DIR$/USA/state/prog/00_bash/inla" />
       <recent name="$PROJECT_DIR$/USA/state/prog/seasonality_index" />
       <recent name="$PROJECT_DIR$/USA/state/prog/data_explore" />
-      <recent name="$PROJECT_DIR$/USA/state/prog/prep_data_cod" />
     </key>
   </component>
   <component name="RunManager" selected="Bash.injury_paper.sh">
@@ -885,14 +881,14 @@
     <frame x="0" y="0" width="1920" height="1080" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22945571" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3089648" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="R Packages" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3291639" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="R Graphics" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32908162" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3273196" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3375262" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3375262" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24951456" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32986626" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -922,13 +918,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/USA/state/prog/prep_data_cod/US_state_monthly_prepare_data_subcauses_elife.R">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="795">
-          <caret line="53" column="36" lean-forward="false" selection-start-line="53" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/USA/state/prog/prep_data_cod/US_state_monthly_prepare_data_cod_elife.R" />
     <entry file="file://$PROJECT_DIR$/USA/state/prog/prep_data_cod/zz_legacy/US_state_monthly_prepare_data_subcauses_injuries_gbd.R">
       <provider selected="true" editor-type-id="text-editor">
@@ -1042,20 +1031,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/USA/state/prog/prep_data_cod/US_state_monthly_prepare_data_cod.R">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="146" column="39" lean-forward="true" selection-start-line="146" selection-start-column="39" selection-end-line="146" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/USA/state/prog/prep_data_cod/US_state_monthly_prepare_data_subcauses_elife.R">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1170">
-          <caret line="78" column="62" lean-forward="false" selection-start-line="78" selection-start-column="62" selection-end-line="78" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/USA/state/prog/seasonality_index/seasonality_index_cod_ols.R">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1004">
@@ -1144,13 +1119,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="720">
           <caret line="120" column="0" lean-forward="true" selection-start-line="120" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/USA/state/prog/prep_data_cod/US_state_monthly_prepare_data_injuries_wo_drowning.R">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="915">
-          <caret line="61" column="107" lean-forward="false" selection-start-line="61" selection-start-column="107" selection-end-line="61" selection-end-column="107" />
         </state>
       </provider>
     </entry>
@@ -1289,6 +1257,38 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
           <caret line="7" column="5" lean-forward="true" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/USA/state/prog/prep_data_cod/US_state_monthly_prepare_data_injuries_wo_drowning.R">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="888">
+          <caret line="61" column="107" lean-forward="false" selection-start-line="61" selection-start-column="107" selection-end-line="61" selection-end-column="107" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/USA/state/prog/prep_data_cod/US_state_monthly_prepare_data_cod.R">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="55" column="31" lean-forward="true" selection-start-line="55" selection-start-column="31" selection-end-line="55" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/USA/state/prog/prep_data_cod/US_state_monthly_prepare_data_subcauses_elife.R">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="726">
+          <caret line="192" column="58" lean-forward="true" selection-start-line="192" selection-start-column="58" selection-end-line="192" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/USA/state/prog/prep_data_cod/icd10_coding_rodrigo.R">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="792">
+          <caret line="44" column="46" lean-forward="true" selection-start-line="44" selection-start-column="46" selection-end-line="44" selection-end-column="46" />
           <folding />
         </state>
       </provider>
