@@ -275,8 +275,10 @@ if(model=='1d'){
 
         # ADD SIGNIFICANCE HIGHLIGHTS
         print(ggplot() +
-        geom_rect(data=subset(dat,mean>0),aes(xmin=ID-0.5*odds.prob,xmax=ID+0.5*odds.prob,ymin=age-2.5*odds.prob,ymax=age+2.5*odds.prob,fill=odds.mean))+
-        geom_rect(data=subset(dat,mean<0),aes(xmin=ID-0.5*(1-odds.prob),xmax=ID+0.5*(1-odds.prob),ymin=age-2.5*(1-odds.prob),ymax=age+2.5*(1-odds.prob),fill=odds.mean))+
+        # geom_rect(data=subset(dat,mean>0),aes(xmin=ID-0.5*odds.prob,xmax=ID+0.5*odds.prob,ymin=age-2.5*odds.prob,ymax=age+2.5*odds.prob,fill=odds.mean))+
+        # geom_rect(data=subset(dat,mean<0),aes(xmin=ID-0.5*(1-odds.prob),xmax=ID+0.5*(1-odds.prob),ymin=age-2.5*(1-odds.prob),ymax=age+2.5*(1-odds.prob),fill=odds.mean))+
+        # geom_rect(data=subset(dat,mean>0),aes(xmin=ID-0.5*odds.prob,xmax=ID+0.5*odds.prob,ymin=age-2.5*odds.prob,ymax=age+2.5*odds.prob,fill=odds.mean))+
+        # geom_rect(data=subset(dat,mean<0),aes(xmin=ID-0.5*(1-odds.prob),xmax=ID+0.5*(1-odds.prob),ymin=age-2.5*(1-odds.prob),ymax=age+2.5*(1-odds.prob),fill=odds.mean))+
         scale_fill_gradientn(colours=colorway,
         breaks=c(-0.025, -0.02, -0.015, -0.01, -0.005, 0, 0.005, 0.01, 0.015, 0.02, 0.025),
         na.value = "grey98",limits = c(-0.027, 0.027),
