@@ -288,6 +288,7 @@ plot.wavelet.national.all <- function(sex.selected,cod='AllCause',log.selected=0
         periodlab = "periods (months)", show.date = T,timelab = "",
         label.period.axis = tf,
         graphics.reset = F,
+        plot.contour = F, # take off the white bit
         plot.ridge = F,
         plot.legend=F)
         abline(h = log(12)/log(2))
