@@ -25,8 +25,8 @@ if(model=='1d'){
     
     # create dataframe with each of the national terms for entire group of age and sexes
     dat.weather <- data.frame()
-    dat.intercept <- data.frame()
-    dat.slope <- data.frame()
+    dat.month.intercept <- data.frame()
+    dat.month.slope <- data.frame()
 
     
     # find the posterior exponential mean
@@ -96,7 +96,7 @@ if(model=='1d'){
             current.file <- merge(current.file,dat.mean.exp,by=('ID'))
 
             # attached new age sex profile to master file
-            dat.intercept <- rbind(dat.intercept,current.file)
+            dat.month.intercept <- rbind(dat.month.intercept,current.file)
 
             ######################################
             # month-specific slope (month2)
@@ -122,7 +122,7 @@ if(model=='1d'){
             current.file <- merge(current.file,dat.mean.exp,by=('ID'))
 
             # attached new age sex profile to master file
-            dat.slope <- rbind(dat.slope,current.file)
+            dat.month.slope <- rbind(dat.month.slope,current.file)
 
             ######################################
             # state-month specific intercept (month3)
@@ -198,8 +198,8 @@ if(cause!='AllCause'){
 if(cause=='AllCause'){
     save.name <- paste0(country,'_rate_pred_type',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_month_fast_contig')
 }
-saveRDS(dat.intercept,paste0(file.loc.local,save.name))
-saveRDS(dat.intercept,paste0(file.loc.git,save.name))
+saveRDS(dat.month.intercept,paste0(file.loc.local,save.name))
+saveRDS(dat.month.intercept,paste0(file.loc.git,save.name))
 
 ######################################
 # month-specific slope (month2)
@@ -211,8 +211,8 @@ if(cause!='AllCause'){
 if(cause=='AllCause'){
     save.name <- paste0(country,'_rate_pred_type',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_month2_fast_contig')
 }
-saveRDS(dat.slope,paste0(file.loc.local,save.name))
-saveRDS(dat.slope,paste0(file.loc.git,save.name))
+saveRDS(dat.month.slope,paste0(file.loc.local,save.name))
+saveRDS(dat.month.slope,paste0(file.loc.git,save.name))
 
 ######################################
 # weather parameter (month5)
