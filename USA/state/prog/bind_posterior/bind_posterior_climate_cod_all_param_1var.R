@@ -11,6 +11,8 @@ metric <- as.character(args[6])
 cause <- as.character(args[7]) ; cause <- gsub('_',' ',cause)
 contig.arg <- as.numeric(args[8])
 
+# year.start=1980;year.end=2016;country='USA';model=10;dname='t2m';metric='meanc3';cause='Unintentional';contig.arg=1
+
 
 library(INLA)
 
@@ -58,6 +60,11 @@ if(model=='1d'){
             #file.name <- paste0('~/data/mortality/US/state/climate_effects/',dname,'/',metric,'/non_pw/type_',model,'/age_groups/',age.filter[j],'/',country,'_rate_pred_type',model,'_',age.filter[j],'_',sex.filter[i],'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'_parameters_fast')
             print(file.name)
             model.current <- readRDS(file.name)
+
+            ######################################
+            # weather parameter (month5)
+            ######################################
+
             current.file <- model.current$summary.random$month5
             current.file$age <- age.filter[j] ; current.file$sex <- i
 
