@@ -115,6 +115,12 @@ dat.nat.complete$cause <- gsub('AllCause', 'All cause', dat.nat.complete$cause)
 dat.nat.complete$cause <- gsub('External', 'Injuries', dat.nat.complete$cause)
 dat.nat.complete$cause <- gsub('Cardiopulmonary', 'Cardiorespiratory', dat.nat.complete$cause)
 
+dat.nat.cardio$cause <- gsub('Cardiovascular', 'Cardiovascular diseases', dat.nat.cardio$cause)
+
+dat.nat.injuries$cause <- gsub('Unintentional', 'Unintentional injuries', dat.nat.injuries$cause)
+dat.nat.injuries$cause <- gsub('Intentional', 'Intentional injuries', dat.nat.injuries$cause)
+
+
 # fix sex names
 dat.nat.complete$sex = as.factor(as.character(dat.nat.complete$sex)) ; levels(dat.nat.complete$sex) <- sex.filter2
 dat.nat.cardio$sex = as.factor(as.character(dat.nat.cardio$sex)) ; levels(dat.nat.cardio$sex) <- sex.filter2
