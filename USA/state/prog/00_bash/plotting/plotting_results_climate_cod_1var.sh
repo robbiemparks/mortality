@@ -8,13 +8,13 @@ cd ~/git/mortality/USA/state/prog/00_bash/
 clear
 
 declare -i start=1980
-declare -i end=2016
+declare -i end=2013
 declare -a models=(10)
 declare country="USA"
 declare -a dnames=("t2m")
 declare -a metrics=('meanc3')
-declare -e cods=("External" "Unintentional" "Intentional" "Transport_accidents" "Intentional_self-harm" "Accidental_falls" "Accidental_drowning_and_submersion")
-#declare -a cods=("Unintentional" "Intentional")
+#declare -e cods=("External" "Unintentional" "Unintentional_wo_drowning" "Intentional" "Transport_accidents" "Intentional_self-harm" "Accidental_falls" "Accidental_drowning_and_submersion")
+declare -a cods=("Assault")
 #declare -a cods=("AllCause" "Cancer" "Cardiopulmonary" "External" "Other" "Unintentional" "Intentional")
 
 declare -i contig=1
