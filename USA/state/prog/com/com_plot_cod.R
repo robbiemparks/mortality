@@ -58,7 +58,6 @@ file.loc.nat.output <- paste0("../../output/com/",year.start.arg,'_',year.end.ar
 # create output directory
 ifelse(!dir.exists(file.loc.nat.output), dir.create(file.loc.nat.output,recursive=TRUE), FALSE)
 
-
 # DEATH COUNTS
 
 # NOT USED HERE

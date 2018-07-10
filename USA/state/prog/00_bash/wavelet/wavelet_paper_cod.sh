@@ -36,6 +36,7 @@ declare -a noises=(1)
 #declare -a noises=(1 2)
 #declare -a cods=("AllCause")
 declare -a cods=("AllCause" "Cancer" "Cardiopulmonary" "External" "Intentional" "Unintentional" "Other" "Cardiovascular" "Chronic_respiratory_diseases" "Respiratory_infections" "Endocrine_disorders" "Genitourinary_diseases" "Maternal_conditions" "Neuropsychiatric_disorders" "Perinatal_conditions" "Substance_use_disorders")
+declare -a cods=("Intentional" "Unintentional" "Cardiovascular")
 declare -a logs=(0)
 
 for noise in "${noises[@]}"; do
@@ -48,7 +49,7 @@ clear
 echo "starting nationalised wavelet analysis for $country, $cod, years $start - $end";
 
 # runs wavelet analysis (figure 2, appendix figure 1)
-Rscript ~/git/mortality/USA/state/prog/wavelet/wavelet_national_cod.R $start $end $numsim $sig $noise $cod $log
+#Rscript ~/git/mortality/USA/state/prog/wavelet/wavelet_national_cod.R $start $end $numsim $sig $noise $cod $log
 
 done; done; done; done;
 
