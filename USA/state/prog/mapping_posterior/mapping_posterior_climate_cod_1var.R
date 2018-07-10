@@ -22,7 +22,7 @@ contig <- as.numeric(args[8])
 
 # NEED TO MAKE CONTIG OPTION ACTUALLY DO SOMETHING
 
-#year.start = 1980 ; year.end = 2016 ; country = 'USA' ; model = 10 ; dname = 't2m' ; metric = 'meanc3' ; cause = 'External'; contig=1
+#year.start = 1980 ; year.end = 2016 ; country = 'USA' ; model = 10 ; dname = 't2m' ; metric = 'meanc3' ; cause = 'Accidental falls'; contig=1
 
 multiple = 0
 
@@ -139,8 +139,8 @@ cod.print = ifelse(cause=='AllCause', 'All cause',
         ifelse(cause=='Cardiopulmonary', 'Cardiorespiratory',
         ifelse(cause=='External', 'Injuries',
         ifelse(cause=='Other', 'Other',
-        ifelse(cause=='Intentional','Intentional',
-        ifelse(cause=='Unintentional','Unintentional',
+        ifelse(cause=='Intentional','Intentional injuries',
+        ifelse(cause=='Unintentional','Unintentional injuries',
         ifelse(cause=='Unintentional wo drowning','Unintentional without drowining',
         ifelse(cause=='Transport accidents','Transport accidents',
         ifelse(cause=='Intentional self-harm','Intentional self-harm',
@@ -281,6 +281,7 @@ if(model=='1d'){
         # geom_rect(data=subset(dat,mean>0),aes(xmin=ID-0.5*odds.prob,xmax=ID+0.5*odds.prob,ymin=age-2.5*odds.prob,ymax=age+2.5*odds.prob,fill=odds.mean))+
         # geom_rect(data=subset(dat,mean<0),aes(xmin=ID-0.5*(1-odds.prob),xmax=ID+0.5*(1-odds.prob),ymin=age-2.5*(1-odds.prob),ymax=age+2.5*(1-odds.prob),fill=odds.mean))+
         # scale_size_continuous(range = c(1, 10)) +
+        scale_size_continuous(limits=c(0,1)) +
         scale_fill_gradientn(colours=colorway,
         breaks=c(-0.025, -0.02, -0.015, -0.01, -0.005, 0, 0.005, 0.01, 0.015, 0.02, 0.025),
         na.value = "grey98",limits = c(-0.027, 0.027),
@@ -291,7 +292,7 @@ if(model=='1d'){
         scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
         scale_y_discrete(labels=age.print) +
         ggtitle(cod.print) +
-        scale_size(guide = 'none') +
+        # scale_size(guide = 'none') +
         facet_wrap(~sex.long) +
         xlab("Month") + ylab('Age') +
         theme_bw() + theme(panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
