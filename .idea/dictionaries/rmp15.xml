@@ -4135,6 +4135,7 @@
       <w>completeClassDefinition</w>
       <w>completeExtends</w>
       <w>completeSubclasses</w>
+      <w>complete_</w>
       <w>complex</w>
       <w>compose</w>
       <w>compose_types</w>
@@ -4377,6 +4378,8 @@
       <w>cross_n</w>
       <w>crosscorr</w>
       <w>crosscorr.plot</w>
+      <w>crossing</w>
+      <w>crossing_</w>
       <w>crossprod</w>
       <w>crossprod.spam</w>
       <w>crosstab</w>
@@ -4966,6 +4969,8 @@
       <w>drop0</w>
       <w>drop1</w>
       <w>dropLayer</w>
+      <w>drop_na</w>
+      <w>drop_na_</w>
       <w>drop_style</w>
       <w>dropifsingle</w>
       <w>droplevels</w>
@@ -5281,6 +5286,7 @@
       <w>expand.grid</w>
       <w>expand.model.frame</w>
       <w>expand.polynom</w>
+      <w>expand_</w>
       <w>expand_limits</w>
       <w>expand_range</w>
       <w>expcov</w>
@@ -5342,6 +5348,8 @@
       <w>extractPath</w>
       <w>extractPreserveChunks</w>
       <w>extractStackTrace</w>
+      <w>extract_</w>
+      <w>extract_numeric</w>
       <w>extract_raw_output</w>
       <w>extrude3d</w>
       <w>ezmlnorm</w>
@@ -5452,9 +5460,11 @@
       <w>file_path_sans_ext</w>
       <w>file_test</w>
       <w>filename</w>
+      <w>fill</w>
       <w>fillCol</w>
       <w>fillPage</w>
       <w>fillRow</w>
+      <w>fill_</w>
       <w>filled.contour</w>
       <w>filledContour</w>
       <w>fillin</w>
@@ -5720,6 +5730,7 @@
       <w>ftuss</w>
       <w>full.score</w>
       <w>full_join</w>
+      <w>full_seq</w>
       <w>fullgrid</w>
       <w>fullseq</w>
       <w>functionBody</w>
@@ -5809,6 +5820,8 @@
       <w>ganglia</w>
       <w>gapply</w>
       <w>gasprice</w>
+      <w>gather</w>
+      <w>gather_</w>
       <w>gaucov</w>
       <w>gaulss</w>
       <w>gauss.cov</w>
@@ -7855,6 +7868,7 @@
       <w>julian</w>
       <w>julian.Date</w>
       <w>julian.POSIXt</w>
+      <w>k.check</w>
       <w>k12hat</w>
       <w>k3.linear</w>
       <w>kable</w>
@@ -9004,8 +9018,12 @@
       <w>negbin</w>
       <w>negexp.SSival</w>
       <w>nelder</w>
+      <w>nest</w>
+      <w>nest_</w>
       <w>nested.corr</w>
       <w>nestedListing</w>
+      <w>nesting</w>
+      <w>nesting_</w>
       <w>neuro</w>
       <w>new</w>
       <w>new.env</w>
@@ -9970,6 +9988,7 @@
       <w>popower</w>
       <w>populate</w>
       <w>populate_env</w>
+      <w>population</w>
       <w>pos.to.env</w>
       <w>posamsize</w>
       <w>position_dodge</w>
@@ -10975,6 +10994,7 @@
       <w>repeatable</w>
       <w>replace</w>
       <w>replace.substring.wild</w>
+      <w>replace_na</w>
       <w>replay</w>
       <w>replayPlot</w>
       <w>replicate</w>
@@ -11581,6 +11601,10 @@
       <w>sensuc</w>
       <w>sentences</w>
       <w>sepUnitsTrans</w>
+      <w>separate</w>
+      <w>separate_</w>
+      <w>separate_rows</w>
+      <w>separate_rows_</w>
       <w>seq</w>
       <w>seq.Date</w>
       <w>seq.POSIXt</w>
@@ -12141,6 +12165,8 @@
       <w>spplot</w>
       <w>spplot.key</w>
       <w>spplot.locator</w>
+      <w>spread</w>
+      <w>spread_</w>
       <w>sprint</w>
       <w>sprintf</w>
       <w>sprites3d</w>
@@ -12860,6 +12886,12 @@
       <w>tabPanel</w>
       <w>table</w>
       <w>table.rq</w>
+      <w>table1</w>
+      <w>table2</w>
+      <w>table3</w>
+      <w>table4a</w>
+      <w>table4b</w>
+      <w>table5</w>
       <w>tableGrob</w>
       <w>tableOutput</w>
       <w>table_N</w>
@@ -13027,6 +13059,7 @@
       <w>tibble_</w>
       <w>tidyHtmlTable</w>
       <w>tidy_names</w>
+      <w>tidyr</w>
       <w>tidyselect</w>
       <w>tiff</w>
       <w>tile.centroids</w>
@@ -13509,6 +13542,7 @@
       <w>unbox</w>
       <w>uncbind</w>
       <w>unclass</w>
+      <w>uncount</w>
       <w>undebug</w>
       <w>undebug_fseq</w>
       <w>undebugcall</w>
@@ -13541,6 +13575,8 @@
       <w>unit.pmin</w>
       <w>unit.rep</w>
       <w>unit_format</w>
+      <w>unite</w>
+      <w>unite_</w>
       <w>units</w>
       <w>units.difftime</w>
       <w>univarLR</w>
@@ -13558,6 +13594,8 @@
       <w>unmapDriveOnWindows.System</w>
       <w>unmatrix</w>
       <w>unname</w>
+      <w>unnest</w>
+      <w>unnest_</w>
       <w>unpack</w>
       <w>unparen</w>
       <w>unrollZGrid</w>
@@ -13886,6 +13924,7 @@
       <w>whisker.render</w>
       <w>white</w>
       <w>whiteside</w>
+      <w>who</w>
       <w>wideByFactor</w>
       <w>width.SJ</w>
       <w>widthDetails</w>
