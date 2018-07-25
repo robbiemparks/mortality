@@ -275,7 +275,11 @@ plot.wavelet.national.all <- function(sex.selected,cod='AllCause',log.selected=0
         file.loc.spectrum <- paste0(file.loc,noise.lookup[noise.arg],'/p_values/',cod,'/')
         ifelse(!dir.exists(file.loc.spectrum), dir.create(file.loc.spectrum,recursive=TRUE), FALSE)
         saveRDS(dat.spectrum,paste0(file.loc.spectrum,i,'_',sex.lookup[sex.selected],'_',cod))
-        
+
+        # find p value at 12 months
+        pval.print = as.numeric(subset(dat.spectrum, round(period,3)==12)[2])
+        if(as.numeric(pval.print)==0){pval.print='<0.01'}
+
         tf <- ifelse(i %in% c(0,45),T,F)
         
         # plot wavelet analysis
@@ -289,6 +293,7 @@ plot.wavelet.national.all <- function(sex.selected,cod='AllCause',log.selected=0
         plot.legend=F)
         abline(h = log(12)/log(2))
         mtext(text = "12", side = 2, at = log(12)/log(2), las = 1, line = 0.5)
+        mtext(text = pval.print, side = 4, at = log(12)/log(2), las = 1, line = 0.5)
         #abline(h=log(as.numeric(max.spectrum.period))/log(2))
         #mtext(text = as.character(round(max.spectrum.period)), side = 4, at = log(max.spectrum.period)/log(2), las = 1, line = 0.5)
         # manually fix significant ages
