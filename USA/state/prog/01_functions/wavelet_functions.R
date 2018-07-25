@@ -293,7 +293,7 @@ plot.wavelet.national.all <- function(sex.selected,cod='AllCause',log.selected=0
         plot.legend=F)
         abline(h = log(12)/log(2))
         mtext(text = "12", side = 2, at = log(12)/log(2), las = 1, line = 0.5)
-        mtext(text = pval.print, side = 4, at = log(12)/log(2), las = 1, line = 0.5)
+        mtext(text = pval.print, side = 4, at = log(12)/log(2), las = 1, line = 0.5,cex=0.5)
         #abline(h=log(as.numeric(max.spectrum.period))/log(2))
         #mtext(text = as.character(round(max.spectrum.period)), side = 4, at = log(max.spectrum.period)/log(2), las = 1, line = 0.5)
         # manually fix significant ages
