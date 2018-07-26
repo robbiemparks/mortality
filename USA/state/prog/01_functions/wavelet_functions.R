@@ -270,6 +270,10 @@ plot.wavelet.national.all <- function(sex.selected,cod='AllCause',log.selected=0
         dt= 1, dj = 1/1000,
         make.pval= T, n.sim = num.sim)
 
+        # find time series of p-values at 12-months and find average
+        pval.time = as.data.frame(cbind(my.w$Power.pval,my.w$Period))
+        pval.print = as.numeric(rowMeans(subset(pval.time,round(V445,3)==12)[,c(1:num.months)]))
+
         # find integrated p-values and save
         dat.spectrum <- data.frame(period=my.w$Period,pval=my.w$Power.avg.pval)
         file.loc.spectrum <- paste0(file.loc,noise.lookup[noise.arg],'/p_values/',cod,'/')
@@ -277,7 +281,9 @@ plot.wavelet.national.all <- function(sex.selected,cod='AllCause',log.selected=0
         saveRDS(dat.spectrum,paste0(file.loc.spectrum,i,'_',sex.lookup[sex.selected],'_',cod))
 
         # find p value at 12 months
-        pval.print = as.numeric(subset(dat.spectrum, round(period,3)==12)[2])
+        # pval.print = as.numeric(subset(dat.spectrum, round(period,3)==12)[2])
+        # subset(dat.spectrum, round(period)==12)
+        pval.print = round(pval.print,2)
         if(as.numeric(pval.print)==0){pval.print='<0.01'}
 
         tf <- ifelse(i %in% c(0,45),T,F)
@@ -334,6 +340,10 @@ plot.wavelet.national.all <- function(sex.selected,cod='AllCause',log.selected=0
         dt= 1, dj = 1/1000,
         make.pval= T, n.sim = num.sim)
 
+        # find time series of p-values at 12-months and find average
+        pval.time = as.data.frame(cbind(my.w$Power.pval,my.w$Period))
+        pval.print = as.numeric(rowMeans(subset(pval.time,round(V445,3)==12)[,c(1:num.months)]))
+
         # find integrated p-values and save
         dat.spectrum <- data.frame(period=my.w$Period,pval=my.w$Power.avg.pval)
         file.loc.spectrum <- paste0(file.loc,noise.lookup[noise.arg],'/p_values/',cod,'/')
@@ -341,7 +351,9 @@ plot.wavelet.national.all <- function(sex.selected,cod='AllCause',log.selected=0
         saveRDS(dat.spectrum,paste0(file.loc.spectrum,i,'_',sex.lookup[sex.selected],'_',cod))
 
         # find p value at 12 months
-        pval.print = as.numeric(subset(dat.spectrum, round(period,3)==12)[2])
+        # pval.print = as.numeric(subset(dat.spectrum, round(period,3)==12)[2])
+        # subset(dat.spectrum, round(period)==12)
+        pval.print = round(pval.print,2)
         if(as.numeric(pval.print)==0){pval.print='<0.01'}
 
         tf <- ifelse(i %in% c(0,45),T,F)
@@ -400,6 +412,10 @@ plot.wavelet.national.all <- function(sex.selected,cod='AllCause',log.selected=0
         dt= 1, dj = 1/1000,
         make.pval= T, n.sim = num.sim)
 
+        # find time series of p-values at 12-months and find average
+        pval.time = as.data.frame(cbind(my.w$Power.pval,my.w$Period))
+        pval.print = as.numeric(rowMeans(subset(pval.time,round(V445,3)==12)[,c(1:num.months)]))
+
         # find integrated p-values and save
         dat.spectrum <- data.frame(period=my.w$Period,pval=my.w$Power.avg.pval)
         file.loc.spectrum <- paste0(file.loc,noise.lookup[noise.arg],'/p_values/',cod,'/')
@@ -407,7 +423,9 @@ plot.wavelet.national.all <- function(sex.selected,cod='AllCause',log.selected=0
         saveRDS(dat.spectrum,paste0(file.loc.spectrum,i,'_',sex.lookup[sex.selected],'_',cod))
 
         # find p value at 12 months
-        pval.print = as.numeric(subset(dat.spectrum, round(period,3)==12)[2])
+        # pval.print = as.numeric(subset(dat.spectrum, round(period,3)==12)[2])
+        # subset(dat.spectrum, round(period)==12)
+        pval.print = round(pval.print,2)
         if(as.numeric(pval.print)==0){pval.print='<0.01'}
 
         tf <- ifelse(i %in% c(0,45),T,F)

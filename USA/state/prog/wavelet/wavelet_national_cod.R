@@ -10,7 +10,7 @@ noise.arg <- as.numeric(args[5])
 cod.arg <- as.character(args[6]) ; cod.arg <- gsub('_',' ',cod.arg)
 log.arg = as.numeric(args[7])
 
-#year.start.arg = 1980 ; year.end.arg = 2016 ; num.sim = 100 ; sig.arg = 5 ; noise.arg = 1 ; cod.arg = 'Cardiopulmonary' ; log.arg = 0
+#year.start.arg = 1980 ; year.end.arg = 2016 ; num.sim = 100 ; sig.arg = 5 ; noise.arg = 1 ; cod.arg = 'Genitourinary diseases' ; log.arg = 0
 
 print(args)
 
@@ -49,9 +49,10 @@ dat$cause <- gsub('Allcause', 'all cause', dat$cause)
 dat$cause <- gsub('External', 'injuries', dat$cause)
 dat$cause <- gsub('Cardiopulmonary', 'cardiorespiratory', dat$cause)
 
-# number of years for split wavelet analysis
-# years <- c(year.start.arg:year.end.arg)
-# num.years <- year.end.arg - year.start.arg + 1
+# number of years and months for calculating later
+years <- c(year.start.arg:year.end.arg)
+num.years <- year.end.arg - year.start.arg + 1
+num.months = num.years*12
 
 # halfway <- floor(num.years/2)
 
