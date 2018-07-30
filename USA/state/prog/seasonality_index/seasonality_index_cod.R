@@ -409,7 +409,7 @@ map.climate.colour <- colorRampPalette(c("red","hotpink","brown","navy","cyan","
     # fix cause of death names
     cod.print = ifelse(cod=='AllCause','All cause',
                 ifelse(cod=='Cancer', 'Cancer',
-                ifelse(cod=='Cardiopulmonary', 'Cardiorespiratory',
+                ifelse(cod=='Cardiopulmonary', 'Cardiorespiratory diseases',
                 ifelse(cod=='External', 'Injuries',
                 ifelse(cod=='Unintentional','Unintentional',
                 ifelse(cod=='Intentional','Intentional',

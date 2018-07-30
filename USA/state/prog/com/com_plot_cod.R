@@ -21,8 +21,8 @@ source('../../data/objects/objects.R')
 # fix cause of death names
 cod.print = ifelse(cod.arg=='AllCause','all cause',
             ifelse(cod.arg=='Cancer', 'cancer',
-            ifelse(cod.arg=='Cardiopulmonary', 'cardiorespiratory',
-            ifelse(cod.arg=='External', 'injuries',
+            ifelse(cod.arg=='Cardiopulmonary', 'cardiorespiratory diseases',
+            ifelse(cod.arg=='External', 'all injuries',
             ifelse(cod.arg=='Unintentional','unintentional injuries',
             ifelse(cod.arg=='Intentional','intentional injuries',
             ifelse(cod.arg=='Other', 'other',
@@ -129,7 +129,7 @@ dat.nat.other$size <- ifelse(is.na(dat.nat.other$size)==TRUE,0,dat.nat.other$siz
 # fix names
 dat.nat.complete$cause <- gsub('AllCause', 'All cause', dat.nat.complete$cause)
 dat.nat.complete$cause <- gsub('External', 'Injuries', dat.nat.complete$cause)
-dat.nat.complete$cause <- gsub('Cardiopulmonary', 'Cardiorespiratory', dat.nat.complete$cause)
+dat.nat.complete$cause <- gsub('Cardiopulmonary', 'Cardiorespiratory\ndiseases', dat.nat.complete$cause)
 
 dat.nat.cardio$cause <- gsub('Cardiovascular', 'Cardiovascular diseases', dat.nat.cardio$cause)
 
