@@ -7,34 +7,59 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/plots/USA_COM_rates_total_axis_swapped_v2_cardio_nononsig_1980_2016.pdf" afterPath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/plots/USA_COM_rates_total_axis_swapped_v2_cardio_nononsig_1980_2016.pdf" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/plots/USA_COM_rates_total_axis_swapped_v2_injuries_nononsig_1980_2016.pdf" afterPath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/plots/USA_COM_rates_total_axis_swapped_v2_injuries_nononsig_1980_2016.pdf" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/plots/USA_COM_rates_total_axis_swapped_v2_other_nononsig_1980_2016.pdf" afterPath="$PROJECT_DIR$/USA/state/output/com/1980_2016/national/plots/USA_COM_rates_total_axis_swapped_v2_other_nononsig_1980_2016.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Accidental drowning and submersion/climate_month_params_forest_age_1d_1980_2016_t2m_meanc3_Accidental drowning and submersion.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Accidental drowning and submersion/climate_month_params_forest_age_1d_1980_2016_t2m_meanc3_Accidental drowning and submersion.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Accidental drowning and submersion/climate_month_params_forest_month_1d_1980_2016_t2m_meanc3_Accidental drowning and submersion.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Accidental drowning and submersion/climate_month_params_forest_month_1d_1980_2016_t2m_meanc3_Accidental drowning and submersion.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Accidental drowning and submersion/climate_month_params_heatmap_1d_1980_2016_t2m_meanc3_Accidental drowning and submersion.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Accidental drowning and submersion/climate_month_params_heatmap_1d_1980_2016_t2m_meanc3_Accidental drowning and submersion.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Accidental drowning and submersion/climate_month_params_heatmap_alt2_1d_1980_2016_t2m_meanc3_Accidental drowning and submersion.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Accidental drowning and submersion/climate_month_params_heatmap_alt2_1d_1980_2016_t2m_meanc3_Accidental drowning and submersion.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Accidental drowning and submersion/climate_month_params_heatmap_alt_1d_1980_2016_t2m_meanc3_Accidental drowning and submersion.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Accidental drowning and submersion/climate_month_params_heatmap_alt_1d_1980_2016_t2m_meanc3_Accidental drowning and submersion.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Accidental falls/climate_month_params_forest_age_1d_1980_2016_t2m_meanc3_Accidental falls.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Accidental falls/climate_month_params_forest_age_1d_1980_2016_t2m_meanc3_Accidental falls.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Accidental falls/climate_month_params_forest_month_1d_1980_2016_t2m_meanc3_Accidental falls.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Accidental falls/climate_month_params_forest_month_1d_1980_2016_t2m_meanc3_Accidental falls.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Accidental falls/climate_month_params_heatmap_1d_1980_2016_t2m_meanc3_Accidental falls.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Accidental falls/climate_month_params_heatmap_1d_1980_2016_t2m_meanc3_Accidental falls.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Accidental falls/climate_month_params_heatmap_alt2_1d_1980_2016_t2m_meanc3_Accidental falls.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Accidental falls/climate_month_params_heatmap_alt2_1d_1980_2016_t2m_meanc3_Accidental falls.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Accidental falls/climate_month_params_heatmap_alt_1d_1980_2016_t2m_meanc3_Accidental falls.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Accidental falls/climate_month_params_heatmap_alt_1d_1980_2016_t2m_meanc3_Accidental falls.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Assault/climate_month_params_forest_age_1d_1980_2016_t2m_meanc3_Assault.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Assault/climate_month_params_forest_age_1d_1980_2016_t2m_meanc3_Assault.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Assault/climate_month_params_forest_month_1d_1980_2016_t2m_meanc3_Assault.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Assault/climate_month_params_forest_month_1d_1980_2016_t2m_meanc3_Assault.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Assault/climate_month_params_heatmap_1d_1980_2016_t2m_meanc3_Assault.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Assault/climate_month_params_heatmap_1d_1980_2016_t2m_meanc3_Assault.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Assault/climate_month_params_heatmap_alt2_1d_1980_2016_t2m_meanc3_Assault.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Assault/climate_month_params_heatmap_alt2_1d_1980_2016_t2m_meanc3_Assault.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Assault/climate_month_params_heatmap_alt_1d_1980_2016_t2m_meanc3_Assault.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Assault/climate_month_params_heatmap_alt_1d_1980_2016_t2m_meanc3_Assault.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/External/climate_month_params_forest_age_1d_1980_2016_t2m_meanc3_External.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/External/climate_month_params_forest_age_1d_1980_2016_t2m_meanc3_External.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/External/climate_month_params_forest_month_1d_1980_2016_t2m_meanc3_External.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/External/climate_month_params_forest_month_1d_1980_2016_t2m_meanc3_External.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/External/climate_month_params_heatmap_1d_1980_2016_t2m_meanc3_External.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/External/climate_month_params_heatmap_1d_1980_2016_t2m_meanc3_External.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/External/climate_month_params_heatmap_alt2_1d_1980_2016_t2m_meanc3_External.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/External/climate_month_params_heatmap_alt2_1d_1980_2016_t2m_meanc3_External.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/External/climate_month_params_heatmap_alt_1d_1980_2016_t2m_meanc3_External.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/External/climate_month_params_heatmap_alt_1d_1980_2016_t2m_meanc3_External.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Intentional self-harm/climate_month_params_forest_age_1d_1980_2016_t2m_meanc3_Intentional self-harm.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Intentional self-harm/climate_month_params_forest_age_1d_1980_2016_t2m_meanc3_Intentional self-harm.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Intentional self-harm/climate_month_params_forest_month_1d_1980_2016_t2m_meanc3_Intentional self-harm.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Intentional self-harm/climate_month_params_forest_month_1d_1980_2016_t2m_meanc3_Intentional self-harm.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Intentional self-harm/climate_month_params_heatmap_1d_1980_2016_t2m_meanc3_Intentional self-harm.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Intentional self-harm/climate_month_params_heatmap_1d_1980_2016_t2m_meanc3_Intentional self-harm.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Intentional self-harm/climate_month_params_heatmap_alt2_1d_1980_2016_t2m_meanc3_Intentional self-harm.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Intentional self-harm/climate_month_params_heatmap_alt2_1d_1980_2016_t2m_meanc3_Intentional self-harm.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Intentional self-harm/climate_month_params_heatmap_alt_1d_1980_2016_t2m_meanc3_Intentional self-harm.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Intentional self-harm/climate_month_params_heatmap_alt_1d_1980_2016_t2m_meanc3_Intentional self-harm.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Intentional/climate_month_params_forest_age_1d_1980_2016_t2m_meanc3_Intentional.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Intentional/climate_month_params_forest_age_1d_1980_2016_t2m_meanc3_Intentional.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Intentional/climate_month_params_forest_month_1d_1980_2016_t2m_meanc3_Intentional.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Intentional/climate_month_params_forest_month_1d_1980_2016_t2m_meanc3_Intentional.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Intentional/climate_month_params_heatmap_1d_1980_2016_t2m_meanc3_Intentional.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Intentional/climate_month_params_heatmap_1d_1980_2016_t2m_meanc3_Intentional.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Intentional/climate_month_params_heatmap_alt2_1d_1980_2016_t2m_meanc3_Intentional.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Intentional/climate_month_params_heatmap_alt2_1d_1980_2016_t2m_meanc3_Intentional.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Intentional/climate_month_params_heatmap_alt_1d_1980_2016_t2m_meanc3_Intentional.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Intentional/climate_month_params_heatmap_alt_1d_1980_2016_t2m_meanc3_Intentional.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Transport accidents/climate_month_params_forest_age_1d_1980_2016_t2m_meanc3_Transport accidents.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Transport accidents/climate_month_params_forest_age_1d_1980_2016_t2m_meanc3_Transport accidents.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Transport accidents/climate_month_params_forest_month_1d_1980_2016_t2m_meanc3_Transport accidents.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Transport accidents/climate_month_params_forest_month_1d_1980_2016_t2m_meanc3_Transport accidents.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Transport accidents/climate_month_params_heatmap_1d_1980_2016_t2m_meanc3_Transport accidents.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Transport accidents/climate_month_params_heatmap_1d_1980_2016_t2m_meanc3_Transport accidents.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Transport accidents/climate_month_params_heatmap_alt2_1d_1980_2016_t2m_meanc3_Transport accidents.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Transport accidents/climate_month_params_heatmap_alt2_1d_1980_2016_t2m_meanc3_Transport accidents.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Transport accidents/climate_month_params_heatmap_alt_1d_1980_2016_t2m_meanc3_Transport accidents.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Transport accidents/climate_month_params_heatmap_alt_1d_1980_2016_t2m_meanc3_Transport accidents.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Unintentional wo drowning/climate_month_params_forest_age_1d_1980_2016_t2m_meanc3_Unintentional wo drowning.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Unintentional wo drowning/climate_month_params_forest_age_1d_1980_2016_t2m_meanc3_Unintentional wo drowning.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Unintentional wo drowning/climate_month_params_forest_month_1d_1980_2016_t2m_meanc3_Unintentional wo drowning.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Unintentional wo drowning/climate_month_params_forest_month_1d_1980_2016_t2m_meanc3_Unintentional wo drowning.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Unintentional wo drowning/climate_month_params_heatmap_1d_1980_2016_t2m_meanc3_Unintentional wo drowning.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Unintentional wo drowning/climate_month_params_heatmap_1d_1980_2016_t2m_meanc3_Unintentional wo drowning.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Unintentional wo drowning/climate_month_params_heatmap_alt2_1d_1980_2016_t2m_meanc3_Unintentional wo drowning.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Unintentional wo drowning/climate_month_params_heatmap_alt2_1d_1980_2016_t2m_meanc3_Unintentional wo drowning.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Unintentional wo drowning/climate_month_params_heatmap_alt_1d_1980_2016_t2m_meanc3_Unintentional wo drowning.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Unintentional wo drowning/climate_month_params_heatmap_alt_1d_1980_2016_t2m_meanc3_Unintentional wo drowning.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Unintentional/climate_month_params_forest_age_1d_1980_2016_t2m_meanc3_Unintentional.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Unintentional/climate_month_params_forest_age_1d_1980_2016_t2m_meanc3_Unintentional.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Unintentional/climate_month_params_forest_month_1d_1980_2016_t2m_meanc3_Unintentional.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Unintentional/climate_month_params_forest_month_1d_1980_2016_t2m_meanc3_Unintentional.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Unintentional/climate_month_params_heatmap_1d_1980_2016_t2m_meanc3_Unintentional.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Unintentional/climate_month_params_heatmap_1d_1980_2016_t2m_meanc3_Unintentional.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Unintentional/climate_month_params_heatmap_alt2_1d_1980_2016_t2m_meanc3_Unintentional.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Unintentional/climate_month_params_heatmap_alt2_1d_1980_2016_t2m_meanc3_Unintentional.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Unintentional/climate_month_params_heatmap_alt_1d_1980_2016_t2m_meanc3_Unintentional.pdf" afterPath="$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Unintentional/climate_month_params_heatmap_alt_1d_1980_2016_t2m_meanc3_Unintentional.pdf" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/seasonality_index/national/seasonality_index_change_sig5_weighted_allcauses_with_allcause_1980_2016.pdf" afterPath="$PROJECT_DIR$/USA/state/output/seasonality_index/national/seasonality_index_change_sig5_weighted_allcauses_with_allcause_1980_2016.pdf" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/seasonality_index/national/seasonality_index_change_sig5_weighted_allcauses_with_cardio_1980_2016.pdf" afterPath="$PROJECT_DIR$/USA/state/output/seasonality_index/national/seasonality_index_change_sig5_weighted_allcauses_with_cardio_1980_2016.pdf" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/seasonality_index/national/seasonality_index_change_sig5_weighted_allcauses_with_injuries_1980_2016.pdf" afterPath="$PROJECT_DIR$/USA/state/output/seasonality_index/national/seasonality_index_change_sig5_weighted_allcauses_with_injuries_1980_2016.pdf" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/seasonality_index/national/seasonality_index_change_sig5_weighted_allcauses_with_other_1980_2016.pdf" afterPath="$PROJECT_DIR$/USA/state/output/seasonality_index/national/seasonality_index_change_sig5_weighted_allcauses_with_other_1980_2016.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/wavelet/1980_2016/national/100_sim/white_noise/p_values/Cancer/0_Men_Cancer" afterPath="$PROJECT_DIR$/USA/state/output/wavelet/1980_2016/national/100_sim/white_noise/p_values/Cancer/0_Men_Cancer" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/wavelet/1980_2016/national/100_sim/white_noise/p_values/Cancer/0_Women_Cancer" afterPath="$PROJECT_DIR$/USA/state/output/wavelet/1980_2016/national/100_sim/white_noise/p_values/Cancer/0_Women_Cancer" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/wavelet/1980_2016/national/100_sim/white_noise/p_values/Cancer/15_Men_Cancer" afterPath="$PROJECT_DIR$/USA/state/output/wavelet/1980_2016/national/100_sim/white_noise/p_values/Cancer/15_Men_Cancer" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/wavelet/1980_2016/national/100_sim/white_noise/p_values/Cancer/15_Women_Cancer" afterPath="$PROJECT_DIR$/USA/state/output/wavelet/1980_2016/national/100_sim/white_noise/p_values/Cancer/15_Women_Cancer" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/wavelet/1980_2016/national/100_sim/white_noise/p_values/Cancer/25_Men_Cancer" afterPath="$PROJECT_DIR$/USA/state/output/wavelet/1980_2016/national/100_sim/white_noise/p_values/Cancer/25_Men_Cancer" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/wavelet/1980_2016/national/100_sim/white_noise/p_values/Cancer/25_Women_Cancer" afterPath="$PROJECT_DIR$/USA/state/output/wavelet/1980_2016/national/100_sim/white_noise/p_values/Cancer/25_Women_Cancer" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/wavelet/1980_2016/national/100_sim/white_noise/p_values/Cancer/35_Men_Cancer" afterPath="$PROJECT_DIR$/USA/state/output/wavelet/1980_2016/national/100_sim/white_noise/p_values/Cancer/35_Men_Cancer" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/wavelet/1980_2016/national/100_sim/white_noise/p_values/Cancer/35_Women_Cancer" afterPath="$PROJECT_DIR$/USA/state/output/wavelet/1980_2016/national/100_sim/white_noise/p_values/Cancer/35_Women_Cancer" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/wavelet/1980_2016/national/100_sim/white_noise/p_values/Cancer/45_Men_Cancer" afterPath="$PROJECT_DIR$/USA/state/output/wavelet/1980_2016/national/100_sim/white_noise/p_values/Cancer/45_Men_Cancer" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/wavelet/1980_2016/national/100_sim/white_noise/p_values/Cancer/45_Women_Cancer" afterPath="$PROJECT_DIR$/USA/state/output/wavelet/1980_2016/national/100_sim/white_noise/p_values/Cancer/45_Women_Cancer" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/wavelet/1980_2016/national/100_sim/white_noise/p_values/Cancer/55_Men_Cancer" afterPath="$PROJECT_DIR$/USA/state/output/wavelet/1980_2016/national/100_sim/white_noise/p_values/Cancer/55_Men_Cancer" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/wavelet/1980_2016/national/100_sim/white_noise/p_values/Cancer/55_Women_Cancer" afterPath="$PROJECT_DIR$/USA/state/output/wavelet/1980_2016/national/100_sim/white_noise/p_values/Cancer/55_Women_Cancer" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/wavelet/1980_2016/national/100_sim/white_noise/p_values/Cancer/5_Men_Cancer" afterPath="$PROJECT_DIR$/USA/state/output/wavelet/1980_2016/national/100_sim/white_noise/p_values/Cancer/5_Men_Cancer" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/wavelet/1980_2016/national/100_sim/white_noise/p_values/Cancer/5_Women_Cancer" afterPath="$PROJECT_DIR$/USA/state/output/wavelet/1980_2016/national/100_sim/white_noise/p_values/Cancer/5_Women_Cancer" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/wavelet/1980_2016/national/100_sim/white_noise/p_values/Cancer/65_Men_Cancer" afterPath="$PROJECT_DIR$/USA/state/output/wavelet/1980_2016/national/100_sim/white_noise/p_values/Cancer/65_Men_Cancer" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/wavelet/1980_2016/national/100_sim/white_noise/p_values/Cancer/65_Women_Cancer" afterPath="$PROJECT_DIR$/USA/state/output/wavelet/1980_2016/national/100_sim/white_noise/p_values/Cancer/65_Women_Cancer" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/wavelet/1980_2016/national/100_sim/white_noise/p_values/Cancer/75_Men_Cancer" afterPath="$PROJECT_DIR$/USA/state/output/wavelet/1980_2016/national/100_sim/white_noise/p_values/Cancer/75_Men_Cancer" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/wavelet/1980_2016/national/100_sim/white_noise/p_values/Cancer/75_Women_Cancer" afterPath="$PROJECT_DIR$/USA/state/output/wavelet/1980_2016/national/100_sim/white_noise/p_values/Cancer/75_Women_Cancer" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/wavelet/1980_2016/national/100_sim/white_noise/p_values/Cancer/85_Men_Cancer" afterPath="$PROJECT_DIR$/USA/state/output/wavelet/1980_2016/national/100_sim/white_noise/p_values/Cancer/85_Men_Cancer" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/wavelet/1980_2016/national/100_sim/white_noise/p_values/Cancer/85_Women_Cancer" afterPath="$PROJECT_DIR$/USA/state/output/wavelet/1980_2016/national/100_sim/white_noise/p_values/Cancer/85_Women_Cancer" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/wavelet/1980_2016/national/100_sim/white_noise/plots/no_log/wavelet_national_all_men_Cancer_100_sim_1980_2016.pdf" afterPath="$PROJECT_DIR$/USA/state/output/wavelet/1980_2016/national/100_sim/white_noise/plots/no_log/wavelet_national_all_men_Cancer_100_sim_1980_2016.pdf" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/wavelet/1980_2016/national/100_sim/white_noise/plots/no_log/wavelet_national_all_women_Cancer_100_sim_1980_2016.pdf" afterPath="$PROJECT_DIR$/USA/state/output/wavelet/1980_2016/national/100_sim/white_noise/plots/no_log/wavelet_national_all_women_Cancer_100_sim_1980_2016.pdf" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/com/com_plot_cod.R" afterPath="$PROJECT_DIR$/USA/state/prog/com/com_plot_cod.R" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/00_bash/plotting/plotting_results_climate_cod_1var.sh" afterPath="$PROJECT_DIR$/USA/state/prog/00_bash/plotting/plotting_results_climate_cod_1var.sh" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/mapping_posterior/mapping_posterior_climate_cod_1var.R" afterPath="$PROJECT_DIR$/USA/state/prog/mapping_posterior/mapping_posterior_climate_cod_1var.R" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -52,50 +77,22 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="wavelet_paper_cod.sh" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/USA/state/prog/00_bash/wavelet/wavelet_paper_cod.sh">
+      <file leaf-file-name="mapping_posterior_climate_cod_1var.R" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/USA/state/prog/mapping_posterior/mapping_posterior_climate_cod_1var.R">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="55" column="29" lean-forward="false" selection-start-line="55" selection-start-column="29" selection-end-line="55" selection-end-column="29" />
+            <state relative-caret-position="255">
+              <caret line="338" column="8" lean-forward="false" selection-start-line="338" selection-start-column="8" selection-end-line="338" selection-end-column="8" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="com_plot_cod.R" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/USA/state/prog/com/com_plot_cod.R">
+      <file leaf-file-name="plotting_results_climate_cod_1var.sh" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/USA/state/prog/00_bash/plotting/plotting_results_climate_cod_1var.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1023">
-              <caret line="131" column="49" lean-forward="false" selection-start-line="131" selection-start-column="49" selection-end-line="131" selection-end-column="49" />
+            <state relative-caret-position="-155">
+              <caret line="3" column="40" lean-forward="true" selection-start-line="3" selection-start-column="40" selection-end-line="3" selection-end-column="40" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="wavelet_national_cod.R" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/USA/state/prog/wavelet/wavelet_national_cod.R">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="18">
-              <caret line="52" column="0" lean-forward="false" selection-start-line="52" selection-start-column="0" selection-end-line="54" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="wavelet_functions.R" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/USA/state/prog/01_functions/wavelet_functions.R">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="233" column="41" lean-forward="false" selection-start-line="233" selection-start-column="41" selection-end-line="233" selection-end-column="41" />
-              <folding>
-                <element signature="e#136#2149#0" expanded="false" />
-                <element signature="e#2306#6917#0" expanded="false" />
-                <element signature="e#7031#10426#0" expanded="false" />
-                <element signature="e#11951#14893#0" expanded="false" />
-                <element signature="e#14928#17929#0" expanded="false" />
-                <element signature="e#17965#20966#0" expanded="false" />
-                <element signature="e#21315#26112#0" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -175,22 +172,21 @@
         <option value="$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_cod_1var_1-10.sh" />
         <option value="$PROJECT_DIR$/USA/state/prog/models/INLA/03_spatiotemporal/inla_models_cod.R" />
         <option value="$PROJECT_DIR$/USA/state/prog/bind_posterior/bind_posterior_climate_cod_all_param_1var.R" />
-        <option value="$PROJECT_DIR$/USA/state/prog/mapping_posterior/mapping_posterior_climate_cod_1var.R" />
         <option value="$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_cod_1var_7-10.sh" />
         <option value="$PROJECT_DIR$/USA/state/prog/wavelet/wavelet_national_cod.R" />
-        <option value="$PROJECT_DIR$/USA/state/prog/00_bash/plotting/plotting_results_climate_cod_1var.sh" />
         <option value="$PROJECT_DIR$/USA/state/prog/seasonality_index/seasonality_index_cod.R" />
         <option value="$PROJECT_DIR$/USA/state/prog/seasonality_index/seasonality_index_cod_plot_all.R" />
         <option value="$PROJECT_DIR$/USA/state/prog/01_functions/wavelet_functions.R" />
         <option value="$PROJECT_DIR$/USA/state/prog/00_bash/wavelet/wavelet_paper_cod.sh" />
         <option value="$PROJECT_DIR$/USA/state/prog/com/com_plot_cod.R" />
+        <option value="$PROJECT_DIR$/USA/state/prog/00_bash/plotting/plotting_results_climate_cod_1var.sh" />
+        <option value="$PROJECT_DIR$/USA/state/prog/mapping_posterior/mapping_posterior_climate_cod_1var.R" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="3840" />
-    <option name="width" value="1920" />
-    <option name="height" value="1080" />
+    <option name="width" value="1440" />
+    <option name="height" value="900" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -208,7 +204,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -234,87 +229,10 @@
               <option name="myItemId" value="USA" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="state" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mortality" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mortality" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="USA" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="state" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="prog" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mortality" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mortality" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="USA" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="state" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="prog" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="seasonality_index" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mortality" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mortality" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="USA" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="state" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="prog" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -333,133 +251,7 @@
       <recent name="$PROJECT_DIR$/USA/state/prog/prep_data_cod/zz_legacy" />
     </key>
   </component>
-  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
-    <UpdatedFiles>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Updated from server" />
-        <option name="myStatusName" value="Changed on server" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="CHANGED_ON_SERVER" />
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Updated" />
-          <option name="myStatusName" value="Changed" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/prog/00_bash/plotting/plotting_results_climate_cod_1var.sh</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/prog/00_bash/wavelet/wavelet_paper_cod.sh</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/prog/01_functions/wavelet_functions.R</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/prog/com/com_plot_cod.R</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/prog/mapping_posterior/mapping_posterior_climate_cod_1var.R</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/prog/seasonality_index/seasonality_index_cod_plot_all.R</PATH>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Created" />
-          <option name="myStatusName" value="Created" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="CREATED" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Deleted" />
-          <option name="myStatusName" value="Deleted" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="true" />
-          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Restored" />
-          <option name="myStatusName" value="Will be restored" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="RESTORED" />
-        </FILE-GROUP>
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Modified" />
-        <option name="myStatusName" value="Modified" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MODIFIED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Skipped" />
-        <option name="myStatusName" value="Skipped" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SKIPPED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with conflicts" />
-        <option name="myStatusName" value="Will be merged with conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_CONFLICTS" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with tree conflicts" />
-        <option name="myStatusName" value="Merged with tree conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with property conflicts" />
-        <option name="myStatusName" value="Will be merged with property conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged" />
-        <option name="myStatusName" value="Will be merged" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Not in repository" />
-        <option name="myStatusName" value="Not in repository" />
-        <option name="mySupportsDeletion" value="true" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="UNKNOWN" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally added" />
-        <option name="myStatusName" value="Locally added" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_ADDED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally removed" />
-        <option name="myStatusName" value="Locally removed" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_REMOVED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Switched" />
-        <option name="myStatusName" value="Switched" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SWITCHED" />
-      </FILE-GROUP>
-    </UpdatedFiles>
-  </component>
-  <component name="RunManager" selected="Bash.wavelet_paper_cod.sh">
-    <configuration default="false" name="data_prep_cod.sh" type="BashConfigurationType" factoryName="Bash" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="INTERPRETER_PATH" value="/bin/bash" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/USA/state/prog/00_bash/data_prep" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/USA/state/prog/00_bash/data_prep/data_prep_cod.sh" />
-      <option name="PARAMETERS" value="" />
-      <module name="mortality" />
-      <envs />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="Bash.plotting_results_climate_cod_1var.sh">
     <configuration default="false" name="wavelet_paper_cod.sh" type="BashConfigurationType" factoryName="Bash" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="INTERPRETER_PATH" value="/bin/bash" />
@@ -501,6 +293,14 @@
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/USA/state/prog/00_bash/inla/injury_paper.sh" />
       <option name="PARAMETERS" value="" />
       <module name="mortality" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="mapping_posterior_climate_cod_1var" type="RRunConfigurationType" factoryName="R" temporary="true">
+      <option name="SCRIPT_PATH" value="$PROJECT_DIR$/USA/state/prog/mapping_posterior/mapping_posterior_climate_cod_1var.R" />
+      <option name="SCRIPT_ARGS" value="" />
+      <option name="WORKING_DIRECTORY_PATH" value="$PROJECT_DIR$/USA/state/prog/mapping_posterior" />
+      <option name="PASS_PARENT_ENVS" value="true" />
       <envs />
       <method />
     </configuration>
@@ -658,19 +458,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Bash.data_prep_cod.sh" />
-      <item index="1" class="java.lang.String" itemvalue="Bash.wavelet_paper_cod.sh" />
-      <item index="2" class="java.lang.String" itemvalue="Bash.data_explore_cod.sh" />
-      <item index="3" class="java.lang.String" itemvalue="Bash.plotting_results_climate_cod_1var.sh" />
-      <item index="4" class="java.lang.String" itemvalue="Bash.injury_paper.sh" />
+      <item index="0" class="java.lang.String" itemvalue="Bash.wavelet_paper_cod.sh" />
+      <item index="1" class="java.lang.String" itemvalue="Bash.data_explore_cod.sh" />
+      <item index="2" class="java.lang.String" itemvalue="Bash.plotting_results_climate_cod_1var.sh" />
+      <item index="3" class="java.lang.String" itemvalue="Bash.injury_paper.sh" />
+      <item index="4" class="java.lang.String" itemvalue="R.mapping_posterior_climate_cod_1var" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Bash.wavelet_paper_cod.sh" />
-        <item index="1" class="java.lang.String" itemvalue="Bash.plotting_results_climate_cod_1var.sh" />
-        <item index="2" class="java.lang.String" itemvalue="Bash.injury_paper.sh" />
-        <item index="3" class="java.lang.String" itemvalue="Bash.data_explore_cod.sh" />
-        <item index="4" class="java.lang.String" itemvalue="Bash.data_prep_cod.sh" />
+        <item index="0" class="java.lang.String" itemvalue="Bash.plotting_results_climate_cod_1var.sh" />
+        <item index="1" class="java.lang.String" itemvalue="R.mapping_posterior_climate_cod_1var" />
+        <item index="2" class="java.lang.String" itemvalue="Bash.wavelet_paper_cod.sh" />
+        <item index="3" class="java.lang.String" itemvalue="Bash.injury_paper.sh" />
+        <item index="4" class="java.lang.String" itemvalue="Bash.data_explore_cod.sh" />
       </list>
     </recent_temporary>
   </component>
@@ -1044,17 +844,17 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="3840" y="0" width="1920" height="1080" extended-state="6" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26947704" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2732475" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891566" sideWeight="0.49713877" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="R Packages" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3291639" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="R Graphics" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32650602" sideWeight="0.5028612" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3258427" sideWeight="0.49713877" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4555669" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.43012047" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24951456" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32986626" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -1349,13 +1149,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/USA/state/prog/mapping_posterior/mapping_posterior_climate_cod_1var.R">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="913">
-          <caret line="300" column="28" lean-forward="false" selection-start-line="300" selection-start-column="28" selection-end-line="300" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_cod_1var_7-10.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
@@ -1374,15 +1167,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/USA/state/prog/00_bash/plotting/plotting_results_climate_cod_1var.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1390,7 +1174,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5235">
           <caret line="442" column="5" lean-forward="false" selection-start-line="442" selection-start-column="0" selection-end-line="442" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1398,13 +1181,36 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
           <caret line="49" column="80" lean-forward="false" selection-start-line="49" selection-start-column="80" selection-end-line="49" selection-end-column="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/USA/state/prog/00_bash/wavelet/wavelet_paper_cod.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="825">
+          <caret line="55" column="29" lean-forward="false" selection-start-line="55" selection-start-column="29" selection-end-line="55" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/USA/state/prog/com/com_plot_cod.R">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="727">
+          <caret line="131" column="49" lean-forward="false" selection-start-line="131" selection-start-column="49" selection-end-line="131" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/USA/state/prog/wavelet/wavelet_national_cod.R">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="727">
+          <caret line="52" column="0" lean-forward="false" selection-start-line="52" selection-start-column="0" selection-end-line="54" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/USA/state/prog/01_functions/wavelet_functions.R">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
+        <state relative-caret-position="255">
           <caret line="233" column="41" lean-forward="false" selection-start-line="233" selection-start-column="41" selection-end-line="233" selection-end-column="41" />
           <folding>
             <element signature="e#136#2149#0" expanded="false" />
@@ -1418,26 +1224,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/USA/state/prog/wavelet/wavelet_national_cod.R">
+    <entry file="file://$PROJECT_DIR$/USA/state/prog/00_bash/plotting/plotting_results_climate_cod_1var.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="52" column="0" lean-forward="false" selection-start-line="52" selection-start-column="0" selection-end-line="54" selection-end-column="25" />
+        <state relative-caret-position="-155">
+          <caret line="3" column="40" lean-forward="true" selection-start-line="3" selection-start-column="40" selection-end-line="3" selection-end-column="40" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/USA/state/prog/00_bash/wavelet/wavelet_paper_cod.sh">
+    <entry file="file://$PROJECT_DIR$/USA/state/prog/mapping_posterior/mapping_posterior_climate_cod_1var.R">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="55" column="29" lean-forward="false" selection-start-line="55" selection-start-column="29" selection-end-line="55" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/USA/state/prog/com/com_plot_cod.R">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1023">
-          <caret line="131" column="49" lean-forward="false" selection-start-line="131" selection-start-column="49" selection-end-line="131" selection-end-column="49" />
+        <state relative-caret-position="255">
+          <caret line="338" column="8" lean-forward="false" selection-start-line="338" selection-start-column="8" selection-end-line="338" selection-end-column="8" />
           <folding />
         </state>
       </provider>

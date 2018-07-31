@@ -327,7 +327,7 @@ if(model=='1d'){
         # ADD SIGNIFICANCE HIGHLIGHTS
         print(ggplot() +
         geom_tile(data=subset(dat),aes(x=ID,y=as.factor(age)),color='black',fill='white') +
-        geom_point(data=subset(dat),aes(x=ID,y=as.factor(age),size = ifelse(dat$sig == 0,NA,1.2)),shape=21,color='black',fill='black') +
+        # geom_point(data=subset(dat),aes(x=ID,y=as.factor(age),size = ifelse(dat$sig == 0,NA,1.2)),shape=21,color='black',fill='black') +
         geom_point(data=subset(dat,mean>0),aes(x=ID,y=as.factor(age),fill=odds.mean,size=odds.prob*1),shape=21, color="black")+
         geom_point(data=subset(dat,mean<0),aes(x=ID,y=as.factor(age),fill=odds.mean,size=(1-odds.prob*1)),shape=21, color="black")+
         scale_size_continuous(range=c(1,12),limits=c(0.5,1.2),trans='sqrt') +
