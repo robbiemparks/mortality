@@ -228,7 +228,7 @@ plot.wavelet.national.all <- function(sex.selected,cod='AllCause',log.selected=0
 
     # fix cause of death names
     cod.print = ifelse(cod=='AllCause','all cause',
-                ifelse(cod=='Cancer', 'cancer',
+                ifelse(cod=='Cancer', 'cancers', # CHANGE
                 ifelse(cod=='Cardiopulmonary', 'cardiorespiratory diseases',
                 ifelse(cod=='External', 'injuries',
                 ifelse(cod=='Unintentional','unintentional injuries',
@@ -236,7 +236,7 @@ plot.wavelet.national.all <- function(sex.selected,cod='AllCause',log.selected=0
                 ifelse(cod=='Other', 'other',
                 ifelse(cod=='Cardiovascular','cardiovascular diseases',
                 ifelse(cod=='Chronic respiratory diseases','chronic respiratory diseases',
-                ifelse(cod=='Respiratory infections',"respiratory infections",
+                ifelse(cod=='Respiratory infections','respiratory infections',
                 ifelse(cod=='Endocrine disorders','endocrine disorders',
                 ifelse(cod=='Genitourinary diseases','genitourinary diseases',
                 ifelse(cod=='Maternal conditions','maternal conditions',

@@ -20,7 +20,7 @@ source('../../data/objects/objects.R')
 
 # fix cause of death names
 cod.print = ifelse(cod.arg=='AllCause','all cause',
-            ifelse(cod.arg=='Cancer', 'cancer',
+            ifelse(cod.arg=='Cancer', 'cancers',
             ifelse(cod.arg=='Cardiopulmonary', 'cardiorespiratory diseases',
             ifelse(cod.arg=='External', 'all injuries',
             ifelse(cod.arg=='Unintentional','unintentional injuries',

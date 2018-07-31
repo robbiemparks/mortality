@@ -145,17 +145,17 @@ ifelse(!dir.exists(file.loc), dir.create(file.loc,recursive=TRUE), FALSE)
 
 # fix name fo plotting
 cod.print = ifelse(cause=='AllCause', 'All cause',
-        ifelse(cause=='Cancer', 'Cancer',
-        ifelse(cause=='Cardiopulmonary', 'Cardiorespiratory',
+        ifelse(cause=='Cancer', 'Cancers',
+        ifelse(cause=='Cardiopulmonary', 'Cardiorespiratory diseases',
         ifelse(cause=='External', 'Injuries',
         ifelse(cause=='Other', 'Other',
         ifelse(cause=='Intentional','Intentional injuries',
         ifelse(cause=='Unintentional','Unintentional injuries',
-        ifelse(cause=='Unintentional wo drowning','Unintentional without drowining',
-        ifelse(cause=='Transport accidents','Transport accidents',
-        ifelse(cause=='Intentional self-harm','Intentional self-harm',
-        ifelse(cause=='Accidental falls','Accidental falls',
-        ifelse(cause=='Accidental drowning and submersion','Drowning',
+        ifelse(cause=='Unintentional wo drowning','Unintentional injuries except drowinings',
+        ifelse(cause=='Transport accidents','Transport',
+        ifelse(cause=='Intentional self-harm','Intentional self-harm', # TO ASK MAJID. 'Suicides' ???
+        ifelse(cause=='Accidental falls','Falls',
+        ifelse(cause=='Accidental drowning and submersion','Drownings',
         ifelse(cause=='Assault','Assault','NA'
         )))))))))))))
 
