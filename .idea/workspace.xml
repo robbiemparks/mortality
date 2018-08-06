@@ -24,25 +24,25 @@
       <file leaf-file-name="additional_deaths_climate_cod_1var.R" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/USA/state/prog/additional_deaths/additional_deaths_climate_cod_1var.R">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="537">
-              <caret line="198" column="18" lean-forward="false" selection-start-line="198" selection-start-column="18" selection-end-line="198" selection-end-column="18" />
+            <state relative-caret-position="31">
+              <caret line="167" column="4" lean-forward="false" selection-start-line="167" selection-start-column="4" selection-end-line="167" selection-end-column="4" />
               <folding>
                 <element signature="e#1093#1614#0" expanded="false" />
                 <element signature="e#2151#5894#0" expanded="false" />
-                <element signature="e#11937#14092#0" expanded="false" />
-                <element signature="e#14591#16858#0" expanded="false" />
-                <element signature="e#17217#31725#0" expanded="false" />
-                <element signature="e#31847#53263#0" expanded="false" />
+                <element signature="e#11930#14085#0" expanded="false" />
+                <element signature="e#14584#16851#0" expanded="false" />
+                <element signature="e#17210#31718#0" expanded="false" />
+                <element signature="e#31840#53256#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="inla_load_data_cod.R" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/USA/state/prog/models/INLA/03_spatiotemporal/inla_load_data_cod.R">
+      <file leaf-file-name="mapping_posterior_climate_cod_1var.R" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/USA/state/prog/mapping_posterior/mapping_posterior_climate_cod_1var.R">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
-              <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="25" selection-end-column="1" />
+            <state relative-caret-position="1857">
+              <caret line="802" column="55" lean-forward="false" selection-start-line="802" selection-start-column="55" selection-end-line="802" selection-end-column="55" />
               <folding />
             </state>
           </provider>
@@ -231,7 +231,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="additional_deaths" />
+              <option name="myItemId" value="mapping_posterior" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -493,13 +493,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1528108809576</updated>
-    </task>
-    <task id="LOCAL-00128" summary="Edited bash file to describe what's going on a bit more for eLife revisions">
-      <created>1530708919684</created>
-      <option name="number" value="00128" />
-      <option name="presentableId" value="LOCAL-00128" />
-      <option name="project" value="LOCAL" />
-      <updated>1530708919685</updated>
     </task>
     <task id="LOCAL-00129" summary="Edited bash file to describe what's going on a bit more for eLife revisions">
       <created>1530712838938</created>
@@ -837,7 +830,14 @@
       <option name="project" value="LOCAL" />
       <updated>1533553003406</updated>
     </task>
-    <option name="localTasksCounter" value="177" />
+    <task id="LOCAL-00177" summary="updates to wavelet coding">
+      <created>1533553457475</created>
+      <option name="number" value="00177" />
+      <option name="presentableId" value="LOCAL-00177" />
+      <option name="project" value="LOCAL" />
+      <updated>1533553457475</updated>
+    </task>
+    <option name="localTasksCounter" value="178" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1206,14 +1206,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/USA/state/prog/mapping_posterior/mapping_posterior_climate_cod_1var.R">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="376" column="5" lean-forward="true" selection-start-line="361" selection-start-column="2" selection-end-line="376" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_cod.R">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2160">
@@ -1230,17 +1222,25 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/USA/state/prog/mapping_posterior/mapping_posterior_climate_cod_1var.R">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1857">
+          <caret line="802" column="55" lean-forward="false" selection-start-line="802" selection-start-column="55" selection-end-line="802" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/USA/state/prog/additional_deaths/additional_deaths_climate_cod_1var.R">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="537">
-          <caret line="198" column="18" lean-forward="false" selection-start-line="198" selection-start-column="18" selection-end-line="198" selection-end-column="18" />
+        <state relative-caret-position="31">
+          <caret line="167" column="4" lean-forward="false" selection-start-line="167" selection-start-column="4" selection-end-line="167" selection-end-column="4" />
           <folding>
             <element signature="e#1093#1614#0" expanded="false" />
             <element signature="e#2151#5894#0" expanded="false" />
-            <element signature="e#11937#14092#0" expanded="false" />
-            <element signature="e#14591#16858#0" expanded="false" />
-            <element signature="e#17217#31725#0" expanded="false" />
-            <element signature="e#31847#53263#0" expanded="false" />
+            <element signature="e#11930#14085#0" expanded="false" />
+            <element signature="e#14584#16851#0" expanded="false" />
+            <element signature="e#17210#31718#0" expanded="false" />
+            <element signature="e#31840#53256#0" expanded="false" />
           </folding>
         </state>
       </provider>
