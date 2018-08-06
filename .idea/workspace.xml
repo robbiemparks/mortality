@@ -24,13 +24,14 @@
       <file leaf-file-name="additional_deaths_climate_cod_1var.R" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/USA/state/prog/additional_deaths/additional_deaths_climate_cod_1var.R">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="913">
-              <caret line="175" column="0" lean-forward="false" selection-start-line="175" selection-start-column="0" selection-end-line="180" selection-end-column="5" />
+            <state relative-caret-position="1116">
+              <caret line="999" column="0" lean-forward="false" selection-start-line="999" selection-start-column="2" selection-end-line="1129" selection-end-column="3" />
               <folding>
                 <element signature="e#2151#5894#0" expanded="false" />
-                <element signature="e#42397#56905#0" expanded="false" />
-                <element signature="e#57027#78443#0" expanded="false" />
-                <element signature="e#81416#85736#0" expanded="false" />
+                <element signature="e#12006#14161#0" expanded="false" />
+                <element signature="e#14660#16927#0" expanded="false" />
+                <element signature="e#17286#31794#0" expanded="false" />
+                <element signature="e#31916#53332#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -39,8 +40,8 @@
       <file leaf-file-name="inla_load_data_cod.R" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/USA/state/prog/models/INLA/03_spatiotemporal/inla_load_data_cod.R">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="20" column="29" lean-forward="false" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="135" />
+            <state relative-caret-position="54">
+              <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="25" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -50,8 +51,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>geom_hline</find>
-      <find>HEATMAP</find>
       <find>sex</find>
       <find>lin.reg.grad.weight</find>
       <find>sex.long</find>
@@ -80,9 +79,13 @@
       <find>figure 3</find>
       <find>facet</find>
       <find>figure 4</find>
+      <find>cod.arg</find>
+      <find>dat.inla.load</find>
     </findStrings>
     <replaceStrings>
       <replace>dat</replace>
+      <replace>cause</replace>
+      <replace>dat.mort</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -490,13 +493,6 @@
       <option name="presentableId" value="Default" />
       <updated>1528108809576</updated>
     </task>
-    <task id="LOCAL-00125" summary="Edited bash file to describe what's going on a bit more for eLife revisions">
-      <created>1530522510951</created>
-      <option name="number" value="00125" />
-      <option name="presentableId" value="LOCAL-00125" />
-      <option name="project" value="LOCAL" />
-      <updated>1530522510951</updated>
-    </task>
     <task id="LOCAL-00126" summary="Edited bash file to describe what's going on a bit more for eLife revisions">
       <created>1530522946386</created>
       <option name="number" value="00126" />
@@ -833,7 +829,14 @@
       <option name="project" value="LOCAL" />
       <updated>1533548708670</updated>
     </task>
-    <option name="localTasksCounter" value="174" />
+    <task id="LOCAL-00174" summary="updates to wavelet coding">
+      <created>1533549744529</created>
+      <option name="number" value="00174" />
+      <option name="presentableId" value="LOCAL-00174" />
+      <option name="project" value="LOCAL" />
+      <updated>1533549744530</updated>
+    </task>
+    <option name="localTasksCounter" value="175" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1190,6 +1193,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1219,21 +1223,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/USA/state/prog/models/INLA/03_spatiotemporal/inla_load_data_cod.R">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="20" column="29" lean-forward="false" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="135" />
+        <state relative-caret-position="54">
+          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="25" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/USA/state/prog/additional_deaths/additional_deaths_climate_cod_1var.R">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="913">
-          <caret line="175" column="0" lean-forward="false" selection-start-line="175" selection-start-column="0" selection-end-line="180" selection-end-column="5" />
+        <state relative-caret-position="1116">
+          <caret line="999" column="0" lean-forward="false" selection-start-line="999" selection-start-column="2" selection-end-line="1129" selection-end-column="3" />
           <folding>
             <element signature="e#2151#5894#0" expanded="false" />
-            <element signature="e#42397#56905#0" expanded="false" />
-            <element signature="e#57027#78443#0" expanded="false" />
-            <element signature="e#81416#85736#0" expanded="false" />
+            <element signature="e#12006#14161#0" expanded="false" />
+            <element signature="e#14660#16927#0" expanded="false" />
+            <element signature="e#17286#31794#0" expanded="false" />
+            <element signature="e#31916#53332#0" expanded="false" />
           </folding>
         </state>
       </provider>
