@@ -24,7 +24,7 @@ contiguous.arg <- as.numeric(args[14])
 #year.start.analysis.arg = 1980 ; # year.end.analysis.arg = 1989 ; cod.arg = 'Cardiopulmonary'; fast.arg = 1
 
 # types character for file strings
-types <- c('1','1a','2','2a','3','3a','4','1b','1c','1d','1e','1f','1de','1ef','1g','0','minus1')
+types <- c('1','1a','2','2a','3','3a','4','1b','1c','1d','1e','1f','1de','1ef','1g','0','minus1','1d2')
 type.selected <- types[type.arg]
 
 print(paste(age.arg,sex.arg,type.selected,cod.arg))
