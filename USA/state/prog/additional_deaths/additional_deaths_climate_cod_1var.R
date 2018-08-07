@@ -244,19 +244,22 @@ if(model=='1d'){
     dat.national <- dat.national[order(dat.national$sex,dat.national$age,dat.national$year,dat.national$month),]
 
     # with all the draws made for each age and sex, will now make an estimate for additional deaths
+    additional.deaths = data.frame()
     for(k in seq(num.draws)){
         parameter.table = data.frame()
-        for (i in seq(length(sex.filter))) {
-            for (j in seq(length(age.filter))) {
+        # for (i in seq(length(sex.filter))) { PUT BACK
+        #     for (j in seq(length(age.filter))) { PUT BACK
+        i=1 ; j=4 ;
         # for each draw make a parameter summary to then calculate additional deaths
         climate.values = get(paste0('draws.',age.filter[j],'.',sex.lookup[i]))[[k]]$latent[grep('month5',rownames(get(paste0('draws.',age.filter[j],'.',sex.lookup[1]))[[k]]$latent))]
         climate.values = exp(climate.values)
         table = data.frame(age=age.filter[j], sex=i, ID=c(1:12),odds.mean=climate.values)
         parameter.table = rbind(parameter.table,table)
-        }}
+        # }} PUT BACK
+
         # attach long age names
-        parameter.table$age.long <- mapvalues(parameter.table$age,from=sort(unique(parameter.table$age)),to=as.character(age.code[,2]))
-        dat$age.long <- reorder(parameter.table$age.long, parameter.table$age)
+        # parameter.table$age.long <- mapvalues(parameter.table$age,from=sort(unique(parameter.table$age)),to=as.character(age.code[,2]))
+        # dat$age.long <- reorder(parameter.table$age.long, parameter.table$age)
 
         # 1. ADDITIONAL DEATHS FROM UNIFORM 2 DEGREE INCREASE NATIONALLY
         # establish potential attributable deaths for last year of dataset
@@ -273,48 +276,56 @@ if(model=='1d'){
         # take one year
         dat.merged.sub <- subset(dat.merged,year==year.end)
 
-        # integrate across year
+        # integrate across year by age and sex, also for entire population
         dat.merged.sub.year = ddply(dat.merged.sub,.(sex,age),summarise,deaths.added=sum(deaths.added))
+        dat.merged.sub.year$draw = k
+        # dat.mer
 
+        print(k)
+
+        additional.deaths = rbind(additional.deaths,dat.merged.sub.year)
     }
+
+    # ggplot(data=dat.merged.sub.year) + geom_point(aes(x=age,y=deaths.added)) + geom_hline(yintercept=0) + facet_wrap(~sex) + ggtitle(cause)
+
 
     # # attach long age names
     # dat$age.long <- mapvalues(dat$age,from=sort(unique(dat$age)),to=as.character(age.code[,2]))
     # dat$age.long <- reorder(dat$age.long,dat$age)
 
-    # merge odds and deaths files and reorder
-    dat.merged.old <- merge(dat.national,dat, by.x=c('sex','age','month'),by.y=c('sex','age','ID'),all.x=TRUE)
-    dat.merged.old <- dat.merged.old[order(dat.merged.old$sex,dat.merged.old$age,dat.merged.old$year,dat.merged.old$month),]
-    dat.merged.old <- na.omit(dat.merged.old)
-
-    # calculate additional deaths for 2 unit change in climate parameter
-    dat.merged.old$deaths.added <- with(dat.merged.old,(odds.mean)*deaths.pred)
-    dat.merged.old$deaths.added.two.deg <- with(dat.merged.old,((odds.mean+1)^2-1)*deaths.pred)
-
-    # take one year
-    dat.merged.sub.old <- subset(dat.merged.old,year==year.end)
-
-    # integrate across year
-    dat.merged.sub.year = ddply(dat.merged.sub,.(sex,age),summarise,deaths.added=sum(deaths.added))
-
-
-
-
     # # merge odds and deaths files and reorder
-    # dat.merged <- merge(dat.national,dat,by.x=c('sex','age','month'),by.y=c('sex','age','ID'),all.x=TRUE)
-    # dat.merged <- dat.merged[order(dat.merged$sex,dat.merged$age,dat.merged$year,dat.merged$month),]
+    # dat.merged.old <- merge(dat.national,dat, by.x=c('sex','age','month'),by.y=c('sex','age','ID'),all.x=TRUE)
+    # dat.merged.old <- dat.merged.old[order(dat.merged.old$sex,dat.merged.old$age,dat.merged.old$year,dat.merged.old$month),]
+    # dat.merged.old <- na.omit(dat.merged.old)
+    #
+    # # calculate additional deaths for 2 unit change in climate parameter
+    # dat.merged.old$deaths.added <- with(dat.merged.old,(odds.mean)*deaths.pred)
+    # dat.merged.old$deaths.added.two.deg <- with(dat.merged.old,((odds.mean+1)^2-1)*deaths.pred)
+    #
+    # # take one year
+    # dat.merged.sub.old <- subset(dat.merged.old,year==year.end)
+    #
+    # # integrate across year
+    # dat.merged.sub.year.old = ddply(dat.merged.sub.old,.(sex,age),summarise,deaths.added=sum(deaths.added))
 
-    # calculate additional deaths for 2 unit change in climate parameter
-    dat.merged$deaths.added <- with(dat.merged,odds.mean*deaths.pred)
-    dat.merged$deaths.added.two.deg <- with(dat.merged,((odds.mean+1)^2-1)*deaths.pred)
-    # dat.merged$deaths.added.two.deg.ll <- with(dat.merged,((odds.ll+1)^2-1)*deaths.pred) #TEMP
-    # dat.merged$deaths.added.two.deg.ul <- with(dat.merged,((odds.ul+1)^2-1)*deaths.pred) #TEMP
-
-    # take one year
-    dat.merged.sub <- subset(dat.merged,year==year.end)
-
-    # integrate across year
-    dat.merged.sub.year = ddply(dat.merged.sub,.(sex,age),summarise,deaths.added=sum(deaths.added))
+    #
+    #
+    #
+    # # # merge odds and deaths files and reorder
+    # # dat.merged <- merge(dat.national,dat,by.x=c('sex','age','month'),by.y=c('sex','age','ID'),all.x=TRUE)
+    # # dat.merged <- dat.merged[order(dat.merged$sex,dat.merged$age,dat.merged$year,dat.merged$month),]
+    #
+    # # calculate additional deaths for 2 unit change in climate parameter
+    # dat.merged$deaths.added <- with(dat.merged,odds.mean*deaths.pred)
+    # dat.merged$deaths.added.two.deg <- with(dat.merged,((odds.mean+1)^2-1)*deaths.pred)
+    # # dat.merged$deaths.added.two.deg.ll <- with(dat.merged,((odds.ll+1)^2-1)*deaths.pred) #TEMP
+    # # dat.merged$deaths.added.two.deg.ul <- with(dat.merged,((odds.ul+1)^2-1)*deaths.pred) #TEMP
+    #
+    # # take one year
+    # dat.merged.sub <- subset(dat.merged,year==year.end)
+    #
+    # # integrate across year
+    # dat.merged.sub.year = ddply(dat.merged.sub,.(sex,age),summarise,deaths.added=sum(deaths.added))
 
     # ggplot(data=dat.merged.sub.year) + geom_point(aes(x=age,y=deaths.added)) + geom_hline(yintercept=0) + facet_wrap(~sex) + ggtitle(cause)
 
