@@ -54,8 +54,8 @@
       <file leaf-file-name="bind_posterior_climate_cod_1var.R" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/USA/state/prog/bind_posterior/bind_posterior_climate_cod_1var.R">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="884">
-              <caret line="103" column="1" lean-forward="true" selection-start-line="103" selection-start-column="1" selection-end-line="103" selection-end-column="1" />
+            <state relative-caret-position="315">
+              <caret line="21" column="27" lean-forward="false" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -578,13 +578,6 @@
       <option name="presentableId" value="Default" />
       <updated>1528108809576</updated>
     </task>
-    <task id="LOCAL-00161" summary="Fixed injury paper bash script">
-      <created>1532442888282</created>
-      <option name="number" value="00161" />
-      <option name="presentableId" value="LOCAL-00161" />
-      <option name="project" value="LOCAL" />
-      <updated>1532442888283</updated>
-    </task>
     <task id="LOCAL-00162" summary="Fixed injury paper bash script">
       <created>1532525194803</created>
       <option name="number" value="00162" />
@@ -921,7 +914,14 @@
       <option name="project" value="LOCAL" />
       <updated>1533768371450</updated>
     </task>
-    <option name="localTasksCounter" value="210" />
+    <task id="LOCAL-00210" summary="updates to wavelet coding">
+      <created>1533768539482</created>
+      <option name="number" value="00210" />
+      <option name="presentableId" value="LOCAL-00210" />
+      <option name="project" value="LOCAL" />
+      <updated>1533768539482</updated>
+    </task>
+    <option name="localTasksCounter" value="211" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1326,8 +1326,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/USA/state/prog/bind_posterior/bind_posterior_climate_cod_1var.R">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="884">
-          <caret line="103" column="1" lean-forward="true" selection-start-line="103" selection-start-column="1" selection-end-line="103" selection-end-column="1" />
+        <state relative-caret-position="315">
+          <caret line="21" column="27" lean-forward="false" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="27" />
           <folding />
         </state>
       </provider>
