@@ -115,6 +115,7 @@ if(model%in%c('1d','1d2')){
 
     # with all the draws made for each age and sex, will now make an estimate for additional deaths
     additional.deaths = data.frame()
+    additional.deaths.monthly = data.frame()
     for(k in seq(num.draws)){
         print(paste0('draw ',k))
         parameter.table = data.frame()
@@ -126,11 +127,7 @@ if(model%in%c('1d','1d2')){
         climate.values = exp(climate.values)
         table = data.frame(age=age.filter[j], sex=i, ID=c(1:12),odds.mean=climate.values)
         parameter.table = rbind(parameter.table,table)
-        }#}
-
-        # attach long age names
-        # parameter.table$age.long <- mapvalues(parameter.table$age,from=sort(unique(parameter.table$age)),to=as.character(age.code[,2]))
-        # dat$age.long <- reorder(parameter.table$age.long, parameter.table$age)
+        }}
 
         # 1. ADDITIONAL DEATHS FROM UNIFORM 2 DEGREE INCREASE NATIONALLY FROM LAST YEAR'S POPULATION
 
@@ -151,22 +148,69 @@ if(model%in%c('1d','1d2')){
         dat.merged.sub.year$draw = k
 
         additional.deaths = rbind(additional.deaths,dat.merged.sub.year)
+
+        # integrate across year by age and sex, also for entire population
+        dat.merged.sub.year = ddply(dat.merged.sub,.(sex,age),summarise,deaths.added=sum(deaths.added))
+        dat.merged.sub.year$draw = k
+
+        additional.deaths = rbind(additional.deaths,dat.merged.sub.year)
+        # additional.deaths$sex.long <- mapvalues(additional.deaths$sex,from=sort(unique(additional.deaths$sex)),to=c('Male','Female'))
+        # additional.deaths$sex.long <- reorder(additional.deaths$sex.long,additional.deaths$sex)
+
+        # integrate across year by month and sex, also for entire population
+        dat.merged.sub.year.monthly = ddply(dat.merged.sub,.(sex,month),summarise,deaths.added=sum(deaths.added))
+        dat.merged.sub.year.monthly$draw = k
+        #
+        additional.deaths.monthly = rbind(additional.deaths.monthly,dat.merged.sub.year.monthly)
+        # additional.deaths.monthly$sex.long <- mapvalues(additional.deaths.monthly$sex,from=sort(unique(additional.deaths.monthly$sex)),to=c('Male','Female'))
+        # additional.deaths.monthly$sex.long <- reorder(additional.deaths.monthly$sex.long,additional.deaths.monthly$sex)
+
     }
 
     # processing for plotting
     additional.deaths.summary = ddply(additional.deaths,.(sex,age),summarise,deaths.added.median=median(deaths.added),deaths.added.ll=quantile(deaths.added,0.025),deaths.added.ul=quantile(deaths.added,0.975))
+    additional.deaths.summary$sex.long <- mapvalues(additional.deaths.summary$sex,from=sort(unique(additional.deaths.summary$sex)),to=c('Male','Female'))
+    additional.deaths.summary$sex.long <- reorder(additional.deaths.summary$sex.long,additional.deaths.summary$sex)
 
-    additional.deaths.summary$age.long =
+    additional.deaths.summary.monthly = ddply(additional.deaths.monthly,.(sex,month),summarise,deaths.added.median=median(deaths.added),deaths.added.ll=quantile(deaths.added,0.025),deaths.added.ul=quantile(deaths.added,0.975))
+    additional.deaths.summary.monthly$sex.long <- mapvalues(additional.deaths.summary.monthly$sex,from=sort(unique(additional.deaths.summary.monthly$sex)),to=c('Male','Female'))
+    additional.deaths.summary.monthly$sex.long <- reorder(additional.deaths.summary.monthly$sex.long,additional.deaths.summary.monthly$sex)
+
+    if(cause=="Intentional self-harm"){
+    additional.deaths.summary$deaths.added.median = ifelse(additional.deaths.summary$age==0,0,additional.deaths.summary$deaths.added.median)
+    additional.deaths.summary$deaths.added.ll = ifelse(additional.deaths.summary$age==0,0,additional.deaths.summary$deaths.added.ll)
+    additional.deaths.summary$deaths.added.ul = ifelse(additional.deaths.summary$age==0,0,additional.deaths.summary$deaths.added.ul)
+
+    additional.deaths.summary.monthly$deaths.added.median = ifelse(additional.deaths.summary.monthly$age==0,0,additional.deaths.summary.monthly$deaths.added.median)
+    additional.deaths.summary.monthly$deaths.added.ll = ifelse(additional.deaths.summary.monthly$age==0,0,additional.deaths.summary.monthly$deaths.added.ll)
+    additional.deaths.summary.monthly$deaths.added.ul = ifelse(additional.deaths.summary.monthly$age==0,0,additional.deaths.summary.monthly$deaths.added.ul)
+
+    }
 
     # plot boxplot and 95 CI per age-sex for additional deaths
-    pdf(paste0(file.loc,country,'_rate_pred_type',model,'_',age.filter[j],'_',sex.lookup[i],
+    pdf(paste0(file.loc,country,'_rate_pred_type',model,
             '_',year.start,'_',year.end,'_',dname,'_',metric,'_',num.draws,'_draws_fast_contig.pdf'),paper='a4r',height=0,width=0)
-    ggplot(data=additional.deaths) +
-        geom_boxplot(aes(x=as.factor(age),y=deaths.added)) +
+    # ggplot(data=additional.deaths) +
+    #     geom_boxplot(aes(x=as.factor(age),y=deaths.added)) +
+    #     geom_hline(yintercept=0) +
+    #     xlab('Age (years)') + ylab('Additional deaths with 2 degrees additional warming (based on 2016 population)') +
+    #     scale_x_discrete(labels=age.code[,2])   +
+    #     facet_wrap(~sex.long) +
+    #     ggtitle(cause) +
+    #     theme_bw() + theme(panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
+    #     plot.title = element_text(hjust = 0.5),panel.background = element_blank(),
+    #     panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
+    #     panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+    #     legend.position = 'bottom',legend.justification='center',
+    #     legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
+
+    ggplot() +
+        geom_point(data=additional.deaths.summary,aes(x=as.factor(age),y=deaths.added.median)) +
+        geom_errorbar(data=additional.deaths.summary,aes(x=as.factor(age),ymax=deaths.added.ul,ymin=deaths.added.ll)) +
         geom_hline(yintercept=0) +
         xlab('Age (years)') + ylab('Additional deaths with 2 degrees additional warming (based on 2016 population)') +
         scale_x_discrete(labels=age.code[,2])   +
-        facet_wrap(~sex) +
+        facet_wrap(~sex.long) +
         ggtitle(cause) +
         theme_bw() + theme(panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
         plot.title = element_text(hjust = 0.5),panel.background = element_blank(),
@@ -176,12 +220,12 @@ if(model%in%c('1d','1d2')){
         legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
 
     ggplot() +
-        geom_point(data=additional.deaths.summary,aes(x=as.factor(age),y=deaths.added.median)) +
-        geom_errorbar(data=additional.deaths.summary,aes(x=as.factor(age),ymax=deaths.added.ul,ymin=deaths.added.ll)) +
+        geom_point(data=additional.deaths.summary.monthly,aes(x=as.factor(month),y=deaths.added.median)) +
+        geom_errorbar(data=additional.deaths.summary.monthly,aes(x=as.factor(month),ymax=deaths.added.ul,ymin=deaths.added.ll)) +
         geom_hline(yintercept=0) +
         xlab('Age (years)') + ylab('Additional deaths with 2 degrees additional warming (based on 2016 population)') +
-        scale_x_discrete(labels=age.code[,2])   +
-        facet_wrap(~sex) +
+        scale_x_discrete(labels=month.short)   +
+        facet_wrap(~sex.long) +
         ggtitle(cause) +
         theme_bw() + theme(panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
         plot.title = element_text(hjust = 0.5),panel.background = element_blank(),
