@@ -623,13 +623,6 @@
       <option name="presentableId" value="Default" />
       <updated>1528108809576</updated>
     </task>
-    <task id="LOCAL-00165" summary="updates to wavelet coding">
-      <created>1532606476173</created>
-      <option name="number" value="00165" />
-      <option name="presentableId" value="LOCAL-00165" />
-      <option name="project" value="LOCAL" />
-      <updated>1532606476173</updated>
-    </task>
     <task id="LOCAL-00166" summary="updates to wavelet coding">
       <created>1532613231239</created>
       <option name="number" value="00166" />
@@ -966,7 +959,14 @@
       <option name="project" value="LOCAL" />
       <updated>1533800295477</updated>
     </task>
-    <option name="localTasksCounter" value="214" />
+    <task id="LOCAL-00214" summary="updates to wavelet coding">
+      <created>1533800574906</created>
+      <option name="number" value="00214" />
+      <option name="presentableId" value="LOCAL-00214" />
+      <option name="project" value="LOCAL" />
+      <updated>1533800574906</updated>
+    </task>
+    <option name="localTasksCounter" value="215" />
     <servers />
   </component>
   <component name="TodoView">
