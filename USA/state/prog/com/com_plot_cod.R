@@ -131,6 +131,8 @@ dat.nat.complete$cause <- gsub('AllCause', 'All cause', dat.nat.complete$cause)
 dat.nat.complete$cause <- gsub('External', 'Injuries', dat.nat.complete$cause)
 dat.nat.complete$cause <- gsub('Cancer', 'Cancers', dat.nat.complete$cause)
 dat.nat.complete$cause <- gsub('Cardiopulmonary', 'Cardiorespiratory\ndiseases', dat.nat.complete$cause)
+dat.nat.complete$cause <- gsub('Other', 'Other\ncauses', dat.nat.complete$cause)
+
 
 dat.nat.cardio$cause <- gsub('Cardiovascular', 'Cardiovascular diseases', dat.nat.cardio$cause)
 

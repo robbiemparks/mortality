@@ -233,7 +233,7 @@ plot.wavelet.national.all <- function(sex.selected,cod='AllCause',log.selected=0
                 ifelse(cod=='External', 'injuries',
                 ifelse(cod=='Unintentional','unintentional injuries',
                 ifelse(cod=='Intentional','intentional injuries',
-                ifelse(cod=='Other', 'other',
+                ifelse(cod=='Other', 'other causes',
                 ifelse(cod=='Cardiovascular','cardiovascular diseases',
                 ifelse(cod=='Chronic respiratory diseases','chronic respiratory diseases',
                 ifelse(cod=='Respiratory infections','respiratory infections',
