@@ -33,25 +33,6 @@ cd ~/git/mortality/USA/state/prog/00_bash/
 
 declare cod="Intentional_self-harm"
 
-#Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_cod.R 35 2 $start $end 18 0 $dname $metric $start2 $end2 $cod $fast $contig;
-#Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_cod.R 35 1 $start $end 18 0 $dname $metric $start2 $end2 $cod $fast $contig;
-#Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_cod.R 25 2 $start $end 18 0 $dname $metric $start2 $end2 $cod $fast $contig;
-#Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_cod.R 25 1 $start $end 18 0 $dname $metric $start2 $end2 $cod $fast $contig;
-#Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_cod.R 15 2 $start $end 18 0 $dname $metric $start2 $end2 $cod $fast $contig;
-
-declare cod="Transport_accidents"
-
-#Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_cod.R 35 2 $start $end 18 0 $dname $metric $start2 $end2 $cod $fast $contig;
-#Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_cod.R 35 1 $start $end 18 0 $dname $metric $start2 $end2 $cod $fast $contig;
-#Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_cod.R 25 2 $start $end 18 0 $dname $metric $start2 $end2 $cod $fast $contig;
-#Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_cod.R 25 1 $start $end 18 0 $dname $metric $start2 $end2 $cod $fast $contig;
-#Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_cod.R 15 2 $start $end 18 0 $dname $metric $start2 $end2 $cod $fast $contig;
-
-Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_cod.R 0  2 $start $end 18 0 $dname $metric $start2 $end2 $cod $fast $contig;
-Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_cod.R 45 2 $start $end 18 0 $dname $metric $start2 $end2 $cod $fast $contig;
-
-declare cod="Intentional_self-harm"
-
 Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_cod.R 35 2 $start $end 10 0 $dname $metric $start2 $end2 $cod $fast $contig;
 Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_cod.R 35 1 $start $end 10 0 $dname $metric $start2 $end2 $cod $fast $contig;
 Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_cod.R 25 2 $start $end 10 0 $dname $metric $start2 $end2 $cod $fast $contig;
@@ -65,6 +46,7 @@ Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatio
 Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_cod.R 25 2 $start $end 10 0 $dname $metric $start2 $end2 $cod $fast $contig;
 Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_cod.R 25 1 $start $end 10 0 $dname $metric $start2 $end2 $cod $fast $contig;
 Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_cod.R 15 2 $start $end 10 0 $dname $metric $start2 $end2 $cod $fast $contig;
+
 for model in "${models[@]}"; do
 
 echo "combining results into one file from INLA model $model years $start - $end";
