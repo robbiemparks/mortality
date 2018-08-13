@@ -147,8 +147,15 @@ if(model%in%c('1d','1d2')){
 
     }
 
-    dat.injury.merged.sub = additional.deaths.function(dat.injury.nat,parameters.External,2016)
+    # summary for each cause of death and grouping for 2 degrees scenario by age and sex
+    dat.injury.summary      = additional.deaths.function(dat.injury.nat,parameters.External,year.end)
 
+    dat.intentional.summary = additional.deaths.function(dat.intentional.nat,parameters.Intentional,year.end) ; dat.intentional.summary$cause = 'Intentional'
+    dat.unintentional.summary = additional.deaths.function(dat.unintentional.nat,parameters.Unintentional,year.end) ; dat.unintentional.summary$cause = 'Unintentional'
+    dat.intent.summary = rbind(dat.intentional.summary,dat.unintentional.summary) ;
+
+    dat.assault.summary = additional.deaths.function(dat.assault.nat,parameters.Assault,year.end) ; dat.intentional.summary$cause = 'Assault'
+    dat.suicide.summary = additional.deaths.function(dat.assault.nat,get(parameters.Intentional_self-harm),year.end) ; dat.intentional.summary$cause = 'Assault'
 
 
 
