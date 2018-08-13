@@ -24,10 +24,10 @@
       <file leaf-file-name="additional_deaths_all_injuries_stacked_climate_cod_1var.R" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/USA/state/prog/additional_deaths/additional_deaths_all_injuries_stacked_climate_cod_1var.R">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1677">
-              <caret line="157" column="69" lean-forward="true" selection-start-line="157" selection-start-column="0" selection-end-line="158" selection-end-column="0" />
+            <state relative-caret-position="684">
+              <caret line="213" column="102" lean-forward="false" selection-start-line="213" selection-start-column="102" selection-end-line="213" selection-end-column="102" />
               <folding>
-                <element signature="e#6080#6656#0" expanded="false" />
+                <element signature="e#6100#6676#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -241,7 +241,6 @@
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Confirmation" />
-    <property name="FullScreen" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -254,264 +253,6 @@
       <recent name="$PROJECT_DIR$/USA/state/prog/additional_deaths" />
       <recent name="$PROJECT_DIR$/USA/state/prog/bind_posterior" />
     </key>
-  </component>
-  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
-    <UpdatedFiles>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Updated from server" />
-        <option name="myStatusName" value="Changed on server" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="CHANGED_ON_SERVER" />
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Updated" />
-          <option name="myStatusName" value="Changed" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/dictionaries/rmiparks.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/workspace.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/seasonality_index/national/seasonality_index_change_sig5_weighted_allcauses_with_allcause_1980_2016.pdf</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/seasonality_index/national/seasonality_index_change_sig5_weighted_allcauses_with_cardio_1980_2016.pdf</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/seasonality_index/national/seasonality_index_change_sig5_weighted_allcauses_with_injuries_1980_2016.pdf</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/seasonality_index/national/seasonality_index_change_sig5_weighted_allcauses_with_other_1980_2016.pdf</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_cod_1var_1-10.sh</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_cod_1var_5-10.sh</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_cod_1var_6-10.sh</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_cod_1var_7-10.sh</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/prog/00_bash/wavelet/wavelet_paper_cod.sh</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/prog/seasonality_index/seasonality_index_cod_plot_all.R</PATH>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Created" />
-          <option name="myStatusName" value="Created" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="CREATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/compare_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Intentional self-harm/USA_rate_pred_type1d_1980_2016_t2m_meanc3_fast_contig.pdf</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/compare_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d/parameters/contig/Transport accidents/USA_rate_pred_type1d_1980_2016_t2m_meanc3_fast_contig.pdf</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d2/parameters/contig/Intentional self-harm/climate_month_params_forest_age_1d2_1980_2016_t2m_meanc3_Intentional self-harm.pdf</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d2/parameters/contig/Intentional self-harm/climate_month_params_forest_month_1d2_1980_2016_t2m_meanc3_Intentional self-harm.pdf</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d2/parameters/contig/Intentional self-harm/climate_month_params_heatmap_1d2_1980_2016_t2m_meanc3_Intentional self-harm.pdf</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d2/parameters/contig/Intentional self-harm/climate_month_params_heatmap_alt2_1d2_1980_2016_t2m_meanc3_Intentional self-harm.pdf</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/mapping_posterior_climate/1980_2016/t2m/meanc3/non_pw/type_1d2/parameters/contig/Intentional self-harm/climate_month_params_heatmap_alt_1d2_1980_2016_t2m_meanc3_Intentional self-harm.pdf</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/seasonality_index/regional/seasonality_index_regional_start_end_compare_index_AllCause_1980_2016.pdf</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/output/zeroes_prevalence/deaths_injury_subcauses_1980_2016.csv</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/main_paper/US dynamic mortality seasonality analysis 2018 06 19 JB.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/main_paper/US dynamic mortality seasonality analysis 2018 06 19.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/main_paper/US dynamic mortality seasonality analysis 2018 06 21.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/main_paper/US dynamic mortality seasonality analysis 2018 06 23.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/main_paper/US dynamic mortality seasonality analysis 2018 06 24.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/main_paper/US dynamic mortality seasonality analysis 2018 06 25.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/main_paper/US dynamic mortality seasonality analysis 2018 06 26 ME.DOCX</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/main_paper/US dynamic mortality seasonality analysis 2018 06 28.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/main_paper/US dynamic mortality seasonality analysis 2018 07 02.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/main_paper/US dynamic mortality seasonality analysis 2018 07 03.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/main_paper/US dynamic mortality seasonality analysis 2018 07 04.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/main_paper/US dynamic mortality seasonality analysis 2018 07 06.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/main_paper/US dynamic mortality seasonality analysis 2018 07 09 ME 2.DOCX</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/main_paper/US dynamic mortality seasonality analysis 2018 07 09 ME.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/main_paper/US dynamic mortality seasonality analysis 2018 07 10.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/main_paper/US dynamic mortality seasonality analysis 2018 07 16 ME.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/main_paper/US dynamic mortality seasonality analysis 2018 07 18.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/main_paper/US dynamic mortality seasonality analysis 2018 07 19.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/main_paper/US dynamic mortality seasonality analysis 2018 07 20 ME.DOCX</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/main_paper/US dynamic mortality seasonality analysis 2018 07 23.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/main_paper/US dynamic mortality seasonality analysis 2018 07 24.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/main_paper/US dynamic mortality seasonality analysis 2018 07 26.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/main_paper/US dynamic mortality seasonality analysis 2018 07 27 ME.DOCX</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/main_paper/US dynamic mortality seasonality analysis 2018 07 30.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/main_paper/US dynamic mortality seasonality analysis 2018 07 31.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/main_paper/US dynamic mortality seasonality analysis 2018 08 06.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/main_paper/US dynamic mortality seasonality analysis 2018 08 08 ME.DOCX</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/main_paper/US dynamic mortality seasonality analysis 2018 08 09.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/main_paper/US dynamic mortality seasonality analysis 2018 08 10 (co-authors).docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/main_paper/US dynamic mortality seasonality analysis 2018 08 10.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/reviewers_responses/29-01-2018-RA-eLife-35500 - response to reviewer comments 2018 06 10 ME.....docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/reviewers_responses/29-01-2018-RA-eLife-35500 - response to reviewer comments 2018 06 19.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/reviewers_responses/29-01-2018-RA-eLife-35500 - response to reviewer comments 2018 06 20.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/reviewers_responses/29-01-2018-RA-eLife-35500 - response to reviewer comments 2018 06 23.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/reviewers_responses/29-01-2018-RA-eLife-35500 - response to reviewer comments 2018 06 24.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/reviewers_responses/29-01-2018-RA-eLife-35500 - response to reviewer comments 2018 06 25.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/reviewers_responses/29-01-2018-RA-eLife-35500 - response to reviewer comments 2018 06 26 ME.....docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/reviewers_responses/29-01-2018-RA-eLife-35500 - response to reviewer comments 2018 06 28.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/reviewers_responses/29-01-2018-RA-eLife-35500 - response to reviewer comments 2018 07 02.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/reviewers_responses/29-01-2018-RA-eLife-35500 - response to reviewer comments 2018 07 03.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/reviewers_responses/29-01-2018-RA-eLife-35500 - response to reviewer comments 2018 07 04.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/reviewers_responses/29-01-2018-RA-eLife-35500 - response to reviewer comments 2018 07 06.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/reviewers_responses/29-01-2018-RA-eLife-35500 - response to reviewer comments 2018 07 08 ME.....docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/reviewers_responses/29-01-2018-RA-eLife-35500 - response to reviewer comments 2018 07 08 ME.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/reviewers_responses/29-01-2018-RA-eLife-35500 - response to reviewer comments 2018 07 23.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/reviewers_responses/29-01-2018-RA-eLife-35500 - response to reviewer comments 2018 07 24.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/reviewers_responses/29-01-2018-RA-eLife-35500 - response to reviewer comments 2018 07 26.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/reviewers_responses/29-01-2018-RA-eLife-35500 - response to reviewer comments 2018 07 27 ME.....docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/reviewers_responses/29-01-2018-RA-eLife-35500 - response to reviewer comments 2018 08 02.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/reviewers_responses/29-01-2018-RA-eLife-35500 - response to reviewer comments 2018 08 03.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/reviewers_responses/29-01-2018-RA-eLife-35500 - response to reviewer comments 2018 08 06.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/reviewers_responses/29-01-2018-RA-eLife-35500 - response to reviewer comments 2018 08 08 ME 2.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/reviewers_responses/29-01-2018-RA-eLife-35500 - response to reviewer comments 2018 08 08 ME.....docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/reviewers_responses/29-01-2018-RA-eLife-35500 - response to reviewer comments 2018 08 08 ME.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/reviewers_responses/29-01-2018-RA-eLife-35500 - response to reviewer comments 2018 08 09.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/reviewers_responses/29-01-2018-RA-eLife-35500 - response to reviewer comments 2018 08 10 ME.....docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/reviewers_responses/29-01-2018-RA-eLife-35500 - response to reviewer comments 2018 08 10.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/reviewers_responses/29-01-2018-RA-eLife-35500 - response to reviewer comments 2018 08 10b.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/supplementary/US dynamic mortality seasonality analysis supplementary 2018 06 19.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/supplementary/US dynamic mortality seasonality analysis supplementary 2018 06 21.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/supplementary/US dynamic mortality seasonality analysis supplementary 2018 06 24.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/supplementary/US dynamic mortality seasonality analysis supplementary 2018 06 25.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/supplementary/US dynamic mortality seasonality analysis supplementary 2018 06 26 ME.DOCX</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/supplementary/US dynamic mortality seasonality analysis supplementary 2018 07 26.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/supplementary/US dynamic mortality seasonality analysis supplementary 2018 08 06.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/supplementary/US dynamic mortality seasonality analysis supplementary 2018 08 08 ME.DOCX</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/supplementary/US dynamic mortality seasonality analysis supplementary 2018 08 09.DOCX</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/01_in_progress/supplementary/US dynamic mortality seasonality analysis supplementary 2018 08 10.DOCX</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/02_coauthors/main figures and supplementary figures.pdf</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/02_coauthors/main paper new submission clean.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/02_coauthors/main paper new submission with tracked changes.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/02_coauthors/main paper original submission.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/02_coauthors/response to reviewers.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/02_coauthors/supplementary note.DOCX</PATH>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Deleted" />
-          <option name="myStatusName" value="Deleted" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="true" />
-          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/main_paper/US dynamic mortality seasonality analysis 2018 06 19 JB.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/main_paper/US dynamic mortality seasonality analysis 2018 06 19.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/main_paper/US dynamic mortality seasonality analysis 2018 06 21.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/main_paper/US dynamic mortality seasonality analysis 2018 06 23.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/main_paper/US dynamic mortality seasonality analysis 2018 06 24.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/main_paper/US dynamic mortality seasonality analysis 2018 06 25.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/main_paper/US dynamic mortality seasonality analysis 2018 06 26 ME.DOCX</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/main_paper/US dynamic mortality seasonality analysis 2018 06 28.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/main_paper/US dynamic mortality seasonality analysis 2018 07 02.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/main_paper/US dynamic mortality seasonality analysis 2018 07 03.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/main_paper/US dynamic mortality seasonality analysis 2018 07 04.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/main_paper/US dynamic mortality seasonality analysis 2018 07 06.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/main_paper/US dynamic mortality seasonality analysis 2018 07 09 ME 2.DOCX</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/main_paper/US dynamic mortality seasonality analysis 2018 07 09 ME.DOCX</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/main_paper/US dynamic mortality seasonality analysis 2018 07 10.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/main_paper/US dynamic mortality seasonality analysis 2018 07 16 ME.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/main_paper/US dynamic mortality seasonality analysis 2018 07 18.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/main_paper/US dynamic mortality seasonality analysis 2018 07 19.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/main_paper/US dynamic mortality seasonality analysis 2018 07 20 ME.DOCX</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/main_paper/US dynamic mortality seasonality analysis 2018 07 23.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/main_paper/US dynamic mortality seasonality analysis 2018 07 24.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/main_paper/US dynamic mortality seasonality analysis 2018 07 26.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/main_paper/US dynamic mortality seasonality analysis 2018 07 27 ME.DOCX</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/main_paper/US dynamic mortality seasonality analysis 2018 07 30.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/main_paper/US dynamic mortality seasonality analysis 2018 07 31.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/main_paper/US dynamic mortality seasonality analysis 2018 08 06.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/reviewers_responses/29-01-2018-RA-eLife-35500 - response to reviewer comments 2018 06 10 ME.....docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/reviewers_responses/29-01-2018-RA-eLife-35500 - response to reviewer comments 2018 06 19.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/reviewers_responses/29-01-2018-RA-eLife-35500 - response to reviewer comments 2018 06 20.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/reviewers_responses/29-01-2018-RA-eLife-35500 - response to reviewer comments 2018 06 23.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/reviewers_responses/29-01-2018-RA-eLife-35500 - response to reviewer comments 2018 06 24.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/reviewers_responses/29-01-2018-RA-eLife-35500 - response to reviewer comments 2018 06 25.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/reviewers_responses/29-01-2018-RA-eLife-35500 - response to reviewer comments 2018 06 26 ME.....docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/reviewers_responses/29-01-2018-RA-eLife-35500 - response to reviewer comments 2018 06 28.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/reviewers_responses/29-01-2018-RA-eLife-35500 - response to reviewer comments 2018 07 02.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/reviewers_responses/29-01-2018-RA-eLife-35500 - response to reviewer comments 2018 07 03.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/reviewers_responses/29-01-2018-RA-eLife-35500 - response to reviewer comments 2018 07 04.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/reviewers_responses/29-01-2018-RA-eLife-35500 - response to reviewer comments 2018 07 06.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/reviewers_responses/29-01-2018-RA-eLife-35500 - response to reviewer comments 2018 07 08 ME.....docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/reviewers_responses/29-01-2018-RA-eLife-35500 - response to reviewer comments 2018 07 08 ME.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/reviewers_responses/29-01-2018-RA-eLife-35500 - response to reviewer comments 2018 07 23.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/reviewers_responses/29-01-2018-RA-eLife-35500 - response to reviewer comments 2018 07 24.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/reviewers_responses/29-01-2018-RA-eLife-35500 - response to reviewer comments 2018 07 26.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/reviewers_responses/29-01-2018-RA-eLife-35500 - response to reviewer comments 2018 07 27 ME.....docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/reviewers_responses/29-01-2018-RA-eLife-35500 - response to reviewer comments 2018 08 02.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/reviewers_responses/29-01-2018-RA-eLife-35500 - response to reviewer comments 2018 08 03.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/reviewers_responses/29-01-2018-RA-eLife-35500 - response to reviewer comments 2018 08 06.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/supplementary/US dynamic mortality seasonality analysis supplementary 2018 06 19.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/supplementary/US dynamic mortality seasonality analysis supplementary 2018 06 21.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/supplementary/US dynamic mortality seasonality analysis supplementary 2018 06 24.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/supplementary/US dynamic mortality seasonality analysis supplementary 2018 06 25.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/supplementary/US dynamic mortality seasonality analysis supplementary 2018 06 26 ME.DOCX</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/supplementary/US dynamic mortality seasonality analysis supplementary 2018 07 26.docx</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/USA/state/write_ups/01_wavelet_paper/words/04_eLife/10_entire/02_first_revisions/supplementary/US dynamic mortality seasonality analysis supplementary 2018 08 06.docx</PATH>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Restored" />
-          <option name="myStatusName" value="Will be restored" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="RESTORED" />
-        </FILE-GROUP>
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Modified" />
-        <option name="myStatusName" value="Modified" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MODIFIED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Skipped" />
-        <option name="myStatusName" value="Skipped" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SKIPPED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with conflicts" />
-        <option name="myStatusName" value="Will be merged with conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_CONFLICTS" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with tree conflicts" />
-        <option name="myStatusName" value="Merged with tree conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with property conflicts" />
-        <option name="myStatusName" value="Will be merged with property conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged" />
-        <option name="myStatusName" value="Will be merged" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Not in repository" />
-        <option name="myStatusName" value="Not in repository" />
-        <option name="mySupportsDeletion" value="true" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="UNKNOWN" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally added" />
-        <option name="myStatusName" value="Locally added" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_ADDED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally removed" />
-        <option name="myStatusName" value="Locally removed" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_REMOVED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Switched" />
-        <option name="myStatusName" value="Switched" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SWITCHED" />
-      </FILE-GROUP>
-    </UpdatedFiles>
   </component>
   <component name="RunManager" selected="Bash.wavelet_paper_cod.sh">
     <configuration default="false" name="wavelet_paper_cod.sh" type="BashConfigurationType" factoryName="Bash" temporary="true">
@@ -749,13 +490,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1528108809576</updated>
-    </task>
-    <task id="LOCAL-00186" summary="updates to wavelet coding">
-      <created>1533640257219</created>
-      <option name="number" value="00186" />
-      <option name="presentableId" value="LOCAL-00186" />
-      <option name="project" value="LOCAL" />
-      <updated>1533640257219</updated>
     </task>
     <task id="LOCAL-00187" summary="updates to wavelet coding">
       <created>1533642383961</created>
@@ -1093,7 +827,14 @@
       <option name="project" value="LOCAL" />
       <updated>1534168917151</updated>
     </task>
-    <option name="localTasksCounter" value="235" />
+    <task id="LOCAL-00235" summary="updates to wavelet coding">
+      <created>1534170398562</created>
+      <option name="number" value="00235" />
+      <option name="presentableId" value="LOCAL-00235" />
+      <option name="project" value="LOCAL" />
+      <updated>1534170398562</updated>
+    </task>
+    <option name="localTasksCounter" value="236" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1495,10 +1236,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/USA/state/prog/additional_deaths/additional_deaths_all_injuries_stacked_climate_cod_1var.R">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1677">
-          <caret line="157" column="69" lean-forward="true" selection-start-line="157" selection-start-column="0" selection-end-line="158" selection-end-column="0" />
+        <state relative-caret-position="684">
+          <caret line="213" column="102" lean-forward="false" selection-start-line="213" selection-start-column="102" selection-end-line="213" selection-end-column="102" />
           <folding>
-            <element signature="e#6080#6656#0" expanded="false" />
+            <element signature="e#6100#6676#0" expanded="false" />
           </folding>
         </state>
       </provider>
