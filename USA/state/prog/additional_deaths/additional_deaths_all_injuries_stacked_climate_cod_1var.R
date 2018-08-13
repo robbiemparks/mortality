@@ -129,20 +129,7 @@ if(model%in%c('1d','1d2')){
     dat.suicide.nat = make.national(dat.suicide)
     dat.assault.nat = make.national(dat.assault)
 
-    #  # ADDITIONAL DEATHS NATIONALLY
-    # # merge odds and deaths files and reorder
-    # dat.injury.merged <- merge(dat.injury.nat,parameters.External,by.x=c('sex','age','month'),by.y=c('sex','age','ID'),all.x=TRUE)
-    # # dat.intentional.merged <- merge(dat.injury.nat,parameters.Intentional,by.x=c('sex','age','month'),by.y=c('sex','age','ID'),all.x=TRUE)
-    # # dat.unintentional.merged <- merge(dat.injury.nat,parameters.unintentional,by.x=c('sex','age','month'),by.y=c('sex','age','ID'),all.x=TRUE)
-    #
-    # # calculate additional deaths
-    # dat.injury.merged$deaths.added <- with(dat.injury.merged,odds.mean*deaths.pred)
-    # dat.injury.merged$deaths.added.two.deg <- with(dat.injury.merged,((odds.mean+1)^2-1)*deaths.pred)
-    #
-    # # take one year
-    # dat.injury.merged.sub <- subset(dat.injury.merged,year==year.end)
-    #
-     # ADDITIONAL DEATHS NATIONALLY
+    # additional deaths by cause
     additional.deaths.function = function(dat,parameters, year){
 
     dat.injury.merged <- merge(dat,parameters,by.x=c('sex','age','month'),by.y=c('sex','age','ID'),all.x=TRUE)
@@ -153,6 +140,12 @@ if(model%in%c('1d','1d2')){
 
     # take one year
     dat.injury.merged.sub <- subset(dat.injury.merged,year==year.end)
+
+    return(dat.injury.merged.sub)
+
+    }
+
+
 
         # integrate across year by age and sex, also for entire population
         dat.merged.sub.year = ddply(dat.merged.sub,.(sex,age),summarise,deaths.added=sum(deaths.added.two.deg))
