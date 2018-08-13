@@ -84,7 +84,7 @@ if(model%in%c('1d','1d2')){
     dat.injury <- readRDS(paste0('../../output/prep_data_cod/datus_state_rates_cod_',year.start,'_',year.end))
     dat.injury <- subset(dat.injury,cause=='External')
 
-    dat.intention <- readRDS(paste0('../../output/prep_data_cod/datus_state_rates_cod_injuries_ons_',year.start,'_',year.end))
+    # dat.intention <- readRDS(paste0('../../output/prep_data_cod/datus_state_rates_cod_injuries_ons_',year.start,'_',year.end))
 
     dat.sub = readRDS(paste0('../../output/prep_data_cod/datus_nat_deaths_subcod_injuries_ons_',year.start,'_',year.end))
     dat.sub$cause.sub = NULL ; names(dat.sub)[6] = 'cause'
@@ -96,7 +96,7 @@ if(model%in%c('1d','1d2')){
 
     # get rid of Alaska and Hawaii
     dat.injury = subset(dat.injury,!(fips%in%c(2,15)))
-    dat.intention = subset(dat.intention,!(fips%in%c(2,15)))
+    # dat.intention = subset(dat.intention,!(fips%in%c(2,15)))
     dat.unintentional = subset(dat.unintentional,!(fips%in%c(2,15)))
     dat.intentional = subset(dat.intentional,!(fips%in%c(2,15)))
     dat.sub = subset(dat.sub,!(fips%in%c(2,15)))
@@ -117,35 +117,13 @@ if(model%in%c('1d','1d2')){
     dat.sub.nat = make.national(dat.sub)
 
      # ADDITIONAL DEATHS NATIONALLY
-    # establish change in number of deaths for a slice in time (at the moment it's 2013)
-    # load death rate data and create national death rates
-    # load the data
-    # if(cause!='AllCause'){
-    #     dat.mort <- readRDS(paste0('../../output/prep_data_cod/datus_state_rates_cod_',year.start,'_2013'))
-    # }
-    # if(cause=='AllCause'){
-    #     dat.mort <- readRDS(paste0('../../output/prep_data/datus_state_rates_',year.start,'_2013'))
-    # }
-
-    # dat.mort$deaths.pred <- with(dat.mort,pop.adj*rate.adj)
-    # dat.national <- ddply(dat.mort,.(year,month,sex,age),summarize,deaths=sum(deaths),deaths.pred=sum(deaths.pred),pop.adj=sum(pop.adj))
-    # dat.national$rate.adj <- with(dat.national,deaths.pred/pop.adj)
-    # dat.national <- dat.national[order(dat.national$sex,dat.national$age,dat.national$year,dat.national$month),]
-    #
-    # load the data again
-    if(cause!='AllCause'){
-        dat <- readRDS(paste0('../../data/climate_effects/',dname,'/',metric,'/non_pw/type_',model,'/parameters/',
-        country,'_rate_pred_type',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'_fast'))
-    }
-    if(cause=='AllCause'){
-        dat <- readRDS(paste0('../../data/climate_effects/',dname,'/',metric,'/non_pw/type_',model,'/parameters/'
-        ,country,'_rate_pred_type',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_fast'))
-    }
-
     # merge odds and deaths files and reorder
-    # dat.merged <- merge(dat.national,dat,by.x=c('sex','age','month'),by.y=c('sex','age','ID'),all.x=TRUE)
+    dat.injury.merged <- merge(dat.injury.nat,parameters.External,by.x=c('sex','age','month'),by.y=c('sex','age','ID'),all.x=TRUE)
     # dat.merged <- dat.merged[order(dat.merged$sex,dat.merged$age,dat.merged$year,dat.merged$month),]
     #
+    dat.intention.merged <- merge(dat.injury.nat,parameters.External,by.x=c('sex','age','month'),by.y=c('sex','age','ID'),all.x=TRUE)
+
+
     # # calculate additional deaths
     # dat.merged$deaths.added <- with(dat.merged,odds.mean*deaths.pred)
     # dat.merged$deaths.ll <- with(dat.merged,odds.ll*deaths.pred)
