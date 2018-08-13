@@ -130,7 +130,7 @@ if(model%in%c('1d','1d2')){
     dat.assault.nat = make.national(dat.assault)
 
     # additional deaths by cause
-    additional.deaths.function = function(dat,parameters, year){
+    additional.deaths.function = function(dat,parameters, year.selected){
 
     dat.injury.merged <- merge(dat,parameters,by.x=c('sex','age','month'),by.y=c('sex','age','ID'),all.x=TRUE)
 
@@ -139,19 +139,24 @@ if(model%in%c('1d','1d2')){
     dat.injury.merged$deaths.added.two.deg <- with(dat.injury.merged,((odds.mean+1)^2-1)*deaths.pred)
 
     # take one year
-    dat.injury.merged.sub <- subset(dat.injury.merged,year==year.end)
+    dat.injury.merged.sub <- subset(dat.injury.merged,year==year.selected)
 
-    return(dat.injury.merged.sub)
+    dat.by.age.sex = ddply(dat.injury.merged.sub,.(sex,age),summarise,deaths.added=sum(deaths.added.two.deg))
+
+    return(dat.by.age.sex)
 
     }
+
+    dat.injury.merged.sub = additional.deaths.function(dat.injury.nat,parameters.External,2016)
+
 
 
 
         # integrate across year by age and sex, also for entire population
         dat.merged.sub.year = ddply(dat.merged.sub,.(sex,age),summarise,deaths.added=sum(deaths.added.two.deg))
-        dat.total = ddply(dat.merged.sub.year,.(sex),summarise,deaths.added=sum(deaths.added)) ; dat.total$age = 99
-        dat.merged.sub.year = rbind(dat.merged.sub.year,dat.total)
-        dat.merged.sub.year$draw = k
+        # dat.total = ddply(dat.merged.sub.year,.(sex),summarise,deaths.added=sum(deaths.added)) ; dat.total$age = 99
+        # dat.merged.sub.year = rbind(dat.merged.sub.year,dat.total)
+        # dat.merged.sub.year$draw = k
 
         additional.deaths = rbind(additional.deaths,dat.merged.sub.year)
 
