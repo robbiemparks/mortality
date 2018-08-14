@@ -118,7 +118,7 @@ if(model%in%c('1d','1d2')){
     }
 
     dat.injury.nat = make.national(dat.injury)
-    dat.intention.nat = make.national(dat.intention)
+    # dat.intention.nat = make.national(dat.intention)
     dat.intentional.nat = make.national(dat.intentional)
     dat.unintentional.nat = make.national(dat.unintentional)
     dat.sub.nat = make.national(dat.sub)
@@ -129,7 +129,7 @@ if(model%in%c('1d','1d2')){
     dat.suicide.nat = make.national(dat.suicide)
     dat.assault.nat = make.national(dat.assault)
 
-    # additional deaths by cause
+    # additional deaths by cause, age and sex
     additional.deaths.function = function(dat,parameters, year.selected){
 
     dat.injury.merged <- merge(dat,parameters,by.x=c('sex','age','month'),by.y=c('sex','age','ID'),all.x=TRUE)
@@ -158,33 +158,92 @@ if(model%in%c('1d','1d2')){
     dat.assault.summary = additional.deaths.function(dat.assault.nat,parameters.Assault,year.end) ; dat.assault.summary$cause = 'Assault'
     dat.suicide.summary = additional.deaths.function(dat.suicide.nat,parameters.Intentional_self_harm,year.end) ; dat.suicide.summary$cause = 'Intentional self-harm'
     dat.self.summary = rbind(dat.assault.summary,dat.suicide.summary)
+    dat.self.summary.diff = ddply(dat.self.summary,.(sex,age),summarise,deaths.added.total=sum(deaths.added))
+
+    # additional deaths by cause, age and sex
+    additional.deaths.function.month = function(dat,parameters, year.selected){
+
+    dat.injury.merged <- merge(dat,parameters,by.x=c('sex','age','month'),by.y=c('sex','age','ID'),all.x=TRUE)
+
+    # calculate additional deaths
+    dat.injury.merged$deaths.added <- with(dat.injury.merged,odds.mean*deaths.pred)
+    dat.injury.merged$deaths.added.two.deg <- with(dat.injury.merged,((odds.mean+1)^2-1)*deaths.pred)
+
+    # take one year
+    dat.injury.merged.sub <- subset(dat.injury.merged,year==year.selected)
+
+    dat.by.month.sex = ddply(dat.injury.merged.sub,.(sex,month),summarise,deaths.added=sum(deaths.added.two.deg))
+
+    return(dat.by.month.sex)
+
+    }
+
+    # summary for each cause of death and grouping for 2 degrees scenario by age and sex
+    dat.injury.month.summary      = additional.deaths.function.month(dat.injury.nat,parameters.External,year.end)
+
+    dat.intentional.month.summary = additional.deaths.function.month(dat.intentional.nat,parameters.Intentional,year.end) ; dat.intentional.month.summary$cause = 'Intentional'
+    dat.unintentional.month.summary = additional.deaths.function.month(dat.unintentional.nat,parameters.Unintentional,year.end) ; dat.unintentional.month.summary$cause = 'Unintentional'
+    dat.intent.month.summary = rbind(dat.intentional.month.summary,dat.unintentional.month.summary) ;
+    dat.intent.month.summary.diff = ddply(dat.intent.month.summary,.(sex,month),summarise,deaths.added.total=sum(deaths.added))
+
+    dat.assault.month.summary = additional.deaths.function.month(dat.assault.nat,parameters.Assault,year.end) ; dat.assault.month.summary$cause = 'Assault'
+    dat.suicide.month.summary = additional.deaths.function.month(dat.suicide.nat,parameters.Intentional_self_harm,year.end) ; dat.suicide.month.summary$cause = 'Intentional self-harm'
+    dat.self.month.summary = rbind(dat.assault.month.summary,dat.suicide.month.summary)
+    dat.self.month.summary.diff = ddply(dat.self.month.summary,.(sex,month),summarise,deaths.added.total=sum(deaths.added))
+
 
     # FINISH TO UNINTENTIONAL DEATHS AFTER OTHER CAUSES HAS RUN
 
+    add.sex.long = function(dat){
+        dat$sex.long = mapvalues(dat$sex,from=sort(unique(dat$sex)),to=c('Male','Female'))
+        dat$sex.long <- reorder(dat$sex.long,dat$sex)
+
+        return(dat)
+    }
+    add.age.long = function(dat){
+       dat$age.long <- mapvalues(dat$age,from=sort(unique(dat$age)),to=c(as.character(age.code[,2])))
+       dat$age.long <- reorder(dat$age.long,dat$age)
+
+        return(dat)
+    }
+    add.month.short = function(dat){
+        dat$month.short <- mapvalues(dat$month,from=sort(unique(dat$month)),to=c(as.character(month.short)))
+        dat$month.short <- reorder(dat$month.short,dat$month)
+
+        return(dat)
+    }
+
+
     # processing for plotting
     # SEX NAMES
-    dat.intent.summary$sex.long <- mapvalues(dat.intent.summary$sex,from=sort(unique(dat.intent.summary$sex)),to=c('Male','Female'))
-    dat.intent.summary$sex.long <- reorder(dat.intent.summary$sex.long,dat.intent.summary$sex)
-
-    dat.injury.summary$sex.long <- mapvalues(dat.injury.summary$sex,from=sort(unique(dat.injury.summary$sex)),to=c('Male','Female'))
-    dat.injury.summary$sex.long <- reorder(dat.injury.summary$sex.long,dat.injury.summary$sex)
-
-    dat.intent.summary.diff$sex.long <- mapvalues(dat.intent.summary.diff$sex,from=sort(unique(dat.intent.summary.diff$sex)),to=c('Male','Female'))
-    dat.intent.summary.diff$sex.long <- reorder(dat.intent.summary.diff$sex.long,dat.intent.summary.diff$sex)
+    dat.intent.summary <- add.sex.long(dat.intent.summary)
+    dat.injury.summary <- add.sex.long(dat.injury.summary)
+    dat.intent.summary.diff <- add.sex.long(dat.intent.summary.diff)
+    dat.intent.month.summary <- add.sex.long(dat.intent.month.summary)
+    dat.injury.month.summary <- add.sex.long(dat.injury.month.summary)
+    dat.intent.month.summary.diff <- add.sex.long(dat.intent.month.summary.diff)
+    dat.self.summary = add.sex.long(dat.self.summary)
+    dat.self.summary.diff = add.sex.long(dat.self.summary.diff)
+    dat.intentional.summary = add.sex.long(dat.intentional.summary)
+    dat.self.month.summary = add.sex.long(dat.self.month.summary)
+    dat.self.month.summary.diff = add.sex.long(dat.self.month.summary.diff)
+    dat.intentional.month.summary = add.sex.long(dat.intentional.month.summary)
 
     # LONG AGES
-    dat.intent.summary$age.long <- mapvalues(dat.intent.summary$age,from=sort(unique(dat.intent.summary$age)),to=c(as.character(age.code[,2])))
-    dat.intent.summary$age.long <- reorder(dat.intent.summary$age.long,dat.intent.summary$age)
-
-    dat.injury.summary$age.long <- mapvalues(dat.injury.summary$age,from=sort(unique(dat.injury.summary$age)),to=c(as.character(age.code[,2])))
-    dat.injury.summary$age.long <- reorder(dat.injury.summary$age.long,dat.injury.summary$age)
-
-    dat.intent.summary.diff$age.long <- mapvalues(dat.intent.summary.diff$age,from=sort(unique(dat.intent.summary.diff$age)),to=c(as.character(age.code[,2])))
-    dat.intent.summary.diff$age.long <- reorder(dat.intent.summary.diff$age.long,dat.intent.summary.diff$age)
+    dat.intent.summary <- add.age.long(dat.intent.summary)
+    dat.injury.summary <- add.age.long(dat.injury.summary)
+    dat.intent.summary.diff <- add.age.long(dat.intent.summary.diff)
+    dat.self.summary = add.age.long(dat.self.summary)
+    dat.self.summary.diff = add.age.long(dat.self.summary.diff)
+    dat.intentional.summary = add.age.long(dat.intentional.summary)
 
     # SHORT MONTH NAMES
-    # additional.deaths.summary.monthly$month.short <- mapvalues(additional.deaths.summary.monthly$month,from=sort(unique(additional.deaths.summary.monthly$month)),to=c(as.character(month.short),'All months'))
-    # additional.deaths.summary.monthly$month.short <- reorder(additional.deaths.summary.monthly$month.short,additional.deaths.summary.monthly$month)
+    dat.intent.month.summary <- add.month.short(dat.intent.month.summary)
+    dat.injury.month.summary <- add.month.short(dat.injury.month.summary)
+    dat.intent.month.summary.diff <- add.month.short(dat.intent.month.summary.diff)
+    dat.self.month.summary = add.month.short(dat.self.month.summary)
+    dat.self.month.summary.diff = add.month.short(dat.self.month.summary.diff)
+    dat.intentional.month.summary = add.month.short(dat.intentional.month.summary)
 
     # 1. External -> intentional and unintentional
     pdf(paste0(file.loc,country,'_rate_pred_type',model,
@@ -210,7 +269,44 @@ if(model%in%c('1d','1d2')){
         '_',year.start,'_',year.end,'_',dname,'_',metric,'_injury_to_intent_fast_contig_no_additional_point.pdf'),paper='a4r',height=0,width=0)
     ggplot() +
         geom_bar(data=dat.intent.summary, aes(x=as.factor(age.long),y=deaths.added,fill=cause), stat='identity') +
-        geom_point(data=dat.injury.summary,aes(x=as.factor(age.long),y=deaths.added),size=2,shape=10) +
+        geom_point(data=dat.intent.summary.diff,aes(x=as.factor(age.long),y=deaths.added.total),size=2) +
+        geom_hline(yintercept=0,linetype='dotted')+
+        xlab('Age group (years)') + ylab('Additional deaths with 2 degrees additional warming (based on 2016 population)') +
+        scale_fill_manual(values=colors.injuries[c(2,1)]) +
+        facet_wrap(~sex.long) +
+        ggtitle('Additional deaths by intentional and unintentional injuries') +
+        theme_bw() + theme(panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
+        plot.title = element_text(hjust = 0.5),panel.background = element_blank(),
+        panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
+        panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+        legend.position = 'bottom',legend.justification='center',
+        legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
+    dev.off()
+
+    pdf(paste0(file.loc,country,'_rate_pred_type',model,
+        '_',year.start,'_',year.end,'_',dname,'_',metric,'_injury_to_intent_monthly_fast_contig.pdf'),paper='a4r',height=0,width=0)
+    ggplot() +
+        geom_bar(data=dat.intent.month.summary, aes(x=as.factor(month.short),y=deaths.added,fill=cause), stat='identity') +
+        geom_point(data=dat.intent.month.summary.diff,aes(x=as.factor(month.short),y=deaths.added.total),size=2) +
+        geom_point(data=dat.injury.month.summary,aes(x=as.factor(month.short),y=deaths.added),size=2,shape=10) +
+        geom_hline(yintercept=0,linetype='dotted')+
+        xlab('Age group (years)') + ylab('Additional deaths with 2 degrees additional warming (based on 2016 population)') +
+        scale_fill_manual(values=colors.injuries[c(2,1)]) +
+        facet_wrap(~sex.long) +
+        ggtitle('Additional deaths by intentional and unintentional injuries') +
+        theme_bw() + theme(panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
+        plot.title = element_text(hjust = 0.5),panel.background = element_blank(),
+        panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
+        panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+        legend.position = 'bottom',legend.justification='center',
+        legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
+    dev.off()
+
+    pdf(paste0(file.loc,country,'_rate_pred_type',model,
+        '_',year.start,'_',year.end,'_',dname,'_',metric,'_injury_to_intent_monthly_fast_contig_no_additional_point.pdf'),paper='a4r',height=0,width=0)
+    ggplot() +
+        geom_bar(data=dat.intent.month.summary, aes(x=as.factor(month.short),y=deaths.added,fill=cause), stat='identity') +
+        geom_point(data=dat.intent.month.summary.diff,aes(x=as.factor(month.short),y=deaths.added.total),size=2) +
         geom_hline(yintercept=0,linetype='dotted')+
         xlab('Age group (years)') + ylab('Additional deaths with 2 degrees additional warming (based on 2016 population)') +
         scale_fill_manual(values=colors.injuries[c(2,1)]) +
@@ -228,11 +324,12 @@ if(model%in%c('1d','1d2')){
     pdf(paste0(file.loc,country,'_rate_pred_type',model,
         '_',year.start,'_',year.end,'_',dname,'_',metric,'_intentional_to_suicide_assault_fast_contig.pdf'),paper='a4r',height=0,width=0)
     ggplot() +
-        geom_bar(data=dat.self.summary, aes(x=as.factor(age),y=deaths.added,fill=cause), stat='identity') +
-        geom_point(data=dat.intentional.summary,aes(x=as.factor(age),y=deaths.added),size=2) +
+        geom_bar(data=dat.self.summary, aes(x=as.factor(age.long),y=deaths.added,fill=cause), stat='identity') +
+        geom_point(data=dat.intentional.summary,aes(x=as.factor(age.long),y=deaths.added),size=2) +
+        geom_point(data=dat.self.summary.diff,aes(x=as.factor(age.long),y=deaths.added.total),shape=10) +
         xlab('Age (years)') + ylab('Additional deaths with 2 degrees additional warming (based on 2016 population)') +
-        facet_wrap(~sex) +
-        scale_fill_manual(values=c('green','brown')) +
+        facet_wrap(~sex.long) +
+        scale_fill_manual(values=colors.subinjuries[c(5,6)]) +
         ggtitle('Additional deaths by types of intentional injuries') +
         theme_bw() + theme(panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
         plot.title = element_text(hjust = 0.5),panel.background = element_blank(),
@@ -241,6 +338,61 @@ if(model%in%c('1d','1d2')){
         legend.position = 'bottom',legend.justification='center',
         legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
     dev.off()
+
+    pdf(paste0(file.loc,country,'_rate_pred_type',model,
+        '_',year.start,'_',year.end,'_',dname,'_',metric,'_intentional_to_suicide_assault_fast_contig_no_additional_point.pdf'),paper='a4r',height=0,width=0)
+    ggplot() +
+        geom_bar(data=dat.self.summary, aes(x=as.factor(age.long),y=deaths.added,fill=cause), stat='identity') +
+        # geom_point(data=dat.intentional.summary,aes(x=as.factor(age.long),y=deaths.added),size=2) +
+        geom_point(data=dat.self.summary.diff,aes(x=as.factor(age.long),y=deaths.added.total),shape=10) +
+        xlab('Age (years)') + ylab('Additional deaths with 2 degrees additional warming (based on 2016 population)') +
+        facet_wrap(~sex.long) +
+        scale_fill_manual(values=colors.subinjuries[c(5,6)]) +
+        ggtitle('Additional deaths by types of intentional injuries') +
+        theme_bw() + theme(panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
+        plot.title = element_text(hjust = 0.5),panel.background = element_blank(),
+        panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
+        panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+        legend.position = 'bottom',legend.justification='center',
+        legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
+    dev.off()
+
+    pdf(paste0(file.loc,country,'_rate_pred_type',model,
+        '_',year.start,'_',year.end,'_',dname,'_',metric,'_intentional_to_suicide_assault_monthly_fast_contig.pdf'),paper='a4r',height=0,width=0)
+    ggplot() +
+        geom_bar(data=dat.self.month.summary, aes(x=as.factor(month.short),y=deaths.added,fill=cause), stat='identity') +
+        geom_point(data=dat.intentional.month.summary,aes(x=as.factor(month.short),y=deaths.added),size=2) +
+        geom_point(data=dat.self.month.summary.diff,aes(x=as.factor(month.short),y=deaths.added.total),shape=10) +
+        xlab('Age (years)') + ylab('Additional deaths with 2 degrees additional warming (based on 2016 population)') +
+        facet_wrap(~sex.long) +
+        scale_fill_manual(values=colors.subinjuries[c(5,6)]) +
+        ggtitle('Additional deaths by types of intentional injuries') +
+        theme_bw() + theme(panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
+        plot.title = element_text(hjust = 0.5),panel.background = element_blank(),
+        panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
+        panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+        legend.position = 'bottom',legend.justification='center',
+        legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
+    dev.off()
+
+    pdf(paste0(file.loc,country,'_rate_pred_type',model,
+        '_',year.start,'_',year.end,'_',dname,'_',metric,'_intentional_to_suicide_assault_monthly_fast_contig_no_additional_point.pdf'),paper='a4r',height=0,width=0)
+    ggplot() +
+        geom_bar(data=dat.self.month.summary, aes(x=as.factor(month.short),y=deaths.added,fill=cause), stat='identity') +
+        # geom_point(data=dat.intentional.summary,aes(x=as.factor(age.long),y=deaths.added),size=2) +
+        geom_point(data=dat.self.month.summary.diff,aes(x=as.factor(month.short),y=deaths.added.total),shape=10) +
+        xlab('Age (years)') + ylab('Additional deaths with 2 degrees additional warming (based on 2016 population)') +
+        facet_wrap(~sex.long) +
+        scale_fill_manual(values=colors.subinjuries[c(5,6)]) +
+        ggtitle('Additional deaths by types of intentional injuries') +
+        theme_bw() + theme(panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
+        plot.title = element_text(hjust = 0.5),panel.background = element_blank(),
+        panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
+        panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+        legend.position = 'bottom',legend.justification='center',
+        legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
+    dev.off()
+
 
     # 3. Unintentional -> transport, falls, drownings, other FINISH once other runs done and processed
 
