@@ -121,15 +121,6 @@ Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatio
 Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_cod.R 0  1 $start $end  10 0 $dname $metric $start2 $end2 $cod $fast $contig;
 Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_cod.R 0  2 $start $end  10 0 $dname $metric $start2 $end2 $cod $fast $contig;
 
-declare cod="Other_external_causes_of_injury"
-
-Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_cod.R 15 1 $start $end 10 0 $dname $metric $start2 $end2 $cod $fast $contig;
-Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_cod.R 5  1 $start $end 10 0 $dname $metric $start2 $end2 $cod $fast $contig;
-Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_cod.R 5  2 $start $end  10 0 $dname $metric $start2 $end2 $cod $fast $contig;
-Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_cod.R 0  1 $start $end  10 0 $dname $metric $start2 $end2 $cod $fast $contig;
-Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/inla_spatiotemporal_climate_cod.R 0  2 $start $end  10 0 $dname $metric $start2 $end2 $cod $fast $contig;
-
-
 for model in "${models[@]}"; do
 
 echo "combining results into one file from INLA model $model years $start - $end";
