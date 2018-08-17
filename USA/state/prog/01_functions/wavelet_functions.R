@@ -461,9 +461,9 @@ plot.wavelet.national.all <- function(sex.selected,cod='AllCause',log.selected=0
     }
 
 
-    # main title of entire thing
+    # main title of entire thing not currently printed
     #mtext(paste0(sex.filter2[sex.selected],': ',cod), outer = TRUE, cex = 1.5)
-    mtext(paste0(sex.filter2[sex.selected], ' ', cod.print), outer = TRUE, cex = 1.5)
+    # mtext(paste0(sex.filter2[sex.selected], ' ', cod.print), outer = TRUE, cex = 1.5)
 
 
 

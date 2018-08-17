@@ -34,9 +34,8 @@ declare -a numsims=(100)
 declare -i sig=5
 declare -a noises=(1)
 #declare -a noises=(1 2)
+declare -a cods=("AllCause" "Cancer" "Cardiopulmonary" "External" "Intentional" "Unintentional" "Other" "Cardiovascular" "Chronic_respiratory_diseases" "Respiratory_infections" "Endocrine_disorders" "Genitourinary_diseases" "Maternal_conditions" "Neuropsychiatric_disorders" "Perinatal_conditions" "Substance_use_disorders")
 #declare -a cods=("AllCause")
-#declare -a cods=("AllCause" "Cancer" "Cardiopulmonary" "External" "Intentional" "Unintentional" "Other" "Cardiovascular" "Chronic_respiratory_diseases" "Respiratory_infections" "Endocrine_disorders" "Genitourinary_diseases" "Maternal_conditions" "Neuropsychiatric_disorders" "Perinatal_conditions" "Substance_use_disorders")
-declare -a cods=("Other")
 declare -a logs=(0)
 
 for noise in "${noises[@]}"; do
@@ -48,8 +47,8 @@ clear
 
 echo "starting nationalised wavelet analysis for $country, $cod, years $start - $end";
 :
-# runs wavelet analysis (figure 2, appendix figure 1)
-#Rscript ~/git/mortality/USA/state/prog/wavelet/wavelet_national_cod.R $start $end $numsim $sig $noise $cod $log &
+# runs wavelet analysis (figure 2-11)
+Rscript ~/git/mortality/USA/state/prog/wavelet/wavelet_national_cod.R $start $end $numsim $sig $noise $cod $log &
 
 done; done; done; done;
 
@@ -106,7 +105,7 @@ echo "plotting COM analysis for $country for $cod, years $start - $end";
 # processes com data
 #Rscript ~/git/mortality/USA/state/prog/com/com_data_process_cod.R $start $end $cod
 
-# plots (figure 3, figure 5, appendix figure 2)
+# plots (figure 12, figure 14-17)
 #Rscript ~/git/mortality/USA/state/prog/com/com_plot_cod.R $start $end $cod
 
 done;
@@ -135,7 +134,7 @@ for cod in "${cods[@]}"; do
 
 echo "starting seasonality index analysis for $country, years $start - $end";
 :
-# runs seasonality index analysis (figure 5, figure 6, appendix figure 4)
+# runs seasonality index analysis (figure 13, figure 18)
 #Rscript ~/git/mortality/USA/state/prog/seasonality_index/seasonality_index_cod.R $start $end $start $end $dname $metric $cod
 
 # runs ols model as per revisions
@@ -147,7 +146,8 @@ echo "starting seasonality index analysis for $country, years $start - $end";
 
 done;
 
-# (figure 4, appendix figure 3, alternative figure 4, alternative appendix figure 3, figure comparing original and ols, cosinor methods)
-Rscript ~/git/mortality/USA/state/prog/seasonality_index/seasonality_index_cod_plot_all.R $start $end $start $end $dname $metric
+# (figure 13, alternative figure 13)
+# (figure comparing original and ols, cosinor methods)
+#Rscript ~/git/mortality/USA/state/prog/seasonality_index/seasonality_index_cod_plot_all.R $start $end $start $end $dname $metric
 #Rscript ~/git/mortality/USA/state/prog/seasonality_index/seasonality_index_cod_plot_all_ols.R $start $end $start $end $dname $metric
 #Rscript ~/git/mortality/USA/state/prog/seasonality_index/seasonality_index_cod_compare_plot.R $start $end $start $end $dname $metric
