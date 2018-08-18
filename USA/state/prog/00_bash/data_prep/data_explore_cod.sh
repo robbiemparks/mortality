@@ -36,7 +36,7 @@ echo "plotting deaths rates by injury sub-COD $start - $end";
 
 echo "plotting deaths rates by injury subsub-COD $start - $end";
 
-# runs code
+## runs code
 #Rscript ~/git/mortality/USA/state/prog/data_explore/data_explore_injuries_ons_subcod.R $start $end
 
 #################################################
@@ -46,4 +46,4 @@ echo "plotting deaths rates by injury subsub-COD $start - $end";
 echo "plotting zeroes in death rates for injuries $start - $end";
 
 # runs code
-Rscript ~/git/mortality/USA/state/prog/data_explore/zeroes_injuries_prevalence_cod.R $start $end
+#Rscript ~/git/mortality/USA/state/prog/data_explore/zeroes_injuries_prevalence_cod.R $start $end

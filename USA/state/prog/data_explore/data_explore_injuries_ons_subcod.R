@@ -24,15 +24,15 @@ yearpalette = colorfunc(year.end.arg-year.start.arg +1)
 
 # fix cod names
 dat$cause = dat$cause.group ; dat$cause.group=NULL
-dat$cause <- gsub('Intentional', '2. Intentional', dat$cause)
-dat$cause <- gsub('Unintentional', '1. Unintentional', dat$cause)
+dat$cause <- gsub('Intentional', '2. Intentional injuries', dat$cause)
+dat$cause <- gsub('Unintentional', '1. Unintentional injuries', dat$cause)
 dat$cause <- gsub('Other', '3. Undetermined whether accidentally or purposely inflicted', dat$cause)
 
 # fix sub-cod names
-dat$cause.sub <- gsub('Transport accidents', '1. Transport accidents', dat$cause.sub)
-dat$cause.sub <- gsub('Accidental falls', '2. Accidental falls', dat$cause.sub)
+dat$cause.sub <- gsub('Transport accidents', '1. Transport', dat$cause.sub)
+dat$cause.sub <- gsub('Accidental falls', '2. Falls', dat$cause.sub)
 dat$cause.sub <- gsub('Other external causes of injury', '4. Other injuries', dat$cause.sub)
-dat$cause.sub <- gsub('Accidental drowning and submersion', '3. Accidental drowning', dat$cause.sub)
+dat$cause.sub <- gsub('Accidental drowning and submersion', '3. Drownings', dat$cause.sub)
 dat$cause.sub <- gsub('Intentional self-harm', '6. Intentional self-harm', dat$cause.sub)
 dat$cause.sub <- gsub('Assault', '5. Assault', dat$cause.sub)
 
@@ -369,7 +369,7 @@ dev.off()
 # # x axis age-group, y-axis death rate for last year
 # ggplot(data=dat.last.year) +
 #     geom_point(aes(x=as.factor(age),y=100000*rate.adj,color=as.factor(ID))) +
-#     xlab('Age group') +
+#     xlab('Age group (years)') +
 #     ylab('Death rate (per 100,000)') +
 #     scale_x_discrete(breaks=age.filter,labels=age.print) +
 #     scale_colour_manual(values=colors.months,guide = guide_legend(nrow = 1,title = paste0("Month"))) +
@@ -385,7 +385,7 @@ dev.off()
 # # x axis age-group, y-axis log(death rate) for last year
 # ggplot(data=dat.last.year) +
 #     geom_point(aes(x=as.factor(age),y=log(100000*rate.adj),color=as.factor(ID))) +
-#     xlab('Age group') +
+#     xlab('Age group (years)') +
 #     ylab('log(death rate (per 100,000))') +
 #     scale_x_discrete(breaks=age.filter,labels=age.print) +
 #     scale_colour_manual(values=colors.months,guide = guide_legend(nrow = 1,title = paste0("Month"))) +
@@ -402,7 +402,7 @@ dev.off()
 # ggplot(data=dat.last.year) +
 #     geom_line(aes(x=month,y=100000*rate.adj,color=as.factor(age))) +
 #     #geom_point(aes(x=month,y=1000000*rate.adj,color=as.factor(age))) +
-#     xlab('Age group') +
+#     xlab('Age group (years)') +
 #     ylab('Death rate (per 100,000)') +
 #     scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
 #     geom_hline(linetype=1, yintercept = 0, alpha=0.5) +
@@ -419,7 +419,7 @@ dev.off()
 # # x axis month, y-axis log(death rate) for last year
 # ggplot(data=dat.last.year) +
 #     geom_line(aes(x=month,y=log(100000*rate.adj),color=as.factor(age))) +
-#     xlab('Age group') +
+#     xlab('Age group (years)') +
 #     ylab('log(death rate (per 100,000)') +
 #     scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
 #     geom_hline(linetype=1, yintercept = 0, alpha=0.5) +
@@ -458,16 +458,15 @@ pdf(paste0(file.loc,'injury_ons_subsubcod_last_years_plots',year.start.arg,'_',y
 ggplot(data=dat.last.years, aes(x="",y=deaths,color=as.factor(cause.sub),fill=as.factor(cause.sub))) +
     geom_bar(width = 1, position='fill', stat = "identity") +
     #coord_polar("y", start=0) +
-    xlab('Age group') + ylab('Proportion of deaths') +
-    scale_fill_manual(values=colors.subinjuries, guide = guide_legend(nrow = 1,title = paste0("Sub-cause"))) +
-    scale_color_manual(values=colors.subinjuries, guide = guide_legend(nrow = 1,title = paste0("Sub-cause"))) +
-    ggtitle(paste0((year.end.arg-4),'-',year.end.arg,' 5-year average')) +
+    xlab('Age group (years)') + ylab('Proportion of deaths') +
+    scale_fill_manual(values=colors.subinjuries, guide = guide_legend(nrow = 1,title = paste0("Subcategory of injury"))) +
+    scale_color_manual(values=colors.subinjuries, guide = guide_legend(nrow = 1,title = paste0("Subcategory of injury"))) +
+    # ggtitle(paste0((year.end.arg-4),'-',year.end.arg,' 5-year average')) +
     scale_y_continuous(labels = scales::percent) +
     facet_grid(sex.long~age.long) +
     theme_bw() +
-    theme(panel.grid.major = element_blank(),
+    theme(panel.grid.major = element_blank(),text = element_text(size = 15),
     axis.ticks.x=element_blank(),
-    #axis.title.y=element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank(),
     panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
     panel.border = element_rect(colour = "black"),strip.background = element_blank(),
     legend.position = 'bottom',legend.justification='center',
@@ -476,7 +475,7 @@ ggplot(data=dat.last.years, aes(x="",y=deaths,color=as.factor(cause.sub),fill=as
 # x axis age-group, y-axis death rate for last year
 ggplot(data=dat.last.years) +
     geom_point(aes(x=as.factor(age),y=100000*rate.adj,color=as.factor(ID))) +
-    xlab('Age group') +
+    xlab('Age group (years)') +
     ylab('Death rate (per 100,000)') +
     scale_x_discrete(breaks=age.filter,labels=age.print) +
     scale_colour_manual(values=colors.months,guide = guide_legend(nrow = 1,title = paste0("Month"))) +
@@ -492,7 +491,7 @@ ggplot(data=dat.last.years) +
 # x axis age-group, y-axis log(death rate) for last year
 ggplot(data=dat.last.years) +
     geom_point(aes(x=as.factor(age),y=log(100000*rate.adj),color=as.factor(ID))) +
-    xlab('Age group') +
+    xlab('Age group (years)') +
     ylab('log(death rate (per 100,000))') +
     scale_x_discrete(breaks=age.filter,labels=age.print) +
     scale_colour_manual(values=colors.months,guide = guide_legend(nrow = 1,title = paste0("Month"))) +
@@ -509,7 +508,7 @@ ggplot(data=dat.last.years) +
 ggplot(data=dat.last.years) +
     geom_line(aes(x=month,y=100000*rate.adj,color=as.factor(age))) +
     #geom_point(aes(x=month,y=1000000*rate.adj,color=as.factor(age))) +
-    xlab('Age group') +
+    xlab('Age group (years)') +
     ylab('Death rate (per 100,000)') +
     scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
     geom_hline(linetype=1, yintercept = 0, alpha=0.5) +
@@ -526,7 +525,7 @@ ggplot(data=dat.last.years) +
 # x axis month, y-axis log(death rate) for last year
 ggplot(data=dat.last.years) +
     geom_line(aes(x=month,y=log(100000*rate.adj),color=as.factor(age))) +
-    xlab('Age group') +
+    xlab('Age group (years)') +
     ylab('log(death rate (per 100,000)') +
     scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
     geom_hline(linetype=1, yintercept = 0, alpha=0.5) +

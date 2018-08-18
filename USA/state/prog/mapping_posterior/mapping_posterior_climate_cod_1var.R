@@ -336,16 +336,17 @@ if(model%in%c('1d','1d2')){
         na.value = "grey98",limits = c(-0.027, 0.027),
         # breaks=c(-0.08, -0.06, -0.04, -0.02, 0, 0.02, 0.04, 0.06, 0.08),
         # na.value = "grey98",limits = c(-0.1, 0.1),
-        labels=percent,guide = guide_legend(nrow = 1,title = paste0("Excess risk for 1 additional ",unit.name," above long-term average"))) +
-        guides(size=FALSE, fill = guide_colorbar(barwidth = 30, barheight = 1,title = paste0("Excess risk for 1 additional ",unit.name," above long-term average"))) +
+        labels=percent,guide = guide_legend(nrow = 1,title = paste0("Excess risk for 1 additional ",unit.name))) +
+        guides(size=FALSE, fill = guide_colorbar(barwidth = 30, barheight = 1,title = paste0("Excess risk per 1 additional ",unit.name))) +
         scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
         scale_y_discrete(labels=age.print) +
-        ggtitle(cod.print) +
+        # ggtitle(cod.print) +
         # scale_size(guide = 'none') +
         facet_wrap(~sex.long) +
-        xlab("Month") + ylab('Age') +
-        theme_bw() + theme(panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
-        plot.title = element_text(hjust = 0.5),panel.background = element_blank(),
+        xlab("Month") + ylab('Age group (years)') +
+        theme_bw() +
+        theme(panel.grid.major = element_blank(),text = element_text(size = 15),
+        axis.ticks.x=element_blank(),
         panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
         panel.border = element_rect(colour = "black"),strip.background = element_blank(),
         legend.position = 'bottom',legend.justification='center',
