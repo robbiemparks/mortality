@@ -12,7 +12,7 @@ declare -i end=2016
 declare country="USA"
 declare dname="t2m"
 declare metric="meanc3"
-#declare -a cods=("External" "Intentional" "Intentional_self-harm" "Transport_accidents")
+declare -a cods=("Unintentional" "Intentional")
 declare -i fast=1
 declare -i contig=1
 declare -a draws=(1000) #5000) also 5000 when running fully
@@ -26,8 +26,9 @@ cd ~/git/mortality/USA/state/prog/00_bash/
 
 (
 
-declare cod="Transport_accidents"
+#declare cod="Transport_accidents"
 
+for cod in "${cods[@]}"; do
 for model in "${models[@]}"; do
 for draw in "${draws[@]}"; do
 
