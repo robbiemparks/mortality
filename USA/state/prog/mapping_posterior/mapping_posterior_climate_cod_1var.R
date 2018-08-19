@@ -345,7 +345,7 @@ if(model%in%c('1d','1d2')){
         facet_wrap(~sex.long) +
         xlab("Month") + ylab('Age group (years)') +
         theme_bw() +
-        theme(panel.grid.major = element_blank(),text = element_text(size = 15),
+        theme(panel.grid.major = element_blank(),text = element_text(size = 15),axis.text.x = element_text(angle=90),
         axis.ticks.x=element_blank(),
         panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
         panel.border = element_rect(colour = "black"),strip.background = element_blank(),
