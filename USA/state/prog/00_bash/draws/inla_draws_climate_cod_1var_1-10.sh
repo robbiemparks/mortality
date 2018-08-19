@@ -12,7 +12,7 @@ declare -i end=2016
 declare country="USA"
 declare dname="t2m"
 declare metric="meanc3"
-declare -a cods=("Unintentional")
+declare -a cods=("Unintentional" )
 declare -i fast=1
 declare -i contig=1
 declare -a draws=(1000) #5000) also 5000 when running fully
@@ -36,6 +36,6 @@ echo "combining results into one file from INLA model $model years $start - $end
 
 Rscript ~/git/mortality/USA/state/prog/models/INLA/03_spatiotemporal/draws_inla_climate_cod_1var.R $start $end $country $model $dname $metric $cod $contig $draw;
 
-done; done;
+done; done; done;
 
 ) &
