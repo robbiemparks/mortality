@@ -97,10 +97,11 @@ cod.print = ifelse(cause=='AllCause', 'All cause',
 
 # plot raw rates against adjusted rates
 pdf(paste0(file.loc,'raw_against_adjusted_by_age_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
+
 print(
 ggplot(data=subset(dat.all,sex==1)) +
     geom_point(aes(x=rate.adj,y=rate.pred)) +
-    ggtitle(paste0(cod.print,' males') +
+    ggtitle(paste0(cod.print,' males')) +
     xlab('Raw death rates') + ylab('Modelled death rates') +
     facet_wrap(~age, scale='free') +
     geom_abline(color='red')
