@@ -69,11 +69,14 @@ if(contig==1){
 #     }
 # }
 
+# calculate residuals
+dat.all$residual = with(dat.all,rate.pred-rate.adj)
+
 # create directories for output
-file.loc <- paste0('../../output/fitted_against_raw/',year.start,'_',year.end,
+file.loc <- paste0('../../output/residuals/',year.start,'_',year.end,
 '/',dname,'/',metric,'/non_pw/type_',model,'/')
 if(contig==1){
-    file.loc <- paste0('../../output/fitted_against_raw/',year.start,'_',year.end,
+    file.loc <- paste0('../../output/residuals/',year.start,'_',year.end,
 '/',dname,'/',metric,'/non_pw/type_',model,'/contig/',cause,'/')
 }
 ifelse(!dir.exists(file.loc), dir.create(file.loc,recursive=TRUE), FALSE)
@@ -96,31 +99,31 @@ cod.print = ifelse(cause=='AllCause', 'All cause',
         )))))))))))))
 
 # plot raw rates against adjusted rates
-pdf(paste0(file.loc,'raw_against_adjusted_by_age_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
-ggplot(data=dat.all) +
-    geom_point(aes(x=rate.adj,y=rate.pred)) +
-    ggtitle(cod.print) +
-    xlab('Raw death rates') + ylab('Modelled death rates') +
-    facet_wrap(~age, scale='free') +
-    geom_abline(color='red')
-dev.off()
-
-pdf(paste0(file.loc,'raw_against_adjusted_by_state_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
-ggplot(data=dat.all) +
-    geom_point(aes(x=rate.adj,y=rate.pred)) +
-    ggtitle(cod.print) +
-    xlab('Raw death rates') + ylab('Modelled death rates') +
-    facet_wrap(~fips, scale='free') +
-    geom_abline(color='red')
-dev.off()
+# pdf(paste0(file.loc,'raw_against_adjusted_by_age_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
+# ggplot(data=dat.all) +
+#     geom_point(aes(x=rate.adj,y=rate.pred)) +
+#     ggtitle(cod.print) +
+#     xlab('Raw death rates') + ylab('Modelled death rates') +
+#     facet_wrap(~age, scale='free') +
+#     geom_abline(color='red')
+# dev.off()
+#
+# pdf(paste0(file.loc,'raw_against_adjusted_by_state_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
+# ggplot(data=dat.all) +
+#     geom_point(aes(x=rate.adj,y=rate.pred)) +
+#     ggtitle(cod.print) +
+#     xlab('Raw death rates') + ylab('Modelled death rates') +
+#     facet_wrap(~fips, scale='free') +
+#     geom_abline(color='red')
+# dev.off()
 
 # plotting by state over time
-pdf(paste0(file.loc,'raw_against_adjusted_over_time_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
+pdf(paste0(file.loc,'residuals_over_time_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
 for(k in sort(unique(dat$fips))){
     print(
-        ggplot(data=subset(dat.all,year.month<=600&fips==k)) +
-        geom_point(aes(x=year.month,y=rate.adj),color='red') +
-        geom_line(aes(x=year.month,y=rate.pred))+ facet_wrap(~age, scales='free') +
+        ggplot(data=subset(dat.all,fips==k)) +
+        geom_point(aes(x=year.month,y=residual),color='red') +
+        geom_hline(yintercept=0) + facet_wrap(~age, scales='free') +
         ggtitle(k)
     )
 }
