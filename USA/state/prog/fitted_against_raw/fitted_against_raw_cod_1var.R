@@ -25,6 +25,8 @@ contig <- as.numeric(args[8])
 #year.start = 1980 ; year.end = 2016 ; country = 'USA' ; model = 10 ;
 # dname = 't2m' ; metric = 'meanc3' ; cause = 'Accidental falls'; contig=1
 
+print(args)
+
 multiple = 0
 
 # source variables
