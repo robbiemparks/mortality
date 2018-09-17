@@ -33,4 +33,11 @@ for model in "${models[@]}"; do
 #Rscript ~/git/mortality/USA/state/prog/bind_posterior/bind_posterior_climate_cod_1var.R $start $end $country $model $dname $metric $cod $contig
 Rscript ~/git/mortality/USA/state/prog/mapping_posterior/mapping_posterior_climate_cod_1var.R $start $end $country $model $dname $metric $cod $contig
 
+
+#################################################
+# 2. PLOT RAW AGAINST FITTED DEATH RATES
+#################################################
+
+Rscript ~/git/mortality/USA/state/prog/fitted_against_raw/fitted_against_raw.R $start $end $country $model $dname $metric $cod $contig
+
 done; done; done; done;
