@@ -119,6 +119,7 @@ dat.inla$e <- 1:nrow(dat.inla)
 # create piecewise climate variable if required
 if(pw.arg==1){
     dat.inla$variable2 = ifelse(dat.inla$variable<0,0,dat.inla$variable)
+    dat.inla$variable3 = ifelse(dat.inla$variable>0,0,dat.inla$variable)
     dat.inla$month6 <- dat.inla$month5
 }
 
