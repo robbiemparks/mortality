@@ -17,11 +17,13 @@ year.end.analysis.arg <- as.numeric(args[10])
 cod.arg <- as.character(args[11]) ; cod.arg <- gsub('_',' ',cod.arg)
 fast.arg <- as.numeric(args[12])
 contig.arg <- as.numeric(args[13])
+pw.arg <- as.numeric(args[14])
 
 # for test runs
 # age.arg = 65 ; sex.arg = 1 ; year.start.arg = 1980 ; year.end.arg = 2016 ; type.arg = 10 ;
 # cluster.arg = 0 ; dname.arg = 't2m' ; metric.arg = 'meanc3' ; year.start.analysis.arg = 1980 ;
 # year.end.analysis.arg = 1981 ; cod.arg = 'Cardiopulmonary'; fast.arg = 1 ; contig.arg = 1
+# pw.arg=1
 
 # types character for file strings
 types <- c('1','1a','2','2a','3','3a','4','1b','1c','1d','1e','1f','1de','1ef','1g','0','minus1','1d2','1d3','1d4')
@@ -35,8 +37,12 @@ years <- year.start.arg:year.end.arg
 require(mailR)
 
 # create file location for output
-ifelse(!dir.exists(paste0('~/data/mortality/US/state/climate_effects/',dname.arg,'/',metric.arg,'/non_pw/type_',type.selected,'/age_groups')), dir.create(paste0('~/data/mortality/US/state/climate_effects/',dname.arg,'/',metric.arg,'/non_pw/type_',type.selected,'/age_groups'),recursive=TRUE), FALSE)
-
+if(pw.arg==0){
+    ifelse(!dir.exists(paste0('~/data/mortality/US/state/climate_effects/',dname.arg,'/',metric.arg,'/non_pw/type_',type.selected,'/age_groups')), dir.create(paste0('~/data/mortality/US/state/climate_effects/',dname.arg,'/',metric.arg,'/non_pw/type_',type.selected,'/age_groups'),recursive=TRUE), FALSE)
+}
+if(pw.arg==1){
+    ifelse(!dir.exists(paste0('~/data/mortality/US/state/climate_effects/',dname.arg,'/',metric.arg,'/pw/type_',type.selected,'/age_groups')), dir.create(paste0('~/data/mortality/US/state/climate_effects/',dname.arg,'/',metric.arg,'/pw/type_',type.selected,'/age_groups'),recursive=TRUE), FALSE)
+}
 # load data and filter results
 source('../models/INLA/03_spatiotemporal/inla_load_data_cod.R')
 
@@ -110,8 +116,19 @@ dat.inla$month5 <- dat.inla$month4 <- dat.inla$month3 <- dat.inla$month2 <- dat.
 dat.inla$ID3 <- dat.inla$ID2 <- dat.inla$ID
 dat.inla$e <- 1:nrow(dat.inla)
 
+# create piecewise climate variable if required
+if(pw.arg==1){
+    dat.inla$variable2 = ifelse(dat.inla$variable<0,0,dat.inla$variable)
+    dat.inla$month6 <- dat.inla$month5
+}
+
 # create directory for output
-file.loc <- paste0('~/data/mortality/US/state/climate_effects/',dname.arg,'/',metric.arg,'/non_pw/type_',type.selected,'/age_groups/',age.arg)
+if(pw.arg==0){
+    file.loc <- paste0('~/data/mortality/US/state/climate_effects/',dname.arg,'/',metric.arg,'/non_pw/type_',type.selected,'/age_groups/',age.arg)
+}
+if(pw.arg==1){
+    file.loc <- paste0('~/data/mortality/US/state/climate_effects/',dname.arg,'/',metric.arg,'/pw/type_',type.selected,'/age_groups/',age.arg)
+}
 ifelse(!dir.exists(file.loc), dir.create(file.loc, recursive=TRUE), FALSE)
 
 library(INLA)
