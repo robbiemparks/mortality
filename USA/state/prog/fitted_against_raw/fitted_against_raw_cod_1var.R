@@ -150,7 +150,8 @@ for(k in sort(unique(dat$fips))){
 }
 dev.off()
 
-# add full state name
+# add full state name (after having got rid of Alaska and Hawaii)
+state.lookup=subset(state.lookup,!(fips%in%c(2,15)))
 dat.all$fips <- as.factor(dat$fips)
 levels(dat.all$fips) <- state.lookup$full_name
 
