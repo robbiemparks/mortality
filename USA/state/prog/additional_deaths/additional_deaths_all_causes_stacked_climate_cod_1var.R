@@ -216,14 +216,15 @@ if(model%in%c('1d','1d2')){
     dat.all.month.summary = add.month.short(dat.all.month.summary)
     dat.all.month.summary.diff = add.month.short(dat.all.month.summary.diff)
 
-
-    # limits for graphs TEMPORARY
-    # min.plot = min(min(dat.intent.summary$deaths.added),min(dat.intent.month.summary$deaths.added),
-    #                 min(dat.self.summary$deaths.added),min(dat.self.month.summary$deaths.added),
-    #                 min(dat.oops.summary$deaths.added),min(dat.oops.month.summary$deaths.added))
-    # max.plot = max(max(dat.intent.summary$deaths.added),max(dat.intent.month.summary$deaths.added),
-    #                 max(dat.self.summary$deaths.added),max(dat.self.month.summary$deaths.added)
-    #                 max(dat.oops.summary$deaths.added),max(dat.oops.month.summary$deaths.added))
+    # life expectancy in 2016 for years of life lost
+    le.male = 76.1
+    le.female = 81.1
+    dat.all.summary$age.mean = dat.all.summary$age + 5
+    dat.all.summary.male = subset(dat.all.summary,sex==1) ;  dat.all.summary.female = subset(dat.all.summary,sex==2)
+    dat.all.summary.male$yll = ifelse((le.male-dat.all.summary.male$age.mean)>0,le.male-dat.all.summary.male$age.mean,0)
+    dat.all.summary.female$yll = ifelse((le.female-dat.all.summary.female$age.mean)>0,le.female-dat.all.summary.female$age.mean,0)
+    dat.all.summary = rbind(dat.all.summary.male,dat.all.summary.female)
+    dat.all.summary$yll.total = dat.all.summary$deaths.added * dat.all.summary$yll
 
     min.plot = -5000
     max.plot = 1500
@@ -276,16 +277,15 @@ if(model%in%c('1d','1d2')){
     dev.off()
 
     pdf(paste0(file.loc,country,'_rate_pred_type',model,
-        '_',year.start,'_',year.end,'_',dname,'_',metric,'_injury_to_intent_monthly_fast_contig_no_additional_point.pdf'),paper='a4r',height=0,width=0)
+        '_',year.start,'_',year.end,'_',dname,'_',metric,'_allcause_to_causes_yll_fast_contig.pdf'),paper='a4r',height=0,width=0)
     ggplot() +
-        geom_bar(data=dat.intent.month.summary, aes(x=as.factor(month.short),y=deaths.added,fill=cause), stat='identity') +
-        geom_point(data=dat.intent.month.summary.diff,aes(x=as.factor(month.short),y=deaths.added.total),size=2) +
-        # geom_point(data=dat.injury.month.summary,aes(x=as.factor(month.short),y=deaths.added),size=2,shape=10) +
+        geom_bar(data=dat.all.summary, aes(x=as.factor(age.long),y=yll.total,fill=cause), stat='identity') +
+        # geom_point(data=dat.all.summary.diff,aes(x=as.factor(age.long),y=deaths.added.total),size=2) +
+        # geom_point(data=dat.all.summary,aes(x=as.factor(age.long),y=deaths.added),size=2,shape=10) +
         geom_hline(yintercept=0,linetype='dotted')+
-        xlab('Month') + ylab('Additional deaths with 2 degrees \n additional warming (based on 2016 population)') +
-        ylim(c(min.plot,max.plot)) +
-        scale_fill_manual(values=colors.injuries[c(2,1)]) +
-        scale_y_continuous(breaks = seq(min.plot, max.plot, by = 50),limits=c(min.plot,max.plot)) +
+        xlab('Age group (years)') + ylab('Years of life lost with 2 degrees \n additional warming (based on 2016 population)') +
+        scale_fill_manual(values=colors.broad.cod) +
+        scale_y_continuous(breaks = seq(-15000, 25000, by = 5000),limits=c(-15000,25000),label=comma) +
         guides(fill=guide_legend(title="Category of injury")) +
         facet_wrap(~sex.long) +
         # ggtitle('Additional deaths by intentional and unintentional injuries') +
@@ -297,6 +297,7 @@ if(model%in%c('1d','1d2')){
         legend.position = 'bottom',legend.justification='center',
         legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
     dev.off()
+
 
     # 2. Intentional -> suicide and assault
     pdf(paste0(file.loc,country,'_rate_pred_type',model,
