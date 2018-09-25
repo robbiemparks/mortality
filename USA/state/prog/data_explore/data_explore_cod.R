@@ -16,7 +16,10 @@ dat <- readRDS(filename)
 library(RColorBrewer)
 
 # year palette
-colorfunc = colorRampPalette(brewer.pal(6 , "RdBu" ))
+# colorfunc = colorRampPalette(brewer.pal(6 , "RdBu" ))
+# yearpalette = colorfunc(year.end.arg-year.start.arg +1)
+
+colorfunc = colorRampPalette(c(brewer.pal(6 , "BrBG" )[1:3],brewer.pal(6 , "RdGy" )[4:6]))
 yearpalette = colorfunc(year.end.arg-year.start.arg +1)
 
 # lookups
@@ -82,9 +85,10 @@ ggplot(dat=dat.national.com.sex, aes(x=month,y=100000*ASDR,colour=as.factor(year
     xlab('Time') +
     ylab('Age standardised death rate (per 100,000)') +
     scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
-    scale_colour_manual(values=yearpalette, guide = guide_legend(nrow = 2,title = paste0("Year"))) +
+    scale_colour_manual(values=yearpalette, guide = guide_legend(nrow = 3,title = paste0("Year"))) +
     facet_grid(~cause) +
-        theme_bw() + theme( panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
+    theme_bw() +  theme(panel.grid.major = element_blank(),text = element_text(size = 15),
+    axis.text.x = element_text(angle=90), axis.ticks.x=element_blank(),
     panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
     panel.border = element_rect(colour = "black"),strip.background = element_blank(),
     legend.position = 'bottom',legend.justification='center',
@@ -313,7 +317,7 @@ dat.last.years = ddply(dat.last.years,.(cause,month,sex,age),summarize,deaths=su
 
 # fix names of sexes
 dat.last.years$sex.long <- mapvalues(dat.last.years$sex,from=sort(unique(dat.last.years$sex)),to=c('Male','Female'))
-#dat.last.years$sex.long <- with(dat.last.years,reorder(dat.last.years$sex.long,sex))
+dat.last.years$sex.long <- with(dat.last.years,reorder(dat.last.years$sex.long,sex))
 
 # fix names of ages
 dat.last.years$age.long <- mapvalues(dat.last.years$age,from=sort(unique(dat.last.years$age)),to=as.character(age.code[,2]))
@@ -332,13 +336,12 @@ ggplot(data=dat.last.years, aes(x="",y=deaths,color=as.factor(cause),fill=as.fac
     xlab('Age group') + ylab('Proportion of deaths') +
     scale_fill_manual(values=colors.broad.cod, guide = guide_legend(nrow = 1,title = paste0("Cause of death"))) +
     scale_color_manual(values=colors.broad.cod, guide = guide_legend(nrow = 1,title = paste0("Cause of death"))) +
-    ggtitle(paste0((year.end.arg-4),'-',year.end.arg,' 5-year average')) +
+    # ggtitle(paste0((year.end.arg-4),'-',year.end.arg,' 5-year average')) +
     scale_y_continuous(labels = scales::percent) +
     facet_grid(sex.long~age.long) +
     theme_bw() +
-    theme(panel.grid.major = element_blank(),
+    theme(panel.grid.major = element_blank(),text = element_text(size = 15),
     axis.ticks.x=element_blank(),
-    #axis.title.y=element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank(),
     panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
     panel.border = element_rect(colour = "black"),strip.background = element_blank(),
     legend.position = 'bottom',legend.justification='center',

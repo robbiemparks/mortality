@@ -226,6 +226,14 @@ if(model%in%c('1d','1d2')){
     dat.all.summary = rbind(dat.all.summary.male,dat.all.summary.female)
     dat.all.summary$yll.total = dat.all.summary$deaths.added * dat.all.summary$yll
 
+    dat.all.summary.diff$age.mean = dat.all.summary.diff$age + 5
+    dat.all.summary.diff.male = subset(dat.all.summary.diff,sex==1) ;  dat.all.summary.diff.female = subset(dat.all.summary.diff,sex==2)
+    dat.all.summary.diff.male$yll = ifelse((le.male-dat.all.summary.diff.male$age.mean)>0,le.male-dat.all.summary.diff.male$age.mean,0)
+    dat.all.summary.diff.female$yll = ifelse((le.female-dat.all.summary.diff.female$age.mean)>0,le.female-dat.all.summary.diff.female$age.mean,0)
+    dat.all.summary.diff = rbind(dat.all.summary.diff.male,dat.all.summary.diff.female)
+    dat.all.summary.diff$yll.total = dat.all.summary.diff$deaths.added * dat.all.summary.diff$yll
+
+
     min.plot = -5000
     max.plot = 1500
 
@@ -280,7 +288,7 @@ if(model%in%c('1d','1d2')){
         '_',year.start,'_',year.end,'_',dname,'_',metric,'_allcause_to_causes_yll_fast_contig.pdf'),paper='a4r',height=0,width=0)
     ggplot() +
         geom_bar(data=dat.all.summary, aes(x=as.factor(age.long),y=yll.total,fill=cause), stat='identity') +
-        # geom_point(data=dat.all.summary.diff,aes(x=as.factor(age.long),y=deaths.added.total),size=2) +
+        geom_point(data=dat.all.summary.diff,aes(x=as.factor(age.long),y=yll.total),size=2) +
         # geom_point(data=dat.all.summary,aes(x=as.factor(age.long),y=deaths.added),size=2,shape=10) +
         geom_hline(yintercept=0,linetype='dotted')+
         xlab('Age group (years)') + ylab('Years of life lost with 2 degrees \n additional warming (based on 2016 population)') +
