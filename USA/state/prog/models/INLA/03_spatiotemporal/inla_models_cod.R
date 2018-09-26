@@ -47,6 +47,38 @@
         # overdispersion term
         f(e, model = "iid")                                                    		 	# overdispersion term
     }
+
+    if(type.arg==21){
+
+        # 1. Vasilis simple test model 1
+        # NO MONTH TERMS
+        fml  <- deaths.adj ~
+        # global terms
+        1 +                                                                     		# global intercept
+        year.month +                                                           			# global slope
+        f(ID, model="iid") +                                      		                # state specific intercept (iid)
+        f(ID2, year.month2, model="iid") +                        		                # state specific slope (iid)
+        # random walk across time by state
+        f(year.month3, model="rw1") +                                                   # rw1 over time
+        # overdispersion term
+        f(e, model = "iid")                                                    		 	# overdispersion term
+    }
+
+    if(type.arg==22){
+
+        # 1. Vasilis simple test model 1
+        # NO MONTH TERMS
+        fml  <- deaths.adj ~
+        # global terms
+        1 +                                                                     		# global intercept
+        year.month +                                                           			# global slope
+        f(ID, model="iid") +                                      		                # state specific intercept (iid)
+        f(ID2, year.month2, model="iid") +                        		                # state specific slope (iid)
+        # random walk across time by state
+        f(year.month3, group=ID, model="rw1") +                                         # rw1 by state over time
+        # overdispersion term
+        f(e, model = "iid")                                                    		 	# overdispersion term
+    }
     
     if(type.arg==1){
         
