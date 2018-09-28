@@ -176,13 +176,24 @@ if(multiple==1){
 }
 
 # create directories for output
-file.loc <- paste0('../../output/mapping_posterior_climate/',year.start,'_',year.end,
-'/',dname,'/',metric,'/non_pw/type_',model,'/parameters/')
-if(contig==1){
+if(pw.arg==0){
     file.loc <- paste0('../../output/mapping_posterior_climate/',year.start,'_',year.end,
-'/',dname,'/',metric,'/non_pw/type_',model,'/parameters/contig/',cause,'/')
+    '/',dname,'/',metric,'/non_pw/type_',model,'/parameters/')
+    if(contig==1){
+        file.loc <- paste0('../../output/mapping_posterior_climate/',year.start,'_',year.end,
+    '/',dname,'/',metric,'/non_pw/type_',model,'/parameters/contig/',cause,'/')
+    }
+    ifelse(!dir.exists(file.loc), dir.create(file.loc,recursive=TRUE), FALSE)
 }
-ifelse(!dir.exists(file.loc), dir.create(file.loc,recursive=TRUE), FALSE)
+if(pw.arg==1){
+    file.loc <- paste0('../../output/mapping_posterior_climate/',year.start,'_',year.end,
+    '/',dname,'/',metric,'/pw/type_',model,'/parameters/')
+    if(contig==1){
+        file.loc <- paste0('../../output/mapping_posterior_climate/',year.start,'_',year.end,
+    '/',dname,'/',metric,'/pw/type_',model,'/parameters/contig/',cause,'/')
+    }
+    ifelse(!dir.exists(file.loc), dir.create(file.loc,recursive=TRUE), FALSE)
+}
 
 # fix name fo plotting
 cod.print = ifelse(cause=='AllCause', 'All cause',
