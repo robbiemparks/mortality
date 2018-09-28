@@ -17,7 +17,7 @@ declare -a cods=("External") # "Unintentional" "Unintentional_wo_drowning" "Inte
 #declare -a cods=("AllCause" "Cancer" "Cardiopulmonary" "External" "Other" "Unintentional" "Intentional")
 #declare -a cods=("Accidental_drowning_and_submersion")
 declare -i contig=1
-declare -i pw=0
+declare -i pw=1
 
 #################################################
 # 1. PLOT PARAMETERS OF STATE CLIMATE POSTERIORS
