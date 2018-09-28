@@ -10,7 +10,7 @@ dname <- as.character(args[5])
 metric <- as.character(args[6])
 cause <- as.character(args[7]) ; cause <- gsub('_',' ',cause)
 contig.arg <- as.numeric(args[8])
-
+pw.arg <- as.numeric(args[9])
 
 library(INLA)
 
@@ -19,7 +19,9 @@ source('../../data/objects/objects.R')
 model <- models[model]
 
 # MODEL 1D
-if(model%in% c('1d','1d2')){
+
+if(pw.arg==0){
+    if(model%in% c('1d','1d2')){
     
     # create dataframe with each of the national terms for entire group of age and sexes
     dat <- data.frame()
@@ -101,4 +103,90 @@ if(cause=='AllCause'){
 saveRDS(dat,paste0(file.loc.local,save.name))
 saveRDS(dat,paste0(file.loc.git,save.name))
 
+}
+}
+
+if(pw.arg==1){
+    if(model%in% c('1d','1d2')){
+
+    # create dataframe with each of the national terms for entire group of age and sexes
+    dat <- data.frame()
+
+    # find the posterior exponential mean
+    for (i in seq(length(sex.filter))) {
+        for (j in seq(length(age.filter))) {
+            # load data
+            if(cause!='AllCause'){
+                file.name <- paste0('~/data/mortality/US/state/climate_effects/',
+                dname,'/',metric,'/pw/type_',model,'/age_groups/',age.filter[j],
+                '/',country,'_rate_pred_type',model,'_',age.filter[j],'_',sex.filter[i],'_',
+                year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'_parameters_fast_contig')
+            }
+            if(cause=='AllCause'){
+                file.name <- paste0('~/data/mortality/US/state/climate_effects/',
+                dname,'/',metric,'/pw/type_',model,'/age_groups/',age.filter[j],
+                '/',country,'_rate_pred_type',model,'_',age.filter[j],'_',sex.filter[i],
+                '_',year.start,'_',year.end,'_',dname,'_',metric,'_parameters_fast_contig')
+            }
+            model.current <- try(readRDS(file.name))
+            if(inherits(model.current,"try-error")){
+                if(cause!='AllCause'){
+                file.name <- paste0('~/data/mortality/US/state/climate_effects/',
+                dname,'/',metric,'/pw/type_',model,'/age_groups/',age.filter[j],
+                '/',country,'_rate_pred_type',model,'_',age.filter[j],'_',sex.lookup[i],'_',
+                year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'_parameters_fast_contig')
+            }
+                if(cause=='AllCause'){
+                file.name <- paste0('~/data/mortality/US/state/climate_effects/',
+                dname,'/',metric,'/pw/type_',model,'/age_groups/',age.filter[j],
+                '/',country,'_rate_pred_type',model,'_',age.filter[j],'_',sex.lookup[i],
+                '_',year.start,'_',year.end,'_',dname,'_',metric,'_parameters_fast_contig')
+            }
+            }
+            #file.name <- paste0('~/data/mortality/US/state/climate_effects/',dname,'/',metric,'/non_pw/type_',model,'/age_groups/',age.filter[j],'/',country,'_rate_pred_type',model,'_',age.filter[j],'_',sex.filter[i],'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'_parameters_fast')
+            print(file.name)
+            model.current <- readRDS(file.name)
+            current.file <- model.current$summary.random$month5
+            current.file$age <- age.filter[j] ; current.file$sex <- i
+
+            # find mean and CIs of transformed distributions and probability of increased odds from posterior marginal
+            dat.mean.exp <- data.frame(ID=numeric(0),odds.mean=numeric(0),odds.ll=numeric(0),odds.ul=numeric(0),odds.prob=numeric(0))
+            for(k in c(1:12)) {
+                # find the exponentiated means and CIs
+                marginal.exp <- inla.tmarginal(function(x) exp(x), model.current$marginals.random$month5[[k]])
+                odds.mean <- inla.emarginal(function(x) x,marginal.exp) - 1
+                odds.ll <- inla.qmarginal(0.025,marginal.exp) - 1
+                odds.ul <- inla.qmarginal(0.975,marginal.exp) - 1
+
+                # find the probability of increased odds from posterior marginal
+                odds.prob <- 1 - inla.pmarginal(1,marginal.exp)
+                dat.temp <- data.frame(ID=k,odds.mean=odds.mean,odds.ll=odds.ll,odds.ul=odds.ul,odds.prob=odds.prob)
+                dat.mean.exp <- rbind(dat.mean.exp,dat.temp)
+            }
+            # merge exponentiated means
+            current.file <- merge(current.file,dat.mean.exp,by=('ID'))
+
+            # attached new age sex profile to master file
+            dat <- rbind(dat,current.file)
+        }
+    }
+
+# create directories for output
+file.loc.local <- paste0('~/data/mortality/US/state/climate_effects/',dname,'/',metric,'/pw/type_',model,'/parameters/')
+ifelse(!dir.exists(file.loc.local), dir.create(file.loc.local, recursive=TRUE), FALSE)
+file.loc.git <- paste0('../../data/climate_effects/',dname,'/',metric,'/pw/type_',model,'/parameters/')
+ifelse(!dir.exists(file.loc.git), dir.create(file.loc.git, recursive=TRUE), FALSE)
+
+# save bound posterior
+if(cause!='AllCause'){
+    save.name <- paste0(country,'_rate_pred_type',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'_fast_contig')
+}
+if(cause=='AllCause'){
+    save.name <- paste0(country,'_rate_pred_type',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_fast_contig')
+}
+
+saveRDS(dat,paste0(file.loc.local,save.name))
+saveRDS(dat,paste0(file.loc.git,save.name))
+
+}
 }
