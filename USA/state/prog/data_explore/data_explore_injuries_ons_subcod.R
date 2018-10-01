@@ -461,7 +461,7 @@ dat.last.years = ddply(dat.last.years,.(cause.sub,month,sex,age),summarize,death
 
 # fix names of sexes
 dat.last.years$sex.long <- mapvalues(dat.last.years$sex,from=sort(unique(dat.last.years$sex)),to=c('Male','Female'))
-#dat.last.years$sex.long <- with(dat.last.years,reorder(dat.last.years$sex.long,sex))
+dat.last.years$sex.long <- with(dat.last.years,reorder(dat.last.years$sex.long,sex))
 
 # fix names of ages
 dat.last.years$age.long <- mapvalues(dat.last.years$age,from=sort(unique(dat.last.years$age)),to=as.character(age.code[,2]))
