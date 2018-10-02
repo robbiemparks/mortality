@@ -20,10 +20,10 @@ contig.arg <- as.numeric(args[13])
 pw.arg <- as.numeric(args[14])
 
 # for test runs
-# age.arg = 65 ; sex.arg = 1 ; year.start.arg = 1980 ; year.end.arg = 2016 ; type.arg = 10 ;
+# age.arg = 65 ; sex.arg = 1 ; year.start.arg = 1980 ; year.end.arg = 2016 ; type.arg = 23 ;
 # cluster.arg = 0 ; dname.arg = 't2m' ; metric.arg = 'meanc3' ; year.start.analysis.arg = 1980 ;
 # year.end.analysis.arg = 2016 ; cod.arg = 'External'; fast.arg = 1 ; contig.arg = 1
-# pw.arg=1
+# pw.arg=0
 
 # types character for file strings
 types <- c('1','1a','2','2a','3','3a','4','1b','1c','1d','1e','1f','1de','1ef','1g','0','minus1','1d2','1d3','1d4','0a','0b','1d5')
