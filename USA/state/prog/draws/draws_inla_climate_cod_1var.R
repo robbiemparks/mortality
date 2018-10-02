@@ -4,10 +4,6 @@ library(RColorBrewer)
 library(ggplot2)
 library(plyr)
 library(scales)
-#library(maptools)
-#library(mapproj)
-#library(rgeos)
-#library(rgdal)
 
 # break down the arguments from Rscript
 args <- commandArgs(trailingOnly=TRUE)
@@ -23,7 +19,7 @@ num.draws <- as.numeric(args[9])
 
 # NEED TO MAKE CONTIG OPTION ACTUALLY DO SOMETHING
 
-#year.start = 1980 ; year.end = 2016 ; country = 'USA' ; model = 18 ; dname = 't2m' ; metric = 'meanc3' ; cause = 'Transport accidents'; contig=1 ; num.draws = 1000
+#year.start = 1980 ; year.end = 2016 ; country = 'USA' ; model = 10 ; dname = 't2m' ; metric = 'meanc3' ; cause = 'Transport accidents'; contig=1 ; num.draws = 1000
 
 # source variables
 source('../../data/objects/objects.R')
@@ -32,8 +28,8 @@ model <- models[model]
 # load the data for each age and sex to make draws
 library(INLA)
 for (i in seq(length(sex.filter))) {
-    # for (j in seq(length(age.filter))) {
-    for (j in c(2)) {
+    for (j in seq(length(age.filter))) {
+    # for (j in c(2)) {
 
         # create directories for output
         file.loc <- paste0('~/data/mortality/US/state/draws/',year.start,'_',year.end,
