@@ -4,6 +4,7 @@ library(RColorBrewer)
 library(ggplot2)
 library(plyr)
 library(scales)
+library(gridExtra)
 
 # break down the arguments from Rscript
 args <- commandArgs(trailingOnly=TRUE)
@@ -42,18 +43,18 @@ causes.intentional = c('Assault','Intentional self-harm')
 causes.unintentional = c('Accidental falls', 'Accidental drowning and submersion', 'Transport accidents', 'Other external causes of injury')
 causes.all = c(causes.intentional,causes.unintentional)
 
-# save additional.deaths, additional.deaths.monthly and additional.deaths.total NEED TO ADD FOR NON_CONTIG ALSO
-output.local = paste0('~/data/mortality/US/state/draws/',year.start,'_',year.end,
-                '/',dname,'/',metric,'/non_pw/type_',model,'/contig/all_injuries/',num.draws,'_draws/')
-ifelse(!dir.exists(output.local), dir.create(output.local,recursive=TRUE), FALSE)
+# # save additional.deaths, additional.deaths.monthly and additional.deaths.total NEED TO ADD FOR NON_CONTIG ALSO
+# output.local = paste0('~/data/mortality/US/state/draws/',year.start,'_',year.end,
+#                 '/',dname,'/',metric,'/non_pw/type_',model,'/contig/all_injuries/',num.draws,'_draws/')
+# ifelse(!dir.exists(output.local), dir.create(output.local,recursive=TRUE), FALSE)
 
-additional.deaths = readRDS(paste0(output.local,'additional_deaths_age_draws.rds'))
-additional.deaths.monthly = readRDS(paste0(output.local,'additional_deaths_monthly_draws.rds'))
-additional.deaths.total = readRDS(paste0(output.local,'additional_deaths_total_draws.rds'))
-additional.deaths.intent = readRDS(paste0(output.local,'additional_deaths_intent_age_draws.rds'))
-additional.deaths.intent.summary = readRDS(paste0(output.local,'additional_deaths_intent_summary_age_draws.rds'))
-additional.deaths.intent.monthly = readRDS(paste0(output.local,'additional_deaths_intent_monthly_draws.rds'))
-additional.deaths.intent.monthly.summary = readRDS(paste0(output.local,'additional_deaths_intent_summary_monthly_draws.rds'))
+additional.deaths = readRDS(paste0(file.loc,'additional_deaths_age_draws.rds'))
+additional.deaths.monthly = readRDS(paste0(file.loc,'additional_deaths_monthly_draws.rds'))
+additional.deaths.total = readRDS(paste0(file.loc,'additional_deaths_total_draws.rds'))
+additional.deaths.intent = readRDS(paste0(file.loc,'additional_deaths_intent_age_draws.rds'))
+additional.deaths.intent.summary = readRDS(paste0(file.loc,'additional_deaths_intent_summary_age_draws.rds'))
+additional.deaths.intent.monthly = readRDS(paste0(file.loc,'additional_deaths_intent_monthly_draws.rds'))
+additional.deaths.intent.monthly.summary = readRDS(paste0(file.loc,'additional_deaths_intent_summary_monthly_draws.rds'))
 
 # processing for plotting (meant to match the original method of bind_posterior...)
 additional.deaths.summary = ddply(additional.deaths,.(sex,age,cause),summarise,
@@ -107,8 +108,8 @@ pdf(paste0(file.loc,country,'_rate_pred_type',model,
     '_',year.start,'_',year.end,'_',dname,'_',metric,'_unintentional_to_transport_falls_drownings_other_fast_contig.pdf'),paper='a4r',height=0,width=0)
 ggplot() +
     geom_bar(data=subset(additional.deaths.summary,sex>0&age<99&!(cause%in%c('5. Assault','6. Intentional\nself-harm'))), aes(x=as.factor(age.long),y=deaths.added.mean,fill=cause), stat='identity') +
-    geom_point(data=subset(additional.deaths.intent.summary,intent=='Unintentional'),aes(x=as.factor(age.long),y=deaths.added.mean),shape=16) +
-    geom_errorbar(data=subset(additional.deaths.intent.summary,intent=='Unintentional'),aes(x=as.factor(age.long),ymax=deaths.added.ul,ymin=deaths.added.ll),width=.3,size=0.5) +
+    geom_point(data=subset(additional.deaths.intent.summary,intent=='1. Unintentional'),aes(x=as.factor(age.long),y=deaths.added.mean),shape=16) +
+    geom_errorbar(data=subset(additional.deaths.intent.summary,intent=='1. Unintentional'),aes(x=as.factor(age.long),ymax=deaths.added.ul,ymin=deaths.added.ll),width=.3,size=0.5) +
     geom_hline(yintercept=0,linetype='dotted') +
     xlab('Age group (years)') + ylab('Additional deaths associated with 1 degree \n additional warming (based on 2016 population)') +
     # ylim(c(min.plot,max.plot)) +
@@ -130,8 +131,8 @@ pdf(paste0(file.loc,country,'_rate_pred_type',model,
     '_',year.start,'_',year.end,'_',dname,'_',metric,'_intentional_to_assault_intentional_self-harm_fast_contig.pdf'),paper='a4r',height=0,width=0)
 ggplot() +
     geom_bar(data=subset(additional.deaths.summary,sex>0&age<99&(cause%in%c('5. Assault','6. Intentional\nself-harm'))), aes(x=as.factor(age.long),y=deaths.added.mean,fill=cause), stat='identity') +
-    geom_point(data=subset(additional.deaths.intent.summary,intent=='Intentional'),aes(x=as.factor(age.long),y=deaths.added.mean),shape=16) +
-    geom_errorbar(data=subset(additional.deaths.intent.summary,intent=='Intentional'),aes(x=as.factor(age.long),ymax=deaths.added.ul,ymin=deaths.added.ll),width=.3,size=0.5) +
+    geom_point(data=subset(additional.deaths.intent.summary,intent=='2. Intentional'),aes(x=as.factor(age.long),y=deaths.added.mean),shape=16) +
+    geom_errorbar(data=subset(additional.deaths.intent.summary,intent=='2. Intentional'),aes(x=as.factor(age.long),ymax=deaths.added.ul,ymin=deaths.added.ll),width=.3,size=0.5) +
     geom_hline(yintercept=0,linetype='dotted') +
     xlab('Age group (years)') + ylab('Additional deaths associated with 1 degree \n additional warming (based on 2016 population)') +
     # ylim(c(min.plot,max.plot)) +
@@ -150,7 +151,7 @@ ggplot() +
 dev.off()
 
 additional.deaths.summary$intent = ifelse(additional.deaths.summary$cause%in%c('5. Assault','6. Intentional\nself-harm'),'2. Intentional','1. Unintentional')
-additional.deaths.intent.summary = fix_intent_names(additional.deaths.intent.summary)
+# additional.deaths.intent.summary = fix_intent_names(additional.deaths.intent.summary)
 
 pdf(paste0(file.loc,country,'_rate_pred_type',model,
     '_',year.start,'_',year.end,'_',dname,'_',metric,'_intentional_unintentional_contig.pdf'),paper='a4r',height=0,width=0)

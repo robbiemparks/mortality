@@ -38,7 +38,7 @@ colors.subinjuries = mycols[c(
                                 6,   # Transport
                                 13,  # Falls
                                 36,  # Drownings
-                                46,  # Other injuries
+                                15,  # Other injuries
                                 12,  # Assault
                                 20)] # Intentional self-harm
 
