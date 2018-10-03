@@ -50,10 +50,10 @@ ifelse(!dir.exists(output.local), dir.create(output.local,recursive=TRUE), FALSE
 additional.deaths = readRDS(paste0(output.local,'additional_deaths_age_draws.rds'))
 additional.deaths.monthly = readRDS(paste0(output.local,'additional_deaths_monthly_draws.rds'))
 additional.deaths.total = readRDS(paste0(output.local,'additional_deaths_total_draws.rds'))
-additional.deaths.intent = readRDS(,paste0(output.local,'additional_deaths_intent_age_draws.rds'))
-additional.deaths.intent.summary = readRDS(,paste0(output.local,'additional_deaths_intent_summary_age_draws.rds'))
-additional.deaths.intent.monthly = readRDS(,paste0(output.local,'additional_deaths_intent_monthly_draws.rds'))
-additional.deaths.intent.monthly.summary = readRDS(,paste0(output.local,'additional_deaths_intent_summary_monthly_draws.rds'))
+additional.deaths.intent = readRDS(paste0(output.local,'additional_deaths_intent_age_draws.rds'))
+additional.deaths.intent.summary = readRDS(paste0(output.local,'additional_deaths_intent_summary_age_draws.rds'))
+additional.deaths.intent.monthly = readRDS(paste0(output.local,'additional_deaths_intent_monthly_draws.rds'))
+additional.deaths.intent.monthly.summary = readRDS(paste0(output.local,'additional_deaths_intent_summary_monthly_draws.rds'))
 
 # processing for plotting (meant to match the original method of bind_posterior...)
 additional.deaths.summary = ddply(additional.deaths,.(sex,age,cause),summarise,
