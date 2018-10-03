@@ -164,7 +164,7 @@ p1 = ggplot() +
     facet_grid(. ~intent + sex.long) +
     scale_fill_manual(values=colors.subinjuries[c(1,2,3,4,5,6)]) +
     # scale_y_continuous(breaks = seq(min.plot, max.plot, by = 50),limits=c(min.plot,max.plot)) +
-    guides(fill=guide_legend(title="Subcategory of intentional injury",nrow=1)) +
+    guides(fill=guide_legend(title="Subcategory of injury",nrow=1)) +
     # ggtitle('Additional deaths by types of intentional injuries') +
     theme_bw() + theme(text = element_text(size = 15),
     panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
@@ -229,7 +229,7 @@ ggplot() +
     facet_wrap(~sex.long) +
     scale_fill_manual(values=colors.subinjuries[c(5,6)]) +
     # scale_y_continuous(breaks = seq(min.plot, max.plot, by = 50),limits=c(min.plot,max.plot)) +
-    guides(fill=guide_legend(title="Subcategory of Intentional injury", nrow=1)) +
+    guides(fill=guide_legend(title="Subcategory of intentional injury", nrow=1)) +
     # ggtitle('Additional deaths by types of intentional injuries') +
     theme_bw() + theme(text = element_text(size = 15),
     panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
@@ -255,7 +255,7 @@ p2 =ggplot() +
     facet_grid(. ~intent + sex.long) +
     scale_fill_manual(values=colors.subinjuries[c(1,2,3,4,5,6)]) +
     # scale_y_continuous(breaks = seq(min.plot, max.plot, by = 50),limits=c(min.plot,max.plot)) +
-    guides(fill=guide_legend(title="Subcategory of Intentional injury",nrow=1)) +
+    guides(fill=guide_legend(title="Subcategory of injury",nrow=1)) +
     # ggtitle('Additional deaths by types of intentional injuries') +
     theme_bw() + theme(text = element_text(size = 15),
     panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
