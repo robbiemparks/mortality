@@ -161,9 +161,9 @@ if(model%in%c('1d','1d2')){
                     '/',dname,'/',metric,'/non_pw/type_',model,'/contig/all_injuries/',num.draws,'_draws/')
     ifelse(!dir.exists(output.local), dir.create(output.local,recursive=TRUE), FALSE)
 
-    saveRDS(additional.deaths,paste0(file.loc,'additional_deaths_age_draws.rds'))
-    saveRDS(additional.deaths.monthly,paste0(file.loc,'additional_deaths_monthly_draws.rds'))
-    saveRDS(additional.deaths.total,paste0(file.loc,'additional_deaths_total_draws.rds'))
+    # saveRDS(additional.deaths,paste0(file.loc,'additional_deaths_age_draws.rds'))
+    # saveRDS(additional.deaths.monthly,paste0(file.loc,'additional_deaths_monthly_draws.rds'))
+    # saveRDS(additional.deaths.total,paste0(file.loc,'additional_deaths_total_draws.rds'))
 
     # summarise each cause of deaths as well as intent
     additional.deaths.total.intent = additional.deaths.total
@@ -180,14 +180,14 @@ if(model%in%c('1d','1d2')){
     additional.deaths.intent = subset(additional.deaths.intent,age<90&sex!=0)
     additional.deaths.intent = ddply(additional.deaths.intent,.(draw,intent,sex,age),summarize,deaths.added=sum(deaths.added),deaths.added.two.deg=sum(deaths.added.two.deg))
 
-    saveRDS(additional.deaths.intent,paste0(file.loc,'additional_deaths_intent_age_draws.rds'))
+    # saveRDS(additional.deaths.intent,paste0(file.loc,'additional_deaths_intent_age_draws.rds'))
 
     additional.deaths.intent.summary = ddply(additional.deaths.intent,.(sex,age,intent),summarise,
         deaths.added.median=median(deaths.added),deaths.added.mean=mean(deaths.added),deaths.added.ll=quantile(deaths.added,0.025),deaths.added.ul=quantile(deaths.added,0.975),
         deaths.added.two.deg.median=median(deaths.added.two.deg),deaths.added.two.deg.mean=mean(deaths.added.two.deg),deaths.added.two.deg.ll=quantile(deaths.added.two.deg,0.025),deaths.added.two.deg.ul=quantile(deaths.added.two.deg,0.975)
     )
 
-    saveRDS(additional.deaths.intent.summary,paste0(file.loc,'additional_deaths_intent_summary_age_draws.rds'))
+    # saveRDS(additional.deaths.intent.summary,paste0(file.loc,'additional_deaths_intent_summary_age_draws.rds'))
 
     # summarise intent by month and for each sex
     additional.deaths.intent.monthly = additional.deaths.monthly
@@ -195,14 +195,14 @@ if(model%in%c('1d','1d2')){
     additional.deaths.intent.monthly = subset(additional.deaths.intent.monthly,month<90&sex!=0)
     additional.deaths.intent.monthly = ddply(additional.deaths.intent.monthly,.(draw,intent,sex,month),summarize,deaths.added=sum(deaths.added),deaths.added.two.deg=sum(deaths.added.two.deg))
 
-    saveRDS(additional.deaths.intent.monthly,paste0(file.loc,'additional_deaths_intent_monthly_draws.rds'))
+    # saveRDS(additional.deaths.intent.monthly,paste0(file.loc,'additional_deaths_intent_monthly_draws.rds'))
 
     additional.deaths.intent.monthly.summary = ddply(additional.deaths.intent.monthly,.(sex,month,intent),summarise,
         deaths.added.median=median(deaths.added),deaths.added.mean=mean(deaths.added),deaths.added.ll=quantile(deaths.added,0.025),deaths.added.ul=quantile(deaths.added,0.975),
         deaths.added.two.deg.median=median(deaths.added.two.deg),deaths.added.two.deg.mean=mean(deaths.added.two.deg),deaths.added.two.deg.ll=quantile(deaths.added.two.deg,0.025),deaths.added.two.deg.ul=quantile(deaths.added.two.deg,0.975)
     )
 
-    saveRDS(additional.deaths.intent.monthly.summary,paste0(file.loc,'additional_deaths_intent_summary_monthly_draws.rds'))
+    # saveRDS(additional.deaths.intent.monthly.summary,paste0(file.loc,'additional_deaths_intent_summary_monthly_draws.rds'))
 
     # processing for plotting (meant to match the original method of bind_posterior...)
     additional.deaths.summary = ddply(additional.deaths,.(sex,age,cause),summarise,
@@ -251,7 +251,7 @@ if(model%in%c('1d','1d2')){
     }
 
     additional.deaths.summary = fix_cause_names(additional.deaths.summary)
-
+    #1
     pdf(paste0(file.loc,country,'_rate_pred_type',model,
         '_',year.start,'_',year.end,'_',dname,'_',metric,'_unintentional_to_transport_falls_drownings_other_fast_contig.pdf'),paper='a4r',height=0,width=0)
     ggplot() +
@@ -274,7 +274,7 @@ if(model%in%c('1d','1d2')){
         legend.position = 'bottom',legend.justification='center',
         legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
     dev.off()
-
+    #2
     pdf(paste0(file.loc,country,'_rate_pred_type',model,
         '_',year.start,'_',year.end,'_',dname,'_',metric,'_intentional_to_assault_intentional_self-harm_fast_contig.pdf'),paper='a4r',height=0,width=0)
     ggplot() +
@@ -300,7 +300,7 @@ if(model%in%c('1d','1d2')){
 
     additional.deaths.summary$intent = ifelse(additional.deaths.summary$cause%in%c('5. Assault','6. Intentional\nself-harm'),'2. Intentional','1. Unintentional')
     additional.deaths.intent.summary = fix_intent_names(additional.deaths.intent.summary)
-
+    #3
     pdf(paste0(file.loc,country,'_rate_pred_type',model,
         '_',year.start,'_',year.end,'_',dname,'_',metric,'_intentional_unintentional_contig.pdf'),paper='a4r',height=0,width=0)
     p1 = ggplot() +
@@ -342,7 +342,7 @@ if(model%in%c('1d','1d2')){
     # FOR PLOT BY MONTH AND SEX
 
     additional.deaths.summary.monthly = fix_cause_names(additional.deaths.summary.monthly)
-
+    #4
     pdf(paste0(file.loc,country,'_rate_pred_type',model,
         '_',year.start,'_',year.end,'_',dname,'_',metric,'_unintentional_to_transport_falls_drownings_other_monthly_fast_contig.pdf'),paper='a4r',height=0,width=0)
     ggplot() +
@@ -365,7 +365,7 @@ if(model%in%c('1d','1d2')){
         legend.position = 'bottom',legend.justification='center',
         legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
     dev.off()
-
+    #5
     pdf(paste0(file.loc,country,'_rate_pred_type',model,
         '_',year.start,'_',year.end,'_',dname,'_',metric,'_intentional_to_assault_intentional_self-harm_monthly_fast_contig.pdf'),paper='a4r',height=0,width=0)
     ggplot() +
@@ -391,7 +391,7 @@ if(model%in%c('1d','1d2')){
 
     additional.deaths.summary.monthly$intent = ifelse(additional.deaths.summary.monthly$cause%in%c('5. Assault','6. Intentional\nself-harm'),'2. Intentional','1. Unintentional')
     additional.deaths.intent.monthly.summary = fix_intent_names(additional.deaths.intent.monthly.summary)
-
+    #6
     pdf(paste0(file.loc,country,'_rate_pred_type',model,
         '_',year.start,'_',year.end,'_',dname,'_',metric,'_intentional_unintentional_monthly_contig.pdf'),paper='a4r',height=0,width=0)
     p2 =ggplot() +
@@ -457,12 +457,24 @@ if(model%in%c('1d','1d2')){
         panel.border = element_rect(colour = "black"),strip.background = element_blank(),
         legend.position = 'bottom',legend.justification='center',
         legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
-
+    #7
     # everything all on one page
     pdf(paste0(file.loc,country,'_rate_pred_type',model,
         '_',year.start,'_',year.end,'_',dname,'_',metric,'_intentional_unintentional_all_contig.pdf'),paper='a4r',height=0,width=0)
     grid.arrange(p3,p4,nrow=2,left='Additional deaths associated with 1 degree additional warming (based on 2016 population)')
     dev.off()
 
+    # save all necessary files after processing
+
+    saveRDS(additional.deaths.summary,paste0(file.loc,'additional_deaths_summary_age_draws.rds'))
+    saveRDS(additional.deaths.summary.monthly,paste0(file.loc,'additional_deaths_summary_monthly_draws.rds'))
+
+    saveRDS(additional.deaths,paste0(file.loc,'additional_deaths_age_draws.rds'))
+    saveRDS(additional.deaths.monthly,paste0(file.loc,'additional_deaths_monthly_draws.rds'))
+    saveRDS(additional.deaths.total,paste0(file.loc,'additional_deaths_total_draws.rds'))
+    saveRDS(additional.deaths.intent,paste0(file.loc,'additional_deaths_intent_age_draws.rds'))
+    saveRDS(additional.deaths.intent.summary,paste0(file.loc,'additional_deaths_intent_summary_age_draws.rds'))
+    saveRDS(additional.deaths.intent.monthly,paste0(file.loc,'additional_deaths_intent_monthly_draws.rds'))
+    saveRDS(additional.deaths.intent.monthly.summary,paste0(file.loc,'additional_deaths_intent_summary_monthly_draws.rds'))
 
 }
