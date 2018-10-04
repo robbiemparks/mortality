@@ -387,7 +387,7 @@ ggplot() +
     geom_point(data=subset(additional.deaths.summary.perc,sex>0&age<99),position=position_dodge(width=0.5), aes(x=age.long,y=perc.mean,color=cause),size=2,shape=16) +
     geom_errorbar(data=subset(additional.deaths.summary.perc,sex>0&age<99),position=position_dodge(width=0.5),aes(x=age.long,ymax=perc.ul,ymin=perc.ll,color=cause),width=.2,size=0.5) +
     # geom_point(data=subset(additional.deaths.summary.perc,sex>0&age<99),position=position_dodge(width=0.5), aes(x=age.long,y=perc.mean,color=cause),size=2,shape=16) +
-    # geom_point(data=subset(additional.deaths.intent.summary.perc,intent=='1. Unintentional'),aes(x=as.factor(age.long),y=deaths.added.mean),shape=16) +
+    # geom_point(data=subset(additional.deaths.intent.summary.perc),aes(x=as.factor(age.long),y=perc.mean),shape=16) +
     # geom_point(data=subset(additional.deaths.summary.perc,sex>0&age<99), aes(x=as.factor(age.long),y=perc.mean),size=3,shape=16,position=position_dodge(width=0.5)) +
     geom_hline(yintercept=0,linetype='dotted') +
     xlab('Age group (years)') + ylab('Excess risk associated with 1 degree additional warming') +
