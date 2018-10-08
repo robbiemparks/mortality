@@ -23,7 +23,7 @@ contig <- as.numeric(args[8])
 # NEED TO MAKE CONTIG OPTION ACTUALLY DO SOMETHING
 
 #year.start = 1980 ; year.end = 2016 ; country = 'USA' ; model = 10 ;
-# dname = 't2m' ; metric = 'meanc3' ; cause = 'Accidental falls'; contig=1
+# dname = 't2m' ; metric = 'meanc3' ; cause = 'External'; contig=1
 
 print(args)
 
@@ -33,8 +33,6 @@ multiple = 0
 source('../../data/objects/objects.R')
 model <- models[model]
 
-# unit data for plotting
-# unit.name = ifelse(metric %in% temp, paste0('°C'), ifelse(metric %in% episodes, ' episode(s)','error'))
 
 # bespoke colourway
 colorway = c("navy","deepskyblue2","deepskyblue3","lightgreen","white","gold","orange","red","darkred")
@@ -43,7 +41,8 @@ colorway = c("navy","deepskyblue2","deepskyblue3","lightgreen","white","gold","o
 dat.all = data.frame()
 if(contig==1){
     if(cause!='AllCause'){
-        for(i in c(0,5,15,25,35,45,55,65,75,85)){
+        # for(i in c(0,5,15,25,35,45,55,65,75,85)){
+        for(i in c(85)){
             for(j in c('Men','Women')){
         dat <- readRDS(paste0('~/data/mortality/US/state/climate_effects/',dname,'/',metric,'/non_pw/type_',model,
         '/age_groups/',i,'/',
