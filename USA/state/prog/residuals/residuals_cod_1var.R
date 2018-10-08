@@ -33,9 +33,6 @@ multiple = 0
 source('../../data/objects/objects.R')
 model <- models[model]
 
-# unit data for plotting
-# unit.name = ifelse(metric %in% temp, paste0('°C'), ifelse(metric %in% episodes, ' episode(s)','error'))
-
 # bespoke colourway
 colorway = c("navy","deepskyblue2","deepskyblue3","lightgreen","white","gold","orange","red","darkred")
 
@@ -58,16 +55,6 @@ if(contig==1){
     }
     }
 }
-# if(contig==0){
-#     if(cause!='AllCause'){
-#         dat <- readRDS(paste0('../../data/climate_effects/',dname,'/',metric,'/non_pw/type_',model,'/parameters/',
-#         country,'_rate_pred_type',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'_fast'))
-#     }
-#     if(cause=='AllCause'){
-#         dat <- readRDS(paste0('../../data/climate_effects/',dname,'/',metric,'/non_pw/type_',model,'/parameters/'
-#         ,country,'_rate_pred_type',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_fast'))
-#     }
-# }
 
 # calculate residuals
 dat.all$residual = with(dat.all,rate.pred-rate.adj)
