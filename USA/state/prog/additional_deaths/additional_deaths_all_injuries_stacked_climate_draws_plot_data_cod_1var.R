@@ -272,7 +272,7 @@ p4 =ggplot() +
     legend.position = 'bottom',legend.justification='center',
     legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
 
-# make sure that everything aligns
+# make sure that everything aligns (from http://www.exegetic.biz/blog/2015/05/r-recipe-aligning-axes-in-ggplot2/)
 p3 = ggplot_gtable(ggplot_build(p3))
 p4 = ggplot_gtable(ggplot_build(p4))
 
@@ -280,7 +280,7 @@ maxWidth = unit.pmax(p3$widths[2:3],p4$widths[2:3])
 
 p3$widths[2:3] = maxWidth ; p4$widths[2:3] = maxWidth
 
-# everything all on one page (from http://www.exegetic.biz/blog/2015/05/r-recipe-aligning-axes-in-ggplot2/)
+# everything all on one page
 pdf(paste0(file.loc,country,'_rate_pred_type',model,
     '_',year.start,'_',year.end,'_',dname,'_',metric,'_intentional_unintentional_all_contig.pdf'),paper='a4r',height=0,width=0)
 grid.arrange(p3,p4,nrow=2,left='Additional deaths associated with 1 degree additional warming (based on 2016 population)')
@@ -289,13 +289,13 @@ dev.off()
 # PLOTS IN RELATIVE CHANGE IN DEATHS
 
 fix_cause_names = function(dat){
-    dat$cause <- gsub('Transport accidents', '1. Transport', dat$cause)
-    dat$cause <- gsub('Accidental falls', '2. Falls', dat$cause)
-    dat$cause <- gsub('Other external causes of injury', '4. Other injuries', dat$cause)
-    dat$cause <- gsub('Accidental drowning and submersion', '3. Drownings', dat$cause)
-    dat$cause <- gsub('Intentional self-harm', '6. Intentional self-harm', dat$cause)
-    dat$cause <- gsub('6. Intentional self-harm', '6. Intentional\nself-harm', dat$cause)
-    dat$cause <- gsub('Assault', '5. Assault', dat$cause)
+    dat$cause <- gsub('Transport accidents', 'Transport', dat$cause)
+    dat$cause <- gsub('Accidental falls', 'Falls', dat$cause)
+    dat$cause <- gsub('Other external causes of injury', 'Other injuries', dat$cause)
+    dat$cause <- gsub('Accidental drowning and submersion', 'Drownings', dat$cause)
+    dat$cause <- gsub('Intentional self-harm', 'Intentional self-harm', dat$cause)
+    # dat$cause <- gsub('6. Intentional self-harm', '6. Intentional\nself-harm', dat$cause)
+    dat$cause <- gsub('Assault', 'Assault', dat$cause)
 
     return(dat)
     }
@@ -319,7 +319,10 @@ dat.year.summary = ddply(dat.merged.sub,.(sex,age,cause),summarize,deaths=sum(de
 dat.year.summary = fix_cause_names(dat.year.summary)
 
 # merge with summary of additional deaths by sex,age,cause
-additional.deaths.summary.perc = merge(dat.year.summary,additional.deaths.summary,by=c('sex','age','cause'))
+dat.year.summary$age.long = mapvalues(dat.year.summary$age,from=sort(unique(dat.year.summary$age)),to=as.character(age.code[,2]))
+dat.year.summary$sex.long = mapvalues(dat.year.summary$sex,from=sort(unique(dat.year.summary$sex)),to=as.character(sex.filter2))
+
+additional.deaths.summary.perc = merge(dat.year.summary,additional.deaths.summary,by=c('sex.long','age.long','cause'))
 additional.deaths.summary.perc$perc.mean = with(additional.deaths.summary.perc,deaths.added.mean/deaths)
 additional.deaths.summary.perc$perc.ul = with(additional.deaths.summary.perc,deaths.added.ul/deaths)
 additional.deaths.summary.perc$perc.ll = with(additional.deaths.summary.perc,deaths.added.ll/deaths)
@@ -334,7 +337,7 @@ perc_calculator = function(dat){
 
 # summarise by age-sex and intent across the year
 additional.deaths.intent.summary.perc = dat.year.summary
-additional.deaths.intent.summary.perc$intent = ifelse(additional.deaths.intent.summary.perc$cause%in%c('5. Assault','6. Intentional self-harm'),'2. Intentional','1. Unintentional')
+additional.deaths.intent.summary.perc$intent = ifelse(additional.deaths.intent.summary.perc$cause%in%c('Assault','Intentional self-harm'),'Intentional','Unintentional')
 additional.deaths.intent.summary.perc = ddply(additional.deaths.intent.summary.perc,.(sex,age,intent),summarize,deaths=sum(deaths))
 additional.deaths.intent.summary.perc = merge(additional.deaths.intent.summary.perc,additional.deaths.intent.summary,by=c('sex','age','intent'))
 additional.deaths.intent.summary.perc =  perc_calculator(additional.deaths.intent.summary.perc)
