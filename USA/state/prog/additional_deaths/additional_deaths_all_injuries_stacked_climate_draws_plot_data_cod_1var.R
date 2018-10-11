@@ -79,8 +79,9 @@ fix_names = function(dat){
 
     return(dat)
 }
-
 additional.deaths.summary = fix_names(additional.deaths.summary)
+
+# additional edit for plotting intentional and unintentional totals on graphs without other unintentional injuries (see human readable for permanent fix)
 additional.deaths.intent.summary = ddply(subset(additional.deaths.summary,cause!='Other unintentional injuries'),.(intent,age.long,sex.long),summarize,deaths.added.mean=sum(deaths.added.mean))
 additional.deaths.summary.monthly = fix_names(additional.deaths.summary.monthly)
 additional.deaths.intent.monthly.summary = ddply(subset(additional.deaths.summary.monthly,cause!='Other unintentional injuries'),.(intent,month.short,sex.long),summarize,deaths.added.mean=sum(deaths.added.mean))
