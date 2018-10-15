@@ -552,12 +552,12 @@ ggplot(data=dat.last.years) +
 ggplot(data=dat.last.years) +
     geom_line(aes(x=month,y=100000*rate.adj,color=as.factor(age))) +
     #geom_point(aes(x=month,y=1000000*rate.adj,color=as.factor(age))) +
-    xlab('Age group (years)') +
+    xlab('Month') +
     ylab('Death rate (per 100,000)') +
     scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
     geom_hline(linetype=1, yintercept = 0, alpha=0.5) +
     scale_colour_manual(labels=c('0-4','5-14','15-24','25-34','35-44','45-54','55-64','65-74','75-84','85+'),
-    values=age.colours,guide = guide_legend(title = 'Month')) +
+    values=age.colours,guide = guide_legend(title = 'Age group (years)',nrow = 1)) +
     ggtitle(paste0((year.end.arg-4),'-',year.end.arg,' 5-year average')) +
     facet_grid(sex.long~cause.sub,scales="free") +
     theme_bw() + theme( panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
@@ -569,12 +569,12 @@ ggplot(data=dat.last.years) +
 # x axis month, y-axis log(death rate) for last year
 ggplot(data=dat.last.years) +
     geom_line(aes(x=month,y=log(100000*rate.adj),color=as.factor(age))) +
-    xlab('Age group (years)') +
+    xlab('Month') +
     ylab('log(death rate (per 100,000)') +
     scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
     geom_hline(linetype=1, yintercept = 0, alpha=0.5) +
     scale_colour_manual(labels=c('0-4','5-14','15-24','25-34','35-44','45-54','55-64','65-74','75-84','85+'),
-    values=age.colours,guide = guide_legend(title = 'Month')) +
+    values=age.colours,guide = guide_legend(title = 'Age group (years)',nrow = 1)) + # , guide = guide_legend(nrow = 1,title = paste0(""))
     ggtitle(paste0((year.end.arg-4),'-',year.end.arg,' 5-year average')) +
     facet_grid(sex.long~cause.sub,scales="free") +
     theme_bw() + theme( panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),

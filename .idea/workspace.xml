@@ -2,15 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="21b4bedd-3c09-4223-a30e-537ba1f7f93e" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/data_explore_cod/injury_ons_last_year_plots1980_2016.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/output/data_explore_cod/injury_ons_subcod_age_sex_yearly_plots_1980_2016.pdf" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/data_explore_cod/injury_ons_subsubcod_age_sex_yearly_plots_1980_2016.pdf" afterPath="$PROJECT_DIR$/USA/state/output/data_explore_cod/injury_ons_subsubcod_age_sex_yearly_plots_1980_2016.pdf" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/data_explore_cod/injury_ons_subsubcod_last_years_plots1980_2016.pdf" afterPath="$PROJECT_DIR$/USA/state/output/data_explore_cod/injury_ons_subsubcod_last_years_plots1980_2016.pdf" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/data_explore_cod/injury_ons_subsubcod_plots_1980_2016.pdf" afterPath="$PROJECT_DIR$/USA/state/output/data_explore_cod/injury_ons_subsubcod_plots_1980_2016.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/data_explore_cod/zz_legacy/injury_ons_subcod_age_sex_yearly_plots_1980_2016.pdf" afterPath="$PROJECT_DIR$/USA/state/output/data_explore_cod/zz_legacy/injury_ons_subcod_age_sex_yearly_plots_1980_2016.pdf" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/00_bash/papers/injury_paper.sh" afterPath="$PROJECT_DIR$/USA/state/prog/00_bash/papers/injury_paper.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/data_explore/data_explore_injuries_ons.R" afterPath="$PROJECT_DIR$/USA/state/prog/data_explore/data_explore_injuries_ons.R" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/data_explore/data_explore_injuries_ons_subcod.R" afterPath="$PROJECT_DIR$/USA/state/prog/data_explore/data_explore_injuries_ons_subcod.R" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -72,8 +67,8 @@
       <file leaf-file-name="data_explore_injuries_ons_subcod.R" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/USA/state/prog/data_explore/data_explore_injuries_ons_subcod.R">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="163">
-              <caret line="562" column="96" lean-forward="true" selection-start-line="562" selection-start-column="96" selection-end-line="562" selection-end-column="96" />
+            <state relative-caret-position="199">
+              <caret line="576" column="82" lean-forward="false" selection-start-line="576" selection-start-column="82" selection-end-line="576" selection-end-column="82" />
               <folding />
             </state>
           </provider>
@@ -576,13 +571,6 @@
       <option name="presentableId" value="Default" />
       <updated>1528108809576</updated>
     </task>
-    <task id="LOCAL-00328" summary="updates to wavelet coding">
-      <created>1538131785778</created>
-      <option name="number" value="00328" />
-      <option name="presentableId" value="LOCAL-00328" />
-      <option name="project" value="LOCAL" />
-      <updated>1538131785778</updated>
-    </task>
     <task id="LOCAL-00329" summary="updates to wavelet coding">
       <created>1538131857690</created>
       <option name="number" value="00329" />
@@ -919,7 +907,14 @@
       <option name="project" value="LOCAL" />
       <updated>1539602910648</updated>
     </task>
-    <option name="localTasksCounter" value="377" />
+    <task id="LOCAL-00377" summary="updates to wavelet coding">
+      <created>1539604184355</created>
+      <option name="number" value="00377" />
+      <option name="presentableId" value="LOCAL-00377" />
+      <option name="project" value="LOCAL" />
+      <updated>1539604184355</updated>
+    </task>
+    <option name="localTasksCounter" value="378" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1312,8 +1307,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/USA/state/prog/data_explore/data_explore_injuries_ons_subcod.R">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="562" column="96" lean-forward="true" selection-start-line="562" selection-start-column="96" selection-end-line="562" selection-end-column="96" />
+        <state relative-caret-position="199">
+          <caret line="576" column="82" lean-forward="false" selection-start-line="576" selection-start-column="82" selection-end-line="576" selection-end-column="82" />
           <folding />
         </state>
       </provider>
