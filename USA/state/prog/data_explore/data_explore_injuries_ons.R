@@ -23,9 +23,13 @@ colorfunc = colorRampPalette(c(brewer.pal(6 , "BrBG" )[1:3],brewer.pal(6 , "RdGy
 yearpalette = colorfunc(year.end.arg-year.start.arg +1)
 
 # fix cod names TEMP
-dat$cause <- gsub('Intentional', '2. Intentional injuries', dat$cause)
-dat$cause <- gsub('Unintentional', '1. Unintentional injuries', dat$cause)
-dat$cause <- gsub('Other', '3. Undetermined whether accidentally or purposely inflicted', dat$cause)
+dat$cause <- gsub('Intentional', 'Intentional injuries', dat$cause)
+dat$cause <- gsub('Unintentional', 'Unintentional injuries', dat$cause)
+# dat$cause <- gsub('Other', '3. Undetermined whether accidentally or purposely inflicted', dat$cause)
+
+print(unique(dat$cause))
+# reorder
+dat$cause = factor(dat$cause, levels=c('Unintentional injuries','Intentional injuries'))
 
 library(plyr)
 library(scales)
@@ -58,15 +62,16 @@ library(ggplot2)
 
 pdf(paste0(file.loc,'injury_ons_cod_plots.pdf'),paper='a4r',height=0,width=0)
 
+
 # 1.
-ggplot(dat=dat.national.com.sex, aes(x=month,y=100000*ASDR,colour=as.factor(year))) +
-    #ggtitle('ASDRs in the USA (ONS coding)') +
+ggplot(dat=dat.national.com.sex, aes(x=month,y=100000*ASDR,group=year,colour=year)) +
     geom_line() +
     xlab('Month') +
     ylab('Age Standardised Death Rates (per 100,000)') +
     scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
-    scale_colour_manual(values=yearpalette, guide = guide_legend(nrow = 2,title = paste0("Year"))) +
-    guides(color=FALSE)+
+    scale_color_gradientn(colors=yearpalette) +
+    # guides(color=FALSE)+
+    guides(color=guide_colorbar(barwidth=30, title='Year')) +
     facet_grid(~cause) +
     theme_bw() +
     theme(panel.grid.major = element_blank(),text = element_text(size = 15),

@@ -256,35 +256,35 @@ dat.national.year$sex.long = mapvalues(dat.national.year$sex,from=sort(unique(da
 dat.national.year$sex.long = reorder(dat.national.year$sex.long,rev(dat.national.year$sex))
 dat.national.year$sex.long = as.character(dat.national.year$sex.long)
 
-pdf(paste0(file.loc,'injury_ons_subsubcod_age_sex_yearly_plots_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
-# 1.  yearly plot
-ggplot(dat=dat.national.year, aes(x=year,y=rate.adj*100000,color=cause.sub)) +
-    geom_line() +
-    xlab('Year') +
-    ylab('Death rate (per 100,000)') +
-    geom_vline(xintercept=1999, linetype="dotted") +
-    facet_grid(sex.long~age.long) +
-    scale_color_manual(values=colors.subinjuries, guide = guide_legend(byrow=TRUE,nrow = 1,title = paste0("Cause"))) +
-    theme_bw() + theme( panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
-    panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
-    panel.border = element_rect(colour = "black"),strip.background = element_blank(),
-    legend.position = 'bottom',legend.justification='center',
-    legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
-
-# 2.  yearly plot log-scale
-ggplot(dat=dat.national.year, aes(x=year,y=log(rate.adj*100000),color=cause.sub)) +
-    geom_line() +
-    xlab('Year') +
-    ylab('log(Death rate (per 100,000))') +
-    geom_vline(xintercept=1999, linetype="dotted") +
-    facet_grid(sex.long~age.long) +
-    scale_color_manual(values=colors.subinjuries, guide = guide_legend(byrow=TRUE,nrow = 1,title = paste0("Cause"))) +
-    theme_bw() + theme( panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
-    panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
-    panel.border = element_rect(colour = "black"),strip.background = element_blank(),
-    legend.position = 'bottom',legend.justification='center',
-    legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
-dev.off()
+# pdf(paste0(file.loc,'injury_ons_subsubcod_age_sex_yearly_plots_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
+# # 1.  yearly plot
+# ggplot(dat=dat.national.year, aes(x=year,y=rate.adj*100000,color=cause.sub)) +
+#     geom_line() +
+#     xlab('Year') +
+#     ylab('Death rate (per 100,000)') +
+#     geom_vline(xintercept=1999, linetype="dotted") +
+#     facet_grid(sex.long~age.long) +
+#     scale_color_manual(values=colors.subinjuries, guide = guide_legend(byrow=TRUE,nrow = 1,title = paste0("Cause"))) +
+#     theme_bw() + theme( panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
+#     panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
+#     panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+#     legend.position = 'bottom',legend.justification='center',
+#     legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
+#
+# # 2.  yearly plot log-scale
+# ggplot(dat=dat.national.year, aes(x=year,y=log(rate.adj*100000),color=cause.sub)) +
+#     geom_line() +
+#     xlab('Year') +
+#     ylab('log(Death rate (per 100,000))') +
+#     geom_vline(xintercept=1999, linetype="dotted") +
+#     facet_grid(sex.long~age.long) +
+#     scale_color_manual(values=colors.subinjuries, guide = guide_legend(byrow=TRUE,nrow = 1,title = paste0("Cause"))) +
+#     theme_bw() + theme( panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
+#     panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
+#     panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+#     legend.position = 'bottom',legend.justification='center',
+#     legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
+# dev.off()
 
 ############################
 # for nationalised ASDR data
