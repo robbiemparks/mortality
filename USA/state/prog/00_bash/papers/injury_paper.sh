@@ -31,7 +31,7 @@ cd ~/git/mortality/USA/state/prog/00_bash/
 echo "plotting figures 1 and 2 for injury paper $start - $end";
 
 # runs code
-Rscript ~/git/mortality/USA/state/prog/data_explore/data_explore_injuries_ons_subcod.R $start $end
+#Rscript ~/git/mortality/USA/state/prog/data_explore/data_explore_injuries_ons_subcod.R $start $end
 #Rscript ~/git/mortality/USA/state/prog/data_explore/data_explore_injuries_ons.R $start $end
 
 #################################################
@@ -43,7 +43,7 @@ cd ~/git/climate/countries/USA/prog/00_bash/
 
 echo "plotting figure 3 injury paper $start - $end";
 
-#Rscript ~/git/climate/countries/USA/prog/06_plots/plots_against_time.R $start2 $end $dname $metric
+Rscript ~/git/climate/countries/USA/prog/06_plots/plots_against_time.R $start2 $end $dname $metric
 
 #################################################
 # Figure 4 and Supplementary Figure 1 and 2
