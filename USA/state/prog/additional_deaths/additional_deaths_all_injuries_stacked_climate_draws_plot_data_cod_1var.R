@@ -326,7 +326,7 @@ dat.year.summary = fix_cause_names(dat.year.summary)
 dat.year.summary$age.long = mapvalues(dat.year.summary$age,from=sort(unique(dat.year.summary$age)),to=as.character(age.code[,2]))
 dat.year.summary$sex.long = mapvalues(dat.year.summary$sex,from=sort(unique(dat.year.summary$sex)),to=as.character(sex.filter2))
 
-additional.deaths.summary.perc = merge(dat.year.summary,additional.deaths.summary,by=c('sex.long','age.long','cause'))
+additional.deaths.summary.perc = merge(dat.year.summary,additional.deaths.summary,by=c('sex.long','sex','age.long','age','cause'))
 additional.deaths.summary.perc$perc.mean = with(additional.deaths.summary.perc,deaths.added.mean/deaths)
 additional.deaths.summary.perc$perc.ul = with(additional.deaths.summary.perc,deaths.added.ul/deaths)
 additional.deaths.summary.perc$perc.ll = with(additional.deaths.summary.perc,deaths.added.ll/deaths)
@@ -341,13 +341,16 @@ perc_calculator = function(dat){
 }
 
 # summarise by age-sex and intent across the year
-additional.deaths.intent.summary.perc = dat.year.summary
-additional.deaths.intent.summary.perc$intent = ifelse(additional.deaths.intent.summary.perc$cause%in%c('Assault','Intentional self-harm'),'Intentional','Unintentional')
-additional.deaths.intent.summary.perc = ddply(additional.deaths.intent.summary.perc,.(sex,age,intent),summarize,deaths=sum(deaths))
-additional.deaths.intent.summary.perc = merge(additional.deaths.intent.summary.perc,additional.deaths.intent.summary,by=c('sex','age','intent'))
-additional.deaths.intent.summary.perc =  perc_calculator(additional.deaths.intent.summary.perc)
-
-additional.deaths.summary.perc$age.long = factor(additional.deaths.summary.perc$age.long, levels=rev(age.print))
+# additional.deaths.intent.summary.perc = dat.year.summary
+# additional.deaths.intent.summary.perc$intent = ifelse(additional.deaths.intent.summary.perc$cause%in%c('Assault','Intentional self-harm'),'Intentional','Unintentional')
+# additional.deaths.intent.summary.perc = ddply(additional.deaths.intent.summary.perc,.(sex,age,intent),summarize,deaths=sum(deaths))
+# additional.deaths.intent.summary.perc$sex.long = mapvalues(additional.deaths.intent.summary.perc$age,from=sort(unique(additional.deaths.intent.summary.perc$age)),to=as.character(age.code[,2]))
+# additional.deaths.intent.summary.perc$age.long = mapvalues(additional.deaths.intent.summary.perc$sex,from=sort(unique(additional.deaths.intent.summary.perc$sex)),to=as.character(sex.filter2))
+#
+# additional.deaths.intent.summary.perc = merge(additional.deaths.intent.summary.perc,additional.deaths.intent.summary,by=c('sex.long','age.long','intent'))
+# additional.deaths.intent.summary.perc =  perc_calculator(additional.deaths.intent.summary.perc)
+#
+# additional.deaths.summary.perc$age.long = factor(additional.deaths.summary.perc$age.long, levels=rev(age.print))
 
 
 pdf(paste0(file.loc,country,'_rate_pred_type',model,
@@ -488,12 +491,12 @@ dat.year.summary.monthly = fix_cause_names(dat.year.summary.monthly)
 additional.deaths.summary.monthly.perc = merge(dat.year.summary.monthly,additional.deaths.summary.monthly,by=c('sex','month','cause'))
 additional.deaths.summary.monthly.perc =  perc_calculator(additional.deaths.summary.monthly.perc)
 
-# summarise by sex, month and intent across the year
-additional.deaths.intent.summary.monthly.perc = dat.year.summary.monthly
-additional.deaths.intent.summary.monthly.perc$intent = ifelse(additional.deaths.intent.summary.monthly.perc$cause%in%c('5. Assault','6. Intentional self-harm'),'2. Intentional','1. Unintentional')
-additional.deaths.intent.summary.monthly.perc = ddply(additional.deaths.intent.summary.monthly.perc,.(sex,month,intent),summarize,deaths=sum(deaths))
-additional.deaths.intent.summary.monthly.perc = merge(additional.deaths.intent.summary.monthly.perc,additional.deaths.intent.monthly.summary,by=c('sex','month','intent'))
-additional.deaths.intent.summary.monthly.perc =  perc_calculator(additional.deaths.intent.summary.monthly.perc)
+# # summarise by sex, month and intent across the year
+# additional.deaths.intent.summary.monthly.perc = dat.year.summary.monthly
+# additional.deaths.intent.summary.monthly.perc$intent = ifelse(additional.deaths.intent.summary.monthly.perc$cause%in%c('5. Assault','6. Intentional self-harm'),'2. Intentional','1. Unintentional')
+# additional.deaths.intent.summary.monthly.perc = ddply(additional.deaths.intent.summary.monthly.perc,.(sex,month,intent),summarize,deaths=sum(deaths))
+# additional.deaths.intent.summary.monthly.perc = merge(additional.deaths.intent.summary.monthly.perc,additional.deaths.intent.monthly.summary,by=c('sex','month','intent'))
+# additional.deaths.intent.summary.monthly.perc =  perc_calculator(additional.deaths.intent.summary.monthly.perc)
 
 additional.deaths.summary.monthly.perc$cause = gsub('Intentional self-harm', 'Intentional\nself-harm',additional.deaths.summary.monthly.perc$cause)
 additional.deaths.summary.monthly.perc$cause = factor(additional.deaths.summary.monthly.perc$cause, levels=c('Transport','Falls','Drownings','Other unintentional injuries','Assault','Intentional\nself-harm'))
