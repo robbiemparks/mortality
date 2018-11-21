@@ -22,20 +22,7 @@ declare -i contig=1
 declare -a draws=(5000)
 
 #################################################
-# Figures 1 and 2
-#################################################
-
-# to correct directory
-cd ~/git/mortality/USA/state/prog/00_bash/
-
-echo "plotting figures 1 and 2 for injury paper $start - $end";
-
-# runs code
-#Rscript ~/git/mortality/USA/state/prog/data_explore/data_explore_injuries_ons_subcod.R $start $end
-#Rscript ~/git/mortality/USA/state/prog/data_explore/data_explore_injuries_ons.R $start $end
-
-#################################################
-# Figure 3
+# Figure 1
 #################################################
 
 # to correct directory
@@ -44,6 +31,19 @@ cd ~/git/climate/countries/USA/prog/00_bash/
 echo "plotting figure 3 injury paper $start - $end";
 
 #Rscript ~/git/climate/countries/USA/prog/06_plots/plots_against_time.R $start2 $end $dname $metric
+
+#################################################
+# Figures 2 and 3
+#################################################
+
+# to correct directory
+cd ~/git/mortality/USA/state/prog/00_bash/
+
+echo "plotting figures 1 and 2 for injury paper $start - $end";
+
+# runs code
+Rscript ~/git/mortality/USA/state/prog/data_explore/data_explore_injuries_ons_subcod.R $start $end
+#Rscript ~/git/mortality/USA/state/prog/data_explore/data_explore_injuries_ons.R $start $end
 
 #################################################
 # Figure 4 and Supplementary Figure 1 and 2
