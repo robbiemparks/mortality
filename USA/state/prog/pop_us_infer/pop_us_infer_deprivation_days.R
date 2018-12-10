@@ -7,6 +7,8 @@ pop.state <- read.dta(paste0("~/data/mortality/US/state/processed/county/countyP
 # remove '99' age groups
 pop.state <- pop.state[pop.state$age!=99,]
 
+# TO FINISH FROM HERE
+
 # rename stateFips column
 names(pop.state)[4] <- 'fips'
 
