@@ -4,7 +4,14 @@ library(reshape2)
 library(dplyr)
 library(ggplot2)
 
-#
+# arguments from bash file
+year.start.arg <- as.numeric(args[1])
+year.end.arg <- as.numeric(args[2])
+strata <- as.numeric(args[3])
+
+# create output directory
+dir.output = '~/git/mortality/USA/state/output/income_process/'
+ifelse(!dir.exists(paste0(dir.output)), dir.create(dir.output,recursive=TRUE), FALSE)
 
 # load income data
 file_income = '~/git/mortality/USA/state/data/income/CA1_1969_2016__ALL_AREAS.csv'
@@ -34,11 +41,18 @@ income_us[,c(3,4,5)] <- as.numeric(as.character(unlist(income_us[,c(3,4,5)])))
 income_us[,2] <- as.numeric(unlist(income_us[,2]))
 income_us$total <- income_us$total*1000
 
+# save file
+saveRDS(income_us,paste0(dir.output,'income_1969_2016.rds'))
+
+# process into
+
+# below is the rest of Helen's original code which I may not need
+
 # load population data to check 
 # pop <- read.dta("C:/Users/hmt207/data/us_county_data/countyPopulationsnewyears.dta")    #pop_with_sc.dta")
 # pop <- subset(pop,age!=99)
 # popsum <- data.frame(summarise(group_by(pop,fips,year),popsum=sum(pop)))
-load('P:/data/race/nchs_raw_annotated_withag_1990_to_2015')
+load('~/git/mortality/USA/state/data/income/nchs_raw_annotated_withag_1990_to_2016')
 popsum <- as.data.frame(summarise(group_by(subset(dat_nchs),fips,year),popsum=sum(popsum)))
 
 
