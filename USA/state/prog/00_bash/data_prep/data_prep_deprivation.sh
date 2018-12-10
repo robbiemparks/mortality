@@ -15,7 +15,16 @@ declare -i start=1980
 declare -i end=2016
 
 #################################################
-# 1. PROCESS POPULATION BY DEPRIVATION
+# 1. PROCESS DEPRIVATION DATA
+#################################################
+
+echo "preparing deprivation data for years $start - $end";
+
+# TO FINISH THIS SCRIPT
+Rscript ~/git/mortality/USA/state/prog/pop_format/pop_us_infer_deprivation_days.R $start $end
+
+#################################################
+# 2. PROCESS POPULATION BY DEPRIVATION
 #################################################
 
 echo "preparing population by deprivation for years $start - $end";
@@ -24,7 +33,7 @@ echo "preparing population by deprivation for years $start - $end";
 Rscript ~/git/mortality/USA/state/prog/pop_format/pop_us_infer_deprivation_days.R $start $end
 
 #################################################
-# 2. PROCESS DEATH RATES FOR BROAD CAUSES BY DEPRIVATION
+# 3. PROCESS DEATH RATES FOR BROAD CAUSES BY DEPRIVATION
 #################################################
 
 echo "preparing monthly death rates by deprivation in broad causes of deaths for years $start - $end";
