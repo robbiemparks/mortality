@@ -21,7 +21,7 @@ declare -i end=2016
 echo "preparing deprivation data for years $start - $end";
 
 # TO FINISH THIS SCRIPT
-Rscript ~/git/mortality/USA/state/prog/pop_format/pop_us_infer_deprivation_days.R $start $end
+Rscript ~/git/mortality/USA/state/prog/income_process/income_process.R $start $end
 
 #################################################
 # 2. PROCESS POPULATION BY DEPRIVATION
