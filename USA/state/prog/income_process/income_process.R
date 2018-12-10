@@ -4,7 +4,9 @@ library(reshape2)
 library(dplyr)
 library(ggplot2)
 
-# load income data 
+#
+
+# load income data
 file_income <- "P:/data/income/CA1/CA1_1969_2015__ALL_AREAS.csv"
 income <- read.csv(file_income,header=TRUE,stringsAsFactors = FALSE)
 
