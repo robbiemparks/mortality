@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="21b4bedd-3c09-4223-a30e-537ba1f7f93e" name="Default" comment="updates to wavelet coding">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/USA/state/prog/sophie_test/plot.R" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/write_ups/99_thesis/Background/Background 2018 11 27.docx" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/write_ups/99_thesis/Background/Background 2018 11 28.docx" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/write_ups/99_thesis/Background/Background 2018 12 03.docx" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/write_ups/99_thesis/Background/Background 2018 12 29.docx" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/write_ups/99_thesis/Background/Background 2019 01 03.docx" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/write_ups/99_thesis/Background/Background 2019 01 07.docx" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/write_ups/99_thesis/Background/Background 2019 01 08.docx" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/USA/state/write_ups/99_thesis/Background/Background 2019 01 09.docx" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/write_ups/02_monthly_injury_temperature_paper/words/01_nature_cc/10_entire/Impact of anomalous temperature on injury mortality in the USA 2019 01 10.docx" afterPath="$PROJECT_DIR$/USA/state/write_ups/02_monthly_injury_temperature_paper/words/01_nature_cc/10_entire/Impact of anomalous temperature on injury mortality in the USA 2019 01 10.docx" />
+    <list default="true" id="21b4bedd-3c09-4223-a30e-537ba1f7f93e" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -83,8 +73,8 @@
       <file leaf-file-name="plot.R" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/USA/state/prog/sophie_test/plot.R">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="23" column="80" lean-forward="true" selection-start-line="23" selection-start-column="80" selection-end-line="23" selection-end-column="80" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="23" selection-end-column="80" />
               <folding />
             </state>
           </provider>
@@ -227,7 +217,7 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="1440" />
     <option name="y" value="-912" />
-    <option name="width" value="1176" />
+    <option name="width" value="1600" />
     <option name="height" value="1200" />
   </component>
   <component name="ProjectView">
@@ -574,13 +564,6 @@
       <option name="presentableId" value="Default" />
       <updated>1528108809576</updated>
     </task>
-    <task id="LOCAL-00354" summary="updates to wavelet coding">
-      <created>1538663783430</created>
-      <option name="number" value="00354" />
-      <option name="presentableId" value="LOCAL-00354" />
-      <option name="project" value="LOCAL" />
-      <updated>1538663783430</updated>
-    </task>
     <task id="LOCAL-00355" summary="updates to wavelet coding">
       <created>1538676955159</created>
       <option name="number" value="00355" />
@@ -917,11 +900,18 @@
       <option name="project" value="LOCAL" />
       <updated>1544464457989</updated>
     </task>
-    <option name="localTasksCounter" value="403" />
+    <task id="LOCAL-00403" summary="updates to wavelet coding">
+      <created>1547132347417</created>
+      <option name="number" value="00403" />
+      <option name="presentableId" value="LOCAL-00403" />
+      <option name="project" value="LOCAL" />
+      <updated>1547132347417</updated>
+    </task>
+    <option name="localTasksCounter" value="404" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1440" y="-912" width="1176" height="1200" extended-state="0" />
+    <frame x="1440" y="-912" width="1600" height="1200" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29460847" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1326,8 +1316,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/USA/state/prog/sophie_test/plot.R">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="80" lean-forward="true" selection-start-line="23" selection-start-column="80" selection-end-line="23" selection-end-column="80" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="23" selection-end-column="80" />
           <folding />
         </state>
       </provider>
