@@ -455,7 +455,8 @@ ggplot() +
     scale_y_continuous(labels=scales::percent) +
     scale_color_manual(values=colors.subinjuries[c(1,2,3,5,6)]) +
     # scale_y_continuous(breaks = seq(min.plot, max.plot, by = 50),limits=c(min.plot,max.plot)) +
-    guides(color=guide_legend(title="",nrow=1)) +
+    # guides(color=guide_legend(title="",nrow=1)) +
+    guides(color=FALSE) +
     coord_flip() +
     # ggtitle('Additional deaths by types of intentional injuries') +
     theme_bw() + theme(text = element_text(size = 15),
