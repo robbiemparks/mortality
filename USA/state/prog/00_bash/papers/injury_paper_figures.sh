@@ -23,5 +23,12 @@ declare -a draws=(5000)
 ######### FIGURES #########
 
 #################################################
-# Figure 1
+# Figure XX
 #################################################
+
+# to correct directory
+cd ~/git/mortality/USA/state/prog/00_bash/
+
+echo "Plotting $model years $start - $end";
+
+Rscript ~/git/mortality/USA/state/prog/additional_deaths/additional_deaths_all_injuries_stacked_climate_draws_plot_data_cod_1var.R $start $end $country $model $dname $metric $contig $draws;

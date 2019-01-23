@@ -1,7 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="21b4bedd-3c09-4223-a30e-537ba1f7f93e" name="Default" comment="" />
+    <list default="true" id="21b4bedd-3c09-4223-a30e-537ba1f7f93e" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/additional_deaths_climate/1980_2016/t2m/meanc3/non_pw/type_1d/contig/all_injuries/5000_draws/USA_rate_pred_type1d_1980_2016_t2m_meanc3_intentional_to_assault_intentional_self-harm_fast_contig.pdf" afterPath="$PROJECT_DIR$/USA/state/output/additional_deaths_climate/1980_2016/t2m/meanc3/non_pw/type_1d/contig/all_injuries/5000_draws/USA_rate_pred_type1d_1980_2016_t2m_meanc3_intentional_to_assault_intentional_self-harm_fast_contig.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/additional_deaths_climate/1980_2016/t2m/meanc3/non_pw/type_1d/contig/all_injuries/5000_draws/USA_rate_pred_type1d_1980_2016_t2m_meanc3_intentional_to_assault_intentional_self-harm_monthly_excess_risk_fast_contig.pdf" afterPath="$PROJECT_DIR$/USA/state/output/additional_deaths_climate/1980_2016/t2m/meanc3/non_pw/type_1d/contig/all_injuries/5000_draws/USA_rate_pred_type1d_1980_2016_t2m_meanc3_intentional_to_assault_intentional_self-harm_monthly_excess_risk_fast_contig.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/additional_deaths_climate/1980_2016/t2m/meanc3/non_pw/type_1d/contig/all_injuries/5000_draws/USA_rate_pred_type1d_1980_2016_t2m_meanc3_intentional_to_assault_intentional_self-harm_monthly_fast_contig.pdf" afterPath="$PROJECT_DIR$/USA/state/output/additional_deaths_climate/1980_2016/t2m/meanc3/non_pw/type_1d/contig/all_injuries/5000_draws/USA_rate_pred_type1d_1980_2016_t2m_meanc3_intentional_to_assault_intentional_self-harm_monthly_fast_contig.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/additional_deaths_climate/1980_2016/t2m/meanc3/non_pw/type_1d/contig/all_injuries/5000_draws/USA_rate_pred_type1d_1980_2016_t2m_meanc3_intentional_unintentional_all_contig.pdf" afterPath="$PROJECT_DIR$/USA/state/output/additional_deaths_climate/1980_2016/t2m/meanc3/non_pw/type_1d/contig/all_injuries/5000_draws/USA_rate_pred_type1d_1980_2016_t2m_meanc3_intentional_unintentional_all_contig.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/additional_deaths_climate/1980_2016/t2m/meanc3/non_pw/type_1d/contig/all_injuries/5000_draws/USA_rate_pred_type1d_1980_2016_t2m_meanc3_intentional_unintentional_all_contig_month_skip.pdf" afterPath="$PROJECT_DIR$/USA/state/output/additional_deaths_climate/1980_2016/t2m/meanc3/non_pw/type_1d/contig/all_injuries/5000_draws/USA_rate_pred_type1d_1980_2016_t2m_meanc3_intentional_unintentional_all_contig_month_skip.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/additional_deaths_climate/1980_2016/t2m/meanc3/non_pw/type_1d/contig/all_injuries/5000_draws/USA_rate_pred_type1d_1980_2016_t2m_meanc3_intentional_unintentional_contig.pdf" afterPath="$PROJECT_DIR$/USA/state/output/additional_deaths_climate/1980_2016/t2m/meanc3/non_pw/type_1d/contig/all_injuries/5000_draws/USA_rate_pred_type1d_1980_2016_t2m_meanc3_intentional_unintentional_contig.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/additional_deaths_climate/1980_2016/t2m/meanc3/non_pw/type_1d/contig/all_injuries/5000_draws/USA_rate_pred_type1d_1980_2016_t2m_meanc3_intentional_unintentional_excess_risk_fast_contig.pdf" afterPath="$PROJECT_DIR$/USA/state/output/additional_deaths_climate/1980_2016/t2m/meanc3/non_pw/type_1d/contig/all_injuries/5000_draws/USA_rate_pred_type1d_1980_2016_t2m_meanc3_intentional_unintentional_excess_risk_fast_contig.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/additional_deaths_climate/1980_2016/t2m/meanc3/non_pw/type_1d/contig/all_injuries/5000_draws/USA_rate_pred_type1d_1980_2016_t2m_meanc3_intentional_unintentional_excess_risk_freescale_fast_contig.pdf" afterPath="$PROJECT_DIR$/USA/state/output/additional_deaths_climate/1980_2016/t2m/meanc3/non_pw/type_1d/contig/all_injuries/5000_draws/USA_rate_pred_type1d_1980_2016_t2m_meanc3_intentional_unintentional_excess_risk_freescale_fast_contig.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/additional_deaths_climate/1980_2016/t2m/meanc3/non_pw/type_1d/contig/all_injuries/5000_draws/USA_rate_pred_type1d_1980_2016_t2m_meanc3_intentional_unintentional_monthly_contig.pdf" afterPath="$PROJECT_DIR$/USA/state/output/additional_deaths_climate/1980_2016/t2m/meanc3/non_pw/type_1d/contig/all_injuries/5000_draws/USA_rate_pred_type1d_1980_2016_t2m_meanc3_intentional_unintentional_monthly_contig.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/additional_deaths_climate/1980_2016/t2m/meanc3/non_pw/type_1d/contig/all_injuries/5000_draws/USA_rate_pred_type1d_1980_2016_t2m_meanc3_intentional_unintentional_monthly_excess_risk_fast_contig.pdf" afterPath="$PROJECT_DIR$/USA/state/output/additional_deaths_climate/1980_2016/t2m/meanc3/non_pw/type_1d/contig/all_injuries/5000_draws/USA_rate_pred_type1d_1980_2016_t2m_meanc3_intentional_unintentional_monthly_excess_risk_fast_contig.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/additional_deaths_climate/1980_2016/t2m/meanc3/non_pw/type_1d/contig/all_injuries/5000_draws/USA_rate_pred_type1d_1980_2016_t2m_meanc3_intentional_unintentional_monthly_excess_risk_freescale_fast_contig.pdf" afterPath="$PROJECT_DIR$/USA/state/output/additional_deaths_climate/1980_2016/t2m/meanc3/non_pw/type_1d/contig/all_injuries/5000_draws/USA_rate_pred_type1d_1980_2016_t2m_meanc3_intentional_unintentional_monthly_excess_risk_freescale_fast_contig.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/additional_deaths_climate/1980_2016/t2m/meanc3/non_pw/type_1d/contig/all_injuries/5000_draws/USA_rate_pred_type1d_1980_2016_t2m_meanc3_intentional_unintentional_monthly_one_panel_excess_risk_fast_contig.pdf" afterPath="$PROJECT_DIR$/USA/state/output/additional_deaths_climate/1980_2016/t2m/meanc3/non_pw/type_1d/contig/all_injuries/5000_draws/USA_rate_pred_type1d_1980_2016_t2m_meanc3_intentional_unintentional_monthly_one_panel_excess_risk_fast_contig.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/additional_deaths_climate/1980_2016/t2m/meanc3/non_pw/type_1d/contig/all_injuries/5000_draws/USA_rate_pred_type1d_1980_2016_t2m_meanc3_intentional_unintentional_one_panel_excess_risk_fast_contig.pdf" afterPath="$PROJECT_DIR$/USA/state/output/additional_deaths_climate/1980_2016/t2m/meanc3/non_pw/type_1d/contig/all_injuries/5000_draws/USA_rate_pred_type1d_1980_2016_t2m_meanc3_intentional_unintentional_one_panel_excess_risk_fast_contig.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/additional_deaths_climate/1980_2016/t2m/meanc3/non_pw/type_1d/contig/all_injuries/5000_draws/USA_rate_pred_type1d_1980_2016_t2m_meanc3_unintentional_to_transport_falls_drownings_other_fast_contig.pdf" afterPath="$PROJECT_DIR$/USA/state/output/additional_deaths_climate/1980_2016/t2m/meanc3/non_pw/type_1d/contig/all_injuries/5000_draws/USA_rate_pred_type1d_1980_2016_t2m_meanc3_unintentional_to_transport_falls_drownings_other_fast_contig.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/additional_deaths_climate/1980_2016/t2m/meanc3/non_pw/type_1d/contig/all_injuries/5000_draws/USA_rate_pred_type1d_1980_2016_t2m_meanc3_unintentional_to_transport_falls_drownings_other_fast_excess_risk_contig.pdf" afterPath="$PROJECT_DIR$/USA/state/output/additional_deaths_climate/1980_2016/t2m/meanc3/non_pw/type_1d/contig/all_injuries/5000_draws/USA_rate_pred_type1d_1980_2016_t2m_meanc3_unintentional_to_transport_falls_drownings_other_fast_excess_risk_contig.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/additional_deaths_climate/1980_2016/t2m/meanc3/non_pw/type_1d/contig/all_injuries/5000_draws/USA_rate_pred_type1d_1980_2016_t2m_meanc3_unintentional_to_transport_falls_drownings_other_monthly_fast_contig.pdf" afterPath="$PROJECT_DIR$/USA/state/output/additional_deaths_climate/1980_2016/t2m/meanc3/non_pw/type_1d/contig/all_injuries/5000_draws/USA_rate_pred_type1d_1980_2016_t2m_meanc3_unintentional_to_transport_falls_drownings_other_monthly_fast_contig.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/00_bash/Rplots.pdf" afterPath="$PROJECT_DIR$/USA/state/prog/00_bash/Rplots.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/00_bash/papers/injury_paper_figures.sh" afterPath="$PROJECT_DIR$/USA/state/prog/00_bash/papers/injury_paper_figures.sh" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/additional_deaths/additional_deaths_all_injuries_stacked_climate_draws_plot_data_cod_1var.R" afterPath="$PROJECT_DIR$/USA/state/prog/additional_deaths/additional_deaths_all_injuries_stacked_climate_draws_plot_data_cod_1var.R" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,81 +39,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="data_prep_deprivation.sh" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/USA/state/prog/00_bash/data_prep/data_prep_deprivation.sh">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="22" column="23" lean-forward="false" selection-start-line="22" selection-start-column="23" selection-end-line="22" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="income_process.R" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/USA/state/prog/income_process/income_process.R">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="825">
-              <caret line="55" column="30" lean-forward="false" selection-start-line="55" selection-start-column="30" selection-end-line="55" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="additional_deaths_all_injuries_stacked_climate_draws_process_data_cod_1var.R" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/USA/state/prog/additional_deaths/additional_deaths_all_injuries_stacked_climate_draws_process_data_cod_1var.R">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4965">
-              <caret line="331" column="0" lean-forward="false" selection-start-line="331" selection-start-column="0" selection-end-line="332" selection-end-column="168" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="injury_paper_figures.sh" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/USA/state/prog/00_bash/papers/injury_paper_figures.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+            <state relative-caret-position="-57">
+              <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="data_explore_injuries_ons_subcod.R" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/USA/state/prog/data_explore/data_explore_injuries_ons_subcod.R">
+      <file leaf-file-name="additional_deaths_all_injuries_stacked_climate_draws_plot_data_cod_1var.R" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/USA/state/prog/additional_deaths/additional_deaths_all_injuries_stacked_climate_draws_plot_data_cod_1var.R">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="11385">
-              <caret line="759" column="0" lean-forward="false" selection-start-line="759" selection-start-column="0" selection-end-line="772" selection-end-column="80" />
+            <state relative-caret-position="202">
+              <caret line="458" column="0" lean-forward="false" selection-start-line="458" selection-start-column="0" selection-end-line="458" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="US_state_monthly_prepare_data_subcauses_injuries_ons.R" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/USA/state/prog/prep_data_cod/US_state_monthly_prepare_data_subcauses_injuries_ons.R">
+      <file leaf-file-name="additional_deaths_no_draws_cod_1var.sh" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/USA/state/prog/00_bash/additional_deaths/additional_deaths_no_draws_cod_1var.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1815">
-              <caret line="121" column="81" lean-forward="false" selection-start-line="121" selection-start-column="81" selection-end-line="121" selection-end-column="81" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="plot.R" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/USA/state/prog/sophie_test/plot.R">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="25" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="3" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="collapse_data.R" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/USA/state/prog/sophie_test/collapse_data.R">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="757">
-              <caret line="56" column="13" lean-forward="false" selection-start-line="56" selection-start-column="13" selection-end-line="56" selection-end-column="13" />
+            <state relative-caret-position="345">
+              <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="38" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -108,25 +79,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="data_explore_cod.sh" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/USA/state/prog/00_bash/data_prep/data_explore_cod.sh">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>15</find>
-      <find>yearpalette</find>
-      <find>median</find>
-      <find>head</find>
-      <find>fortify</find>
       <find>map</find>
       <find>source</find>
       <find>fips.lookup</find>
@@ -152,6 +108,11 @@
       <find>fix_cause_names</find>
       <find>region</find>
       <find>geom_poly</find>
+      <find>excess ri</find>
+      <find>_intentional_unintentional_excess_risk</find>
+      <find>additional.deaths.summary.perc</find>
+      <find>sex.long</find>
+      <find>age.long</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -193,7 +154,6 @@
         <option value="$PROJECT_DIR$/USA/state/prog/prep_data_cod/US_state_monthly_prepare_data_injuries_ons.R" />
         <option value="$PROJECT_DIR$/USA/state/prog/data_explore/data_explore_injuries_ons.R" />
         <option value="$PROJECT_DIR$/USA/state/prog/additional_deaths/additional_deaths_all_injuries_stacked_climate_draws_human_readable_cod_1var.R" />
-        <option value="$PROJECT_DIR$/USA/state/prog/additional_deaths/additional_deaths_all_injuries_stacked_climate_draws_plot_data_cod_1var.R" />
         <option value="$PROJECT_DIR$/USA/state/prog/com/com_plot_cod.R" />
         <option value="$PROJECT_DIR$/USA/state/prog/prep_data_cod/US_state_monthly_prepare_data_subcauses_injuries_ons.R" />
         <option value="$PROJECT_DIR$/USA/state/prog/00_bash/papers/deprivation_paper.sh" />
@@ -210,6 +170,8 @@
         <option value="$PROJECT_DIR$/USA/state/data/objects/objects.R" />
         <option value="$PROJECT_DIR$/USA/state/prog/sophie_test/plot.R" />
         <option value="$PROJECT_DIR$/USA/state/prog/sophie_test/collapse_data.R" />
+        <option value="$PROJECT_DIR$/USA/state/prog/00_bash/papers/injury_paper_figures.sh" />
+        <option value="$PROJECT_DIR$/USA/state/prog/additional_deaths/additional_deaths_all_injuries_stacked_climate_draws_plot_data_cod_1var.R" />
       </list>
     </option>
   </component>
@@ -310,6 +272,136 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mortality" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mortality" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="USA" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="state" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="prog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="additional_deaths" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mortality" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mortality" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="USA" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="state" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="prog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="00_bash" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mortality" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mortality" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="USA" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="state" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="prog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="00_bash" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="additional_deaths" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mortality" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mortality" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="USA" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="state" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mortality" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mortality" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="USA" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="state" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="objects" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -334,7 +426,7 @@
       <recent name="$PROJECT_DIR$/USA/state/prog/00_bash/papers" />
     </key>
   </component>
-  <component name="RunManager" selected="Bash.data_explore_cod.sh">
+  <component name="RunManager" selected="Bash.injury_paper_figures.sh">
     <configuration default="false" name="wavelet_paper_cod.sh" type="BashConfigurationType" factoryName="Bash" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="INTERPRETER_PATH" value="/bin/bash" />
@@ -374,6 +466,17 @@
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/USA/state/prog/00_bash/papers" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/USA/state/prog/00_bash/papers/injury_paper.sh" />
+      <option name="PARAMETERS" value="" />
+      <module name="mortality" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="injury_paper_figures.sh" type="BashConfigurationType" factoryName="Bash" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="INTERPRETER_PATH" value="/bin/bash" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/USA/state/prog/00_bash/papers" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/USA/state/prog/00_bash/papers/injury_paper_figures.sh" />
       <option name="PARAMETERS" value="" />
       <module name="mortality" />
       <envs />
@@ -532,18 +635,20 @@
       <option name="USE_KEYWORD" value="false" />
       <method />
     </configuration>
-    <list size="4">
+    <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Bash.wavelet_paper_cod.sh" />
       <item index="1" class="java.lang.String" itemvalue="Bash.data_explore_cod.sh" />
       <item index="2" class="java.lang.String" itemvalue="Bash.plotting_results_climate_cod_1var.sh" />
       <item index="3" class="java.lang.String" itemvalue="Bash.injury_paper.sh" />
+      <item index="4" class="java.lang.String" itemvalue="Bash.injury_paper_figures.sh" />
     </list>
     <recent_temporary>
-      <list size="4">
-        <item index="0" class="java.lang.String" itemvalue="Bash.data_explore_cod.sh" />
-        <item index="1" class="java.lang.String" itemvalue="Bash.injury_paper.sh" />
-        <item index="2" class="java.lang.String" itemvalue="Bash.plotting_results_climate_cod_1var.sh" />
-        <item index="3" class="java.lang.String" itemvalue="Bash.wavelet_paper_cod.sh" />
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="Bash.injury_paper_figures.sh" />
+        <item index="1" class="java.lang.String" itemvalue="Bash.data_explore_cod.sh" />
+        <item index="2" class="java.lang.String" itemvalue="Bash.injury_paper.sh" />
+        <item index="3" class="java.lang.String" itemvalue="Bash.plotting_results_climate_cod_1var.sh" />
+        <item index="4" class="java.lang.String" itemvalue="Bash.wavelet_paper_cod.sh" />
       </list>
     </recent_temporary>
   </component>
@@ -560,13 +665,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1528108809576</updated>
-    </task>
-    <task id="LOCAL-00356" summary="updates to wavelet coding">
-      <created>1538678244116</created>
-      <option name="number" value="00356" />
-      <option name="presentableId" value="LOCAL-00356" />
-      <option name="project" value="LOCAL" />
-      <updated>1538678244116</updated>
     </task>
     <task id="LOCAL-00357" summary="updates to wavelet coding">
       <created>1538678337635</created>
@@ -904,32 +1002,39 @@
       <option name="project" value="LOCAL" />
       <updated>1547566246231</updated>
     </task>
-    <option name="localTasksCounter" value="405" />
+    <task id="LOCAL-00405" summary="updates to wavelet coding">
+      <created>1548267463218</created>
+      <option name="number" value="00405" />
+      <option name="presentableId" value="LOCAL-00405" />
+      <option name="project" value="LOCAL" />
+      <updated>1548267463219</updated>
+    </task>
+    <option name="localTasksCounter" value="406" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29399142" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45636624" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891566" sideWeight="0.49713877" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="R Packages" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32880434" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="R Graphics" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32977587" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32650602" sideWeight="0.5028612" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3217569" sideWeight="0.49713877" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3282365" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.42048192" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24892704" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32986626" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.42165604" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299285" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -1025,27 +1130,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18">
           <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/USA/state/prog/00_bash/additional_deaths/additional_deaths_no_draws_cod_1var.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="34" column="115" lean-forward="false" selection-start-line="34" selection-start-column="115" selection-end-line="34" selection-end-column="172" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/USA/state/prog/additional_deaths/additional_deaths_all_injuries_stacked_climate_draws_human_readable_cod_1var.R">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="189" column="0" lean-forward="false" selection-start-line="189" selection-start-column="0" selection-end-line="189" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/USA/state/prog/additional_deaths/additional_deaths_all_injuries_stacked_climate_draws_plot_data_cod_1var.R">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="14" lean-forward="false" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="33" />
         </state>
       </provider>
     </entry>
@@ -1254,34 +1338,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/USA/state/prog/additional_deaths/additional_deaths_all_injuries_stacked_climate_draws_process_data_cod_1var.R">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4965">
-          <caret line="331" column="0" lean-forward="false" selection-start-line="331" selection-start-column="0" selection-end-line="332" selection-end-column="168" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/USA/state/prog/00_bash/papers/injury_paper_figures.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/USA/state/prog/00_bash/data_prep/data_explore_cod.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
           <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/USA/state/data/objects/objects.R">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="42" selection-end-column="60" />
           <folding />
         </state>
       </provider>
@@ -1314,6 +1374,54 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="757">
           <caret line="56" column="13" lean-forward="false" selection-start-line="56" selection-start-column="13" selection-end-line="56" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/USA/state/prog/additional_deaths/additional_deaths_all_injuries_stacked_climate_draws_process_data_cod_1var.R">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4965">
+          <caret line="331" column="0" lean-forward="false" selection-start-line="331" selection-start-column="0" selection-end-line="332" selection-end-column="168" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/USA/state/prog/additional_deaths/additional_deaths_all_injuries_stacked_climate_draws_human_readable_cod_1var.R">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-758">
+          <caret line="189" column="0" lean-forward="false" selection-start-line="189" selection-start-column="0" selection-end-line="189" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/USA/state/prog/00_bash/additional_deaths/additional_deaths_no_draws_cod_1var.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="38" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/USA/state/prog/00_bash/papers/injury_paper_figures.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-57">
+          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/USA/state/data/objects/objects.R">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="42" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/USA/state/prog/additional_deaths/additional_deaths_all_injuries_stacked_climate_draws_plot_data_cod_1var.R">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="458" column="0" lean-forward="false" selection-start-line="458" selection-start-column="0" selection-end-line="458" selection-end-column="0" />
           <folding />
         </state>
       </provider>

@@ -385,7 +385,9 @@ perc_calculator = function(dat){
 # additional.deaths.intent.summary.perc = merge(additional.deaths.intent.summary.perc,additional.deaths.intent.summary,by=c('sex.long','age.long','intent'))
 # additional.deaths.intent.summary.perc =  perc_calculator(additional.deaths.intent.summary.perc)
 #
-# additional.deaths.summary.perc$age.long = factor(additional.deaths.summary.perc$age.long, levels=rev(age.print))
+additional.deaths.summary.perc$age.long = factor(additional.deaths.summary.perc$age.long, levels=rev(age.print))
+
+additional.deaths.summary.perc$sex.long = factor(additional.deaths.summary.perc$sex.long, levels=rev(unique(additional.deaths.summary.perc$sex.long)))
 
 
 pdf(paste0(file.loc,country,'_rate_pred_type',model,
@@ -443,6 +445,7 @@ dev.off()
 
 additional.deaths.summary.perc$cause = gsub('Intentional self-harm', 'Intentional\nself-harm',additional.deaths.summary.perc$cause)
 additional.deaths.summary.perc$cause = factor(additional.deaths.summary.perc$cause, levels=c('Transport','Falls','Drownings','Other unintentional injuries','Assault','Intentional\nself-harm'))
+
 pdf(paste0(file.loc,country,'_rate_pred_type',model,
     '_',year.start,'_',year.end,'_',dname,'_',metric,'_intentional_unintentional_excess_risk_fast_contig.pdf'),paper='a4r',height=0,width=0)
 ggplot() +
@@ -452,7 +455,7 @@ ggplot() +
     geom_hline(yintercept=0,linetype='dotted') +
     xlab('Age group (years)') + ylab('Excess risk associated with 1 degree additional warming') +
     facet_grid(cause~sex.long) +
-    scale_y_continuous(labels=scales::percent) +
+    scale_y_continuous(labels=scales::percent_format(accuracy=1)) +
     scale_color_manual(values=colors.subinjuries[c(1,2,3,5,6)]) +
     # scale_y_continuous(breaks = seq(min.plot, max.plot, by = 50),limits=c(min.plot,max.plot)) +
     # guides(color=guide_legend(title="",nrow=1)) +
@@ -550,10 +553,11 @@ ggplot() +
     # ylim(c(min.plot,max.plot)) +
     coord_flip() +
     facet_grid(cause~sex.long) +
-    scale_y_continuous(labels=scales::percent) +
+    scale_y_continuous(labels=scales::percent_format(accuracy=1)) +
     scale_color_manual(values=colors.subinjuries[c(1,2,3,5,6)]) +
     # scale_y_continuous(breaks = seq(min.plot, max.plot, by = 50),limits=c(min.plot,max.plot)) +
-    guides(color=guide_legend(title="",nrow=1)) +
+    # guides(color=guide_legend(title="",nrow=1)) +
+    guides(color=FALSE) +
     # ggtitle('Additional deaths by types of intentional injuries') +
     theme_bw() + theme(text = element_text(size = 15),
     panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),axis.text.y = element_text(size=8),
