@@ -73,7 +73,8 @@ yearsummary_injuries  <- function(x=2000) {
 							ifelse(dat.merged$cause.numeric>=4250&dat.merged$cause.numeric<=4259, 'Inflammatory heart diseases', #'Inflammatory heart diseases',
 							ifelse(dat.merged$cause.numeric>=4300&dat.merged$cause.numeric<=4699, 'Cerebrovascular disease', #'Cerebrovascular disease',
 							# Respiratory diseases (4700-4789, 4900-5199)
-							ifelse(dat.merged$cause.numeric>=XX&dat.merged$cause.numeric<=XX, 'XX', #'XX',
+							ifelse(dat.merged$cause.numeric>=4700&dat.merged$cause.numeric<=4789, 'Other respiratory diseases', #'Other respiratory diseases',
+							# FINISH
 							ifelse(dat.merged$cause.numeric>=XX&dat.merged$cause.numeric<=XX, 'XX', #'XX',
 							ifelse(dat.merged$cause.numeric>=XX&dat.merged$cause.numeric<=XX, 'XX', #'XX',
 							ifelse(dat.merged$cause.numeric>=XX&dat.merged$cause.numeric<=XX, 'XX', #'XX',
