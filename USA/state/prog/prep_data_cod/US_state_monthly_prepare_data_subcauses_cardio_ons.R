@@ -74,23 +74,19 @@ yearsummary_injuries  <- function(x=2000) {
 							ifelse(dat.merged$cause.numeric>=4250&dat.merged$cause.numeric<=4259, 'Inflammatory heart diseases', #'Inflammatory heart diseases',
 							ifelse(dat.merged$cause.numeric>=4300&dat.merged$cause.numeric<=4699, 'Cerebrovascular disease', #'Cerebrovascular disease',
 							# Respiratory diseases (4700-4789, 4900-5199)
-							ifelse(dat.merged$cause.numeric>=4700&dat.merged$cause.numeric<=4789, 'Other respiratory diseases', #'Other respiratory diseases',
-							# FINISH
-							ifelse(dat.merged$cause.numeric>=XX&dat.merged$cause.numeric<=XX, 'XX', #'XX',
-							ifelse(dat.merged$cause.numeric>=XX&dat.merged$cause.numeric<=XX, 'XX', #'XX',
-							ifelse(dat.merged$cause.numeric>=XX&dat.merged$cause.numeric<=XX, 'XX', #'XX',
-							ifelse(dat.merged$cause.numeric>=XX&dat.merged$cause.numeric<=XX, 'XX', #'XX',
-							ifelse(dat.merged$cause.numeric>=XX&dat.merged$cause.numeric<=XX, 'XX', #'XX',
+							ifelse(dat.merged$cause.numeric>=4700&dat.merged$cause.numeric<=4899, 'Other respiratory diseases', #'Other respiratory diseases',
+							ifelse(dat.merged$cause.numeric>=4900&dat.merged$cause.numeric<=4929, 'Chronic obstructive pulmonary disease', #'Chronic obstructive pulmonary disease',
+							ifelse(dat.merged$cause.numeric>=4930&dat.merged$cause.numeric<=4939, 'Asthma', #'Asthma',
+							ifelse(dat.merged$cause.numeric>=4940&dat.merged$cause.numeric<=4949, 'Other respiratory diseases', #'Other respiratory diseases',
+							ifelse(dat.merged$cause.numeric>=4950&dat.merged$cause.numeric<=4969, 'Chronic obstructive pulmonary disease', #'Chronic obstructive pulmonary disease',
+							ifelse(dat.merged$cause.numeric>=4970&dat.merged$cause.numeric<=5199, 'Other respiratory diseases', #'Other respiratory diseases',
+							# ifelse(dat.merged$cause.numeric>=XX&dat.merged$cause.numeric<=XX, 'XX', #'XX',
+							'NA')))))))))))))))))
 
-							ifelse(dat.merged$cause.numeric>=XX&dat.merged$cause.numeric<=XX, 'XX', #'XX',
-							ifelse(dat.merged$cause.numeric>=XX&dat.merged$cause.numeric<=XX, 'XX', #'XX',
-							'NA')))))))))))
-
-		# merge cod in ICD 9 coding
-		icd9.lookup$cause = as.numeric(icd9.lookup$cause)
-		dat.merged = merge(dat.merged,icd9.lookup,by='cause',all.x=1)
-        dat.merged$cause.group = as.character(dat.merged$cause.group)
-        dat.merged$cause.group = ifelse(is.na(dat.merged$cause.group)==TRUE,'Other',dat.merged$cause.group)
+		# also add cardiovascular or respiratory diseases
+		dat$cause.group = 	ifelse(dat$cause.numeric>=3810&dat$cause.numeric<=3829,'Cardiovascular', #'Ottis media'
+							ifelse(dat$cause.numeric>=3900&dat$cause.numeric<=5199,'Cardiopulmonary',
+							'Other')))
 
         dat.merged$letter = ' '
 
