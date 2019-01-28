@@ -177,8 +177,9 @@ yearsummary_injuries  <- function(x=2000) {
 	sex 	= 	c(1:2)
 	age 	= 	c(0,5,15,25,35,45,55,65,75,85)
 	cause.group 	=	c('Cardiovascular diseases','Respiratory diseases')
-    cause.sub 	=	c(  'Rheumatic heart disease','Hypertensive heart disease','Ischaemic heart disease', 'Inflammatory heart diseases', 'Other cardiovascular diseases',
-                        'Cerebrovascular disease','Inflammatory heart diseases')
+    cause.sub 	=	c( 'Ottis media',
+						'Rheumatic heart disease','Hypertensive heart disease','Ischaemic heart disease', 'Inflammatory heart diseases', 'Other cardiovascular diseases','Cerebrovascular disease',
+						'Chronic obstructive pulmonary disease','Asthma','Other respiratory diseases')
 
     # create complete grid
 	complete.grid <- expand.grid(fips=fips,month=month,sex=sex,age=age,cause.group=cause.group,cause.sub=cause.sub)
@@ -198,10 +199,12 @@ yearsummary_injuries  <- function(x=2000) {
 	dat.summarised.complete$deaths <- ifelse(is.na(dat.summarised.complete$deaths)==TRUE,0,dat.summarised.complete$deaths)
 
 	# print statistics of sub-causes
+	print(ddply(dat.summarised,.(cause.sub),summarise,deaths=sum(deaths)))
+	print(ddply(dat.summarised,.(cause.group),summarise,deaths=sum(deaths)))
 	print(ddply(dat.summarised.complete,.(cause.sub),summarise,deaths=sum(deaths)))
 	print(ddply(dat.summarised.complete,.(cause.group),summarise,deaths=sum(deaths)))
 
-	print(paste0('total deaths in year ',sum(dat$deaths),', total deaths for cardiorespiratory ',sum(dat.merged$deaths),' ',sum(dat.summarised$deaths)))
+	print(paste0('total deaths in year ',sum(dat$deaths),', total deaths for cardiorespiratory ',sum(dat.merged$deaths),' ',sum(dat.summarised$deaths),' ',sum(dat.summarised.complete$deaths)))
 
   	return(dat.summarised.complete)
 }
