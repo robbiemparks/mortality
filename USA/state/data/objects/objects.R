@@ -42,6 +42,18 @@ colors.subinjuries = mycols[c(
                                 12,  # Assault
                                 20)] # Intentional self-harm
 
+colors.cardio = mycols[c(
+                                6,   # XX
+                                13,  # XX
+                                36,  # XX
+                                33,  # XX
+                                12,  # XX
+                                20,  # XX
+                                25,  # XX
+                                42,  # XX
+                                21,  # XX
+                                55)] # XX
+
 # colors for years progression
 colors.years = mycols[c(        9,   # Beginning
                                 21,  # Middle
