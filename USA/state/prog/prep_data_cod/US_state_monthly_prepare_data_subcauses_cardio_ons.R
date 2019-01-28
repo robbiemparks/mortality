@@ -83,12 +83,12 @@ yearsummary_injuries  <- function(x=2000) {
 							ifelse(dat.merged$cause.numeric>=4950&dat.merged$cause.numeric<=4969, 'Chronic obstructive pulmonary disease', #'Chronic obstructive pulmonary disease',
 							ifelse(dat.merged$cause.numeric>=4970&dat.merged$cause.numeric<=5199, 'Other respiratory diseases', #'Other respiratory diseases',
 							# ifelse(dat.merged$cause.numeric>=XX&dat.merged$cause.numeric<=XX, 'XX', #'XX',
-							'NA')))))))))))))))))
+							'NA')))))))))))))))))))
 
 		# also add cardiovascular or respiratory diseases
-		dat$cause.group = 	ifelse(dat$cause.numeric>=3810&dat$cause.numeric<=3829,'Cardiovascular diseases', #'Ottis media'
-							ifelse(dat$cause.numeric>=3900&dat$cause.numeric<=4699,'Cardiovascular diseases', #'Cardiovascular' proper
-							ifelse(dat$cause.numeric>=4700&dat$cause.numeric<=5199,'Respiratory diseases', #'Respiratory diseases'
+		dat.merged$cause.group = 	ifelse(dat.merged$cause.numeric>=3810&dat.merged$cause.numeric<=3829,'Cardiovascular diseases', #'Ottis media'
+							ifelse(dat.merged$cause.numeric>=3900&dat.merged$cause.numeric<=4699,'Cardiovascular diseases', #'Cardiovascular' proper
+							ifelse(dat.merged$cause.numeric>=4700&dat.merged$cause.numeric<=5199,'Respiratory diseases', #'Respiratory diseases'
 							'Other')))
 
         dat.merged$letter = ' '
