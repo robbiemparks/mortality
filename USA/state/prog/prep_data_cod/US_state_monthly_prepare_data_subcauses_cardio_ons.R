@@ -84,8 +84,8 @@ yearsummary_injuries  <- function(x=2000) {
 							'NA')))))))))))))))))
 
 		# also add cardiovascular or respiratory diseases
-		dat$cause.group = 	ifelse(dat$cause.numeric>=3810&dat$cause.numeric<=3829,'Cardiovascular', #'Ottis media'
-							ifelse(dat$cause.numeric>=3900&dat$cause.numeric<=4699,'Cardiovascular', #'Cardiovascular' proper
+		dat$cause.group = 	ifelse(dat$cause.numeric>=3810&dat$cause.numeric<=3829,'Cardiovascular diseases', #'Ottis media'
+							ifelse(dat$cause.numeric>=3900&dat$cause.numeric<=4699,'Cardiovascular diseases', #'Cardiovascular' proper
 							ifelse(dat$cause.numeric>=4700&dat$cause.numeric<=5199,'Respiratory diseases', #'Respiratory diseases'
 							'Other')))
 
@@ -127,7 +127,8 @@ yearsummary_injuries  <- function(x=2000) {
   						    ifelse(dat.merged$letter=='I'&dat.merged$cause.numeric>=400&dat.merged$cause.numeric<=409,	'Inflammatory heart diseases', #'Inflammatory heart diseases',
   						    ifelse(dat.merged$letter=='I'&dat.merged$cause.numeric>=410&dat.merged$cause.numeric<=419,	'Other cardiovascular diseases', # 'Other cardiovascular diseases'
   						    ifelse(dat.merged$letter=='I'&dat.merged$cause.numeric>=420&dat.merged$cause.numeric<=429,	'Inflammatory heart diseases', #'Inflammatory heart diseases',
-  						    ifelse(dat.merged$letter=='I'&dat.merged$cause.numeric>=430&dat.merged$cause.numeric<=999,	'Other cardiovascular diseases', # 'Other cardiovascular diseases'
+  						    ifelse(dat.merged$letter=='I'&dat.merged$cause.numeric>=600&dat.merged$cause.numeric<=699,	'Cerebrovascular disease', #'Cerebrovascular disease',
+  						    ifelse(dat.merged$letter=='I'&dat.merged$cause.numeric>=700&dat.merged$cause.numeric<=999,	'Other cardiovascular diseases', # 'Other cardiovascular diseases'
 							# Respiratory diseases (J00-J99)
   						    ifelse(dat.merged$letter=='J'&dat.merged$cause.numeric>=0&dat.merged$cause.numeric<=399,	'Other respiratory diseases', #'Other respiratory diseases',
   						    ifelse(dat.merged$letter=='J'&dat.merged$cause.numeric>=400&dat.merged$cause.numeric<=449,	'Chronic obstructive pulmonary disease', #'Chronic obstructive pulmonary disease',
@@ -135,11 +136,8 @@ yearsummary_injuries  <- function(x=2000) {
   						    ifelse(dat.merged$letter=='J'&dat.merged$cause.numeric>=470&dat.merged$cause.numeric<=999,	'Other respiratory diseases', #'Other respiratory diseases',
                             'NA'))))))))))))))))))
 
-        # to fix contraversal poisioning deaths to have their own category if desired
-        # dat.merged$cause.sub = ifelse(dat.merged$letter=='X'&(dat.merged$cause.numeric==410|dat.merged$cause.numeric==420|dat.merged$cause.numeric==450|dat.merged$cause.numeric==490),'Drugs',dat.merged$cause.sub)
-        # dat.merged = subset(dat.merged,cause.sub!='Drugs')
 
-		# merge cod in ICD 10 coding
+		# merge cod in ICD 10 coding EDIT
 		dat.merged = merge(dat.merged,icd10.lookup,by='cause',all.x=1)
         dat.merged$cause.group = as.character(dat.merged$cause.group)
         dat.merged$cause.group = ifelse(is.na(dat.merged$cause.group)==TRUE,'Other',dat.merged$cause.group)
@@ -148,7 +146,7 @@ yearsummary_injuries  <- function(x=2000) {
 
     # find unique values of causes of death and sub-groupings and save
     dat.unique = unique(dat.merged[c('cause','cause.sub')])
-    saveRDS(dat.unique,paste0('../../output/prep_data_cod/cods/cods_',x))
+    saveRDS(dat.unique,paste0('../../output/prep_data_cod/cods/cods_cardio_',x))
 
 
     # add agegroup groupings
@@ -176,9 +174,9 @@ yearsummary_injuries  <- function(x=2000) {
 	month 	= 	c(1:12)
 	sex 	= 	c(1:2)
 	age 	= 	c(0,5,15,25,35,45,55,65,75,85)
-	cause.group 	=	c('Unintentional','Intentional')
-    cause.sub 	=	c(  'Transport accidents','Accidental falls','Other external causes of injury',
-                        'Accidental drowning and submersion','Intentional self-harm','Assault')
+	cause.group 	=	c('Cardiovascular diseases','Respiratory diseases')
+    cause.sub 	=	c(  'Rheumatic heart disease','Hypertensive heart disease','Ischaemic heart disease', 'Inflammatory heart diseases', 'Other cardiovascular diseases',
+                        'Cerebrovascular disease','Inflammatory heart diseases')
 
     # create complete grid
 	complete.grid <- expand.grid(fips=fips,month=month,sex=sex,age=age,cause.group=cause.group,cause.sub=cause.sub)
@@ -201,7 +199,7 @@ yearsummary_injuries  <- function(x=2000) {
 	print(ddply(dat.summarised.complete,.(cause.sub),summarise,deaths=sum(deaths)))
 	print(ddply(dat.summarised.complete,.(cause.group),summarise,deaths=sum(deaths)))
 
-	print(paste0('total deaths in year ',sum(dat$deaths),', total deaths for injuries ',sum(dat.merged$deaths),' ',sum(dat.summarised$deaths)))
+	print(paste0('total deaths in year ',sum(dat$deaths),', total deaths for cardiorespiratory ',sum(dat.merged$deaths),' ',sum(dat.summarised$deaths)))
 
   	return(dat.summarised.complete)
 }
@@ -271,7 +269,7 @@ dat.merged$rate.adj <- dat.merged$deaths.adj / dat.merged$pop.adj
 # dat.analyse = unique(dat.appended[,c(1:3)])
 
 # output deaths file as RDS and csv
-saveRDS(dat.merged,paste0('../../output/prep_data_cod/datus_nat_deaths_subcod_injuries_ons_',year.start.arg,'_',year.end.arg))
+saveRDS(dat.merged,paste0('../../output/prep_data_cod/datus_nat_deaths_subcod_cardio_ons_',year.start.arg,'_',year.end.arg))
 
 # append cods and output to single file, merging description names along the way
 start_year = 1999
@@ -297,5 +295,5 @@ dat.cods = dat.cods[order(dat.cods$cause.sub,dat.cods$cause),]
 
 
 # output summary file as RDS and csv
-saveRDS(dat.cods,paste0('../../output/prep_data_cod/cods/cods_',year.start.arg,'_',year.end.arg))
-write.csv(dat.cods,paste0('../../output/prep_data_cod/cods/cods_',year.start.arg,'_',year.end.arg,'.csv'),row.names=FALSE)
+saveRDS(dat.cods,paste0('../../output/prep_data_cod/cods/cods_cardio_',year.start.arg,'_',year.end.arg))
+write.csv(dat.cods,paste0('../../output/prep_data_cod/cods/cods_cardio_',year.start.arg,'_',year.end.arg,'.csv'),row.names=FALSE)
