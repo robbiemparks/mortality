@@ -49,8 +49,8 @@
       <file leaf-file-name="data_explore_cardio_ons_subcod.R" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/USA/state/prog/data_explore/data_explore_cardio_ons_subcod.R">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="966">
-              <caret line="828" column="9" lean-forward="false" selection-start-line="671" selection-start-column="0" selection-end-line="828" selection-end-column="9" />
+            <state relative-caret-position="51">
+              <caret line="771" column="77" lean-forward="false" selection-start-line="771" selection-start-column="77" selection-end-line="771" selection-end-column="77" />
               <folding />
             </state>
           </provider>
@@ -1328,8 +1328,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/USA/state/prog/data_explore/data_explore_cardio_ons_subcod.R">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="966">
-          <caret line="828" column="9" lean-forward="false" selection-start-line="671" selection-start-column="0" selection-end-line="828" selection-end-column="9" />
+        <state relative-caret-position="51">
+          <caret line="771" column="77" lean-forward="false" selection-start-line="771" selection-start-column="77" selection-end-line="771" selection-end-column="77" />
           <folding />
         </state>
       </provider>
