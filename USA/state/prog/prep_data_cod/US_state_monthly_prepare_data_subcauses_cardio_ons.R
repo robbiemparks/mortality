@@ -60,8 +60,9 @@ yearsummary_injuries  <- function(x=2000) {
 
         # cause subgroups
         dat.merged$cause.sub =
-							# Cardiovascular diseases (3900-4699)
+							# Ottis media
                             ifelse(dat.merged$cause.numeric>=3810&dat.merged$cause.numeric<=3829, 'Ottis media', #'Ottis media',
+							# Cardiovascular diseases (3900-4699)
 							ifelse(dat.merged$cause.numeric>=3900&dat.merged$cause.numeric<=3989, 'Rheumatic heart diseases', #'Rheumatic heart diseases',
 							ifelse(dat.merged$cause.numeric>=3990&dat.merged$cause.numeric<=4009, 'Other cardiovascular diseases', #'?',
 							ifelse(dat.merged$cause.numeric>=4010&dat.merged$cause.numeric<=4059, 'Hypertensive heart disease', #'Hypertensive heart disease',
