@@ -55,7 +55,7 @@ yearsummary_injuries  <- function(x=2000) {
         dat$cause.group = ifelse(as.numeric(substr(dat$cause.numeric,1,3))==900|as.numeric(substr(dat$cause.numeric,1,3))==901,'Other',dat$cause.group)
 
         # only filter for cardiorespiratory
-        dat.merged = subset(dat,cause.group=='Cardipulmonary')
+        dat.merged = subset(dat,cause.group=='Cardiopulmonary')
         dat.merged$cause.group = NULL
 
         # cause subgroups
@@ -72,7 +72,9 @@ yearsummary_injuries  <- function(x=2000) {
 							ifelse(dat.merged$cause.numeric>=4200&dat.merged$cause.numeric<=4229, 'Inflammatory heart diseases', #'Inflammatory heart diseases',
 							ifelse(dat.merged$cause.numeric>=4230&dat.merged$cause.numeric<=4249, 'Other cardiovascular diseases', #'?',
 							ifelse(dat.merged$cause.numeric>=4250&dat.merged$cause.numeric<=4259, 'Inflammatory heart diseases', #'Inflammatory heart diseases',
-							ifelse(dat.merged$cause.numeric>=4300&dat.merged$cause.numeric<=4699, 'Cerebrovascular disease', #'Cerebrovascular disease',
+							ifelse(dat.merged$cause.numeric>=4260&dat.merged$cause.numeric<=4299, 'Other cardiovascular diseases', #'?',
+							ifelse(dat.merged$cause.numeric>=4300&dat.merged$cause.numeric<=4389, 'Cerebrovascular disease', #'Cerebrovascular disease',
+							ifelse(dat.merged$cause.numeric>=4390&dat.merged$cause.numeric<=4699, 'Other cardiovascular diseases', #'?',
 							# Respiratory diseases (4700-4789, 4900-5199)
 							ifelse(dat.merged$cause.numeric>=4700&dat.merged$cause.numeric<=4899, 'Other respiratory diseases', #'Other respiratory diseases',
 							ifelse(dat.merged$cause.numeric>=4900&dat.merged$cause.numeric<=4929, 'Chronic obstructive pulmonary disease', #'Chronic obstructive pulmonary disease',
