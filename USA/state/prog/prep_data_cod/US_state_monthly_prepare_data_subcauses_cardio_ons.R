@@ -86,7 +86,7 @@ yearsummary_injuries  <- function(x=2000) {
 		# also add cardiovascular or respiratory diseases
 		dat$cause.group = 	ifelse(dat$cause.numeric>=3810&dat$cause.numeric<=3829,'Cardiovascular', #'Ottis media'
 							ifelse(dat$cause.numeric>=3900&dat$cause.numeric<=4699,'Cardiovascular', #'Cardiovascular' proper
-							ifelse(dat$cause.numeric>=4700&dat$cause.numeric<=5199,'Respiratory diseases', #'Cardiovascular' proper
+							ifelse(dat$cause.numeric>=4700&dat$cause.numeric<=5199,'Respiratory diseases', #'Respiratory diseases'
 							'Other')))
 
         dat.merged$letter = ' '
