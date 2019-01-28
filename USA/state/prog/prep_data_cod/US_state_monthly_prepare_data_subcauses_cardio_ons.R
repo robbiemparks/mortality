@@ -126,15 +126,14 @@ yearsummary_injuries  <- function(x=2000) {
   						    ifelse(dat.merged$letter=='I'&dat.merged$cause.numeric>=390&dat.merged$cause.numeric<=399,	'Other cardiovascular diseases', # 'Other cardiovascular diseases'
   						    ifelse(dat.merged$letter=='I'&dat.merged$cause.numeric>=400&dat.merged$cause.numeric<=409,	'Inflammatory heart diseases', #'Inflammatory heart diseases',
   						    ifelse(dat.merged$letter=='I'&dat.merged$cause.numeric>=410&dat.merged$cause.numeric<=419,	'Other cardiovascular diseases', # 'Other cardiovascular diseases'
-  						    ifelse(dat.merged$letter=='XX'&dat.merged$cause.numeric>=XX&dat.merged$cause.numeric<=XX,	'XX',# 'XX'
-  						    ifelse(dat.merged$letter=='XX'&dat.merged$cause.numeric>=XX&dat.merged$cause.numeric<=XX,	'XX',# 'XX'
-  						    ifelse(dat.merged$letter=='XX'&dat.merged$cause.numeric>=XX&dat.merged$cause.numeric<=XX,	'XX',# 'XX'
-  						    ifelse(dat.merged$letter=='XX'&dat.merged$cause.numeric>=XX&dat.merged$cause.numeric<=XX,	'XX',# 'XX'
-  						    ifelse(dat.merged$letter=='XX'&dat.merged$cause.numeric>=XX&dat.merged$cause.numeric<=XX,	'XX',# 'XX'
-  						    ifelse(dat.merged$letter=='XX'&dat.merged$cause.numeric>=XX&dat.merged$cause.numeric<=XX,	'XX',# 'XX'
-
-  						    ifelse(dat.merged$letter=='XX'&dat.merged$cause.numeric>=XX&dat.merged$cause.numeric<=XX,	'XX',# 'XX'
-                            'NA')
+  						    ifelse(dat.merged$letter=='I'&dat.merged$cause.numeric>=420&dat.merged$cause.numeric<=429,	'Inflammatory heart diseases', #'Inflammatory heart diseases',
+  						    ifelse(dat.merged$letter=='I'&dat.merged$cause.numeric>=430&dat.merged$cause.numeric<=999,	'Other cardiovascular diseases', # 'Other cardiovascular diseases'
+							# Respiratory diseases (J00-J99)
+  						    ifelse(dat.merged$letter=='J'&dat.merged$cause.numeric>=0&dat.merged$cause.numeric<=399,	'Other respiratory diseases', #'Other respiratory diseases',
+  						    ifelse(dat.merged$letter=='J'&dat.merged$cause.numeric>=400&dat.merged$cause.numeric<=449,	'Chronic obstructive pulmonary disease', #'Chronic obstructive pulmonary disease',
+  						    ifelse(dat.merged$letter=='J'&dat.merged$cause.numeric>=450&dat.merged$cause.numeric<=469,	'Asthma', #'Asthma',
+  						    ifelse(dat.merged$letter=='J'&dat.merged$cause.numeric>=470&dat.merged$cause.numeric<=999,	'Other respiratory diseases', #'Other respiratory diseases',
+                            'NA'))))))))))))))))))
 
         # to fix contraversal poisioning deaths to have their own category if desired
         dat.merged$cause.sub = ifelse(dat.merged$letter=='X'&(dat.merged$cause.numeric==410|dat.merged$cause.numeric==420|dat.merged$cause.numeric==450|dat.merged$cause.numeric==490),'Drugs',dat.merged$cause.sub)
