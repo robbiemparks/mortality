@@ -19,7 +19,7 @@ ifelse(!dir.exists("../../output/prep_data_cod/cods/"), dir.create("../../output
 
 # Function to summarise a year's data. x is the year in 2 number form (e.g. 1989 -> 89).
 # y is the number of rows. default (-1) is all rows.
-yearsummary_injuries  <- function(x=2000) {
+yearsummary_cardio  <- function(x=2000) {
 
 	print(paste0('year ',x,' now being processed'))
   
@@ -44,7 +44,7 @@ yearsummary_injuries  <- function(x=2000) {
 		dat$cause[nchar(dat$cause)==3] <- paste0(dat$cause[nchar(dat$cause)==3],'0')
 		dat$cause.numeric = as.numeric(dat$cause)
 		dat$cause.group = 	ifelse(dat$cause.numeric>=1400&dat$cause.numeric<=2399,'Cancer',
-							ifelse(dat$cause.numeric>=3810&dat$cause.numeric<=3829,'Cardiopulmonary', # Ottis Media addition
+							ifelse(dat$cause.numeric>=3810&dat$cause.numeric<=3829,'Cardiopulmonary', # Otitis Media addition
 							ifelse(dat$cause.numeric>=3900&dat$cause.numeric<=5199,'Cardiopulmonary',
 							ifelse(dat$cause.numeric>=8000&dat$cause.numeric<=9999,'External',
 							'Other'))))
@@ -87,12 +87,12 @@ yearsummary_injuries  <- function(x=2000) {
 							ifelse(dat.merged$cause.numeric>=4950&dat.merged$cause.numeric<=4969, 'Chronic obstructive pulmonary disease', #'Chronic obstructive pulmonary disease',
 							ifelse(dat.merged$cause.numeric>=4970&dat.merged$cause.numeric<=5199, 'Other respiratory diseases', #'Other respiratory diseases',
 							# ifelse(dat.merged$cause.numeric>=XX&dat.merged$cause.numeric<=XX, 'XX', #'XX',
-							'NA'))))))))))))))))))))))
+							'NA')))))))))))))))))))))))
 
 		# also add cardiovascular or respiratory diseases
 		dat.merged$cause.group = 	ifelse(dat.merged$cause.numeric>=3810&dat.merged$cause.numeric<=3829,'Respiratory diseases and infections', #'Ottis media'
 							ifelse(dat.merged$cause.numeric>=3900&dat.merged$cause.numeric<=4599,'Cardiovascular diseases', #'Cardiovascular' proper
-							ifelse(dat.merged$cause.numeric>=4600&dat.merged$cause.numeric<=5199,'Respiratory diseases and infections ', #'Respiratory diseases'
+							ifelse(dat.merged$cause.numeric>=4600&dat.merged$cause.numeric<=5199,'Respiratory diseases and infections', #'Respiratory diseases and infections proper'
 							'Other')))
 
         dat.merged$letter = ' '
@@ -110,14 +110,14 @@ yearsummary_injuries  <- function(x=2000) {
         # move deaths due to weather-based heat/cold to 'Other'
         dat.merged$cause.group = ifelse((dat.merged$cause=='X300'|dat.merged$cause=='X310'),'Other',as.character(dat.merged$cause.group))
 
-        # only filter for cardiorespiratory AND include otitis media
-        dat.merged = subset(dat.merged,cause.group=='Cardiopulmonary')
-        dat.merged.append = subset(dat.merged,letter=='H'&cause.numeric>=650&cause.numeric<=669) # otitis media
-		dat.merged = rbind(dat.merged,dat.merged.append)
-        dat.merged$cause.group = NULL
-
         # numerical cause
         dat.merged$cause.numeric = as.numeric(as.character(substr(dat.merged$cause,2,4)))
+
+        # only filter for cardiorespiratory AND include otitis media
+        dat.merged.append = subset(dat.merged,letter=='H'&cause.numeric>=650&cause.numeric<=669) # otitis media
+        dat.merged = subset(dat.merged,cause.group=='Cardiopulmonary')
+		dat.merged = rbind(dat.merged,dat.merged.append)
+        dat.merged$cause.group = NULL
 
         # cause subgroups
         dat.merged$cause.sub =
@@ -146,10 +146,10 @@ yearsummary_injuries  <- function(x=2000) {
   						    ifelse(dat.merged$letter=='J'&dat.merged$cause.numeric>=200&dat.merged$cause.numeric<=229,	'Respiratory infections', #'Lower respiratory infections',
   						    ifelse(dat.merged$letter=='J'&dat.merged$cause.numeric>=230&dat.merged$cause.numeric<=399,	'Other respiratory diseases', #'Other respiratory diseases',
   						    ifelse(dat.merged$letter=='J'&dat.merged$cause.numeric>=400&dat.merged$cause.numeric<=449,	'Chronic obstructive pulmonary disease', #'Chronic obstructive pulmonary disease',
-  						    ifelse(dat.merged$letter=='J'&dat.merged$cause.numeric>=450&dat.merged$cause.numeric<=469,	'Asthma', #'Asthma',
+  						    ifelse(dat.merged$letter=='J'&dat.merged$cause.numeric>=450&dat.merged$cause.numeric<=469,	'Other respiratory diseases', #'Asthma',
   						    ifelse(dat.merged$letter=='J'&dat.merged$cause.numeric>=470&dat.merged$cause.numeric<=999,	'Other respiratory diseases', #'Other respiratory diseases',
   						    ifelse(dat.merged$letter=='H'&dat.merged$cause.numeric>=650&dat.merged$cause.numeric<=669,	'Other respiratory diseases', #'Otitis media',
-                            'NA'))))))))))))))))))))
+                            'NA'))))))))))))))))))))))))))
 
 
 		# merge cod in ICD 10 coding
@@ -191,10 +191,9 @@ yearsummary_injuries  <- function(x=2000) {
 	month 	= 	c(1:12)
 	sex 	= 	c(1:2)
 	age 	= 	c(0,5,15,25,35,45,55,65,75,85)
-	cause.group 	=	c('Cardiovascular diseases','Respiratory diseases')
-    cause.sub 	=	c( 'Ottis media',
-						'Rheumatic heart disease','Hypertensive heart disease','Ischaemic heart disease', 'Inflammatory heart diseases', 'Other cardiovascular diseases','Cerebrovascular disease',
-						'Chronic obstructive pulmonary disease','Asthma','Other respiratory diseases')
+	cause.group 	=	c('Cardiovascular diseases','Respiratory diseases and infections')
+    cause.sub 	=	c('Ischaemic heart disease','Cerebrovascular disease','Other cardiovascular diseases',
+						'Chronic obstructive pulmonary disease','Respiratory infections','Other respiratory diseases')
 
     # create complete grid
 	complete.grid <- expand.grid(fips=fips,month=month,sex=sex,age=age,cause.group=cause.group,cause.sub=cause.sub)
@@ -230,7 +229,7 @@ appendyears  <- function(x=1980, y=1981) {
   	z     <- x
   	dat   <- data.frame()
   	while (z %in% years) {
-    		dat <- rbind(dat, yearsummary_injuries(z))
+    		dat <- rbind(dat, yearsummary_cardio(z))
     		print(paste0(z," done"))
     		z <- z+1
   	}
