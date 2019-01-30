@@ -27,7 +27,7 @@ declare -a draws=(5000)
 # to correct directory
 cd ~/git/mortality/USA/state/prog/00_bash/
 
-echo "plotting figures 2 and 3 for injury paper $start - $end";
+echo "plotting figures 1 and 2 for injury paper $start - $end";
 
 # runs code
 #Rscript ~/git/mortality/USA/state/prog/data_explore/data_explore_injuries_ons_subcod.R $start $end
@@ -40,7 +40,7 @@ echo "plotting figures 2 and 3 for injury paper $start - $end";
 # to correct directory
 cd ~/git/climate/countries/USA/prog/00_bash/
 
-echo "plotting figure 1 injury paper $start - $end";
+echo "plotting figure 3 injury paper $start - $end";
 
 #Rscript ~/git/climate/countries/USA/prog/06_plots/plots_against_time.R $start2 $end $dname $metric
 
@@ -62,7 +62,7 @@ cd ~/git/mortality/USA/state/prog/00_bash/
 # Tables XX-XX (not currently in paper)
 #################################################
 
-echo "populating table 1 injury paper $start - $end";
+echo "populating table XX injury paper $start - $end";
 
 # to correct directory
 #cd ~/git/mortality/USA/state/prog/00_bash/
