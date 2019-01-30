@@ -30,7 +30,7 @@ cd ~/git/mortality/USA/state/prog/00_bash/
 echo "plotting figures 2 and 3 for injury paper $start - $end";
 
 # runs code
-Rscript ~/git/mortality/USA/state/prog/data_explore/data_explore_injuries_ons_subcod.R $start $end
+#Rscript ~/git/mortality/USA/state/prog/data_explore/data_explore_injuries_ons_subcod.R $start $end
 #Rscript ~/git/mortality/USA/state/prog/data_explore/data_explore_injuries_ons.R $start $end
 
 #################################################
