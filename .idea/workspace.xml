@@ -644,13 +644,6 @@
       <option name="presentableId" value="Default" />
       <updated>1528108809576</updated>
     </task>
-    <task id="LOCAL-00381" summary="updates to wavelet coding">
-      <created>1539773386668</created>
-      <option name="number" value="00381" />
-      <option name="presentableId" value="LOCAL-00381" />
-      <option name="project" value="LOCAL" />
-      <updated>1539773386668</updated>
-    </task>
     <task id="LOCAL-00382" summary="updates to wavelet coding">
       <created>1539852098109</created>
       <option name="number" value="00382" />
@@ -987,7 +980,14 @@
       <option name="project" value="LOCAL" />
       <updated>1548958841143</updated>
     </task>
-    <option name="localTasksCounter" value="430" />
+    <task id="LOCAL-00430" summary="updates to wavelet coding">
+      <created>1548960364078</created>
+      <option name="number" value="00430" />
+      <option name="presentableId" value="LOCAL-00430" />
+      <option name="project" value="LOCAL" />
+      <updated>1548960364078</updated>
+    </task>
+    <option name="localTasksCounter" value="431" />
     <servers />
   </component>
   <component name="ToolWindowManager">
