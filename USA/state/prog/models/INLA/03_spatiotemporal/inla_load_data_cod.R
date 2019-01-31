@@ -27,5 +27,5 @@ if(cod.arg%in%c('Ischaemic heart disease','Cerebrovascular disease','Other cardi
 	dat.inla.load <- readRDS(paste0('../../output/prep_data_cod/datus_nat_deaths_subcod_cardio_ons_',year.start.arg,'_',year.end.arg))
     dat.inla.load$cause.group = NULL ; names(dat.inla.load)[6] = 'cause'
     dat.inla.load <- subset(dat.inla.load,cause==cod.arg)
-    # print(head(dat.inla.load))
+    print(head(dat.inla.load))
 }
