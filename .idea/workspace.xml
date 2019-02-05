@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="21b4bedd-3c09-4223-a30e-537ba1f7f93e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/USA/state/prog/data_explore/tree_structure_cods.R" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/data_explore/tree_structure_cods.R" afterPath="$PROJECT_DIR$/USA/state/prog/data_explore/tree_structure_cods.R" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -54,8 +54,8 @@
       <file leaf-file-name="data_explore_cardio_ons_subcod.R" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/USA/state/prog/data_explore/data_explore_cardio_ons_subcod.R">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="532">
-              <caret line="281" column="11" lean-forward="false" selection-start-line="281" selection-start-column="0" selection-end-line="282" selection-end-column="0" />
+            <state relative-caret-position="622">
+              <caret line="292" column="0" lean-forward="false" selection-start-line="292" selection-start-column="0" selection-end-line="298" selection-end-column="80" />
               <folding />
             </state>
           </provider>
@@ -64,8 +64,8 @@
       <file leaf-file-name="tree_structure_cods.R" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/USA/state/prog/data_explore/tree_structure_cods.R">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+            <state relative-caret-position="150">
+              <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -559,13 +559,6 @@
       <option name="presentableId" value="Default" />
       <updated>1528108809576</updated>
     </task>
-    <task id="LOCAL-00386" summary="updates to wavelet coding">
-      <created>1542803647062</created>
-      <option name="number" value="00386" />
-      <option name="presentableId" value="LOCAL-00386" />
-      <option name="project" value="LOCAL" />
-      <updated>1542803647063</updated>
-    </task>
     <task id="LOCAL-00387" summary="updates to wavelet coding">
       <created>1542805806132</created>
       <option name="number" value="00387" />
@@ -902,7 +895,14 @@
       <option name="project" value="LOCAL" />
       <updated>1549389088453</updated>
     </task>
-    <option name="localTasksCounter" value="435" />
+    <task id="LOCAL-00435" summary="updates to wavelet coding">
+      <created>1549389499374</created>
+      <option name="number" value="00435" />
+      <option name="presentableId" value="LOCAL-00435" />
+      <option name="project" value="LOCAL" />
+      <updated>1549389499374</updated>
+    </task>
+    <option name="localTasksCounter" value="436" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1236,16 +1236,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/USA/state/prog/data_explore/data_explore_cardio_ons_subcod.R">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="532">
-          <caret line="281" column="11" lean-forward="false" selection-start-line="281" selection-start-column="0" selection-end-line="282" selection-end-column="0" />
+        <state relative-caret-position="622">
+          <caret line="292" column="0" lean-forward="false" selection-start-line="292" selection-start-column="0" selection-end-line="298" selection-end-column="80" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/USA/state/prog/data_explore/tree_structure_cods.R">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+        <state relative-caret-position="150">
+          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
           <folding />
         </state>
       </provider>
