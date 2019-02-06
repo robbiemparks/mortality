@@ -9,6 +9,8 @@ library(ggtree)
 file.loc <- paste0('../../output/data_explore_cod/')
 ifelse(!dir.exists(file.loc), dir.create(file.loc, recursive=TRUE), FALSE)
 
+# based on https://jean.manguy.eu/post/introduction-to-ggplot2-and-to-ggtree/
+
 # test
 hc = hclust(dist(USArrests),'ave')
 
@@ -18,7 +20,8 @@ pdf(paste0(file.loc,'tree_structure_cods.pdf'),paper='a4r',height=0,width=0)
     ggtree(hc,rotate=TRUE,size=2) +
     theme_bw() +
     theme(panel.grid.major = element_blank(),text = element_text(size = 15, angle=90),
-    axis.ticks.x=element_blank(),
+    axis.ticks.x=element_
+blank(),
     panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
     panel.border = element_rect(colour = "black"),strip.background = element_blank(),
     legend.position = 'bottom',legend.justification='center',
