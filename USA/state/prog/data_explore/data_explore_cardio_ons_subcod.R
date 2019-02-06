@@ -353,13 +353,12 @@ library(gridExtra)
 print(grid.arrange(p4,p2L,heights=c(11,1)))
 
 # layout for two seperated legends
-lay <- rbind(c(1,1,1,1,1,1,1,1),
-             c(2,2,2,2,2,3,3,3))
+lay <- rbind(c(1,1,1,1,1,1,1,1,1),
+             c(2,2,2,2,2,2,2,3,3))
 
 # plot p1 but with custom legend (unintentional legend seperate)
 print(grid.arrange(p4,p2L,p3L,layout_matrix=lay,heights=c(11,1)))
 
-# full bars per age group
 ggplot(data=subset(dat.last.years,!(cause.sub%in%c('Other cardiovascular\ndiseases','Other respiratory\ndiseases'))), aes(x=age.long,y=deaths,color=as.factor(cause.sub),fill=as.factor(cause.sub))) +
     geom_bar(width = 0.9, stat='identity') +
     xlab('Age group (years)') + ylab('Number of deaths') +
@@ -376,7 +375,7 @@ ggplot(data=subset(dat.last.years,!(cause.sub%in%c('Other cardiovascular\ndiseas
     legend.position = 'bottom',legend.justification='center',
     legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
 
-
+# full bars per age group
 p5 = ggplot(data=subset(dat.last.years), aes(x=age.long,y=deaths,color=as.factor(cause.sub),fill=as.factor(cause.sub))) +
     geom_bar(width = 0.9, position='fill', stat = "identity") +
     #coord_polar("y", start=0) +
