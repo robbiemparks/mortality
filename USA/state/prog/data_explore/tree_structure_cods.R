@@ -3,7 +3,7 @@ rm(list=ls())
 library(ggplot2)
 library(RColorBrewer)
 library(scales)
-library(ggdendro)
+library(ggtree)
 
 # create directories for output
 file.loc <- paste0('../../output/data_explore_cod/')
@@ -15,13 +15,13 @@ hc = hclust(dist(USArrests),'ave')
 # plot the tree diagram
 pdf(paste0(file.loc,'tree_structure_cods.pdf'),paper='a4r',height=0,width=0)
     # code for tree diagram here
-    ggdendrogram(hc,rorate=FALSE,size=2) +
+    ggtree(hc,rotate=TRUE,size=2) +
     theme_bw() +
-    # theme(panel.grid.major = element_blank(),text = element_text(size = 15),
-    # axis.ticks.x=element_blank(),
-    # panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
-    # panel.border = element_rect(colour = "black"),strip.background = element_blank(),
-    # legend.position = 'bottom',legend.justification='center',
-    # legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
+    theme(panel.grid.major = element_blank(),text = element_text(size = 15, angle=90),
+    axis.ticks.x=element_blank(),
+    panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
+    panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+    legend.position = 'bottom',legend.justification='center',
+    legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
 dev.off()
 
