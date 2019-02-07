@@ -383,7 +383,7 @@ q3 = ggplot(dat=dat.national.year, aes(x=year,y=rate.adj*100000,color=cause.sub)
 # q3 but without legend
 q4 = q3 + guides(fill=FALSE,color=FALSE)
 
-# plot p5 but with custom legend (unintentional legend seperate)
+# plot q3 but with custom legend (unintentional legend seperate)
 print(grid.arrange(q4,p2L,p3L,layout_matrix=lay,heights=c(11,1)))
 
 dev.off()
