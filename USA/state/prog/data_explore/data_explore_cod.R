@@ -253,14 +253,13 @@ ggplot(data=dat.last.years, aes(x=age.long,y=deaths,color=as.factor(cause),fill=
     legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
 
 # full bar chart per age-sex group with breakdown of causes
-ggplot(data=dat.last.years, aes(x="",y=deaths,color=as.factor(cause),fill=as.factor(cause))) +
-    geom_bar(width = 1, position='fill', stat = "identity") +
-    xlab('Age group') + ylab('Proportion of deaths') +
-    scale_fill_manual(values=colors.broad.cod, guide = guide_legend(nrow = 1,title = paste0("Cause of death"))) +
-    scale_color_manual(values=colors.broad.cod, guide = guide_legend(nrow = 1,title = paste0("Cause of death"))) +
-    # ggtitle(paste0((year.end.arg-4),'-',year.end.arg,' 5-year average')) +
+ggplot(data=subset(dat.last.years), aes(x=age.long,y=deaths,color=as.factor(cause),fill=as.factor(cause))) +
+    geom_bar(width = 0.9, position='fill', stat = "identity") +
+    xlab('Age group (years)') + ylab('Proportion of deaths') +
+    scale_fill_manual(values=colors.broad.cod, guide = guide_legend(nrow = 1,title = paste0(""))) +
+    scale_color_manual(values=colors.broad.cod, guide = guide_legend(nrow = 1,title = paste0(""))) +
     scale_y_continuous(labels = scales::percent) +
-    facet_grid(sex.long~age.long) +
+    facet_grid(sex.long~.) +
     theme_bw() +
     theme(panel.grid.major = element_blank(),text = element_text(size = 15),
     axis.ticks.x=element_blank(),
@@ -277,7 +276,6 @@ ggplot(data=dat.last.years) +
     scale_x_discrete(breaks=age.filter,labels=age.print) +
     scale_colour_manual(values=colors.months,guide = guide_legend(nrow = 1,title = paste0("Month"))) +
     geom_hline(linetype=1, yintercept = 0, alpha=0.5) +
-    # ggtitle(paste0((year.end.arg-4),'-',year.end.arg,' 5-year average')) +
     facet_grid(sex.long~cause) +
     theme_bw() + theme( panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
     panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),

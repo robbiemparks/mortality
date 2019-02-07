@@ -22,14 +22,14 @@ echo "plotting deaths rates by broad COD $start - $end";
 Rscript ~/git/mortality/USA/state/prog/data_explore/data_explore_cod.R $start $end
 
 #################################################
-# 2. DEATH RATES BY INJURY DIVISIONS
+# 2. DEATH RATES BY INJURY DIVISIONS (NOT REQUIRED)
 #################################################
 
 echo "plotting deaths rates by injury sub-COD $start - $end";
 
 # runs code
 #Rscript ~/git/mortality/USA/state/prog/data_explore/data_explore_injuries_ons.R $start $end
-
+#
 #################################################
 # 3. DEATH RATES BY INJURY SUB-DIVISIONS
 #################################################
@@ -37,7 +37,7 @@ echo "plotting deaths rates by injury sub-COD $start - $end";
 echo "plotting deaths rates by injury subsub-COD $start - $end";
 
 ## runs code
-#Rscript ~/git/mortality/USA/state/prog/data_explore/data_explore_injuries_ons_subcod.R $start $end
+Rscript ~/git/mortality/USA/state/prog/data_explore/data_explore_injuries_ons_subcod.R $start $end
 
 #################################################
 # 4. ZERO PREVALENCE IN INJURIES
@@ -54,5 +54,5 @@ echo "plotting zeroes in death rates for injuries $start - $end";
 
 echo "plotting deaths rates by injury subsub-COD $start - $end";
 
-## runs code
-#Rscript ~/git/mortality/USA/state/prog/data_explore/data_explore_cardio_ons_subcod.R $start $end
+# runs code
+Rscript ~/git/mortality/USA/state/prog/data_explore/data_explore_cardio_ons_subcod.R $start $end

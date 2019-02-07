@@ -2,13 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="21b4bedd-3c09-4223-a30e-537ba1f7f93e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/data_explore_cod/injury_ons_subsubcod_age_sex_yearly_plots_1980_2016.pdf" afterPath="$PROJECT_DIR$/USA/state/output/data_explore_cod/injury_ons_subsubcod_age_sex_yearly_plots_1980_2016.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/data_explore_cod/injury_ons_subsubcod_all_years_plots1980_2016.pdf" afterPath="$PROJECT_DIR$/USA/state/output/data_explore_cod/injury_ons_subsubcod_all_years_plots1980_2016.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/output/data_explore_cod/injury_ons_subsubcod_plots_1980_2016.pdf" afterPath="$PROJECT_DIR$/USA/state/output/data_explore_cod/injury_ons_subsubcod_plots_1980_2016.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/write_ups/99_thesis/02_Data/Data 2019 05 02.docx" afterPath="$PROJECT_DIR$/USA/state/write_ups/99_thesis/02_Data/Data 2019 05 02.docx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/write_ups/99_thesis/02_Data/Data 2019 05 06.docx" afterPath="$PROJECT_DIR$/USA/state/write_ups/99_thesis/02_Data/Data 2019 05 06.docx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/data_explore/data_explore_cardio_ons_subcod.R" afterPath="$PROJECT_DIR$/USA/state/prog/data_explore/data_explore_cardio_ons_subcod.R" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/data_explore/data_explore_injuries_ons_subcod.R" afterPath="$PROJECT_DIR$/USA/state/prog/data_explore/data_explore_injuries_ons_subcod.R" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/00_bash/data_explore/data_explore_cod.sh" afterPath="$PROJECT_DIR$/USA/state/prog/00_bash/data_explore/data_explore_cod.sh" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/USA/state/prog/data_explore/data_explore_cod.R" afterPath="$PROJECT_DIR$/USA/state/prog/data_explore/data_explore_cod.R" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -29,18 +26,18 @@
       <file leaf-file-name="objects.R" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/USA/state/data/objects/objects.R">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="660">
-              <caret line="44" column="0" lean-forward="false" selection-start-line="44" selection-start-column="0" selection-end-line="50" selection-end-column="65" />
+            <state relative-caret-position="330">
+              <caret line="22" column="1" lean-forward="true" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="97" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="data_explore_cod.sh" pinned="false" current-in-tab="false">
+      <file leaf-file-name="data_explore_cod.sh" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/USA/state/prog/00_bash/data_explore/data_explore_cod.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="21" column="28" lean-forward="true" selection-start-line="21" selection-start-column="28" selection-end-line="21" selection-end-column="28" />
+            <state relative-caret-position="690">
+              <caret line="57" column="35" lean-forward="false" selection-start-line="57" selection-start-column="35" selection-end-line="57" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -49,8 +46,8 @@
       <file leaf-file-name="data_explore_cod.R" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/USA/state/prog/data_explore/data_explore_cod.R">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="345">
+              <caret line="259" column="44" lean-forward="true" selection-start-line="259" selection-start-column="44" selection-end-line="259" selection-end-column="44" />
               <folding />
             </state>
           </provider>
@@ -59,18 +56,18 @@
       <file leaf-file-name="data_explore_cardio_ons_subcod.R" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/USA/state/prog/data_explore/data_explore_cardio_ons_subcod.R">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="356" column="28" lean-forward="false" selection-start-line="356" selection-start-column="28" selection-end-line="356" selection-end-column="28" />
+            <state relative-caret-position="76">
+              <caret line="283" column="0" lean-forward="false" selection-start-line="283" selection-start-column="0" selection-end-line="298" selection-end-column="80" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="data_explore_injuries_ons_subcod.R" pinned="false" current-in-tab="true">
+      <file leaf-file-name="data_explore_injuries_ons_subcod.R" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/USA/state/prog/data_explore/data_explore_injuries_ons_subcod.R">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="353" column="41" lean-forward="false" selection-start-line="353" selection-start-column="41" selection-end-line="353" selection-end-column="41" />
+            <state relative-caret-position="441">
+              <caret line="359" column="0" lean-forward="false" selection-start-line="359" selection-start-column="0" selection-end-line="374" selection-end-column="80" />
               <folding />
             </state>
           </provider>
@@ -80,7 +77,7 @@
         <entry file="file://$PROJECT_DIR$/USA/state/prog/00_bash/papers/injury_paper_figures.sh">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="285">
-              <caret line="29" column="63" lean-forward="true" selection-start-line="29" selection-start-column="63" selection-end-line="29" selection-end-column="63" />
+              <caret line="29" column="63" lean-forward="false" selection-start-line="29" selection-start-column="63" selection-end-line="29" selection-end-column="63" />
               <folding />
             </state>
           </provider>
@@ -90,10 +87,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>year.start.arg</find>
-      <find>models</find>
-      <find>type.selec</find>
-      <find>iid</find>
       <find>summary for each cause</find>
       <find>'injury_ons_cod_plots'</find>
       <find>type</find>
@@ -120,6 +113,10 @@
       <find>3810</find>
       <find>pdf</find>
       <find>injury</find>
+      <find>cardio_ons_subsubcod</find>
+      <find>plots_</find>
+      <find>plots</find>
+      <find>dat.national.com.sex</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -128,12 +125,10 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/USA/state/prog/00_bash/draws/inla_draws_climate_cod_1var_1-10.sh" />
         <option value="$PROJECT_DIR$/USA/state/prog/00_bash/additional_deaths/additional_deaths_no_draws_cod_1var.sh" />
         <option value="$PROJECT_DIR$/USA/state/prog/additional_deaths/additional_deaths_all_injuries_stacked_climate_cod_1var.R" />
         <option value="$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_cod_1var_5-10.sh" />
         <option value="$PROJECT_DIR$/USA/state/prog/additional_deaths/additional_deaths_all_causes_stacked_climate_cod_1var.R" />
-        <option value="$PROJECT_DIR$/USA/state/prog/data_explore/data_explore_cod.R" />
         <option value="$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_cod_1var_stmarys.sh" />
         <option value="$PROJECT_DIR$/USA/state/prog/bind_posterior/bind_posterior_climate_cod_1var.R" />
         <option value="$PROJECT_DIR$/USA/state/prog/mapping_posterior/compare_posterior_climate_cod_1var.R" />
@@ -177,8 +172,10 @@
         <option value="$PROJECT_DIR$/USA/state/prog/data_explore/tree_structure_cods.R" />
         <option value="$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_cod_1var_7-10.sh" />
         <option value="$PROJECT_DIR$/USA/state/prog/00_bash/data_prep/data_explore_cod.sh" />
-        <option value="$PROJECT_DIR$/USA/state/prog/data_explore/data_explore_cardio_ons_subcod.R" />
         <option value="$PROJECT_DIR$/USA/state/prog/data_explore/data_explore_injuries_ons_subcod.R" />
+        <option value="$PROJECT_DIR$/USA/state/prog/data_explore/data_explore_cardio_ons_subcod.R" />
+        <option value="$PROJECT_DIR$/USA/state/prog/data_explore/data_explore_cod.R" />
+        <option value="$PROJECT_DIR$/USA/state/prog/00_bash/data_explore/data_explore_cod.sh" />
       </list>
     </option>
   </component>
@@ -359,7 +356,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="papers" />
+              <option name="myItemId" value="data_explore" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -388,24 +385,13 @@
       <recent name="$PROJECT_DIR$/USA/state/prog/sophie_test" />
     </key>
   </component>
-  <component name="RunManager" selected="Bash.injury_paper_figures.sh">
+  <component name="RunManager" selected="Bash.data_explore_cod.sh (1)">
     <configuration default="false" name="data_explore_cod.sh" type="BashConfigurationType" factoryName="Bash" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="INTERPRETER_PATH" value="/bin/bash" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/USA/state/prog/00_bash/data_prep" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/USA/state/prog/00_bash/data_prep/data_explore_cod.sh" />
-      <option name="PARAMETERS" value="" />
-      <module name="mortality" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="false" name="plotting_results_climate_cod_1var.sh" type="BashConfigurationType" factoryName="Bash" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="INTERPRETER_PATH" value="/bin/bash" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/USA/state/prog/00_bash/plotting" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/USA/state/prog/00_bash/plotting/plotting_results_climate_cod_1var.sh" />
       <option name="PARAMETERS" value="" />
       <module name="mortality" />
       <envs />
@@ -439,6 +425,17 @@
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/USA/state/prog/00_bash/papers" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/USA/state/prog/00_bash/papers/cardio_paper_figures.sh" />
+      <option name="PARAMETERS" value="" />
+      <module name="mortality" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="data_explore_cod.sh (1)" type="BashConfigurationType" factoryName="Bash" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="INTERPRETER_PATH" value="/bin/bash" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/USA/state/prog/00_bash/data_explore" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/USA/state/prog/00_bash/data_explore/data_explore_cod.sh" />
       <option name="PARAMETERS" value="" />
       <module name="mortality" />
       <envs />
@@ -599,18 +596,18 @@
     </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Bash.data_explore_cod.sh" />
-      <item index="1" class="java.lang.String" itemvalue="Bash.plotting_results_climate_cod_1var.sh" />
-      <item index="2" class="java.lang.String" itemvalue="Bash.injury_paper.sh" />
-      <item index="3" class="java.lang.String" itemvalue="Bash.injury_paper_figures.sh" />
-      <item index="4" class="java.lang.String" itemvalue="Bash.cardio_paper_figures.sh" />
+      <item index="1" class="java.lang.String" itemvalue="Bash.injury_paper.sh" />
+      <item index="2" class="java.lang.String" itemvalue="Bash.injury_paper_figures.sh" />
+      <item index="3" class="java.lang.String" itemvalue="Bash.cardio_paper_figures.sh" />
+      <item index="4" class="java.lang.String" itemvalue="Bash.data_explore_cod.sh (1)" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Bash.injury_paper_figures.sh" />
-        <item index="1" class="java.lang.String" itemvalue="Bash.cardio_paper_figures.sh" />
-        <item index="2" class="java.lang.String" itemvalue="Bash.data_explore_cod.sh" />
-        <item index="3" class="java.lang.String" itemvalue="Bash.injury_paper.sh" />
-        <item index="4" class="java.lang.String" itemvalue="Bash.plotting_results_climate_cod_1var.sh" />
+        <item index="0" class="java.lang.String" itemvalue="Bash.data_explore_cod.sh (1)" />
+        <item index="1" class="java.lang.String" itemvalue="Bash.injury_paper_figures.sh" />
+        <item index="2" class="java.lang.String" itemvalue="Bash.cardio_paper_figures.sh" />
+        <item index="3" class="java.lang.String" itemvalue="Bash.data_explore_cod.sh" />
+        <item index="4" class="java.lang.String" itemvalue="Bash.injury_paper.sh" />
       </list>
     </recent_temporary>
   </component>
@@ -627,13 +624,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1528108809576</updated>
-    </task>
-    <task id="LOCAL-00395" summary="updates to wavelet coding">
-      <created>1544441172760</created>
-      <option name="number" value="00395" />
-      <option name="presentableId" value="LOCAL-00395" />
-      <option name="project" value="LOCAL" />
-      <updated>1544441172760</updated>
     </task>
     <task id="LOCAL-00396" summary="updates to wavelet coding">
       <created>1544452038931</created>
@@ -971,14 +961,21 @@
       <option name="project" value="LOCAL" />
       <updated>1549484979855</updated>
     </task>
-    <option name="localTasksCounter" value="444" />
+    <task id="LOCAL-00444" summary="updates to wavelet coding">
+      <created>1549500626719</created>
+      <option name="number" value="00444" />
+      <option name="presentableId" value="LOCAL-00444" />
+      <option name="project" value="LOCAL" />
+      <updated>1549500626719</updated>
+    </task>
+    <option name="localTasksCounter" value="445" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-893" y="-1392" width="1544" height="1156" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2789614" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2789614" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891566" sideWeight="0.49713877" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="R Packages" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3282975" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="R Graphics" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32977587" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1147,14 +1144,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/USA/state/data/objects/objects.R">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="44" column="0" lean-forward="false" selection-start-line="44" selection-start-column="0" selection-end-line="50" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/USA/state/prog/00_bash/inla/inla_model_climate_cod_1var_5-10.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1288,22 +1277,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/USA/state/prog/data_explore/data_explore_cod.R">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/USA/state/prog/00_bash/data_explore/data_explore_cod.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="28" lean-forward="true" selection-start-line="21" selection-start-column="28" selection-end-line="21" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/USA/state/prog/00_bash/papers/cardio_paper_figures.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -1315,23 +1288,47 @@
     <entry file="file://$PROJECT_DIR$/USA/state/prog/00_bash/papers/injury_paper_figures.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
-          <caret line="29" column="63" lean-forward="true" selection-start-line="29" selection-start-column="63" selection-end-line="29" selection-end-column="63" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/USA/state/prog/data_explore/data_explore_cardio_ons_subcod.R">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="356" column="28" lean-forward="false" selection-start-line="356" selection-start-column="28" selection-end-line="356" selection-end-column="28" />
+          <caret line="29" column="63" lean-forward="false" selection-start-line="29" selection-start-column="63" selection-end-line="29" selection-end-column="63" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/USA/state/prog/data_explore/data_explore_injuries_ons_subcod.R">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="353" column="41" lean-forward="false" selection-start-line="353" selection-start-column="41" selection-end-line="353" selection-end-column="41" />
+        <state relative-caret-position="441">
+          <caret line="359" column="0" lean-forward="false" selection-start-line="359" selection-start-column="0" selection-end-line="374" selection-end-column="80" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/USA/state/prog/data_explore/data_explore_cardio_ons_subcod.R">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="283" column="0" lean-forward="false" selection-start-line="283" selection-start-column="0" selection-end-line="298" selection-end-column="80" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/USA/state/data/objects/objects.R">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="1" lean-forward="true" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="97" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/USA/state/prog/data_explore/data_explore_cod.R">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="259" column="44" lean-forward="true" selection-start-line="259" selection-start-column="44" selection-end-line="259" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/USA/state/prog/00_bash/data_explore/data_explore_cod.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="690">
+          <caret line="57" column="35" lean-forward="false" selection-start-line="57" selection-start-column="35" selection-end-line="57" selection-end-column="35" />
           <folding />
         </state>
       </provider>
