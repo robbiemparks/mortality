@@ -37,9 +37,13 @@ dat.national = ddply(dat,.(cause,year,month,sex,age),summarize,deaths=sum(deaths
 dat.national$rate.adj = with(dat.national,deaths/pop.adj)
 dat.national = dat.national[order(dat.national$cause,dat.national$sex,dat.national$age,dat.national$year,dat.national$month),]
 
-# create yearly nationalised data for sub sub-causes
+# create yearly nationalised data for sub-causes
 dat.national.year = ddply(dat.national,.(cause,year,sex,age),summarize,deaths=sum(deaths),pop.adj=mean(pop.adj))
 dat.national.year$rate.adj = with(dat.national.year,deaths/pop.adj)
+
+# create yearly nationalised data for sub-causes by sex only
+dat.national.year.all = ddply(dat.national,.(cause,year,sex),summarize,deaths=sum(deaths),pop.adj=mean(pop.adj))
+dat.national.year.all$rate.adj = with(dat.national.year.all,deaths/pop.adj)
 
 # create ASDR national data
 dat.national.com.sex = ddply(dat.national,.(cause,year,month,age),summarize, deaths=sum(deaths),pop.adj=sum(pop.adj))
@@ -106,6 +110,10 @@ dat.national.year$age.long = reorder(dat.national.year$age.long,dat.national.yea
 dat.national.year$sex.long = mapvalues(dat.national.year$sex,from=sort(unique(dat.national.year$sex)),to=as.character(sex.filter2))
 dat.national.year$sex.long = reorder(dat.national.year$sex.long,rev(dat.national.year$sex))
 dat.national.year$sex.long = as.character(dat.national.year$sex.long)
+
+dat.national.year.all$sex.long = mapvalues(dat.national.year.all$sex,from=sort(unique(dat.national.year.all$sex)),to=as.character(sex.filter2))
+dat.national.year.all$sex.long = reorder(dat.national.year.all$sex.long,rev(dat.national.year.all$sex))
+dat.national.year.all$sex.long = as.character(dat.national.year.all$sex.long)
 
 # subset of all data
 last.years = c((year.start.arg):(year.end.arg))
@@ -208,8 +216,10 @@ dev.off()
 
 # fix names of sexes
 dat.national.year$sex.long <- with(dat.national.year,reorder(dat.national.year$sex.long,sex))
+dat.national.year.all$sex.long <- with(dat.national.year.all,reorder(dat.national.year.all$sex.long,sex))
 
 dat.national.year$cause = factor(dat.national.year$cause, levels= c('Other','Injuries', 'Cancer', 'Cardiorespiratory'))
+dat.national.year.all$cause = factor(dat.national.year.all$cause, levels= c('Other','Injuries', 'Cancer', 'Cardiorespiratory'))
 
 # plots over time
 
@@ -269,6 +279,31 @@ r1 = ggplot(dat=dat.national.year, aes(x=year,y=(deaths/100000),fill=cause)) +
     scale_y_continuous(labels = comma) +
     scale_fill_manual(values=colors.broad.cod, guide = guide_legend(byrow=TRUE,nrow = 1,title = paste0(""))) +
     facet_wrap(sex.long~age.long,ncol=10, scales='free') +
+    theme_bw() + theme( panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
+    panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
+    panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+    legend.position = 'bottom',legend.justification='center',
+    legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
+
+# r1 but without legend
+r2 = r1 + guides(fill=FALSE,color=FALSE)
+
+# plot r1 but with custom legend (blocks of colour instead of lines)
+print(grid.arrange(r2,p1L,heights=c(11,1)))
+
+dev.off()
+
+pdf(paste0(file.loc,'broad_cod_over_time_plots_stacked_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
+
+# 1. stacked plot over time facetted by subsubcause
+r1 = ggplot(dat=dat.national.year.all, aes(x=year,y=(deaths),fill=cause)) +
+    geom_area(position='stack') +
+    # geom_vline(xintercept=1999, linetype="dotted") +
+    xlab('Year') +
+    ylab('Number of deaths') +
+    scale_y_continuous(labels = comma) +
+    scale_fill_manual(values=colors.broad.cod, guide = guide_legend(byrow=TRUE,nrow = 1,title = paste0(""))) +
+    facet_wrap(sex.long~.,ncol=2, scales='fixed') +
     theme_bw() + theme( panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
     panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
     panel.border = element_rect(colour = "black"),strip.background = element_blank(),
