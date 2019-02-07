@@ -41,9 +41,7 @@ dat.national = dat.national[order(dat.national$cause,dat.national$sex,dat.nation
 dat.national.year = ddply(dat.national,.(cause,year,sex,age),summarize,deaths=sum(deaths),pop.adj=mean(pop.adj))
 dat.national.year$rate.adj = with(dat.national.year,deaths/pop.adj)
 
-# create yearly nationalised data for sub-causes by sex only
-dat.national.year.all = ddply(dat.national,.(cause,year,sex),summarize,deaths=sum(deaths),pop.adj=mean(pop.adj))
-dat.national.year.all$rate.adj = with(dat.national.year.all,deaths/pop.adj)
+dat.national.year.all
 
 # create ASDR national data
 dat.national.com.sex = ddply(dat.national,.(cause,year,month,age),summarize, deaths=sum(deaths),pop.adj=sum(pop.adj))
