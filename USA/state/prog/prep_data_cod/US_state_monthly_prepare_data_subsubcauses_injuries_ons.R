@@ -219,9 +219,14 @@ yearsummary_injuries  <- function(x=2000) {
 	cause.group 	=	c('Unintentional','Intentional')
     cause.sub 	=	c(  'Transport accidents','Accidental falls','Other external causes of injury',
                         'Accidental drowning and submersion','Intentional self-harm','Assault')
-    cause.sub.sub 	=	c('Railway Accidents','Accidental falls','Exposure to mechnical forces','Accidental drowning and submersion','Exposure to electric current, radiation and extreme ambient air temperature and pressure',
+    cause.sub.sub 	=	c('Accidental falls','Exposure to mechnical forces','Accidental drowning and submersion','Exposure to electric current, radiation and extreme ambient air temperature and pressure',
 							'Encounters with forces of nature/overexertion','Intentional self-harm','Assault','Event of undeterminded intent','Legal intervention, operations of war, military operations, and terrorism',
-							'Medical complications','Other')
+							'Medical complications','Other', 'Motor Vehicle Traffic Accidents', 'Motor Vehicle Nontraffic Accidents', 'Other Road Vehicle Accidents', 'Water Transport Accidents', 'Air and Space Transport Accidents',
+		'Vehicle Accidents, Not Elsewhere Classifiable', 'Accidental Poisoning By Drugs, Medicinal Substances, And Biologicals', 'Accidental Poisoning By Other Solid And Liquid Substances, And Biologicals',
+		'Misadventures To Patients During Surgical And Medical Care', 'Non-Misadventures To Patients During Surigcal And Medical Care', 'Accidents Caused By Fire and Flames',
+		'Accidents Due To Natural And Environmental Factors', 'Accidents Caused By Submersion', 'Accidents Caused By Suffocation And Foreign Bodies', 'Other Accidents', 'Late Effects Of Accidental Injury',
+		'Complications of medical and surgical care', 'Intentional self-harm', 'Homicide And Injury Purposely Inflicted By Other Persons', 'Legal Intervention', 'Injury Undetemined Whether Accidentlally Or Purposely Inflicted',
+		'Injury Resulting From Operations Of War')
 
     # create complete grid
 	complete.grid <- expand.grid(fips=fips,month=month,sex=sex,age=age,cause.group=cause.group,cause.sub=cause.sub,cause.sub.sub=cause.sub.sub)
