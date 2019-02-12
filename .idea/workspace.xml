@@ -34,8 +34,8 @@
       <file leaf-file-name="US_state_monthly_prepare_data_subsubcauses_cardio_ons.R" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/USA/state/prog/prep_data_cod/US_state_monthly_prepare_data_subsubcauses_cardio_ons.R">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="358">
-              <caret line="257" column="17" lean-forward="false" selection-start-line="257" selection-start-column="4" selection-end-line="257" selection-end-column="17" />
+            <state relative-caret-position="880">
+              <caret line="376" column="32" lean-forward="false" selection-start-line="376" selection-start-column="32" selection-end-line="376" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -65,7 +65,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>model</find>
       <find>month.short</find>
       <find>Cause</find>
       <find>fix_cause_names</find>
@@ -95,6 +94,7 @@
       <find>dat.national.year.all</find>
       <find>cardio_ons_subsubcod_plots</find>
       <find>cause.sub.sub</find>
+      <find>cause.sub</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -522,13 +522,6 @@
       <option name="presentableId" value="Default" />
       <updated>1528108809576</updated>
     </task>
-    <task id="LOCAL-00404" summary="updates to wavelet coding">
-      <created>1547566246231</created>
-      <option name="number" value="00404" />
-      <option name="presentableId" value="LOCAL-00404" />
-      <option name="project" value="LOCAL" />
-      <updated>1547566246231</updated>
-    </task>
     <task id="LOCAL-00405" summary="updates to wavelet coding">
       <created>1548267463218</created>
       <option name="number" value="00405" />
@@ -865,7 +858,14 @@
       <option name="project" value="LOCAL" />
       <updated>1549987089198</updated>
     </task>
-    <option name="localTasksCounter" value="453" />
+    <task id="LOCAL-00453" summary="updates to wavelet coding">
+      <created>1549987199181</created>
+      <option name="number" value="00453" />
+      <option name="presentableId" value="LOCAL-00453" />
+      <option name="project" value="LOCAL" />
+      <updated>1549987199181</updated>
+    </task>
+    <option name="localTasksCounter" value="454" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1063,6 +1063,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1200,8 +1201,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/USA/state/prog/prep_data_cod/US_state_monthly_prepare_data_subsubcauses_cardio_ons.R">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="257" column="17" lean-forward="false" selection-start-line="257" selection-start-column="4" selection-end-line="257" selection-end-column="17" />
+        <state relative-caret-position="880">
+          <caret line="376" column="32" lean-forward="false" selection-start-line="376" selection-start-column="32" selection-end-line="376" selection-end-column="32" />
           <folding />
         </state>
       </provider>

@@ -242,7 +242,7 @@ yearsummary_cardio  <- function(x=2000) {
 
 	# # summarise by state,year,month,sex,agegroup
     dat.summarised <- dplyr::summarise(group_by(dat.merged,cause.group,cause.sub,cause.sub.sub,fips,year,monthdth,sex,agegroup),deaths=sum(deaths))
-  	names(dat.summarised)[1:8] <- c('cause.group','cause.sub','fips','year','month','sex','age','deaths')
+  	names(dat.summarised)[1:9] <- c('cause.group','cause.sub','cause.sub.sub','fips','year','month','sex','age','deaths')
 	dat.summarised <- na.omit(dat.summarised)
     #
 	# create an exhaustive list of location sex age month (in this case it should be 51 * 2 * 10 * 12 * 4 = 12240 rows)
@@ -255,7 +255,7 @@ yearsummary_cardio  <- function(x=2000) {
 	cause.group 	=	c('Cardiovascular diseases','Respiratory diseases and infections')
     cause.sub 	=	c('Ischaemic heart disease','Cerebrovascular disease','Other cardiovascular diseases',
 						'Chronic obstructive pulmonary disease','Respiratory infections','Other respiratory diseases')
-    cause.sub.sub 	=	c('Other','Rheumatic heart disease','Ischaemic heart disease','Inflammatory heart diseases','Cerebrovascular disease','Upper respiratory infections',
+    cause.sub.sub 	=	c('Other','Rheumatic heart disease','Ischaemic heart disease','Hypertensive heart disease','Inflammatory heart diseases','Cerebrovascular disease','Upper respiratory infections',
 							'Lower respiratory infections','Chronic obstructive pulmonary disease','Asthma','Otitis media')
 
     # create complete grid
@@ -276,8 +276,10 @@ yearsummary_cardio  <- function(x=2000) {
 	dat.summarised.complete$deaths <- ifelse(is.na(dat.summarised.complete$deaths)==TRUE,0,dat.summarised.complete$deaths)
 
 	# print statistics of sub-causes
+	print(ddply(dat.summarised,.(cause.sub.sub),summarise,deaths=sum(deaths)))
 	print(ddply(dat.summarised,.(cause.sub),summarise,deaths=sum(deaths)))
 	print(ddply(dat.summarised,.(cause.group),summarise,deaths=sum(deaths)))
+	print(ddply(dat.summarised.complete,.(cause.sub.sub),summarise,deaths=sum(deaths)))
 	print(ddply(dat.summarised.complete,.(cause.sub),summarise,deaths=sum(deaths)))
 	print(ddply(dat.summarised.complete,.(cause.group),summarise,deaths=sum(deaths)))
 
@@ -353,29 +355,29 @@ dat.merged$rate.adj <- dat.merged$deaths.adj / dat.merged$pop.adj
 # output deaths file as RDS and csv
 saveRDS(dat.merged,paste0('../../output/prep_data_cod/datus_nat_deaths_subsubcod_cardio_ons_',year.start.arg,'_',year.end.arg))
 
-# # append cods and output to single file, merging description names along the way
-# start_year = 1999
-# dat.cods = data.frame()
-# dat.lookup = read.csv('../../data/cod/icd10cmtoicd9gem.csv')
-# for(x in c(year.start.arg:year.end.arg)){
-#     dat.cod = readRDS(paste0('../../output/prep_data_cod/cods/cods_cardio_',x))
-#     if(x<start_year) {
-#         dat.cod$icd = 9
-#         # merge code with cod lookup
-#         #dat.test = merge(dat.cod,dat.lookup,by.x='cause',by.y='icd9cm_eq',all.x=TRUE)
-#     }
-#     if(x>=start_year) {
-#         dat.cod$icd = 10
-#         # merge code with cod lookup
-#         #dat.test = merge(dat.cod,dat.lookup,by.x='cause',by.y='icd10_eq',all.x=TRUE)
-#
-#     }
-#     dat.cods = rbind(dat.cods,dat.cod)
-# }
-# dat.cods = unique(dat.cods[c('cause','cause.sub','icd')])
-# dat.cods = dat.cods[order(dat.cods$cause.sub,dat.cods$cause),]
-#
-#
-# # output summary file as RDS and csv
-# saveRDS(dat.cods,paste0('../../output/prep_data_cod/cods/cods_cardio_sub_',year.start.arg,'_',year.end.arg))
-# write.csv(dat.cods,paste0('../../output/prep_data_cod/cods/cods_cardio_sub_',year.start.arg,'_',year.end.arg,'.csv'),row.names=FALSE)
+# append cods and output to single file, merging description names along the way
+start_year = 1999
+dat.cods = data.frame()
+dat.lookup = read.csv('../../data/cod/icd10cmtoicd9gem.csv')
+for(x in c(year.start.arg:year.end.arg)){
+    dat.cod = readRDS(paste0('../../output/prep_data_cod/cods/cods_cardio_sub_',x))
+    if(x<start_year) {
+        dat.cod$icd = 9
+        # merge code with cod lookup
+        #dat.test = merge(dat.cod,dat.lookup,by.x='cause',by.y='icd9cm_eq',all.x=TRUE)
+    }
+    if(x>=start_year) {
+        dat.cod$icd = 10
+        # merge code with cod lookup
+        #dat.test = merge(dat.cod,dat.lookup,by.x='cause',by.y='icd10_eq',all.x=TRUE)
+
+    }
+    dat.cods = rbind(dat.cods,dat.cod)
+}
+dat.cods = unique(dat.cods[c('cause','cause.sub','cause.sub.sub','icd')])
+dat.cods = dat.cods[order(dat.cods$cause.sub,dat.cods$cause),]
+
+
+# output summary file as RDS and csv
+saveRDS(dat.cods,paste0('../../output/prep_data_cod/cods/cods_cardio_sub_',year.start.arg,'_',year.end.arg))
+write.csv(dat.cods,paste0('../../output/prep_data_cod/cods/cods_cardio_sub_',year.start.arg,'_',year.end.arg,'.csv'),row.names=FALSE)
