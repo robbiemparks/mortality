@@ -194,10 +194,10 @@ yearsummary_injuries  <- function(x=2000) {
 	dat.summarised.complete$deaths <- ifelse(is.na(dat.summarised.complete$deaths)==TRUE,0,dat.summarised.complete$deaths)
 
 	# print statistics of sub-causes
-	print(ddply(dat.summarised.complete,.(cause.sub),summarise,deaths=sum(deaths)))
-	print(ddply(dat.summarised.complete,.(cause.group),summarise,deaths=sum(deaths)))
+	# print(ddply(dat.summarised.complete,.(cause.sub),summarise,deaths=sum(deaths)))
+	# print(ddply(dat.summarised.complete,.(cause.group),summarise,deaths=sum(deaths)))
 
-	print(paste0('total deaths in year ',sum(dat$deaths),', total deaths for injuries ',sum(dat.merged$deaths),' ',sum(dat.summarised$deaths)))
+	print(paste0('total deaths in year ',sum(dat$deaths),', total deaths for injuries ',sum(dat.merged$deaths),' ',sum(dat.summarised$deaths),' ',sum(dat.summarised.complete$deaths)))
 
   	return(dat.summarised.complete)
 }

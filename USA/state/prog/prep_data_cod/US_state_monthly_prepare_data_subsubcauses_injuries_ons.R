@@ -88,7 +88,7 @@ yearsummary_injuries  <- function(x=2000) {
 							'NA'))))))))))))))))))))))))
         # cause subsubgroups
         dat.merged$cause.sub.sub =
-                            ifelse(dat.merged$cause.numeric>=8000&dat.merged$cause.numeric<=8079, 'Railway Accidents',
+                            ifelse(dat.merged$cause.numeric>=8000&dat.merged$cause.numeric<=8079, 'Railway accidents',
 							ifelse(dat.merged$cause.numeric>=8100&dat.merged$cause.numeric<=8199, 'Motor Vehicle Traffic Accidents',
 							ifelse(dat.merged$cause.numeric>=8200&dat.merged$cause.numeric<=8259, 'Motor Vehicle Nontraffic Accidents',
 							ifelse(dat.merged$cause.numeric>=8260&dat.merged$cause.numeric<=8299, 'Other Road Vehicle Accidents',
@@ -99,7 +99,7 @@ yearsummary_injuries  <- function(x=2000) {
 							ifelse(dat.merged$cause.numeric>=8600&dat.merged$cause.numeric<=8699, 'Accidental Poisoning By Other Solid And Liquid Substances, And Biologicals',
 							ifelse(dat.merged$cause.numeric>=8700&dat.merged$cause.numeric<=8769, 'Misadventures To Patients During Surgical And Medical Care',
 							ifelse(dat.merged$cause.numeric>=8780&dat.merged$cause.numeric<=8799, 'Non-Misadventures To Patients During Surigcal And Medical Care',
-							ifelse(dat.merged$cause.numeric>=8800&dat.merged$cause.numeric<=8889, 'Accidental Falls',
+							ifelse(dat.merged$cause.numeric>=8800&dat.merged$cause.numeric<=8889, 'Accidental falls',
 							ifelse(dat.merged$cause.numeric>=8900&dat.merged$cause.numeric<=8999, 'Accidents Caused By Fire and Flames',
 							ifelse(dat.merged$cause.numeric>=9000&dat.merged$cause.numeric<=9099, 'Accidents Due To Natural And Environmental Factors',
 							ifelse(dat.merged$cause.numeric>=9100&dat.merged$cause.numeric<=9109, 'Accidents Caused By Submersion',
@@ -188,7 +188,7 @@ yearsummary_injuries  <- function(x=2000) {
 
     # find unique values of causes of death and sub-groupings and save
     dat.unique = unique(dat.merged[c('cause','cause.sub','cause.sub.sub')])
-    saveRDS(dat.unique,paste0('../../output/prep_data_cod/cods/cods_',x))
+    saveRDS(dat.unique,paste0('../../output/prep_data_cod/cods/cods_sub_',x))
 
 
     # add agegroup groupings
@@ -219,14 +219,14 @@ yearsummary_injuries  <- function(x=2000) {
 	cause.group 	=	c('Unintentional','Intentional')
     cause.sub 	=	c(  'Transport accidents','Accidental falls','Other external causes of injury',
                         'Accidental drowning and submersion','Intentional self-harm','Assault')
-    cause.sub.sub 	=	c('Accidental falls','Exposure to mechnical forces','Accidental drowning and submersion','Exposure to electric current, radiation and extreme ambient air temperature and pressure',
-							'Encounters with forces of nature/overexertion','Intentional self-harm','Assault','Event of undeterminded intent','Legal intervention, operations of war, military operations, and terrorism',
+    cause.sub.sub 	=	sort(c('Railway accidents','Accidental falls','Exposure to mechnical forces','Accidental drowning and submersion','Exposure to electric current, radiation and extreme ambient air temperature and pressure',
+							'Encounters with forces of nature/overexertion','Assault','Event of undeterminded intent','Legal intervention, operations of war, military operations, and terrorism',
 							'Medical complications','Other', 'Motor Vehicle Traffic Accidents', 'Motor Vehicle Nontraffic Accidents', 'Other Road Vehicle Accidents', 'Water Transport Accidents', 'Air and Space Transport Accidents',
 		'Vehicle Accidents, Not Elsewhere Classifiable', 'Accidental Poisoning By Drugs, Medicinal Substances, And Biologicals', 'Accidental Poisoning By Other Solid And Liquid Substances, And Biologicals',
 		'Misadventures To Patients During Surgical And Medical Care', 'Non-Misadventures To Patients During Surigcal And Medical Care', 'Accidents Caused By Fire and Flames',
 		'Accidents Due To Natural And Environmental Factors', 'Accidents Caused By Submersion', 'Accidents Caused By Suffocation And Foreign Bodies', 'Other Accidents', 'Late Effects Of Accidental Injury',
 		'Complications of medical and surgical care', 'Intentional self-harm', 'Homicide And Injury Purposely Inflicted By Other Persons', 'Legal Intervention', 'Injury Undetemined Whether Accidentlally Or Purposely Inflicted',
-		'Injury Resulting From Operations Of War')
+		'Injury Resulting From Operations Of War','Transport accidents'))
 
     # create complete grid
 	complete.grid <- expand.grid(fips=fips,month=month,sex=sex,age=age,cause.group=cause.group,cause.sub=cause.sub,cause.sub.sub=cause.sub.sub)
@@ -246,12 +246,12 @@ yearsummary_injuries  <- function(x=2000) {
 	dat.summarised.complete$deaths <- ifelse(is.na(dat.summarised.complete$deaths)==TRUE,0,dat.summarised.complete$deaths)
 
 	# print statistics of sub-causes
-	print(ddply(dat.summarised,.(cause.sub.sub),summarise,deaths=sum(deaths)))
-	print(ddply(dat.summarised,.(cause.sub),summarise,deaths=sum(deaths)))
-	print(ddply(dat.summarised,.(cause.group),summarise,deaths=sum(deaths)))
-	print(ddply(dat.summarised.complete,.(cause.sub.sub),summarise,deaths=sum(deaths)))
-	print(ddply(dat.summarised.complete,.(cause.sub),summarise,deaths=sum(deaths)))
-	print(ddply(dat.summarised.complete,.(cause.group),summarise,deaths=sum(deaths)))
+	# print(ddply(dat.summarised,.(cause.sub.sub),summarise,deaths=sum(deaths)))
+	# print(ddply(dat.summarised,.(cause.sub),summarise,deaths=sum(deaths)))
+	# print(ddply(dat.summarised,.(cause.group),summarise,deaths=sum(deaths)))
+	# print(ddply(dat.summarised.complete,.(cause.sub.sub),summarise,deaths=sum(deaths)))
+	# print(ddply(dat.summarised.complete,.(cause.sub),summarise,deaths=sum(deaths)))
+	# print(ddply(dat.summarised.complete,.(cause.group),summarise,deaths=sum(deaths)))
 
 	print(paste0('total deaths in year ',sum(dat$deaths),', total deaths for injuries ',sum(dat.merged$deaths),' ',sum(dat.summarised$deaths),' ',sum(dat.summarised.complete$deaths)))
 
@@ -288,7 +288,7 @@ pop.state$fips <- as.integer(pop.state$fips)
 dat.merged <- merge(dat.appended,pop.state,by=c('sex','age','year','month','fips'))
 
 # reorder
-dat.merged <- dat.merged[order(dat.merged$cause.group,dat.merged$cause.sub,dat.merged$fips,dat.merged$sex,dat.merged$age,dat.merged$year,dat.merged$month),]
+dat.merged <- dat.merged[order(dat.merged$cause.group,dat.merged$cause.sub,dat.merged$cause.sub.sub,dat.merged$fips,dat.merged$sex,dat.merged$age,dat.merged$year,dat.merged$month),]
 
 # add rates
 dat.merged$rate <- dat.merged$deaths / dat.merged$pop

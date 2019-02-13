@@ -23,7 +23,7 @@ echo "preparing monthly death rates in broad causes of deaths for years $start -
 #Rscript ~/git/mortality/USA/state/prog/prep_data_cod/US_state_monthly_prepare_data_cod.R $start $end
 
 #################################################
-# 2. PROCESS DATA FOR INJURIES CATEGORIES
+# 2. PROCESS DATA FOR INJURIES CATEGORIES (OBSOLETE)
 #################################################
 
 echo "preparing monthly death rates in injury deaths (intentional/unintentional) for years $start - $end";
@@ -68,7 +68,7 @@ echo "preparing monthly death rates in cardio sub-causes of deaths for years $st
 
 echo "preparing monthly death rates in cardio sub-sub-causes of deaths for years $start - $end";
 
-#Rscript ~/git/mortality/USA/state/prog/prep_data_cod/US_state_monthly_prepare_data_subsubcauses_cardio_ons.R $start $end
+Rscript ~/git/mortality/USA/state/prog/prep_data_cod/US_state_monthly_prepare_data_subsubcauses_cardio_ons.R $start $end
 
 #################################################
 # 8. PROCESS DATA FOR ELIFE FIRST REVISION
