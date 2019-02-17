@@ -40,10 +40,3 @@ dat = subset(dat,!(fips%in%c(2,15)))
 # create nationalised data
 dat.national.all = ddply(dat,.(sex,age),summarize,deaths=sum(deaths))
 
-# create a date column
-library(zoo)
-dat.national.com.sex$date = zoo::as.yearmon(paste(dat.national.com.sex$year, dat.national.com.sex$month), "%Y %m")
-dat.national.com.sex$date = as.Date(dat.national.com.sex$date, format="%b %Y")
-
-library(ggplot2)
-
