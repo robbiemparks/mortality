@@ -35,7 +35,7 @@
         <entry file="file://$PROJECT_DIR$/USA/state/prog/00_bash/plotting/plotting_results_climate_cod_1var.sh">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="225">
-              <caret line="15" column="199" lean-forward="false" selection-start-line="15" selection-start-column="199" selection-end-line="15" selection-end-column="199" />
+              <caret line="15" column="77" lean-forward="false" selection-start-line="15" selection-start-column="77" selection-end-line="15" selection-end-column="77" />
               <folding />
             </state>
           </provider>
@@ -585,13 +585,6 @@
       <option name="presentableId" value="Default" />
       <updated>1528108809576</updated>
     </task>
-    <task id="LOCAL-00419" summary="updates to wavelet coding">
-      <created>1548682793399</created>
-      <option name="number" value="00419" />
-      <option name="presentableId" value="LOCAL-00419" />
-      <option name="project" value="LOCAL" />
-      <updated>1548682793399</updated>
-    </task>
     <task id="LOCAL-00420" summary="updates to wavelet coding">
       <created>1548687258328</created>
       <option name="number" value="00420" />
@@ -928,7 +921,14 @@
       <option name="project" value="LOCAL" />
       <updated>1550446053030</updated>
     </task>
-    <option name="localTasksCounter" value="468" />
+    <task id="LOCAL-00468" summary="updates to wavelet coding">
+      <created>1550510469925</created>
+      <option name="number" value="00468" />
+      <option name="presentableId" value="LOCAL-00468" />
+      <option name="project" value="LOCAL" />
+      <updated>1550510469925</updated>
+    </task>
+    <option name="localTasksCounter" value="469" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1302,7 +1302,7 @@
     <entry file="file://$PROJECT_DIR$/USA/state/prog/00_bash/plotting/plotting_results_climate_cod_1var.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
-          <caret line="15" column="199" lean-forward="false" selection-start-line="15" selection-start-column="199" selection-end-line="15" selection-end-column="199" />
+          <caret line="15" column="77" lean-forward="false" selection-start-line="15" selection-start-column="77" selection-end-line="15" selection-end-column="77" />
           <folding />
         </state>
       </provider>
