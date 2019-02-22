@@ -21,7 +21,7 @@ declare -i contig=1
 declare -a draws=(5000)
 
 #################################################
-# Figures 1 and 2
+# Figures 1 and 2 (mortality data summary)
 #################################################
 
 # to correct directory
@@ -36,7 +36,7 @@ echo "plotting figures 1 and 2 for injury paper $start - $end";
 #Rscript ~/git/mortality/USA/state/prog/data_explore/data_explore_injuries_ons.R $start $end
 
 #################################################
-# Figure 3
+# Figure 3 (anomaly schematic)
 #################################################
 
 # to correct directory
@@ -47,7 +47,7 @@ echo "plotting figure 3 injury paper $start - $end";
 #Rscript ~/git/climate/countries/USA/prog/06_plots/plots_against_time.R $start2 $end $dname $metric
 
 #################################################
-# Figure XX (ANOMALY SUMMARY)
+# Figure 4 (anomaly summary)
 #################################################
 
 # to correct directory
@@ -58,7 +58,7 @@ echo "plotting figure XX injury paper $start - $end";
 Rscript ~/git/climate/countries/USA/prog/15_anomaly_summaries/anomaly_summaries.R $start2 $end $dname $metric
 
 #################################################
-# Figure 4 and Supplementary Figure 1 and 2
+# Figure 5 (additional deaths) and Supplementary Figure 1 and 2 (
 #################################################
 
 # to correct directory
