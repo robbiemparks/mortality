@@ -316,6 +316,8 @@ pdf(paste0(file.loc,country,'_rate_pred_type',model,
 grid.arrange(p3,p4,nrow=2,left='Additional deaths associated with 1 degree additional warming (based on 2016 population)')
 dev.off()
 
+#name=expression(paste("Temperature (",degree,"C)"))
+
 # same plot as above but with skipping month names
 pdf(paste0(file.loc,country,'_rate_pred_type',model,
     '_',year.start,'_',year.end,'_',dname,'_',metric,'_intentional_unintentional_all_contig_month_skip.pdf'),paper='a4r',height=0,width=0)
