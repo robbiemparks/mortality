@@ -38,8 +38,8 @@ if(contig==1){
 }
 ifelse(!dir.exists(file.loc), dir.create(file.loc,recursive=TRUE), FALSE)
 
-causes.cardio = c('','')
-causes.resp = c('', '', '', '')
+causes.cardio = c('Ischaemic heart disease','Cerebrovascular disease')
+causes.resp = c('Chronic obstructive pulmonary disease', 'Respiratory infections')
 causes.all = c(causes.cardio,causes.resp)
 
 # load the draws data for each age and sex for the cause chosen
