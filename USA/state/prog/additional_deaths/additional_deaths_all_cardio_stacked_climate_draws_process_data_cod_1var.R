@@ -38,9 +38,9 @@ if(contig==1){
 }
 ifelse(!dir.exists(file.loc), dir.create(file.loc,recursive=TRUE), FALSE)
 
-causes.intentional = c('Assault','Intentional self-harm')
-causes.unintentional = c('Accidental falls', 'Accidental drowning and submersion', 'Transport accidents', 'Other external causes of injury')
-causes.all = c(causes.intentional,causes.unintentional)
+causes.cardio = c('','')
+causes.resp = c('', '', '', '')
+causes.all = c(causes.cardio,causes.resp)
 
 # load the draws data for each age and sex for the cause chosen
 for(h in causes.all){
