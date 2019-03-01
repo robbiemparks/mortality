@@ -28,7 +28,7 @@ cd ~/git/mortality/USA/state/prog/00_bash/
 
 for model in "${models[@]}"; do
 
-echo "Running c$start - $end";
+echo "Running draws processing for injury and cardio $start - $end";
 
 
 Rscript ~/git/mortality/USA/state/prog/additional_deaths/additional_deaths_all_injuries_stacked_climate_draws_process_data_cod_1var.R $start $end $country $model $dname $metric $contig $draws;
