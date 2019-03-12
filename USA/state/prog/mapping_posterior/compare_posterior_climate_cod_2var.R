@@ -96,7 +96,7 @@ lm_eqn <- function(df){
          list(a = format(coef(m)[1], digits = 2),
               b = format(coef(m)[2], digits = 2),
              r2 = format(summary(m)$r.squared, digits = 3),
-             corr = format(cor(df$two.variable.parameter, df$single.variable.parameter),method='pearson')))
+             corr = format(cor(df$two.variable.parameter, df$single.variable.parameter),method='pearson'),digits=3))
     as.character(as.expression(eq));
 }
 
