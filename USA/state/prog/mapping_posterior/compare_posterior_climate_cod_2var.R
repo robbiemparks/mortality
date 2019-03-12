@@ -24,7 +24,7 @@ print(args)
 # metric1 = 'meanc3' ; metric2 = 'sd'; cause = 'External'
 
 # other metrics to use are
-# metric2 = 'number_of_days_above_nonnormal_90_2',
+# metric2 = 'number_of_days_above_nonnormal_90_2'
 # metric2 = 'number_of_min_3_day_above_nonnormal_90_upwaves_2'
 
 # need to use meanc3 with sd/number of days above limit/number of days above limit
