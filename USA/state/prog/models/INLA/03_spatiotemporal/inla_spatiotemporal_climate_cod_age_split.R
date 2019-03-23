@@ -153,8 +153,6 @@ if(fast.arg==2){
 
 # prep data for output
 
-# TEMPORARY COPY AND PASTE FROM HERE ONCE MODEL IS RUN TO CHECK IT WORKS CORRECTLY
-
 # output string for filenames
 output.string = paste0('USA_rate_pred_type',type.selected,'_',age.arg,'_age_split',age.break.arg,'_',sex.lookup[sex.arg],'_',year.start.analysis.arg,'_',year.end.analysis.arg,'_',dname.arg,'_',metric.arg)
 
