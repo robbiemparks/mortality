@@ -1104,8 +1104,8 @@ if(model %in% c('1e','1f')){
         plot.function.excess.risk <- function(sex.sel,age.sel) {
 
         # find limits for plot
-        min.plot <- min(dat$odds.mean)
-        max.plot <- max(dat$odds.mean)
+        min.plot <- min(dat$odds.ll)
+        max.plot <- max(dat$odds.ul)
 
         # attach long month names
         dat$month.short <- mapvalues(dat$month,from=sort(unique(dat$month)),to=month.short)
@@ -1114,19 +1114,22 @@ if(model %in% c('1e','1f')){
         # long age name for title
         age.long <- as.character(age.code[age.code$age==age.sel,2])
 
+        shapefile.data = read.csv('../../data/shapefiles/shapefile_data.csv')
+        dat = merge(dat,shapefile.data,by.x=c('fips','DRAWSEQ'),by.y=c('fips','DRAWSEQ'))
+
         # plotting
         print(ggplot(data=subset(dat,sex==sex.sel & age==age.sel)) +
-        geom_point(aes(x=as.factor(fips),y=odds.mean)) +
-        geom_errorbar(aes(x=as.factor(fips),ymin=odds.ll,ymax=odds.ul), width=0) +
+        geom_point(aes(x=as.factor(STATE_ABBR),y=odds.mean)) +
+        geom_errorbar(aes(x=as.factor(STATE_ABBR),ymin=odds.ll,ymax=odds.ul), width=0) +
         geom_hline(yintercept=0,linetype='dotted') +
         xlab('State') + ylab('Excess relative risk associated with 1 degree additional warming') +
-        scale_y_continuous(labels=scales::percent) +
+        scale_y_continuous(limits=c(min.plot,max.plot),labels=scales::percent) +
         coord_flip() +
         facet_wrap(~month.short) +
         guides(fill=guide_colorbar(barwidth=30, title='Excess risk associated with\n1 degree additional warming')) +
         ggtitle(paste0(cod.print,' ', age.sel,' ',sex.lookup2[sex.sel],' : ', year.start,'-',year.end)) +
-        theme_bw() + theme(text = element_text(size = 15),
-        panel.grid.major = element_blank(),axis.text.x = element_text(angle=0),
+        theme_bw() + theme(text = element_text(size = 6),
+        panel.grid.major = element_blank(),axis.text.y = element_text(size=6, angle=0),
         plot.title = element_text(hjust = 0.5),panel.background = element_blank(),
         panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
         panel.border = element_rect(colour = "black"),strip.background = element_blank(),
@@ -1142,6 +1145,53 @@ if(model %in% c('1e','1f')){
         # female output to pdf
         pdf(paste0(file.loc,'climate_month_params_excess_risk_women_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
         for(i in sort(unique(dat$age))){plot.function.excess.risk(2,i)}
+        dev.off()
+
+    # function to plot all excess risk on plot with error
+        plot.function.excess.risk.state <- function(sex.sel,age.sel) {
+
+        # find limits for plot
+        min.plot <- min(dat$odds.ll)
+        max.plot <- max(dat$odds.ul)
+
+        # attach long month names
+        dat$month.short <- mapvalues(dat$month,from=sort(unique(dat$month)),to=month.short)
+        dat$month.short <- reorder(dat$month.short,(dat$month))
+
+        # long age name for title
+        age.long <- as.character(age.code[age.code$age==age.sel,2])
+
+        shapefile.data = read.csv('../../data/shapefiles/shapefile_data.csv')
+        dat = merge(dat,shapefile.data,by.x=c('fips','DRAWSEQ'),by.y=c('fips','DRAWSEQ'))
+
+        # plotting
+        print(ggplot(data=subset(dat,sex==sex.sel & age==age.sel)) +
+        geom_point(aes(x=as.factor(month.short),y=odds.mean)) +
+        geom_errorbar(aes(x=as.factor(month.short),ymin=odds.ll,ymax=odds.ul), width=0) +
+        geom_hline(yintercept=0,linetype='dotted') +
+        xlab('State') + ylab('Excess relative risk associated with 1 degree additional warming') +
+        scale_y_continuous(limits=c(min.plot,max.plot),labels=scales::percent) +
+        coord_flip() +
+        facet_wrap(~STATE_ABBR) +
+        guides(fill=guide_colorbar(barwidth=30, title='Excess risk associated with\n1 degree additional warming')) +
+        ggtitle(paste0(cod.print,' ', age.sel,' ',sex.lookup2[sex.sel],' : ', year.start,'-',year.end)) +
+        theme_bw() + theme(text = element_text(size = 6),
+        panel.grid.major = element_blank(),axis.text.y = element_text(size=6, angle=0),
+        plot.title = element_text(hjust = 0.5),panel.background = element_blank(),
+        panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
+        panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+        legend.position = 'bottom',legend.justification='center',
+        legend.background = element_rect(fill="white", size=.5, linetype="dotted")))
+        }
+
+        # male output to pdf
+        pdf(paste0(file.loc,'climate_month_params_by_state_excess_risk_men_age_split',age.break,'_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
+        for(i in sort(unique(dat$age))){plot.function.excess.risk.state(1,i)}
+        dev.off()
+
+        # female output to pdf
+        pdf(paste0(file.loc,'climate_month_params_by_state_excess_risk_women_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
+        for(i in sort(unique(dat$age))){plot.function.excess.risk.state(2,i)}
         dev.off()
 
 
