@@ -1085,6 +1085,7 @@ if(model %in% c('1e','1f')){
         scale_fill_gradient2(limits=c(min.plot,max.plot),low="green", mid="white",high="red",midpoint=0,guide = guide_legend(title = ''),labels=percent) +
         facet_wrap(~month.short) +
         ggtitle(paste0(cod.print,' ', age.sel,' ',sex.lookup2[sex.sel],' : ', year.start,'-',year.end)) +
+        guides(fill=guide_legend(title="",nrow=1)) +
         theme_map() +
         theme(text = element_text(size = 15),legend.position = 'bottom',legend.justification=c(1,0),strip.background = element_blank()))
         }
@@ -1158,15 +1159,15 @@ if(model %in% c('1e','1f')){
                     
         }
                 
-        # male output to pdf
-        pdf(paste0(file.loc,'climate_age_params_map_male_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
-        for(i in c(1:12)){plot.function.month(1,i)}
-        dev.off()
-                
-        # female output to pdf
-        pdf(paste0(file.loc,'climate_age_params_map_female_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
-        for(i in c(1:12)){plot.function.month(2,i)}
-        dev.off()
+        # # male output to pdf
+        # pdf(paste0(file.loc,'climate_age_params_map_male_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
+        # for(i in c(1:12)){plot.function.month(1,i)}
+        # dev.off()
+        #
+        # # female output to pdf
+        # pdf(paste0(file.loc,'climate_age_params_map_female_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
+        # for(i in c(1:12)){plot.function.month(2,i)}
+        # dev.off()
         
         # function to plot posterior probability of increased risk for all months subnationally
         plot.function.month.odds <- function(sex.sel,month.sel) {
@@ -1215,14 +1216,14 @@ if(model %in% c('1e','1f')){
         }
         
         # male output to pdf
-        pdf(paste0(file.loc,'climate_age_posterior_map_male_decreased_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
-        for(i in c(1:12)){plot.function.month.odds.decreased(1,i)}
-        dev.off()
-        
-        # female output to pdf
-        pdf(paste0(file.loc,'climate_age_posterior_map_female_decreased',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
-        for(i in c(1:12)){plot.function.month.odds.decreased(2,i)}
-        dev.off()
+        # pdf(paste0(file.loc,'climate_age_posterior_map_male_decreased_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
+        # for(i in c(1:12)){plot.function.month.odds.decreased(1,i)}
+        # dev.off()
+        #
+        # # female output to pdf
+        # pdf(paste0(file.loc,'climate_age_posterior_map_female_decreased',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
+        # for(i in c(1:12)){plot.function.month.odds.decreased(2,i)}
+        # dev.off()
 
         # establish change in number of deaths for a slice in time (at the moment it's 2013)
         # load death rate data
