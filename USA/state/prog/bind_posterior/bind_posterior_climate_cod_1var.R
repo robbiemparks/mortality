@@ -65,7 +65,7 @@ if(pw.arg==0){
 
             # find mean and CIs of transformed distributions and probability of increased odds from posterior marginal
             dat.mean.exp <- data.frame(ID=numeric(0),odds.mean=numeric(0),odds.ll=numeric(0),odds.ul=numeric(0),odds.prob=numeric(0))
-            for(k in c(1:12)) {
+            for(k in c(1:length(model.current$marginals.random$month5))) {
                 # find the exponentiated means and CIs
                 marginal.exp <- inla.tmarginal(function(x) exp(x), model.current$marginals.random$month5[[k]])
                 odds.mean <- inla.emarginal(function(x) x,marginal.exp) - 1
@@ -151,7 +151,7 @@ if(pw.arg==1){
 
             # find mean and CIs of transformed distributions and probability of increased odds from posterior marginal
             dat.mean.exp <- data.frame(ID=numeric(0),odds.mean=numeric(0),odds.ll=numeric(0),odds.ul=numeric(0),odds.prob=numeric(0))
-            for(k in c(1:12)) {
+            for(k in c(1:length(model.current$marginals.random$month5))) {
                 # find the exponentiated means and CIs
                 marginal.exp <- inla.tmarginal(function(x) exp(x), model.current$marginals.random$month5[[k]])
                 odds.mean <- inla.emarginal(function(x) x,marginal.exp) - 1
