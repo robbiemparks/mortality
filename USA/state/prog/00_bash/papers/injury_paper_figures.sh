@@ -58,7 +58,7 @@ echo "plotting figure 4 injury paper $start - $end";
 Rscript ~/git/climate/countries/USA/prog/15_anomaly_summaries/anomaly_summaries.R $start2 $end $dname $metric
 
 #################################################
-# Figure 5 (additional deaths) and Supplementary Figure 1 and 2 (
+# Figure 5 (additional deaths) and Supplementary Figure 1 and 2
 #################################################
 
 # to correct directory
