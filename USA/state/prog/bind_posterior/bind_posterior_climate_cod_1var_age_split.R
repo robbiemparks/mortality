@@ -110,7 +110,7 @@ saveRDS(dat,paste0(file.loc.git,save.name))
 }
 }
 
-# TO FIX FOR PIECEWISE (ADAPT ABOVE AS CURRENTLY NOT FUNCTIONAL)
+# below is temporary and only needs to be there before I fix the above to include pw file location
 if(pw.arg==1){
     if(model%in% c('1d','1d2')){
 
@@ -149,7 +149,7 @@ if(pw.arg==1){
             }
             }
             }
-            #file.name <- paste0('~/data/mortality/US/state/climate_effects/',dname,'/',metric,'/non_pw/type_',model,'/age_groups/',age.filter[j],'/',country,'_rate_pred_type',model,'_',age.filter[j],'_',sex.filter[i],'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'_parameters_fast')
+
             print(file.name)
             model.current <- readRDS(file.name)
             current.file <- model.current$summary.random$month5
