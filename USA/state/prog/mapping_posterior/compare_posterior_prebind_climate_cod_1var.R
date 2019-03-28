@@ -16,12 +16,8 @@ pw.arg <- as.numeric(args[10])
 # year.start = 1980 ; year.end = 2016 ; country = 'USA' ; model = 10 ; model.2 = 26 ; dname='t2m' ; metric='meanc3'
 # cause = 'Transport accidents' ;  contig.arg = 1 ; pw.arg = 0
 
-library(INLA)
 
-# lookups
-source('../../data/objects/objects.R')
-model <- models[model]
-model.2 <- models[model.2]
+
 
 if(pw.arg==0){
     # create dataframe with each of the national terms for entire group of age and sexes
