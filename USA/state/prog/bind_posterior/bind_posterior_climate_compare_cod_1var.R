@@ -12,6 +12,10 @@ cause <- as.character(args[7]) ; cause <- gsub('_',' ',cause)
 contig.arg <- as.numeric(args[8])
 pw.arg <- as.numeric(args[9])
 
+# for testing
+# year.start = 1980 ; year.end = 2016 ; country = 'USA' ; dname = 't2m' ; metric = 'meanc3' ; cause = 'Transport accidents'
+# contig.arg = 1 ; pw.arg = 0
+
 library(ggplot2)
 
 # lookups
@@ -58,6 +62,14 @@ file.name <- paste0('~/data/mortality/US/state/climate_effects/',dname,'/',metri
 model.current <- readRDS(file.name)
 model.1d7 <- model.current$summary.random$month5
 model.1d7$model = 'Hyper edit 3'
+model.1d7 = as.data.frame(model.1d7[,c('mean')])
+names(model.1d7) = c('mean.hyper.edit.3')
+
+# MODEL 1D8
+file.name <- paste0('~/data/mortality/US/state/climate_effects/',dname,'/',metric,'/non_pw/type_1d7/age_groups/85/',country,'_rate_pred_type1d7_85_Men_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'_parameters_fast_contig')
+model.current <- readRDS(file.name)
+model.1d7 <- model.current$summary.random$month5
+model.1d7$model = 'Additional abs climate value'
 model.1d7 = as.data.frame(model.1d7[,c('mean')])
 names(model.1d7) = c('mean.hyper.edit.3')
 
