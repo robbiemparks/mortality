@@ -286,3 +286,8 @@ if(model%in%c('1d','1d2')){
     saveRDS(additional.deaths.intent.monthly.summary,paste0(file.loc,'additional_deaths_intent_summary_monthly_draws.rds'))
 
 }
+
+# ADD SUBNATIONAL MODEL HERE TO FINISH
+if(model%in%c('1d','1d2')){
+    # TO FINISH HERE
+}
