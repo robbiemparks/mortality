@@ -14,7 +14,7 @@ pw.arg <- as.numeric(args[10])
 
 # for model testing
 # year.start = 1980 ; year.end = 2016 ; country = 'USA' ; model = 10 ; model.2 = 26 ; dname='t2m' ; metric='meanc3'
-# cause = 'Transport accidents' contig.arg = 1 ; pw.arg = 0
+# cause = 'Transport accidents' ;  contig.arg = 1 ; pw.arg = 0
 
 library(INLA)
 
