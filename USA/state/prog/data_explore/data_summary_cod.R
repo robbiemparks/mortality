@@ -30,6 +30,9 @@ if(class.arg=='injuries') {
 
 head(dat)
 
+# get rid of alaska and hawaii
+
+
 # summary of deaths by cause and sex for entire period
 dat.summary.entire = ddply(dat,.(cause,sex),summarise,deaths=sum(deaths))
 dat.summary.entire = spread(dat.summary.entire, key = 'sex', value='deaths')
