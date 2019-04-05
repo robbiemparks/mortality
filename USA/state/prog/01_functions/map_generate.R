@@ -30,7 +30,6 @@ theme_map <- function(base_size=9, base_family=""){
     )
 }
 
-
 # load shapefile
 us <- readOGR(dsn="../../data/shapefiles",layer="states")
 
