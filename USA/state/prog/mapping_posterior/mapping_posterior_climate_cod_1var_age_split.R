@@ -20,8 +20,8 @@ age.break <- as.numeric(args[10])
 
 # NEED TO MAKE CONTIG OPTION ACTUALLY DO SOMETHING
 
-# year.start = 1980 ; year.end = 2016 ; country = 'USA' ; model = 11; dname = 't2m' ; metric = 'meanc3' ; cause = 'Cardiopulmonary'; contig=1 ; age.break=65
-# pw.arg = 0
+# year.start = 1980 ; year.end = 2016 ; country = 'USA' ; model = 11;  cause = 'Cardiopulmonary'; contig=1 ; age.break=65
+# dname = 't2m' ; metric = 'meanc3' ; pw.arg = 0
 
 multiple = 0
 

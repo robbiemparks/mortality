@@ -146,6 +146,7 @@ plot.asdr.subnational = function(years,cause.sel) {
     scale_fill_gradientn(colors=ASDRpalette) +
     # scale_fill_gradient2(limits=c(min.plot,max.plot),low="green", mid="green",high="purple",midpoint=0,guide = guide_legend(title = '')) +
     facet_wrap(~year) +
+    coord_fixed() +
     guides(fill=guide_colorbar(barwidth=30, title='Annual age standardised death rate (per 100,000)')) +
     # ggtitle(paste0(cod.print,' ', age.sel,' ',sex.lookup2[sex.sel],' : ', year.start,'-',year.end)) +
     theme_map() +

@@ -127,6 +127,7 @@ pdf(paste0(file.loc.maps,'usa_map_region.pdf'))#,height=0,width=0,paper='a4r')
 print(ggplot(data=USA.df,aes(x=long,y=lat,group=group)) +
 geom_polygon(aes(fill=SUB_REGION),color='black',size=0.1) +
 scale_fill_manual(values=map.region.colour,guide = guide_legend(title = '')) +
+coord_fixed() +
 theme_map() +
 theme(text = element_text(size = 15),legend.justification=c(1,0), legend.position='bottom',
 	legend.background = element_rect(fill = "grey95"),legend.box = "horizontal")
@@ -137,6 +138,7 @@ pdf(paste0(file.loc.maps,'usa_map_climate.pdf'))#,height=0,width=0,paper='a4r')
 print(ggplot(data=USA.df,aes(x=long,y=lat,group=group)) +
 geom_polygon(aes(fill=climate_region),color='black',size=0.1) +
 scale_fill_manual(values=map.climate.colour,guide = guide_legend(title = '')) +
+coord_fixed() +
 theme_map() +
 theme(text = element_text(size = 15),legend.justification=c(1,0), legend.position='bottom',
 	legend.background = element_rect(fill = "grey95"),legend.box = "horizontal")
@@ -147,6 +149,7 @@ pdf(paste0(file.loc.maps,'usa_map_climate_no_alaska_hawaii.pdf'))#,height=0,widt
 print(ggplot(data=subset(USA.df,!(STATE_FIPS%in%c(2,15))),aes(x=long,y=lat,group=group)) +
 geom_polygon(aes(fill=climate_region),color='black',size=0.1) +
 scale_fill_manual(values=map.climate.colour,guide = guide_legend(title = '')) +
+coord_fixed() +
 theme_map() +
 theme(text = element_text(size = 15),legend.justification=c(1,0), legend.position='bottom',
 	legend.background = element_rect(fill = "grey95"),legend.box = "horizontal")
