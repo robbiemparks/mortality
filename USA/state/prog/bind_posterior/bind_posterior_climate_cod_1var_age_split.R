@@ -13,8 +13,8 @@ contig.arg <- as.numeric(args[8])
 pw.arg <- as.numeric(args[9])
 age.break.arg <- as.numeric(args[10])
 
-# year.start = 1980 ; year.end = 2016 ; country='USA' ; model = 10 ;
-# dname= 't2m' ; metric = 'meanc3'; cause = 'Ischaemic heart disease'; contig.arg=1 ; pw.arg=0 ; age.break.arg = 65
+# year.start = 1980 ; year.end = 2016 ; country='USA' ; model = 11 ;
+# dname= 't2m' ; metric = 'meanc3'; cause = 'Cerebrovascular disease'; contig.arg=1 ; pw.arg=0 ; age.break.arg = 65
 
 library(INLA)
 
