@@ -40,6 +40,10 @@ dat = subset(dat,!(fips%in%c(2,15)))
 dat.summary.entire = ddply(dat,.(cause,sex),summarise,deaths=sum(deaths))
 dat.summary.entire = ddply(dat.summary.entire,.(sex),mutate,percentage=100*deaths/sum(deaths))
 
+# summary of deaths by cause and sex for entire period
+dat.summary.entire.age = ddply(dat,.(age,sex),summarise,deaths=sum(deaths))
+dat.summary.entire.age = ddply(dat.summary.entire.age,.(sex),mutate,percentage=100*deaths/sum(deaths))
+
 # summary of deaths by sex over time
 # dat.summary.sex.time = ddply(dat,.(year,sex),summarise,deaths=sum(deaths))
 
@@ -69,6 +73,7 @@ dat.summary.entire.time = ddply(dat.summary.entire.time,.(year,sex),mutate,perce
 # dat.summary.age$Cause <- gsub('External', 'Injuries', dat.summary.age$Cause)
 
 # write to csv
+write.csv(dat.summary.entire.age,paste0(file.loc,'deaths_summary_byages_',class.arg,'_',year.start.arg,'_',year.end.arg,'.csv'),row.names=FALSE)
 write.csv(dat.summary.entire,paste0(file.loc,'deaths_summary_allages_over_time',class.arg,'_',year.start.arg,'_',year.end.arg,'.csv'),row.names=FALSE)
 write.csv(dat.summary.entire.time,paste0(file.loc,'deaths_summary_ageseparate_over_time',class.arg,'_',year.start.arg,'_',year.end.arg,'.csv'),row.names=FALSE)
 # write.csv(dat.summary.age.year,paste0(file.loc,'deaths_summary_ageseparate_yearly_',class.arg,'_',year.start.arg,'_',year.end.arg,'.csv'),row.names=FALSE)

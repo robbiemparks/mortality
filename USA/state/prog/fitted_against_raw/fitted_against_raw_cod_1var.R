@@ -19,7 +19,7 @@ contig <- as.numeric(args[8])
 # NEED TO MAKE CONTIG OPTION ACTUALLY DO SOMETHING
 
 # year.start = 1980 ; year.end = 2016 ; country = 'USA' ; model = 10 ;
-# dname = 't2m' ; metric = 'meanc3' ; cause = 'AllCause'; contig=1
+# dname = 't2m' ; metric = 'meanc3' ; cause = 'Cardiopulmonary'; contig=1
 
 print(args)
 
@@ -104,6 +104,50 @@ cod.print = ifelse(cause=='AllCause', 'All cause',
         ifelse(cause=='Assault','Assault','NA'
         )))))))))))))
 
+# attach state names
+shapefile.data = read.csv('../../data/shapefiles/shapefile_data.csv')
+dat.all = merge(dat.all,shapefile.data,by=c('fips'))
+
+# Make DC's name shorter
+dat.all$STATE_NAME <- gsub('District of Columbia','Dist. Columbia',dat.all$STATE_NAME)
+
+pdf(paste0(file.loc,'raw_against_adjusted_by_state_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
+ggplot(data=dat.all) +
+    geom_point(aes(x=rate.adj*100000,y=100000*rate.pred)) +
+    xlab('Raw death rates (per 100,000)') + ylab('Modelled death rates (per 100,000)') +
+    coord_equal() +
+    facet_wrap(~STATE_NAME) +
+    geom_abline() +
+    theme_bw() + theme(text = element_text(size = 11),
+    panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
+    plot.title = element_text(hjust = 0.5),panel.background = element_blank(),
+    panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
+    panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+    legend.position = 'bottom',legend.justification='center',
+    legend.background = element_rect(fill="white", size=.5, linetype="dotted"))
+dev.off()
+
+pdf(paste0(file.loc,'raw_against_adjusted_by_state_by_agesex_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
+for(j in c(1,2)){
+    for(i in c(0,5,15,25,35,45,55,65,75,85)){
+    print(ggplot(data=subset(dat.all,sex==j&age==i)) +
+        geom_point(aes(x=rate.adj*100000,y=100000*rate.pred)) +
+        xlab('Raw death rates (per 100,000)') + ylab('Modelled death rates (per 100,000)') +
+        coord_equal() +
+        facet_wrap(~STATE_NAME) +
+        geom_abline() +
+        theme_bw() + theme(text = element_text(size = 11),
+        panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
+        plot.title = element_text(hjust = 0.5),panel.background = element_blank(),
+        panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
+        panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+        legend.position = 'bottom',legend.justification='center',
+        legend.background = element_rect(fill="white", size=.5, linetype="dotted"))
+    )
+}}
+dev.off()
+#
+
 # # plot raw rates against adjusted rates
 # pdf(paste0(file.loc,'raw_against_adjusted_by_age_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
 #
@@ -124,15 +168,6 @@ cod.print = ifelse(cause=='AllCause', 'All cause',
 #     facet_wrap(~age, scale='free') +
 #     geom_abline(color='red')
 # )
-# dev.off()
-#
-# pdf(paste0(file.loc,'raw_against_adjusted_by_state_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
-# ggplot(data=dat.all) +
-#     geom_point(aes(x=rate.adj,y=rate.pred)) +
-#     ggtitle(cod.print) +
-#     xlab('Raw death rates') + ylab('Modelled death rates') +
-#     facet_wrap(~fips, scale='free') +
-#     geom_abline(color='red')
 # dev.off()
 #
 # # plotting by state over time
