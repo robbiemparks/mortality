@@ -13,7 +13,7 @@ contig.arg <- as.numeric(args[8])
 pw.arg <- as.numeric(args[9])
 
 # year.start = 1980 ; year.end = 2016 ; country='USA' ; model = 11 ;
-# dname= 't2m' ; metric = 'meanc3'; cause = 'Cardiopulmonary'; contig.arg=1 ; pw.arg=0 ; age.break.arg = 65
+# dname= 't2m' ; metric = 'meanc3'; cause = 'Cardiopulmonary'; contig.arg=1 ; pw.arg=0
 
 library(INLA)
 
@@ -77,11 +77,13 @@ if(pw.arg==0){
 
                 # find the probability of increased odds from posterior marginal
                 odds.prob <- 1 - inla.pmarginal(1,marginal.exp)
-                dat.temp <- data.frame(ID=k,odds.mean=odds.mean,odds.ll=odds.ll,odds.ul=odds.ul,odds.prob=odds.prob)
+                # dat.temp <- data.frame(ID=k,odds.mean=odds.mean,odds.ll=odds.ll,odds.ul=odds.ul,odds.prob=odds.prob) OLD
+                dat.temp <- data.frame(odds.mean=odds.mean,odds.ll=odds.ll,odds.ul=odds.ul,odds.prob=odds.prob)
                 dat.mean.exp <- rbind(dat.mean.exp,dat.temp)
             }
             # merge exponentiated means
-            current.file <- merge(current.file,dat.mean.exp,by=('ID'))
+            # current.file <- merge(current.file,dat.mean.exp,by=('ID'))
+            current.file <- cbind(current.file,dat.mean.exp)
 
             # attached new age sex profile to master file
             dat <- rbind(dat,current.file)
