@@ -1126,6 +1126,54 @@ if(model %in% c('1e','1f')){
         for(i in sort(unique(dat$age))){plot.function.excess.risk.state(2,i)}
         dev.off()
 
+    # function to show ranking by age in states for each sex
+        plot.function.excess.risk.state.ranking <- function() {
+
+        # find limits for plot
+        min.plot <- min(subset(dat)$odds.ll)
+        max.plot <- max(subset(dat)$odds.ul)
+
+        # attach long month names
+        dat$month.short <- mapvalues(dat$month,from=sort(unique(dat$month)),to=month.short)
+        dat$month.short <- reorder(dat$month.short,(dat$month))
+
+        # long age name for title
+        age.long <- as.character(age.code[age.code$age==age.sel,2])
+
+        shapefile.data = read.csv('../../data/shapefiles/shapefile_data.csv')
+        dat = merge(dat,shapefile.data,by.x=c('fips'),by.y=c('fips'))
+
+        # sort by low risk to highest risk
+        dat = dat[with(dat, order(odds.mean)),]
+
+        # create unique column of month and state
+        dat$unique = 1:nrow(dat)
+
+        # plotting
+        print(ggplot(data=subset(dat)) +
+        geom_errorbar(aes(x=unique,ymin=odds.ll,ymax=odds.ul), width=0, color='blue',alpha=0.2) +
+        geom_point(aes(x=unique,y=odds.mean),color='red') +
+        geom_hline(yintercept=0,linetype='dotted') +
+        xlab('') + ylab('Excess relative risk associated with 1 degree additional warming') +
+        scale_y_continuous(limits=c(min.plot,max.plot),labels=scales::percent) +
+        coord_flip() +
+        facet_grid(age~sex) +
+        guides(fill=guide_colorbar(barwidth=30, title='Excess risk associated with\n1 degree additional warming')) +
+        # ggtitle(paste0(cod.print,' ', age.sel,' ',sex.lookup2[sex.sel],' : ', year.start,'-',year.end)) +
+        theme_bw() + theme(text = element_text(size = 6),
+        panel.grid.major = element_blank(),axis.text.y = element_text(size=6, angle=0),
+        plot.title = element_text(hjust = 0.5),panel.background = element_blank(),
+        panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
+        panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+        legend.position = 'bottom',legend.justification='center',
+        legend.background = element_rect(fill="white", size=.5, linetype="dotted")))
+        }
+
+        # both sexes output to pdf
+        pdf(paste0(file.loc,'climate_month_params_excess_risk_ordered_both_sexes_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
+        plot.function.excess.risk.state.ranking()
+        dev.off()
+
     # function to plot all excess risk on plot with error and reference from national model as comparison
         plot.function.excess.risk.w.national <- function(sex.sel,age.sel,model.comp) {
 
