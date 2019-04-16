@@ -31,16 +31,15 @@ model <- models[model]
 
 # create directories for output
 file.loc <- paste0('../../output/additional_deaths_climate/',year.start,'_',year.end,
-'/',dname,'/',metric,'/non_pw/type_',model,'/non_contig/all_cardio/',num.draws,'_draws/')
+'/',dname,'/',metric,'/non_pw/type_',model,'/non_contig/cancer/',num.draws,'_draws/')
 if(contig==1){
     file.loc <- paste0('../../output/additional_deaths_climate/',year.start,'_',year.end,
-'/',dname,'/',metric,'/non_pw/type_',model,'/contig/all_cardio/',num.draws,'_draws/')
+'/',dname,'/',metric,'/non_pw/type_',model,'/contig/cancer/',num.draws,'_draws/')
 }
 ifelse(!dir.exists(file.loc), dir.create(file.loc,recursive=TRUE), FALSE)
 
-causes.cardio = c('Ischaemic heart disease','Cerebrovascular disease')
-causes.resp = c('Chronic obstructive pulmonary disease', 'Respiratory infections')
-causes.all = c(causes.cardio,causes.resp)
+
+causes.all = c('cancer')
 
 # load the draws data for each age and sex for the cause chosen
 for(h in causes.all){
@@ -70,7 +69,7 @@ for(h in causes.all){
 # for national model, plot additional deaths (with CIs) all on one page, one for men and one for women
 if(model%in%c('1d','1d2')){
 
-    dat.mort <- readRDS(paste0('../../output/prep_data_cod/datus_nat_deaths_subcod_cardio_ons_',year.start,'_',year.end))
+    dat.mort <- readRDS(paste0('../../output/prep_data_cod/datus_state_rates_cod_',year.start,'_',year.end))
     print(head(dat.mort))
 
     # make for national data
@@ -121,13 +120,6 @@ if(model%in%c('1d','1d2')){
 
                 # take one year
                 dat.merged.sub <- subset(dat.merged,year==year.end)
-
-                # take out unsuitable age-sex age_groups
-                if(h=="Intentional self-harm"){
-                    dat.merged.sub$deaths.added =           ifelse(dat.merged.sub$age==0,0,dat.merged.sub$deaths.added)
-                    dat.merged.sub$deaths.added.two.deg =   ifelse(dat.merged.sub$age==0,0,dat.merged.sub$deaths.added.two.deg)
-
-                }
 
                 dat.merged.sub.all=rbind(dat.merged.sub.all,dat.merged.sub)
 
