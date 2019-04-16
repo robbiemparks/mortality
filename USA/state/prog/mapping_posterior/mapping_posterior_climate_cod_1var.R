@@ -1137,9 +1137,6 @@ if(model %in% c('1e','1f')){
         dat$month.short <- mapvalues(dat$month,from=sort(unique(dat$month)),to=month.short)
         dat$month.short <- reorder(dat$month.short,(dat$month))
 
-        # long age name for title
-        age.long <- as.character(age.code[age.code$age==age.sel,2])
-
         shapefile.data = read.csv('../../data/shapefiles/shapefile_data.csv')
         dat = merge(dat,shapefile.data,by.x=c('fips'),by.y=c('fips'))
 
@@ -1151,17 +1148,18 @@ if(model %in% c('1e','1f')){
 
         # plotting
         print(ggplot(data=subset(dat)) +
-        geom_errorbar(aes(x=unique,ymin=odds.ll,ymax=odds.ul), width=0, color='blue',alpha=0.2) +
-        geom_point(aes(x=unique,y=odds.mean),color='red') +
+        geom_errorbar(aes(x=unique,ymin=odds.ll,ymax=odds.ul,color=month.short), width=0,alpha=0.2) +
+        geom_point(aes(x=unique,y=odds.mean), alpha=0.2) +
         geom_hline(yintercept=0,linetype='dotted') +
         xlab('') + ylab('Excess relative risk associated with 1 degree additional warming') +
         scale_y_continuous(limits=c(min.plot,max.plot),labels=scales::percent) +
         coord_flip() +
         facet_grid(age~sex) +
-        guides(fill=guide_colorbar(barwidth=30, title='Excess risk associated with\n1 degree additional warming')) +
-        # ggtitle(paste0(cod.print,' ', age.sel,' ',sex.lookup2[sex.sel],' : ', year.start,'-',year.end)) +
-        theme_bw() + theme(text = element_text(size = 6),
+        guides(color=guide_legend(nrow=1)) +
+        scale_colour_manual(values=colorRampPalette(rev(brewer.pal(12,"RdYlBu")[c(9:10,2:1,1:2,10:9)]))(12),guide = guide_legend(title = 'month'),labels=month.short) +
+        theme_bw() + theme(text = element_text(size = 15),
         panel.grid.major = element_blank(),axis.text.y = element_text(size=6, angle=0),
+        axis.text.x=element_blank(),axis.title.x=element_blank(),axis.ticks.x=element_blank(),
         plot.title = element_text(hjust = 0.5),panel.background = element_blank(),
         panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
         panel.border = element_rect(colour = "black"),strip.background = element_blank(),
