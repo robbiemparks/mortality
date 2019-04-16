@@ -158,7 +158,7 @@ names(additional.deaths.summary.all.print) = c('Age group','Sex','Cause','Deaths
 library(tidyr)
 
 # wide WITHOUT other deaths included in summation of intent etc.
-additional.deaths.summary.all.print.wide = spread(additional.deaths.summary.all.print,'Age group','Deaths added')
+# additional.deaths.summary.all.print.wide = spread(additional.deaths.summary.all.print,'Age group','Deaths added')
 
 # B. by month
 
@@ -174,7 +174,7 @@ names(additional.deaths.summary.monthly.print) = c('Month','Sex','Cause','Deaths
 # additional.deaths.wo.other.monthly = subset(additional.deaths.monthly,!(cause%in%c('Other external causes of injury')))
 
 # wide WITHOUT other deaths included in summation of intent etc.
-additional.deaths.summary.monthly.all.print.wide = spread(additional.deaths.summary.monthly.print,'Month','Deaths added')
+# additional.deaths.summary.monthly.all.print.wide = spread(additional.deaths.summary.monthly.print,'Month','Deaths added')
 
 ########################################
 
