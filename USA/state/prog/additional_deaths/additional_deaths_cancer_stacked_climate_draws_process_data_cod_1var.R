@@ -70,13 +70,14 @@ for(h in causes.all){
 if(model%in%c('1d','1d2')){
 
     dat.mort <- readRDS(paste0('../../output/prep_data_cod/datus_state_rates_cod_',year.start,'_',year.end))
+    dat.mort <- subset(dat.mort,cause='Cancer')
     print(head(dat.mort))
 
     # make for national data
     dat.mort$deaths.pred <- with(dat.mort,pop.adj*rate.adj)
-    dat.national <- ddply(dat.mort,.(year,month,cause.sub,sex,age),summarize,deaths=sum(deaths),deaths.pred=sum(deaths.pred),pop.adj=sum(pop.adj))
+    dat.national <- ddply(dat.mort,.(year,month,cause,sex,age),summarize,deaths=sum(deaths),deaths.pred=sum(deaths.pred),pop.adj=sum(pop.adj))
     dat.national$rate.adj <- with(dat.national,deaths.pred/pop.adj)
-    dat.national <- dat.national[order(dat.national$cause.sub,dat.national$sex,dat.national$age,dat.national$year,dat.national$month),]
+    dat.national <- dat.national[order(dat.national$cause,dat.national$sex,dat.national$age,dat.national$year,dat.national$month),]
 
     # with all the draws made for each age and sex, will now make an estimate for additional deaths
     additional.deaths = data.frame()
@@ -88,10 +89,6 @@ if(model%in%c('1d','1d2')){
             dat.merged.sub.all = data.frame()
             # for each cause of death in cause.all
             for(h in causes.all){
-
-                # isolate the cause
-                dat.national$cause.group = NULL ; names(dat.national)[3] = 'cause.'
-                dat.national.current <- subset(dat.national,cause.==as.character(h)) ; names(dat.national.current)[3] = 'cause'
 
                 # empty data frame for parameters
                 parameter.table = data.frame()
@@ -150,7 +147,7 @@ if(model%in%c('1d','1d2')){
 
     # save additional.deaths, additional.deaths.monthly and additional.deaths.total NEED TO ADD FOR NON_CONTIG ALSO
     output.local = paste0('~/data/mortality/US/state/draws/',year.start,'_',year.end,
-                    '/',dname,'/',metric,'/non_pw/type_',model,'/contig/all_cardio/',num.draws,'_draws/')
+                    '/',dname,'/',metric,'/non_pw/type_',model,'/contig/cancer/',num.draws,'_draws/')
     ifelse(!dir.exists(output.local), dir.create(output.local,recursive=TRUE), FALSE)
 
     # saveRDS(additional.deaths,paste0(file.loc,'additional_deaths_age_draws.rds'))
@@ -158,9 +155,9 @@ if(model%in%c('1d','1d2')){
     # saveRDS(additional.deaths.total,paste0(file.loc,'additional_deaths_total_draws.rds'))
 
     # summarise each cause of deaths as well as intent
-    additional.deaths.total.intent = additional.deaths.total
-    additional.deaths.total.intent$intent = ifelse(additional.deaths.total.intent$cause%in%causes.cardio,'Cardiovascular','Respiratory')
-    additional.deaths.total.intent = ddply(additional.deaths.total.intent,.(draw,intent),summarize,deaths.added=sum(deaths.added),deaths.added.two.deg=sum(deaths.added.two.deg))
+    # additional.deaths.total.intent = additional.deaths.total
+    # additional.deaths.total.intent$intent = ifelse(additional.deaths.total.intent$cause%in%causes.cardio,'Cardiovascular','Respiratory')
+    # additional.deaths.total.intent = ddply(additional.deaths.total.intent,.(draw,intent),summarize,deaths.added=sum(deaths.added),deaths.added.two.deg=sum(deaths.added.two.deg))
 
     # total deaths overall also
     additional.deaths.total.total = additional.deaths.total

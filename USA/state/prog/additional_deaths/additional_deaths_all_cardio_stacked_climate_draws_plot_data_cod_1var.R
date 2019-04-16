@@ -408,7 +408,7 @@ ggplot() +
     xlab('Age group (years)') + ylab('Excess relative risk associated with 1 degree additional warming') +
     # ylim(c(min.plot,max.plot)) +
     facet_grid(cause~sex.long,scale='free') +
-    scale_y_continuous(labels=scales::percent_format(accuracy=1)) +
+    scale_y_continuous(labels=scales::percent_format()) +
     scale_color_manual(values=colors.cardio[c(1,2,4,5)]) +
     # scale_y_continuous(breaks = seq(min.plot, max.plot, by = 50),limits=c(min.plot,max.plot)) +
     guides(color=FALSE) +
@@ -457,7 +457,7 @@ ggplot() +
     # ylim(c(min.plot,max.plot)) +
     coord_flip() +
     facet_grid(cause~sex.long) +
-    scale_y_continuous(labels=scales::percent_format(accuracy=1)) +
+    scale_y_continuous(labels=scales::percent_format()) +
     scale_color_manual(values=colors.cardio[c(1,2,4,5)]) +
     # scale_y_continuous(breaks = seq(min.plot, max.plot, by = 50),limits=c(min.plot,max.plot)) +
     # guides(color=guide_legend(title="",nrow=1)) +
