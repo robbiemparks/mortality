@@ -16,7 +16,7 @@ declare metric="meanc3"
 declare -a cods=("Cardiopulmonary")
 declare -i fast=1
 declare -i contig=1
-declare -a draws=(1000)
+declare -a draws=(5000)
 
 #################################################
 # 1. MAKE DRAWS
@@ -33,7 +33,7 @@ for cod in "${cods[@]}"; do
 for model in "${models[@]}"; do
 for draw in "${draws[@]}"; do
 
-echo "combining results into one file from INLA model $model years $start - $end";
+echo "making draws from INLA model $model years $start - $end";
 
 Rscript ~/git/mortality/USA/state/prog/draws/draws_inla_climate_cod_1var.R $start $end $country $model $dname $metric $cod $contig $draw;
 
