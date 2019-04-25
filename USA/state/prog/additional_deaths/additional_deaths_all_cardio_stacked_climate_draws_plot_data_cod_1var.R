@@ -97,7 +97,7 @@ p1 = ggplot() +
     geom_point(data=subset(additional.deaths.intent.summary,sex.long!='Both'&age.long!='All ages'),aes(x=as.factor(age.long),y=deaths.added.mean),shape=16) +
     # geom_errorbar(data=subset(additional.deaths.intent.summary),aes(x=as.factor(age.long),ymax=deaths.added.ul,ymin=deaths.added.ll),width=.3,size=0.5) +
     geom_hline(yintercept=0,linetype='dotted') +
-    xlab('Age group (years)') + ylab('Additional deaths associated with 1 degree \n additional warming (based on 2016 population)') +
+    xlab('Age group (years)') + ylab('Additional deaths associated with a 1 degree \n warmer year (based on 2016 population)') +
     # ylim(c(min.plot,max.plot)) +
     facet_grid(.~intent +sex.long) +
     scale_fill_manual(values=colors.cardio[c(1,2,4,5)]) +
@@ -125,7 +125,7 @@ p2 =ggplot() +
     geom_point(data=subset(additional.deaths.intent.monthly.summary),aes(x=as.factor(month.short),y=deaths.added.mean),shape=16) +
     # geom_errorbar(data=subset(additional.deaths.intent.monthly.summary),aes(x=as.factor(month.short),ymax=deaths.added.ul,ymin=deaths.added.ll),width=.3,size=0.5) +
     geom_hline(yintercept=0,linetype='dotted') +
-    xlab('Month') + ylab('Additional deaths associated with 1 degree \n additional warming (based on 2016 population)') +
+    xlab('Month') + ylab('Additional deaths associated with a 1 degree \n warmer year (based on 2016 population)') +
     # ylim(c(min.plot,max.plot)) +
     facet_grid(. ~intent + sex.long) +
     scale_fill_manual(values=colors.cardio[c(1,2,4,5)]) +
@@ -224,7 +224,7 @@ p3$widths[2:3] = maxWidth ; p4$widths[2:3] = maxWidth ; p5$widths[2:3] = maxWidt
 # everything all on one page
 pdf(paste0(file.loc,country,'_rate_pred_type',model,
     '_',year.start,'_',year.end,'_',dname,'_',metric,'_cardiovascular_respiratory_all_contig.pdf'),paper='a4r',height=0,width=0)
-grid.arrange(p3,p4,nrow=2,left='Additional deaths associated with 1 degree additional warming (based on 2016 population)')
+grid.arrange(p3,p4,nrow=2,left='Additional deaths associated with a 1 degree warmer year (based on 2016 population)')
 dev.off()
 
 #name=expression(paste("Temperature (",degree,"C)"))
@@ -232,7 +232,7 @@ dev.off()
 # same plot as above but with skipping month names
 pdf(paste0(file.loc,country,'_rate_pred_type',model,
     '_',year.start,'_',year.end,'_',dname,'_',metric,'_cardiovascular_respiratory_all_contig_month_skip.pdf'),paper='a4r',height=0,width=0)
-grid.arrange(p3,p5,nrow=2,left='Additional deaths associated with 1 degree additional warming (based on 2016 population)')
+grid.arrange(p3,p5,nrow=2,left='Additional deaths associated with a 1 degree warmer year (based on 2016 population)')
 dev.off()
 
 # PLOTS IN RELATIVE RISK IN DEATHS
