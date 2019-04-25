@@ -51,6 +51,33 @@ dat.summary.entire.age = ddply(dat.summary.entire.age,.(sex),mutate,percentage=1
 dat.summary.entire.time = ddply(dat,.(year,cause,sex),summarise,deaths=sum(deaths))
 dat.summary.entire.time = ddply(dat.summary.entire.time,.(year,sex),mutate,percentage=100*deaths/sum(deaths))
 
+# percentile summary of population by year
+dat.pop.percentile = ddply(subset(dat,month==6&cause=='Cancer'),.(year,sex,fips),summarise,pop=sum(pop))
+dat.pop.percentile = ddply(subset(dat.pop.percentile),.(year,sex),summarise,
+                            popmin=min(pop), pop25=quantile(pop,0.25),
+                            pop50=quantile(pop,0.5),pop75=quantile(pop,0.75),
+                            popmax=max(pop))
+
+
+dat.deaths.all.cause.percentile = ddply(dat,.(year,sex,fips),summarise,deaths=sum(deaths))
+dat.deaths.all.cause.percentile = ddply(subset(dat.deaths.all.cause.percentile),.(year,sex),summarise,
+                            deathsmin=min(deaths), deaths25=quantile(deaths,0.25),
+                            deaths50=quantile(deaths,0.5),deaths75=quantile(deaths,0.75),
+                            deathsmax=max(deaths))
+
+dat.deaths.cods.percentile = ddply(dat,.(year,sex,fips,cause),summarise,deaths=sum(deaths))
+dat.deaths.cods.percentile = ddply(subset(dat.deaths.cods.percentile),.(year,cause,sex),summarise,
+                            deathsmin=min(deaths), deaths25=quantile(deaths,0.25),
+                            deaths50=quantile(deaths,0.5),deaths75=quantile(deaths,0.75),
+                            deathsmax=max(deaths))
+
+dat.deaths.cods.percentage.percentile = ddply(dat,.(year,sex,fips,cause),summarise,deaths=sum(deaths))
+dat.deaths.cods.percentage.percentile = ddply(dat.deaths.cods.percentage.percentile,.(year,sex,fips),mutate,percentage=100*deaths/sum(deaths))
+dat.deaths.cods.percentage.percentile = ddply(subset(dat.deaths.cods.percentage.percentile),.(year,cause,sex),summarise,
+                            percmin=min(percentage), perc25=quantile(percentage,0.25),
+                            perc50=quantile(percentage,0.5),perc75=quantile(percentage,0.75),
+                            percmax=max(percentage))
+
 # dat.summary.entire.time = spread(dat.summary.entire.time, key = 'sex', value='deaths')
 # names(dat.summary.entire.time) = c('Cause','Male','Female')
 
@@ -76,6 +103,12 @@ dat.summary.entire.time = ddply(dat.summary.entire.time,.(year,sex),mutate,perce
 write.csv(dat.summary.entire.age,paste0(file.loc,'deaths_summary_byages_',class.arg,'_',year.start.arg,'_',year.end.arg,'.csv'),row.names=FALSE)
 write.csv(dat.summary.entire,paste0(file.loc,'deaths_summary_allages_over_time',class.arg,'_',year.start.arg,'_',year.end.arg,'.csv'),row.names=FALSE)
 write.csv(dat.summary.entire.time,paste0(file.loc,'deaths_summary_ageseparate_over_time',class.arg,'_',year.start.arg,'_',year.end.arg,'.csv'),row.names=FALSE)
+
+write.csv(dat.pop.percentile,paste0(file.loc,'population_summary_percentile_',class.arg,'_',year.start.arg,'_',year.end.arg,'.csv'),row.names=FALSE)
+write.csv(dat.deaths.all.cause.percentile,paste0(file.loc,'deaths_summary_allcause_percentile_',class.arg,'_',year.start.arg,'_',year.end.arg,'.csv'),row.names=FALSE)
+write.csv(dat.deaths.cods.percentile,paste0(file.loc,'deaths_summary_causes_percentile_',class.arg,'_',year.start.arg,'_',year.end.arg,'.csv'),row.names=FALSE)
+write.csv(dat.deaths.cods.percentage.percentile,paste0(file.loc,'deaths_summary_causes_percentage_percentile_',class.arg,'_',year.start.arg,'_',year.end.arg,'.csv'),row.names=FALSE)
+
 # write.csv(dat.summary.age.year,paste0(file.loc,'deaths_summary_ageseparate_yearly_',class.arg,'_',year.start.arg,'_',year.end.arg,'.csv'),row.names=FALSE)
 
 # plot over time by sex and cause TO FINISH
