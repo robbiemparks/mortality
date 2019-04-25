@@ -1225,7 +1225,7 @@ if(model %in% c('1e','1f')){
         for(i in sort(unique(dat$age))){plot.function.excess.risk.state.ranking.age.sex(2,i)}
         dev.off()
 
-        # function to show ranking by age in states for each sex in jan and july
+        # function to show ranking by age in states for each sex TO TEST
         plot.function.excess.risk.state.ranking.age.sex.month <- function(sex.sel) {
 
         dat=subset(dat,sex==sex.sel&month%in%c(c(1:12)))
@@ -1245,26 +1245,26 @@ if(model %in% c('1e','1f')){
         shapefile.data = read.csv('../../data/shapefiles/shapefile_data.csv')
         dat = merge(dat,shapefile.data,by.x=c('fips'),by.y=c('fips'))
 
-        # sort by low risk to highest risk
-        dat = dat[with(dat, order(odds.mean)),]
+        # for each grouping of age,sex,month, rank by odds
+        dat.ranked = arrange(dat, age, sex, month, odds.mean)
 
-        # create unique column of month and state
-        dat$unique = 1:nrow(dat)
+        # add unique ranking id by age,sex,month
+        dat.ranked = ddply(dat.ranked,.(age,sex,month), transform, pos=rank(odds.mean,ties.method='first'))
 
         # plotting
-        print(ggplot(data=subset(dat)) +
-        geom_errorbar(aes(x=unique,ymin=odds.ll,ymax=odds.ul), width=0,alpha=0.2) +
-        geom_point(aes(x=unique,y=odds.mean), alpha=0.5) +
+        print(ggplot(data=subset(dat.ranked)) +
+        geom_errorbar(aes(x=pos,ymin=odds.ll,ymax=odds.ul), width=0,alpha=0.2) +
+        geom_point(aes(x=pos,y=odds.mean), alpha=0.5) +
         geom_hline(yintercept=0,linetype='dotted') +
         xlab('Age group (years)') + ylab('Excess relative risk associated with a 1 degree warmer year') +
         scale_y_continuous(limits=c(min.plot,max.plot),labels=scales::percent) +
         coord_flip() +
-        facet_grid(age.long~month.short,scales='free') +
+        facet_grid(age.long~month.short,switch='y') +
         guides(color=guide_legend(nrow=1)) +
         # scale_colour_manual(values=colorRampPalette(rev(brewer.pal(12,"RdYlBu")[c(9:10,2:1,1:2,10:9)]))(12),guide = guide_legend(title = 'month'),labels=month.short) +
         theme_bw() + theme(text = element_text(size = 15),
         panel.grid.major = element_blank(),
-        axis.text.y=element_blank(),axis.title.y=element_blank(),axis.ticks.y=element_blank(),
+        axis.text.y=element_blank(),axis.ticks.y=element_blank(),
         plot.title = element_text(hjust = 0.5),panel.background = element_blank(),
         panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
         panel.border = element_rect(colour = "black"),strip.background = element_blank(),
@@ -1382,17 +1382,158 @@ if(model %in% c('1e','1f')){
         legend.background = element_rect(fill="white", size=.5, linetype="dotted")))
         }
 
-        # male output to pdf
-        pdf(paste0(file.loc,'climate_month_params_excess_risk_w_national_men_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
-        for(i in sort(unique(dat$age))){plot.function.excess.risk.w.national(1,i,10)}
-        dev.off()
-
-        # female output to pdf
-        pdf(paste0(file.loc,'climate_month_params_excess_risk_w_national_women_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
-        for(i in sort(unique(dat$age))){plot.function.excess.risk.w.national(2,i,10)}
-        dev.off()
+        # # male output to pdf
+        # pdf(paste0(file.loc,'climate_month_params_excess_risk_w_national_men_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
+        # for(i in sort(unique(dat$age))){plot.function.excess.risk.w.national(1,i,10)}
+        # dev.off()
+        #
+        # # female output to pdf
+        # pdf(paste0(file.loc,'climate_month_params_excess_risk_w_national_women_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
+        # for(i in sort(unique(dat$age))){plot.function.excess.risk.w.national(2,i,10)}
+        # dev.off()
 
     # load draws for excess risks and rank
-    dat = readRDS('')
+    file.loc.draws = paste0('../../output/additional_deaths_climate/',year.start,'_',year.end,'/',dname,'/',metric,'/non_pw/type_',model,'/contig/all_cardio/',draws,'_draws/')
+    dat = readRDS(paste0(file.loc.draws,'parameters_draws.rds'))
+    dat$month = dat$ID
+    dat$ID = NULL
+
+    # for each grouping of age,sex,month,draw rank by odds
+    dat.ranked = arrange(dat, age, sex, month, draw, odds.mean)
+
+    # add unique ranking id by age,sex,month,draw
+    dat.ranked = ddply(dat.ranked,.(age,sex,month,draw), transform, pos=rank(odds.mean,ties.method='first'))
+
+    # only take top and bottom 5 of each
+    dat.ranked.sub = subset(dat.ranked,pos<=5|pos>=45)
+    dat.ranked.sub$rank = ifelse(dat.ranked.sub$pos<=5,'bottom','top')
+    dat = count(dat.ranked.sub,vars=c('rank','cause','age','sex','month','fips'))
+
+	# create an exhaustive list of location sex age month
+	fips 	=	c(1,4,5,6,8,9,10,11,12,13,16,17,18,19,20,21,22,23,24,25,
+				26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,
+				41,42,44,45,46,47,48,49,50,51,53,54,55,56)
+	month 	= 	c(1:12)
+	sex 	= 	c(1:2)
+	age 	= 	c(0,5,15,25,35,45,55,65,75,85)
+	cause 	=	c('Cardiopulmonary')
+    rank    =   c('top','bottom')
+
+	complete.grid <- expand.grid(cause=cause,age=age,sex=sex,month=month,fips=fips,rank=rank)
+
+    #merge
+    dat.complete = merge(complete.grid,dat,by=c('cause','age','sex','month','fips','rank'),all.x=TRUE)
+
+    # assign missing values to have value 0
+	dat.complete$freq <- ifelse(is.na(dat.complete$freq)==TRUE,0,dat.complete$freq)
+
+    # probability calculation
+    dat.complete$prob = with(dat.complete,freq/draws)
+
+    dat.top = subset(dat.complete,rank=='top')
+    dat.bottom = subset(dat.complete,rank=='bottom')
+
+    dat.top = merge(dat.top,drawseq.lookup)
+    dat = dat.complete
+
+    # source map
+    source('../../prog/01_functions/map_generate.R')
+
+    # merge selected data to map dataframe for colouring of ggplot
+    # dat= merge(dat,drawseq.lookup)
+    dat$DRAWSEQ = NULL
+    plot <- merge(USA.df,dat,by.x=c('STATE_FIPS'),by.y=c('fips'))
+    plot <- with(plot, plot[order(rank,sex,age,month,DRAWSEQ,order),])
+
+    # function to plot age for all months subnationally
+    plot.function.age <- function(rank.sel,sex.sel,age.sel) {
+
+        # find limits for plot
+        min.plot <- 0
+        max.plot <- 1
+
+        # attach long month names
+        plot$month.short <- mapvalues(plot$month,from=sort(unique(plot$month)),to=month.short)
+        plot$month.short <- reorder(plot$month.short,plot$month)
+
+        # long age name for title
+        age.long <- as.character(age.code[age.code$age==age.sel,2])
+
+        # plotting
+        print(ggplot(data=subset(plot,rank==rank.sel&sex==sex.sel & age==age.sel),aes(x=long,y=lat,group=group)) +
+        geom_polygon(aes(fill=prob),color='black',size=0.01) +
+        scale_fill_gradient2(limits=c(min.plot,max.plot),low="green", mid="white",high="red",midpoint=0,guide = guide_legend(title = ''),labels=percent) +
+        facet_wrap(~month.short) +
+        guides(fill=guide_colorbar(barwidth=30, title='Probability of being in top 5 with a 1 degree warmer year')) +
+        ggtitle(paste0(cod.print,' ', age.sel,' ',sex.lookup2[sex.sel],' : ', year.start,'-',year.end)) +
+        theme_map() +
+        theme(text = element_text(size = 15),legend.position = 'bottom',legend.justification=c(0.5,0),strip.background = element_blank()))
+        }
+
+    # male output to pdf
+    pdf(paste0(file.loc,'prob_top5_params_map_men_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
+    for(i in sort(unique(dat$age))){plot.function.age('top',1,i)}
+    dev.off()
+
+    # female output to pdf
+    pdf(paste0(file.loc,'prob_top5_params_map_women_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
+    for(i in sort(unique(dat$age))){plot.function.age('top',2,i)}
+    dev.off()
+
+    # male output to pdf
+    pdf(paste0(file.loc,'prob_bottom5_params_map_men_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
+    for(i in sort(unique(dat$age))){plot.function.age('bottom',1,i)}
+    dev.off()
+
+    # female output to pdf
+    pdf(paste0(file.loc,'prob_bottom5_params_map_women_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
+    for(i in sort(unique(dat$age))){plot.function.age('bottom',2,i)}
+    dev.off()
+
+    # function to plot month for all ages subnationally
+    plot.function.month <- function(rank.sel,sex.sel,month.sel) {
+
+        # find limits for plot
+        min.plot <- 0
+        max.plot <- 1
+
+        # attach long month names
+        plot$month.short <- mapvalues(plot$month,from=sort(unique(plot$month)),to=month.short)
+        plot$month.short <- reorder(plot$month.short,plot$month)
+
+        # attach long age names
+        plot$age.long <- mapvalues(plot$age,from=sort(unique(plot$age)),to=c(as.character(age.code[,2])))
+        plot$age.long <- reorder(plot$age.long,plot$age)
+
+        # plotting
+        print(ggplot(data=subset(plot,rank==rank.sel&sex==sex.sel & month==month.sel),aes(x=long,y=lat,group=group)) +
+        geom_polygon(aes(fill=prob),color='black',size=0.01) +
+        scale_fill_gradient2(limits=c(min.plot,max.plot),low="green", mid="forest green",high="purple",midpoint=0,guide = guide_legend(title = ''),labels=percent) +
+        facet_wrap(~age.long) +
+        guides(fill=guide_colorbar(barwidth=30, title='Probability of being in top 5 with a 1 degree warmer year')) +
+        ggtitle(paste0(cod.print,' ', month.short[month.sel],' ',sex.lookup2[sex.sel],' : ', year.start,'-',year.end)) +
+        theme_map() +
+        theme(text = element_text(size = 15),legend.position = 'bottom',legend.justification=c(0.5,0),strip.background = element_blank()))
+        }
+
+    # male output to pdf
+    pdf(paste0(file.loc,'prob_top5_params_map_men_jan_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
+    plot.function.month('top',1,1)
+    dev.off()
+
+    # female output to pdf
+    pdf(paste0(file.loc,'prob_top5_params_map_women_jan_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
+    plot.function.month('top',2,1)
+    dev.off()
+
+    # male output to pdf
+    pdf(paste0(file.loc,'prob_bottom5_params_map_men_july_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
+    plot.function.month('bottom',1,7)
+    dev.off()
+
+    # female output to pdf
+    pdf(paste0(file.loc,'prob_bottom5_params_map_women_july_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
+    plot.function.month('bottom',2,7)
+    dev.off()
 
 }
