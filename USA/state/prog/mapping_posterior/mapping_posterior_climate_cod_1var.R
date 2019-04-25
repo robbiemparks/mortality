@@ -1527,6 +1527,15 @@ if(model %in% c('1e','1f')){
     dev.off()
 
     # male output to pdf
+    pdf(paste0(file.loc,'prob_bottom5_params_map_men_jan_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
+    plot.function.month('bottom',1,1)
+    dev.off()
+
+    # female output to pdf
+    pdf(paste0(file.loc,'prob_bottom5_params_map_women_jan_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
+    plot.function.month('bottom',2,1)
+
+    # male output to pdf
     pdf(paste0(file.loc,'prob_bottom5_params_map_men_july_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
     plot.function.month('bottom',1,7)
     dev.off()
@@ -1534,6 +1543,19 @@ if(model %in% c('1e','1f')){
     # female output to pdf
     pdf(paste0(file.loc,'prob_bottom5_params_map_women_july_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
     plot.function.month('bottom',2,7)
+    dev.off()
+
+    # male output to pdf
+    pdf(paste0(file.loc,'prob_top5_params_map_men_july_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
+    plot.function.month('top',1,7)
+    dev.off()
+
+    # female output to pdf
+    pdf(paste0(file.loc,'prob_top5_params_map_women_july_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
+    plot.function.month('top',2,7)
+    dev.off()
+
+
     dev.off()
 
 }
