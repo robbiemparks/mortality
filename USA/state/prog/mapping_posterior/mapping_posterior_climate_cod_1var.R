@@ -21,7 +21,7 @@ draws = as.numeric(args[10])
 
 # NEED TO MAKE CONTIG OPTION ACTUALLY DO SOMETHING
 
-# year.start = 1980 ; year.end = 2016 ; country = 'USA' ; model = 11; dname = 't2m' ; metric = 'meanc3' ; cause = 'Cardiopulmonary'; contig=1
+# year.start = 1980 ; year.end = 2016 ; country = 'USA' ; model = 10; dname = 't2m' ; metric = 'meanc3' ; cause = 'Transport accidents'; contig=1
 # pw.arg = 0; draws=1000
 
 multiple = 0
@@ -154,25 +154,30 @@ if(model%in%c('1d','1d2')){
     names(dat.csv) = c('age','sex','month','mean','2.5%','97.5%')
     #write.csv(dat.csv,paste0('../../data/climate_effects/',dname,'/',metric,'/non_pw/type_',model,'/parameters/',country,'_rate_pred_type',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_fast.csv'))
 
+    dat$month.short <- mapvalues(dat$ID,from=sort(unique(dat$ID)),to=c(as.character(month.short)))
+    dat$month.short <- reorder(dat$month.short,rev(dat$ID))
+
     # FOREST PLOTS OF PARAMETERS
     forest.plot.national.age <- function() {
         print(ggplot(data=dat) +
-        geom_pointrange(aes(x=ID,y=odds.mean,ymin=odds.ll,ymax=odds.ul,color=as.factor(sex)), position=position_dodge(width=0.5)) +
+        geom_pointrange(aes(x=month.short,y=odds.mean,ymin=odds.ll,ymax=odds.ul,color=as.factor(sex)), position=position_dodge(width=0.5)) +
         geom_hline(yintercept=0, lty=2) +
         #scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
-        scale_y_continuous(labels=percent) +
-        ggtitle(cod.print) +
-        coord_flip(ylim = c(-0.03,0.03)) +
+        scale_y_continuous(labels=scales::percent_format(accuracy=1)) +
+        # ggtitle(cod.print) +
+        # coord_flip(ylim = c(-0.03,0.03)) +
+        coord_flip() +
         facet_wrap(~age.long, nrow=2) +
-        xlab("Month") + ylab(paste0("Excess risk for 1 additional ",unit.name," above long-term average")) +
+        xlab("Month") + ylab(paste0("Excess relative risk associated with a 1 degree warmer year")) +
         labs(color = "Sex\n") +
-        scale_color_manual(labels = c("Men", "Women"), values = c("blue", "red")) +
-        theme_bw() + theme(panel.grid.major = element_blank(),axis.text.x = element_text(angle=0),
+        scale_color_manual(labels = c("Male", "Female"), values = c("blue", "red")) +
+        theme_bw() + theme(text = element_text(size = 15),
+        panel.grid.major = element_blank(),axis.text.x = element_text(angle=0),
         plot.title = element_text(hjust = 0.5),panel.background = element_blank(),
         panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
         panel.border = element_rect(colour = "black"),strip.background = element_blank(),
         legend.position = 'bottom',legend.justification='center',
-        legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
+        legend.background = element_rect(fill="white", size=.5, linetype="dotted"))
         )
     }
 
@@ -183,21 +188,23 @@ if(model%in%c('1d','1d2')){
         dat$month.short <- reorder(dat$month.short,dat$ID)
 
         print(ggplot(data=dat) +
-        geom_pointrange(aes(x=age,y=odds.mean,ymin=odds.ll,ymax=odds.ul,color=as.factor(sex)), position=position_dodge(width=4)) +
+        geom_pointrange(aes(x=as.factor(age.long),y=odds.mean,ymin=odds.ll,ymax=odds.ul,color=as.factor(sex)), position=position_dodge(width=0.5)) +
         geom_hline(yintercept=0, lty=2) +
-        scale_y_continuous(labels=percent) +
-        coord_flip(ylim = c(-0.03,0.03)) +
-        ggtitle(cod.print) +
+        scale_y_continuous(labels=scales::percent_format(accuracy=1)) +
+        # coord_flip(ylim = c(-0.03,0.03)) +
+        coord_flip() +
+        # ggtitle(cod.print) +
         facet_wrap(~month.short, nrow=2) +
-        xlab("Age") + ylab(paste0("Excess risk for 1 additional ",unit.name," above long-term average")) +
+        xlab("Age group (years)") + ylab(paste0("Excess relative risk associated with a 1 degree warmer year")) +
         labs(color = "Sex\n") +
-        scale_color_manual(labels = c("Men", "Women"), values = c("blue", "red")) +
-        theme_bw() + theme(panel.grid.major = element_blank(),axis.text.x = element_text(angle=0),
+        scale_color_manual(labels = c("Male", "Female"), values = c("blue", "red")) +
+        theme_bw() + theme(text = element_text(size = 15),
+        panel.grid.major = element_blank(),axis.text.x = element_text(angle=0),
         plot.title = element_text(hjust = 0.5),panel.background = element_blank(),
         panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
         panel.border = element_rect(colour = "black"),strip.background = element_blank(),
         legend.position = 'bottom',legend.justification='center',
-        legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
+        legend.background = element_rect(fill="white", size=.5, linetype="dotted"))
         )
     }
 
@@ -205,6 +212,9 @@ if(model%in%c('1d','1d2')){
     pdf(paste0(file.loc,'climate_month_params_forest_age_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
     forest.plot.national.age()
     dev.off()
+
+    dat$age.long <- mapvalues(dat$age,from=sort(unique(dat$age)),to=c(as.character(age.code[,2])))
+    dat$age.long <- reorder(dat$age.long,rev(dat$age))
 
     # national intercepts by month
     pdf(paste0(file.loc,'climate_month_params_forest_month_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
