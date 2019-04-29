@@ -68,9 +68,9 @@ fix_names = function(dat){
     dat$cause <- gsub('3. Drownings', 'Drownings', dat$cause)                                           # 3
     dat$cause <- gsub('4. Other injuries', 'Other unintentional injuries', dat$cause)                   # 4
     dat$cause <- gsub('5. Assault', 'Assault', dat$cause)                                               # 5
-    dat$cause <- gsub('6. Intentional\nself-harm', 'Intentional self-harm', dat$cause)                  # 6
+    dat$cause <- gsub('6. Intentional\nself-harm', 'Suicide', dat$cause)                  # 6
 
-    dat$cause = factor(dat$cause, levels=c('Transport','Falls','Drownings','Other unintentional injuries','Assault','Intentional self-harm'))
+    dat$cause = factor(dat$cause, levels=c('Transport','Falls','Drownings','Other unintentional injuries','Assault','Suicide'))
 
     dat$intent <- gsub('1. Unintentional', 'Unintentional', dat$intent)                                 # 1
     dat$intent <- gsub('2. Intentional', 'Intentional', dat$intent)                                     # 2
@@ -89,7 +89,7 @@ additional.deaths.intent.monthly.summary = ddply(subset(additional.deaths.summar
 pdf(paste0(file.loc,country,'_rate_pred_type',model,
     '_',year.start,'_',year.end,'_',dname,'_',metric,'_unintentional_to_transport_falls_drownings_other_fast_contig.pdf'),paper='a4r',height=0,width=0)
 ggplot() +
-    geom_bar(data=subset(additional.deaths.summary,sex>0&age<99&!(cause%in%c('Other unintentional injuries', 'Assault','Intentional self-harm'))), aes(x=as.factor(age.long),y=deaths.added.mean,fill=cause), stat='identity') +
+    geom_bar(data=subset(additional.deaths.summary,sex>0&age<99&!(cause%in%c('Other unintentional injuries', 'Assault','Suicide'))), aes(x=as.factor(age.long),y=deaths.added.mean,fill=cause), stat='identity') +
     geom_point(data=subset(additional.deaths.intent.summary,intent=='Unintentional'&sex.long!='Both'&age.long!='All ages'),aes(x=as.factor(age.long),y=deaths.added.mean),shape=16) +
     # geom_bar(data=subset(additional.deaths.intent.summary,intent=='Unintentional'&sex.long%in%c('Male','Female')&age.long%in%age.print),aes(x=as.factor(age.long),y=deaths.added.mean),fill=NA,color='black',stat='identity') +
     # geom_errorbar(data=subset(additional.deaths.intent.summary,intent=='Unintentional'),aes(x=as.factor(age.long),ymax=deaths.added.ul,ymin=deaths.added.ll),width=.3,size=0.5) +
@@ -113,7 +113,7 @@ dev.off()
 pdf(paste0(file.loc,country,'_rate_pred_type',model,
     '_',year.start,'_',year.end,'_',dname,'_',metric,'_intentional_to_assault_intentional_self-harm_fast_contig.pdf'),paper='a4r',height=0,width=0)
 ggplot() +
-    geom_bar(data=subset(additional.deaths.summary,sex>0&age<99&(cause%in%c('Assault','Intentional self-harm'))), aes(x=as.factor(age.long),y=deaths.added.mean,fill=cause), stat='identity') +
+    geom_bar(data=subset(additional.deaths.summary,sex>0&age<99&(cause%in%c('Assault','Suicide'))), aes(x=as.factor(age.long),y=deaths.added.mean,fill=cause), stat='identity') +
     geom_point(data=subset(additional.deaths.intent.summary,intent=='Intentional'&sex.long!='Both'&age.long!='All ages'),aes(x=as.factor(age.long),y=deaths.added.mean),shape=16) +
     # geom_errorbar(data=subset(additional.deaths.intent.summary,intent=='Intentional'),aes(x=as.factor(age.long),ymax=deaths.added.ul,ymin=deaths.added.ll),width=.3,size=0.5) +
     geom_hline(yintercept=0,linetype='dotted') +
@@ -164,7 +164,7 @@ dev.off()
 pdf(paste0(file.loc,country,'_rate_pred_type',model,
     '_',year.start,'_',year.end,'_',dname,'_',metric,'_unintentional_to_transport_falls_drownings_other_monthly_fast_contig.pdf'),paper='a4r',height=0,width=0)
 ggplot() +
-    geom_bar(data=subset(additional.deaths.summary.monthly,sex>0&month<99&!(cause%in%c('Other unintentional injuries', 'Assault','Intentional self-harm'))), aes(x=as.factor(month.short),y=deaths.added.mean,fill=cause), stat='identity') +
+    geom_bar(data=subset(additional.deaths.summary.monthly,sex>0&month<99&!(cause%in%c('Other unintentional injuries', 'Assault','Suicide'))), aes(x=as.factor(month.short),y=deaths.added.mean,fill=cause), stat='identity') +
     geom_point(data=subset(additional.deaths.intent.monthly.summary,intent=='Unintentional'),aes(x=as.factor(month.short),y=deaths.added.mean),shape=16) +
     # geom_errorbar(data=subset(additional.deaths.intent.monthly.summary,intent=='Unintentional'),aes(x=as.factor(month.short),ymax=deaths.added.ul,ymin=deaths.added.ll),width=.3,size=0.5) +
     geom_hline(yintercept=0,linetype='dotted') +
@@ -187,7 +187,7 @@ dev.off()
 pdf(paste0(file.loc,country,'_rate_pred_type',model,
     '_',year.start,'_',year.end,'_',dname,'_',metric,'_intentional_to_assault_intentional_self-harm_monthly_fast_contig.pdf'),paper='a4r',height=0,width=0)
 ggplot() +
-    geom_bar(data=subset(additional.deaths.summary.monthly,sex>0&month<99&(cause%in%c('Assault','Intentional self-harm'))), aes(x=as.factor(month.short),y=deaths.added.mean,fill=cause), stat='identity') +
+    geom_bar(data=subset(additional.deaths.summary.monthly,sex>0&month<99&(cause%in%c('Assault','Suicide'))), aes(x=as.factor(month.short),y=deaths.added.mean,fill=cause), stat='identity') +
     geom_point(data=subset(additional.deaths.intent.monthly.summary,intent=='Intentional'),aes(x=as.factor(month.short),y=deaths.added.mean),shape=16) +
     # geom_errorbar(data=subset(additional.deaths.intent.monthly.summary,intent=='Intentional'),aes(x=as.factor(month.short),ymax=deaths.added.ul,ymin=deaths.added.ll),width=.3,size=0.5) +
     geom_hline(yintercept=0,linetype='dotted') +
@@ -331,11 +331,11 @@ fix_cause_names = function(dat){
     dat$cause <- gsub('Accidental falls', 'Falls', dat$cause)
     dat$cause <- gsub('Other external causes of injury', 'Other unintentional injuries', dat$cause)
     dat$cause <- gsub('Accidental drowning and submersion', 'Drownings', dat$cause)
-    dat$cause <- gsub('Intentional self-harm', 'Intentional self-harm', dat$cause)
+    dat$cause <- gsub('Intentional self-harm', 'Suicide', dat$cause)
     dat$cause <- gsub('6. Intentional self-harm', '6. Intentional\nself-harm', dat$cause)
     dat$cause <- gsub('Other external causes of injury', 'Other injuries', dat$cause)
     dat$cause <- gsub('Accidental drowning and submersion', 'Drownings', dat$cause)
-    dat$cause <- gsub('Intentional self-harm', 'Intentional self-harm', dat$cause)
+    dat$cause <- gsub('Intentional self-harm', 'Suicide', dat$cause)
     dat$cause <- gsub('Assault', 'Assault', dat$cause)
 
     return(dat)
@@ -367,7 +367,7 @@ additional.deaths.summary.perc = merge(dat.year.summary,additional.deaths.summar
 additional.deaths.summary.perc$perc.mean = with(additional.deaths.summary.perc,deaths.added.mean/deaths)
 additional.deaths.summary.perc$perc.ul = with(additional.deaths.summary.perc,deaths.added.ul/deaths)
 additional.deaths.summary.perc$perc.ll = with(additional.deaths.summary.perc,deaths.added.ll/deaths)
-additional.deaths.summary.perc$cause = factor(additional.deaths.summary.perc$cause, levels=c('Transport','Falls','Drownings','Other unintentional injuries','Assault','Intentional self-harm'))
+additional.deaths.summary.perc$cause = factor(additional.deaths.summary.perc$cause, levels=c('Transport','Falls','Drownings','Other unintentional injuries','Assault','Suicide'))
 
 perc_calculator = function(dat){
     dat$perc.mean = with(dat,deaths.added.mean/deaths)
@@ -379,7 +379,7 @@ perc_calculator = function(dat){
 
 # summarise by age-sex and intent across the year
 # additional.deaths.intent.summary.perc = dat.year.summary
-# additional.deaths.intent.summary.perc$intent = ifelse(additional.deaths.intent.summary.perc$cause%in%c('Assault','Intentional self-harm'),'Intentional','Unintentional')
+# additional.deaths.intent.summary.perc$intent = ifelse(additional.deaths.intent.summary.perc$cause%in%c('Assault','Suicide'),'Intentional','Unintentional')
 # additional.deaths.intent.summary.perc = ddply(additional.deaths.intent.summary.perc,.(sex,age,intent),summarize,deaths=sum(deaths))
 # additional.deaths.intent.summary.perc$sex.long = mapvalues(additional.deaths.intent.summary.perc$age,from=sort(unique(additional.deaths.intent.summary.perc$age)),to=as.character(age.code[,2]))
 # additional.deaths.intent.summary.perc$age.long = mapvalues(additional.deaths.intent.summary.perc$sex,from=sort(unique(additional.deaths.intent.summary.perc$sex)),to=as.character(sex.filter2))
@@ -395,9 +395,9 @@ additional.deaths.summary.perc$sex.long = factor(additional.deaths.summary.perc$
 pdf(paste0(file.loc,country,'_rate_pred_type',model,
     '_',year.start,'_',year.end,'_',dname,'_',metric,'_unintentional_to_transport_falls_drownings_other_fast_excess_risk_contig.pdf'),paper='a4r',height=0,width=0)
 ggplot() +
-    geom_errorbar(data=subset(additional.deaths.summary.perc,sex>0&age<99&!(cause%in%c('Assault','Intentional self-harm','Other unintentional injuries'))),aes(x=as.factor(age.long),ymax=perc.ul,ymin=perc.ll),width=.2,size=0.5) +
-    geom_point(data=subset(additional.deaths.summary.perc,sex>0&age<99&!(cause%in%c('Assault','Intentional self-harm','Other unintentional injuries'))), aes(x=as.factor(age.long),y=perc.mean),size=3,shape=16) +
-    geom_point(data=subset(additional.deaths.summary.perc,sex>0&age<99&!(cause%in%c('Assault','Intentional self-harm','Other unintentional injuries'))), aes(x=as.factor(age.long),y=perc.mean,color=cause),size=2,shape=16) +
+    geom_errorbar(data=subset(additional.deaths.summary.perc,sex>0&age<99&!(cause%in%c('Assault','Suicide','Other unintentional injuries'))),aes(x=as.factor(age.long),ymax=perc.ul,ymin=perc.ll),width=.2,size=0.5) +
+    geom_point(data=subset(additional.deaths.summary.perc,sex>0&age<99&!(cause%in%c('Assault','Suicide','Other unintentional injuries'))), aes(x=as.factor(age.long),y=perc.mean),size=3,shape=16) +
+    geom_point(data=subset(additional.deaths.summary.perc,sex>0&age<99&!(cause%in%c('Assault','Suicide','Other unintentional injuries'))), aes(x=as.factor(age.long),y=perc.mean,color=cause),size=2,shape=16) +
     # geom_point(data=subset(additional.deaths.intent.summary.perc,intent=='1. Unintentional'),aes(x=as.factor(age.long),y=perc.mean),shape=16) +
     # geom_errorbar(data=subset(additional.deaths.intent.summary.perc,intent=='1. Unintentional'),aes(x=as.factor(age.long),ymax=perc.ul,ymin=perc.ll),width=.3,size=0.5) +
     geom_hline(yintercept=0,linetype='dotted') +
@@ -422,9 +422,9 @@ dev.off()
 pdf(paste0(file.loc,country,'_rate_pred_type',model,
     '_',year.start,'_',year.end,'_',dname,'_',metric,'_intentional_to_assault_intentional_self-harm_monthly_excess_risk_fast_contig.pdf'),paper='a4r',height=0,width=0)
 ggplot() +
-    geom_errorbar(data=subset(additional.deaths.summary.perc,sex>0&age<99&(cause%in%c('Assault','Intentional self-harm'))),aes(x=as.factor(age.long),ymax=perc.ul,ymin=perc.ll),width=.2,size=0.5) +
-    geom_point(data=subset(additional.deaths.summary.perc,sex>0&age<99&(cause%in%c('Assault','Intentional self-harm'))), aes(x=as.factor(age.long),y=perc.mean),size=3,shape=16) +
-    geom_point(data=subset(additional.deaths.summary.perc,sex>0&age<99&(cause%in%c('Assault','Intentional self-harm'))), aes(x=as.factor(age.long),y=perc.mean,color=cause),size=2,shape=16) +
+    geom_errorbar(data=subset(additional.deaths.summary.perc,sex>0&age<99&(cause%in%c('Assault','Suicide'))),aes(x=as.factor(age.long),ymax=perc.ul,ymin=perc.ll),width=.2,size=0.5) +
+    geom_point(data=subset(additional.deaths.summary.perc,sex>0&age<99&(cause%in%c('Assault','Suicide'))), aes(x=as.factor(age.long),y=perc.mean),size=3,shape=16) +
+    geom_point(data=subset(additional.deaths.summary.perc,sex>0&age<99&(cause%in%c('Assault','Suicide'))), aes(x=as.factor(age.long),y=perc.mean,color=cause),size=2,shape=16) +
     # geom_point(data=subset(additional.deaths.intent.summary.perc,intent=='1. Unintentional'),aes(x=as.factor(age.long),y=perc.mean),shape=16) +
     # geom_errorbar(data=subset(additional.deaths.intent.summary.perc,intent=='1. Unintentional'),aes(x=as.factor(age.long),ymax=perc.ul,ymin=perc.ll),width=.3,size=0.5) +
     geom_hline(yintercept=0,linetype='dotted') +
@@ -446,7 +446,7 @@ ggplot() +
 dev.off()
 
 additional.deaths.summary.perc$cause = gsub('Intentional self-harm', 'Intentional\nself-harm',additional.deaths.summary.perc$cause)
-additional.deaths.summary.perc$cause = factor(additional.deaths.summary.perc$cause, levels=c('Transport','Falls','Drownings','Other unintentional injuries','Assault','Intentional\nself-harm'))
+additional.deaths.summary.perc$cause = factor(additional.deaths.summary.perc$cause, levels=c('Transport','Falls','Drownings','Other unintentional injuries','Assault','Suicide'))
 
 pdf(paste0(file.loc,country,'_rate_pred_type',model,
     '_',year.start,'_',year.end,'_',dname,'_',metric,'_intentional_unintentional_excess_risk_fast_contig.pdf'),paper='a4r',height=0,width=0)
@@ -539,8 +539,8 @@ additional.deaths.summary.monthly.perc =  perc_calculator(additional.deaths.summ
 # additional.deaths.intent.summary.monthly.perc = merge(additional.deaths.intent.summary.monthly.perc,additional.deaths.intent.monthly.summary,by=c('sex','month','intent'))
 # additional.deaths.intent.summary.monthly.perc =  perc_calculator(additional.deaths.intent.summary.monthly.perc)
 
-additional.deaths.summary.monthly.perc$cause = gsub('Intentional self-harm', 'Intentional\nself-harm',additional.deaths.summary.monthly.perc$cause)
-additional.deaths.summary.monthly.perc$cause = factor(additional.deaths.summary.monthly.perc$cause, levels=c('Transport','Falls','Drownings','Other unintentional injuries','Assault','Intentional\nself-harm'))
+additional.deaths.summary.monthly.perc$cause = gsub('Intentional self-harm', 'Suicide',additional.deaths.summary.monthly.perc$cause)
+additional.deaths.summary.monthly.perc$cause = factor(additional.deaths.summary.monthly.perc$cause, levels=c('Transport','Falls','Drownings','Other unintentional injuries','Assault','Suicide'))
 additional.deaths.summary.monthly.perc$month.short = factor(additional.deaths.summary.monthly.perc$month.short, levels=rev(month.short))
 
 pdf(paste0(file.loc,country,'_rate_pred_type',model,

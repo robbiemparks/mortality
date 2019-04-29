@@ -34,11 +34,11 @@ dat$cause.sub <- gsub('Accidental falls', 'Falls', dat$cause.sub)               
 dat$cause.sub <- gsub('Accidental drowning and submersion', 'Drownings', dat$cause.sub)                         # 3
 dat$cause.sub <- gsub('Other external causes of injury', 'Other unintentional\ninjuries', dat$cause.sub)        # 4
 dat$cause.sub <- gsub('Assault', 'Assault', dat$cause.sub)                                                      # 5
-dat$cause.sub <- gsub('Intentional self-harm', 'Intentional self-harm', dat$cause.sub)                          # 6
+dat$cause.sub <- gsub('Intentional self-harm', 'Suicide', dat$cause.sub)                          # 6
 
 # reorder
 dat$cause = factor(dat$cause, levels=c('Unintentional injuries','Intentional injuries'))
-dat$cause.sub = factor(dat$cause.sub, levels=c('Transport','Falls','Drownings','Assault','Intentional self-harm','Other unintentional\ninjuries'))
+dat$cause.sub = factor(dat$cause.sub, levels=c('Transport','Falls','Drownings','Assault','Suicide','Other unintentional\ninjuries'))
 
 library(plyr)
 library(scales)
@@ -216,7 +216,7 @@ pdf(paste0(file.loc,'injury_ons_subsubcod_all_years_plots_',year.start.arg,'_',y
 
 # full bar chart per age-sex group with breakdown of types of injuries
 dat.last.years$cause.sub = gsub('\n',' ',dat.last.years$cause.sub)
-dat.last.years$cause.sub = factor(dat.last.years$cause.sub, levels=c('Other unintentional injuries','Transport','Falls','Drownings','Assault','Intentional self-harm'))
+dat.last.years$cause.sub = factor(dat.last.years$cause.sub, levels=c('Other unintentional injuries','Transport','Falls','Drownings','Assault','Suicide'))
 
 # function to extract legend of figure
 extract_legend<-function(a.gplot){
@@ -390,7 +390,7 @@ dev.off()
 
 # full bar chart per age-sex group with breakdown of types of injuries
 dat.national.year$cause.sub = gsub('\n',' ',dat.national.year$cause.sub)
-dat.national.year$cause.sub = factor(dat.national.year$cause.sub, levels=c('Other unintentional injuries','Transport','Falls','Drownings','Assault','Intentional self-harm'))
+dat.national.year$cause.sub = factor(dat.national.year$cause.sub, levels=c('Other unintentional injuries','Transport','Falls','Drownings','Assault','Suicide'))
 
 pdf(paste0(file.loc,'injury_ons_subsubcod_age_sex_over_time_plots_stacked_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
 
@@ -419,7 +419,7 @@ dev.off()
 
 # full bar chart per age-sex group with breakdown of types of injuries
 dat.national.year.all$cause.sub = gsub('\n',' ',dat.national.year.all$cause.sub)
-dat.national.year.all$cause.sub = factor(dat.national.year.all$cause.sub, levels=c('Other unintentional injuries','Transport','Falls','Drownings','Assault','Intentional self-harm'))
+dat.national.year.all$cause.sub = factor(dat.national.year.all$cause.sub, levels=c('Other unintentional injuries','Transport','Falls','Drownings','Assault','Suicide'))
 
 pdf(paste0(file.loc,'injury_ons_subsubcod_over_time_plots_stacked_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
 
@@ -430,7 +430,7 @@ r1 = ggplot(dat=dat.national.year.all, aes(x=year,y=(deaths),fill=cause.sub)) +
     ylab('Number of deaths') +
     scale_y_continuous(labels = comma) +
     scale_fill_manual(values=colors.subinjuries[c(4,1,2,3,5,6)], guide = guide_legend(byrow=TRUE,nrow = 1,title = paste0(""))) +
-    facet_wrap(sex.long~.,ncol=2, scales='fixed') +
+    facet_wrap(~sex.long,ncol=2, scales='fixed') +
     theme_bw() + theme( panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
     panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
     panel.border = element_rect(colour = "black"),strip.background = element_blank(),

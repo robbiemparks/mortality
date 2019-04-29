@@ -108,6 +108,7 @@
       <w>.__C__DBIResult</w>
       <w>.__C__DMS</w>
       <w>.__C__Date</w>
+      <w>.__C__Duration</w>
       <w>.__C__EmptyMethodsList</w>
       <w>.__C__Extent</w>
       <w>.__C__GDALDataset</w>
@@ -121,6 +122,7 @@
       <w>.__C__HSV</w>
       <w>.__C__IDate</w>
       <w>.__C__ITime</w>
+      <w>.__C__Interval</w>
       <w>.__C__LAB</w>
       <w>.__C__LU</w>
       <w>.__C__LUV</w>
@@ -145,6 +147,7 @@
       <w>.__C__POSIXct</w>
       <w>.__C__POSIXlt</w>
       <w>.__C__POSIXt</w>
+      <w>.__C__Period</w>
       <w>.__C__Polygon</w>
       <w>.__C__Polygons</w>
       <w>.__C__PossibleMethod</w>
@@ -188,6 +191,7 @@
       <w>.__C__SpatialRingsNULL</w>
       <w>.__C__SpatialVector</w>
       <w>.__C__SuperClassMethod</w>
+      <w>.__C__Timespan</w>
       <w>.__C__TsparseMatrix</w>
       <w>.__C__VIRTUAL</w>
       <w>.__C__WebSocket</w>
@@ -582,6 +586,7 @@
       <w>.leap.seconds</w>
       <w>.libPaths</w>
       <w>.lm.fit</w>
+      <w>.lmomcohash</w>
       <w>.m2dgC</w>
       <w>.m2lgC</w>
       <w>.m2ngC</w>
@@ -685,6 +690,7 @@
       <w>AirPassengers</w>
       <w>Alfalfa</w>
       <w>Animals</w>
+      <w>Apwm2BpwmRC</w>
       <w>ArcObj2SLDF</w>
       <w>Area.xypolygon</w>
       <w>Arg</w>
@@ -698,6 +704,7 @@
       <w>Axis</w>
       <w>AxisSecondary</w>
       <w>BD</w>
+      <w>BEhypergeo</w>
       <w>BH</w>
       <w>BIC</w>
       <w>BJsales</w>
@@ -713,6 +720,7 @@
       <w>Bosco</w>
       <w>Boston</w>
       <w>Box.test</w>
+      <w>Bpwm2ApwmRC</w>
       <w>BunchKaufman</w>
       <w>C</w>
       <w>CAex</w>
@@ -789,6 +797,7 @@
       <w>DiscreteRange</w>
       <w>Distribution.df</w>
       <w>Dotplot</w>
+      <w>DrillBitLifetime</w>
       <w>Drivers</w>
       <w>EBImoran.mc</w>
       <w>EBest</w>
@@ -893,6 +902,7 @@
       <w>ExponentialUpperC</w>
       <w>F</w>
       <w>FAQ</w>
+      <w>FFdes</w>
       <w>FGN</w>
       <w>FXtrade.transactions</w>
       <w>Facet</w>
@@ -1036,6 +1046,7 @@
       <w>IGF</w>
       <w>INLA</w>
       <w>IQR</w>
+      <w>IRSrefunds.by.state</w>
       <w>ISOdate</w>
       <w>ISOdatetime</w>
       <w>Id</w>
@@ -1126,7 +1137,14 @@
       <w>La_version</w>
       <w>Label</w>
       <w>Lag</w>
+      <w>LaguerreHalf</w>
       <w>LakeHuron</w>
+      <w>Lcoefs</w>
+      <w>Lcomoment.Lk12</w>
+      <w>Lcomoment.Wk</w>
+      <w>Lcomoment.coefficients</w>
+      <w>Lcomoment.correlation</w>
+      <w>Lcomoment.matrix</w>
       <w>LdFlags</w>
       <w>LearnBayes</w>
       <w>Leuk</w>
@@ -1137,6 +1155,8 @@
       <w>Lines</w>
       <w>LinesLength</w>
       <w>ListCallback</w>
+      <w>Lmomcov</w>
+      <w>Lmoments</w>
       <w>Load</w>
       <w>Loblolly</w>
       <w>Logic</w>
@@ -1483,6 +1503,8 @@
       <w>SOM</w>
       <w>SP500</w>
       <w>SPDEtoy</w>
+      <w>SPEI</w>
+      <w>SPEINews</w>
       <w>SQL</w>
       <w>SQLKeywords</w>
       <w>SSD</w>
@@ -1651,8 +1673,12 @@
       <w>Szero</w>
       <w>T</w>
       <w>T2graph</w>
+      <w>T2prob</w>
       <w>TH.data</w>
+      <w>TLmom</w>
+      <w>TLmoms</w>
       <w>TVPACK</w>
+      <w>TX38lgtrmFlow</w>
       <w>TallyLake</w>
       <w>Tetracycline1</w>
       <w>Tetracycline2</w>
@@ -1693,6 +1719,15 @@
       <w>USArrests</w>
       <w>USCancerRates</w>
       <w>USCounties</w>
+      <w>USGSsta01515000peaks</w>
+      <w>USGSsta02366500peaks</w>
+      <w>USGSsta05405000peaks</w>
+      <w>USGSsta06766000dvs</w>
+      <w>USGSsta08151500peaks</w>
+      <w>USGSsta08167000peaks</w>
+      <w>USGSsta08190000peaks</w>
+      <w>USGSsta09442000peaks</w>
+      <w>USGSsta14321000peaks</w>
       <w>USJudgeRatings</w>
       <w>USMortality</w>
       <w>USPersonalExpenditure</w>
@@ -1763,6 +1798,7 @@
       <w>`%*t%`</w>
       <w>`%+%`</w>
       <w>`%+replace%`</w>
+      <w>`%--%`</w>
       <w>`%...!%`</w>
       <w>`%...&gt;%`</w>
       <w>`%...T!%`</w>
@@ -1785,6 +1821,8 @@
       <w>`%inrange%`</w>
       <w>`%instanceof%`</w>
       <w>`%like%`</w>
+      <w>`%m+%`</w>
+      <w>`%m-%`</w>
       <w>`%nin%`</w>
       <w>`%o%`</w>
       <w>`%orifnull%`</w>
@@ -1809,6 +1847,7 @@
       <w>`%stri&gt;=%`</w>
       <w>`%t*%`</w>
       <w>`%t*t%`</w>
+      <w>`%within%`</w>
       <w>`%x%`</w>
       <w>`%|%`</w>
       <w>`%||%`</w>
@@ -1845,6 +1884,9 @@
       <w>`.__T__%d*%:spam`</w>
       <w>`.__T__%d+%:spam`</w>
       <w>`.__T__%in%:base`</w>
+      <w>`.__T__%m+%:lubridate`</w>
+      <w>`.__T__%m-%:lubridate`</w>
+      <w>`.__T__%within%:lubridate`</w>
       <w>`.__T__&amp;:base`</w>
       <w>`.__T__*:base`</w>
       <w>`.__T__+:base`</w>
@@ -1901,8 +1943,11 @@
       <w>`.__T__as.array:base`</w>
       <w>`.__T__as.character:base`</w>
       <w>`.__T__as.data.frame:base`</w>
+      <w>`.__T__as.difftime:base`</w>
+      <w>`.__T__as.duration:lubridate`</w>
       <w>`.__T__as.factor:base`</w>
       <w>`.__T__as.integer:base`</w>
+      <w>`.__T__as.interval:lubridate`</w>
       <w>`.__T__as.list:base`</w>
       <w>`.__T__as.logical:base`</w>
       <w>`.__T__as.matrix.coo:SparseM`</w>
@@ -1912,10 +1957,13 @@
       <w>`.__T__as.matrix.ssr:SparseM`</w>
       <w>`.__T__as.matrix:base`</w>
       <w>`.__T__as.numeric:base`</w>
+      <w>`.__T__as.period:lubridate`</w>
       <w>`.__T__as.raster:grDevices`</w>
       <w>`.__T__as.spam:spam`</w>
       <w>`.__T__as.vector:base`</w>
       <w>`.__T__asFactor:raster`</w>
+      <w>`.__T__as_date:lubridate`</w>
+      <w>`.__T__as_datetime:lubridate`</w>
       <w>`.__T__atan2:base`</w>
       <w>`.__T__backsolve:SparseM`</w>
       <w>`.__T__backsolve:spam`</w>
@@ -1994,6 +2042,8 @@
       <w>`.__T__cumsum:base`</w>
       <w>`.__T__cut:base`</w>
       <w>`.__T__cv:raster`</w>
+      <w>`.__T__date&lt;-:lubridate`</w>
+      <w>`.__T__day&lt;-:lubridate`</w>
       <w>`.__T__dbAppendTable:DBI`</w>
       <w>`.__T__dbBegin:DBI`</w>
       <w>`.__T__dbBind:DBI`</w>
@@ -2103,6 +2153,7 @@
       <w>`.__T__hashfile:git2r`</w>
       <w>`.__T__head:utils`</w>
       <w>`.__T__hist:graphics`</w>
+      <w>`.__T__hour&lt;-:lubridate`</w>
       <w>`.__T__image:graphics`</w>
       <w>`.__T__in_repository:git2r`</w>
       <w>`.__T__index_remove_bypath:git2r`</w>
@@ -2158,11 +2209,13 @@
       <w>`.__T__merge_base:git2r`</w>
       <w>`.__T__min:base`</w>
       <w>`.__T__minValue:raster`</w>
+      <w>`.__T__minute&lt;-:lubridate`</w>
       <w>`.__T__modal:raster`</w>
       <w>`.__T__model.guess:SparseM`</w>
       <w>`.__T__model.matrix:stats`</w>
       <w>`.__T__model.response:stats`</w>
       <w>`.__T__model.xexact:SparseM`</w>
+      <w>`.__T__month&lt;-:lubridate`</w>
       <w>`.__T__mosaic:raster`</w>
       <w>`.__T__names:base`</w>
       <w>`.__T__names&lt;-:base`</w>
@@ -2207,6 +2260,7 @@
       <w>`.__T__punch_card:git2r`</w>
       <w>`.__T__push:RCurl`</w>
       <w>`.__T__push:git2r`</w>
+      <w>`.__T__qday&lt;-:lubridate`</w>
       <w>`.__T__qr.Q:base`</w>
       <w>`.__T__qr.R:base`</w>
       <w>`.__T__qr.coef:base`</w>
@@ -2227,6 +2281,7 @@
       <w>`.__T__readStart:raster`</w>
       <w>`.__T__readStop:raster`</w>
       <w>`.__T__recenter:sp`</w>
+      <w>`.__T__reclass_timespan:lubridate`</w>
       <w>`.__T__reclassify:raster`</w>
       <w>`.__T__references:git2r`</w>
       <w>`.__T__reflog:git2r`</w>
@@ -2260,6 +2315,7 @@
       <w>`.__T__sampleStratified:raster`</w>
       <w>`.__T__scale.poly:rgeos`</w>
       <w>`.__T__scale:base`</w>
+      <w>`.__T__second&lt;-:lubridate`</w>
       <w>`.__T__select:raster`</w>
       <w>`.__T__setMinMax:raster`</w>
       <w>`.__T__setValues:raster`</w>
@@ -2316,6 +2372,7 @@
       <w>`.__T__tail:utils`</w>
       <w>`.__T__tcrossprod:base`</w>
       <w>`.__T__text:graphics`</w>
+      <w>`.__T__time_length:lubridate`</w>
       <w>`.__T__toeplitz:stats`</w>
       <w>`.__T__tree:git2r`</w>
       <w>`.__T__triangulate:rgeos`</w>
@@ -2353,6 +2410,7 @@
       <w>`.__T__xmax:raster`</w>
       <w>`.__T__xmin:raster`</w>
       <w>`.__T__xres:raster`</w>
+      <w>`.__T__year&lt;-:lubridate`</w>
       <w>`.__T__ymax:raster`</w>
       <w>`.__T__ymin:raster`</w>
       <w>`.__T__yres:raster`</w>
@@ -2458,6 +2516,8 @@
       <w>`covariate&lt;-`</w>
       <w>`crs&lt;-`</w>
       <w>`dataType&lt;-`</w>
+      <w>`date&lt;-`</w>
+      <w>`day&lt;-`</w>
       <w>`diag.spam&lt;-`</w>
       <w>`diag&lt;-.spam`</w>
       <w>`diag&lt;-`</w>
@@ -2491,8 +2551,11 @@
       <w>`gain&lt;-`</w>
       <w>`geometry&lt;-`</w>
       <w>`gridded&lt;-`</w>
+      <w>`hour&lt;-`</w>
       <w>`htmlDependencies&lt;-`</w>
       <w>`index&lt;-`</w>
+      <w>`int_end&lt;-`</w>
+      <w>`int_start&lt;-`</w>
       <w>`is.na&lt;-.default`</w>
       <w>`is.na&lt;-.discrete`</w>
       <w>`is.na&lt;-.factor`</w>
@@ -2511,8 +2574,11 @@
       <w>`lowerTriangle&lt;-`</w>
       <w>`mapLevels&lt;-`</w>
       <w>`matrix&lt;-`</w>
+      <w>`mday&lt;-`</w>
       <w>`metadata&lt;-`</w>
+      <w>`minute&lt;-`</w>
       <w>`mode&lt;-`</w>
+      <w>`month&lt;-`</w>
       <w>`mostattributes&lt;-`</w>
       <w>`n'est pas`</w>
       <w>`names&lt;-.POSIXlt`</w>
@@ -2530,6 +2596,7 @@
       <w>`polygons&lt;-`</w>
       <w>`proj4string&lt;-`</w>
       <w>`projection&lt;-`</w>
+      <w>`qday&lt;-`</w>
       <w>`regmatches&lt;-`</w>
       <w>`res&lt;-`</w>
       <w>`rhs.of.formula&lt;-`</w>
@@ -2539,6 +2606,7 @@
       <w>`rownames&lt;-`</w>
       <w>`rowpointers&lt;-`</w>
       <w>`sdiag&lt;-`</w>
+      <w>`second&lt;-`</w>
       <w>`slot&lt;-`</w>
       <w>`spChFIDs&lt;-`</w>
       <w>`split&lt;-.data.frame`</w>
@@ -2564,6 +2632,7 @@
       <w>`time&lt;-`</w>
       <w>`tktitle&lt;-`</w>
       <w>`tsp&lt;-`</w>
+      <w>`tz&lt;-`</w>
       <w>`units&lt;-.difftime`</w>
       <w>`units&lt;-`</w>
       <w>`upperTriangle&lt;-`</w>
@@ -2573,9 +2642,13 @@
       <w>`valueUnit&lt;-`</w>
       <w>`values&lt;-`</w>
       <w>`varnames&lt;-`</w>
+      <w>`wday&lt;-`</w>
+      <w>`week&lt;-`</w>
       <w>`window&lt;-`</w>
       <w>`xmax&lt;-`</w>
       <w>`xmin&lt;-`</w>
+      <w>`yday&lt;-`</w>
+      <w>`year&lt;-`</w>
       <w>`ymax&lt;-`</w>
       <w>`ymin&lt;-`</w>
       <w>`{`</w>
@@ -2634,6 +2707,8 @@
       <w>ad.test</w>
       <w>add</w>
       <w>add.image</w>
+      <w>add.lmomco.axis</w>
+      <w>add.log.axis</w>
       <w>add.scope</w>
       <w>add1</w>
       <w>addAttrToGeom</w>
@@ -2664,6 +2739,7 @@
       <w>add_rownames</w>
       <w>add_tally</w>
       <w>add_tally_</w>
+      <w>add_with_rollback</w>
       <w>addlogo</w>
       <w>addmargins</w>
       <w>addpoints</w>
@@ -2755,7 +2831,9 @@
       <w>alloc.col</w>
       <w>alpha</w>
       <w>alply</w>
+      <w>am</w>
       <w>amacrine</w>
+      <w>amarilloprecip</w>
       <w>amis</w>
       <w>aml</w>
       <w>amv_dimnames</w>
@@ -2833,6 +2911,38 @@
       <w>ar.ols</w>
       <w>ar.yw</w>
       <w>arcCurvature</w>
+      <w>are.lmom.valid</w>
+      <w>are.par.valid</w>
+      <w>are.paraep4.valid</w>
+      <w>are.parcau.valid</w>
+      <w>are.paremu.valid</w>
+      <w>are.parexp.valid</w>
+      <w>are.pargam.valid</w>
+      <w>are.pargep.valid</w>
+      <w>are.pargev.valid</w>
+      <w>are.pargld.valid</w>
+      <w>are.parglo.valid</w>
+      <w>are.pargno.valid</w>
+      <w>are.pargov.valid</w>
+      <w>are.pargpa.valid</w>
+      <w>are.pargum.valid</w>
+      <w>are.parkap.valid</w>
+      <w>are.parkmu.valid</w>
+      <w>are.parkur.valid</w>
+      <w>are.parlap.valid</w>
+      <w>are.parlmrq.valid</w>
+      <w>are.parln3.valid</w>
+      <w>are.parnor.valid</w>
+      <w>are.parpe3.valid</w>
+      <w>are.parray.valid</w>
+      <w>are.parrevgum.valid</w>
+      <w>are.parrice.valid</w>
+      <w>are.parsla.valid</w>
+      <w>are.parst3.valid</w>
+      <w>are.partexp.valid</w>
+      <w>are.partri.valid</w>
+      <w>are.parwak.valid</w>
+      <w>are.parwei.valid</w>
       <w>are_equal</w>
       <w>are_na</w>
       <w>area</w>
@@ -2988,6 +3098,7 @@
       <w>as.double.POSIXlt</w>
       <w>as.double.Verbose</w>
       <w>as.double.difftime</w>
+      <w>as.duration</w>
       <w>as.environment</w>
       <w>as.expression</w>
       <w>as.expression.default</w>
@@ -3009,6 +3120,7 @@
       <w>as.inla.mesh.segment</w>
       <w>as.inla.surv</w>
       <w>as.integer</w>
+      <w>as.interval</w>
       <w>as.is</w>
       <w>as.layer</w>
       <w>as.lazy</w>
@@ -3060,6 +3172,7 @@
       <w>as.package</w>
       <w>as.package_version</w>
       <w>as.pairlist</w>
+      <w>as.period</w>
       <w>as.person</w>
       <w>as.personList</w>
       <w>as.points</w>
@@ -3155,6 +3268,8 @@
       <w>as_data_frame</w>
       <w>as_data_mask</w>
       <w>as_data_pronoun</w>
+      <w>as_date</w>
+      <w>as_datetime</w>
       <w>as_dgRMatrix_listw</w>
       <w>as_dictionary</w>
       <w>as_double</w>
@@ -3382,6 +3497,7 @@
       <w>bezierPoints</w>
       <w>bfexch</w>
       <w>bfindep</w>
+      <w>bfrlmomco</w>
       <w>bg3d</w>
       <w>bgBlack</w>
       <w>bgBlue</w>
@@ -3601,6 +3717,7 @@
       <w>cSplineDes</w>
       <w>ca_bundle</w>
       <w>cabbages</w>
+      <w>cabinda</w>
       <w>cacheGenericsMetaData</w>
       <w>cacheMetaData</w>
       <w>cacheMethod</w>
@@ -3654,6 +3771,7 @@
       <w>cancor</w>
       <w>cane</w>
       <w>canonical.theme</w>
+      <w>canyonprecip</w>
       <w>capabilities</w>
       <w>capability</w>
       <w>capitalize</w>
@@ -3695,6 +3813,10 @@
       <w>cats</w>
       <w>catsM</w>
       <w>cauchyerrorpost</w>
+      <w>cauchypoly_cdf</w>
+      <w>cauchypoly_inv</w>
+      <w>cauchypoly_pdf</w>
+      <w>cauchypoly_rnd</w>
       <w>cav</w>
       <w>cbind</w>
       <w>cbind.Spatial</w>
@@ -3711,13 +3833,46 @@
       <w>ccodes</w>
       <w>cd4</w>
       <w>cd4.nested</w>
+      <w>cdf2lmom</w>
+      <w>cdf2lmoms</w>
       <w>cdfCompare</w>
       <w>cdfCompareCensored</w>
       <w>cdfPlot</w>
+      <w>cdfaep4</w>
+      <w>cdfcau</w>
+      <w>cdfemu</w>
+      <w>cdfexp</w>
+      <w>cdfgam</w>
+      <w>cdfgep</w>
+      <w>cdfgev</w>
+      <w>cdfgld</w>
+      <w>cdfglo</w>
+      <w>cdfgno</w>
+      <w>cdfgov</w>
+      <w>cdfgpa</w>
+      <w>cdfgum</w>
+      <w>cdfkap</w>
+      <w>cdfkmu</w>
+      <w>cdfkur</w>
+      <w>cdflap</w>
+      <w>cdflmrq</w>
+      <w>cdfln3</w>
+      <w>cdfnor</w>
+      <w>cdfpe3</w>
+      <w>cdfray</w>
+      <w>cdfrevgum</w>
+      <w>cdfrice</w>
+      <w>cdfsla</w>
+      <w>cdfst3</w>
+      <w>cdftexp</w>
+      <w>cdftri</w>
+      <w>cdfwak</w>
+      <w>cdfwei</w>
       <w>cdplot</w>
       <w>ceil</w>
       <w>ceiling</w>
       <w>ceiling2</w>
+      <w>ceiling_date</w>
       <w>cell2nb</w>
       <w>cellFromCol</w>
       <w>cellFromLine</w>
@@ -3779,6 +3934,7 @@
       <w>check.Assert</w>
       <w>check.Rdoc</w>
       <w>check.finite</w>
+      <w>check.fs</w>
       <w>check.in.range</w>
       <w>check.named.list</w>
       <w>check.named.thing</w>
@@ -3786,6 +3942,7 @@
       <w>check.nmatrix</w>
       <w>check.nvector</w>
       <w>check.options</w>
+      <w>check.pdf</w>
       <w>check.range</w>
       <w>checkAtAssignment</w>
       <w>checkCRAN</w>
@@ -3843,7 +4000,9 @@
       <w>chol.spam</w>
       <w>chol2inv</w>
       <w>chol2inv.spam</w>
+      <w>choldrop</w>
       <w>cholesterol</w>
+      <w>cholup</w>
       <w>choose</w>
       <w>chooseBioCmirror</w>
       <w>chooseCRANmirror</w>
@@ -3906,6 +4065,7 @@
       <w>classMetaName</w>
       <w>className</w>
       <w>classesToAM</w>
+      <w>claudeprecip</w>
       <w>cld</w>
       <w>clean_cache</w>
       <w>clean_dll</w>
@@ -3923,6 +4083,7 @@
       <w>clearPushBack</w>
       <w>clearSubsceneList</w>
       <w>clearValues</w>
+      <w>clearforkporosity</w>
       <w>cli</w>
       <w>click</w>
       <w>clickOpts</w>
@@ -3969,6 +4130,7 @@
       <w>cmdscale</w>
       <w>cmeans</w>
       <w>cml</w>
+      <w>cmlmomco</w>
       <w>cmpfile</w>
       <w>cmpfun</w>
       <w>cmsg</w>
@@ -4149,6 +4311,8 @@
       <w>con2tr</w>
       <w>conTestkw</w>
       <w>concatHtmlTables</w>
+      <w>concordance</w>
+      <w>concordancefit</w>
       <w>concurvity</w>
       <w>condense</w>
       <w>condest</w>
@@ -4310,6 +4474,7 @@
       <w>cover</w>
       <w>cover.design</w>
       <w>covmat</w>
+      <w>covnormpoly4</w>
       <w>covratio</w>
       <w>cox.ph</w>
       <w>cox.zph</w>
@@ -4475,6 +4640,7 @@
       <w>cv</w>
       <w>cv.glm</w>
       <w>cvm.test</w>
+      <w>cvm.test.lmomco</w>
       <w>cyan</w>
       <w>cycle</w>
       <w>cycle_hire</w>
@@ -4489,6 +4655,8 @@
       <w>daply</w>
       <w>darker</w>
       <w>darwin</w>
+      <w>dat2bernqua</w>
+      <w>dat2bernquaf</w>
       <w>data</w>
       <w>data.class</w>
       <w>data.entry</w>
@@ -4496,6 +4664,9 @@
       <w>data.matrix</w>
       <w>data.restore</w>
       <w>data.table</w>
+      <w>data2cauchypoly4</w>
+      <w>data2normpoly4</w>
+      <w>data2normpoly6</w>
       <w>dataDensityString</w>
       <w>dataFrame</w>
       <w>dataFrame.default</w>
@@ -4519,11 +4690,15 @@
       <w>dateInput</w>
       <w>dateRangeInput</w>
       <w>date_breaks</w>
+      <w>date_decimal</w>
       <w>date_format</w>
       <w>date_names</w>
       <w>date_names_lang</w>
       <w>date_names_langs</w>
       <w>date_trans</w>
+      <w>day</w>
+      <w>days</w>
+      <w>days_in_month</w>
       <w>dbAppendTable</w>
       <w>dbBegin</w>
       <w>dbBind</w>
@@ -4597,9 +4772,11 @@
       <w>dcast</w>
       <w>dcast.data.table</w>
       <w>dcauchy</w>
+      <w>dcauchypoly</w>
       <w>dchi</w>
       <w>dchisq</w>
       <w>dd2dms</w>
+      <w>ddays</w>
       <w>ddfind</w>
       <w>ddirichlet</w>
       <w>ddiscrete</w>
@@ -4622,6 +4799,7 @@
       <w>debugonce</w>
       <w>decapitalize</w>
       <w>decapitalize.default</w>
+      <w>decimal_date</w>
       <w>declaration</w>
       <w>declaration.Rdoc</w>
       <w>decodeURI</w>
@@ -4759,7 +4937,9 @@
       <w>dgevd</w>
       <w>dhare</w>
       <w>dheft</w>
+      <w>dhours</w>
       <w>dhyper</w>
+      <w>diabetic</w>
       <w>diag</w>
       <w>diag.of.spam</w>
       <w>diag.panel.splom</w>
@@ -4808,6 +4988,7 @@
       <w>discrete.bayes.2</w>
       <w>discrete_scale</w>
       <w>discretize.image</w>
+      <w>disfitqua</w>
       <w>display</w>
       <w>display.brewer.all</w>
       <w>display.brewer.pal</w>
@@ -4818,6 +4999,7 @@
       <w>displayDataset</w>
       <w>dispose_types</w>
       <w>dist</w>
+      <w>dist.list</w>
       <w>distChoose</w>
       <w>distChooseCensored</w>
       <w>distance</w>
@@ -4841,6 +5023,7 @@
       <w>divide_by_int</w>
       <w>divisors</w>
       <w>diwish</w>
+      <w>dlmomco</w>
       <w>dlnorm</w>
       <w>dlnorm3</w>
       <w>dlnormAlt</w>
@@ -4853,18 +5036,27 @@
       <w>dlply</w>
       <w>dlspec</w>
       <w>dmaket</w>
+      <w>dmicroseconds</w>
+      <w>dmilliseconds</w>
+      <w>dminutes</w>
       <w>dmixedvm</w>
       <w>dmnorm</w>
       <w>dmt</w>
       <w>dmultinom</w>
       <w>dmvnorm</w>
       <w>dmvt</w>
+      <w>dmy</w>
+      <w>dmy_h</w>
+      <w>dmy_hm</w>
+      <w>dmy_hms</w>
+      <w>dnanoseconds</w>
       <w>dnbinom</w>
       <w>dnearneigh</w>
       <w>dnoncenhypergeom</w>
       <w>dnorm</w>
       <w>dnormMix</w>
       <w>dnormTrunc</w>
+      <w>dnormpoly</w>
       <w>do</w>
       <w>do.breaks</w>
       <w>do.call</w>
@@ -4921,6 +5113,7 @@
       <w>download_ssl_cert</w>
       <w>downs.bc</w>
       <w>dpareto</w>
+      <w>dpicoseconds</w>
       <w>dpih</w>
       <w>dpik</w>
       <w>dpill</w>
@@ -4982,9 +5175,11 @@
       <w>drule</w>
       <w>dsa_keygen</w>
       <w>dscale</w>
+      <w>dseconds</w>
       <w>dsigmoid</w>
       <w>dsignrank</w>
       <w>dsquare</w>
+      <w>dst</w>
       <w>dsurvreg</w>
       <w>dt</w>
       <w>dtomogplot</w>
@@ -5011,10 +5206,12 @@
       <w>duplicated.warnings</w>
       <w>duplicated2</w>
       <w>duplicatedxy</w>
+      <w>duration</w>
       <w>dvi</w>
       <w>dvigv</w>
       <w>dvips</w>
       <w>dvm</w>
+      <w>dweeks</w>
       <w>dweibull</w>
       <w>dwilcox</w>
       <w>dwish</w>
@@ -5023,6 +5220,8 @@
       <w>dxy.cens</w>
       <w>dyadic.2check</w>
       <w>dyadic.check</w>
+      <w>dyears</w>
+      <w>dym</w>
       <w>dyn.load</w>
       <w>dyn.unload</w>
       <w>dynCurlReader</w>
@@ -5047,6 +5246,7 @@
       <w>ecget</w>
       <w>economics</w>
       <w>economics_long</w>
+      <w>edays</w>
       <w>edit</w>
       <w>edit.nb</w>
       <w>editDetails</w>
@@ -5065,6 +5265,7 @@
       <w>eget</w>
       <w>egevd</w>
       <w>egsub</w>
+      <w>ehours</w>
       <w>ehyper</w>
       <w>eigen</w>
       <w>eigen.spam</w>
@@ -5100,6 +5301,9 @@
       <w>emacs</w>
       <w>embed</w>
       <w>embedFonts</w>
+      <w>emicroseconds</w>
+      <w>emilliseconds</w>
+      <w>eminutes</w>
       <w>empinf</w>
       <w>empty</w>
       <w>empty.dump</w>
@@ -5108,6 +5312,7 @@
       <w>emptyenv</w>
       <w>enableBookmarking</w>
       <w>enableJIT</w>
+      <w>enanoseconds</w>
       <w>enbinom</w>
       <w>enc2native</w>
       <w>enc2utf8</w>
@@ -5168,9 +5373,13 @@
       <w>environmentIsLocked</w>
       <w>environmentName</w>
       <w>environmental</w>
+      <w>eostat</w>
       <w>epareto</w>
       <w>epdfPlot</w>
+      <w>epicoseconds</w>
       <w>epil</w>
+      <w>epiweek</w>
+      <w>epiyear</w>
       <w>epois</w>
       <w>epoisCensored</w>
       <w>eqbeta</w>
@@ -5220,6 +5429,7 @@
       <w>escapeRdFilename</w>
       <w>escapeRdFilename.Rdoc</w>
       <w>escapeRegex</w>
+      <w>eseconds</w>
       <w>esoph</w>
       <w>est.kappa</w>
       <w>est.rho</w>
@@ -5265,6 +5475,7 @@
       <w>everything</w>
       <w>evlpoly</w>
       <w>evlpoly2</w>
+      <w>eweeks</w>
       <w>eweibull</w>
       <w>exactLoglikelihood</w>
       <w>example</w>
@@ -5290,6 +5501,8 @@
       <w>expand_limits</w>
       <w>expand_range</w>
       <w>expcov</w>
+      <w>expect.max.ostat</w>
+      <w>expect.min.ostat</w>
       <w>expect_known_display</w>
       <w>explain</w>
       <w>explain.ifnot</w>
@@ -5352,10 +5565,14 @@
       <w>extract_numeric</w>
       <w>extract_raw_output</w>
       <w>extrude3d</w>
+      <w>eyears</w>
       <w>ezmlnorm</w>
       <w>ezmlnormAlt</w>
       <w>ezmnorm</w>
       <w>f</w>
+      <w>f2f</w>
+      <w>f2flo</w>
+      <w>f2fpds</w>
       <w>f_capture</w>
       <w>f_env</w>
       <w>f_eval</w>
@@ -5396,6 +5613,7 @@
       <w>fastTps</w>
       <w>fastTps.MLE</w>
       <w>fastTpsMLE</w>
+      <w>fast_strptime</w>
       <w>fastbw</w>
       <w>fattyacid</w>
       <w>fave.order</w>
@@ -5544,6 +5762,7 @@
       <w>fisher.test</w>
       <w>fit.contrast</w>
       <w>fit.mult.impute</w>
+      <w>fit_to_timeline</w>
       <w>fitdistr</w>
       <w>fitted</w>
       <w>fitted.Krig</w>
@@ -5593,7 +5812,10 @@
       <w>flip</w>
       <w>flipHorizontal</w>
       <w>flipVertical</w>
+      <w>fliplmoms</w>
+      <w>flo2f</w>
       <w>floor</w>
+      <w>floor_date</w>
       <w>flowLayout</w>
       <w>flowPath</w>
       <w>flower</w>
@@ -5625,6 +5847,8 @@
       <w>forceAndCall</w>
       <w>forceGrob</w>
       <w>forceSymmetric</w>
+      <w>force_tz</w>
+      <w>force_tzs</w>
       <w>foreign</w>
       <w>forget</w>
       <w>formXtViX</w>
@@ -5684,6 +5908,7 @@
       <w>fourCellsFromXY</w>
       <w>fourfoldplot</w>
       <w>foverlaps</w>
+      <w>fpds2f</w>
       <w>fractions</w>
       <w>frailty</w>
       <w>frailty.gamma</w>
@@ -5709,6 +5934,7 @@
       <w>french_fries</w>
       <w>freq</w>
       <w>freq.array</w>
+      <w>freq.curve.all</w>
       <w>frequency</w>
       <w>frequency.polygon</w>
       <w>frets</w>
@@ -5860,7 +6086,10 @@
       <w>gelman.diag</w>
       <w>gelman.plot</w>
       <w>gen</w>
+      <w>gen.freq.curves</w>
       <w>genD</w>
+      <w>genci</w>
+      <w>genci.simple</w>
       <w>gendata</w>
       <w>generic.skeleton</w>
       <w>genfan</w>
@@ -6396,6 +6625,8 @@
       <w>ghermite.h.weight</w>
       <w>gibbs</w>
       <w>gilgais</w>
+      <w>gini.mean.diff</w>
+      <w>ginla</w>
       <w>ginv</w>
       <w>git2r</w>
       <w>github_document</w>
@@ -6604,6 +6835,7 @@
       <w>groupkm</w>
       <w>groupn</w>
       <w>groups</w>
+      <w>grv2prob</w>
       <w>gstring</w>
       <w>gstring.GString</w>
       <w>gstring.default</w>
@@ -6634,6 +6866,7 @@
       <w>gtools</w>
       <w>guessMIMEType</w>
       <w>guess_encoding</w>
+      <w>guess_formats</w>
       <w>guess_media</w>
       <w>guess_parser</w>
       <w>guess_type</w>
@@ -6669,6 +6902,8 @@
       <w>handle_setopt</w>
       <w>hanning.window</w>
       <w>hare</w>
+      <w>hargreaves</w>
+      <w>harmonic.mean</w>
       <w>hasArg</w>
       <w>hasColorConsole</w>
       <w>hasField</w>
@@ -6731,6 +6966,7 @@
       <w>header.Verbose</w>
       <w>headerPanel</w>
       <w>headers</w>
+      <w>headrick.sheng.lalpha</w>
       <w>heart</w>
       <w>hearttransplants</w>
       <w>heat.colors</w>
@@ -6747,6 +6983,7 @@
       <w>help.start</w>
       <w>helpText</w>
       <w>here</w>
+      <w>herefordprecip</w>
       <w>hermite.h.inner.products</w>
       <w>hermite.h.polynomials</w>
       <w>hermite.h.recurrences</w>
@@ -6787,6 +7024,8 @@
       <w>histogram</w>
       <w>history</w>
       <w>histprior</w>
+      <w>hlmomco</w>
+      <w>hm</w>
       <w>hmac</w>
       <w>hmac_sha1</w>
       <w>hms</w>
@@ -6812,6 +7051,7 @@
       <w>hopkins</w>
       <w>horizonplot</w>
       <w>hour</w>
+      <w>hours</w>
       <w>house</w>
       <w>housing</w>
       <w>hoverOpts</w>
@@ -7386,8 +7626,17 @@
       <w>intToHex</w>
       <w>intToOct</w>
       <w>intToUtf8</w>
+      <w>int_aligns</w>
       <w>int_along</w>
+      <w>int_diff</w>
+      <w>int_end</w>
+      <w>int_flip</w>
       <w>int_len</w>
+      <w>int_length</w>
+      <w>int_overlaps</w>
+      <w>int_shift</w>
+      <w>int_standardize</w>
+      <w>int_start</w>
       <w>integer</w>
       <w>integer_dc</w>
       <w>integral</w>
@@ -7414,6 +7663,7 @@
       <w>intersect</w>
       <w>intersect.nb</w>
       <w>intersect.ranges</w>
+      <w>interval</w>
       <w>intervals</w>
       <w>intervalsToSeq</w>
       <w>intervalsToSeq.matrix</w>
@@ -7450,32 +7700,42 @@
       <w>is</w>
       <w>is.BayesFactor</w>
       <w>is.Coord</w>
+      <w>is.Date</w>
       <w>is.Formula</w>
+      <w>is.POSIXct</w>
+      <w>is.POSIXlt</w>
+      <w>is.POSIXt</w>
       <w>is.R</w>
       <w>is.R6</w>
       <w>is.R6Class</w>
       <w>is.SharedData</w>
       <w>is.Surv</w>
+      <w>is.aep4</w>
       <w>is.array</w>
       <w>is.atomic</w>
       <w>is.blank</w>
       <w>is.browsable</w>
       <w>is.call</w>
+      <w>is.cau</w>
       <w>is.character</w>
       <w>is.complex</w>
       <w>is.count</w>
       <w>is.data.frame</w>
       <w>is.data.table</w>
       <w>is.date</w>
+      <w>is.difftime</w>
       <w>is.dir</w>
       <w>is.discrete</w>
       <w>is.document_position</w>
       <w>is.document_range</w>
       <w>is.double</w>
+      <w>is.duration</w>
       <w>is.element</w>
       <w>is.empty.model</w>
+      <w>is.emu</w>
       <w>is.environment</w>
       <w>is.error</w>
+      <w>is.exp</w>
       <w>is.expression</w>
       <w>is.facet</w>
       <w>is.factor</w>
@@ -7484,24 +7744,41 @@
       <w>is.formula</w>
       <w>is.fractions</w>
       <w>is.function</w>
+      <w>is.gam</w>
+      <w>is.gep</w>
+      <w>is.gev</w>
       <w>is.ggplot</w>
       <w>is.ggproto</w>
+      <w>is.gld</w>
+      <w>is.glo</w>
+      <w>is.gno</w>
+      <w>is.gov</w>
+      <w>is.gpa</w>
       <w>is.grob</w>
       <w>is.grouped_df</w>
       <w>is.gtable</w>
+      <w>is.gum</w>
       <w>is.hms</w>
       <w>is.hole.xypolygon</w>
       <w>is.imputed</w>
       <w>is.infinite</w>
       <w>is.inla.mdata</w>
       <w>is.inla.surv</w>
+      <w>is.instant</w>
       <w>is.integer</w>
+      <w>is.interval</w>
       <w>is.jnull</w>
+      <w>is.kap</w>
+      <w>is.kmu</w>
+      <w>is.kur</w>
       <w>is.language</w>
+      <w>is.lap</w>
       <w>is.leaf</w>
       <w>is.levelsMap</w>
       <w>is.list</w>
       <w>is.listLevelsMap</w>
+      <w>is.lmrq</w>
+      <w>is.ln3</w>
       <w>is.loaded</w>
       <w>is.logical</w>
       <w>is.mChoice</w>
@@ -7524,6 +7801,7 @@
       <w>is.na.numeric_version</w>
       <w>is.name</w>
       <w>is.nan</w>
+      <w>is.nor</w>
       <w>is.null</w>
       <w>is.null.DN</w>
       <w>is.number</w>
@@ -7539,6 +7817,8 @@
       <w>is.package_version</w>
       <w>is.pairlist</w>
       <w>is.parseable</w>
+      <w>is.pe3</w>
+      <w>is.period</w>
       <w>is.points</w>
       <w>is.polylist</w>
       <w>is.polynomial</w>
@@ -7553,6 +7833,7 @@
       <w>is.raster</w>
       <w>is.ratetable</w>
       <w>is.raw</w>
+      <w>is.ray</w>
       <w>is.reactive</w>
       <w>is.reactivevalues</w>
       <w>is.readable</w>
@@ -7560,16 +7841,20 @@
       <w>is.recursive</w>
       <w>is.regular</w>
       <w>is.relistable</w>
+      <w>is.revgum</w>
+      <w>is.rice</w>
       <w>is.root_criterion</w>
       <w>is.scalar</w>
       <w>is.shingle</w>
       <w>is.shiny.appobj</w>
       <w>is.single</w>
       <w>is.singleton</w>
+      <w>is.sla</w>
       <w>is.source</w>
       <w>is.spam</w>
       <w>is.special.miss</w>
       <w>is.src</w>
+      <w>is.st3</w>
       <w>is.stepfun</w>
       <w>is.string</w>
       <w>is.symbol</w>
@@ -7578,19 +7863,25 @@
       <w>is.table</w>
       <w>is.tbl</w>
       <w>is.tclObj</w>
+      <w>is.texp</w>
       <w>is.theme</w>
       <w>is.tibble</w>
       <w>is.time</w>
+      <w>is.timepoint</w>
+      <w>is.timespan</w>
       <w>is.tkwin</w>
       <w>is.toeplitz</w>
       <w>is.trans</w>
+      <w>is.tri</w>
       <w>is.ts</w>
       <w>is.tskernel</w>
       <w>is.unit</w>
       <w>is.unsorted</w>
       <w>is.value</w>
       <w>is.vector</w>
+      <w>is.wak</w>
       <w>is.warning</w>
+      <w>is.wei</w>
       <w>is.what</w>
       <w>is.writeable</w>
       <w>is.zoo</w>
@@ -7831,6 +8122,7 @@
       <w>isolate</w>
       <w>isoreg</w>
       <w>isoweek</w>
+      <w>isoyear</w>
       <w>isplit2</w>
       <w>italic</w>
       <w>italyMapEnv</w>
@@ -7881,6 +8173,8 @@
       <w>keep</w>
       <w>kendallSeasonalTrendTest</w>
       <w>kendallTrendTest</w>
+      <w>kern</w>
+      <w>kern.plot</w>
       <w>kernHAC</w>
       <w>kernapply</w>
       <w>kernel</w>
@@ -7989,7 +8283,9 @@
       <w>laguerre.polynomials</w>
       <w>laguerre.recurrences</w>
       <w>laguerre.weight</w>
+      <w>lakers</w>
       <w>lakesMapEnv</w>
+      <w>lalpha</w>
       <w>lang</w>
       <w>langElts</w>
       <w>lang_args</w>
@@ -8068,12 +8364,14 @@
       <w>lchoose</w>
       <w>lcm</w>
       <w>lcmw</w>
+      <w>lcomoms2</w>
       <w>ldTweedie</w>
       <w>lda</w>
       <w>ldahist</w>
       <w>ldetS</w>
       <w>ldply</w>
       <w>lead</w>
+      <w>leap_year</w>
       <w>least.common.multiple</w>
       <w>lee</w>
       <w>lee.mc</w>
@@ -8182,6 +8480,7 @@
       <w>listw2sn</w>
       <w>listw2star</w>
       <w>litter</w>
+      <w>lkhlmomco</w>
       <w>ll</w>
       <w>ll.Object</w>
       <w>ll.Package</w>
@@ -8214,6 +8513,58 @@
       <w>lme.lmList</w>
       <w>lmeControl</w>
       <w>lmeStruct</w>
+      <w>lmom.ub</w>
+      <w>lmom2normpoly4</w>
+      <w>lmom2normpoly6</w>
+      <w>lmom2par</w>
+      <w>lmom2pwm</w>
+      <w>lmom2vec</w>
+      <w>lmomRCmark</w>
+      <w>lmomTLgld</w>
+      <w>lmomTLgpa</w>
+      <w>lmomaep4</w>
+      <w>lmomcau</w>
+      <w>lmomco</w>
+      <w>lmomcoBook</w>
+      <w>lmomcoNews</w>
+      <w>lmomemu</w>
+      <w>lmomexp</w>
+      <w>lmomgam</w>
+      <w>lmomgep</w>
+      <w>lmomgev</w>
+      <w>lmomgld</w>
+      <w>lmomglo</w>
+      <w>lmomgno</w>
+      <w>lmomgov</w>
+      <w>lmomgpa</w>
+      <w>lmomgpaRC</w>
+      <w>lmomgum</w>
+      <w>lmomkap</w>
+      <w>lmomkmu</w>
+      <w>lmomkur</w>
+      <w>lmomlap</w>
+      <w>lmomlmrq</w>
+      <w>lmomln3</w>
+      <w>lmomnor</w>
+      <w>lmompe3</w>
+      <w>lmomray</w>
+      <w>lmomrevgum</w>
+      <w>lmomrice</w>
+      <w>lmoms</w>
+      <w>lmoms.bernstein</w>
+      <w>lmoms.bootbarvar</w>
+      <w>lmoms.cov</w>
+      <w>lmomsRCmark</w>
+      <w>lmomsla</w>
+      <w>lmomst3</w>
+      <w>lmomtexp</w>
+      <w>lmomtri</w>
+      <w>lmomwak</w>
+      <w>lmomwei</w>
+      <w>lmorph</w>
+      <w>lmr2par</w>
+      <w>lmrdia</w>
+      <w>lmrdiscord</w>
       <w>lmsreg</w>
       <w>lmwork</w>
       <w>lnd</w>
@@ -8279,6 +8630,7 @@
       <w>local_temp_libpaths</w>
       <w>local_tempfile</w>
       <w>local_tiff</w>
+      <w>local_time</w>
       <w>local_xfig</w>
       <w>locale</w>
       <w>localeToCharset</w>
@@ -8357,7 +8709,9 @@
       <w>lrm</w>
       <w>lrm.fit</w>
       <w>lrtest</w>
+      <w>lrv2prob</w>
       <w>lrvar</w>
+      <w>lrzlmomco</w>
       <w>ls</w>
       <w>ls.diag</w>
       <w>ls.funs</w>
@@ -8385,6 +8739,7 @@
       <w>ltzc</w>
       <w>ltzd</w>
       <w>lu</w>
+      <w>lubridate</w>
       <w>lung</w>
       <w>luv_colours</w>
       <w>lvq1</w>
@@ -8464,6 +8819,9 @@
       <w>makeUsageCollector</w>
       <w>make_EPSG</w>
       <w>make_call</w>
+      <w>make_date</w>
+      <w>make_datetime</w>
+      <w>make_difftime</w>
       <w>make_style</w>
       <w>make_tbl</w>
       <w>make_translations_pkg</w>
@@ -8612,6 +8970,10 @@
       <w>mday</w>
       <w>mdb.get</w>
       <w>mdply</w>
+      <w>mdy</w>
+      <w>mdy_h</w>
+      <w>mdy_hm</w>
+      <w>mdy_hms</w>
       <w>mean</w>
       <w>mean.Date</w>
       <w>mean.POSIXct</w>
@@ -8687,8 +9049,10 @@
       <w>mgus2</w>
       <w>mhgr</w>
       <w>michelson</w>
+      <w>microseconds</w>
       <w>mid.in</w>
       <w>midwest</w>
+      <w>milliseconds</w>
       <w>mime</w>
       <w>mimeTypeExtensions</w>
       <w>mimemap</w>
@@ -8711,6 +9075,7 @@
       <w>minn38</w>
       <w>minor.tick</w>
       <w>minute</w>
+      <w>minutes</w>
       <w>mirror2html</w>
       <w>misc3d</w>
       <w>missing</w>
@@ -8727,6 +9092,7 @@
       <w>mle.nomean</w>
       <w>mle.nomean.spam</w>
       <w>mle.spam</w>
+      <w>mle2par</w>
       <w>mleHK</w>
       <w>mlear1</w>
       <w>mlf</w>
@@ -8817,9 +9183,11 @@
       <w>mpoint</w>
       <w>mprint</w>
       <w>mprintf</w>
+      <w>mps2par</w>
       <w>mptable</w>
       <w>mrc2vi</w>
       <w>mroot</w>
+      <w>ms</w>
       <w>mse2d</w>
       <w>mshow</w>
       <w>msleep</w>
@@ -8896,6 +9264,7 @@
       <w>my_key</w>
       <w>my_pubkey</w>
       <w>mycontour</w>
+      <w>myd</w>
       <w>myeloid</w>
       <w>n</w>
       <w>n.comp.nb</w>
@@ -8956,6 +9325,7 @@
       <w>namespaceImportClasses</w>
       <w>namespaceImportFrom</w>
       <w>namespaceImportMethods</w>
+      <w>nanoseconds</w>
       <w>naplot</w>
       <w>napredict</w>
       <w>napredict.delete</w>
@@ -8991,6 +9361,17 @@
       <w>nbrOfOptions</w>
       <w>nbrOfOptions.Options</w>
       <w>nc.sids</w>
+      <w>nc_close</w>
+      <w>nc_create</w>
+      <w>nc_enddef</w>
+      <w>nc_open</w>
+      <w>nc_redef</w>
+      <w>nc_sync</w>
+      <w>nc_version</w>
+      <w>ncatt_get</w>
+      <w>ncatt_put</w>
+      <w>ncdf4</w>
+      <w>ncdim_def</w>
       <w>ncell</w>
       <w>nchain</w>
       <w>nchar</w>
@@ -8999,6 +9380,12 @@
       <w>nclass.freq</w>
       <w>nclass.scott</w>
       <w>ncol</w>
+      <w>ncvar_add</w>
+      <w>ncvar_change_missval</w>
+      <w>ncvar_def</w>
+      <w>ncvar_get</w>
+      <w>ncvar_put</w>
+      <w>ncvar_rename</w>
       <w>near</w>
       <w>nearPD</w>
       <w>nearPoints</w>
@@ -9046,14 +9433,17 @@
       <w>new_complex_along</w>
       <w>new_data_mask</w>
       <w>new_definition</w>
+      <w>new_difftime</w>
       <w>new_double</w>
       <w>new_double_along</w>
+      <w>new_duration</w>
       <w>new_environment</w>
       <w>new_formula</w>
       <w>new_function</w>
       <w>new_handle</w>
       <w>new_integer</w>
       <w>new_integer_along</w>
+      <w>new_interval</w>
       <w>new_language</w>
       <w>new_list</w>
       <w>new_list_along</w>
@@ -9063,6 +9453,7 @@
       <w>new_ornament</w>
       <w>new_output_handler</w>
       <w>new_overscope</w>
+      <w>new_period</w>
       <w>new_pillar_shaft</w>
       <w>new_pillar_shaft_simple</w>
       <w>new_pillar_title</w>
@@ -9143,6 +9534,7 @@
       <w>nomiss</w>
       <w>nomogram</w>
       <w>nonS3methods</w>
+      <w>nonexceeds</w>
       <w>noquote</w>
       <w>nor2k</w>
       <w>norm</w>
@@ -9155,6 +9547,10 @@
       <w>normalizePath</w>
       <w>normchi2post</w>
       <w>normnormexch</w>
+      <w>normpoly_cdf</w>
+      <w>normpoly_inv</w>
+      <w>normpoly_pdf</w>
+      <w>normpoly_rnd</w>
       <w>normpostpred</w>
       <w>normpostsim</w>
       <w>nortest</w>
@@ -9173,6 +9569,7 @@
       <w>nottem</w>
       <w>novirtual</w>
       <w>novirtual.Object</w>
+      <w>now</w>
       <w>nowrapRecenter</w>
       <w>nowrapSpatialLines</w>
       <w>nowrapSpatialPolygons</w>
@@ -9271,6 +9668,7 @@
       <w>oldlogspline.to.logspline</w>
       <w>ols</w>
       <w>ols.influence</w>
+      <w>olson_time_zones</w>
       <w>olvq1</w>
       <w>omission</w>
       <w>on</w>
@@ -9546,6 +9944,14 @@
       <w>panel_rows</w>
       <w>pantext</w>
       <w>par</w>
+      <w>par2cdf</w>
+      <w>par2cdf2</w>
+      <w>par2lmom</w>
+      <w>par2pdf</w>
+      <w>par2qua</w>
+      <w>par2qua2</w>
+      <w>par2qua2lo</w>
+      <w>par2vec</w>
       <w>par3d</w>
       <w>par3dinterp</w>
       <w>par3dinterpControl</w>
@@ -9558,17 +9964,46 @@
       <w>parRapply</w>
       <w>parSapply</w>
       <w>parSapplyLB</w>
+      <w>parTLgld</w>
+      <w>parTLgpa</w>
       <w>paracou</w>
+      <w>paraep4</w>
       <w>parallel</w>
       <w>parallelplot</w>
       <w>param2.matern.orig</w>
       <w>parametric3d</w>
+      <w>parcau</w>
       <w>parcoord</w>
+      <w>paremu</w>
       <w>paren</w>
       <w>parent.env</w>
       <w>parent.frame</w>
       <w>parents</w>
+      <w>parexp</w>
+      <w>pargam</w>
+      <w>pargep</w>
+      <w>pargev</w>
+      <w>pargld</w>
+      <w>parglo</w>
+      <w>parglo.maxlik</w>
+      <w>pargno</w>
+      <w>pargov</w>
+      <w>pargpa</w>
+      <w>pargpaRC</w>
+      <w>pargum</w>
+      <w>parkap</w>
+      <w>parkmu</w>
+      <w>parkur</w>
+      <w>parlap</w>
+      <w>parlmrq</w>
+      <w>parln3</w>
       <w>parm</w>
+      <w>parnor</w>
+      <w>parpe3</w>
+      <w>parray</w>
+      <w>parrevgum</w>
+      <w>parrice</w>
+      <w>pars2x</w>
       <w>parse</w>
       <w>parse.GString</w>
       <w>parse.SmartComments</w>
@@ -9585,6 +10020,8 @@
       <w>parse_all</w>
       <w>parse_character</w>
       <w>parse_date</w>
+      <w>parse_date_time</w>
+      <w>parse_date_time2</w>
       <w>parse_datetime</w>
       <w>parse_deps</w>
       <w>parse_double</w>
@@ -9613,10 +10050,16 @@
       <w>parse_url</w>
       <w>parse_vector</w>
       <w>parsed_content</w>
+      <w>parsla</w>
+      <w>parst3</w>
+      <w>partexp</w>
       <w>partial</w>
       <w>particles3d</w>
       <w>partition.matrix</w>
       <w>partition.vector</w>
+      <w>partri</w>
+      <w>parwak</w>
+      <w>parwei</w>
       <w>passthrough</w>
       <w>passwordInput</w>
       <w>paste</w>
@@ -9657,6 +10100,7 @@
       <w>pbirthday</w>
       <w>pc1</w>
       <w>pcauchy</w>
+      <w>pcauchypoly</w>
       <w>pch3d</w>
       <w>pchi</w>
       <w>pchisq</w>
@@ -9684,6 +10128,36 @@
       <w>pdfFonts</w>
       <w>pdfPlot</w>
       <w>pdf_document</w>
+      <w>pdfaep4</w>
+      <w>pdfcau</w>
+      <w>pdfemu</w>
+      <w>pdfexp</w>
+      <w>pdfgam</w>
+      <w>pdfgep</w>
+      <w>pdfgev</w>
+      <w>pdfgld</w>
+      <w>pdfglo</w>
+      <w>pdfgno</w>
+      <w>pdfgov</w>
+      <w>pdfgpa</w>
+      <w>pdfgum</w>
+      <w>pdfkap</w>
+      <w>pdfkmu</w>
+      <w>pdfkur</w>
+      <w>pdflap</w>
+      <w>pdflmrq</w>
+      <w>pdfln3</w>
+      <w>pdfnor</w>
+      <w>pdfpe3</w>
+      <w>pdfray</w>
+      <w>pdfrevgum</w>
+      <w>pdfrice</w>
+      <w>pdfsla</w>
+      <w>pdfst3</w>
+      <w>pdftexp</w>
+      <w>pdftri</w>
+      <w>pdfwak</w>
+      <w>pdfwei</w>
       <w>pdisc</w>
       <w>pdiscp</w>
       <w>pdiscrete</w>
@@ -9693,11 +10167,14 @@
       <w>peek_vars</w>
       <w>pemp</w>
       <w>pen.edf</w>
+      <w>penman</w>
       <w>pentrace</w>
       <w>percent</w>
       <w>percent_format</w>
       <w>percent_rank</w>
       <w>perimeter</w>
+      <w>period</w>
+      <w>period_to_seconds</w>
       <w>periodic.series</w>
       <w>periodicSpline</w>
       <w>perlcode</w>
@@ -9715,10 +10192,12 @@
       <w>pevd</w>
       <w>pexp</w>
       <w>pf</w>
+      <w>pfactor.bernstein</w>
       <w>pgamma</w>
       <w>pgammaAlt</w>
       <w>pgeom</w>
       <w>pgevd</w>
+      <w>pglo</w>
       <w>phare</w>
       <w>pheft</w>
       <w>phenoModel</w>
@@ -9727,6 +10206,7 @@
       <w>phyper</w>
       <w>pi</w>
       <w>pico</w>
+      <w>picoseconds</w>
       <w>pictex</w>
       <w>pie</w>
       <w>pillar</w>
@@ -9752,6 +10232,7 @@
       <w>playwidget</w>
       <w>playwidgetOutput</w>
       <w>plclust</w>
+      <w>plmomco</w>
       <w>plnorm</w>
       <w>plnorm3</w>
       <w>plnormAlt</w>
@@ -9816,6 +10297,7 @@
       <w>plot.spcor</w>
       <w>plot.spec.coherency</w>
       <w>plot.spec.phase</w>
+      <w>plot.spei</w>
       <w>plot.sreg</w>
       <w>plot.stepfun</w>
       <w>plot.summary.crqs</w>
@@ -9867,6 +10349,7 @@
       <w>plot_hex</w>
       <w>plot_mnsl</w>
       <w>plotcp</w>
+      <w>plotlmrdia</w>
       <w>plotlyParm</w>
       <w>plotlySave</w>
       <w>plotmath3d</w>
@@ -9874,6 +10357,7 @@
       <w>plotmathTranslate</w>
       <w>plotp</w>
       <w>plotpsummaryM</w>
+      <w>plotradarlmr</w>
       <w>plsmo</w>
       <w>plspec</w>
       <w>plt</w>
@@ -9881,6 +10365,7 @@
       <w>pluck</w>
       <w>pluton</w>
       <w>plyr</w>
+      <w>pm</w>
       <w>pmap</w>
       <w>pmap_chr</w>
       <w>pmap_dbl</w>
@@ -9894,6 +10379,7 @@
       <w>pmax.int</w>
       <w>pmin</w>
       <w>pmin.int</w>
+      <w>pmoms</w>
       <w>pmvnorm</w>
       <w>pmvt</w>
       <w>pnbinom</w>
@@ -9902,6 +10388,7 @@
       <w>pnorm</w>
       <w>pnormMix</w>
       <w>pnormTrunc</w>
+      <w>pnormpoly</w>
       <w>pnt.in.poly</w>
       <w>pochhammer</w>
       <w>point.in.polygon</w>
@@ -10013,6 +10500,9 @@
       <w>powerWeights</w>
       <w>powerboost</w>
       <w>powerpoint_presentation</w>
+      <w>pp</w>
+      <w>pp.f</w>
+      <w>pp.median</w>
       <w>pp.plot</w>
       <w>ppareto</w>
       <w>ppgetregion</w>
@@ -10148,7 +10638,9 @@
       <w>pretty.default</w>
       <w>prettyNum</w>
       <w>pretty_breaks</w>
+      <w>pretty_dates</w>
       <w>prettydiscrete</w>
+      <w>prettydist</w>
       <w>prettyinside</w>
       <w>previewRd</w>
       <w>prim_name</w>
@@ -10260,6 +10752,7 @@
       <w>print.spatialProcess</w>
       <w>print.spautolm</w>
       <w>print.spcor</w>
+      <w>print.spei</w>
       <w>print.srcfile</w>
       <w>print.srcref</w>
       <w>print.sreg</w>
@@ -10311,6 +10804,9 @@
       <w>prmat</w>
       <w>prmatrix</w>
       <w>prn</w>
+      <w>prob2T</w>
+      <w>prob2grv</w>
+      <w>prob2lrv</w>
       <w>probability_trans</w>
       <w>probit_trans</w>
       <w>problems</w>
@@ -10419,6 +10915,16 @@
       <w>pwalk</w>
       <w>pweibull</w>
       <w>pwilcox</w>
+      <w>pwm</w>
+      <w>pwm.alpha2beta</w>
+      <w>pwm.beta2alpha</w>
+      <w>pwm.gev</w>
+      <w>pwm.pp</w>
+      <w>pwm.ub</w>
+      <w>pwm2lmom</w>
+      <w>pwm2vec</w>
+      <w>pwmLC</w>
+      <w>pwmRC</w>
       <w>pyears</w>
       <w>pyramidal</w>
       <w>pzmlnorm</w>
@@ -10431,9 +10937,11 @@
       <w>qbinom</w>
       <w>qbirthday</w>
       <w>qcauchy</w>
+      <w>qcauchypoly</w>
       <w>qchi</w>
       <w>qchisq</w>
       <w>qda</w>
+      <w>qday</w>
       <w>qdensity</w>
       <w>qdiscrete</w>
       <w>qemp</w>
@@ -10447,6 +10955,7 @@
       <w>qhare</w>
       <w>qheft</w>
       <w>qhyper</w>
+      <w>qlmomco</w>
       <w>qlnorm</w>
       <w>qlnorm3</w>
       <w>qlnormAlt</w>
@@ -10463,6 +10972,7 @@
       <w>qnorm</w>
       <w>qnormMix</w>
       <w>qnormTrunc</w>
+      <w>qnormpoly</w>
       <w>qoldlogspline</w>
       <w>qpareto</w>
       <w>qplot</w>
@@ -10507,15 +11017,44 @@
       <w>qt</w>
       <w>qtri</w>
       <w>qtukey</w>
+      <w>qua.ostat</w>
+      <w>qua2ci</w>
+      <w>qua2ci.cov</w>
+      <w>qua2ci.simple</w>
+      <w>quaaep4</w>
+      <w>quaaep4kapmix</w>
+      <w>quacau</w>
       <w>quade.test</w>
       <w>quads3d</w>
+      <w>quaemu</w>
+      <w>quaexp</w>
+      <w>quagam</w>
+      <w>quagep</w>
+      <w>quagev</w>
+      <w>quagld</w>
+      <w>quaglo</w>
+      <w>quagno</w>
+      <w>quagov</w>
+      <w>quagpa</w>
+      <w>quagum</w>
+      <w>quakap</w>
       <w>quakes</w>
+      <w>quakmu</w>
+      <w>quakur</w>
+      <w>qualap</w>
+      <w>qualmrq</w>
+      <w>qualn3</w>
+      <w>quanor</w>
       <w>quantcut</w>
       <w>quantile</w>
       <w>quantile.zoo</w>
       <w>quantileTest</w>
       <w>quantileTestPValue</w>
       <w>quantreg</w>
+      <w>quape3</w>
+      <w>quaray</w>
+      <w>quarevgum</w>
+      <w>quarice</w>
       <w>quarter</w>
       <w>quarters</w>
       <w>quarters.Date</w>
@@ -10528,7 +11067,13 @@
       <w>quasi</w>
       <w>quasibinomial</w>
       <w>quasipoisson</w>
+      <w>quasla</w>
+      <w>quast3</w>
       <w>quaternion</w>
+      <w>quatexp</w>
+      <w>quatri</w>
+      <w>quawak</w>
+      <w>quawei</w>
       <w>queencell</w>
       <w>queryRCmdCheck</w>
       <w>quick.map</w>
@@ -10585,6 +11130,7 @@
       <w>rainbow</w>
       <w>rainbow_hcl</w>
       <w>raise_to_power</w>
+      <w>ralmomco</w>
       <w>rand_bytes</w>
       <w>rand_num</w>
       <w>rand_seed</w>
@@ -10665,6 +11211,7 @@
       <w>rc.status</w>
       <w>rcard</w>
       <w>rcauchy</w>
+      <w>rcauchypoly</w>
       <w>rchi</w>
       <w>rchisq</w>
       <w>rcond</w>
@@ -10846,6 +11393,8 @@
       <w>recast</w>
       <w>recenter</w>
       <w>reciprocal_trans</w>
+      <w>reclass_date</w>
+      <w>reclass_timespan</w>
       <w>reclassify</w>
       <w>recode</w>
       <w>recode_factor</w>
@@ -11044,6 +11593,7 @@
       <w>residuals.stsls</w>
       <w>residualspaper</w>
       <w>resizePanels</w>
+      <w>reslife.lmoms</w>
       <w>resolution</w>
       <w>resolve.1.default</w>
       <w>resolve.defaults</w>
@@ -11167,6 +11717,7 @@
       <w>rigamma</w>
       <w>right</w>
       <w>right_join</w>
+      <w>riglmomco</w>
       <w>rinvgamma</w>
       <w>ripemd160</w>
       <w>rivers</w>
@@ -11178,6 +11729,7 @@
       <w>rleid</w>
       <w>rleidv</w>
       <w>rlm</w>
+      <w>rlmomco</w>
       <w>rlnorm</w>
       <w>rlnorm3</w>
       <w>rlnormAlt</w>
@@ -11195,6 +11747,7 @@
       <w>rmarkdown</w>
       <w>rmarkdown_format</w>
       <w>rmixedvm</w>
+      <w>rmlmomco</w>
       <w>rmnorm</w>
       <w>rms</w>
       <w>rms.curv</w>
@@ -11202,6 +11755,7 @@
       <w>rmsd.yai</w>
       <w>rmt</w>
       <w>rmultinom</w>
+      <w>rmvarlmomco</w>
       <w>rmvn</w>
       <w>rmvnorm</w>
       <w>rmvnorm.canonical</w>
@@ -11217,6 +11771,7 @@
       <w>rnorm</w>
       <w>rnormMix</w>
       <w>rnormTrunc</w>
+      <w>rnormpoly</w>
       <w>road</w>
       <w>robcov</w>
       <w>robustt</w>
@@ -11225,6 +11780,7 @@
       <w>roldlogspline</w>
       <w>rollapply</w>
       <w>rollapplyr</w>
+      <w>rollback</w>
       <w>rollmax</w>
       <w>rollmax.default</w>
       <w>rollmaxr</w>
@@ -11261,6 +11817,7 @@
       <w>roundN</w>
       <w>roundPOSIXt</w>
       <w>round_any</w>
+      <w>round_date</w>
       <w>round_hms</w>
       <w>roundrectGrob</w>
       <w>row</w>
@@ -11312,6 +11869,10 @@
       <w>rqs.fit</w>
       <w>rqss</w>
       <w>rqss.fit</w>
+      <w>rralmomco</w>
+      <w>rreslife.lmoms</w>
+      <w>rrmlmomco</w>
+      <w>rrmvarlmomco</w>
       <w>rsa_decrypt</w>
       <w>rsa_encrypt</w>
       <w>rsa_keygen</w>
@@ -11561,6 +12122,8 @@
       <w>sec_axis</w>
       <w>secal</w>
       <w>second</w>
+      <w>seconds</w>
+      <w>seconds_to_period</w>
       <w>sedit</w>
       <w>see_if</w>
       <w>seek</w>
@@ -11593,13 +12156,16 @@
       <w>selectpoints3d</w>
       <w>selfStart</w>
       <w>semat</w>
+      <w>semester</w>
       <w>semi_join</w>
+      <w>sen.mean</w>
       <w>send.mail</w>
       <w>sendToConsole</w>
       <w>sensiblevarname</w>
       <w>sensitivity</w>
       <w>sensuc</w>
       <w>sentences</w>
+      <w>sentiv.curve</w>
       <w>sepUnitsTrans</w>
       <w>separate</w>
       <w>separate_</w>
@@ -11797,6 +12363,7 @@
       <w>sheetNames</w>
       <w>shell.exec2</w>
       <w>shift</w>
+      <w>shiftedlegendre</w>
       <w>shingle</w>
       <w>shiny</w>
       <w>shinyApp</w>
@@ -11948,6 +12515,7 @@
       <w>slm.fit</w>
       <w>slm.fit.csr</w>
       <w>slm.wfit</w>
+      <w>slmomco</w>
       <w>slope</w>
       <w>slopeAspect</w>
       <w>slot</w>
@@ -12113,6 +12681,7 @@
       <w>spectrum</w>
       <w>spectrum0</w>
       <w>spectrum0.ar</w>
+      <w>spei</w>
       <w>spell_check</w>
       <w>sphase</w>
       <w>sphercov</w>
@@ -12121,6 +12690,7 @@
       <w>spherical.polynomials</w>
       <w>spherical.recurrences</w>
       <w>spherical.weight</w>
+      <w>spi</w>
       <w>spiders</w>
       <w>spin</w>
       <w>spin3d</w>
@@ -12239,6 +12809,9 @@
       <w>stack_trim</w>
       <w>stackloss</w>
       <w>stagec</w>
+      <w>stamp</w>
+      <w>stamp_date</w>
+      <w>stamp_time</w>
       <w>standard.theme</w>
       <w>standardGeneric</w>
       <w>stanford2</w>
@@ -12642,6 +13215,7 @@
       <w>strwrap</w>
       <w>stsecal</w>
       <w>stsls</w>
+      <w>stttlmomco</w>
       <w>studentdata</w>
       <w>studres</w>
       <w>stvmat</w>
@@ -12758,6 +13332,7 @@
       <w>summary.spatialDesign</w>
       <w>summary.spatialProcess</w>
       <w>summary.spautolm</w>
+      <w>summary.spei</w>
       <w>summary.srcfile</w>
       <w>summary.srcref</w>
       <w>summary.sreg</w>
@@ -12779,6 +13354,7 @@
       <w>sunspot.month</w>
       <w>sunspot.year</w>
       <w>sunspots</w>
+      <w>supdist</w>
       <w>superClassDepth</w>
       <w>supportsArg</w>
       <w>suppressDependencies</w>
@@ -12875,6 +13451,8 @@
       <w>t.spam</w>
       <w>t.test</w>
       <w>t.test.cluster</w>
+      <w>t1lmom2cauchypoly4</w>
+      <w>t1lmoments</w>
       <w>t2</w>
       <w>tTestAlpha</w>
       <w>tTestLnormAltN</w>
@@ -12932,6 +13510,7 @@
       <w>taskCallbackManager</w>
       <w>tau</w>
       <w>tau.nlrq</w>
+      <w>tau34sq.normtest</w>
       <w>tbl</w>
       <w>tblNoLast</w>
       <w>tblNoNext</w>
@@ -13038,6 +13617,11 @@
       <w>theme_update</w>
       <w>theme_void</w>
       <w>then</w>
+      <w>theoLmoms</w>
+      <w>theoLmoms.max.ostat</w>
+      <w>theoLmoms.min.ostat</w>
+      <w>theoTLmoms</w>
+      <w>theopwms</w>
       <w>there.is.no.try</w>
       <w>theta.md</w>
       <w>theta.ml</w>
@@ -13049,6 +13633,7 @@
       <w>thisfile_r</w>
       <w>thisfile_rscript</w>
       <w>thisfile_source</w>
+      <w>thornthwaite</w>
       <w>throttle</w>
       <w>throw</w>
       <w>throw.Exception</w>
@@ -13071,6 +13656,7 @@
       <w>tilt.boot</w>
       <w>tim.colors</w>
       <w>time</w>
+      <w>time_length</w>
       <w>time_trans</w>
       <w>timeout</w>
       <w>timestamp</w>
@@ -13300,6 +13886,17 @@
       <w>tkyview.moveto</w>
       <w>tkyview.scroll</w>
       <w>tli</w>
+      <w>tlmrcau</w>
+      <w>tlmrexp</w>
+      <w>tlmrgev</w>
+      <w>tlmrglo</w>
+      <w>tlmrgno</w>
+      <w>tlmrgpa</w>
+      <w>tlmrgum</w>
+      <w>tlmrln3</w>
+      <w>tlmrnor</w>
+      <w>tlmrpe3</w>
+      <w>tlmrray</w>
       <w>tmd</w>
       <w>tmerge</w>
       <w>tmesh3d</w>
@@ -13327,6 +13924,7 @@
       <w>toUrl.default</w>
       <w>tobase64image</w>
       <w>tobin</w>
+      <w>today</w>
       <w>todo</w>
       <w>toeplitz</w>
       <w>toeplitz.spam</w>
@@ -13498,7 +14096,10 @@
       <w>ttksizegrip</w>
       <w>ttkspinbox</w>
       <w>ttktreeview</w>
+      <w>tttlmomco</w>
       <w>tufte_handout</w>
+      <w>tulia6Eprecip</w>
+      <w>tuliaprecip</w>
       <w>tuna</w>
       <w>tune</w>
       <w>tune.control</w>
@@ -13509,6 +14110,7 @@
       <w>tune.svm</w>
       <w>turn3d</w>
       <w>tw</w>
+      <w>twlss</w>
       <w>two.colors</w>
       <w>twoSampleLinearRankTest</w>
       <w>twoSampleLinearRankTestCensored</w>
@@ -13527,7 +14129,9 @@
       <w>type_of</w>
       <w>type_sum</w>
       <w>typeof</w>
+      <w>tz</w>
       <w>ucv</w>
+      <w>udca</w>
       <w>uganda</w>
       <w>uiOutput</w>
       <w>uis</w>
@@ -13807,6 +14411,10 @@
       <w>vcovPC</w>
       <w>vcovPL</w>
       <w>vec2RGB</w>
+      <w>vec2TLmom</w>
+      <w>vec2lmom</w>
+      <w>vec2par</w>
+      <w>vec2pwm</w>
       <w>vec_depth</w>
       <w>vec_poke_n</w>
       <w>vec_poke_range</w>
@@ -13814,6 +14422,7 @@
       <w>vector</w>
       <w>vector.averaging</w>
       <w>vector_dc</w>
+      <w>vegaprecip</w>
       <w>verbalogic</w>
       <w>verbatimTextOutput</w>
       <w>verbose</w>
@@ -13889,6 +14498,7 @@
       <w>weekdays</w>
       <w>weekdays.Date</w>
       <w>weekdays.POSIXt</w>
+      <w>weeks</w>
       <w>weibullregpost</w>
       <w>weighted.mean</w>
       <w>weighted.residuals</w>
@@ -13925,6 +14535,7 @@
       <w>white</w>
       <w>whiteside</w>
       <w>who</w>
+      <w>wichita</w>
       <w>wideByFactor</w>
       <w>width.SJ</w>
       <w>widthDetails</w>
@@ -13992,6 +14603,7 @@
       <w>with_temp_libpaths</w>
       <w>with_tempfile</w>
       <w>with_tiff</w>
+      <w>with_tz</w>
       <w>with_vars</w>
       <w>with_verbose</w>
       <w>with_xfig</w>
@@ -14132,6 +14744,8 @@
       <w>wtd.var</w>
       <w>wtloss</w>
       <w>x11</w>
+      <w>x2pars</w>
+      <w>x2xlo</w>
       <w>xDetails</w>
       <w>xFromCell</w>
       <w>xFromCol</w>
@@ -14229,20 +14843,30 @@
       <w>yates_setup</w>
       <w>yaxisGrob</w>
       <w>yday</w>
+      <w>ydm</w>
+      <w>ydm_h</w>
+      <w>ydm_hm</w>
+      <w>ydm_hms</w>
       <w>year</w>
       <w>yearDays</w>
       <w>yearmon</w>
       <w>yearmon_trans</w>
       <w>yearqtr</w>
       <w>yearqtr_trans</w>
+      <w>years</w>
       <w>yellow</w>
       <w>yinch</w>
       <w>ylab</w>
       <w>ylim</w>
       <w>yline</w>
       <w>ymax</w>
+      <w>ymd</w>
+      <w>ymd_h</w>
+      <w>ymd_hm</w>
+      <w>ymd_hms</w>
       <w>ymin</w>
       <w>ynbind</w>
+      <w>yq</w>
       <w>yres</w>
       <w>yscale.components.default</w>
       <w>yscale.components.fractions</w>
@@ -14252,6 +14876,8 @@
       <w>yscale.components.logpower</w>
       <w>yscale.components.subticks</w>
       <w>yvars</w>
+      <w>z.par2cdf</w>
+      <w>z.par2qua</w>
       <w>zApply</w>
       <w>zTestGevdShape</w>
       <w>zapsmall</w>
