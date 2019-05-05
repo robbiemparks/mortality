@@ -682,7 +682,7 @@ plot.function.state.entire.round <- function(sex.sel) {
     # ggtitle(paste0(sex.filter2[sex.sel],' ',cod.print,' maximum')) +
     theme_map() +
     theme(text = element_text(size = 15),legend.position = 'bottom', legend.justification=c(0.5,0),
-    strip.background = element_blank(),legend.background = element_rect(fill = "grey95")))
+    strip.background = element_blank(),legend.background = element_rect(fill = "white")))
 }
 
 pdf(paste0(file.loc.region,'plots/com_rates_region_map_men_rounded_',cod.arg,'_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
@@ -709,7 +709,7 @@ plot.function.state.entire.round.inv <- function(sex.sel) {
     # ggtitle(paste0(sex.filter2[sex.sel],' ',cod.print,' minimum')) +
     theme_map() +
     theme(text = element_text(size = 15),legend.position = 'bottom',legend.justification=c(0.5,0),
-    strip.background = element_blank(),legend.background = element_rect(fill = "grey95")))
+    strip.background = element_blank(),legend.background = element_rect(fill = "white")))
 }
 
 pdf(paste0(file.loc.region,'plots/anti_com_rates_region_map_men_rounded_',cod.arg,'_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
