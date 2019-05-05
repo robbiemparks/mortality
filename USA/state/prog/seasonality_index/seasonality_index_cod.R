@@ -22,6 +22,8 @@ dname <- as.character(args[5])
 metric <- as.character(args[6])
 cod <- as.character(args[7]) ; cod <- gsub('_',' ',cod)
 
+# year.start=1980;year.end=2016;year.start.2=1980;year.end.2=2016;dname='t2m';metric='mean';cod='AllCause'
+
 print(cod)
 
 # length of analysis period
@@ -444,7 +446,7 @@ scale_colour_manual(values=map.climate.colour,guide = guide_legend(title = 'Regi
 theme(plot.title = element_text(hjust=0.5), legend.box.just = "centre",legend.box = "horizontal",legend.position=c(.8, .1),text = element_text(size = 10),
 panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(),
 axis.line.x = element_line(colour = "black"), axis.line.y = element_line(colour = "black"),
-rect = element_blank(),legend.background = element_rect(fill = "grey95"))
+rect = element_blank(),legend.background = element_rect(fill = "white"))
 dev.off()
 
 # fix region names

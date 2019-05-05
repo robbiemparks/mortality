@@ -123,14 +123,14 @@ plot.function.diff.seas.sig.5 <- function(data,shape.selected,x,y,n,xmin,xmax,ym
         theme(legend.box.just = "centre",legend.box = "horizontal",legend.position=c(x, y),text = element_text(size = 10),
         panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(),
         axis.line.x = element_line(colour = "black"), axis.line.y = element_line(colour = "black"),
-        rect = element_blank(),legend.background = element_rect(fill = "grey95"))
+        rect = element_blank(),legend.background = element_rect(fill = "white"))
     }
     if(legend==1){
         p = p +
         theme(legend.position = 'bottom', legend.box.just = "centre",legend.box = "horizontal",text = element_text(size = 10),
         panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank(),
         axis.line.x = element_line(colour = "black"), axis.line.y = element_line(colour = "black"),
-        rect = element_blank(),legend.background = element_rect(fill = "grey95"))
+        rect = element_blank(),legend.background = element_rect(fill = "white"))
     }
 
     print(p)
