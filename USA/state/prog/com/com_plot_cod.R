@@ -524,7 +524,7 @@ proj4string(hawaii) <- proj4string(us_aea)
 
 # remove old versions of Alaska and Hawaii and put new ones back in
 us_aea <- us_aea[!us_aea$STATE_FIPS %in% c("02", "15"),]
-us_aea <- rbind(us_aea, alaska, hawaii)
+# us_aea <- rbind(us_aea, alaska, hawaii)
 
 # fortify to prepare for ggplot
 map <- fortify(us_aea)
@@ -542,8 +542,8 @@ shapefile.data$climate_region <- 	c('Northwest','West North Central','Northeast'
 'Southwest','Central','South','Southeast','Central',
 'Southwest','South','Southeast','Central','South',
 'Southwest','Southeast','South','Southeast','Southeast',
-'South','South','Southeast','East North Central','Northwest',
-'West')
+'South','South','Southeast','East North Central')#,'Northwest',
+#'West')
 
 # reinsert shapefile.data with climate regions back into shapefile
 us_aea@data <- shapefile.data
@@ -663,8 +663,8 @@ map.climate.colour <- c('#FFFFFF',map.climate.colour)
 # add short month name
 
 # Update to take out alaska and hawaii
-dat.state.map = subset(dat.state.map,!(STATE_FIPS %in% c("02", "15")))
-dat.state.map.inv = subset(dat.state.map.inv,!(STATE_FIPS %in% c("02", "15")))
+dat.state.map = subset(dat.state.map,!(STATE_FIPS %in% c(2, 15)))
+dat.state.map.inv = subset(dat.state.map.inv,!(STATE_FIPS %in% c(2, 15)))
 
 # function to plot
 plot.function.state.entire.round <- function(sex.sel) {
@@ -679,6 +679,7 @@ plot.function.state.entire.round <- function(sex.sel) {
     facet_wrap(~age.print) +
     xlab('') +
     ylab('') +
+    coord_fixed() +
     # ggtitle(paste0(sex.filter2[sex.sel],' ',cod.print,' maximum')) +
     theme_map() +
     theme(text = element_text(size = 15),legend.position = 'bottom', legend.justification=c(0.5,0),
@@ -706,6 +707,7 @@ plot.function.state.entire.round.inv <- function(sex.sel) {
     facet_wrap(~age.print) +
     xlab('') +
     ylab('') +
+    coord_fixed() +
     # ggtitle(paste0(sex.filter2[sex.sel],' ',cod.print,' minimum')) +
     theme_map() +
     theme(text = element_text(size = 15),legend.position = 'bottom',legend.justification=c(0.5,0),
