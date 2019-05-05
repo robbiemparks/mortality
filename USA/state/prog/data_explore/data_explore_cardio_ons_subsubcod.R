@@ -98,8 +98,16 @@ dat.national.com.sex = merge(dat.national.com.sex,StdPopMF,by='age',all.x=1)
 dat.national.com.sex = dat.national.com.sex[order(dat.national.com.sex$cause.sub,dat.national.com.sex$age,dat.national.com.sex$year),]
 dat.national.com.sex = ddply(dat.national.com.sex,.(cause.sub,year,month), summarize, ASDR=sum(rate.adj*weight)/sum(weight))
 
+# create ASDR national data for sub sub-causes BY SEX
+dat.national.com.sex.sep = ddply(dat.national,.(cause.sub,month,year,sex,age),summarize, deaths=sum(deaths),pop.adj=sum(pop.adj))
+dat.national.com.sex.sep$rate.adj = with(dat.national.com.sex.sep, deaths/pop.adj)
+dat.national.com.sex.sep = merge(dat.national.com.sex.sep,StdPopMF,by='age',all.x=1)
+dat.national.com.sex.sep = dat.national.com.sex.sep[order(dat.national.com.sex.sep$cause.sub,dat.national.com.sex.sep$age,dat.national.com.sex.sep$year),]
+dat.national.com.sex.sep = ddply(dat.national.com.sex.sep,.(cause.sub,year,month,sex), summarize, ASDR=sum(rate.adj*weight)/sum(weight))
+
 # create yearly ASDR national data FIX THIS
 dat.national.com.sex.year = ddply(dat.national.com.sex,.(cause.sub,year), summarize, ASDR=mean(ASDR))
+dat.national.com.sex.year.sep = ddply(dat.national.com.sex.sep,.(sex,cause.sub,year), summarize, ASDR=mean(ASDR))
 
 library(ggplot2)
 

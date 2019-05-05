@@ -17,15 +17,19 @@ file.loc <- paste0('../../output/data_summary/')
 ifelse(!dir.exists(file.loc), dir.create(file.loc, recursive=TRUE), FALSE)
 
 # load data and filter results
-if(class.arg=='broad') {
+if(class.arg=='Broad') {
     dat <- readRDS(paste0('../../output/prep_data_cod/datus_state_rates_cod_',year.start.arg,'_',year.end.arg))
 }
-if(class.arg=='narrow') {
+if(class.arg=='Narrow') {
     dat <- readRDS(paste0('~/data/mortality/US/state/processed/rates/datus_nat_deaths_subcod_elife_',year.start.arg,'_',year.end.arg))
     dat$cause = dat$cause.sub ; dat$cause.group = NULL ; dat$cause.sub = NULL
 }
-if(class.arg=='injuries') {
+if(class.arg=='Injuries') {
     dat <- readRDS(paste0('../../output/prep_data_cod/datus_state_rates_cod_injuries_ons_',year.start.arg,'_',year.end.arg))
+}
+if(class.arg=='Cardiopulmonary') {
+    dat <- readRDS(paste0('../../output/prep_data_cod/datus_nat_deaths_subcod_cardio_ons_',year.start.arg,'_',year.end.arg))
+    dat$cause.group = NULL ; names(dat)[6] = 'cause'
 }
 
 head(dat)
@@ -43,6 +47,10 @@ dat.summary.entire = ddply(dat.summary.entire,.(sex),mutate,percentage=100*death
 # summary of deaths by cause and sex for entire period
 dat.summary.entire.age = ddply(dat,.(age,sex),summarise,deaths=sum(deaths))
 dat.summary.entire.age = ddply(dat.summary.entire.age,.(sex),mutate,percentage=100*deaths/sum(deaths))
+
+# summary of deaths by cause, age and sex for entire period
+dat.summary.entire.age.cause = ddply(dat,.(cause,age,sex),summarise,deaths=sum(deaths))
+dat.summary.entire.age.cause = ddply(dat.summary.entire.age.cause,.(age,sex),mutate,percentage=100*deaths/sum(deaths))
 
 # summary of deaths by sex over time
 # dat.summary.sex.time = ddply(dat,.(year,sex),summarise,deaths=sum(deaths))
