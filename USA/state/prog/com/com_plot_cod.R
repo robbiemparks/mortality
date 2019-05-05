@@ -663,6 +663,8 @@ map.climate.colour <- c('#FFFFFF',map.climate.colour)
 # add short month name
 
 # Update to take out alaska and hawaii
+dat.state.map = subset(dat.state.map,!(STATE_FIPS %in% c("02", "15")))
+dat.state.map.inv = subset(dat.state.map.inv,!(STATE_FIPS %in% c("02", "15")))
 
 # function to plot
 plot.function.state.entire.round <- function(sex.sel) {
