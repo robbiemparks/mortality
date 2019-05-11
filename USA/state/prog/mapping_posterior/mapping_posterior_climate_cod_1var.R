@@ -163,12 +163,12 @@ if(model%in%c('1d','1d2')){
         geom_pointrange(aes(x=month.short,y=odds.mean,ymin=odds.ll,ymax=odds.ul,color=as.factor(sex)), position=position_dodge(width=0.5)) +
         geom_hline(yintercept=0, lty=2) +
         #scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
-        scale_y_continuous(labels=scales::percent_format( )) +
+        scale_y_continuous(labels=scales::percent_format(accuracy=1)) +
         # ggtitle(cod.print) +
         # coord_flip(ylim = c(-0.03,0.03)) +
         coord_flip() +
         facet_wrap(~age.long, nrow=2) +
-        xlab("Month") + ylab(paste0("Excess relative risk associated with a 1 degree warmer year")) +
+        xlab("Month") + ylab(paste0("Excess relative risk associated with a 1°C warmer year")) + # 'Percentage change in death rates associated with a 1°C warmer year'
         labs(color = "Sex\n") +
         scale_color_manual(labels = c("Male", "Female"), values = c("blue", "red")) +
         theme_bw() + theme(text = element_text(size = 15),
@@ -195,7 +195,7 @@ if(model%in%c('1d','1d2')){
         coord_flip() +
         # ggtitle(cod.print) +
         facet_wrap(~month.short, nrow=2) +
-        xlab("Age group (years)") + ylab(paste0("Excess relative risk associated with a 1 degree warmer year")) +
+        xlab("Age group (years)") + ylab(paste0("Excess relative risk associated with a 1°C warmer year")) +
         labs(color = "Sex\n") +
         scale_color_manual(labels = c("Male", "Female"), values = c("blue", "red")) +
         theme_bw() + theme(text = element_text(size = 15),
