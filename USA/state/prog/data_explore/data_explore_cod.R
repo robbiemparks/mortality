@@ -130,6 +130,27 @@ ggplot(dat=dat.national.com.sex.sep, aes(x=month,y=100000*ASDR,group=year,colour
 
 dev.off()
 
+pdf(paste0(file.loc,'broad_cod_asdr_plots_both_sexes_portrait_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4',height=0,width=0)
+
+# 1.
+ggplot(dat=dat.national.com.sex.sep, aes(x=month,y=100000*ASDR,group=year,colour=year)) +
+    geom_line() +
+    xlab('Month') +
+    ylab('Age standardised death rate (per 100,000)') +
+    scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short.2)   +
+    guides(color=guide_colorbar(barwidth=30, title='Year')) +
+    scale_color_gradientn(colors=yearpalette) +
+    # scale_colour_manual(values=yearpalette, guide = guide_legend(nrow = 3,title = paste0("Year"))) +
+    facet_grid(sex.long~cause) +
+    theme_bw() +  theme(panel.grid.major = element_blank(),text = element_text(size = 15),
+    axis.text.x = element_text(angle=90), axis.ticks.x=element_blank(),
+    panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
+    panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+    legend.position = 'bottom',legend.justification='center',
+    legend.background = element_rect(fill="white", size=.5, linetype="dotted"))
+
+dev.off()
+
 ############################
 # for nationalised data
 ############################

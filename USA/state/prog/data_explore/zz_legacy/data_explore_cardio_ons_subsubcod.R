@@ -24,9 +24,6 @@ yearpalette = colorfunc(year.end.arg-year.start.arg +1)
 
 # fix cod names
 dat$cause = dat$cause.group ; dat$cause.group=NULL
-# dat$cause <- gsub('Unintentional', 'Unintentional injuries', dat$cause) # first in order
-# dat$cause <- gsub('Intentional', 'Intentional injuries', dat$cause) # second in order
-# dat$cause <- gsub('Other', 'Undetermined whether accidentally or purposely inflicted', dat$cause)
 
 # fix sub-cod names
 dat$cause.sub <- gsub('Ischaemic heart disease', 'Ischaemic\nheart disease', dat$cause.sub)                                                 # 1
@@ -201,6 +198,42 @@ ggplot(dat=dat.national.com.sex, aes(x=month,y=100000*ASDR,group=year,colour=yea
     guides(color=guide_colorbar(barwidth=30, title='Year')) +
     scale_color_gradientn(colors=yearpalette) +
     facet_grid(~cause.sub) +
+    theme_bw() +  theme(panel.grid.major = element_blank(),text = element_text(size = 15),
+    axis.text.x = element_text(angle=90), axis.ticks.x=element_blank(),
+    panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
+    panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+    legend.position = 'bottom',legend.justification='center',
+    legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
+dev.off()
+
+pdf(paste0(file.loc,'cardio_ons_subsubcod_asdr_plots_both_sexes_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
+# 1. monthly plot facetted by subsubcause
+ggplot(dat=subset(dat.national.com.sex.sep,!(cause.sub%in%c('Other cardiovascular\ndiseases','Other respiratory\ndiseases'))), aes(x=month,y=100000*ASDR,group=year,colour=year)) +
+    geom_line() +
+    xlab('Month') +
+    ylab('Age standardised death rate (per 100,000)') +
+    scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short.2)   +
+    guides(color=guide_colorbar(barwidth=30, title='Year')) +
+    scale_color_gradientn(colors=yearpalette) +
+    facet_grid(sex.long~cause.sub) +
+    theme_bw() +  theme(panel.grid.major = element_blank(),text = element_text(size = 15),
+    axis.text.x = element_text(angle=90), axis.ticks.x=element_blank(),
+    panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
+    panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+    legend.position = 'bottom',legend.justification='center',
+    legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))
+dev.off()
+
+pdf(paste0(file.loc,'cardio_ons_subsubcod_asdr_plots_both_sexes_portrait_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4',height=0,width=0)
+# 1. monthly plot facetted by subsubcause
+ggplot(dat=subset(dat.national.com.sex.sep,!(cause.sub%in%c('Other cardiovascular\ndiseases','Other respiratory\ndiseases'))), aes(x=month,y=100000*ASDR,group=year,colour=year)) +
+    geom_line() +
+    xlab('Month') +
+    ylab('Age standardised death rate (per 100,000)') +
+    scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short.2)   +
+    guides(color=guide_colorbar(barwidth=30, title='Year')) +
+    scale_color_gradientn(colors=yearpalette) +
+    facet_grid(sex.long~cause.sub) +
     theme_bw() +  theme(panel.grid.major = element_blank(),text = element_text(size = 15),
     axis.text.x = element_text(angle=90), axis.ticks.x=element_blank(),
     panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
