@@ -376,6 +376,23 @@ ggplot(dat=subset(dat.national.com.sex.sep,cause.sub!='Other unintentional\ninju
     xlab('Month') +
     ylab('Age standardised death rate (per 100,000)') +
     ylim(c(0,max(100000*dat.national.com.sex.sep$ASDR))) +
+    scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short.2)   +
+    guides(color=guide_colorbar(barwidth=30, title='Year')) +
+    scale_color_gradientn(colors=yearpalette) +
+    facet_grid(cause.sub~sex.long) +
+    theme_bw() +  theme(panel.grid.major = element_blank(),text = element_text(size = 15),
+    axis.text.x = element_text(angle=90), axis.ticks.x=element_blank(),
+    panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
+    panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+    legend.position = 'bottom',legend.justification='center',
+    legend.background = element_rect(fill="white", size=.5, linetype="dotted"))
+
+
+ggplot(dat=subset(dat.national.com.sex.sep,cause.sub!='Other unintentional\ninjuries'), aes(x=month,y=100000*ASDR,group=year,colour=year)) +
+    geom_line() +
+    xlab('Month') +
+    ylab('Age standardised death rate (per 100,000)') +
+    ylim(c(0,max(100000*dat.national.com.sex.sep$ASDR))) +
     scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short)   +
     guides(color=guide_colorbar(barwidth=30, title='Year')) +
     scale_color_gradientn(colors=yearpalette) +
