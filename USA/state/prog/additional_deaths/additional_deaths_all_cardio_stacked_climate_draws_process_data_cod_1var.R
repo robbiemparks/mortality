@@ -75,7 +75,7 @@ for(h in causes.all){
 
 }}
 
-} # suspect this is the bracket I will get rid of
+}
 
 # for national model
 if(model%in%c('1d','1d2')){

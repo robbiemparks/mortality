@@ -51,13 +51,15 @@ if(model%in%c('1e')){
 
 # data frames to populate with
 dat.merged.sub.all.age = data.frame()
-dat.merged.sub.all.age.sex = data.frame()
-dat.merged.sub.all.age.sex.cause = data.frame()
+# dat.merged.sub.all.age.sex = data.frame()
+# dat.merged.sub.all.age.sex.cause = data.frame()
 
 # load the draws data for each age and sex for the cause chosen
 for(h in causes.all){
+# for(h in causes.all[1:2]){
     for (i in seq(length(sex.filter))) {
         for (j in seq(length(age.filter))) {
+        # for (j in c(1,2)) {
 
             print(paste0('Loading draws for ',sex.filter[i],', ',age.filter[j],', ',h,'...'))
 
@@ -104,8 +106,9 @@ for(h in causes.all){
 
     # additional deaths for each draw made for a particular age sex and cause of death
     for(k in seq(num.draws)){
+    # for(k in c(1:10)){
 
-            print(paste0('draw ',k))
+            # print(paste0('draw ',k))
 
                 # empty data frame for parameters
                 parameter.table = data.frame()
@@ -143,15 +146,13 @@ for(h in causes.all){
             # delete current age sex cause draws combination
             rm(list=paste0('draws.',age.filter[j],'.',sex.lookup[i],'.',h))
         }
-        dat.merged.sub.all.age.sex=rbind(dat.merged.sub.all.age.sex,dat.merged.sub.all.age)
+        # dat.merged.sub.all.age.sex=rbind(dat.merged.sub.all.age.sex,dat.merged.sub.all.age)
     }
-    dat.merged.sub.all.age.sex.cause=rbind(dat.merged.sub.all.age.sex.cause,dat.merged.sub.all.age.sex)
+    # dat.merged.sub.all.age.sex.cause=rbind(dat.merged.sub.all.age.sex.cause,dat.merged.sub.all.age.sex)
 }
 
-#GO FROM HERE WHEN STARTING AGAIN
-
 # integrate across year by cause, age and sex, also for entire population
-dat.merged.sub.year = ddply(dat.merged.sub.all.age.sex.cause,.(cause,sex,age,draw),summarise,deaths.added=sum(deaths.added),deaths.added.two.deg=sum(deaths.added.two.deg))
+dat.merged.sub.year = ddply(dat.merged.sub.all.age,.(cause,sex,age,draw),summarise,deaths.added=sum(deaths.added),deaths.added.two.deg=sum(deaths.added.two.deg))
 dat.total.sex = ddply(dat.merged.sub.year,.(cause,sex,draw),summarise,deaths.added=sum(deaths.added),deaths.added.two.deg=sum(deaths.added.two.deg)) ; dat.total.sex$age = 99
 dat.total= ddply(dat.merged.sub.year,.(cause,draw),summarise,deaths.added=sum(deaths.added),deaths.added.two.deg=sum(deaths.added.two.deg)) ; dat.total$age = 99 ; dat.total$sex = 0
 
@@ -161,7 +162,7 @@ additional.deaths = dat.merged.sub.year
 additional.deaths.total = subset(dat.merged.sub.year,sex==0&age==99)
 
 # integrate across year by month and sex, also for entire population
-dat.merged.sub.year.monthly = ddply(dat.merged.sub.all.age.sex.cause,.(cause,sex,month,draw),summarise,deaths.added=sum(deaths.added),deaths.added.two.deg=sum(deaths.added.two.deg))
+dat.merged.sub.year.monthly = ddply(dat.merged.sub.all.age,.(cause,sex,month,draw),summarise,deaths.added=sum(deaths.added),deaths.added.two.deg=sum(deaths.added.two.deg))
 # dat.total.sex.monthly = ddply(dat.merged.sub.year.monthly,.(cause,sex),summarise,deaths.added=sum(deaths.added),deaths.added.two.deg=sum(deaths.added.two.deg)) ; dat.total.sex.monthly$month = 99
 # dat.total.monthly = ddply(dat.merged.sub.year.monthly,.(cause),summarise,deaths.added=sum(deaths.added),deaths.added.two.deg=sum(deaths.added.two.deg)) ; dat.total.monthly$month = 99 ; dat.total$sex = 0
 
