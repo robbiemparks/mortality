@@ -68,7 +68,7 @@ echo "plotting figure 5 and supplementary figure cardio paper $start - $end";
 cd ~/git/mortality/USA/state/prog/00_bash/
 
 #Rscript ~/git/mortality/USA/state/prog/additional_deaths/additional_deaths_all_cardio_stacked_climate_draws_plot_data_cod_1var.R $start $end $country $model $dname $metric $contig $draws
-Rscript ~/git/mortality/USA/state/prog/additional_deaths/additional_deaths_all_cardio_stacked_climate_draws_plot_data_cod_1var_2.R $start $end $country $model $dname $metric $contig $draws
+#Rscript ~/git/mortality/USA/state/prog/additional_deaths/additional_deaths_all_cardio_stacked_climate_draws_plot_data_cod_1var_2.R $start $end $country $model $dname $metric $contig $draws
 
 #################################################
 # Figure 6 (rankings of excess risk)
@@ -84,7 +84,7 @@ echo "plotting figure 6 for cardio paper $start - $end";
 # to correct directory
 cd ~/git/mortality/USA/state/prog/00_bash/
 
-Rscript ~/git/mortality/USA/state/prog/mapping_posterior/mapping_posterior_climate_cod_1var.R $start $end $country 11 $dname $metric $cause $contig $pw $draws
+#Rscript ~/git/mortality/USA/state/prog/mapping_posterior/mapping_posterior_climate_cod_1var.R $start $end $country 11 $dname $metric $cause $contig $pw $draws
 
 #################################################
 # Tables XX-XX (not currently in paper)
@@ -95,4 +95,6 @@ echo "populating table XX cardio paper $start - $end";
 # to correct directory
 cd ~/git/mortality/USA/state/prog/00_bash/
 
-#Rscript ~/git/mortality/USA/state/prog/additional_deaths/additional_deaths_all_cardio_stacked_climate_draws_human_readable_cod_1var.R $start $end $country $model $dname $metric $contig $draws
+declare -i draws=5000
+
+Rscript ~/git/mortality/USA/state/prog/additional_deaths/additional_deaths_all_cardio_stacked_climate_draws_human_readable_cod_1var.R $start $end $country $model $dname $metric $contig $draws

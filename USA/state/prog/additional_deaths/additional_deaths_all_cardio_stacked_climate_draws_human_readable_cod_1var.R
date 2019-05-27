@@ -54,8 +54,6 @@ additional.deaths.intent.monthly.summary = readRDS(paste0(file.loc,'additional_d
 additional.deaths.summary = readRDS(paste0(file.loc,'additional_deaths_summary_age_draws.rds'))
 additional.deaths.summary.monthly =    readRDS(paste0(file.loc,'additional_deaths_summary_monthly_draws.rds'))
 
-
-
 # fix sub-cod names
 # fix_names = function(dat){
 #     dat$cause <- gsub('1. Transport', 'Transport', dat$cause)                                           # 1
@@ -103,7 +101,7 @@ names(additional.deaths.summary.print) = c('Age group','Sex','Cause','Deaths add
 
 # 2. sub-categories of deaths by age but sex together
 additional.deaths.sex.together = ddply(additional.deaths,.(cause,age,draw),summarize,deaths.added=sum(deaths.added))
-additional.deaths.sex.together = fix_names2(additional.deaths.sex.together)
+# additional.deaths.sex.together = fix_names2(additional.deaths.sex.together)
 additional.deaths.sex.together = ddply(additional.deaths.sex.together,.(cause,age),summarize, deaths.added.median=median(deaths.added),deaths.added.mean=mean(deaths.added),deaths.added.ll=quantile(deaths.added,0.025),deaths.added.ul=quantile(deaths.added,0.975))
 additional.deaths.sex.together$age.long = mapvalues(additional.deaths.sex.together$age,from=sort(unique(additional.deaths.sex.together$age)),to=as.character(c(as.character(age.code[,2]),'All ages')))
 additional.deaths.sex.together$sex.long = 'Both'
@@ -113,7 +111,7 @@ names(additional.deaths.sex.together) = c('Age group','Sex','Cause','Deaths adde
 
 # 3. intentional and unintentional deaths
 # label deaths intentional or unintentional and get rid of other unintentional injuries
-causes.cardio = c('Ischaemic heart disease','Cerebrovascular disease')
+causes.cardio = c('Ischaemic heart disease','Cerebrovascular disease','Other cardiovascular diseases')
 additional.deaths$intent = ifelse(additional.deaths$cause%in%causes.cardio,'Cardiovascular','Respiratory')
 
 additional.deaths.wo.other = subset(additional.deaths,!(cause%in%c('Other external causes of injury')))

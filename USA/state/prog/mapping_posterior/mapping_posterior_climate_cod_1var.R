@@ -1235,7 +1235,7 @@ if(model %in% c('1e','1f')){
         for(i in sort(unique(dat$age))){plot.function.excess.risk.state.ranking.age.sex(2,i)}
         dev.off()
 
-        # function to show ranking by age in states for each sex TO TEST
+        # function to show ranking by age in states for each sex
         plot.function.excess.risk.state.ranking.age.sex.month <- function(sex.sel) {
 
         dat=subset(dat,sex==sex.sel&month%in%c(c(1:12)))
@@ -1289,6 +1289,74 @@ if(model %in% c('1e','1f')){
 
         pdf(paste0(file.loc,'climate_month_params_excess_risk_ordered_months_females_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
         plot.function.excess.risk.state.ranking.age.sex.month(2)
+        dev.off()
+
+        # function to show ranking by age in states for each sex in jan and july
+        plot.function.excess.risk.state.ranking.age.sex.jan.jul.w.national <- function(sex.sel,model.comp) {
+
+        # load alternative model to compare (must be a national model)
+        dat.comp = load.function(model.comp)
+
+        # find limits for plot
+        min.plot <- min(subset(dat,month%in%c(1,7))$odds.ll)
+        max.plot <- max(subset(dat,month%in%c(1,7))$odds.ul)
+
+        dat=subset(dat,sex==sex.sel&month%in%c(1,7))
+
+        # attach long month names
+        dat$month.short <- mapvalues(dat$month,from=sort(unique(dat$month)),to=month.short[c(1,7)])
+        dat$month.short <- reorder(dat$month.short,(dat$month))
+        dat.comp$month.short <- mapvalues(dat.comp$ID,from=sort(unique(dat.comp$ID)),to=month.short)
+        dat.comp$month.short <- reorder(dat.comp$month.short,(dat.comp$ID))
+
+        # attach long age names
+        dat$age.long <- mapvalues(dat$age,from=sort(unique(dat$age)),to=c(as.character(age.code[,2])))
+        dat$age.long <- reorder(dat$age.long,dat$age)
+        dat.comp$age.long <- mapvalues(dat.comp$age,from=sort(unique(dat.comp$age)),to=c(as.character(age.code[,2])))
+        dat.comp$age.long <- reorder(dat.comp$age.long,dat.comp$age)
+
+        dat.comp=subset(dat.comp,sex==sex.sel&ID%in%c(1,7))
+
+        shapefile.data = read.csv('../../data/shapefiles/shapefile_data.csv')
+        dat = merge(dat,shapefile.data,by.x=c('fips'),by.y=c('fips'))
+
+        # for each grouping of age,sex,month, rank by odds
+        dat.ranked = arrange(dat, age, sex, month, odds.mean)
+
+        # add unique ranking id by age,sex,month
+        dat.ranked = ddply(dat.ranked,.(age,sex,month), transform, pos=rank(odds.mean,ties.method='first'))
+
+        # plotting
+        print(ggplot(data=subset(dat.ranked)) +
+        geom_errorbar(aes(x=pos,ymin=odds.ll,ymax=odds.ul), width=0,alpha=0.2) +
+        geom_point(aes(x=pos,y=odds.mean), alpha=0.5) +
+        geom_hline(data=subset(dat.comp,sex==sex.sel), aes(yintercept=odds.mean), color='red') +
+        geom_hline(data=subset(dat.comp,sex==sex.sel), aes(yintercept=odds.ll), color='red',alpha=0.9,linetype='dotted') +
+        geom_hline(data=subset(dat.comp,sex==sex.sel), aes(yintercept=odds.ul), color='red',alpha=0.9,linetype='dotted') +
+        geom_hline(yintercept=0,linetype='dotted') +
+        xlab('Age group (years)') + ylab('Excess relative risk associated with a 1°C warmer year') +
+        scale_y_continuous(limits=c(min.plot,max.plot),labels=scales::percent) +
+        coord_flip() +
+        facet_grid(age.long~month.short,switch='y') +
+        guides(color=guide_legend(nrow=1)) +
+        # scale_colour_manual(values=colorRampPalette(rev(brewer.pal(12,"RdYlBu")[c(9:10,2:1,1:2,10:9)]))(12),guide = guide_legend(title = 'month'),labels=month.short) +
+        theme_bw() + theme(text = element_text(size = 15),
+        panel.grid.major = element_blank(),
+        axis.text.y=element_blank(),axis.ticks.y=element_blank(),
+        plot.title = element_text(hjust = 0.5),panel.background = element_blank(),
+        panel.grid.minor = element_blank(), axis.line = element_line(colour = "white"),
+        panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+        legend.position = 'bottom',legend.justification='center',
+        legend.background = element_rect(fill="white", size=.5, linetype="dotted")))
+        }
+
+        # both sexes output to pdf
+        pdf(paste0(file.loc,'climate_month_params_excess_risk_ordered_janjuly_males_w_national_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
+        plot.function.excess.risk.state.ranking.age.sex.jan.jul.w.national(1,10)
+        dev.off()
+
+        pdf(paste0(file.loc,'climate_month_params_excess_risk_ordered_janjuly_females_w_national_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
+        plot.function.excess.risk.state.ranking.age.sex.jan.jul.w.national(2,10)
         dev.off()
 
         # function to show ranking by age in states for each sex in jan and july
@@ -1347,6 +1415,130 @@ if(model %in% c('1e','1f')){
         plot.function.excess.risk.state.ranking.age.sex.jan.jul(2)
         dev.off()
 
+        # function to show histogram by age in states for each sex
+        plot.function.excess.risk.state.hist.age.sex.month <- function(sex.sel,model.comp){
+
+        dat=subset(dat,sex==sex.sel&month%in%c(c(1:12)))
+
+        # find limits for plot
+        min.plot <- min(subset(dat)$odds.mean)
+        max.plot <- max(subset(dat)$odds.mean)
+
+        # attach long month names
+        dat$month.short <- mapvalues(dat$month,from=sort(unique(dat$month)),to=month.short)
+        dat$month.short <- reorder(dat$month.short,(dat$month))
+
+        # attach long age names
+        dat$age.long <- mapvalues(dat$age,from=sort(unique(dat$age)),to=c(as.character(age.code[,2])))
+        dat$age.long <- reorder(dat$age.long,dat$age)
+
+        shapefile.data = read.csv('../../data/shapefiles/shapefile_data.csv')
+        dat = merge(dat,shapefile.data,by.x=c('fips'),by.y=c('fips'))
+
+        # for each grouping of age,sex,month, rank by odds
+        dat.ranked = arrange(dat, age, sex, month, odds.mean)
+
+        # add unique ranking id by age,sex,month
+        dat.ranked = ddply(dat.ranked,.(age,sex,month), transform, pos=rank(odds.mean,ties.method='first'))
+
+        # plotting
+        print(ggplot(data=subset(dat.ranked)) +
+        # geom_errorbar(aes(x=pos,ymin=odds.ll,ymax=odds.ul), width=0,alpha=0.2) +
+        # geom_point(aes(x=pos,y=odds.mean), alpha=0.5) +
+        geom_histogram(aes(x=odds.mean)) +
+        geom_vline(xintercept=0,linetype='dotted') +
+        ylab('Age group (years)') + xlab('Excess relative risk associated with a 1°C warmer year') +
+        scale_x_continuous(limits=c(min.plot,max.plot),labels=scales::percent_format(accuracy=1)) +
+        # coord_flip() +
+        facet_grid(age.long~month.short,switch='y') +
+        # guides(color=guide_legend(nrow=1)) +
+        # scale_colour_manual(values=colorRampPalette(rev(brewer.pal(12,"RdYlBu")[c(9:10,2:1,1:2,10:9)]))(12),guide = guide_legend(title = 'month'),labels=month.short) +
+        theme_bw() + theme(text = element_text(size = 10),
+        panel.grid.major = element_blank(),
+        axis.text.y=element_blank(),axis.ticks.y=element_blank(),
+        plot.title = element_text(hjust = 0.5),panel.background = element_blank(),
+        panel.grid.minor = element_blank(), axis.line = element_line(colour = "white"),
+        panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+        legend.position = 'bottom',legend.justification='center',
+        legend.background = element_rect(fill="white", size=.5, linetype="dotted")))
+        }
+
+        # both sexes output to pdf
+        pdf(paste0(file.loc,'climate_month_params_excess_risk_histogram_months_males_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
+        plot.function.excess.risk.state.hist.age.sex.month(1)
+        dev.off()
+
+        pdf(paste0(file.loc,'climate_month_params_excess_risk_histogram_months_females_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
+        plot.function.excess.risk.state.hist.age.sex.month(2)
+        dev.off()
+
+        # function to show histogram by age in states for each sex
+        plot.function.excess.risk.state.hist.age.sex.month.w.national <- function(sex.sel,model.comp){
+
+        # load alternative model to compare (must be a national model)
+        dat.comp = load.function(model.comp)
+
+        dat=subset(dat,sex==sex.sel&month%in%c(c(1:12)))
+
+        # find limits for plot
+        min.plot <- min(subset(dat)$odds.mean)
+        max.plot <- max(subset(dat)$odds.mean)
+
+        # attach long month names
+        dat$month.short <- mapvalues(dat$month,from=sort(unique(dat$month)),to=month.short)
+        dat$month.short <- reorder(dat$month.short,(dat$month))
+        dat.comp$month.short <- mapvalues(dat.comp$ID,from=sort(unique(dat.comp$ID)),to=month.short)
+        dat.comp$month.short <- reorder(dat.comp$month.short,(dat.comp$ID))
+
+        # attach long age names
+        dat$age.long <- mapvalues(dat$age,from=sort(unique(dat$age)),to=c(as.character(age.code[,2])))
+        dat$age.long <- reorder(dat$age.long,dat$age)
+        dat.comp$age.long <- mapvalues(dat.comp$age,from=sort(unique(dat.comp$age)),to=c(as.character(age.code[,2])))
+        dat.comp$age.long <- reorder(dat.comp$age.long,dat.comp$age)
+
+        # shapefile.data = read.csv('../../data/shapefiles/shapefile_data.csv')
+        # dat = merge(dat,shapefile.data,by.x=c('fips'),by.y=c('fips'))
+
+        # for each grouping of age,sex,month, rank by odds
+        dat.ranked = arrange(dat, age, sex, month, odds.mean)
+
+        # add unique ranking id by age,sex,month
+        dat.ranked = ddply(dat.ranked,.(age,sex,month), transform, pos=rank(odds.mean,ties.method='first'))
+
+        print(dat.comp)
+
+        # plotting
+        print(ggplot(data=subset(dat.ranked)) +
+        geom_vline(data=subset(dat.comp,sex==sex.sel), aes(xintercept=odds.mean), color='red') +
+        geom_vline(data=subset(dat.comp,sex==sex.sel), aes(xintercept=odds.ll), color='red',alpha=0.5) +
+        geom_vline(data=subset(dat.comp,sex==sex.sel), aes(xintercept=odds.ul), color='red',alpha=0.5) +
+        geom_histogram(aes(x=odds.mean),alpha=0.7) +
+        geom_vline(xintercept=0,linetype='dotted') +
+        ylab('Age group (years)') + xlab('Excess relative risk associated with a 1°C warmer year') +
+        scale_x_continuous(limits=c(min.plot,max.plot),labels=scales::percent_format(accuracy=1)) +
+        # coord_flip() +
+        facet_grid(age.long~month.short,switch='y') +
+        # guides(color=guide_legend(nrow=1)) +
+        # scale_colour_manual(values=colorRampPalette(rev(brewer.pal(12,"RdYlBu")[c(9:10,2:1,1:2,10:9)]))(12),guide = guide_legend(title = 'month'),labels=month.short) +
+        theme_bw() + theme(text = element_text(size = 10),
+        panel.grid.major = element_blank(),
+        axis.text.y=element_blank(),axis.ticks.y=element_blank(),
+        plot.title = element_text(hjust = 0.5),panel.background = element_blank(),
+        panel.grid.minor = element_blank(), axis.line = element_line(colour = "white"),
+        panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+        legend.position = 'bottom',legend.justification='center',
+        legend.background = element_rect(fill="white", size=.5, linetype="dotted")))
+        }
+
+        # both sexes output to pdf
+        pdf(paste0(file.loc,'climate_month_params_excess_risk_histogram_months_males_w_national_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
+        plot.function.excess.risk.state.hist.age.sex.month.w.national(1,10)
+        dev.off()
+
+        pdf(paste0(file.loc,'climate_month_params_excess_risk_histogram_months_w_national_females_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
+        plot.function.excess.risk.state.hist.age.sex.month.w.national(2,10)
+        dev.off()
+
     # function to plot all excess risk on plot with error and reference from national model as comparison
         plot.function.excess.risk.w.national <- function(sex.sel,age.sel,model.comp) {
 
@@ -1381,7 +1573,7 @@ if(model %in% c('1e','1f')){
         scale_y_continuous(limits=c(min.plot,max.plot),labels=scales::percent) +
         coord_flip() +
         facet_wrap(~month.short) +
-        guides(fill=guide_colorbar(barwidth=30, title='Excess risk associated with\n1 degree additional warming')) +
+        guides(fill=guide_colorbar(barwidth=30, title='Excess relative risk associated with a 1°C warmer year')) +
         ggtitle(paste0(cod.print,' ', age.sel,' ',sex.lookup2[sex.sel],' : ', year.start,'-',year.end)) +
         theme_bw() + theme(text = element_text(size = 6),
         panel.grid.major = element_blank(),axis.text.y = element_text(size=6, angle=0),
@@ -1394,7 +1586,7 @@ if(model %in% c('1e','1f')){
 
         # # male output to pdf
         # pdf(paste0(file.loc,'climate_month_params_excess_risk_w_national_men_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'.pdf'),paper='a4r',height=0,width=0)
-        for(i in sort(unique(dat$age))){plot.function.excess.risk.w.national(1,i,10)}
+        # for(i in sort(unique(dat$age))){plot.function.excess.risk.w.national(1,i,10)}
         # dev.off()
         #
         # # female output to pdf
