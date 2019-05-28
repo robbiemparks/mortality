@@ -775,7 +775,7 @@ if(model%in%c('1e')){
         # plotting
         print(ggplot(data=subset(plot,sex==sex.sel),aes(x=long,y=lat,group=group)) +
         geom_polygon(aes(fill=perc.mean),color='black',size=0.01) +
-        scale_fill_gradient2(limits=c(min.plot,max.plot),low="blue", mid="white",high="red",midpoint=0,guide = guide_legend(title = ''),labels=percent) +
+        scale_fill_gradient2(limits=c(min.plot,max.plot),low="blue", mid="cornsilk",high="red",midpoint=0,guide = guide_legend(title = ''),labels=percent) +
         facet_wrap(~month.short) +
         guides(fill=guide_colorbar(barwidth=30, title='Percentage change in deaths rates associated with a 1°C warmer year')) +
         # ggtitle(paste0(cod.print,' ', age.sel,' ',sex.lookup2[sex.sel],' : ', year.start,'-',year.end)) +
