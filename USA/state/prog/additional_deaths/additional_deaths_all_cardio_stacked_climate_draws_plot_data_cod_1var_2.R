@@ -697,7 +697,7 @@ if(model%in%c('1e')){
     # dat.year.summary = fix_cause_names(dat.year.summary)
 
     # merge with summary of additional deaths by sex,age,cause
-    dat.year.summary$age.long = mapvalues(dat.year.summary$age,from=sort(unique(dat.year.summary$age)),to=as.character(age.code[,2]))
+    # dat.year.summary$age.long = mapvalues(dat.year.summary$age,from=sort(unique(dat.year.summary$age)),to=as.character(age.code[,2]))
     dat.year.summary$sex.long = mapvalues(dat.year.summary$sex,from=sort(unique(dat.year.summary$sex)),to=as.character(sex.filter2))
 
     additional.deaths.summary.perc = merge(dat.year.summary,additional.deaths.summary.monthly.state,by=c('sex','month','fips'))
@@ -751,10 +751,48 @@ if(model%in%c('1e')){
     plot.function.perc.change.deaths(additional.deaths.summary.perc,2)
     dev.off()
 
-    # MAP
+    # MAPS
 
     # source map
     source('../../prog/01_functions/map_generate.R')
+
+    additional.deaths.summary.monthly.state$DRAWSEQ = NULL
+    plot <- merge(USA.df,additional.deaths.summary.monthly.state,by.x=c('STATE_FIPS'),by.y=c('fips'))
+    plot <- with(plot, plot[order(sex,month,DRAWSEQ,order),])
+
+    plot.function.month <- function(sex.sel) {
+
+        # find limits for plot
+        min.plot <- min(plot$deaths.added.mean)
+        max.plot <- max(plot$deaths.added.mean)
+
+        # attach long month names
+        plot$month.short <- mapvalues(plot$month,from=sort(unique(plot$month)),to=month.short)
+        plot$month.short <- reorder(plot$month.short,plot$month)
+
+        # plotting
+        print(ggplot(data=subset(plot,sex==sex.sel),aes(x=long,y=lat,group=group)) +
+        geom_polygon(aes(fill=deaths.added.mean),color='black',size=0.01) +
+        scale_fill_gradient2(limits=c(min.plot,max.plot),low="green", mid="white",high="brown",midpoint=0,guide = guide_legend(title = '')) +
+        facet_wrap(~month.short) +
+        guides(fill=guide_colorbar(barwidth=30, title='Change in  deaths associated\nwith a 1°C warmer year')) +
+        # ggtitle(paste0(cod.print,' ', age.sel,' ',sex.lookup2[sex.sel],' : ', year.start,'-',year.end)) +
+        theme_map() +
+        theme(text = element_text(size = 15),legend.position = 'bottom',legend.justification=c(0.5,0),strip.background = element_blank()))
+        }
+
+    # male output to pdf
+    pdf(paste0(file.loc,'additional_deaths_men_map_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'.pdf'),paper='a4r',height=0,width=0)
+    plot.function.month(1)
+    dev.off()
+
+    # female output to pdf
+    pdf(paste0(file.loc,'additional_deaths_women_map_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'.pdf'),paper='a4r',height=0,width=0)
+    plot.function.month(2)
+    dev.off()
+
+    # output additional deaths data
+    saveRDS(additional.deaths.summary.monthly.state, paste0(file.loc,'additional_deaths_deaths_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'.rds'))
 
     # merge selected data to map dataframe for colouring of ggplot
     # dat= merge(dat,drawseq.lookup)
@@ -793,5 +831,7 @@ if(model%in%c('1e')){
     plot.function.month(2)
     dev.off()
 
+    # output perc data
+    saveRDS(additional.deaths.summary.perc, paste0(file.loc,'perc_change_deaths_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'.rds'))
 
 }
