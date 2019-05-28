@@ -64,9 +64,10 @@ for(cause in causes){
             ,country,'_rate_pred_type',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_fast'))
         }
     }
+    dat$cause = cause ; dat.2$cause = cause
     dat.all = rbind(dat.all,dat)
     dat.2.all = rbind(dat.2.all,dat.2)
-    dat.all$cause = dat.2.all$cause = cause
+    # dat.all$cause = dat.2.all$cause = cause
 
 }
 
@@ -95,22 +96,46 @@ dat.all$cause = ifelse(dat.all$cause=='AllCause', 'All cause',
         ifelse(dat.all$cause=='Assault','Assault','NA'
         )))))))))))))
 
+dat.2.all$cause = ifelse(dat.2.all$cause=='AllCause', 'All cause',
+        ifelse(dat.2.all$cause=='Cancer', 'Cancers',
+        ifelse(dat.2.all$cause=='Cardiopulmonary', 'Cardiorespiratory diseases',
+        ifelse(dat.2.all$cause=='External', 'Injuries',
+        ifelse(dat.2.all$cause=='Other', 'Other',
+        ifelse(dat.2.all$cause=='Intentional','Intentional injuries',
+        ifelse(dat.2.all$cause=='Unintentional','Unintentional injuries',
+        ifelse(dat.2.all$cause=='Unintentional wo drowning','Unintentional injuries except drowinings',
+        ifelse(dat.2.all$cause=='Transport accidents','Transport',
+        ifelse(dat.2.all$cause=='Intentional self-harm','Intentional self-harm',
+        ifelse(dat.2.all$cause=='Accidental falls','Falls',
+        ifelse(dat.2.all$cause=='Accidental drowning and submersion','Drownings',
+        ifelse(dat.2.all$cause=='Assault','Assault','NA'
+        )))))))))))))
+
 # isolate and merge two data frames from different models
 dat.all = dat.all[,c('ID','odds.mean','odds.ll','odds.ul','age','sex','cause')]
 dat.2.all = dat.2.all[,c('ID','odds.mean','odds.ll','odds.ul','age','sex','cause')] ; names(dat.2.all)[c(2:4)] = c('odds.mean.2','odds.ll.2','odds.ul.2')
 dat.merged = merge(dat.all,dat.2.all,by=c('ID','age','sex','cause'),all.x=TRUE)
 
+dat.merged$sex.long = mapvalues(dat.merged$sex,from=sort(unique(dat.merged$sex)),to=as.character(sex.filter2))
+dat.merged$sex.long = reorder(dat.merged$sex.long,dat.merged$sex)
+dat.merged$age.long = mapvalues(dat.merged$age,from=sort(unique(dat.merged$age)),to=as.character(age.code[,2]))
+dat.merged$age.long = reorder(dat.merged$age.long,dat.merged$age)
+
 pdf(paste0(file.loc,'pw_against_non_pw.pdf'),paper='a4r',height=0,width=0)
-ggplot(data=subset(dat.merged),aes(x=odds.mean,y=odds.mean.2)) +
+ggplot(data=subset(dat.merged),aes(x=odds.mean,y=odds.mean.2,color=sex.long)) +
     geom_point() +
     geom_errorbar(aes(ymin=odds.ll.2,ymax=odds.ul.2),alpha=0.5) +
     geom_errorbarh(aes(xmin=odds.ll,xmax=odds.ul),alpha=0.5) +
     geom_abline(linetype='dotted') +
+    geom_hline(yintercept=0,linetype='dotted') +
+    geom_vline(xintercept=0,linetype='dotted') +
     coord_equal() +
-    facet_grid(cause~age) +
+    labs(color = "Sex\n") +
+    scale_color_manual(labels=c('Male','Female'), values = c("#2a78c1", "#c1892a")) +
+    facet_grid(cause~age.long) +
     xlab('Temperature parameter estimates from\noriginal temperature model') + ylab('Temperature parameter estimates from\n alternative temperature model') +
     theme_bw() + theme(text = element_text(size = 10),
-    panel.grid.major = element_blank(),axis.text.x = element_text(angle=0),
+    panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
     plot.title = element_text(hjust = 0.5),panel.background = element_blank(),
     panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
     panel.border = element_rect(colour = "black"),strip.background = element_blank(),
