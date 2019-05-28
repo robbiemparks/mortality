@@ -584,56 +584,81 @@ if(model%in%c('1e')){
     additional.deaths.monthly.state = readRDS(paste0(file.loc,'additional_deaths_monthly_state_draws.rds'))
     additional.deaths.total.state = readRDS(paste0(file.loc,'additional_deaths_total_state_draws.rds'))
 
-    additional.deaths.summary$cause = factor(additional.deaths.summary$cause, levels=c('Ischaemic heart disease','Cerebrovascular disease', 'Other cardiovascular diseases','Chronic obstructive pulmonary disease','Respiratory infections', 'Other respiratory diseases'))
-    additional.deaths.summary.monthly$cause = factor(additional.deaths.summary.monthly$cause, levels=c('Ischaemic heart disease','Cerebrovascular disease', 'Other cardiovascular diseases','Chronic obstructive pulmonary disease','Respiratory infections', 'Other respiratory diseases'))
+    # add other necessary summaries
+    additional.deaths.summary.monthly.state = ddply(additional.deaths.monthly.state,.(sex,month,fips),summarise,deaths.added.median=median(deaths.added),deaths.added.mean=mean(deaths.added),deaths.added.ll=quantile(deaths.added,0.025),deaths.added.ul=quantile(deaths.added,0.975),
+        deaths.added.two.deg.median=median(deaths.added.two.deg),deaths.added.two.deg.mean=mean(deaths.added.two.deg),deaths.added.two.deg.ll=quantile(deaths.added.two.deg,0.025),deaths.added.two.deg.ul=quantile(deaths.added.two.deg,0.975)
+    )
 
-    # alternative names for cardiorespiratory causes mk1
-    add_legend_names = function(dat){
-        dat$cause.legend = dat$cause
-        levels(dat$cause.legend)[levels(dat$cause.legend)=='Ischaemic heart disease'] <- "Ischaemic\nheart disease"
-        levels(dat$cause.legend)[levels(dat$cause.legend)=='Cerebrovascular disease'] <- "Cerebrovascular\ndisease"
-        levels(dat$cause.legend)[levels(dat$cause.legend)=='Other cardiovascular diseases'] <- "Other heart\ndiseases"
-        levels(dat$cause.legend)[levels(dat$cause.legend)=='Chronic obstructive pulmonary disease'] <- "COPD"
-        levels(dat$cause.legend)[levels(dat$cause.legend)=='Respiratory infections'] <- "Respiratory\ninfections"
-        levels(dat$cause.legend)[levels(dat$cause.legend)=='Other respiratory diseases'] <- "Other respiratory\ndiseases"
+    # add the details for short month names
+    additional.deaths.summary.monthly.state$month.short <- mapvalues(additional.deaths.summary.monthly.state$month,from=sort(unique(additional.deaths.summary.monthly.state$month)),to=c(as.character(month.short)))
+    additional.deaths.summary.monthly.state$month.short <- reorder(additional.deaths.summary.monthly.state$month.short,additional.deaths.summary.monthly.state$month)
 
-        # alternative names for cardiorespiratory causes mk2
-        dat$cause.legend.2 = dat$cause
-        levels(dat$cause.legend.2)[levels(dat$cause.legend.2)=='Ischaemic heart disease'] <- "Ischaemic"
-        levels(dat$cause.legend.2)[levels(dat$cause.legend.2)=='Cerebrovascular disease'] <- "Cerebrovascular"
-        levels(dat$cause.legend.2)[levels(dat$cause.legend.2)=='Chronic obstructive pulmonary disease'] <- "COPD"
-        levels(dat$cause.legend.2)[levels(dat$cause.legend.2)=='Respiratory infections'] <- "Respiratory\ninfections"
-        levels(dat$cause.legend.2)[levels(dat$cause.legend.2)=='Other cardiovascular diseases'] <- "Other heart disease"
-        levels(dat$cause.legend.2)[levels(dat$cause.legend.2)=='Other respiratory diseases'] <- "Asthma"
+    # add details for fips
+    state.lookup = read.csv('../../data/fips_lookup/name_fips_lookup.csv')
+    additional.deaths.summary.monthly.state = merge(additional.deaths.summary.monthly.state,state.lookup[,c(1,2,3)])
 
-        return(dat)
-    }
-    additional.deaths.summary = add_legend_names(additional.deaths.summary)
-    additional.deaths.summary.monthly = add_legend_names(additional.deaths.summary.monthly)
+        plot.function.additional.deaths <- function(dat, sex.sel) {
 
-    # list of types of causes
-    causes.cardio = c('Ischaemic heart disease','Cerebrovascular disease','Other cardiovascular diseases')
-    causes.resp = c('Chronic obstructive pulmonary disease', 'Respiratory infections', 'Other respiratory diseases')
-    causes.all = c(causes.cardio,causes.resp)
+        # find limits for plot
+        min.plot <- min(dat$deaths.added.ll)
+        max.plot <- max(dat$deaths.added.ul)
 
-    # add intent column
-    additional.deaths.summary$intent = ifelse(additional.deaths.summary$cause%in%causes.cardio,'Cardiovascular','Respiratory')
-    additional.deaths.summary.monthly$intent = ifelse(additional.deaths.summary.monthly$cause%in%causes.cardio,'Cardiovascular','Respiratory')
 
-    # add other necessary printing values
-    additional.deaths.summary.monthly$sex.long <- mapvalues(additional.deaths.summary.monthly$sex,from=sort(unique(additional.deaths.summary.monthly$sex)),to=c('Male','Female'))
-    additional.deaths.summary.monthly$sex.long <- reorder(additional.deaths.summary.monthly$sex.long,additional.deaths.summary.monthly$sex)
+        # plotting
+        print(ggplot(data=subset(dat,sex==sex.sel)) +
+        geom_point(aes(x=as.factor(code_name),y=deaths.added.mean)) +
+        geom_errorbar(aes(x=as.factor(code_name),ymin=deaths.added.ll,ymax=deaths.added.ul), width=0) +
+        geom_hline(yintercept=0,linetype='dotted') +
+        xlab('State') + ylab('Additional deaths associated with a 1°C warmer year (based on 2016 population)') +
+        scale_x_discrete(limits=rev(levels(dat$code_name)))+
+        scale_y_continuous() +
+        coord_flip() +
+        facet_wrap(~month.short) +
+        guides(fill=guide_colorbar(barwidth=30, title='Excess relative risk associated with\na 1 degree warmer year')) +
+        # ggtitle(paste0(cod.print,' ', age.sel,' ',sex.lookup2[sex.sel],' : ', year.start,'-',year.end)) +
+        theme_bw() + theme(text = element_text(size = 15),
+        panel.grid.major = element_blank(),axis.text.y = element_text(size=4, angle=0),
+        plot.title = element_text(hjust = 0.5),panel.background = element_blank(),
+        panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
+        panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+        legend.position = 'bottom',legend.justification='center',
+        legend.background = element_rect(fill="white", size=.5, linetype="dotted")))
+        }
 
-    additional.deaths.summary.monthly$month.short <- mapvalues(additional.deaths.summary.monthly$month,from=sort(unique(additional.deaths.summary.monthly$month)),to=c(as.character(month.short)))
-    additional.deaths.summary.monthly$month.short <- reorder(additional.deaths.summary.monthly$month.short,additional.deaths.summary.monthly$month)
+    # male output to pdf
+    pdf(paste0(file.loc,'additional_deaths_men_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'.pdf'),paper='a4r',height=0,width=0)
+    plot.function.additional.deaths(additional.deaths.summary.monthly.state,1)
+    dev.off()
 
-    # additional edit for plotting intentional and unintentional totals on graphs without other unintentional injuries (see human readable for permanent fix)
-    additional.deaths.intent.summary = ddply(subset(additional.deaths.summary),.(intent,age.long,sex.long),summarize,deaths.added.mean=sum(deaths.added.mean))
-    # additional.deaths.summary.monthly = fix_names(additional.deaths.summary.monthly)
-    additional.deaths.intent.monthly.summary = ddply(subset(additional.deaths.summary.monthly),.(intent,month,sex.long),summarize,deaths.added.mean=sum(deaths.added.mean))
+    # female output to pdf
+    pdf(paste0(file.loc,'additional_deaths_women_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'.pdf'),paper='a4r',height=0,width=0)
+    plot.function.additional.deaths(additional.deaths.summary.monthly.state,2)
+    dev.off()
 
-    additional.deaths.intent.monthly.summary$month.short <- mapvalues(additional.deaths.intent.monthly.summary$month,from=sort(unique(additional.deaths.intent.monthly.summary$month)),to=c(as.character(month.short)))
-    additional.deaths.intent.monthly.summary$month.short <- reorder(additional.deaths.intent.monthly.summary$month.short,additional.deaths.intent.monthly.summary$month)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     pdf(paste0(file.loc,country,'_rate_pred_type',model,
         '_',year.start,'_',year.end,'_',dname,'_',metric,'_cardiovascular_respiratory_contig.pdf'),paper='a4r',height=0,width=0)
