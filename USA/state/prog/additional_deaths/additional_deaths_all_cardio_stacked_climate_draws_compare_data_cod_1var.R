@@ -65,13 +65,28 @@ names(additional.deaths.cause.subnational) = c('sex','age','deaths.added.mean.su
 # merge national and subnational dataset then plot to compare
 additional.deaths.compare = merge(additional.deaths.cause.together,additional.deaths.cause.subnational)
 
-ggplot(data=additional.deaths.compare,aes(x=deaths.added.mean.nat,y=deaths.added.mean.sub)) +
+additional.deaths.compare = merge(additional.deaths.cause.together,additional.deaths.cause.subnational)
+additional.deaths.compare$sex.long <- mapvalues(additional.deaths.compare$sex,from=sort(unique(additional.deaths.compare$sex)),to=c('Both','Male','Female'))
+additional.deaths.compare$sex.long <- reorder(additional.deaths.compare$sex.long,additional.deaths.compare$sex)
+
+# output directory
+file.loc <- paste0('../../output/additional_deaths_climate/',year.start,'_',year.end,
+'/',dname,'/',metric,'/non_pw/compare_nat_sub/non_contig/all_cardio/',num.draws,'_draws/')
+if(contig==1){
+    file.loc <- paste0('../../output/additional_deaths_climate/',year.start,'_',year.end,
+'/',dname,'/',metric,'/non_pw/compare_nat_sub/contig/all_cardio/',num.draws,'_draws/')
+}
+ifelse(!dir.exists(file.loc), dir.create(file.loc,recursive=TRUE), FALSE)
+
+pdf(paste0(file.loc,'compare_nat_sub.pdf'),paper='a4r',height=0,width=0)
+ggplot(data=subset(additional.deaths.compare,sex!=0&age!=99),aes(x=deaths.added.mean.nat,y=deaths.added.mean.sub)) +
     geom_point() +
-    geom_errorbar(aes(x=deaths.added.mean.nat,ymin=deaths.added.ll.nat,ymax=deaths.added.ul.nat)) +
-    geom_errorbarh(aes(xmin=deaths.added.ll.sub,xmax=deaths.added.ul.sub)) +
+    geom_errorbar(aes(ymin=deaths.added.ll.sub,ymax=deaths.added.ul.sub)) +
+    geom_errorbarh(aes(xmin=deaths.added.ll.nat,xmax=deaths.added.ul.nat)) +
     geom_abline(linetype='dotted') +
     coord_equal() +
-    xlab('Change in deaths estimated from national model') + ylab('Change in deaths estimated from subnational model') +
+    facet_wrap(~sex.long) +
+    xlab('Change in cardiorespiratory deaths\nestimated from national model (based on 2016 population)') + ylab('Change in cardiorespiratory deaths\nestimated from subnational model (based on 2016 population)') +
     theme_bw() + theme(text = element_text(size = 15),
     panel.grid.major = element_blank(),axis.text.x = element_text(angle=0),
     plot.title = element_text(hjust = 0.5),panel.background = element_blank(),
@@ -79,3 +94,4 @@ ggplot(data=additional.deaths.compare,aes(x=deaths.added.mean.nat,y=deaths.added
     panel.border = element_rect(colour = "black"),strip.background = element_blank(),
     legend.position = 'bottom',legend.justification='center',
     legend.background = element_rect(fill="white", size=.5, linetype="dotted"))
+dev.off()
