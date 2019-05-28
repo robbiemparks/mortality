@@ -43,12 +43,12 @@ colors.subinjuries = mycols[c(
                                 20)] # Intentional self-harm
 
 colors.cardio = mycols[c(
-                                9,   # Ischaemic
-                                28,  # Cerebrovascular
-                                33,  # Other cardiovascular
-                                44,  # COPD
-                                25,  # Respiratory infections
-                                24)] # Other respiratory diseases
+                                55,   # Ischaemic
+                                15,   # Cerebrovascular
+                                7,    # Other cardiovascular/heart diseases
+                                48,    # COPD
+                                62,   # Respiratory infections
+                                25)]  # Other respiratory diseases
 
 # original cardio colour scheme
 # colors.cardio = mycols[c(
