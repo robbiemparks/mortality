@@ -466,6 +466,9 @@ p2 = ggplot(data=subset(dat.last.years.temp), aes(x=age.long,y=deaths,color=as.f
     legend.position = 'bottom',legend.justification='center',
     legend.background = element_rect(fill="white", size=.5, linetype="dotted"))
 
+# extract legend from plot p2
+p2L = extract_legend(p2)
+
 p2b = ggplot(data=subset(dat.last.years.temp,!(cause.sub%in%c('Other heart\ndiseases','Other respiratory\ndiseases'))), aes(x=age.long,y=deaths,color=as.factor(cause.sub),fill=as.factor(cause.sub))) +
     geom_bar(width = 0.9, stat='identity') +
     #coord_polar("y", start=0) +
