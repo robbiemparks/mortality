@@ -464,9 +464,9 @@ additional.deaths.summary.monthly.perc$cause = gsub('Ischaemic heart disease', '
 additional.deaths.summary.monthly.perc$cause = gsub('Cerebrovascular disease', 'Cerebrovascular\ndisease',additional.deaths.summary.monthly.perc$cause)
 additional.deaths.summary.monthly.perc$cause = gsub('Chronic obstructive pulmonary disease', 'COPD',additional.deaths.summary.monthly.perc$cause)
 additional.deaths.summary.monthly.perc$cause = gsub('Respiratory infections', 'Respiratory\ninfections',additional.deaths.summary.monthly.perc$cause)
-additional.deaths.summary.monthly.perc$cause = gsub('Other cardiovascular diseases', 'Other\ncardiovascular\ndiseases',additional.deaths.summary.monthly.perc$cause)
+additional.deaths.summary.monthly.perc$cause = gsub('Other cardiovascular diseases', 'Other\nheart\ndiseases',additional.deaths.summary.monthly.perc$cause)
 additional.deaths.summary.monthly.perc$cause = gsub('Other respiratory diseases', 'Other\nrespiratory\ndiseases',additional.deaths.summary.monthly.perc$cause)
-additional.deaths.summary.monthly.perc$cause = factor(additional.deaths.summary.monthly.perc$cause, levels=c('Ischaemic\nheart disease','Cerebrovascular\ndisease','COPD','Respiratory\ninfections','Other\ncardiovascular\ndiseases','Other\nrespiratory\ndiseases'))
+additional.deaths.summary.monthly.perc$cause = factor(additional.deaths.summary.monthly.perc$cause, levels=c('Ischaemic\nheart disease','Cerebrovascular\ndisease','Other\nheart\ndiseases','COPD','Respiratory\ninfections','Other\nrespiratory\ndiseases'))
 additional.deaths.summary.monthly.perc$month.short = factor(additional.deaths.summary.monthly.perc$month.short, levels=rev(month.short))
 
 pdf(paste0(file.loc,country,'_rate_pred_type',model,
