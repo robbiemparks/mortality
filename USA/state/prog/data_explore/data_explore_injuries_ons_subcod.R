@@ -443,6 +443,34 @@ dat.last.years$age.long <- reorder(dat.last.years$age.long,dat.last.years$age)
 dat.last.years$ID = mapvalues(dat.last.years$month, from=sort(unique(dat.last.years$month)),to=month.short)
 dat.last.years$ID = with(dat.last.years,reorder(dat.last.years$ID,month))
 
+pdf(paste0(file.loc,'injury_cod_all_years_plots_by_month_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
+
+age.colours=c("blue",brewer.pal(9,"BrBG")[c(9:6,4:1)],"grey")
+
+p1 = ggplot(data=subset(dat.last.years,cause.sub!='Other unintentional\ninjuries'), aes(x=month,y=deaths,color=as.factor(age.long),fill=as.factor(age.long))) +
+    geom_bar(width = 0.9, stat = "identity") +
+    xlab('Month') + ylab('Number of deaths') +
+    scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short.2)   +
+    scale_fill_manual(values=age.colours, guide = guide_legend(nrow = 1,title = paste0("Age group (years)"))) +
+    scale_color_manual(values=age.colours, guide = guide_legend(nrow = 1,title = paste0("Age group (years)"))) +
+    # ggtitle(paste0((year.end.arg-4),'-',year.end.arg,' 5-year average')) +
+    scale_y_continuous(label = comma) +
+    facet_grid(sex.long~cause.sub)   +
+    theme_bw() +  theme(panel.grid.major = element_blank(),text = element_text(size = 15),
+    axis.text.x = element_text(angle=90, vjust=0.5, hjust=1), axis.ticks.x=element_blank(),
+    panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
+    panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+    legend.position = 'bottom',legend.justification='center',
+    legend.background = element_rect(fill="white", size=.5, linetype="dotted"))
+
+library(grid)
+library(gridExtra)
+
+# plot p1 but with custom legend
+print(p1)
+
+dev.off()
+
 pdf(paste0(file.loc,'injury_ons_subsubcod_all_years_plots_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
 
 # full bar chart per age-sex group with breakdown of types of injuries
