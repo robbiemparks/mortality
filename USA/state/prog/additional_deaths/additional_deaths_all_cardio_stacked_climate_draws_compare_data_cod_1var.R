@@ -18,11 +18,6 @@ metric <- as.character(args[6])
 contig <- as.numeric(args[7])
 num.draws <- as.numeric(args[8])
 
-# NEED TO MAKE CONTIG OPTION ACTUALLY DO SOMETHING
-
-#year.start = 1980 ; year.end = 2016 ; country = 'USA' ; model = 10 ; dname = 't2m' ; metric = 'meanc3' ; contig=1 ; num.draws = 5000
-#year.start = 1980 ; year.end = 2016 ; country = 'USA' ; model = 11 ; dname = 't2m' ; metric = 'meanc3' ; contig=1 ; num.draws = 1000
-
 # source variables
 source('../../data/objects/objects.R')
 
@@ -79,13 +74,15 @@ if(contig==1){
 ifelse(!dir.exists(file.loc), dir.create(file.loc,recursive=TRUE), FALSE)
 
 pdf(paste0(file.loc,'compare_nat_sub.pdf'),paper='a4r',height=0,width=0)
-ggplot(data=subset(additional.deaths.compare,sex!=0&age!=99),aes(x=deaths.added.mean.nat,y=deaths.added.mean.sub)) +
+ggplot(data=subset(additional.deaths.compare,sex!=0),aes(x=deaths.added.mean.nat,y=deaths.added.mean.sub,color=sex.long)) +
     geom_point() +
     geom_errorbar(aes(ymin=deaths.added.ll.sub,ymax=deaths.added.ul.sub)) +
     geom_errorbarh(aes(xmin=deaths.added.ll.nat,xmax=deaths.added.ul.nat)) +
     geom_abline(linetype='dotted') +
     coord_equal() +
-    facet_wrap(~sex.long) +
+    labs(color = "Sex\n") +
+    scale_color_manual(labels=c('Male','Female'), values = c("#2a78c1", "#c1892a")) +
+    # facet_wrap(~sex.long) +
     xlab('Change in cardiorespiratory deaths\nestimated from national model (based on 2016 population)') + ylab('Change in cardiorespiratory deaths\nestimated from subnational model (based on 2016 population)') +
     theme_bw() + theme(text = element_text(size = 15),
     panel.grid.major = element_blank(),axis.text.x = element_text(angle=0),
