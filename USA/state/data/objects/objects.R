@@ -26,7 +26,7 @@ mycols <- c(f("Dark2"), f("Set1")[1:8], f("Set2"), f("Set3"),"#89C5DA", "#DA5724
 # colors for broad causes of death
 colors.broad.cod = mycols[c(    24,  # Other
                                 40,  # Injuries
-                                15,  # Cancer
+                                57,  # Cancer
                                 62)]   # Cardio
 
 # colors for sub-causes of death
