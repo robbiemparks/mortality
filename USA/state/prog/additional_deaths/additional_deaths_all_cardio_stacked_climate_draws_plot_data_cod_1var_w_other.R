@@ -548,6 +548,10 @@ if(model%in%c('1d','1d2')){
         legend.background = element_rect(fill="white", size=.5, linetype="dotted"))
     dev.off()
 
+    # output percentage changes
+    saveRDS(additional.deaths.summary.monthly.perc,paste0(file.loc,country,'_rate_pred_type',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_cardiovascular_respiratory_monthly_perc_change.rds'))
+    saveRDS(additional.deaths.summary.perc,paste0(file.loc,country,'_rate_pred_type',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_cardiovascular_respiratory_perc_change.rds'))
+
 }
 
 if(model%in%c('1e')){

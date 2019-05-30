@@ -485,3 +485,7 @@ ggplot() +
     legend.position = 'bottom',legend.justification='center',
     legend.background = element_rect(fill="white", size=.5, linetype="dotted"))
 dev.off()
+
+# output percentage changes
+saveRDS(additional.deaths.summary.monthly.perc,paste0(file.loc,country,'_rate_pred_type',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_cancer_monthly_perc_change.rds'))
+saveRDS(additional.deaths.summary.perc,paste0(file.loc,country,'_rate_pred_type',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_cancer_perc_change.rds'))
