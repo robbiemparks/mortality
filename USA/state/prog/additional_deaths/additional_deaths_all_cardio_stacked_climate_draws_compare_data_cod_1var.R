@@ -63,6 +63,7 @@ additional.deaths.compare = merge(additional.deaths.cause.together,additional.de
 additional.deaths.compare = merge(additional.deaths.cause.together,additional.deaths.cause.subnational)
 additional.deaths.compare$sex.long <- mapvalues(additional.deaths.compare$sex,from=sort(unique(additional.deaths.compare$sex)),to=c('Both','Male','Female'))
 additional.deaths.compare$sex.long <- reorder(additional.deaths.compare$sex.long,additional.deaths.compare$sex)
+additional.deaths.compare$diff <- with(additional.deaths.compare,deaths.added.mean.sub-deaths.added.mean.nat)
 
 # output directory
 file.loc <- paste0('../../output/additional_deaths_climate/',year.start,'_',year.end,
