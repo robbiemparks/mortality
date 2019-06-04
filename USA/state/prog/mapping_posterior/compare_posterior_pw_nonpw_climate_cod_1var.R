@@ -30,41 +30,49 @@ colorway = c("navy","deepskyblue2","deepskyblue3","lightgreen","white","gold","o
 
 dat.all = data.frame()
 dat.2.all = data.frame()
+dat.3.all = data.frame()
 # load the data
 for(cause in causes){
     if(contig==1){
         if(cause!='AllCause'){
             dat <- readRDS(paste0('../../data/climate_effects/',dname,'/',metric,'/non_pw/type_',model,'/parameters/',
-            country,'_rate_pred_type',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',tolower(cause),'_fast_contig'))
+            country,'_rate_pred_type',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'_fast_contig'))
             dat.2 <- readRDS(paste0('../../data/climate_effects/',dname,'/',metric,'/pw/type_',model,'/parameters/',
-            country,'_rate_pred_type',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',tolower(cause),'_fast_contig'))
+            country,'_rate_pred_type',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'_fast_contig'))
+            dat.3 <- readRDS(paste0('../../data/climate_effects/',dname,'/',metric,'/pw/type_',model,'/parameters/',
+            country,'_rate_pred_type',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'_neg_fast_contig'))
         }
         if(cause=='AllCause'){
             dat <- readRDS(paste0('../../data/climate_effects/',dname,'/',metric,'/non_pw/type_',model,'/parameters/'
             ,country,'_rate_pred_type',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_fast_contig'))
             dat.2 <- readRDS(paste0('../../data/climate_effects/',dname,'/',metric,'/pw/type_',model,'/parameters/'
             ,country,'_rate_pred_type',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_fast_contig'))
+            dat.3 <- readRDS(paste0('../../data/climate_effects/',dname,'/',metric,'/pw/type_',model,'/parameters/'
+            ,country,'_rate_pred_type',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_neg_fast_contig'))
         }
     }
     if(contig==0){
         if(cause!='AllCause'){
             dat <- readRDS(paste0('../../data/climate_effects/',dname,'/',metric,'/non_pw/type_',model,'/parameters/',
-            country,'_rate_pred_type',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',tolower(cause),'_fast'))
-            dat.2 <- readRDS(paste0('../../data/climate_effects/',dname,'/',metric,'/pw/type_',tolower(cause),'/parameters/',
             country,'_rate_pred_type',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'_fast'))
+            dat.2 <- readRDS(paste0('../../data/climate_effects/',dname,'/',metric,'/pw/type_',cause,'/parameters/',
+            country,'_rate_pred_type',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'_fast'))
+            dat.3 <- readRDS(paste0('../../data/climate_effects/',dname,'/',metric,'/pw/type_',cause,'/parameters/',
+            country,'_rate_pred_type',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'_neg_fast'))
         }
         if(cause=='AllCause'){
             dat <- readRDS(paste0('../../data/climate_effects/',dname,'/',metric,'/non_pw/type_',model,'/parameters/'
             ,country,'_rate_pred_type',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_fast'))
             dat.2 <- readRDS(paste0('../../data/climate_effects/',dname,'/',metric,'/pw/type_',model,'/parameters/'
             ,country,'_rate_pred_type',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_fast'))
+            dat.3 <- readRDS(paste0('../../data/climate_effects/',dname,'/',metric,'/pw/type_',model,'/parameters/'
+            ,country,'_rate_pred_type',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_neg_fast'))
         }
     }
     dat$cause = cause ; dat.2$cause = cause
     dat.all = rbind(dat.all,dat)
     dat.2.all = rbind(dat.2.all,dat.2)
-    # dat.all$cause = dat.2.all$cause = cause
-
+    dat.3.all = rbind(dat.3.all,dat.3)
 }
 
 # create directories for output
@@ -76,8 +84,10 @@ if(contig==1){
 }
 ifelse(!dir.exists(file.loc), dir.create(file.loc,recursive=TRUE), FALSE)
 
-# fix name fo plotting
-dat.all$cause = ifelse(dat.all$cause=='AllCause', 'All cause',
+# function to fix names of causes
+
+fix_names = function(dat.all){
+  dat.all$cause = ifelse(dat.all$cause=='AllCause', 'All cause',
         ifelse(dat.all$cause=='Cancer', 'Cancers',
         ifelse(dat.all$cause=='Cardiopulmonary', 'Cardiorespiratory diseases',
         ifelse(dat.all$cause=='External', 'Injuries',
@@ -91,26 +101,18 @@ dat.all$cause = ifelse(dat.all$cause=='AllCause', 'All cause',
         ifelse(dat.all$cause=='Accidental drowning and submersion','Drownings',
         ifelse(dat.all$cause=='Assault','Assault','NA'
         )))))))))))))
+}
 
-dat.2.all$cause = ifelse(dat.2.all$cause=='AllCause', 'All cause',
-        ifelse(dat.2.all$cause=='Cancer', 'Cancers',
-        ifelse(dat.2.all$cause=='Cardiopulmonary', 'Cardiorespiratory diseases',
-        ifelse(dat.2.all$cause=='External', 'Injuries',
-        ifelse(dat.2.all$cause=='Other', 'Other',
-        ifelse(dat.2.all$cause=='Intentional','Intentional injuries',
-        ifelse(dat.2.all$cause=='Unintentional','Unintentional injuries',
-        ifelse(dat.2.all$cause=='Unintentional wo drowning','Unintentional injuries except drowinings',
-        ifelse(dat.2.all$cause=='Transport accidents','Transport',
-        ifelse(dat.2.all$cause=='Intentional self-harm','Intentional self-harm',
-        ifelse(dat.2.all$cause=='Accidental falls','Falls',
-        ifelse(dat.2.all$cause=='Accidental drowning and submersion','Drownings',
-        ifelse(dat.2.all$cause=='Assault','Assault','NA'
-        )))))))))))))
+dat.all = fix_names(dat.all)
+dat.all.2 = fix_names(dat.all.2)
+dat.all.3 = fix_names(dat.all.3)
 
 # isolate and merge two data frames from different models
 dat.all = dat.all[,c('ID','odds.mean','odds.ll','odds.ul','age','sex','cause')]
 dat.2.all = dat.2.all[,c('ID','odds.mean','odds.ll','odds.ul','age','sex','cause')] ; names(dat.2.all)[c(2:4)] = c('odds.mean.2','odds.ll.2','odds.ul.2')
+dat.3.all = dat.3.all[,c('ID','odds.mean','odds.ll','odds.ul','age','sex','cause')] ; names(dat.3.all)[c(2:4)] = c('odds.mean.3','odds.ll.3','odds.ul.3')
 dat.merged = merge(dat.all,dat.2.all,by=c('ID','age','sex','cause'),all.x=TRUE)
+dat.merged = merge(dat.merged,dat.3.all,by=c('ID','age','sex','cause'),all.x=TRUE)
 
 dat.merged$sex.long = mapvalues(dat.merged$sex,from=sort(unique(dat.merged$sex)),to=as.character(sex.filter2))
 dat.merged$sex.long = reorder(dat.merged$sex.long,dat.merged$sex)
