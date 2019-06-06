@@ -69,7 +69,7 @@ if(model%in%c('1d','1d2')){
         dat$cause.legend = dat$cause
         levels(dat$cause.legend)[levels(dat$cause.legend)=='Ischaemic heart disease'] <- "Ischaemic\nheart disease"
         levels(dat$cause.legend)[levels(dat$cause.legend)=='Cerebrovascular disease'] <- "Cerebrovascular\ndisease"
-        levels(dat$cause.legend)[levels(dat$cause.legend)=='Other cardiovascular diseases'] <- "Other heart\ndiseases"
+        levels(dat$cause.legend)[levels(dat$cause.legend)=='Other cardiovascular diseases'] <- "Other cardiovascular\ndiseases"
         levels(dat$cause.legend)[levels(dat$cause.legend)=='Chronic obstructive pulmonary disease'] <- "COPD"
         levels(dat$cause.legend)[levels(dat$cause.legend)=='Respiratory infections'] <- "Respiratory\ninfections"
         levels(dat$cause.legend)[levels(dat$cause.legend)=='Other respiratory diseases'] <- "Other respiratory\ndiseases"
@@ -80,7 +80,7 @@ if(model%in%c('1d','1d2')){
         levels(dat$cause.legend.2)[levels(dat$cause.legend.2)=='Cerebrovascular disease'] <- "Cerebrovascular"
         levels(dat$cause.legend.2)[levels(dat$cause.legend.2)=='Chronic obstructive pulmonary disease'] <- "COPD"
         levels(dat$cause.legend.2)[levels(dat$cause.legend.2)=='Respiratory infections'] <- "Respiratory\ninfections"
-        levels(dat$cause.legend.2)[levels(dat$cause.legend.2)=='Other cardiovascular diseases'] <- "Other heart disease"
+        levels(dat$cause.legend.2)[levels(dat$cause.legend.2)=='Other cardiovascular diseases'] <- "Other cardiovascular diseases"
         levels(dat$cause.legend.2)[levels(dat$cause.legend.2)=='Other respiratory diseases'] <- "Asthma"
 
         return(dat)
@@ -367,9 +367,9 @@ if(model%in%c('1d','1d2')){
     additional.deaths.summary.perc$cause = gsub('Cerebrovascular disease', 'Cerebrovascular\ndisease',additional.deaths.summary.perc$cause)
     additional.deaths.summary.perc$cause = gsub('Chronic obstructive pulmonary disease', 'COPD',additional.deaths.summary.perc$cause)
     additional.deaths.summary.perc$cause = gsub('Respiratory infections', 'Respiratory\ninfections',additional.deaths.summary.perc$cause)
-    additional.deaths.summary.perc$cause = gsub('Other cardiovascular diseases', 'Other\nheart\ndiseases',additional.deaths.summary.perc$cause)
+    additional.deaths.summary.perc$cause = gsub('Other cardiovascular diseases', 'Other\ncardiovascular\ndiseases',additional.deaths.summary.perc$cause)
     additional.deaths.summary.perc$cause = gsub('Other respiratory diseases', 'Other\nrespiratory\ndiseases',additional.deaths.summary.perc$cause)
-    additional.deaths.summary.perc$cause = factor(additional.deaths.summary.perc$cause, levels=c('Ischaemic\nheart disease','Cerebrovascular\ndisease','Other\nheart\ndiseases','COPD','Respiratory\ninfections','Other\nrespiratory\ndiseases'))
+    additional.deaths.summary.perc$cause = factor(additional.deaths.summary.perc$cause, levels=c('Ischaemic\nheart disease','Cerebrovascular\ndisease','Other\ncardiovascular\ndiseases','COPD','Respiratory\ninfections','Other\nrespiratory\ndiseases'))
 
     # pdf(paste0(file.loc,country,'_rate_pred_type',model,
     #     '_',year.start,'_',year.end,'_',dname,'_',metric,'_intentional_unintentional_excess_risk_fast_contig.pdf'),paper='a4r',height=0,width=0)
@@ -466,9 +466,9 @@ if(model%in%c('1d','1d2')){
     additional.deaths.summary.monthly.perc$cause = gsub('Cerebrovascular disease', 'Cerebrovascular\ndisease',additional.deaths.summary.monthly.perc$cause)
     additional.deaths.summary.monthly.perc$cause = gsub('Chronic obstructive pulmonary disease', 'COPD',additional.deaths.summary.monthly.perc$cause)
     additional.deaths.summary.monthly.perc$cause = gsub('Respiratory infections', 'Respiratory\ninfections',additional.deaths.summary.monthly.perc$cause)
-    additional.deaths.summary.monthly.perc$cause = gsub('Other cardiovascular diseases', 'Other\nheart\ndiseases',additional.deaths.summary.monthly.perc$cause)
+    additional.deaths.summary.monthly.perc$cause = gsub('Other cardiovascular diseases', 'Other\ncardiovascular\ndiseases',additional.deaths.summary.monthly.perc$cause)
     additional.deaths.summary.monthly.perc$cause = gsub('Other respiratory diseases', 'Other\nrespiratory\ndiseases',additional.deaths.summary.monthly.perc$cause)
-    additional.deaths.summary.monthly.perc$cause = factor(additional.deaths.summary.monthly.perc$cause, levels=c('Ischaemic\nheart disease','Cerebrovascular\ndisease','Other\nheart\ndiseases','COPD','Respiratory\ninfections','Other\nrespiratory\ndiseases'))
+    additional.deaths.summary.monthly.perc$cause = factor(additional.deaths.summary.monthly.perc$cause, levels=c('Ischaemic\nheart disease','Cerebrovascular\ndisease','Other\ncardiovascular\ndiseases','COPD','Respiratory\ninfections','Other\nrespiratory\ndiseases'))
     additional.deaths.summary.monthly.perc$month.short = factor(additional.deaths.summary.monthly.perc$month.short, levels=rev(month.short))
 
     pdf(paste0(file.loc,country,'_rate_pred_type',model,
