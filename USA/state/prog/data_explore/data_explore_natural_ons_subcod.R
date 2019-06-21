@@ -185,16 +185,36 @@ ggplot(dat=subset(dat.national.com.sex.sep.all), aes(x=month,y=100000*ASDR,group
     legend.background = element_rect(fill="white", size=.5, linetype="dotted"))
 dev.off()
 
+pdf(paste0(file.loc,'natural_ons_no_other_subsubcod_asdr_plots_sex_facet_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
+ggplot(dat=subset(dat.national.com.sex.sep.all,cause!='Other'), aes(x=month,y=100000*ASDR,group=year,colour=year)) +
+    geom_line() +
+    xlab('Month') +
+    ylab('Age standardised death rate (per 100,000)') +
+    ylim(c(0,max(100000*dat.national.com.sex.sep.all$ASDR))) +
+    scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short.2)   +
+    guides(color=guide_colorbar(barwidth=30, title='Year')) +
+    scale_color_gradientn(colors=yearpalette) +
+    facet_grid(sex.long~cause) +
+    theme_bw() +  theme(panel.grid.major = element_blank(),text = element_text(size = 15),
+    strip.text.x=element_text(size=9),
+    axis.text.x = element_text(angle=90), axis.ticks.x=element_blank(),
+    panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
+    panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+    legend.position = 'bottom',legend.justification='center',
+    legend.background = element_rect(fill="white", size=.5, linetype="dotted"))
+dev.off()
+
 ############################
 # total deaths by month and age
 ############################
 
-pdf(paste0(file.loc,'natural_cod_all_years_plots_by_month_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
 age.colours=c("blue",brewer.pal(9,"BrBG")[c(9:6,4:1)],"grey")
 
 dat.last.years.temp = dat.last.years.all
 dat.last.years.temp$cause = factor(dat.last.years.temp$cause, levels=c('Ischaemic\nheart disease','Cerebrovascular\ndisease','Other cardiovascular\ndiseases',
                                                 'COPD', 'Respiratory\ninfections','Other respiratory\ndiseases','Cancers','Other'))
+
+pdf(paste0(file.loc,'natural_cod_all_years_plots_by_month_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
 
 p1 = ggplot(data=dat.last.years.temp, aes(x=month,y=deaths,color=as.factor(age.long),fill=as.factor(age.long))) +
     geom_bar(width = 0.9, stat = "identity") +
@@ -215,6 +235,30 @@ p1 = ggplot(data=dat.last.years.temp, aes(x=month,y=deaths,color=as.factor(age.l
 
 # plot p1 but with custom legend
 print(p1)
+
+dev.off()
+
+pdf(paste0(file.loc,'natural_cod_no_other_all_years_plots_by_month_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
+
+p2 = ggplot(data=subset(dat.last.years.temp,cause!='Other'), aes(x=month,y=deaths,color=as.factor(age.long),fill=as.factor(age.long))) +
+    geom_bar(width = 0.9, stat = "identity") +
+    xlab('Month') + ylab('Number of deaths') +
+    scale_x_continuous(breaks=c(seq(1,12,by=1)),labels=month.short.2)   +
+    scale_fill_manual(values=age.colours, guide = guide_legend(nrow = 1,title = paste0("Age group (years)"))) +
+    scale_color_manual(values=age.colours, guide = guide_legend(nrow = 1,title = paste0("Age group (years)"))) +
+    # ggtitle(paste0((year.end.arg-4),'-',year.end.arg,' 5-year average')) +
+    scale_y_continuous(label = comma) +
+    facet_grid(sex.long~cause)   +
+    theme_bw() +  theme(panel.grid.major = element_blank(),text = element_text(size = 15),
+    strip.text.x=element_text(size=9),
+    axis.text.x = element_text(angle=90, vjust=0.5, hjust=1), axis.ticks.x=element_blank(),
+    panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
+    panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+    legend.position = 'bottom',legend.justification='center',
+    legend.background = element_rect(fill="white", size=.5, linetype="dotted"))
+
+# plot p1 but with custom legend
+print(p2)
 
 dev.off()
 
@@ -253,6 +297,26 @@ p0 = ggplot(data=subset(dat.last.years.all), aes(x=age.long,y=deaths,color=as.fa
 # extract legend from plot p0
 p0L = extract_legend(p0)
 
+# legend with 'Other'
+p0b = ggplot(data=subset(dat.last.years.all,cause!='Other'), aes(x=age.long,y=deaths,color=as.factor(cause),fill=as.factor(cause))) +
+    geom_bar(width = 0.9, stat='identity') +
+    #coord_polar("y", start=0) +
+    xlab('Age group (years)') + ylab('Number of deaths') +
+    scale_fill_manual(values=(c(colors.cardio,colors.broad.cod[c(3,1)])), guide = guide_legend(nrow = 1,title = paste0(""))) +
+    scale_color_manual(values=(c(colors.cardio,colors.broad.cod[c(3,1)])), guide = guide_legend(nrow = 1,title = paste0(""))) +
+    scale_y_continuous(label = comma) +
+    # ggtitle(paste0((year.end.arg-4),'-',year.end.arg,' 5-year average')) +
+    facet_grid(sex.long~.)   +
+    theme_bw() +
+    theme(panel.grid.major = element_blank(),text = element_text(size = 15),
+    axis.ticks.x=element_blank(),
+    panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
+    panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+    legend.position = 'bottom',legend.justification='center',
+    legend.background = element_rect(fill="white", size=.5, linetype="dotted"))
+# extract legend from plot p0
+p0bL = extract_legend(p0)
+
 # reorder plot
 dat.last.years.all$cause = factor(dat.last.years.all$cause, levels=c('Other','Cancers','Ischaemic\nheart disease','Cerebrovascular\ndisease','Other cardiovascular\ndiseases',
                                                 'COPD', 'Respiratory\ninfections','Other respiratory\ndiseases'))
@@ -266,6 +330,35 @@ p1 = ggplot(data=subset(dat.last.years.all), aes(x=age.long,y=deaths,color=as.fa
     xlab('Age group (years)') + ylab('Number of deaths') +
     scale_fill_manual(values=(c(colors.broad.cod[c(1,3)],colors.cardio)), guide = guide_legend(nrow = 1,title = paste0(""))) +
     scale_color_manual(values=(c(colors.broad.cod[c(1,3)],colors.cardio)), guide = guide_legend(nrow = 1,title = paste0(""))) +
+    scale_y_continuous(label = comma) +
+    # ggtitle(paste0((year.end.arg-4),'-',year.end.arg,' 5-year average')) +
+    facet_grid(sex.long~.)   +
+    theme_bw() +
+    theme(panel.grid.major = element_blank(),text = element_text(size = 15),
+    axis.ticks.x=element_blank(),
+    panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
+    panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+    legend.position = 'bottom',legend.justification='center', legend.text=element_text(size=11),
+    legend.background = element_rect(fill="white", size=.5, linetype="dotted"))
+
+# p1 but without legend
+p2 = p1 + guides(fill=FALSE,color=FALSE)
+
+# plot p1 but with custom legend
+print(grid.arrange(p2,p0L,heights=c(11,1)))
+
+print(p1)
+
+dev.off()
+
+pdf(paste0(file.loc,'natural_ons_no_other_subsubcod_all_years_plots_',year.start.arg,'_',year.end.arg,'.pdf'),paper='a4r',height=0,width=0)
+
+p1 = ggplot(data=subset(dat.last.years.all,cause!='Other'), aes(x=age.long,y=deaths,color=as.factor(cause),fill=as.factor(cause))) +
+    geom_bar(width = 0.9, stat='identity') +
+    #coord_polar("y", start=0) +
+    xlab('Age group (years)') + ylab('Number of deaths') +
+    scale_fill_manual(values=(c(colors.broad.cod[c(3)],colors.cardio)), guide = guide_legend(nrow = 1,title = paste0(""))) +
+    scale_color_manual(values=(c(colors.broad.cod[c(3)],colors.cardio)), guide = guide_legend(nrow = 1,title = paste0(""))) +
     scale_y_continuous(label = comma) +
     # ggtitle(paste0((year.end.arg-4),'-',year.end.arg,' 5-year average')) +
     facet_grid(sex.long~.)   +
