@@ -3077,6 +3077,7 @@
       <w>UseMethod</w>
       <w>Ushuaia</w>
       <w>Uzhgorod</w>
+      <w>V8</w>
       <w>VA</w>
       <w>VADeaths</w>
       <w>VComments</w>
@@ -4480,6 +4481,7 @@
       <w>`[`</w>
       <w>`^`</w>
       <w>`active&lt;-`</w>
+      <w>`adjustedNodes&lt;-`</w>
       <w>`afill&lt;-`</w>
       <w>`align&lt;-`</w>
       <w>`annotation&lt;-`</w>
@@ -4537,6 +4539,7 @@
       <w>`end&lt;-`</w>
       <w>`environment&lt;-`</w>
       <w>`experimentData&lt;-`</w>
+      <w>`exposures&lt;-`</w>
       <w>`exprs&lt;-`</w>
       <w>`extension&lt;-`</w>
       <w>`extent&lt;-`</w>
@@ -4583,6 +4586,7 @@
       <w>`labels_colors&lt;-`</w>
       <w>`languageEl&lt;-`</w>
       <w>`last&lt;-`</w>
+      <w>`latents&lt;-`</w>
       <w>`length&lt;-.Date`</w>
       <w>`length&lt;-.POSIXct`</w>
       <w>`length&lt;-.POSIXlt`</w>
@@ -4619,6 +4623,7 @@
       <w>`order.dendrogram&lt;-`</w>
       <w>`organism&lt;-`</w>
       <w>`origin&lt;-`</w>
+      <w>`outcomes&lt;-`</w>
       <w>`pData&lt;-`</w>
       <w>`packageSlot&lt;-`</w>
       <w>`parent.env&lt;-`</w>
@@ -4842,12 +4847,15 @@
       <w>adist</w>
       <w>adjOutlyingness</w>
       <w>adjacent</w>
+      <w>adjacentNodes</w>
       <w>adjbox</w>
       <w>adjboxStats</w>
       <w>adjustcolor</w>
       <w>adjusted</w>
+      <w>adjustedNodes</w>
       <w>adjustedRandIndex</w>
       <w>adjusted_calpha</w>
+      <w>adjustmentSets</w>
       <w>adply</w>
       <w>adrop</w>
       <w>aeqSurv</w>
@@ -4960,6 +4968,8 @@
       <w>analyze.coherency</w>
       <w>analyze.wavelet</w>
       <w>ancestor</w>
+      <w>ancestorGraph</w>
+      <w>ancestors</w>
       <w>ancestry</w>
       <w>anchored</w>
       <w>ancoord</w>
@@ -5229,6 +5239,7 @@
       <w>as.chron.ITime</w>
       <w>as.col_spec</w>
       <w>as.complex</w>
+      <w>as.dagitty</w>
       <w>as.data.frame</w>
       <w>as.data.frame.AsIs</w>
       <w>as.data.frame.Bimap</w>
@@ -5655,6 +5666,7 @@
       <w>axisTicks</w>
       <w>axis_canvas</w>
       <w>b</w>
+      <w>backDoorGraph</w>
       <w>backSpline</w>
       <w>background_grid</w>
       <w>background_image</w>
@@ -6132,6 +6144,7 @@
       <w>candy</w>
       <w>cane</w>
       <w>canonical.theme</w>
+      <w>canonicalize</w>
       <w>canva_pal</w>
       <w>canva_palettes</w>
       <w>canyonprecip</w>
@@ -7263,6 +7276,7 @@
       <w>dDeta</w>
       <w>dQuote</w>
       <w>d_ply</w>
+      <w>dagitty</w>
       <w>daisy</w>
       <w>dalton</w>
       <w>daply</w>
@@ -7418,6 +7432,7 @@
       <w>dcauchy</w>
       <w>dcauchypoly</w>
       <w>dchisq</w>
+      <w>dconnected</w>
       <w>dd2dms</w>
       <w>ddays</w>
       <w>ddf_Lb</w>
@@ -7578,6 +7593,7 @@
       <w>desc_to_latex</w>
       <w>desc_validate</w>
       <w>descendant_of</w>
+      <w>descendants</w>
       <w>descentDetails</w>
       <w>descfreq</w>
       <w>describe</w>
@@ -7866,6 +7882,7 @@
       <w>downloadButton</w>
       <w>downloadFile</w>
       <w>downloadFile.character</w>
+      <w>downloadGraph</w>
       <w>downloadHandler</w>
       <w>downloadLink</w>
       <w>download_ssl_cert</w>
@@ -7944,6 +7961,7 @@
       <w>dsc</w>
       <w>dscale</w>
       <w>dseconds</w>
+      <w>dseparated</w>
       <w>dshw</w>
       <w>dsigmoid</w>
       <w>dsignrank</w>
@@ -8057,6 +8075,7 @@
       <w>economist_pal</w>
       <w>edays</w>
       <w>edgegraph</w>
+      <w>edges</w>
       <w>edit</w>
       <w>edit.nb</w>
       <w>editDetails</w>
@@ -8164,6 +8183,7 @@
       <w>enframe</w>
       <w>engel</w>
       <w>engine.display.list</w>
+      <w>engine_info</w>
       <w>engine_output</w>
       <w>enlist</w>
       <w>enquo</w>
@@ -8217,6 +8237,8 @@
       <w>equals.Verbose</w>
       <w>equals.default</w>
       <w>equisplit</w>
+      <w>equivalenceClass</w>
+      <w>equivalentDAGs</w>
       <w>erase</w>
       <w>erase.screen</w>
       <w>ergoStool</w>
@@ -8327,6 +8349,7 @@
       <w>exit.NullVerbose</w>
       <w>exit.Verbose</w>
       <w>exiting</w>
+      <w>exogenousVariables</w>
       <w>exp</w>
       <w>exp.tilt</w>
       <w>expAtv</w>
@@ -8355,6 +8378,7 @@
       <w>exportTestValues</w>
       <w>exposeClass</w>
       <w>expose_stan_functions</w>
+      <w>exposures</w>
       <w>expr</w>
       <w>expr.tree</w>
       <w>exprToFunction</w>
@@ -9348,6 +9372,7 @@
       <w>getErrorIndex</w>
       <w>getErrorValue</w>
       <w>getErrors</w>
+      <w>getExample</w>
       <w>getExamplePath</w>
       <w>getExamplePath.Package</w>
       <w>getExportedValue</w>
@@ -9915,6 +9940,8 @@
       <w>graph.var</w>
       <w>graph2T</w>
       <w>graph2nb</w>
+      <w>graphLayout</w>
+      <w>graphType</w>
       <w>graphics</w>
       <w>graphics.off</w>
       <w>graticule</w>
@@ -10490,6 +10517,7 @@
       <w>imp.weights</w>
       <w>impacts</w>
       <w>implicitGeneric</w>
+      <w>impliedConditionalIndependencies</w>
       <w>import</w>
       <w>importConvertDateTime</w>
       <w>importEvents</w>
@@ -10843,6 +10871,7 @@
       <w>install_url</w>
       <w>install_version</w>
       <w>installed.packages</w>
+      <w>instrumentalVariables</w>
       <w>int</w>
       <w>int2col</w>
       <w>intImpacts</w>
@@ -10970,6 +10999,7 @@
       <w>is.complex</w>
       <w>is.constant</w>
       <w>is.count</w>
+      <w>is.dagitty</w>
       <w>is.data.frame</w>
       <w>is.data.table</w>
       <w>is.date</w>
@@ -11153,6 +11183,7 @@
       <w>isAbsolutePath.default</w>
       <w>isAbstract</w>
       <w>isAbstract.Class</w>
+      <w>isAdjustmentSet</w>
       <w>isAvailable</w>
       <w>isBalanced</w>
       <w>isBaseNamespace</w>
@@ -11676,6 +11707,7 @@
       <w>last_col</w>
       <w>last_commit</w>
       <w>last_plot</w>
+      <w>latents</w>
       <w>latex</w>
       <w>latex.bystats</w>
       <w>latex.bystats2</w>
@@ -11707,6 +11739,7 @@
       <w>lattice.options</w>
       <w>latticeExtra</w>
       <w>latticeParseFormula</w>
+      <w>lavaanToGraph</w>
       <w>layer</w>
       <w>layerStats</w>
       <w>layer_</w>
@@ -12024,6 +12057,7 @@
       <w>localAple</w>
       <w>localFun</w>
       <w>localG</w>
+      <w>localTests</w>
       <w>local_</w>
       <w>local_bmp</w>
       <w>local_build_tools</w>
@@ -12358,6 +12392,7 @@
       <w>markdownExtensions</w>
       <w>markdownHTMLOptions</w>
       <w>markdownToHTML</w>
+      <w>markovBlanket</w>
       <w>markupSpecs</w>
       <w>marrangeGrob</w>
       <w>marriages.Turkey</w>
@@ -12763,6 +12798,7 @@
       <w>months.Date</w>
       <w>months.POSIXt</w>
       <w>mood.test</w>
+      <w>moralize</w>
       <w>moran</w>
       <w>moran.mc</w>
       <w>moran.plot</w>
@@ -13036,6 +13072,7 @@
       <w>negbin</w>
       <w>negexp.SSival</w>
       <w>neginc</w>
+      <w>neighbours</w>
       <w>nelder</w>
       <w>neldermead</w>
       <w>nepacLL</w>
@@ -13067,6 +13104,7 @@
       <w>new_cnd</w>
       <w>new_complex</w>
       <w>new_complex_along</w>
+      <w>new_context</w>
       <w>new_data_mask</w>
       <w>new_definition</w>
       <w>new_difftime</w>
@@ -13430,11 +13468,13 @@
       <w>ordinal_spanish</w>
       <w>orgPackageName</w>
       <w>organism</w>
+      <w>orientPDAG</w>
       <w>origin</w>
       <w>orm</w>
       <w>orm.fit</w>
       <w>os_name</w>
       <w>otherInfo</w>
+      <w>outcomes</w>
       <w>outer</w>
       <w>outerText</w>
       <w>outlier.test</w>
@@ -13838,6 +13878,7 @@
       <w>path_tidy</w>
       <w>path_wd</w>
       <w>pathologicule</w>
+      <w>paths</w>
       <w>paulsen</w>
       <w>pava.blocks</w>
       <w>pbClose</w>
@@ -14147,6 +14188,7 @@
       <w>plotGPApartial</w>
       <w>plotHelper</w>
       <w>plotLines</w>
+      <w>plotLocalTestResults</w>
       <w>plotMA</w>
       <w>plotMAhex</w>
       <w>plotMFApartial</w>
@@ -15168,6 +15210,7 @@
       <w>randcmatrix</w>
       <w>randconf</w>
       <w>random.effects</w>
+      <w>randomDAG</w>
       <w>randomPairs</w>
       <w>randpop.nb</w>
       <w>randu</w>
@@ -16733,6 +16776,7 @@
       <w>setValue</w>
       <w>setValue.ProgressBar</w>
       <w>setValues</w>
+      <w>setVariableStatus</w>
       <w>setWidgetIdSeed</w>
       <w>setZ</w>
       <w>set_OVERRIDE_PROJ_DATUM_WITH_TOWGS84</w>
@@ -16971,6 +17015,7 @@
       <w>simulate.fracdiff</w>
       <w>simulate.lme</w>
       <w>simulate.nnetar</w>
+      <w>simulateSEM</w>
       <w>simulate_cosinor</w>
       <w>simulate_cvd</w>
       <w>simule</w>
@@ -17251,6 +17296,7 @@
       <w>spm</w>
       <w>spmap.to.lev</w>
       <w>spoints</w>
+      <w>spouses</w>
       <w>spower</w>
       <w>sppanel</w>
       <w>spplot</w>
@@ -19253,6 +19299,7 @@
       <w>utf8_width</w>
       <w>utils</w>
       <w>v0.test</w>
+      <w>v8</w>
       <w>vaggregate</w>
       <w>vague_dt</w>
       <w>val.prob</w>
@@ -19288,6 +19335,7 @@
       <w>valueofstocks</w>
       <w>values</w>
       <w>vanilladot</w>
+      <w>vanishingTetrads</w>
       <w>vapply</w>
       <w>var</w>
       <w>var.inner</w>
