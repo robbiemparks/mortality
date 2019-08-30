@@ -8,7 +8,7 @@
 
 clear
 
-declare -a years=($(seq 2014 2016))
+declare -a years=($(seq 2017 2017))
 # 2014-2016 data processing values
 declare us='USAllCnty.txt'
 declare ps='PSAllCnty.txt'
@@ -27,7 +27,7 @@ for year in "${years[@]}"; do
 #
 #echo "processing raw files from $year";
 #
-#echo "extacting files from tape format for $year";
+#echo "extracting files from tape format for $year";
 #
 ## extracts file for year from tape format into something intelligible
 #Rscript ~/git/mortality/USA/state/prog/format_mort/format_mort.R $year $us
@@ -60,7 +60,7 @@ for year in "${years[@]}"; do
 echo "emulating inherited data format for $year";
 
 # emulate Harvard output data form
-Rscript ~/git/mortality/USA/state/prog/format_mort_cod/reformat_data_cod.R $year
+#Rscript ~/git/mortality/USA/state/prog/format_mort_cod/reformat_data_cod.R $year
 
 #################################################
 # 5. CHECK OLD AGAINST NEW DATA EXPORT

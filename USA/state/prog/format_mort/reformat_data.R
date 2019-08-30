@@ -11,8 +11,8 @@ args <- commandArgs(trailingOnly=TRUE)
 year <- as.numeric(args[1])
 
 # read files
-dat.us <- read.dta(paste0('~/data/mortality/US/state/raw/cdc/',year,'/MULT',year,'.USPART2.processed.age_recode.dta'))
-try(dat.ps <- read.dta(paste0('~/data/mortality/US/state/raw/cdc/',year,'/MULT',year,'.PSPART2.processed.age_recode.dta')))
+dat.us <- read.dta(paste0('~/data/mortality/US/state/raw/cdc/',year,'/MULT',year,'.USAllCnty.txt.processed.age_recode.dta'))
+try(dat.ps <- read.dta(paste0('~/data/mortality/US/state/raw/cdc/',year,'/MULT',year,'.PSAllCnty.txt.processed.age_recode.dta')))
 
 # append datasets if necessary
 dat <- dat.us
