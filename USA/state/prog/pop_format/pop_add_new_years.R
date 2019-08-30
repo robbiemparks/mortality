@@ -5,8 +5,8 @@ library(plyr)
 
 # break down the arguments from Rscript
 args <- commandArgs(trailingOnly=TRUE)
-year.start.arg <- as.numeric(args[1])
-year.end.arg <- as.numeric(args[2])
+year.start.arg <- as.numeric(args[1]) 		# 2012
+year.end.arg <- as.numeric(args[2])			# 2017
 
 # load original population file
 dat.old <- read.dta('~/git/mortality/USA/state/data/population/original/countyPopulations.dta')

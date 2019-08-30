@@ -1,5 +1,7 @@
 rm(list=ls())
 
+# from files downloaded from https://wonder.cdc.gov/bridged-race-population.html
+
 library(foreign)
 library(plyr)
 

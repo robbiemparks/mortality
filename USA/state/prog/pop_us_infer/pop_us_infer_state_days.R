@@ -22,7 +22,7 @@ pop.state$age[pop.state$age==80] <- 75
 
 # summarise over new age groups
 library(dplyr)
-pop.state <- summarise(group_by(pop.state,sex,age,year,fips),sum(pop))
+pop.state <- dplyr::summarise(group_by(pop.state,sex,age,year,fips),sum(pop))
 names(pop.state)[5] <- 'pop'
 
 # re-order to original file order
@@ -83,6 +83,8 @@ library(tidyr)
 # convert to long-form table for lookup
 pop.state.exp.long <- pop.state.exp %>% gather(month.exp, pop.adj.exp, jan:dec)
 
+pop.state.exp.long$month.exp.temp <- 0
+
 pop.state.exp.long$month.exp.temp[pop.state.exp.long$month.exp=='jan'] <- 1
 pop.state.exp.long$month.exp.temp[pop.state.exp.long$month.exp=='feb'] <- 2
 pop.state.exp.long$month.exp.temp[pop.state.exp.long$month.exp=='mar'] <- 3
@@ -126,6 +128,8 @@ pop.state.lin$dec <- pop.state.lin$pop + 11 * pop.state.lin$lin.diff
 
 # convert to long-form table for lookup
 pop.state.lin.long <- pop.state.lin %>% gather(month.lin, pop.adj.lin, jan:dec)
+
+pop.state.lin.long$month.lin.temp <- 0
 
 pop.state.lin.long$month.lin.temp[pop.state.lin.long$month.lin=='jan'] <- 1
 pop.state.lin.long$month.lin.temp[pop.state.lin.long$month.lin=='feb'] <- 2
@@ -188,21 +192,21 @@ pop.state.long <- pop.state.long[,c('year','month','sex','age','fips','pop','pop
 ifelse(!dir.exists("../../output/pop_us_infer"), dir.create("../../output/pop_us_infer"), FALSE)
 
 # plot to check
-png('../../output/pop_us_infer/interpolated_pop_example.png')
-library(ggplot2)
-plot.limit <- 100
-pop.state.long$id <- seq(1:nrow(pop.state.long))
-print(
-ggplot() +
-geom_line(data=pop.state.long[c(1:100),],color='red',aes(x=id,y=pop)) +
-geom_line(data=pop.state.long[c(1:100),],color='blue',aes(x=id,y=pop.adj)) +
-xlab('time') +
-ylab('population') +
-scale_x_continuous(breaks=seq(0,plot.limit,12)) +
-theme(text = element_text(size = 15), panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-panel.background = element_blank(),strip.background = element_blank(), axis.line = element_line(colour = "black"),
-axis.text.x = element_text(angle=0))
-)
-dev.off()
+# png('../../output/pop_us_infer/interpolated_pop_example.png')
+# library(ggplot2)
+# plot.limit <- 100
+# pop.state.long$id <- seq(1:nrow(pop.state.long))
+# print(
+# ggplot() +
+# geom_line(data=pop.state.long[c(1:100),],color='red',aes(x=id,y=pop)) +
+# geom_line(data=pop.state.long[c(1:100),],color='blue',aes(x=id,y=pop.adj)) +
+# xlab('time') +
+# ylab('population') +
+# # scale_x_continuous(breaks=seq(0,plot.limit,12)) +
+# theme(text = element_text(size = 15), panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+# panel.background = element_blank(),strip.background = element_blank(), axis.line = element_line(colour = "black"),
+# axis.text.x = element_text(angle=0))
+# )
+# dev.off()
 
 saveRDS(pop.state.long, '../../output/pop_us_infer/statePopulations_infer_by_days_new_years')
