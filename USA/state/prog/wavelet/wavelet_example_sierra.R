@@ -14,9 +14,6 @@ ifelse(!dir.exists(file.loc), dir.create(file.loc,recursive=TRUE), FALSE)
 # load data and filter results
 dat = readRDS('~/Desktop/test_data_wavelet.rds')
 
-# source wavelet functions
-source('../01_functions/wavelet_functions.R')
-
 plot.title <- paste0('TITLE')
 
 # prepare data frame for anaylsis You need a dataframe with a formatted date column, and I think you need to log the time series (but might work without)
