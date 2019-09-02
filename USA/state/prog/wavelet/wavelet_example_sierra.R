@@ -11,9 +11,6 @@ file.loc <- paste0("~/Desktop/output/wavelet/")
 file.loc <- paste0(file.loc,num.sim,'_sim/')
 ifelse(!dir.exists(file.loc), dir.create(file.loc,recursive=TRUE), FALSE)
 
-# source relevant objects
-source('../../data/objects/objects.R')
-
 # load data and filter results
 dat = readRDS('~/Desktop/test_data_wavelet.rds')
 
