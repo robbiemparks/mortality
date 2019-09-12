@@ -124,7 +124,7 @@ yearsummary_injuries  <- function(x=2000) {
                             ifelse(dat.merged$letter=='X'&dat.merged$cause.numeric>=0&dat.merged$cause.numeric<=599,	'Other external causes of injury', # encounters with forces of nature/overexertion
                             ifelse(dat.merged$letter=='X'&dat.merged$cause.numeric>=600&dat.merged$cause.numeric<=840,	'Intentional self-harm',
                             ifelse(dat.merged$letter=='X'&dat.merged$cause.numeric>=850&dat.merged$cause.numeric<=999,	'Assault',
-                            ifelse(dat.merged$letter=='Y'&dat.merged$cause.numeric>=0&dat.merged$cause.numeric<=99,		'Other external causes of injury',
+                            ifelse(dat.merged$letter=='Y'&dat.merged$cause.numeric>=0&dat.merged$cause.numeric<=99,		'Assault',
                             ifelse(dat.merged$letter=='Y'&dat.merged$cause.numeric>=100&dat.merged$cause.numeric<=349,	'Other external causes of injury', # 'event of undeterminded intent'
                             ifelse(dat.merged$letter=='Y'&dat.merged$cause.numeric>=350&dat.merged$cause.numeric<=389,	'Other external causes of injury', # 'Legal intervention, operations of war, military operations, and terrorism'
                             ifelse(dat.merged$letter=='Y'&dat.merged$cause.numeric>=400&dat.merged$cause.numeric<=849,	'Other external causes of injury', # medical complications etc.
