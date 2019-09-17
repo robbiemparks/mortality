@@ -154,6 +154,10 @@ library(INLA)
 # load inla function
 source('../models/INLA/03_spatiotemporal/inla_functions_cod.R')
 
+# temporary workaround to avoid GLIBC error (???) from:
+# https://www.mn.uio.no/math/english/services/it/help/status/2018-07-26-inla-r.html
+INLA:::inla.dynload.workaround()
+
 # input arguments into function to perform inference
 if(fast.arg==0){
     mod = inla.function.climate()
