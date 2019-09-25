@@ -25,7 +25,8 @@ if(class.arg=='Narrow') {
     dat$cause = dat$cause.sub ; dat$cause.group = NULL ; dat$cause.sub = NULL
 }
 if(class.arg=='Injuries') {
-    dat <- readRDS(paste0('../../output/prep_data_cod/datus_state_rates_cod_injuries_ons_',year.start.arg,'_',year.end.arg))
+    dat <- readRDS(paste0('../../output/prep_data_cod/datus_nat_deaths_subcod_injuries_ons_',year.start.arg,'_',year.end.arg))
+    dat$cause.group = NULL ; names(dat)[6] = 'cause'
 }
 if(class.arg=='Cardiopulmonary') {
     dat <- readRDS(paste0('../../output/prep_data_cod/datus_nat_deaths_subcod_cardio_ons_',year.start.arg,'_',year.end.arg))
