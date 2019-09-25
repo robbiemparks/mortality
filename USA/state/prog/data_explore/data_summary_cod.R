@@ -53,6 +53,11 @@ dat.summary.entire.age = ddply(dat.summary.entire.age,.(sex),mutate,percentage=1
 dat.summary.entire.age.cause = ddply(dat,.(cause,age,sex),summarise,deaths=sum(deaths))
 dat.summary.entire.age.cause = ddply(dat.summary.entire.age.cause,.(age,sex),mutate,percentage=100*deaths/sum(deaths))
 
+library(tidyr)
+# wide format of table just above
+dat.summary.entire.age.cause.wide <- spread(dat.summary.entire.age.cause[,c(1:4)], cause, deaths)
+dat.summary.entire.age.cause.wide <- dat.summary.entire.age.cause.wide[order(dat.summary.entire.age.cause.wide$sex,dat.summary.entire.age.cause.wide$age),]
+
 # summary of deaths by sex over time
 # dat.summary.sex.time = ddply(dat,.(year,sex),summarise,deaths=sum(deaths))
 
@@ -110,6 +115,7 @@ dat.deaths.cods.percentage.percentile = ddply(subset(dat.deaths.cods.percentage.
 
 # write to csv
 write.csv(dat.summary.entire.age,paste0(file.loc,'deaths_summary_byages_',class.arg,'_',year.start.arg,'_',year.end.arg,'.csv'),row.names=FALSE)
+write.csv(dat.summary.entire.age.cause.wide,paste0(file.loc,'deaths_summary_bycodsagesex_',class.arg,'_',year.start.arg,'_',year.end.arg,'.csv'),row.names=FALSE)
 write.csv(dat.summary.entire,paste0(file.loc,'deaths_summary_allages_over_time',class.arg,'_',year.start.arg,'_',year.end.arg,'.csv'),row.names=FALSE)
 write.csv(dat.summary.entire.time,paste0(file.loc,'deaths_summary_ageseparate_over_time',class.arg,'_',year.start.arg,'_',year.end.arg,'.csv'),row.names=FALSE)
 
