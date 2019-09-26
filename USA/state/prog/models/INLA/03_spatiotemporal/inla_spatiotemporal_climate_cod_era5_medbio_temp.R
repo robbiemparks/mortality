@@ -10,6 +10,9 @@ causes = c('Transport accidents','Accidental falls','Accidental drowning and sub
 
 seed.grid = expand.grid(sex=sexes,age=ages,cause=causes)
 
+# TEMPORARY DELETE FEMALES
+seed.grid = subset(seed.grid,sex==1)
+
 chosen.row =seed.grid[seedVal,]
 
 # break down the arguments from Rscript
@@ -17,7 +20,7 @@ sex.arg <- as.numeric(chosen.row[1,1])
 age.arg <- as.numeric(chosen.row[1,2])
 year.start.arg <- 1980
 year.end.arg <- 2017
-type.arg <- 27
+type.arg <- 28
 cluster.arg <- 0
 dname.arg <- 't2m'
 metric.arg <- 'meanc4'
