@@ -20,6 +20,12 @@ pop.state$age[pop.state$age==60] <- 55
 pop.state$age[pop.state$age==70] <- 65
 pop.state$age[pop.state$age==80] <- 75
 
+# output population by age and sex summarised over entire period (not part of main work)
+pop.state.copy=subset(pop.state,!(fips%in%c('02','15')))
+dat.summary=ddply(pop.state.copy,.(sex,age),summarise,pop=sum(pop))
+write.csv(dat.summary, "../../output/pop_add_new_years/statePopulationsnewyears_summarised.csv",row.names=FALSE)
+
+
 # summarise over new age groups
 library(dplyr)
 pop.state <- dplyr::summarise(group_by(pop.state,sex,age,year,fips),sum(pop))
