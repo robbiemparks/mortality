@@ -717,19 +717,21 @@
         # month specific terms
         f(month, model='rw1',cyclic = TRUE, hyper = list(prec = list(prior = "loggamma", param = c(1, 0.01)))) +                                           # month specific intercept
         f(month2, year.month2, model='rw1', cyclic= TRUE, hyper = list(prec = list(prior = "loggamma", param = c(1, 0.01)))) +                             # month specific slope
-        # state-month specific terms
+        # # state-month specific terms
         f(month3, model="rw1",cyclic = TRUE,group=ID,control.group=list(model='besag',graph=USA.adj, hyper = list(prec = list(prior = "loggamma", param = c(1, 0.01)))),
-        hyper = list(prec = list(prior = "loggamma", param = c(1, 0.01),fixed=FALSE)))+            # state-month specific intercept (spatially-correlated)
+        hyper = list(prec = list(prior = "loggamma", param = c(1, 0.01),fixed=FALSE))) +            # state-month specific intercept (spatially-correlated)
         f(month4, year.month2, model="rw1",cyclic = TRUE,group=ID, control.group=list(model='besag',graph=USA.adj, hyper = list(prec = list(prior = "loggamma", param = c(1, 0.01)))),
-        hyper = list(prec = list(prior = "loggamma", param = c(1, 0.01),fixed=FALSE)))+            # state-month specific slope (spatially-correlated)
+        hyper = list(prec = list(prior = "loggamma", param = c(1, 0.01),fixed=FALSE))) +            # state-month specific slope (spatially-correlated)
         f(month6, model="rw1",cyclic = TRUE,group=ID,control.group=list(model='iid', hyper = list(prec = list(prior = "loggamma", param = c(1, 0.01)))),
         hyper = list(prec = list(prior = "loggamma", param = c(1, 0.01)))) +                                  # state-month specific intercept (spatially-correlated)
         f(month7, year.month2, model="rw1",cyclic = TRUE,group=ID, control.group=list(model='iid', hyper = list(prec = list(prior = "loggamma", param = c(1, 0.01)))),
         hyper = list(prec = list(prior = "loggamma", param = c(1, 0.01)))) +                    # state-month specific slope (spatially-correlated)
-        # state specific terms
-        f(ID, model="bym",graph=USA.adj, hyper = list(prec = list(prior = "loggamma", param = c(1, 0.01),fixed=FALSE))) +                                # state specific intercept (BYM)
-        f(ID2, year.month2, model="bym",graph=USA.adj, hyper = list(prec = list(prior = "loggamma", param = c(1, 0.01),fixed=FALSE))) +                  # state specific slope (BYM)
-        # climate specific terms
+        # # state specific terms
+        f(ID, model="bym",graph=USA.adj, hyper = list(prec.unstruct = list(prior = "loggamma", param = c(1, 0.01),fixed=FALSE),
+        prec.spatial = list(prior = "loggamma", param = c(1, 0.01),fixed=FALSE))) +                                # state specific intercept (BYM)
+        f(ID2, year.month2, model="bym",graph=USA.adj, hyper = list(prec.unstruct = list(prior = "loggamma", param = c(1, 0.01),fixed=FALSE),
+        prec.spatial = list(prior = "loggamma", param = c(1, 0.01),fixed=FALSE))) +                  # state specific slope (BYM)
+        # # climate specific terms
         f(month5, variable, model="rw1", cyclic=TRUE, hyper = list(prec = list(prior = "loggamma", param = c(1, 0.01)))) +                                 # month specific climate slope
         # random walk across time
         f(year.month3, model="rw1", hyper = list(prec = list(prior = "loggamma", param = c(1, 0.01)))) +                                           		# rw1
@@ -738,7 +740,27 @@
 
         # if piece-wise (need to extend to entire model selections)
     if(pw.arg==1){
-        # TO FINISH IF NEEDED
+        # fml  <- deaths.adj ~
+        # # global terms
+        # 1 +                                                                     		# global intercept
+        # year.month +                                                           			# global slope
+        # # month specific terms
+        # f(month, model='rw1',cyclic = TRUE, hyper = list(prec = list(prior = "loggamma", param = c(1, 0.001)))) +                                           # month specific intercept
+        # f(month2, year.month2, model='rw1', cyclic= TRUE, hyper = list(prec = list(prior = "loggamma", param = c(1, 0.001)))) +                             # month specific slope
+        # # state-month specific terms
+        # f(month3, model="rw1",cyclic = TRUE,group=ID,control.group=list(model='besag',graph=USA.adj, hyper = list(prec = list(prior = "loggamma", param = c(1, 0.001)))),
+        # hyper = list(prec = list(prior = "loggamma", param = c(1, 0.001),fixed=FALSE)))+            # state-month specific intercept (spatially-correlated)
+        # f(month4, year.month2, model="rw1",cyclic = TRUE,group=ID, control.group=list(model='besag',graph=USA.adj, hyper = list(prec = list(prior = "loggamma", param = c(1, 0.001)))),
+        # hyper = list(prec = list(prior = "loggamma", param = c(1, 0.001),fixed=FALSE)))+            # state-month specific slope (spatially-correlated)
+        # # state specific terms
+        # f(ID, model="besag",graph=USA.adj, hyper = list(prec = list(prior = "loggamma", param = c(1, 0.001),fixed=FALSE))) +                                # state specific intercept (BYM)
+        # f(ID2, year.month2, model="besag",graph=USA.adj, hyper = list(prec = list(prior = "loggamma", param = c(1, 0.001),fixed=FALSE))) +                  # state specific slope (BYM)
+        # # climate specific terms
+        # f(month5, variable, model="rw1", cyclic=TRUE, hyper = list(prec = list(prior = "loggamma", param = c(1, 0.001)))) +                                 # month specific climate slope
+        # # random walk across time
+        # f(year.month3, model="rw1", hyper = list(prec = list(prior = "loggamma", param = c(1, 0.001)))) +                                           		# rw1
+        # # overdispersion term
+        # f(e, model = "iid", hyper = list(prec = list(prior = "loggamma", param = c(1, 0.001))))
     }
     }
     if(type.arg==11){
