@@ -16,7 +16,7 @@ declare metric="meanc4"
 declare -a cods=("Transport_accidents" "Intentional_self-harm" "Accidental_falls" "Accidental_drowning_and_submersion" "Assault")
 declare -i fast=1
 declare -i contig=1
-declare -a draws=(1000)
+declare -a draws=(5000)
 
 ################################################
 # 1. MAKE DRAWS
