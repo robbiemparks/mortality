@@ -19,7 +19,7 @@ num.draws <- as.numeric(args[9])
 
 # NEED TO MAKE CONTIG OPTION ACTUALLY DO SOMETHING
 
-#year.start = 1980 ; year.end = 2016 ; country = 'USA' ; model = 10 ; dname = 't2m' ; metric = 'meanc3' ; cause = 'Transport accidents'; contig=1 ; num.draws = 1000
+#year.start = 1980 ; year.end = 2017 ; country = 'USA' ; model = 27 ; dname = 't2m' ; metric = 'meanc4' ; cause = 'Transport accidents'; contig=1 ; num.draws = 1000
 
 # source variables
 source('../../data/objects/objects.R')
@@ -56,6 +56,11 @@ for (i in seq(length(sex.filter))) {
 
         print(paste0('Reading ',file.name))
         model.current <- readRDS(file.name)
+
+
+        # temporary workaround to avoid GLIBC error (???) from:
+        # https://www.mn.uio.no/math/english/services/it/help/status/2018-07-26-inla-r.html
+        INLA:::inla.dynload.workaround()
 
         # make draws from the model for the parameters
         print(paste0('Making ',num.draws, ' draws...'))
