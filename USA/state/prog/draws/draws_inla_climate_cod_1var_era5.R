@@ -25,8 +25,21 @@ num.draws <- as.numeric(args[9])
 source('../../data/objects/objects.R')
 model <- models[model]
 
+# temporary workaround to avoid GLIBC error (???) from:
+# https://www.mn.uio.no/math/english/services/it/help/status/2018-07-26-inla-r.html
+INLA:::inla.dynload.workaround()
+
+# load inla paradiso (what on earth is this?)
+inla.paradiso()
+inla.setOption(pardiso.license="~/git/mortality/USA/state/prog/00_bash/paradiso.lic")
+inla.paradiso.check()
+
+# temporary list of injury causes
+causes = c("Transport accidents", "Intentional_self-harm", "Accidental falls", "Accidental drowning and submersion", "Assault")
+
 # load the data for each age and sex to make draws
 library(INLA)
+# for(cause in causes){
 for (i in seq(length(sex.filter))) {
     for (j in seq(length(age.filter))) {
     # for (j in c(2)) {
@@ -57,15 +70,6 @@ for (i in seq(length(sex.filter))) {
         print(paste0('Reading ',file.name))
         model.current <- readRDS(file.name)
 
-        # temporary workaround to avoid GLIBC error (???) from:
-        # https://www.mn.uio.no/math/english/services/it/help/status/2018-07-26-inla-r.html
-        INLA:::inla.dynload.workaround()
-
-        # load inla paradiso (what on earth is this?)
-        inla.paradiso()
-        inla.setOption(pardiso.license="~/git/mortality/USA/state/prog/00_bash/paradiso.lic")
-
-
         # make draws from the model for the parameters
         print(paste0('Making ',num.draws, ' draws...'))
         draws.current = try(inla.posterior.sample(num.draws,model.current))
@@ -77,7 +81,7 @@ for (i in seq(length(sex.filter))) {
             '_',year.start,'_',year.end,'_',dname,'_',metric,'_',num.draws,'_draws_fast_contig')
         try(saveRDS(draws.current,paste0(file.loc,save.name)))
 }}
-
+# }
 ### LEGACY ONLY FOR COMPARISON OF CENTRAL ESTIMATES
 
 # # load the data for quoting parameters
