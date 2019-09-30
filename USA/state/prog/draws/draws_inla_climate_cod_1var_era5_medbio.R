@@ -70,10 +70,6 @@ print(paste0('Making ',num.draws, ' draws...'))
 # draws.current = try(inla.posterior.sample(num.draws,model.current))
 draws.current = try(inla.posterior.sample(num.draws,model.current,selection=list('month5'=1:12)))
 
-# OTHER ATTEMPTS
-# draws.current = try(inla.posterior.sample(num.draws,model.current,selection=list('Predictor'=1:10)))
-# try(do.call("<-", list(paste0('draws.',age.filter[j],'.',sex.lookup[i]), draws.current)))
-
 # save draws as an rds file
 print('Saving file...')
 save.name = paste0(country,'_rate_pred_type',model,'_',age.filter[age],'_',sex.lookup[sex],
