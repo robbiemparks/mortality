@@ -82,19 +82,19 @@ fix_names = function(dat){
 additional.deaths.summary = fix_names(additional.deaths.summary)
 
 # additional edit for plotting intentional and unintentional totals on graphs without other unintentional injuries (see human readable for permanent fix)
-additional.deaths.intent.summary = ddply(subset(additional.deaths.summary,cause!='Other unintentional injuries'),.(intent,age.long,sex.long),summarize,deaths.added.mean=sum(deaths.added.mean))
+additional.deaths.intent.summary = ddply(subset(additional.deaths.summary,cause!='Other unintentional injuries'),.(intent,age.long,sex.long),summarize,deaths.added.mean=sum(deaths.added.mean),deaths.added.two.deg.mean=sum(deaths.added.two.deg.mean))
 additional.deaths.summary.monthly = fix_names(additional.deaths.summary.monthly)
-additional.deaths.intent.monthly.summary = ddply(subset(additional.deaths.summary.monthly,cause!='Other unintentional injuries'),.(intent,month.short,sex.long),summarize,deaths.added.mean=sum(deaths.added.mean))
+additional.deaths.intent.monthly.summary = ddply(subset(additional.deaths.summary.monthly,cause!='Other unintentional injuries'),.(intent,month.short,sex.long),summarize,deaths.added.mean=sum(deaths.added.mean),deaths.added.two.deg.mean=sum(deaths.added.two.deg.mean))
 
 pdf(paste0(file.loc,country,'_rate_pred_type',model,
     '_',year.start,'_',year.end,'_',dname,'_',metric,'_unintentional_to_transport_falls_drownings_other_fast_contig.pdf'),paper='a4r',height=0,width=0)
 ggplot() +
-    geom_bar(data=subset(additional.deaths.summary,sex>0&age<99&!(cause%in%c('Other unintentional injuries', 'Assault','Suicide'))), aes(x=as.factor(age.long),y=deaths.added.mean,fill=cause), stat='identity') +
-    geom_point(data=subset(additional.deaths.intent.summary,intent=='Unintentional'&sex.long!='Both'&age.long!='All ages'),aes(x=as.factor(age.long),y=deaths.added.mean),shape=16) +
+    geom_bar(data=subset(additional.deaths.summary,sex>0&age<99&!(cause%in%c('Other unintentional injuries', 'Assault','Suicide'))), aes(x=as.factor(age.long),y=deaths.added.two.deg.mean,fill=cause), stat='identity') +
+    geom_point(data=subset(additional.deaths.intent.summary,intent=='Unintentional'&sex.long!='Both'&age.long!='All ages'),aes(x=as.factor(age.long),y=deaths.added.two.deg.mean),shape=16) +
     # geom_bar(data=subset(additional.deaths.intent.summary,intent=='Unintentional'&sex.long%in%c('Male','Female')&age.long%in%age.print),aes(x=as.factor(age.long),y=deaths.added.mean),fill=NA,color='black',stat='identity') +
     # geom_errorbar(data=subset(additional.deaths.intent.summary,intent=='Unintentional'),aes(x=as.factor(age.long),ymax=deaths.added.ul,ymin=deaths.added.ll),width=.3,size=0.5) +
     geom_hline(yintercept=0,linetype='dotted') +
-    xlab('Age group (years)') + ylab(paste("Additional deaths associated with a 1°C\n warmer year (based on 2016 population)")) +
+    xlab('Age group (years)') + ylab(paste("Additional deaths associated with a 2°C\n warmer year (based on 2017 population)")) +
     # ylab(expression(paste("ERA-Interim temperature  (",degree,"C)"))) +
     # ylim(c(min.plot,max.plot)) +
     facet_wrap(~sex.long) +
@@ -114,11 +114,11 @@ dev.off()
 pdf(paste0(file.loc,country,'_rate_pred_type',model,
     '_',year.start,'_',year.end,'_',dname,'_',metric,'_intentional_to_assault_intentional_self-harm_fast_contig.pdf'),paper='a4r',height=0,width=0)
 ggplot() +
-    geom_bar(data=subset(additional.deaths.summary,sex>0&age<99&(cause%in%c('Assault','Suicide'))), aes(x=as.factor(age.long),y=deaths.added.mean,fill=cause), stat='identity') +
-    geom_point(data=subset(additional.deaths.intent.summary,intent=='Intentional'&sex.long!='Both'&age.long!='All ages'),aes(x=as.factor(age.long),y=deaths.added.mean),shape=16) +
+    geom_bar(data=subset(additional.deaths.summary,sex>0&age<99&(cause%in%c('Assault','Suicide'))), aes(x=as.factor(age.long),y=deaths.added.two.deg.mean,fill=cause), stat='identity') +
+    geom_point(data=subset(additional.deaths.intent.summary,intent=='Intentional'&sex.long!='Both'&age.long!='All ages'),aes(x=as.factor(age.long),y=deaths.added.two.deg.mean),shape=16) +
     # geom_errorbar(data=subset(additional.deaths.intent.summary,intent=='Intentional'),aes(x=as.factor(age.long),ymax=deaths.added.ul,ymin=deaths.added.ll),width=.3,size=0.5) +
     geom_hline(yintercept=0,linetype='dotted') +
-    xlab('Age group (years)') + ylab(paste("Additional deaths associated with a 1°C\n warmer year (based on 2016 population)")) +
+    xlab('Age group (years)') + ylab(paste("Additional deaths associated with a 2°C\n warmer year (based on 2017 population)")) +
     # ylim(c(min.plot,max.plot)) +
     facet_wrap(~sex.long) +
     scale_fill_manual(values=colors.subinjuries[c(5,6)]) +
@@ -137,11 +137,11 @@ dev.off()
 pdf(paste0(file.loc,country,'_rate_pred_type',model,
     '_',year.start,'_',year.end,'_',dname,'_',metric,'_intentional_unintentional_contig.pdf'),paper='a4r',height=0,width=0)
 p1 = ggplot() +
-    geom_bar(data=subset(additional.deaths.summary,sex>0&age<99&cause!='Other unintentional injuries'), aes(x=as.factor(age.long),y=deaths.added.mean,fill=cause), stat='identity') +
-    geom_point(data=subset(additional.deaths.intent.summary,sex.long!='Both'&age.long!='All ages'),aes(x=as.factor(age.long),y=deaths.added.mean),shape=16) +
+    geom_bar(data=subset(additional.deaths.summary,sex>0&age<99&cause!='Other unintentional injuries'), aes(x=as.factor(age.long),y=deaths.added.two.deg.mean,fill=cause), stat='identity') +
+    geom_point(data=subset(additional.deaths.intent.summary,sex.long!='Both'&age.long!='All ages'),aes(x=as.factor(age.long),y=deaths.added.two.deg.mean),shape=16) +
     # geom_errorbar(data=subset(additional.deaths.intent.summary),aes(x=as.factor(age.long),ymax=deaths.added.ul,ymin=deaths.added.ll),width=.3,size=0.5) +
     geom_hline(yintercept=0,linetype='dotted') +
-    xlab('Age group (years)') + ylab(paste("Additional deaths associated with a 1°C\n warmer year (based on 2016 population)")) +
+    xlab('Age group (years)') + ylab(paste("Additional deaths associated with a 2°C\n warmer year (based on 2017 population)")) +
     # ylim(c(min.plot,max.plot)) +
     facet_grid(.~intent +sex.long) +
     scale_fill_manual(values=colors.subinjuries[c(1,2,3,5,6)]) +
@@ -165,11 +165,11 @@ dev.off()
 pdf(paste0(file.loc,country,'_rate_pred_type',model,
     '_',year.start,'_',year.end,'_',dname,'_',metric,'_unintentional_to_transport_falls_drownings_other_monthly_fast_contig.pdf'),paper='a4r',height=0,width=0)
 ggplot() +
-    geom_bar(data=subset(additional.deaths.summary.monthly,sex>0&month<99&!(cause%in%c('Other unintentional injuries', 'Assault','Suicide'))), aes(x=as.factor(month.short),y=deaths.added.mean,fill=cause), stat='identity') +
-    geom_point(data=subset(additional.deaths.intent.monthly.summary,intent=='Unintentional'),aes(x=as.factor(month.short),y=deaths.added.mean),shape=16) +
+    geom_bar(data=subset(additional.deaths.summary.monthly,sex>0&month<99&!(cause%in%c('Other unintentional injuries', 'Assault','Suicide'))), aes(x=as.factor(month.short),y=deaths.added.two.deg.mean,fill=cause), stat='identity') +
+    geom_point(data=subset(additional.deaths.intent.monthly.summary,intent=='Unintentional'),aes(x=as.factor(month.short),y=deaths.added.two.deg.mean),shape=16) +
     # geom_errorbar(data=subset(additional.deaths.intent.monthly.summary,intent=='Unintentional'),aes(x=as.factor(month.short),ymax=deaths.added.ul,ymin=deaths.added.ll),width=.3,size=0.5) +
     geom_hline(yintercept=0,linetype='dotted') +
-    xlab('Month') + ylab(paste("Additional deaths associated with a 1°C\n warmer year (based on 2016 population)")) +
+    xlab('Month') + ylab(paste("Additional deaths associated with a 2°C\n warmer year (based on 2017 population)")) +
     # ylim(c(min.plot,max.plot)) +
     facet_wrap(~sex.long) +
     scale_fill_manual(values=colors.subinjuries[c(1,2,3,4)]) +
@@ -188,11 +188,11 @@ dev.off()
 pdf(paste0(file.loc,country,'_rate_pred_type',model,
     '_',year.start,'_',year.end,'_',dname,'_',metric,'_intentional_to_assault_intentional_self-harm_monthly_fast_contig.pdf'),paper='a4r',height=0,width=0)
 ggplot() +
-    geom_bar(data=subset(additional.deaths.summary.monthly,sex>0&month<99&(cause%in%c('Assault','Suicide'))), aes(x=as.factor(month.short),y=deaths.added.mean,fill=cause), stat='identity') +
-    geom_point(data=subset(additional.deaths.intent.monthly.summary,intent=='Intentional'),aes(x=as.factor(month.short),y=deaths.added.mean),shape=16) +
+    geom_bar(data=subset(additional.deaths.summary.monthly,sex>0&month<99&(cause%in%c('Assault','Suicide'))), aes(x=as.factor(month.short),y=deaths.added.two.deg.mean,fill=cause), stat='identity') +
+    geom_point(data=subset(additional.deaths.intent.monthly.summary,intent=='Intentional'),aes(x=as.factor(month.short),y=deaths.added.two.deg.mean),shape=16) +
     # geom_errorbar(data=subset(additional.deaths.intent.monthly.summary,intent=='Intentional'),aes(x=as.factor(month.short),ymax=deaths.added.ul,ymin=deaths.added.ll),width=.3,size=0.5) +
     geom_hline(yintercept=0,linetype='dotted') +
-    xlab('Month') + ylab(paste("Additional deaths associated with a 1°C\n warmer year (based on 2016 population)")) +
+    xlab('Month') + ylab(paste("Additional deaths associated with a 2°C\n warmer year (based on 2017 population)")) +
     # ylim(c(min.plot,max.plot)) +
     facet_wrap(~sex.long) +
     scale_fill_manual(values=colors.subinjuries[c(5,6)]) +
@@ -211,11 +211,11 @@ dev.off()
 pdf(paste0(file.loc,country,'_rate_pred_type',model,
     '_',year.start,'_',year.end,'_',dname,'_',metric,'_intentional_unintentional_monthly_contig.pdf'),paper='a4r',height=0,width=0)
 p2 =ggplot() +
-    geom_bar(data=subset(additional.deaths.summary.monthly,sex>0&month<99&cause!='Other unintentional injuries'), aes(x=as.factor(month.short),y=deaths.added.mean,fill=cause), stat='identity') +
-    geom_point(data=subset(additional.deaths.intent.monthly.summary),aes(x=as.factor(month.short),y=deaths.added.mean),shape=16) +
+    geom_bar(data=subset(additional.deaths.summary.monthly,sex>0&month<99&cause!='Other unintentional injuries'), aes(x=as.factor(month.short),y=deaths.added.two.deg.mean,fill=cause), stat='identity') +
+    geom_point(data=subset(additional.deaths.intent.monthly.summary),aes(x=as.factor(month.short),y=deaths.added.two.deg.mean),shape=16) +
     # geom_errorbar(data=subset(additional.deaths.intent.monthly.summary),aes(x=as.factor(month.short),ymax=deaths.added.ul,ymin=deaths.added.ll),width=.3,size=0.5) +
     geom_hline(yintercept=0,linetype='dotted') +
-    xlab('Month') + ylab(paste("Additional deaths associated with a 1°C\n warmer year (based on 2016 population)")) +
+    xlab('Month') + ylab(paste("Additional deaths associated with a 2°C\n warmer year (based on 2017 population)")) +
     # ylim(c(min.plot,max.plot)) +
     facet_grid(. ~intent + sex.long) +
     scale_fill_manual(values=colors.subinjuries[c(1,2,3,5,6)]) +
@@ -234,8 +234,8 @@ print(p2)
 dev.off()
 
 p3 = ggplot() +
-    geom_bar(data=subset(additional.deaths.summary,sex>0&age<99&cause!='Other unintentional injuries'), aes(x=as.factor(age.long),y=deaths.added.mean,fill=cause), stat='identity') +
-    geom_point(data=subset(additional.deaths.intent.summary,sex.long!='Both'&age.long!='All ages'),aes(x=as.factor(age.long),y=deaths.added.mean),shape=16,color='black') +
+    geom_bar(data=subset(additional.deaths.summary,sex>0&age<99&cause!='Other unintentional injuries'), aes(x=as.factor(age.long),y=deaths.added.two.deg.mean,fill=cause), stat='identity') +
+    geom_point(data=subset(additional.deaths.intent.summary,sex.long!='Both'&age.long!='All ages'),aes(x=as.factor(age.long),y=deaths.added.two.deg.mean),shape=16,color='black') +
     # geom_errorbar(data=subset(additional.deaths.intent.summary),aes(x=as.factor(age.long),ymax=deaths.added.ul,ymin=deaths.added.ll),width=.3,size=0.5) +
     geom_hline(yintercept=0,linetype='dotted') +
     xlab('Age group (years)') +  ylab('') +
@@ -254,8 +254,8 @@ p3 = ggplot() +
     legend.background = element_rect(fill="white", size=.5, linetype="dotted"))
 
 p4 =ggplot() +
-    geom_bar(data=subset(additional.deaths.summary.monthly,sex>0&month<99&cause!='Other unintentional injuries'), aes(x=as.factor(month.short),y=deaths.added.mean,fill=cause), stat='identity') +
-    geom_point(data=subset(additional.deaths.intent.monthly.summary),aes(x=as.factor(month.short),y=deaths.added.mean),shape=16,color='black') +
+    geom_bar(data=subset(additional.deaths.summary.monthly,sex>0&month<99&cause!='Other unintentional injuries'), aes(x=as.factor(month.short),y=deaths.added.two.deg.mean,fill=cause), stat='identity') +
+    geom_point(data=subset(additional.deaths.intent.monthly.summary),aes(x=as.factor(month.short),y=deaths.added.two.deg.mean),shape=16,color='black') +
     # geom_errorbar(data=subset(additional.deaths.intent.monthly.summary),aes(x=as.factor(month.short),ymax=deaths.added.ul,ymin=deaths.added.ll),width=.3,size=0.5) +
     geom_hline(yintercept=0,linetype='dotted') +
     xlab('Month') + ylab('') +
@@ -282,8 +282,8 @@ p4 =ggplot() +
 # additional.deaths.intent.monthly.summary$month.short.2 <- reorder(additional.deaths.intent.monthly.summary$month.short.2,additional.deaths.intent.monthly.summary$month)
 
 p5 =ggplot() +
-    geom_bar(data=subset(additional.deaths.summary.monthly,sex>0&month<99&cause!='Other unintentional injuries'), aes(x=as.factor(month.short),y=deaths.added.mean,fill=cause), stat='identity') +
-    geom_point(data=subset(additional.deaths.intent.monthly.summary),aes(x=as.factor(month.short),y=deaths.added.mean),shape=16,color='black') +
+    geom_bar(data=subset(additional.deaths.summary.monthly,sex>0&month<99&cause!='Other unintentional injuries'), aes(x=as.factor(month.short),y=deaths.added.two.deg.mean,fill=cause), stat='identity') +
+    geom_point(data=subset(additional.deaths.intent.monthly.summary),aes(x=as.factor(month.short),y=deaths.added.two.deg.mean),shape=16,color='black') +
     geom_hline(yintercept=0,linetype='dotted') +
     xlab('Month') + ylab('') +
     scale_x_discrete(labels=month.short.2) +
@@ -314,8 +314,8 @@ p3$widths[2:3] = maxWidth ; p4$widths[2:3] = maxWidth ; p5$widths[2:3] = maxWidt
 # everything all on one page
 pdf(paste0(file.loc,country,'_rate_pred_type',model,
     '_',year.start,'_',year.end,'_',dname,'_',metric,'_intentional_unintentional_all_contig.pdf'),paper='a4r',height=0,width=0)
-# grid.arrange(p3,p4,nrow=2,left='Additional deaths associated with a 1 degree warmer year (based on 2016 population)')
-grid.arrange(p3,p4,nrow=2,left=paste("Additional deaths associated with a 1°C warmer year (based on 2016 population)"))
+# grid.arrange(p3,p4,nrow=2,left='Additional deaths associated with a 1 degree warmer year (based on 2017 population)')
+grid.arrange(p3,p4,nrow=2,left=paste("Additional deaths associated with a 2°C warmer year (based on 2017 population)"))
 dev.off()
 
 #name=expression(paste("Temperature (",degree,"C)"))
@@ -323,7 +323,7 @@ dev.off()
 # same plot as above but with skipping month names
 pdf(paste0(file.loc,country,'_rate_pred_type',model,
     '_',year.start,'_',year.end,'_',dname,'_',metric,'_intentional_unintentional_all_contig_month_skip.pdf'),paper='a4r',height=0,width=0)
-grid.arrange(p3,p5,nrow=2,left=paste("Additional deaths associated with a 1°C warmer year (based on 2016 population)"))
+grid.arrange(p3,p5,nrow=2,left=paste("Additional deaths associated with a 2°C warmer year (based on 2017 population)"))
 dev.off()
 
 # PLOTS IN RELATIVE RISK IN DEATHS
@@ -366,15 +366,15 @@ dat.year.summary$age.long = mapvalues(dat.year.summary$age,from=sort(unique(dat.
 dat.year.summary$sex.long = mapvalues(dat.year.summary$sex,from=sort(unique(dat.year.summary$sex)),to=as.character(sex.filter2))
 
 additional.deaths.summary.perc = merge(dat.year.summary,additional.deaths.summary,by=c('sex.long','sex','age.long','age','cause'))
-additional.deaths.summary.perc$perc.mean = with(additional.deaths.summary.perc,deaths.added.mean/deaths)
-additional.deaths.summary.perc$perc.ul = with(additional.deaths.summary.perc,deaths.added.ul/deaths)
-additional.deaths.summary.perc$perc.ll = with(additional.deaths.summary.perc,deaths.added.ll/deaths)
-additional.deaths.summary.perc$cause = factor(additional.deaths.summary.perc$cause, levels=c('Transport','Falls','Drownings','Other unintentional injuries','Assault','Suicide'))
+additional.deaths.summary.perc$perc.mean = with(additional.deaths.summary.perc,deaths.added.two.deg.mean/deaths)
+additional.deaths.summary.perc$perc.ul = with(additional.deaths.summary.perc,deaths.added.two.deg.ul/deaths)
+additional.deaths.summary.perc$perc.ll = with(additional.deaths.summary.perc,deaths.added.two.deg.ll/deaths)
+additional.deaths.summary.perc$cause = factor(additional.deaths.summary.perc$cause, levels=c('Transport','Falls','Drownings','Assault','Suicide'))
 
 perc_calculator = function(dat){
-    dat$perc.mean = with(dat,deaths.added.mean/deaths)
-    dat$perc.ul = with(dat,deaths.added.ul/deaths)
-    dat$perc.ll = with(dat,deaths.added.ll/deaths)
+    dat$perc.mean = with(dat,deaths.added.two.deg.mean/deaths)
+    dat$perc.ul = with(dat,deaths.added.two.deg.ul/deaths)
+    dat$perc.ll = with(dat,deaths.added.two.deg.ll/deaths)
 
     return(dat)
 }
@@ -403,7 +403,7 @@ ggplot() +
     # geom_point(data=subset(additional.deaths.intent.summary.perc,intent=='1. Unintentional'),aes(x=as.factor(age.long),y=perc.mean),shape=16) +
     # geom_errorbar(data=subset(additional.deaths.intent.summary.perc,intent=='1. Unintentional'),aes(x=as.factor(age.long),ymax=perc.ul,ymin=perc.ll),width=.3,size=0.5) +
     geom_hline(yintercept=0,linetype='dotted') +
-    xlab('Age group (years)') + ylab('Percentage change in death rates associated with a 1°C warmer year') +
+    xlab('Age group (years)') + ylab('Percentage change in death rates associated with a 2°C warmer year') +
     # ylim(c(min.plot,max.plot)) +
     facet_grid(cause~sex.long) +
     scale_y_continuous(labels=scales::percent) +
@@ -430,7 +430,7 @@ ggplot() +
     # geom_point(data=subset(additional.deaths.intent.summary.perc,intent=='1. Unintentional'),aes(x=as.factor(age.long),y=perc.mean),shape=16) +
     # geom_errorbar(data=subset(additional.deaths.intent.summary.perc,intent=='1. Unintentional'),aes(x=as.factor(age.long),ymax=perc.ul,ymin=perc.ll),width=.3,size=0.5) +
     geom_hline(yintercept=0,linetype='dotted') +
-    xlab('Age group (years)') + ylab('Percentage change in death rates associated with a 1°C warmer year') +
+    xlab('Age group (years)') + ylab('Percentage change in death rates associated with a 2°C warmer year') +
     # ylim(c(min.plot,max.plot)) +
     facet_grid(cause~sex.long) +
     scale_y_continuous(labels=scales::percent) +
@@ -448,7 +448,7 @@ ggplot() +
 dev.off()
 
 additional.deaths.summary.perc$cause = gsub('Intentional self-harm', 'Intentional\nself-harm',additional.deaths.summary.perc$cause)
-additional.deaths.summary.perc$cause = factor(additional.deaths.summary.perc$cause, levels=c('Transport','Falls','Drownings','Other unintentional injuries','Assault','Suicide'))
+additional.deaths.summary.perc$cause = factor(additional.deaths.summary.perc$cause, levels=c('Transport','Falls','Drownings','Assault','Suicide'))
 
 pdf(paste0(file.loc,country,'_rate_pred_type',model,
     '_',year.start,'_',year.end,'_',dname,'_',metric,'_intentional_unintentional_excess_risk_fast_contig.pdf'),paper='a4r',height=0,width=0)
@@ -457,7 +457,7 @@ ggplot() +
     geom_point(data=subset(additional.deaths.summary.perc,sex>0&age<99&cause!='Other unintentional injuries'), aes(x=as.factor(age.long),y=perc.mean),size=3,shape=16) +
     geom_point(data=subset(additional.deaths.summary.perc,sex>0&age<99&cause!='Other unintentional injuries'), aes(x=as.factor(age.long),y=perc.mean,color=cause),size=2,shape=16) +
     geom_hline(yintercept=0,linetype='dotted') +
-    xlab('Age group (years)') + ylab('Percentage change in death rates associated with a 1°C warmer year') +
+    xlab('Age group (years)') + ylab('Percentage change in death rates associated with a 2°C warmer year') +
     facet_grid(cause~sex.long) +
     scale_y_continuous(labels=scales::percent_format()) +
     scale_color_manual(values=colors.subinjuries[c(1,2,3,5,6)]) +
@@ -482,7 +482,7 @@ ggplot() +
     geom_point(data=subset(additional.deaths.summary.perc,sex>0&age<99),position=position_dodge(width=0.5), aes(x=as.factor(age.long),y=perc.mean,group=cause),size=3,shape=16) +
     geom_point(data=subset(additional.deaths.summary.perc,sex>0&age<99),position=position_dodge(width=0.5), aes(x=as.factor(age.long),y=perc.mean,color=cause),size=2,shape=16) +
     geom_hline(yintercept=0,linetype='dotted') +
-    xlab('Age group (years)') + ylab('Percentage change in death rates associated with a 1°C warmer year') +
+    xlab('Age group (years)') + ylab('Percentage change in death rates associated with a 2°C warmer year') +
     # ylim(c(min.plot,max.plot)) +
     facet_grid(~sex.long) +
     scale_y_continuous(labels=scales::percent) +
@@ -508,7 +508,7 @@ ggplot() +
     geom_point(data=subset(additional.deaths.summary.perc,sex>0&age<99&cause!='Other unintentional injuries'), aes(x=as.factor(age.long),y=perc.mean),size=3,shape=16) +
     geom_point(data=subset(additional.deaths.summary.perc,sex>0&age<99&cause!='Other unintentional injuries'), aes(x=as.factor(age.long),y=perc.mean,color=cause),size=2,shape=16) +
     geom_hline(yintercept=0,linetype='dotted') +
-    xlab('Age group (years)') + ylab('Percentage change in death rates associated with a 1°C warmer year') +
+    xlab('Age group (years)') + ylab('Percentage change in death rates associated with a 2°C warmer year') +
     # ylim(c(min.plot,max.plot)) +
     facet_grid(cause~sex.long,scale='free') +
     scale_y_continuous(labels=scales::percent) +
@@ -553,7 +553,7 @@ ggplot() +
     geom_point(data=subset(additional.deaths.summary.monthly.perc,sex>0&month<99&cause!='Other unintentional injuries'), aes(x=as.factor(month.short),y=perc.mean),size=3,shape=16) +
     geom_point(data=subset(additional.deaths.summary.monthly.perc,sex>0&month<99&cause!='Other unintentional injuries'), aes(x=as.factor(month.short),y=perc.mean,color=cause),size=2,shape=16) +
     geom_hline(yintercept=0,linetype='dotted') +
-    xlab('Month') + ylab('Percentage change in death rates associated with a 1°C warmer year') +
+    xlab('Month') + ylab('Percentage change in death rates associated with a 2°C warmer year') +
     # ylim(c(min.plot,max.plot)) +
     coord_flip() +
     facet_grid(cause~sex.long) +
@@ -581,7 +581,7 @@ ggplot() +
     geom_point(data=subset(additional.deaths.summary.monthly.perc,sex>0&month<99), aes(x=as.factor(month.short),y=perc.mean),size=3,shape=16) +
     geom_point(data=subset(additional.deaths.summary.monthly.perc,sex>0&month<99), aes(x=as.factor(month.short),y=perc.mean,color=cause),size=2,shape=16) +
     geom_hline(yintercept=0,linetype='dotted') +
-    xlab('Month') + ylab('Percentage change in death rates associated with a 1°C warmer year') +
+    xlab('Month') + ylab('Percentage change in death rates associated with a 2°C warmer year') +
     # ylim(c(min.plot,max.plot)) +
     facet_grid(cause~sex.long,scales='free') +
     scale_y_continuous(labels=scales::percent) +
@@ -605,7 +605,7 @@ ggplot() +
     geom_point(data=subset(additional.deaths.summary.monthly.perc,sex>0&month<99),position=position_dodge(width=0.5), aes(x=month.short,y=perc.mean,group=cause),size=3,shape=16) +
     geom_point(data=subset(additional.deaths.summary.monthly.perc,sex>0&month<99),position=position_dodge(width=0.5), aes(x=month.short,y=perc.mean,color=cause),size=2,shape=16) +
     geom_hline(yintercept=0,linetype='dotted') +
-    xlab('Month') + ylab('Percentage change in death rates associated with a 1°C warmer year') +
+    xlab('Month') + ylab('Percentage change in death rates associated with a 2°C warmer year') +
     # ylim(c(min.plot,max.plot)) +
     facet_grid(~sex.long) +
     scale_y_continuous(labels=scales::percent) +
