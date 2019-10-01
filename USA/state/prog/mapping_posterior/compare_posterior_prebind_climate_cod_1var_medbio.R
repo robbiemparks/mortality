@@ -131,7 +131,8 @@ print(ggplot(data=dat.parameters,aes(x=model.1.mean,y=model.2.mean)) +
     # geom_errorbar(aes(ymin=model.1.ll,ymax=model.1.ul)) +
     # geom_errorbarh(aes(xmin=model.2.ll,xmax=model.2.ul)) +
     geom_abline() +
-    xlab('Temperature parameters from national temperature model') + ylab('Temperature parameters from national temperature model\nwith long-term norm temperature term') +
+    coord_equal() +
+    xlab('Temperature parameters from original model') + ylab('Temperature parameters from model\nwith adjusted hyperpriors') +
     theme_bw() + theme(text = element_text(size = 15),
     panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
     plot.title = element_text(hjust = 0.5),panel.background = element_blank(),
@@ -146,8 +147,8 @@ print(ggplot(data=dat.parameters) +
     # geom_errorbar(aes(ymin=model.1.ll,ymax=model.1.ul)) +
     # geom_errorbarh(aes(xmin=model.2.ll,xmax=model.2.ul)) +
     geom_abline() +
-    # coord_equal() +
-    xlab('Temperature parameters from national temperature model') + ylab('Temperature parameters from national temperature model\nwith long-term norm temperature term') +
+    coord_equal() +
+    xlab('Temperature parameters from original model') + ylab('Temperature parameters from model\nwith adjusted hyperpriors') +
     facet_grid(sex~age) +
     theme_bw() + theme(text = element_text(size = 15),
     panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
