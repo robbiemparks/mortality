@@ -41,10 +41,10 @@ inla.pardiso.check()
 
 # create directories for output
 file.loc <- paste0('~/data/mortality/US/state/draws_era5/',year.start,'_',year.end,
-'/',dname,'/',metric,'/non_pw/type_',model,'/non_contig/',cause,'/',num.draws,'_draws/age_groups/',age.filter[age],'/')
+'/',dname,'/',metric,'/non_pw/type_',model,'/non_contig/',cause,'/',num.draws,'_draws/age_groups/',age,'/')
 if(contig==1){
     file.loc <- paste0('~/data/mortality/US/state/draws_era5/',year.start,'_',year.end,
-    '/',dname,'/',metric,'/non_pw/type_',model,'/contig/',cause,'/',num.draws,'_draws/age_groups/',age.filter[age],'/')
+    '/',dname,'/',metric,'/non_pw/type_',model,'/contig/',cause,'/',num.draws,'_draws/age_groups/',age,'/')
     }
 ifelse(!dir.exists(file.loc), dir.create(file.loc,recursive=TRUE), FALSE)
 
@@ -72,6 +72,6 @@ draws.current = try(inla.posterior.sample(num.draws,model.current,selection=list
 
 # save draws as an rds file
 print('Saving file...')
-save.name = paste0(country,'_rate_pred_type',model,'_',age.filter[age],'_',sex.lookup[sex],
+save.name = paste0(country,'_rate_pred_type',model,'_',age,'_',sex.lookup[sex],
     '_',year.start,'_',year.end,'_',dname,'_',metric,'_',num.draws,'_draws_fast_contig')
 try(saveRDS(draws.current,paste0(file.loc,save.name)))
