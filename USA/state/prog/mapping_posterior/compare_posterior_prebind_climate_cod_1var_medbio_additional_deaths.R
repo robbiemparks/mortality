@@ -14,7 +14,7 @@ pw.arg <- as.numeric(args[10])
 
 # for model testing
 # year.start = 1980 ; year.end = 2017 ; country = 'USA' ; model = 27 ; model.2 = 28 ; dname='t2m' ; metric='meanc4'
-# cause = 'Falls' ;  contig.arg = 1 ; pw.arg = 0
+# cause = 'Accidental falls' ;  contig.arg = 1 ; pw.arg = 0
 
 # source variables
 source('../../data/objects/objects.R')
@@ -44,7 +44,7 @@ dat.parameters$month = seq(1:12)
 dat.parameters$X = NULL
 
 # TEMPORARY ADD NAME OF COD
-dat.parameters$cause = 'Transport accidents'
+dat.parameters$cause = 'Accidental falls'
 
 dat.mort <- readRDS(paste0('../../output/prep_data_cod/datus_nat_deaths_subcod_injuries_ons_',year.start,'_',year.end))
 print(head(dat.mort))
@@ -70,7 +70,7 @@ dat.merged <- dat.merged[order(dat.merged$sex,dat.merged$age,dat.merged$year,dat
 dat.merged <- na.omit(dat.merged)
 
 # change name temporarily
-dat.merged$cause = 'Transport injuries'
+dat.merged$cause = 'Accidental falls'
 
 # calculate additional deaths for 2 unit change in climate parameter
 dat.merged$deaths.added.two.deg.1 <- with(dat.merged,((model.1.mean)*deaths.pred))
@@ -112,7 +112,7 @@ print(ggplot(data=dat.merged.sub.year,aes(x=deaths.added.two.deg.2,y=deaths.adde
 )
 dev.off()
 
-pdf(paste0(file.loc.git,country,'_additional deaths_by_age_month_',model,'_',model.2,'_',year.start,'_',year.end,'_',dname,'_',metric,'_fast_contig.pdf'),paper='a4r',height=0,width=0)
+pdf(paste0(file.loc.git,country,'_additional deaths_by_age_month_',model,'_',model.2,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'_fast_contig.pdf'),paper='a4r',height=0,width=0)
 print(ggplot(data=dat.merged,aes(x=deaths.added.two.deg.2,y=deaths.added.two.deg.1)) +
     geom_errorbarh(aes(xmin=deaths.added.two.deg.ll.2,xmax=deaths.added.two.deg.ul.2),alpha=0.2) +
     geom_errorbar(aes(ymin=deaths.added.two.deg.ll.1,ymax=deaths.added.two.deg.ul.1),alpha=0.2) +
