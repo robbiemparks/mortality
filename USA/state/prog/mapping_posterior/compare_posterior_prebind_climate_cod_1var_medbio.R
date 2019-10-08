@@ -14,7 +14,7 @@ pw.arg <- as.numeric(args[10])
 
 # for model testing
 # year.start = 1980 ; year.end = 2017 ; country = 'USA' ; model = 27 ; model.2 = 28 ; dname='t2m' ; metric='meanc4'
-# cause = 'Assault' ;  contig.arg = 1 ; pw.arg = 0
+# cause = 'Intentional self-harm' ;  contig.arg = 1 ; pw.arg = 0
 
 # source variables
 source('../../data/objects/objects.R')
@@ -33,9 +33,9 @@ if(pw.arg==0){
 # for (cause in c('Transport accidents','Accidental falls','Accidental drowning and submersion','Intentional self-harm','Assault')){
 #     for (i in seq(length(sex.filter))) {
 #         for (j in seq(length(age.filter))) {
-for (cause in c('Assault')){
+for (cause in c('Intentional self-harm')){
     for (i in c(1)) {
-        for (j in c(1,2,3,4,5,6,8,9,10)) {
+        for (j in c(1,2,3,4,5,6,7,8,9)) {
             # load data
             print(paste0(cause,' ',i,' ',j))
 
@@ -63,25 +63,25 @@ for (cause in c('Assault')){
             print(file.exists(file.name))
             print(file.exists(file.name.2))
 
-            # if(test.1==TRUE&test.2==TRUE){
-
-            # load parameters
-            try(model.current <- readRDS(file.name))
-            print('loaded 1st')
-            try(model.current.2 <- readRDS(file.name.2))
-            print('loaded 2nd')
-
-            # parameters of each model
-            try(dat.parameters.1 <- data.frame(model.1.mean=model.current$summary.random$month5$mean,model.1.ll=model.current$summary.random$month5$`0.025quant`,
-                                            model.1.ul=model.current$summary.random$month5$`0.975quant`))
-            try(dat.parameters.2 <- data.frame(model.2.mean=model.current.2$summary.random$month5$mean,model.2.ll=model.current.2$summary.random$month5$`0.025quant`,
-                                            model.2.ul=model.current.2$summary.random$month5$`0.975quant`))
-            try(dat.param.current <- cbind(dat.parameters.1, dat.parameters.2))
-            try(dat.param.current$age <- age.filter[j]) ; try(dat.param.current$sex <-i) ; try(dat.param.current$cause <-cause)
-
-            try(dat.parameters <- rbind(dat.parameters,dat.param.current))
-
-            # }
+            # # if(test.1==TRUE&test.2==TRUE){
+            #
+            # # load parameters
+            # try(model.current <- readRDS(file.name))
+            # print('loaded 1st')
+            # try(model.current.2 <- readRDS(file.name.2))
+            # print('loaded 2nd')
+            #
+            # # parameters of each model
+            # try(dat.parameters.1 <- data.frame(model.1.mean=model.current$summary.random$month5$mean,model.1.ll=model.current$summary.random$month5$`0.025quant`,
+            #                                 model.1.ul=model.current$summary.random$month5$`0.975quant`))
+            # try(dat.parameters.2 <- data.frame(model.2.mean=model.current.2$summary.random$month5$mean,model.2.ll=model.current.2$summary.random$month5$`0.025quant`,
+            #                                 model.2.ul=model.current.2$summary.random$month5$`0.975quant`))
+            # try(dat.param.current <- cbind(dat.parameters.1, dat.parameters.2))
+            # try(dat.param.current$age <- age.filter[j]) ; try(dat.param.current$sex <-i) ; try(dat.param.current$cause <-cause)
+            #
+            # try(dat.parameters <- rbind(dat.parameters,dat.param.current))
+            #
+            # # }
 
         }
     }
