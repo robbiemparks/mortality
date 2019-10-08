@@ -145,10 +145,10 @@ if(pw.arg==1){
 
 # create directory for output
 if(pw.arg==0){
-    file.loc <- paste0('~/data/mortality/US/state/climate_effects_era5/',dname.arg,'/',metric.arg,'/non_pw/type_',type.selected,'/age_groups/',age.arg)
+    file.loc <- paste0('/rds/general/user/rmp15/ephemeral/data/mortality/US/state/climate_effects_era5/',dname.arg,'/',metric.arg,'/non_pw/type_',type.selected,'/age_groups/',age.arg)
 }
 if(pw.arg==1){
-    file.loc <- paste0('~/data/mortality/US/state/climate_effects_era5/',dname.arg,'/',metric.arg,'/pw/type_',type.selected,'/age_groups/',age.arg)
+    file.loc <- paste0('/rds/general/user/rmp15/ephemeral/data/mortality/US/state/climate_effects_era5/',dname.arg,'/',metric.arg,'/pw/type_',type.selected,'/age_groups/',age.arg)
 }
 ifelse(!dir.exists(file.loc), dir.create(file.loc, recursive=TRUE), FALSE)
 
@@ -219,8 +219,8 @@ if(fast.arg==2){subject.arg = paste0(subject.arg,' faster')}
 if(pw.arg==0){subject.arg = paste0(subject.arg,' non-pw done')}
 if(pw.arg==1){subject.arg = paste0(subject.arg,' pw done')}
 
-
 print(subject.arg)
+
 #
 # # sending email
 # sender = "emailr349@gmail.com"
