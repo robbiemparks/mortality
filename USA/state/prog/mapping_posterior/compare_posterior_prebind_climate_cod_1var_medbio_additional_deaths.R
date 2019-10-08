@@ -14,7 +14,7 @@ pw.arg <- as.numeric(args[10])
 
 # for model testing
 # year.start = 1980 ; year.end = 2017 ; country = 'USA' ; model = 27 ; model.2 = 28 ; dname='t2m' ; metric='meanc4'
-# cause = 'Accidental falls' ;  contig.arg = 1 ; pw.arg = 0
+# cause = 'Assault' ;  contig.arg = 1 ; pw.arg = 0
 
 # source variables
 source('../../data/objects/objects.R')
@@ -28,7 +28,7 @@ ifelse(!dir.exists(file.loc.git), dir.create(file.loc.git, recursive=TRUE), FALS
 # save bound posterior and summaries
 if(cause!='AllCause'){
     save.name <- paste0(country,'_correlations_',model,'_',model.2,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'_fast_contig.csv')
-    save.name.param <- paste0(country,'_parameters_',model,'_',model.2,'_',year.start,'_',year.end,'_',dname,'_',metric,'_fast_contig.csv')
+    save.name.param <- paste0(country,'_parameters_',model,'_',model.2,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'_fast_contig.csv')
 
 }
 if(cause=='AllCause'){
@@ -44,7 +44,7 @@ dat.parameters$month = seq(1:12)
 dat.parameters$X = NULL
 
 # TEMPORARY ADD NAME OF COD
-dat.parameters$cause = 'Accidental falls'
+dat.parameters$cause = 'Assault'
 
 dat.mort <- readRDS(paste0('../../output/prep_data_cod/datus_nat_deaths_subcod_injuries_ons_',year.start,'_',year.end))
 print(head(dat.mort))
@@ -70,7 +70,7 @@ dat.merged <- dat.merged[order(dat.merged$sex,dat.merged$age,dat.merged$year,dat
 dat.merged <- na.omit(dat.merged)
 
 # change name temporarily
-dat.merged$cause = 'Accidental falls'
+dat.merged$cause = 'Assault'
 
 # calculate additional deaths for 2 unit change in climate parameter
 dat.merged$deaths.added.two.deg.1 <- with(dat.merged,((model.1.mean)*deaths.pred))

@@ -14,7 +14,7 @@ pw.arg <- as.numeric(args[10])
 
 # for model testing
 # year.start = 1980 ; year.end = 2017 ; country = 'USA' ; model = 27 ; model.2 = 28 ; dname='t2m' ; metric='meanc4'
-# cause = 'Accidental falls' ;  contig.arg = 1 ; pw.arg = 0
+# cause = 'Assault' ;  contig.arg = 1 ; pw.arg = 0
 
 # source variables
 source('../../data/objects/objects.R')
@@ -33,9 +33,9 @@ if(pw.arg==0){
 # for (cause in c('Transport accidents','Accidental falls','Accidental drowning and submersion','Intentional self-harm','Assault')){
 #     for (i in seq(length(sex.filter))) {
 #         for (j in seq(length(age.filter))) {
-for (cause in c('Accidental falls')){
+for (cause in c('Assault')){
     for (i in c(1)) {
-        for (j in c(1,2,3,4,6,7,8,9,10)) {
+        for (j in c(1,2,3,4,5,6,8,9,10)) {
             # load data
             print(paste0(cause,' ',i,' ',j))
 
@@ -60,6 +60,11 @@ for (cause in c('Accidental falls')){
                 '_',year.start,'_',year.end,'_',dname,'_',metric,'_parameters_fast_contig')
             }
 
+            print(file.exists(file.name))
+            print(file.exists(file.name.2))
+
+            # if(test.1==TRUE&test.2==TRUE){
+
             # load parameters
             try(model.current <- readRDS(file.name))
             print('loaded 1st')
@@ -76,25 +81,7 @@ for (cause in c('Accidental falls')){
 
             try(dat.parameters <- rbind(dat.parameters,dat.param.current))
 
-            # corr.temp.terms=cor(model.current$summary.random$month5$mean,model.current.2$summary.random$month5$mean)
-            #
-            # corr.state.intercept.terms=cor(model.current$summary.random$ID$mean,model.current.2$summary.random$ID$mean)
-            # corr.month.intercept.terms=cor(model.current$summary.random$month$mean,model.current.2$summary.random$month$mean)
-            # corr.state.month.intercept.terms=cor(model.current$summary.random$month3$mean,model.current.2$summary.random$month3$mean)
-            #
-            # corr.state.slope.terms=cor(model.current$summary.random$ID2$mean,model.current.2$summary.random$ID2$mean)
-            # corr.month.slope.terms=cor(model.current$summary.random$month2$mean,model.current.2$summary.random$month2$mean)
-            # corr.state.month.slope.terms=cor(model.current$summary.random$month4$mean,model.current.2$summary.random$month4$mean)
-            #
-            # scale.month7 = mean(100*model.current.2$summary.random$month7$mean / mean(model.current$summary.random$month3$mean))
-            #
-            # # obtain correlation values
-            # corr.current = data.frame(age=age.filter[j],sex=i,corr.temp.terms=corr.temp.terms, corr.state.intercept.terms= corr.state.intercept.terms,
-            # corr.month.intercept.terms=corr.month.intercept.terms,corr.state.month.intercept.terms=corr.state.month.intercept.terms,
-            # corr.state.slope.terms=corr.state.slope.terms,corr.month.slope.terms=corr.month.slope.terms,corr.state.month.slope.terms=corr.state.month.slope.terms,
-            # scale.new.temp.slope=scale.month7)
-
-            # dat = rbind(dat,corr.current)
+            # }
 
         }
     }
@@ -107,7 +94,7 @@ ifelse(!dir.exists(file.loc.git), dir.create(file.loc.git, recursive=TRUE), FALS
 # save bound posterior and summaries
 if(cause!='AllCause'){
     save.name <- paste0(country,'_correlations_',model,'_',model.2,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'_fast_contig.csv')
-    save.name.param <- paste0(country,'_parameters_',model,'_',model.2,'_',year.start,'_',year.end,'_',dname,'_',metric,'_fast_contig.csv')
+    save.name.param <- paste0(country,'_parameters_',model,'_',model.2,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'_fast_contig.csv')
 
 }
 if(cause=='AllCause'){
