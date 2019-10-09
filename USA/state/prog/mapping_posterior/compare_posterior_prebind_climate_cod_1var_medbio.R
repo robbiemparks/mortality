@@ -65,23 +65,23 @@ for (cause in c('Intentional self-harm')){
 
             # # if(test.1==TRUE&test.2==TRUE){
             #
-            # # load parameters
-            # try(model.current <- readRDS(file.name))
-            # print('loaded 1st')
-            # try(model.current.2 <- readRDS(file.name.2))
-            # print('loaded 2nd')
-            #
-            # # parameters of each model
-            # try(dat.parameters.1 <- data.frame(model.1.mean=model.current$summary.random$month5$mean,model.1.ll=model.current$summary.random$month5$`0.025quant`,
-            #                                 model.1.ul=model.current$summary.random$month5$`0.975quant`))
-            # try(dat.parameters.2 <- data.frame(model.2.mean=model.current.2$summary.random$month5$mean,model.2.ll=model.current.2$summary.random$month5$`0.025quant`,
-            #                                 model.2.ul=model.current.2$summary.random$month5$`0.975quant`))
-            # try(dat.param.current <- cbind(dat.parameters.1, dat.parameters.2))
-            # try(dat.param.current$age <- age.filter[j]) ; try(dat.param.current$sex <-i) ; try(dat.param.current$cause <-cause)
-            #
-            # try(dat.parameters <- rbind(dat.parameters,dat.param.current))
-            #
-            # # }
+            # load parameters
+            try(model.current <- readRDS(file.name))
+            print('loaded 1st')
+            try(model.current.2 <- readRDS(file.name.2))
+            print('loaded 2nd')
+
+            # parameters of each model
+            try(dat.parameters.1 <- data.frame(model.1.mean=model.current$summary.random$month5$mean,model.1.ll=model.current$summary.random$month5$`0.025quant`,
+                                            model.1.ul=model.current$summary.random$month5$`0.975quant`))
+            try(dat.parameters.2 <- data.frame(model.2.mean=model.current.2$summary.random$month5$mean,model.2.ll=model.current.2$summary.random$month5$`0.025quant`,
+                                            model.2.ul=model.current.2$summary.random$month5$`0.975quant`))
+            try(dat.param.current <- cbind(dat.parameters.1, dat.parameters.2))
+            try(dat.param.current$age <- age.filter[j]) ; try(dat.param.current$sex <-i) ; try(dat.param.current$cause <-cause)
+
+            try(dat.parameters <- rbind(dat.parameters,dat.param.current))
+
+            # }
 
         }
     }
