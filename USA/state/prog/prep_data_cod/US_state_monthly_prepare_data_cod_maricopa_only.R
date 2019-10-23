@@ -23,14 +23,13 @@ yearsummary_cod  <- function(x=2000) {
 	dat.name <- paste0(file.loc,"deathscod",x,".dta")
 	dat <- read.dta(dat.name)
 
+	# isolate Maricopa county (could generalise to any county)
+	dat = subset(dat, fips=='04013')
+
 	# fix sex classification if in certain years
 	if(x %in% c(2003:2010,2012)){
 		dat$sex = plyr::mapvalues(dat$sex,from=sort(unique(dat$sex)),to=c(2,1))
 	}
-
-	# load lookup for fips CHANGE TO SUBSTR OF FIPS
-	dat$fips = substr(dat$fips,1,2)
-	dat$fips <- as.numeric(dat$fips)
 
 	# add extra label for CODs based on relevant ICD year
 	start_year = 1999
@@ -74,8 +73,6 @@ yearsummary_cod  <- function(x=2000) {
         dat.merged$cause.group = ifelse(dat.merged$letter=='X'&(dat.merged$cause.numeric==410|dat.merged$cause.numeric==420|dat.merged$cause.numeric==450|dat.merged$cause.numeric==490),'Other',dat.merged$cause.group)
 
         dat.merged$cause.numeric = NULL
-
-        # remove september 11th 2001 deaths
 	}
 
 	# add agegroup groupings
@@ -97,10 +94,8 @@ yearsummary_cod  <- function(x=2000) {
   	names(dat.summarised)[1:7] <- c('cause','fips','year','month','sex','age','deaths')
 	dat.summarised <- na.omit(dat.summarised)
 
-	# create an exhaustive list of location sex age month (in this case it should be 51 * 2 * 10 * 12 * 4 = 48,960 rows)
-	fips 	=	c(1,2,4,5,6,8,9,10,11,12,13,15,16,17,18,19,20,21,22,23,24,25,
-				26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,
-				41,42,44,45,46,47,48,49,50,51,53,54,55,56)
+	# create an exhaustive list of location sex age month
+	fips 	=	c('04013')
 	month 	= 	c(1:12)
 	sex 	= 	c(1:2)
 	age 	= 	c(0,5,15,25,35,45,55,65,75,85)
@@ -149,15 +144,18 @@ dat.appended   <- na.omit(dat.appended)
 # Add USA label
 dat.appended$iso3 <- "USA"
 
+dat.appended$fips <- as.integer(as.character(dat.appended$fips))
+
 # add inferred population data by day
-pop.state <- readRDS('../../output/pop_us_infer/statePopulations_infer_by_days_new_years')
+pop.state <- readRDS('../../output/pop_us_infer/countyPopulations_infer_by_days_new_years')
 pop.state$fips <- as.integer(pop.state$fips)
 
-# merge deaths and population files
+# merge deaths and population files FIX FFROM HERE
 dat.merged <- merge(dat.appended,pop.state,by=c('sex','age','year','month','fips'))
 
 # reorder
 dat.merged <- dat.merged[order(dat.merged$cause,dat.merged$fips,dat.merged$sex,dat.merged$age,dat.merged$year,dat.merged$month),]
+dat.merged$id = NULL
 
 # add rates
 dat.merged$rate <- dat.merged$deaths / dat.merged$pop
@@ -194,4 +192,53 @@ dat$rate.adj <- dat$deaths.adj / dat$pop.adj
 ifelse(!dir.exists("../../output/prep_data_cod"), dir.create("../../output/prep_data_cod"), FALSE)
 
 # output file as RDS
-saveRDS(dat,paste0('../../output/prep_data_cod/datus_state_rates_cod_',year.start.arg,'_',year.end.arg))
+saveRDS(dat,paste0('../../output/prep_data_cod/datus_maricopa_rates_cod_',year.start.arg,'_',year.end.arg))
+
+# test ggplot
+library(ggplot2)
+
+# extract unique table of year and months to generate year.month
+dat.year.month <- unique(dat[,c('year', 'month')])
+dat.year.month <- dat.year.month[order(dat.year.month$year,dat.year.month$month),]
+dat.year.month$month <- as.integer(dat.year.month$month)
+dat.year.month$year.month <- seq(nrow(dat.year.month))
+
+# merge year.month table with population table to create year.month id
+dat <- merge(dat,dat.year.month, by=c('year','month'))
+
+pdf('~/Desktop/death_rates_maricopa.pdf',paper='a4r',height=0,width=0)
+
+ggplot() +
+	geom_line(data=subset(dat,sex==2),aes(x=year.month,y=rate.adj*100000,color=cause)) +
+	facet_wrap(~age,scale='free') +
+	xlab('Time') +
+	ylab('Death rate (per 100,000)') +
+	ggtitle('Females Maricopa county 1982-2017')
+
+ggplot() +
+	geom_line(data=subset(dat,sex==1),aes(x=year.month,y=rate.adj*100000,color=cause)) +
+	facet_wrap(~age,scale='free') +
+	xlab('Time') +
+	ylab('Death rate (per 100,000)') +
+	ggtitle('Males Maricopa county 1982-2017')
+
+dev.off()
+
+pdf('~/Desktop/deaths_maricopa.pdf',paper='a4r',height=0,width=0)
+
+ggplot(data=subset(dat,sex==2),aes(x=year.month,y=deaths,fill=cause)) +
+	geom_bar(width = 0.9, stat = "identity") +
+	facet_wrap(~age,scale='free') +
+	xlab('Time') +
+	ylab('Deaths') +
+	ggtitle('Femles Maricopa county 1982-2017')
+
+ggplot(data=subset(dat,sex==1),aes(x=year.month,y=deaths,fill=cause)) +
+	geom_bar(width = 0.9, stat = "identity") +
+	facet_wrap(~age,scale='free') +
+	xlab('Time') +
+	ylab('Deaths') +
+	ggtitle('Males Maricopa county 1982-2017')
+
+ dev.off()
+
