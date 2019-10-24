@@ -14,7 +14,7 @@ pw.arg <- as.numeric(args[10])
 
 # for model testing
 # year.start = 1980 ; year.end = 2017 ; country = 'USA' ; model = 27 ; model.2 = 28 ; dname='t2m' ; metric='meanc4'
-# cause = 'Intentional self-harm' ;  contig.arg = 1 ; pw.arg = 0
+# cause = 'Transport accidents' ;  contig.arg = 1 ; pw.arg = 0
 
 # source variables
 source('../../data/objects/objects.R')
@@ -33,32 +33,53 @@ if(pw.arg==0){
 # for (cause in c('Transport accidents','Accidental falls','Accidental drowning and submersion','Intentional self-harm','Assault')){
 #     for (i in seq(length(sex.filter))) {
 #         for (j in seq(length(age.filter))) {
-for (cause in c('Intentional self-harm')){
-    for (i in c(1)) {
-        for (j in c(1,2,3,4,5,6,7,8,9)) {
+for (cause in c('Assault')){
+    for (i in c(2)) {
+        for (j in c(1,2,3,4,5,6,7,8,9,10)) {
             # load data
             print(paste0(cause,' ',i,' ',j))
 
             if(cause!='AllCause'){
-                file.name <- paste0('/rds/general/user/rmp15/ephemeral/data/mortality/US/state/climate_effects_era5/',
+                file.name <- paste0('~/data/mortality/US/state/climate_effects_era5/',
                 dname,'/',metric,'/non_pw/type_',model,'/age_groups/',age.filter[j],
                 '/',country,'_rate_pred_type',model,'_',age.filter[j],'_',sex.lookup[i],'_',
                 year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'_parameters_fast_contig')
-                file.name.2 <- paste0('/rds/general/user/rmp15/ephemeral/data/mortality/US/state/climate_effects_era5/',
+                file.name.2 <- paste0('~/data/mortality/US/state/climate_effects_era5/',
                 dname,'/',metric,'/non_pw/type_',model.2,'/age_groups/',age.filter[j],
                 '/',country,'_rate_pred_type',model.2,'_',age.filter[j],'_',sex.lookup[i],'_',
                 year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'_parameters_fast_contig')
             }
             if(cause=='AllCause'){
-                file.name <- paste0('/rds/general/user/rmp15/ephemeral/data/mortality/US/state/climate_effects_era5/',
+                file.name <- paste0('~/data/mortality/US/state/climate_effects_era5/',
                 dname,'/',metric,'/non_pw/type_',model,'/age_groups/',age.filter[j],
                 '/',country,'_rate_pred_type',model,'_',age.filter[j],'_',sex.lookup[i],
                 '_',year.start,'_',year.end,'_',dname,'_',metric,'_parameters_fast_contig')
-                file.name.2 <- paste0('/rds/general/user/rmp15/ephemeral/data/mortality/US/state/climate_effects_era5/',
+                file.name.2 <- paste0('~/data/mortality/US/state/climate_effects_era5/',
                 dname,'/',metric,'/non_pw/type_',model.2,'/age_groups/',age.filter[j],
                 '/',country,'_rate_pred_type',model.2,'_',age.filter[j],'_',sex.lookup[i],
                 '_',year.start,'_',year.end,'_',dname,'_',metric,'_parameters_fast_contig')
             }
+
+            # if(cause!='AllCause'){
+            #     file.name <- paste0('/rds/general/user/rmp15/ephemeral/data/mortality/US/state/climate_effects_era5/',
+            #     dname,'/',metric,'/non_pw/type_',model,'/age_groups/',age.filter[j],
+            #     '/',country,'_rate_pred_type',model,'_',age.filter[j],'_',sex.lookup[i],'_',
+            #     year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'_parameters_fast_contig')
+            #     file.name.2 <- paste0('/rds/general/user/rmp15/ephemeral/data/mortality/US/state/climate_effects_era5/',
+            #     dname,'/',metric,'/non_pw/type_',model.2,'/age_groups/',age.filter[j],
+            #     '/',country,'_rate_pred_type',model.2,'_',age.filter[j],'_',sex.lookup[i],'_',
+            #     year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'_parameters_fast_contig')
+            # }
+            # if(cause=='AllCause'){
+            #     file.name <- paste0('/rds/general/user/rmp15/ephemeral/data/mortality/US/state/climate_effects_era5/',
+            #     dname,'/',metric,'/non_pw/type_',model,'/age_groups/',age.filter[j],
+            #     '/',country,'_rate_pred_type',model,'_',age.filter[j],'_',sex.lookup[i],
+            #     '_',year.start,'_',year.end,'_',dname,'_',metric,'_parameters_fast_contig')
+            #     file.name.2 <- paste0('/rds/general/user/rmp15/ephemeral/data/mortality/US/state/climate_effects_era5/',
+            #     dname,'/',metric,'/non_pw/type_',model.2,'/age_groups/',age.filter[j],
+            #     '/',country,'_rate_pred_type',model.2,'_',age.filter[j],'_',sex.lookup[i],
+            #     '_',year.start,'_',year.end,'_',dname,'_',metric,'_parameters_fast_contig')
+            # }
 
             print(file.exists(file.name))
             print(file.exists(file.name.2))
