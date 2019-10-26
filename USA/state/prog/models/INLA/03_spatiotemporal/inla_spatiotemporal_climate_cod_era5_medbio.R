@@ -29,7 +29,7 @@ contig.arg <- 1
 pw.arg <- 0
 
 # types character for file strings
-types <- c('1','1a','2','2a','3','3a','4','1b','1c','1d','1e','1f','1de','1ef','1g','0','minus1','1d2','1d3','1d4','0a','0b','1d5','1d6','1d7','1d8','1d9','1d10')
+types <- c('1','1a','2','2a','3','3a','4','1b','1c','1d','1e','1f','1de','1ef','1g','0','minus1','1d2','1d3','1d4','0a','0b','1d5','1d6','1d7','1d8','1d9','1d10','1d11')
 type.selected <- types[type.arg]
 
 print(paste(year.start.analysis.arg,year.end.analysis.arg,age.arg,sex.arg,type.selected,cod.arg))
@@ -159,7 +159,7 @@ source('../models/INLA/03_spatiotemporal/inla_functions_cod.R')
 
 # temporary workaround to avoid GLIBC error (???) from:
 # https://www.mn.uio.no/math/english/services/it/help/status/2018-07-26-inla-r.html
-INLA:::inla.dynload.workaround()
+# INLA:::inla.dynload.workaround()
 
 # input arguments into function to perform inference
 if(fast.arg==0){
