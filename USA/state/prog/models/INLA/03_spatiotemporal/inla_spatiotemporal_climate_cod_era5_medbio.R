@@ -65,7 +65,7 @@ dat.merged <- merge(dat.inla.load,dat.climate,by.x=c('sex','age','year','month',
 dat.merged <- dat.merged[order(dat.merged$fips,dat.merged$sex,dat.merged$age,dat.merged$year,dat.merged$month),]
 
 # optional addition of long-term normals into model (currently testing may be removed)
-if(type.arg %in% c(26)){
+if(type.arg %in% c(26,29)){
 
     # load long-term average (for sensitivity of model to inclusion). This may be a temporary inclusion depending on the outcome
     file.loc.abs <- paste0('~/git/climate/countries/USA/output/multiyear_normals/',dname.arg,'/mean/')
@@ -133,7 +133,7 @@ rownames(dat.inla) <- 1:nrow(dat.inla)
 
 # variables for INLA model
 dat.inla$year.month4 <- dat.inla$year.month3 <- dat.inla$year.month2 <- dat.inla$year.month
-dat.inla$month7 <- dat.inla$month6 <- dat.inla$month5 <- dat.inla$month4 <- dat.inla$month3 <- dat.inla$month2 <- dat.inla$month
+dat.inla$month8 <- dat.inla$month7 <- dat.inla$month6 <- dat.inla$month5 <- dat.inla$month4 <- dat.inla$month3 <- dat.inla$month2 <- dat.inla$month
 dat.inla$ID3 <- dat.inla$ID2 <- dat.inla$ID
 dat.inla$e <- 1:nrow(dat.inla)
 
