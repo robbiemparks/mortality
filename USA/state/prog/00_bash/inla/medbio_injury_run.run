@@ -9,7 +9,6 @@ R --slave --args ${PBS_ARRAY_INDEX} < $HOME/git/mortality/USA/state/prog/models/
 
 # to run type
 # qsub -q med-bio inla/medbio_injury_run.run
-# qsub -q pqmedbio-large inla/medbio_injury_run.run
 
 # NOTE temporary fix may be needed via
 # INLA:::inla.binary.install()
