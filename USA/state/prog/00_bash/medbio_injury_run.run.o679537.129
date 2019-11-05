@@ -1,0 +1,30 @@
+
+ RDS usage at 18:30 on 29/10/2019
+
+
+ Individual allocation /rds/general/user/rmp15
+
+   Home       Data:  200GB of 1.00TB (20%)	
+              Files: 155 of 10.00M (2%)	
+   Ephemeral  Data:  6.61TB of 109.95TB (6%)	
+              Files: 43 of 20.97M (0%)	
+
+ 
+Imperial College London HPC Service
+-----------------------------------
+Job medbio_injury_run.run, jobid 679537[129].pbs, username rmp15 - started execution at 18:34:35 Tue 29/10/19 on system uv-ax5
+ 
+[1] "1980 2017 35 1 1d9 Other transport accidents"
+[1] FALSE
+[1] FALSE
+[1] "Men 35 model 1d9 t2m meanc4 Other transport accidents 1980-2017 contig fast non-pw done"
+
+============================================
+
+        Job resource usage summary 
+
+                 Memory (GB)    NCPUs
+ Requested  :       480            40
+ Used       :       170 (peak)   0.98 (ave)
+
+============================================
