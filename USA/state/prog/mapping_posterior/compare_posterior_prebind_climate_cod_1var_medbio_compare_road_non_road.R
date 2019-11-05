@@ -15,7 +15,8 @@ pw.arg <- as.numeric(args[11])
 
 # for model testing
 # year.start = 1980 ; year.end = 2017 ; country = 'USA' ; model = 27 ; dname='t2m' ; metric='meanc4'
-# cause = 'Transport accidents' ; cause.2 = 'Road traffic accidents' ;  contig.arg = 1 ; pw.arg = 0
+# cause = 'Transport accidents' ; cause.2 = 'Other transport accidents' ;  contig.arg = 1 ; pw.arg = 0
+# Other transport accidents
 
 # source variables
 source('../../data/objects/objects.R')
@@ -29,41 +30,41 @@ dat <- data.frame()
 dat.parameters <- data.frame()
 
     # find the posterior exponential mean
-for (i in c(1)) {
-    for (j in c(1,6,7,8,10)) {
+for (i in c(2)) {
+    for (j in c(1,2,6,8,10)) {
         # load data
         print(paste0(cause,' ',cause.2,' ',i,' ',j))
 
         # load file names
-        file.name <- paste0('~/data/mortality/US/state/climate_effects_era5/',
-        dname,'/',metric,'/non_pw/type_',model,'/age_groups/',age.filter[j],
-        '/',country,'_rate_pred_type',model,'_',age.filter[j],'_',sex.lookup[i],'_',
-        year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'_parameters_fast_contig')
-        file.name.2 <- paste0('~/data/mortality/US/state/climate_effects_era5/',
+        # file.name <- paste0('~/data/mortality/US/state/climate_effects_era5/',
+        # dname,'/',metric,'/non_pw/type_',model,'/age_groups/',age.filter[j],
+        # '/',country,'_rate_pred_type',model,'_',age.filter[j],'_',sex.lookup[i],'_',
+        # year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'_parameters_fast_contig')
+        file.name.2 <- paste0('/rds/general/user/rmp15/ephemeral/data/mortality/US/state/climate_effects_era5/',
         dname,'/',metric,'/non_pw/type_',model,'/age_groups/',age.filter[j],
         '/',country,'_rate_pred_type',model,'_',age.filter[j],'_',sex.lookup[i],'_',
         year.start,'_',year.end,'_',dname,'_',metric,'_',cause.2,'_parameters_fast_contig')
 
 
-        print(file.exists(file.name))
+        # print(file.exists(file.name))
         print(file.exists(file.name.2))
-
-        # # if(test.1==TRUE&test.2==TRUE){
         #
-        # load parameters
-        try(model.current <- readRDS(file.name))
-        print('loaded 1st')
+        # # # if(test.1==TRUE&test.2==TRUE){
+        # #
+        # # load parameters
+        # try(model.current <- readRDS(file.name))
+        # print('loaded 1st')
         try(model.current.2 <- readRDS(file.name.2))
-        print('loaded 2nd')
-
-        # parameters of each model
-        try(dat.parameters.1 <- data.frame(model.1.mean=model.current$summary.random$month5$mean,model.1.ll=model.current$summary.random$month5$`0.025quant`,
-                                        model.1.ul=model.current$summary.random$month5$`0.975quant`))
+        # print('loaded 2nd')
+        #
+        # # parameters of each model
+        # try(dat.parameters.1 <- data.frame(model.1.mean=model.current$summary.random$month5$mean,model.1.ll=model.current$summary.random$month5$`0.025quant`,
+        #                                 model.1.ul=model.current$summary.random$month5$`0.975quant`))
         try(dat.parameters.2 <- data.frame(model.2.mean=model.current.2$summary.random$month5$mean,model.2.ll=model.current.2$summary.random$month5$`0.025quant`,
                                         model.2.ul=model.current.2$summary.random$month5$`0.975quant`))
-        try(dat.param.current <- cbind(dat.parameters.1, dat.parameters.2))
-        try(dat.param.current$age <- age.filter[j]) ; try(dat.param.current$sex <-i) ; try(dat.param.current$cause <-cause)
-
+        try(dat.param.current <- cbind(dat.parameters.2))
+        try(dat.param.current$age <- age.filter[j]) ; try(dat.param.current$sex <-i) ; try(dat.param.current$cause <-cause.2)
+        #
         try(dat.parameters <- rbind(dat.parameters,dat.param.current))
 
         # }
@@ -72,21 +73,14 @@ for (i in c(1)) {
 }
 
 # create directories for output
-file.loc.git <- paste0('../../output/compare_posterior_climate_era5/',year.start,'_',year.end,'/',dname,'/',metric,'/non_pw/type_',model,'_and_',model.2,'/parameters/')
+file.loc.git <- paste0('../../output/compare_posterior_climate_era5/',year.start,'_',year.end,'/',dname,'/',metric,'/non_pw/type_',model,'_road_non_road_comparison/parameters/')
 ifelse(!dir.exists(file.loc.git), dir.create(file.loc.git, recursive=TRUE), FALSE)
 
 # save bound posterior and summaries
-if(cause!='AllCause'){
-    save.name <- paste0(country,'_correlations_',model,'_',model.2,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'_fast_contig.csv')
-    save.name.param <- paste0(country,'_parameters_',model,'_',model.2,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause,'_fast_contig.csv')
+# save.name <- paste0(country,'_parameters_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause.2,'_fast_contig.csv')
+save.name.param <- paste0(country,'_parameters_',model,'_',year.start,'_',year.end,'_',dname,'_',metric,'_',cause.2,'_fast_contig.csv')
 
-}
-if(cause=='AllCause'){
-    save.name <- paste0(country,'_correlations_',model,'_',model.2,'_',year.start,'_',year.end,'_',dname,'_',metric,'_fast_contig.csv')
-    save.name.param <- paste0(country,'_parameters_',model,'_',model.2,'_',year.start,'_',year.end,'_',dname,'_',metric,'_fast_contig.csv')
-}
-
-write.csv(dat,paste0(file.loc.git,save.name))
+# write.csv(dat,paste0(file.loc.git,save.name))
 write.csv(dat.parameters,paste0(file.loc.git,save.name.param))
 
 
