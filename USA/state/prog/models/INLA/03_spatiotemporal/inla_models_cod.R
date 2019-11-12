@@ -767,7 +767,7 @@
 
     if(type.arg==29){
 
-        # MODEL 10 BUT WITH BYM AND WITH LONG_TERM TEMPERATURE VALUE
+        # MODEL 10 BUT WITH BYM AND WITH LONG-TERM TEMPERATURE VALUE
 
         # 1. Type Id space-time interaction with besag state interaction terms and state-month specific variable slope (rw1)
         fml  <- deaths.adj ~
@@ -801,7 +801,7 @@
 
     if(type.arg==30){
 
-        # MODEL 10 BUT WITH BYM AND EDITED PC HYPERPARAMETERS
+        # MODEL 10 BUT WITH BYM AND EDITED PC HYPERPARAMETERS (NOT FINISHED)
 
         # 1. Type Id space-time interaction with besag state interaction terms and state-month specific variable slope (rw1) (priors edited)
         fml  <- deaths.adj ~

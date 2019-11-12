@@ -17,7 +17,7 @@ sex.arg <- as.numeric(chosen.row[1,1])
 age.arg <- as.numeric(chosen.row[1,2])
 year.start.arg <- 1980
 year.end.arg <- 2017
-type.arg <- 27
+type.arg <- 29 #CURRENTLY THE MODEL WITH TEMPERATURE (LONG-TERM) INCLUDED
 cluster.arg <- 0
 dname.arg <- 't2m'
 metric.arg <- 'meanc4'
