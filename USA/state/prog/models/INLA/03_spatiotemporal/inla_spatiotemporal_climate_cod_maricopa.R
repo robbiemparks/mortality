@@ -51,14 +51,14 @@ dat.climate$X = NULL
 
 library(dplyr)
 
-# centre each month by its long-term average
-dat.climate = ddply(dat.climate, c("month"), transform, temp_mean_detrend = pracma::detrend(temp_mean), temp_mean_scale = scale(temp_mean))
+# centre each month by its long-term average (either detrend or scale)
+dat.climate = plyr::ddply(dat.climate, c("month"), transform, temp_mean_detrend = pracma::detrend(temp_mean), temp_mean_scale = scale(temp_mean))
 
 # plot to check if desired
-ggplot(data=dat.test,aes(x=year)) +
-geom_line(aes(y=temp_mean_detrend,color=as.factor(month)),linetype=1) +
-geom_line(aes(y=temp_mean_scale,color=as.factor(month)),linetype=2) +
-facet_wrap(~month)+geom_hline(yintercept=0)
+# ggplot(data=dat.test,aes(x=year)) +
+# geom_line(aes(y=temp_mean_detrend,color=as.factor(month)),linetype=1) +
+# geom_line(aes(y=temp_mean_scale,color=as.factor(month)),linetype=2) +
+# facet_wrap(~month)+geom_hline(yintercept=0)
 
 # merge mortality and climate data and reorder
 dat.merged <- merge(dat.inla.load,dat.climate,by.x=c('year','month'),by.y=c('year','month'),all.x=TRUE)
@@ -104,12 +104,13 @@ dat.inla <- dat.inla[order(dat.inla$sex,dat.inla$age,dat.inla$year.month),]
 rownames(dat.inla) <- 1:nrow(dat.inla)
 
 # create a factor variable for age (1 to 10)
-dat.inla$age.rank = with(dat.inla, match(age, unique(age)))
+dat.inla$ID = with(dat.inla, match(age, unique(age)))
 
 # variables for INLA model
 dat.inla$year.month4 <- dat.inla$year.month3 <- dat.inla$year.month2 <- dat.inla$year.month
 dat.inla$month7 <- dat.inla$month6 <- dat.inla$month5 <- dat.inla$month4 <- dat.inla$month3 <- dat.inla$month2 <- dat.inla$month
 dat.inla$e <- 1:nrow(dat.inla)
+dat.inla$ID2 = dat.inla$ID
 
 # create piecewise climate variable if required
 if(pw.arg==1){
@@ -130,49 +131,54 @@ library(INLA)
 
 # load inla function
 
+# define model
 # 1. Type Id space-time interaction with besag state interaction terms and state-month specific variable slope (rw1)
-fml  <- deaths.adj ~
-# global terms
-1 +                                                                     		# global intercept
-year.month +                                                           			# global slope
-# month specific terms
-f(month, model='rw1',cyclic = TRUE) +                                           # month specific intercept
-f(month2, year.month2, model='rw1', cyclic= TRUE) +                             # month specific slope
-# age-month specific terms
-f(month3, model="rw1",cyclic = TRUE,group=ID,control.group=list(model='rw1'))+                                  # age-month specific intercept
-f(month4, year.month2, model="rw1",cyclic = TRUE,group=ID,control.group=list(model='rw1'))+                     # age-month specific slope
-# age specific terms
-f(ID, model="rw1") +                                      		                # age specific intercept (RW1)
-f(ID2, year.month2, model="rw1") +                        		                # age specific slope (RW1)
-# climate specific terms
-f(month5, temp_mean_detrend, model="rw1", cyclic=TRUE,group=ID) +               # month specific climate slope, by age
-# random walk across time (could make by age group if converges OK
-f(year.month3, model="rw1") +                                           		# rw1 over time
-# overdispersion term
-f(e, model = "iid")                                                    		 	# overdispersion term
+if(type.arg==27){
+    if(pw.arg==0){
+        fml  <- deaths.adj ~
+        # global terms
+        1 +                                                                     		# global intercept
+        year.month +                                                           			# global slope
+        # month specific terms
+        f(month, model='rw1',cyclic = TRUE) +                                           # month specific intercept
+        f(month2, year.month2, model='rw1', cyclic= TRUE) +                             # month specific slope
+        # age-month specific terms
+        f(month3, model="rw1",cyclic = TRUE,group=ID,control.group=list(model='rw1'))+                                  # age-month specific intercept
+        f(month4, year.month2, model="rw1",cyclic = TRUE,group=ID,control.group=list(model='rw1'))+                     # age-month specific slope
+        # age specific terms
+        f(ID, model="rw1") +                                      		                # age specific intercept (RW1)
+        f(ID2, year.month2, model="rw1") +                        		                # age specific slope (RW1)
+        # climate specific terms
+        f(month5, temp_mean_detrend, model="rw1", cyclic=TRUE,group=ID) +               # month specific climate slope, by age
+        # random walk across time (could make by age group if converges OK
+        f(year.month3, model="rw1") +                                           		# rw1 over time
+        # overdispersion term
+        f(e, model = "iid")                                                    		 	# overdispersion term
+    }
 
-# if piece-wise (to finish)
-if(pw.arg==1){
-    fml  <- deaths.adj ~
-    # global terms
-    1 +                                                                     		# global intercept
-    year.month +                                                           			# global slope
-    # month specific terms
-    f(month, model='rw1',cyclic = TRUE) +                                           # month specific intercept
-    f(month2, year.month2, model='rw1', cyclic= TRUE) +                             # month specific slope
-    # age-month specific terms
-    f(month3, model="rw1",cyclic = TRUE,group=ID,control.group=list(model='rw1'))+                                  # age-month specific intercept
-    f(month4, year.month2, model="rw1",cyclic = TRUE,group=ID,control.group=list(model='rw1'))+                     # age-month specific slope
-    # age specific terms
-    f(ID, model="rw1") +                                      		                # age specific intercept (RW1)
-    f(ID2, year.month2, model="rw1") +                        		                # age specific slope (RW1)
-    # climate specific terms
-    f(month5, temp_mean_detrend_pos, model="rw1", cyclic=TRUE,group=ID) +           # month specific climate slope, by age
-    f(month6, temp_mean_detrend_neg, model="rw1", cyclic=TRUE,group=ID) +           # month specific climate slope, by age
-    # random walk across time (could make by age group if converges OK
-    f(year.month3, model="rw1") +                                           		# rw1 over time
-    # overdispersion term
-    f(e, model = "iid")                                                    		 	# overdispersion term
+    # if piece-wise then this model
+    if(pw.arg==1){
+        fml  <- deaths.adj ~
+        # global terms
+        1 +                                                                     		# global intercept
+        year.month +                                                           			# global slope
+        # month specific terms
+        f(month, model='rw1',cyclic = TRUE) +                                           # month specific intercept
+        f(month2, year.month2, model='rw1', cyclic= TRUE) +                             # month specific slope
+        # age-month specific terms
+        f(month3, model="rw1",cyclic = TRUE,group=ID,control.group=list(model='rw1'))+                                  # age-month specific intercept
+        f(month4, year.month2, model="rw1",cyclic = TRUE,group=ID,control.group=list(model='rw1'))+                     # age-month specific slope
+        # age specific terms
+        f(ID, model="rw1") +                                      		                # age specific intercept (RW1)
+        f(ID2, year.month2, model="rw1") +                        		                # age specific slope (RW1)
+        # climate specific terms
+        f(month5, temp_mean_detrend_pos, model="rw1", cyclic=TRUE,group=ID) +           # month specific climate slope, by age
+        f(month6, temp_mean_detrend_neg, model="rw1", cyclic=TRUE,group=ID) +           # month specific climate slope, by age
+        # random walk across time (could make by age group if converges OK
+        f(year.month3, model="rw1") +                                           		# rw1 over time
+        # overdispersion term
+        f(e, model = "iid")                                                    		 	# overdispersion term
+    }
 }
 
 # functions to enable age group and sex to be selected with faster AR1 structure in addition to rough run
@@ -187,23 +193,23 @@ inla.function.climate.faster <- function() {
     control.compute = list(dic=TRUE),
     control.predictor = list(link = 1),
     control.inla = list(diagonal=10000, int.strategy='eb',strategy='gaussian'),
-    #verbose=TRUE
+    verbose=TRUE
     ))
 
     # INLA model proper
-    system.time(mod <-
-    inla(formula = fml,
-    family = "poisson",
-    data = dat.inla,
-    E = pop.adj,
-    control.compute = list(config=TRUE, dic=TRUE),
-    control.predictor = list(link = 1),
-    control.inla=list(diagonal=0),
-    control.mode = list(result = mod.rough, restart = TRUE),
-    #verbose=TRUE
-    ))
+    # system.time(mod <-
+    # inla(formula = fml,
+    # family = "poisson",
+    # data = dat.inla,
+    # E = pop.adj,
+    # control.compute = list(config=TRUE, dic=TRUE),
+    # control.predictor = list(link = 1),
+    # control.inla=list(diagonal=0),
+    # control.mode = list(result = mod.rough, restart = TRUE),
+    # #verbose=TRUE
+    # ))
 
-    return(mod)
+    return(mod.rough) # THIS SHOULD CHANGE ONCE ABOVE IS FIXED TO MAKE MODEL PROPER
 }
 
 mod = inla.function.climate.faster()
@@ -211,7 +217,7 @@ mod = inla.function.climate.faster()
 # prep data for output
 
 # output string for filenames
-output.string = paste0('USA_rate_pred_type',type.selected,'_',age.arg,'_',sex.lookup[sex.arg],'_',year.start.analysis.arg,'_',year.end.analysis.arg,'_',dname.arg,'_',metric.arg)
+output.string = paste0('maricopa_rate_pred_type',type.selected,'_',age.arg,'_',sex.lookup[sex.arg],'_',year.start.analysis.arg,'_',year.end.analysis.arg,'_',dname.arg,'_',metric.arg)
 
 # save all parameters of INLA model
 parameters.name <- paste0(output.string)
