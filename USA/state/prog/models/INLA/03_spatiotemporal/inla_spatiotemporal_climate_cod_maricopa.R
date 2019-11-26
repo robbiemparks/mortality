@@ -113,16 +113,16 @@ dat.inla$e <- 1:nrow(dat.inla)
 
 # create piecewise climate variable if required
 if(pw.arg==1){
-    dat.inla$variable2 = ifelse(dat.inla$variable<0,0,dat.inla$variable)
-    dat.inla$variable3 = ifelse(dat.inla$variable>0,0,dat.inla$variable)
+    dat.inla$temp_mean_detrend_pos = ifelse(dat.inla$temp_mean_detrend<0,0,dat.inla$temp_mean_detrend)
+    dat.inla$temp_mean_detrend_neg = ifelse(dat.inla$temp_mean_detrend>0,0,dat.inla$temp_mean_detrend)
 }
 
 # create directory for output
 if(pw.arg==0){
-    file.loc <- paste0('~/data/mortality/US/state/climate_effects/',dname.arg,'/',metric.arg,'/non_pw/type_',type.selected,'/age_groups/',age.arg)
+    file.loc <- paste0('~/data/mortality/US/state/climate_effects_maricopa/',dname.arg,'/',metric.arg,'/non_pw/type_',type.selected,'/all_ages/',age.arg)
 }
 if(pw.arg==1){
-    file.loc <- paste0('~/data/mortality/US/state/climate_effects/',dname.arg,'/',metric.arg,'/pw/type_',type.selected,'/age_groups/',age.arg)
+    file.loc <- paste0('~/data/mortality/US/state/climate_effects_maricopa/',dname.arg,'/',metric.arg,'/pw/type_',type.selected,'/all_ages/',age.arg)
 }
 ifelse(!dir.exists(file.loc), dir.create(file.loc, recursive=TRUE), FALSE)
 
@@ -145,34 +145,34 @@ f(month4, year.month2, model="rw1",cyclic = TRUE,group=ID,control.group=list(mod
 f(ID, model="rw1") +                                      		                # age specific intercept (RW1)
 f(ID2, year.month2, model="rw1") +                        		                # age specific slope (RW1)
 # climate specific terms
-f(month5, temp_mean, model="rw1", cyclic=TRUE,group=ID) +                       # month specific climate slope
+f(month5, temp_mean_detrend, model="rw1", cyclic=TRUE,group=ID) +               # month specific climate slope, by age
 # random walk across time (could make by age group if converges OK
-f(year.month3, model="rw1") +                                           		# rw1
+f(year.month3, model="rw1") +                                           		# rw1 over time
 # overdispersion term
 f(e, model = "iid")                                                    		 	# overdispersion term
 
 # if piece-wise (to finish)
 if(pw.arg==1){
-fml  <- deaths.adj ~
-# global terms
-1 +                                                                     		# global intercept
-year.month +                                                           			# global slope
-# month specific terms
-f(month, model='rw1',cyclic = TRUE) +                                           # month specific intercept
-f(month2, year.month2, model='rw1', cyclic= TRUE) +                             # month specific slope
-# state-month specific terms
-f(month3, model="rw1",cyclic = TRUE,group=ID,control.group=list(model='bym',graph=USA.adj))+                  # state-month specific intercept (spatially-correlated)
-f(month4, year.month2, model="rw1",cyclic = TRUE,group=ID, control.group=list(model='bym',graph=USA.adj))+    # state-month specific slope (spatially-correlated)
-# state specific terms
-f(ID, model="bym",graph=USA.adj) +                                      		# state specific intercept (BYM)
-f(ID2, year.month2, model="bym",graph=USA.adj) +                        		# state specific slope (BYM)
-# climate specific terms
-f(month5, variable2, model="rw1", cyclic=TRUE) +                                 # month specific climate slope (above 0)
-f(month6, variable3, model="rw1", cyclic=TRUE) +                                 # month specific climate slope (below 0)
-# random walk across time
-f(year.month3, model="rw1") +                                           		# rw1
-# overdispersion term
-f(e, model = "iid")
+    fml  <- deaths.adj ~
+    # global terms
+    1 +                                                                     		# global intercept
+    year.month +                                                           			# global slope
+    # month specific terms
+    f(month, model='rw1',cyclic = TRUE) +                                           # month specific intercept
+    f(month2, year.month2, model='rw1', cyclic= TRUE) +                             # month specific slope
+    # age-month specific terms
+    f(month3, model="rw1",cyclic = TRUE,group=ID,control.group=list(model='rw1'))+                                  # age-month specific intercept
+    f(month4, year.month2, model="rw1",cyclic = TRUE,group=ID,control.group=list(model='rw1'))+                     # age-month specific slope
+    # age specific terms
+    f(ID, model="rw1") +                                      		                # age specific intercept (RW1)
+    f(ID2, year.month2, model="rw1") +                        		                # age specific slope (RW1)
+    # climate specific terms
+    f(month5, temp_mean_detrend_pos, model="rw1", cyclic=TRUE,group=ID) +           # month specific climate slope, by age
+    f(month6, temp_mean_detrend_neg, model="rw1", cyclic=TRUE,group=ID) +           # month specific climate slope, by age
+    # random walk across time (could make by age group if converges OK
+    f(year.month3, model="rw1") +                                           		# rw1 over time
+    # overdispersion term
+    f(e, model = "iid")                                                    		 	# overdispersion term
 }
 
 # functions to enable age group and sex to be selected with faster AR1 structure in addition to rough run
