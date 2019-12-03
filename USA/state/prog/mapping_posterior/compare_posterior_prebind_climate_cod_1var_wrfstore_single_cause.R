@@ -15,7 +15,7 @@ pw.arg <- as.numeric(args[11])
 
 # for model testing
 # year.start = 1980 ; year.end = 2017 ; country = 'USA' ; model = 27 ; dname='t2m' ; metric='meanc4'
-# cause.2 = 'Accidental drowning and submersion' ;  contig.arg = 1 ; pw.arg = 0
+# cause.2 = 'Transport accidents' ;  contig.arg = 1 ; pw.arg = 0
 
 # source variables
 source('../../data/objects/objects.R')
