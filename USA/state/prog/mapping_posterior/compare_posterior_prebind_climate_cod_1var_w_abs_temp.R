@@ -85,18 +85,25 @@ dat.abs.temp.2$month=c(1:12)
 
 library(ggplot2)
 
+# PLOTS
 ggplot(dat=dat.param.merged) +
-    geom_point(aes(x=model.1.mean,y=model.2.mean)) +
+    geom_point(aes(x=exp(model.1.mean)-1,y=exp(model.2.mean)-1)) +
     geom_abline(linetype=2) +
     xlab('Temperature parameters from main model') +
     ylab('Temperature parameters from model with absolute temperature')
 
 ggplot(dat=dat.intercept.merged) +
-    geom_point(aes(x=model.1.mean,y=model.2.mean)) +
+    geom_point(aes(x=exp(model.1.mean),y=exp(model.2.mean))) +
     geom_abline(linetype=2) +
     xlab('Overall intercept values from main model') +
     ylab('Overall intercept values from model with absolute temperature') +
-    xlim(c(-2.5,-0)) + ylim(c(-2.5,-0))
+    xlim(0,0.5) + ylim(0,0.5)
+
+ggplot(dat=dat.abs.temp.2) +
+    geom_point(aes(x=month,y=exp(model.2.mean))) +
+    xlab('Month') +
+    ylab('Overall absolute temperature values') +
+    facet_grid(cause~sex)
 
 
 
