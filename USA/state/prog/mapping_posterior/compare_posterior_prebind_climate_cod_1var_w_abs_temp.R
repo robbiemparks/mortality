@@ -72,12 +72,32 @@ dat.param.1$X = NULL ; dat.param.2$X = NULL
 dat.param.1$month=c(1:12) ; dat.param.2$month=c(1:12)
 names(dat.param.1) = c('model.1.mean',"model.1.ll", "model.1.ul", "age", "sex",'cause')
 dat.param.merged = merge(dat.param.1,dat.param.2,by.x=c('age','sex','cause','month'))
-dat.param.merged
+dat.param.merged = subset(dat.param.merged,!(cause=='Accidental drowning and submersion'&age==65&sex==2))
 
 # 2. merge intercept terms against each other and plot
 dat.intercept.1$X = NULL ; dat.intercept.2$X = NULL
 names(dat.intercept.1) = c('model.1.mean', "age", "sex",'cause')
 dat.intercept.merged = merge(dat.intercept.1,dat.intercept.2,by.x=c('age','sex','cause'))
+dat.intercept.merged = subset(dat.intercept.merged,!(cause=='Accidental drowning and submersion'&age==65&sex==2))
 
 # 3. plot absolute temperature terms
 dat.abs.temp.2$month=c(1:12)
+
+library(ggplot2)
+
+ggplot(dat=dat.param.merged) +
+    geom_point(aes(x=model.1.mean,y=model.2.mean)) +
+    geom_abline(linetype=2) +
+    xlab('Temperature parameters from main model') +
+    ylab('Temperature parameters from model with absolute temperature')
+
+ggplot(dat=dat.intercept.merged) +
+    geom_point(aes(x=model.1.mean,y=model.2.mean)) +
+    geom_abline(linetype=2) +
+    xlab('Overall intercept values from main model') +
+    ylab('Overall intercept values from model with absolute temperature') +
+    xlim(c(-2.5,-0)) + ylim(c(-2.5,-0))
+
+
+
+
