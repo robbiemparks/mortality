@@ -15,27 +15,27 @@ cod.arg <- as.character(args[8]) ; cod.arg <- gsub('_',' ',cod.arg)
 pw.arg <- as.numeric(args[9])
 
 # for test runs
-# sex.arg = 1 ; year.start.arg = 1982 ; year.end.arg = 2017 ; type.arg=27
+# sex.arg = 2 ; year.start.arg = 1982 ; year.end.arg = 2017 ; type.arg=27
 # cluster.arg = 0 ; year.start.analysis.arg = 1982 ; year.end.analysis.arg = 2017 ;
-# cod.arg = 'Cardiopulmonary'; pw.arg=0
+# cod.arg = 'AllCause'; pw.arg=1
+# dname.arg='t2m'; metric.arg='mean'
 
 # types character for file strings
-types <- c('1','1a','2','2a','3','3a','4','1b','1c','1d','1e','1f','1de','1ef','1g','0','minus1','1d2','1d3','1d4','0a','0b','1d5','1d6','1d7','1d8')
-# type.selected <- types[type.arg]
-
-# print(paste(year.start.analysis.arg,year.end.analysis.arg,age.arg,sex.arg,type.selected,cod.arg))
+types <- c('1','1a','2','2a','3','3a','4','1b','1c','1d','1e','1f','1de','1ef','1g','0','minus1','1d2','1d3','1d4','0a','0b','1d5','1d6','1d7','1d8','1d9')
+type.selected <- types[type.arg]
 
 # range of years
 years <- year.start.arg:year.end.arg
 
 require(mailR)
+library(plyr)
 
 # create file location for output
 if(pw.arg==0){
-    ifelse(!dir.exists(paste0('~/data/mortality/US/state/climate_effects_maricopa/',dname.arg,'/',metric.arg,'/non_pw/type_',type.selected,'/age_groups')), dir.create(paste0('~/data/mortality/US/state/climate_effects_maricopa/',dname.arg,'/',metric.arg,'/non_pw/type_',type.selected,'/age_groups'),recursive=TRUE), FALSE)
+    ifelse(!dir.exists(paste0('~/data/mortality/US/state/climate_effects_maricopa/',dname.arg,'/',metric.arg,'/non_pw/type_',type.selected,'/all_ages')), dir.create(paste0('~/data/mortality/US/state/climate_effects_maricopa/',dname.arg,'/',metric.arg,'/non_pw/type_',type.selected,'/all_ages'),recursive=TRUE), FALSE)
 }
 if(pw.arg==1){
-    ifelse(!dir.exists(paste0('~/data/mortality/US/state/climate_effects_maricopa/',dname.arg,'/',metric.arg,'/pw/type_',type.selected,'/age_groups')), dir.create(paste0('~/data/mortality/US/state/climate_effects_maricopa/',dname.arg,'/',metric.arg,'/pw/type_',type.selected,'/age_groups'),recursive=TRUE), FALSE)
+    ifelse(!dir.exists(paste0('~/data/mortality/US/state/climate_effects_maricopa/',dname.arg,'/',metric.arg,'/pw/type_',type.selected,'/all_ages')), dir.create(paste0('~/data/mortality/US/state/climate_effects_maricopa/',dname.arg,'/',metric.arg,'/pw/type_',type.selected,'/all_ages'),recursive=TRUE), FALSE)
 }
 
 # load data and filter results
@@ -43,19 +43,23 @@ if(cod.arg%in%c('Cancer','Cardiopulmonary','External','Other')){
 	dat.inla.load <- readRDS(paste0('../../output/prep_data/datus_maricopa_rates_cod_1982_2017'))
 	dat.inla.load <- subset(dat.inla.load,cause==cod.arg & sex==sex.arg)
 }
+if(cod.arg%in%c('AllCause')){
+	dat.inla.load <- readRDS(paste0('../../output/prep_data/datus_maricopa_rates_cod_1982_2017'))
+    dat.inla.load <- plyr::ddply(dat.inla.load,.(sex,age,year,month,fips),summarize,deaths=sum(deaths),deaths.adj=sum(deaths.adj),pop=mean(pop),pop.adj=mean(pop.adj))
+	dat.inla.load$rate.adj <- with(dat.inla.load,deaths.adj/pop.adj)
+    dat.inla.load <- subset(dat.inla.load,sex==sex.arg)
+}
 
 # load climate data for 1980-2018
 file.loc <- paste0('~/git/climate/countries/USA/data/temp_maricopa/PHX_temp_monthly_stats_C.csv')
 dat.climate <- read.csv(file.loc)
 dat.climate$X = NULL
 
-library(dplyr)
-
 # centre each month by its long-term average (either detrend or scale)
 dat.climate = plyr::ddply(dat.climate, c("month"), transform, temp_mean_detrend = pracma::detrend(temp_mean), temp_mean_scale = scale(temp_mean))
 
 # plot to check if desired
-# ggplot(data=dat.test,aes(x=year)) +
+# ggplot(data=dat.climate,aes(x=year)) +
 # geom_line(aes(y=temp_mean_detrend,color=as.factor(month)),linetype=1) +
 # geom_line(aes(y=temp_mean_scale,color=as.factor(month)),linetype=2) +
 # facet_wrap(~month)+geom_hline(yintercept=0)
@@ -65,22 +69,6 @@ dat.merged <- merge(dat.inla.load,dat.climate,by.x=c('year','month'),by.y=c('yea
 dat.merged <- dat.merged[order(dat.merged$sex,dat.merged$age,dat.merged$year,dat.merged$month),]
 
 # optional addition of long-term normals into model (currently testing may be removed)
-if(type.arg %in% c(26)){
-
-    # load long-term average (for sensitivity of model to inclusion). This may be a temporary inclusion depending on the outcome
-    file.loc.abs <- paste0('~/git/climate/countries/USA/output/multiyear_normals/',dname.arg,'/mean/')
-    dat.climate.abs = readRDS(paste0(file.loc.abs,'state_longterm_95_nonnormals_mean_',dname.arg,'_1980_2009.rds'))
-    dat.climate.abs$state.fips = as.numeric(dat.climate.abs$state.fips)
-    names(dat.climate.abs)[grep('mean',names(dat.climate.abs))] <- 'variable.abs'
-    dat.climate.abs = subset(dat.climate.abs,select=c(month,state.fips,sex,age,variable.abs))
-
-    # merge existing mortality and climate data with long-run absolute values
-    dat.merged <- merge(dat.merged,dat.climate.abs,by.x=c('sex','age','month','fips'),by.y=c('sex','age','month','state.fips'),all.x=TRUE)
-
-    # reorder one more time as had to add another column
-    dat.merged <- dat.merged[order(dat.merged$fips,dat.merged$sex,dat.merged$age,dat.merged$year,dat.merged$month),]
-
-}
 
 # lookups
 source('../../data/objects/objects.R')
@@ -118,12 +106,21 @@ if(pw.arg==1){
     dat.inla$temp_mean_detrend_neg = ifelse(dat.inla$temp_mean_detrend>0,0,dat.inla$temp_mean_detrend)
 }
 
+# plot to check if desired
+# ggplot(data=dat.inla,aes(x=year)) +
+# geom_line(aes(y=temp_mean_detrend_pos,color=as.factor(month)),linetype=1) +
+# facet_wrap(~month)+geom_hline(yintercept=0)
+#
+# ggplot(data=dat.inla,aes(x=year)) +
+# geom_line(aes(y=temp_mean_detrend_neg,color=as.factor(month)),linetype=1) +
+# facet_wrap(~month)+geom_hline(yintercept=0)
+
 # create directory for output
 if(pw.arg==0){
-    file.loc <- paste0('~/data/mortality/US/state/climate_effects_maricopa/',dname.arg,'/',metric.arg,'/non_pw/type_',type.selected,'/all_ages/',age.arg)
+    file.loc <- paste0('~/data/mortality/US/state/climate_effects_maricopa/',dname.arg,'/',metric.arg,'/non_pw/type_',type.selected,'/all_ages/')
 }
 if(pw.arg==1){
-    file.loc <- paste0('~/data/mortality/US/state/climate_effects_maricopa/',dname.arg,'/',metric.arg,'/pw/type_',type.selected,'/all_ages/',age.arg)
+    file.loc <- paste0('~/data/mortality/US/state/climate_effects_maricopa/',dname.arg,'/',metric.arg,'/pw/type_',type.selected,'/all_ages/')
 }
 ifelse(!dir.exists(file.loc), dir.create(file.loc, recursive=TRUE), FALSE)
 
@@ -197,19 +194,19 @@ inla.function.climate.faster <- function() {
     ))
 
     # INLA model proper
-    # system.time(mod <-
-    # inla(formula = fml,
-    # family = "poisson",
-    # data = dat.inla,
-    # E = pop.adj,
-    # control.compute = list(config=TRUE, dic=TRUE),
-    # control.predictor = list(link = 1),
-    # control.inla=list(diagonal=0),
-    # control.mode = list(result = mod.rough, restart = TRUE),
-    # #verbose=TRUE
-    # ))
+    system.time(mod <-
+    inla(formula = fml,
+    family = "poisson",
+    data = dat.inla,
+    E = pop.adj,
+    control.compute = list(config=TRUE, dic=TRUE),
+    control.predictor = list(link = 1),
+    control.inla=list(diagonal=0),
+    control.mode = list(result = mod.rough, restart = TRUE),
+    verbose=TRUE
+    ))
 
-    return(mod.rough) # THIS SHOULD CHANGE ONCE ABOVE IS FIXED TO MAKE MODEL PROPER
+    return(mod)
 }
 
 mod = inla.function.climate.faster()
@@ -217,26 +214,18 @@ mod = inla.function.climate.faster()
 # prep data for output
 
 # output string for filenames
-output.string = paste0('maricopa_rate_pred_type',type.selected,'_',age.arg,'_',sex.lookup[sex.arg],'_',year.start.analysis.arg,'_',year.end.analysis.arg,'_',dname.arg,'_',metric.arg)
+output.string = paste0('maricopa_rate_pred_type',type.selected,'_',sex.lookup[sex.arg],'_',year.start.analysis.arg,'_',year.end.analysis.arg,'_',dname.arg,'_',metric.arg)
 
 # save all parameters of INLA model
 parameters.name <- paste0(output.string)
 if(cod.arg!='AllCause'){parameters.name = paste0(parameters.name,'_',cod.arg,'_parameters')}
 if(cod.arg=='AllCause'){parameters.name = paste0(parameters.name,'_parameters')}
-if(fast.arg==1){parameters.name = paste0(parameters.name,'_fast')}
-if(fast.arg==2){parameters.name = paste0(parameters.name,'_faster')}
-if(contig.arg == 1){parameters.name = paste0(parameters.name,'_contig')}
-#mod$misc <- NULL ; mod$.args$.parent.frame <- NULL
 saveRDS(mod,paste0(file.loc,'/',parameters.name))
 
 # save summary of INLA model
 summary.name <- paste0(output.string)
 if(cod.arg!='AllCause'){summary.name = paste0(summary.name,'_',cod.arg,'_summary')}
 if(cod.arg=='AllCause'){summary.name = paste0(summary.name,'_summary')}
-if(fast.arg==1){summary.name = paste0(summary.name,'_fast')}
-if(fast.arg==2){summary.name = paste0(summary.name,'_faster')}
-if(contig.arg == 0){summary.name = paste0(summary.name,'.txt')}
-if(contig.arg == 1){summary.name = paste0(summary.name,'_contig.txt')}
 inla.summary.mod <- summary(mod)
 capture.output(inla.summary.mod,file=paste0(file.loc,'/',summary.name))
 
@@ -244,9 +233,6 @@ capture.output(inla.summary.mod,file=paste0(file.loc,'/',summary.name))
 RDS.name <- paste0(output.string)
 if(cod.arg!='AllCause'){RDS.name = paste0(RDS.name,'_',cod.arg)}
 if(cod.arg=='AllCause'){RDS.name = paste0(RDS.name)}
-if(fast.arg==1){RDS.name = paste0(RDS.name,'_fast')}
-if(fast.arg==2){RDS.name = paste0(RDS.name,'_faster')}
-if(contig.arg == 1){RDS.name = paste0(RDS.name,'_contig')}
 plot.dat <- as.data.frame(cbind(dat.inla,rate.pred=mod$summary.fitted.values$mean,sd=mod$summary.fitted.values$sd))
 saveRDS(plot.dat,paste0(file.loc,'/',RDS.name))
 
