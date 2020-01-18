@@ -213,6 +213,8 @@ mod = inla.function.climate.faster()
 
 # prep data for output
 
+# make piecewise
+
 # output string for filenames
 output.string = paste0('maricopa_rate_pred_type',type.selected,'_',sex.lookup[sex.arg],'_',year.start.analysis.arg,'_',year.end.analysis.arg,'_',dname.arg,'_',metric.arg)
 
