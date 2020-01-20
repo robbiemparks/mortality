@@ -20,9 +20,10 @@ year.start <- 1982
 year.end <- 2017
 country <- 'USA'
 model <- 27
-pw <- 1
-dname <- 't2m'
-metric <- 'mean'
+pw <- 0
+
+# meteoroligical variables (currently hard-coded)
+dname='t2m'; metric='mean'
 
 # source variables
 source('../../data/objects/objects.R')
@@ -36,15 +37,15 @@ INLA:::inla.dynload.workaround()
 library(INLA)
 
 # create directories for output
-file.loc <- paste0('../../output/additional_deaths_maricopa/',year.start,'_',year.end,
+file.loc <- paste0('../../output/additional_deaths_single_county/',year.start,'_',year.end,
 '/',dname,'/',metric,'/pw/type_',model,'/non_contig/all_injuries/no_draws/')
 
 #  directory for input
 if(pw==0){
-    file.loc.input <- paste0('~/data/mortality/US/state/climate_effects_maricopa/',dname,'/',metric,'/non_pw/type_',model,'/all_ages/')
+    file.loc.input <- paste0('~/data/mortality/US/state/climate_effects_single_county/',dname,'/',metric,'/non_pw/type_',model,'/all_ages/')
 }
 if(pw==1){
-    file.loc.input <- paste0('~/data/mortality/US/state/climate_effects_maricopa/',dname,'/',metric,'/pw/type_',model,'/all_ages/')
+    file.loc.input <- paste0('~/data/mortality/US/state/climate_effects_single_county/',dname,'/',metric,'/pw/type_',model,'/all_ages/')
 }
 
 # load the full model for a particular sex
@@ -52,13 +53,13 @@ if(cause!='AllCause'){
     # TO FINISH
 }
 if(cause=='AllCause'){
-    input.string.males = paste0('maricopa_rate_pred_type',model,'_',sex.lookup[1],'_',
+    input.string.males = paste0('single_county_rate_pred_type',model,'_',sex.lookup[1],'_',
     year.start,'_',year.end,'_',dname,'_',metric,'_parameters')
-    file.name.males <- paste0(file.loc.input,input.string)
+    file.name.males <- paste0(file.loc.input,input.string.males)
 
-    input.string.females = paste0('maricopa_rate_pred_type',model,'_',sex.lookup[2],'_',
+    input.string.females = paste0('single_county_rate_pred_type',model,'_',sex.lookup[2],'_',
     year.start,'_',year.end,'_',dname,'_',metric,'_parameters')
-    file.name.females <- paste0(file.loc.input,input.string)
+    file.name.females <- paste0(file.loc.input,input.string.females)
 }
 
 # load model results for processing
@@ -90,10 +91,11 @@ names(dat.parameters) = c('mean','sd','mean.ll','median','mean.ul','mode','kld',
 
 # print and fix!
 pdf(paste0(file.loc.git,country,'_correlations_',model,'_',model.2,'_',year.start,'_',year.end,'_',dname,'_',metric,'_fast_contig.pdf'),paper='a4r',height=0,width=0)
-print(ggplot(data=subset(dat.parameters,sex.long=='Male'),aes(x=month,y=mean)) +
+ggplot(data=subset(dat.parameters,sex.long=='Male'),aes(x=month,y=mean)) +
     geom_point() +
     geom_errorbar(aes(ymin=mean.ll,ymax=mean.ul)) +
     geom_abline() +
+    geom_hline(yintercept=0, linetype=2) +
     facet_wrap(~age.long) +
     # xlab('Temperature parameters from original model') + ylab('Temperature parameters from model\nwith adjusted hyperpriors') +
     theme_bw() + theme(text = element_text(size = 15),
@@ -103,4 +105,18 @@ print(ggplot(data=subset(dat.parameters,sex.long=='Male'),aes(x=month,y=mean)) +
     panel.border = element_rect(colour = "black"),strip.background = element_blank(),
     legend.position = 'bottom',legend.justification='center',
     legend.background = element_rect(fill="white", size=.5, linetype="dotted"))
-)
+
+ggplot(data=subset(dat.parameters,sex.long=='Female'),aes(x=month,y=mean)) +
+    geom_point() +
+    geom_errorbar(aes(ymin=mean.ll,ymax=mean.ul)) +
+    geom_abline() +
+    geom_hline(yintercept=0, linetype=2) +
+    facet_wrap(~age.long) +
+    # xlab('Temperature parameters from original model') + ylab('Temperature parameters from model\nwith adjusted hyperpriors') +
+    theme_bw() + theme(text = element_text(size = 15),
+    panel.grid.major = element_blank(),axis.text.x = element_text(angle=90),
+    plot.title = element_text(hjust = 0.5),panel.background = element_blank(),
+    panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"),
+    panel.border = element_rect(colour = "black"),strip.background = element_blank(),
+    legend.position = 'bottom',legend.justification='center',
+    legend.background = element_rect(fill="white", size=.5, linetype="dotted"))
