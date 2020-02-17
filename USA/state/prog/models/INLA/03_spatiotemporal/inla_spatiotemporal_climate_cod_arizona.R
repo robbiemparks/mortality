@@ -178,24 +178,38 @@ if(type.arg==27){
     }
 }
 
-# temporary workaround to avoid GLIBC error (???) from:
-# https://www.mn.uio.no/math/english/services/it/help/status/2018-07-26-inla-r.html
-INLA:::inla.dynload.workaround()
+# functions to enable sex to be selected with faster AR1 structure in addition to rough run
+inla.function.climate.faster <- function() {
 
-# load inla pardiso (what on earth is this?)
-inla.setOption(pardiso.license="~/git/mortality/USA/state/prog/00_bash/pardiso.lic")
-inla.pardiso.check()
+    # INLA model rough
+    system.time(mod.rough <-
+    inla(formula = fml,
+    family = "poisson",
+    data = dat.inla,
+    E = pop.adj,
+    control.compute = list(dic=TRUE),
+    control.predictor = list(link = 1),
+    control.inla = list(diagonal=10000, int.strategy='eb',strategy='gaussian'),
+    verbose=TRUE
+    ))
 
-# input arguments into function to perform inference
-if(fast.arg==0){
-    mod = inla.function.climate()
+    # INLA model proper
+    system.time(mod <-
+    inla(formula = fml,
+    family = "poisson",
+    data = dat.inla,
+    E = pop.adj,
+    control.compute = list(config=TRUE, dic=TRUE),
+    control.predictor = list(link = 1),
+    control.inla=list(diagonal=0),
+    control.mode = list(result = mod.rough, restart = TRUE),
+    verbose=TRUE
+    ))
+
+    return(mod)
 }
-if(fast.arg==1){
-    mod = inla.function.climate.fast()
-}
-if(fast.arg==2){
-    mod = inla.function.climate.faster()
-}
+
+mod = inla.function.climate.faster()
 
 # prep data for output
 
