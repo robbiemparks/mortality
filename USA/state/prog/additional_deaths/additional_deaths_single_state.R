@@ -121,13 +121,13 @@ if(model%in%c('1d','1d2','1d9','1d10')){
 
             # integrate across year by month for entire population
             dat.merged.sub.year.monthly = ddply(dat.merged.sub.all,.(month),summarise,deaths.attributable=sum(deaths.attributable))
-            # dat.total.sex.monthly = ddply(dat.merged.sub.year.monthly,.(cause,sex),summarise,deaths.added=sum(deaths.added),deaths.added.two.deg=sum(deaths.added.two.deg)) ; dat.total.sex.monthly$month = 99
-            # dat.total.monthly = ddply(dat.merged.sub.year.monthly,.(cause),summarise,deaths.added=sum(deaths.added),deaths.added.two.deg=sum(deaths.added.two.deg)) ; dat.total.monthly$month = 99 ; dat.total$sex = 0
 
             # dat.merged.sub.year.monthly = rbind(dat.merged.sub.year.monthly,dat.total.monthly)
             dat.merged.sub.year.monthly$draw = k
+            dat.merged.sub.all$draw = k
 
             additional.deaths.monthly = rbind(additional.deaths.monthly,dat.merged.sub.year.monthly)
+            additional.deaths = rbind(additional.deaths, dat.merged.sub.all)
 
     }
 
@@ -144,12 +144,17 @@ if(model%in%c('1d','1d2','1d9','1d10')){
     deaths.attributable.median=median(deaths.attributable),deaths.attributable.mean=mean(deaths.attributable),deaths.attributable.ll=quantile(deaths.attributable,0.025),deaths.attributable.ul=quantile(deaths.attributable,0.975))
 
     # summarise by year
-    additional.deaths.year.summary = ddply(additional.deaths.monthly,.(year,draw),summarise,deaths.attributable=sum(deaths.attributable))
+    additional.deaths$summer = ifelse(additional.deaths$month%in%c(5:9),1,0)
+    additional.deaths.summer = subset(additional.deaths,summer==1)
+    additional.deaths.year.summary = ddply(additional.deaths.summer,.(year,draw),summarise,deaths.attributable=sum(deaths.attributable))
 
-
+    additional.deaths.year.summary = ddply(additional.deaths.year.summary,.(year),summarise,
+    deaths.attributable.median=median(deaths.attributable),deaths.attributable.mean=mean(deaths.attributable),deaths.attributable.ll=quantile(deaths.attributable,0.025),deaths.attributable.ul=quantile(deaths.attributable,0.975))
 
     saveRDS(additional.deaths.monthly.summary,paste0(file.loc,'additional_deaths_summary_monthly_draws.rds'))
     saveRDS(additional.deaths.summer.summary,paste0(file.loc,'additional_deaths_summary_summer_draws.rds'))
+    saveRDS(additional.deaths.year.summary,paste0(file.loc,'additional_deaths_summary_yearly_summer_draws.rds'))
 
     write.csv(additional.deaths.monthly.summary,paste0(file.loc,'additional_deaths_summary_monthly_draws.csv'))
     write.csv(additional.deaths.summer.summary,paste0(file.loc,'additional_deaths_summary_summer_draws.csv'))
+    write.csv(additional.deaths.year.summary,paste0(file.loc,'additional_deaths_summary_yearly_summer_draws.csv'))
